@@ -1383,7 +1383,7 @@
 		},
 		{
 			"id": "awesome",
-			"status": "review",
+			"status": "approved",
 			"kind": "post",
 			"tier": 2,
 			"lane": "community",
