@@ -1299,7 +1299,7 @@
 		},
 		{
 			"id": "avatar-mcp",
-			"status": "approved",
+			"status": "posted",
 			"kind": "post",
 			"tier": 3,
 			"lane": "developer",
@@ -1405,7 +1405,7 @@
 					]
 				},
 				{
-					"text": "Each entry says in one sentence what the thing does and why you would reach for it instead of the alternative. The same list is published in the standard awesome list format on GitHub, so it can be forked and added to."
+					"text": "Each entry says in one sentence what the thing does and why you would reach for it instead of the alternative, so the list reads like a set of recommendations, not a directory."
 				}
 			],
 			"claims": [
