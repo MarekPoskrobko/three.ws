@@ -755,7 +755,7 @@
 		},
 		{
 			"id": "ai-3d-skills",
-			"status": "paused",
+			"status": "approved",
 			"kind": "post",
 			"tier": 2,
 			"lane": "creation",
@@ -1299,7 +1299,7 @@
 		},
 		{
 			"id": "avatar-mcp",
-			"status": "review",
+			"status": "approved",
 			"kind": "post",
 			"tier": 3,
 			"lane": "developer",
@@ -1648,7 +1648,7 @@
 		},
 		{
 			"id": "galaxy",
-			"status": "review",
+			"status": "approved",
 			"kind": "post",
 			"tier": 1,
 			"lane": "labs",
