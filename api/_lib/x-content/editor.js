@@ -13,8 +13,8 @@
 // account's best-performing posts. It returns a verdict, scores, specific
 // issues with fixes, and a rewrite. It never edits the queue: a human decides.
 //
-// The transport chain it runs on (Vertex, OpenRouter, OpenAI, NVIDIA NIM) is
-// shared with the drafter and lives in llm.js.
+// The transport chain it runs on (Vertex, Groq, OpenRouter, OpenAI, NVIDIA NIM)
+// is shared with the drafter and lives in llm.js.
 
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';

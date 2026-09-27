@@ -2,12 +2,20 @@
 // brief, and reviewing one before it ships.
 //
 // Order is cost and quality, strongest first: Claude on Vertex AI (Google
-// credits, the standing approval in the operating rules), Claude through
-// OpenRouter, OpenAI, then Kimi K3 on NVIDIA NIM (free, multimodal, slow). A
-// rung with no credentials is skipped; a rung that errors, or that answers with
-// something the caller cannot parse, falls through to the next one. Falling
-// through on a parse failure is deliberate: a model that returns prose where
-// JSON was asked for has failed the call, and the next rung usually will not.
+// credits, the standing approval in the operating rules), gpt-oss-120b on Groq
+// (funded, fast, text-only), Claude through OpenRouter, OpenAI, then Kimi K3 on
+// NVIDIA NIM (free, multimodal, slow). A rung with no credentials is skipped; a
+// rung that errors, or that answers with something the caller cannot parse,
+// falls through to the next one. Falling through on a parse failure is
+// deliberate: a model that returns prose where JSON was asked for has failed the
+// call, and the next rung usually will not.
+//
+// The Groq rung is text-only: it skips any request that carries an image, so a
+// review that must see its media never gets an image-blind verdict from it and
+// falls to a multimodal rung (Vertex or NVIDIA) instead. It still serves the
+// drafting job, whose brief is text, which is why it sits high: when the paid
+// multimodal rungs are unfunded, drafting stays fast and reliable on it while
+// review still routes to NVIDIA.
 
 export const EDITOR_MODEL = 'claude-opus-5';
 
@@ -21,8 +29,9 @@ async function viaVertex({ system, parts }) {
 	return { model: `vertex:${EDITOR_MODEL}`, text: body.content.filter((block) => block.type === 'text').map((block) => block.text).join('') };
 }
 
-async function viaChatCompletions({ system, parts }, { url, key, model, label, extraHeaders = {} }) {
+async function viaChatCompletions({ system, parts }, { url, key, model, label, extraHeaders = {}, textOnly = false }) {
 	if (!key) return null;
+	if (textOnly && parts.some((part) => part.type === 'image')) return null;
 	const content = parts.map((part) => (part.type === 'image' ? { type: 'image_url', image_url: { url: `data:${part.mime};base64,${part.data}` } } : { type: 'text', text: part.text }));
 	const response = await fetch(url, {
 		method: 'POST',
@@ -38,6 +47,7 @@ async function viaChatCompletions({ system, parts }, { url, key, model, label, e
 export function modelRungs(request, env = process.env) {
 	return [
 		() => viaVertex(request),
+		() => viaChatCompletions(request, { url: 'https://api.groq.com/openai/v1/chat/completions', key: env.GROQ_API_KEY, model: 'openai/gpt-oss-120b', label: 'groq', textOnly: true }),
 		() => viaChatCompletions(request, { url: 'https://openrouter.ai/api/v1/chat/completions', key: env.OPENROUTER_API_KEY, model: `anthropic/${EDITOR_MODEL}`, label: 'openrouter', extraHeaders: { 'http-referer': 'https://three.ws', 'x-title': 'three.ws editorial review' } }),
 		() => viaChatCompletions(request, { url: 'https://api.openai.com/v1/chat/completions', key: env.OPENAI_API_KEY, model: 'gpt-5.5-pro', label: 'openai' }),
 		() => viaChatCompletions(request, { url: 'https://integrate.api.nvidia.com/v1/chat/completions', key: env.NVIDIA_API_KEY, model: 'moonshotai/kimi-k3', label: 'nvidia' }),

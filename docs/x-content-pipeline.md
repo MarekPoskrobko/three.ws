@@ -51,7 +51,7 @@ X Articles require the posting account to be on X Premium.
 | `data/x-content/articles/<id>.md` | Article bodies, in Markdown. |
 | `public/x-media/<id>/` | Media for queue items. Media must live under `public/` or `data/` so it ships inside the production image. |
 | [api/_lib/x-content/](../api/_lib/x-content/) | The engine: voice and editorial lint, media rules, live fact verification, the AI editor, review records, Markdown to Article conversion, scheduler, publisher, ledger. |
-| [api/_lib/x-content/llm.js](../api/_lib/x-content/llm.js) | The model chain (Vertex, OpenRouter, OpenAI, NVIDIA NIM) the editor and the announcement drafter share. |
+| [api/_lib/x-content/llm.js](../api/_lib/x-content/llm.js) | The model chain (Vertex, Groq gpt-oss-120b, OpenRouter, OpenAI, NVIDIA NIM) the editor and the announcement drafter share. |
 | [api/_lib/announce/](../api/_lib/announce/) | The [announcement factory](./announcement-factory.md): it fills this queue from the backlog of shipped surfaces nobody has posted about. |
 | `data/x-content/reviews/<id>.json` | The editorial review record for each item, bound to a hash of the exact content that was reviewed. |
 | [api/cron/x-content.js](../api/cron/x-content.js) | The Cloud Scheduler tick, every 15 minutes. |
@@ -194,7 +194,7 @@ Feature probes, in `probes`, run as part of every review, and the `api` ones run
 
 The live product is the source of truth. When a screenshot disagrees with the live page, the screenshot is stale: recapture it and use the live number. The editor is instructed the same way, and its verdict cannot pass an item it raised a blocking issue on or scored below 4 anywhere. Where a human disagrees with a `revise` verdict that has no blocking issue, `"editorOverride": { "reason": "..." }` on the item records the decision; nothing overrides a failed fact check or blocking lint.
 
-The editor tries Claude on Vertex AI first, then Claude through OpenRouter, then OpenAI, then Kimi K3 on NVIDIA NIM, falling through on any provider or billing error; each record names the model that reviewed it. The CLI reads missing credentials from the Cloud Run service and uses the signed-in `gh` session for GitHub checks.
+The editor tries Claude on Vertex AI first, then gpt-oss-120b on Groq (skipped when the request carries an image, so a review that must see its media routes to a multimodal rung), then Claude through OpenRouter, then OpenAI, then Kimi K3 on NVIDIA NIM, falling through on any provider or billing error; each record names the model that reviewed it. The CLI reads missing credentials from the Cloud Run service and uses the signed-in `gh` session for GitHub checks.
 
 This bar caught real errors in the first three queued posts. The Rig Doctor post said the tool knew 11 rig conventions while the live page and code said 15, called a merged fix "an open first issue" when no such issue was open, and shipped a screenshot from before the change. The AWS post was 94 characters and stated no mechanism, and an AI rewrite of it upgraded "an AWS Partner" to "a verified AWS Partner", which no evidence supports.
 
