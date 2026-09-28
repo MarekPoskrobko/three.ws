@@ -2,16 +2,18 @@
 // Prices are set in USD. On-chain settlement is USDC (6 decimals on EVM and
 // Solana), native SOL, or $THREE (Solana-only; see PLAN_ASSETS below).
 
-import { PLANS as PLAN_ROWS, BILLING_PERIOD_DAYS } from '../_lib/plans.js';
+import { readFileSync } from 'node:fs';
+
+const PLANS_DATA = JSON.parse(readFileSync(new URL('../../data/plans.json', import.meta.url), 'utf8'));
 
 // Purchasable plans, priced from data/plans.json (the single source the
 // /pricing page, the docs and the quota checks also read), so checkout always
 // quotes the number the pricing page shows.
 export const PLANS = Object.freeze(
 	Object.fromEntries(
-		PLAN_ROWS.filter((p) => p.purchasable).map((p) => [
+		PLANS_DATA.plans.filter((p) => p.purchasable).map((p) => [
 			p.id,
-			Object.freeze({ label: p.name, price_usd: p.price_usd, duration_days: BILLING_PERIOD_DAYS }),
+			Object.freeze({ label: p.name, price_usd: p.price_usd, duration_days: PLANS_DATA.billing_period_days }),
 		]),
 	),
 );

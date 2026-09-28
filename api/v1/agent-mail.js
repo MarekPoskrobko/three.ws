@@ -16,8 +16,6 @@
  *   POST   /api/v1/agents/:id/mail/messages/:msg/read       { read: true|false }
  *   DELETE /api/v1/agents/:id/mail/messages/:msg
  *   GET    /api/v1/agents/:id/mail/messages/:msg/attachments/:index   short-lived download URL
- *   GET    /api/v1/agents/:id/mail/chat                     email-as-chat status for this mailbox
- *   POST   /api/v1/agents/:id/mail/chat                     { enabled: true|false } pair or unpair the account email
  *
  * Envelope (the v1 contract): success { data, meta: { requestId, timestamp } },
  * failure { error: { code, message, details }, meta }.
@@ -34,7 +32,6 @@ import { authenticateBearer, extractBearer, getSessionUser, hasScope } from '../
 import { checkCsrf } from '../_lib/csrf.js';
 import { limits, clientIp } from '../_lib/rate-limit.js';
 import * as mail from '../_lib/mail/service.js';
-import { emailChatStatus, setEmailChat } from '../_lib/gateway/email.js';
 
 const READ_SCOPE = 'agents:read';
 const WRITE_SCOPE = 'agents:write';
@@ -135,8 +132,6 @@ const ROUTES = [
 	['GET', 'messages/:msg/attachments/:index', READ_SCOPE, (c) => mail.attachmentDownloadUrl({
 		userId: c.userId, agentId: c.agentId, messageId: c.params.msg, index: c.params.index,
 	})],
-	['GET', 'chat', READ_SCOPE, (c) => emailChatStatus({ userId: c.userId, agentId: c.agentId })],
-	['POST', 'chat', WRITE_SCOPE, (c) => setEmailChat({ userId: c.userId, agentId: c.agentId, enabled: c.body.enabled !== false })],
 ].map(([m, pattern, scope, handler, status = 200]) => ({ method: m, parts: pattern.split('/').filter(Boolean), scope, handler, status }));
 
 /** Match method + segments. Returns { route, params }, { methodMismatch }, or null. */
