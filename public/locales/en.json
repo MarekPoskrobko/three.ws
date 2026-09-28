@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · the Commons · three.ws",
 		"the_commons": "the Commons"
 	},
+	"airdrops": {
+		"address_label": "Wallet address",
+		"address_placeholder": "Wallet address (Solana or 0x…)",
+		"also_tracked": "Also tracked",
+		"check_btn": "Check eligibility",
+		"copy_aria": "Copy address",
+		"copy_btn": "Copy",
+		"count_not": "Not eligible",
+		"count_progress": "In progress",
+		"count_qualified": "Qualified",
+		"count_tracked": "Tracked",
+		"dir_fineprint": "Statuses reflect public reporting as of the date above and change often; nothing here is an endorsement or financial advice. Estimated ranges are public speculation, not promises. Check a wallet to see scores against these criteria.",
+		"error_title": "Could not scan this wallet",
+		"est_label": "Estimated if all qualified drops pay out",
+		"filter_all": "All",
+		"filter_aria": "Filter by eligibility",
+		"filter_not": "Not eligible",
+		"filter_progress": "In progress",
+		"filter_qualified": "Qualified",
+		"form_aria": "Check a wallet",
+		"form_hint": "Press <kbd>/</kbd> to focus. The chain is detected from the address. Also see the <a href=\"/portfolio\">wallet portfolio</a>.",
+		"kicker": "Real on-chain activity · scored live",
+		"loading_note": "Scanning on-chain history. A busy wallet takes a few seconds.",
+		"meta_desc": "Check any Solana or Ethereum wallet against live airdrop criteria: a real on-chain activity scan, a 0-100 eligibility score per program, exactly what you're missing, and the manual steps a scan can't see. Free, keyless, no account.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Programs",
+		"recent_label": "Recent:",
+		"retry_btn": "Retry",
+		"scan_measured": "What the scan measured",
+		"share_aria": "Copy link to this report",
+		"share_btn": "Share",
+		"sub": "Paste any <strong>Solana</strong> or <strong>Ethereum</strong> wallet and see which airdrops it qualifies for. The score comes from a real scan of the wallet's on-chain history; the checklist tells you exactly what is missing and what a scan cannot see.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Tracked programs"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Act on this read",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Acts within hard spend limits",
@@ -2936,6 +2972,10 @@
 		"starting": "Starting…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Meet the developers, issue reporters, and community members who make three.ws better.",
+		"meta_title": "Contributors · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Browse all coins →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Crypto Derivatives · three.ws",
 		"meta_title": "Crypto Derivatives · three.ws",
 		"meta_twitter_description": "Live perpetual futures markets — price, 24h move, funding rate, open interest, and 24h volume.",
-		"meta_twitter_title": "Crypto Derivatives · three.ws"
+		"meta_twitter_title": "Crypto Derivatives · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Open any contract for its full detail page: basis against its own index, what the funding rate costs on a position you size yourself, and the same underlying priced on every other venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Changes to This Policy",
 		"12_contact": "12. Contact",
 		"1_information_we_collect": "1. Information We Collect",
+		"1a_photos_you_capture_or_upload": "1a. Photos You Capture or Upload",
 		"2_how_we_use_your_information": "2. How We Use Your Information",
 		"3_on_chain_data": "3. On-Chain Data",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D models (GLB/glTF), thumbnails, agent metadata",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API calls, widget load events (no IPs, no fingerprints)",
 		"authentication_account_management": "Authentication & account management",
 		"authentication_security": "Authentication, security",
+		"building_your_3d_avatar_and_reproducing_re_r": "Building your 3D avatar, and reproducing, re-rigging or re-scoring that result",
 		"business_transfers_in_connection_with_a_merg": "<strong>Business transfers:</strong> in connection with a merger, acquisition, or sale of assets, with notice to affected users.",
 		"category": "Category",
 		"connected_home_data": "Connected home data",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identity verification, subscription status",
 		"if_you_are_a_california_resident_the": "If you are a California resident: the categories of personal information we collect are listed in Section 1, the purposes in Section 2, and the recipients in Section 4. We do <strong>not</strong> sell personal information and do <strong>not</strong> share it for cross-context behavioral advertising, so there is nothing to opt out of; browser opt-out signals such as Global Privacy Control are honored by default because there is no sale or sharing to stop. We do not use or disclose sensitive personal information for purposes requiring a right to limit.",
 		"if_you_connect_a_home_assistant_instance": "If you connect a Home Assistant instance, the access token you provide is a credential to a physical building. We encrypt it at rest with the same primitive we use for custodial wallet keys, never display it again, and erase it the moment you disconnect the home. Actions that open a building (unlocking, opening, disarming) always require an explicit human confirmation, which cannot be produced by an AI model, until you grant a standing allowance for one specific entity.",
+		"if_you_use_the_selfie_flow_the_photos_you": "If you use the selfie flow, the photos you capture (one frontal image and up to two optional side angles) are uploaded to our reconstruction service and used to build your 3D avatar. They are stored with the generation record so the result can be reproduced, re-rigged and re-scored for quality, and they are visible only to your account. They are deleted when you delete the generation or your account, subject to the retention windows in Section 5. We do <strong>not</strong> use them to train models, we do <strong>not</strong> share them with advertisers, and we do <strong>not</strong> derive or store a face template or any other biometric identifier from them. Using the selfie flow is optional: you can upload a photo from your gallery instead, or describe a character in words and never provide a photo at all.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastructure providers:</strong> Google Cloud Platform (hosting and compute), Neon (database), Cloudflare (storage and CDN), Resend (transactional email), and Privy (optional sign-in). Each processes data on our behalf under its own privacy policy and data-processing terms.",
 		"legal_acceptance_records": "Legal acceptance records",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Legal acceptance records</strong> (your acceptance of the Terms of Service and Risk Disclosure) are retained for the life of your account and afterward for as long as needed to establish or defend legal claims. This retention is a legal obligation and survives an account-deletion request.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privacy Policy · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-scoped access:</strong> when you connect via OAuth, the connector can read and write only the three.ws account data covered by the scopes you grant (avatars, agents, memory, profile). It cannot access your AI client's chat history, memory, or local files.",
 		"on_chain_data": "On-chain data",
+		"one_frontal_photo_and_up_to_two_optional_sid": "One frontal photo and up to two optional side angles, if you use the selfie flow",
 		"operating_the_three_ws_home_features_you": "Operating the three.ws Home features you enabled, and giving you an audit trail of them",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Payment data (x402):</strong> paid tools settle in USDC via the x402 payment protocol. When you pay per call we receive your public wallet address and the payment/settlement transaction signature, verified through a payment facilitator (Coinbase CDP and/or the public x402.org facilitator). We never receive, request, or store your private keys or seed phrase. The only token three.ws itself references is <code>$THREE</code>; USDC is used purely for settlement.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Payment facilitators:</strong> for paid features settled on-chain (x402), payment verification runs through a facilitator such as Coinbase Developer Platform or the public x402.org facilitator. They see your public wallet address and transaction signatures, never private keys.",
+		"photos_you_capture_or_upload": "Photos you capture or upload",
 		"privacy_policy": "Privacy Policy",
 		"privacy_questions_privacy_three_ws": "Privacy questions: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Proof of agreement, legal compliance",
@@ -11279,12 +11325,7 @@
 		"why": "Why",
 		"you_can_see_export_and_delete_everything": "You can see, export and delete everything this feature holds at any time, and set your own retention window for the action log. See <a href=\"/docs/home-privacy\">Home privacy and retention</a> for the complete inventory and the API.",
 		"you_have_the_right_to_lodge_a": "You have the right to lodge a complaint with your local supervisory authority. You may also contact us first at <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; we would welcome the chance to resolve your concern directly.",
-		"you_have_the_rights_to_know_access": "You have the rights to know, access, correct, delete, and port your personal information, and to not be discriminated against for exercising them. Exercise them via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Section 6). We verify requests using your signed-in session, your account email, or a message signed by your wallet. An authorized agent may act for you with written permission.",
-		"photos_you_capture_or_upload": "Photos you capture or upload",
-		"one_frontal_photo_and_up_to_two_optional_sid": "One frontal photo and up to two optional side angles, if you use the selfie flow",
-		"building_your_3d_avatar_and_reproducing_re_r": "Building your 3D avatar, and reproducing, re-rigging or re-scoring that result",
-		"1a_photos_you_capture_or_upload": "1a. Photos You Capture or Upload",
-		"if_you_use_the_selfie_flow_the_photos_you": "If you use the selfie flow, the photos you capture (one frontal image and up to two optional side angles) are uploaded to our reconstruction service and used to build your 3D avatar. They are stored with the generation record so the result can be reproduced, re-rigged and re-scored for quality, and they are visible only to your account. They are deleted when you delete the generation or your account, subject to the retention windows in Section 5. We do <strong>not</strong> use them to train models, we do <strong>not</strong> share them with advertisers, and we do <strong>not</strong> derive or store a face template or any other biometric identifier from them. Using the selfie flow is optional: you can upload a photo from your gallery instead, or describe a character in words and never provide a photo at all."
+		"you_have_the_rights_to_know_access": "You have the rights to know, access, correct, delete, and port your personal information, and to not be discriminated against for exercising them. Exercise them via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Section 6). We verify requests using your signed-in session, your account email, or a message signed by your wallet. An authorized agent may act for you with written permission."
 	},
 	"legal_risk": {
 		"10_contact": "10. Contact",

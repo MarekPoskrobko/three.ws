@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Ágora · los Comunes · three.ws",
 		"the_commons": "los Comunes"
 	},
+	"airdrops": {
+		"address_label": "Dirección de la wallet",
+		"address_placeholder": "Dirección de la wallet (Solana o 0x…)",
+		"also_tracked": "También rastreados",
+		"check_btn": "Verificar elegibilidad",
+		"copy_aria": "Copiar dirección",
+		"copy_btn": "Copiar",
+		"count_not": "No elegible",
+		"count_progress": "En curso",
+		"count_qualified": "Elegible",
+		"count_tracked": "Rastreados",
+		"dir_fineprint": "Los estados reflejan reportes públicos a la fecha indicada y cambian con frecuencia; nada de lo anterior constituye un respaldo ni asesoramiento financiero. Los rangos estimados son especulación pública, no promesas. Verifica una wallet para ver las puntuaciones frente a estos criterios.",
+		"error_title": "No se pudo escanear esta wallet",
+		"est_label": "Estimado si todos los drops elegibles pagan",
+		"filter_all": "Todos",
+		"filter_aria": "Filtrar por elegibilidad",
+		"filter_not": "No elegible",
+		"filter_progress": "En curso",
+		"filter_qualified": "Elegible",
+		"form_aria": "Verificar una wallet",
+		"form_hint": "Presiona <kbd>/</kbd> para enfocar. La cadena se detecta desde la dirección. También consulta el <a href=\"/portfolio\">portafolio de la wallet</a>.",
+		"kicker": "Actividad on-chain real · puntuación en vivo",
+		"loading_note": "Escaneando historial on-chain. Una wallet activa puede tardar unos segundos.",
+		"meta_desc": "Verifica cualquier wallet de Solana o Ethereum contra criterios de airdrops en vivo: un escaneo real de actividad on-chain, una puntuación de elegibilidad de 0 a 100 por programa, exactamente lo que te falta y los pasos manuales que un escaneo no puede ver. Gratis, sin claves, sin cuenta.",
+		"page_title": "Verificador de Airdrops · three.ws",
+		"portfolio_chip": "Portafolio",
+		"programs": "Programas",
+		"recent_label": "Recientes:",
+		"retry_btn": "Reintentar",
+		"scan_measured": "Lo que midió el escaneo",
+		"share_aria": "Copiar enlace a este informe",
+		"share_btn": "Compartir",
+		"sub": "Pega cualquier wallet de <strong>Solana</strong> o <strong>Ethereum</strong> y descubre para qué airdrops es elegible. La puntuación proviene de un escaneo real del historial on-chain de la wallet; la lista de verificación te indica exactamente qué falta y qué no puede ver un escaneo.",
+		"title": "Verificador de <em>Airdrops</em>",
+		"tracked_programs": "Programas rastreados"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Actúa sobre esta lectura",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Actúa dentro de límites de gasto estrictos",
@@ -2936,6 +2972,10 @@
 		"starting": "Iniciando…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constelación</span>"
+	},
+	"contributors": {
+		"meta_description": "Conoce a los desarrolladores, reportadores de issues y miembros de la comunidad que hacen de three.ws algo mejor.",
+		"meta_title": "Colaboradores · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Explorar todas las monedas →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Criptoderivados · three.ws",
 		"meta_title": "Criptoderivados · three.ws",
 		"meta_twitter_description": "Mercados de futuros perpetuos en vivo — precio, movimiento en 24h, tasa de financiación, interés abierto y volumen en 24h.",
-		"meta_twitter_title": "Criptoderivados · three.ws"
+		"meta_twitter_title": "Criptoderivados · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Abre cualquier contrato para ver su página de detalle completa: la base frente a su propio índice, cuánto cuesta la tasa de financiación en una posición que tú dimensionas, y el mismo subyacente cotizado en cada otro venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Cambios en esta Política",
 		"12_contact": "12. Contacto",
 		"1_information_we_collect": "1. Información que Recopilamos",
+		"1a_photos_you_capture_or_upload": "1a. Fotos que Capturas o Subes",
 		"2_how_we_use_your_information": "2. Cómo Usamos Su Información",
 		"3_on_chain_data": "3. Datos en Cadena",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Modelos 3D (GLB/glTF), miniaturas, metadatos del agente",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Llamadas a la API, eventos de carga de widgets (sin IPs, sin huellas digitales)",
 		"authentication_account_management": "Autenticación y gestión de cuentas",
 		"authentication_security": "Autenticación, seguridad",
+		"building_your_3d_avatar_and_reproducing_re_r": "Construcción de tu avatar 3D, y reproducción, re-rigging o re-scoring de ese resultado",
 		"business_transfers_in_connection_with_a_merg": "<strong>Transferencias de negocio:</strong> en relación con una fusión, adquisición o venta de activos, con notificación a los usuarios afectados.",
 		"category": "Categoría",
 		"connected_home_data": "Datos del hogar conectado",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verificación de identidad, estado de suscripción",
 		"if_you_are_a_california_resident_the": "Si eres residente de California: las categorías de información personal que recopilamos se enumeran en la Sección 1, los propósitos en la Sección 2 y los destinatarios en la Sección 4. <strong>No</strong> vendemos información personal y <strong>no</strong> la compartimos para publicidad conductual entre contextos, por lo que no hay nada de lo que optar por no participar; las señales de exclusión voluntaria del navegador, como el Control de Privacidad Global, se respetan por defecto porque no hay venta ni intercambio que detener. No usamos ni divulgamos información personal sensible para fines que requieran un derecho a limitar.",
 		"if_you_connect_a_home_assistant_instance": "Si conectas una instancia de Home Assistant, el token de acceso que proporcionas es una credencial para un edificio físico. Lo ciframos en reposo con la misma primitiva que usamos para claves de custodia de wallets, nunca lo volvemos a mostrar y lo borramos en el momento en que desconectas el hogar. Las acciones que abren un edificio (desbloquear, abrir, desarmar) siempre requieren una confirmación humana explícita, que no puede ser producida por un modelo de IA, hasta que concedas una autorización permanente para una entidad específica.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Si usas el flujo de selfie, las fotos que capturas (una imagen frontal y hasta dos ángulos laterales opcionales) se suben a nuestro servicio de reconstrucción y se usan para crear tu avatar 3D. Se almacenan con el registro de generación para que el resultado pueda reproducirse, re-riggearse y re-scorearse para control de calidad, y solo son visibles para tu cuenta. Se eliminan cuando borras la generación o tu cuenta, sujeto a las ventanas de retención de la Sección 5. <strong>No</strong> las usamos para entrenar modelos, <strong>no</strong> las compartimos con anunciantes, y <strong>no</strong> derivamos ni almacenamos una plantilla facial ni ningún otro identificador biométrico a partir de ellas. Usar el flujo de selfie es opcional: puedes subir una foto de tu galería o describir un personaje con palabras y nunca proporcionar una foto.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Proveedores de infraestructura:</strong> Google Cloud Platform (alojamiento y cómputo), Neon (base de datos), Cloudflare (almacenamiento y CDN), Resend (correo electrónico transaccional) y Privy (inicio de sesión opcional). Cada uno procesa datos en nuestro nombre bajo su propia política de privacidad y términos de procesamiento de datos.",
 		"legal_acceptance_records": "Registros de aceptación legal",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Registros de aceptación legal</strong> (tu aceptación de los Términos de Servicio y la Divulgación de Riesgos) se retienen durante la vida de tu cuenta y después durante el tiempo necesario para establecer o defender reclamaciones legales. Esta retención es una obligación legal y persiste a una solicitud de eliminación de cuenta.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Política de Privacidad · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Acceso con ámbito OAuth:</strong> al conectarte vía OAuth, el conector puede leer y escribir solo los datos de cuenta de three.ws cubiertos por los ámbitos que otorgues (avatares, agentes, memoria, perfil). No puede acceder al historial de chat, memoria o archivos locales de tu cliente de IA.",
 		"on_chain_data": "Datos on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Una foto frontal y hasta dos ángulos laterales opcionales, si usas el flujo de selfie",
 		"operating_the_three_ws_home_features_you": "Operar las funciones de three.ws Home que habilitaste, y darte un registro de auditoría de ellas",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Datos de pago (x402):</strong> las herramientas de pago se liquidan en USDC a través del protocolo de pago x402. Cuando pagas por llamada, recibimos tu dirección de monedero pública y la firma de la transacción de pago/liquidación, verificada a través de un facilitador de pagos (Coinbase CDP y/o el facilitador público x402.org). Nunca recibimos, solicitamos ni almacenamos tus claves privadas o frase semilla. El único token al que three.ws hace referencia es <code>$THREE</code>; USDC se utiliza puramente para la liquidación.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Facilitadores de pago:</strong> para funciones de pago liquidadas on-chain (x402), la verificación de pagos se realiza a través de un facilitador como Coinbase Developer Platform o el facilitador público x402.org. Ellos ven tu dirección de monedero pública y las firmas de las transacciones, nunca las claves privadas.",
+		"photos_you_capture_or_upload": "Fotos que capturas o subes",
 		"privacy_policy": "Política de Privacidad",
 		"privacy_questions_privacy_three_ws": "Preguntas de privacidad: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Prueba de acuerdo, cumplimiento legal",
@@ -11279,12 +11325,7 @@
 		"why": "Por qué",
 		"you_can_see_export_and_delete_everything": "Puedes ver, exportar y eliminar todo lo que esta función guarda en cualquier momento, y configurar tu propia ventana de retención para el registro de acciones. Consulta <a href=\"/docs/home-privacy\">Privacidad y retención del hogar</a> para el inventario completo y la API.",
 		"you_have_the_right_to_lodge_a": "Tienes derecho a presentar una queja ante tu autoridad de supervisión local. También puedes contactarnos primero en <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; agradeceríamos la oportunidad de resolver tu inquietud directamente.",
-		"you_have_the_rights_to_know_access": "Tienes derecho a conocer, acceder, corregir, eliminar y portar tu información personal, y a no ser discriminado por ejercer estos derechos. Ejércelos a través de <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sección 6). Verificamos las solicitudes utilizando tu sesión iniciada, el correo electrónico de tu cuenta o un mensaje firmado por tu wallet. Un agente autorizado puede actuar en tu nombre con permiso por escrito.",
-		"photos_you_capture_or_upload": "Fotos que capturas o subes",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Una foto frontal y hasta dos ángulos laterales opcionales, si usas el flujo de selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Construcción de tu avatar 3D, y reproducción, re-rigging o re-scoring de ese resultado",
-		"1a_photos_you_capture_or_upload": "1a. Fotos que Capturas o Subes",
-		"if_you_use_the_selfie_flow_the_photos_you": "Si usas el flujo de selfie, las fotos que capturas (una imagen frontal y hasta dos ángulos laterales opcionales) se suben a nuestro servicio de reconstrucción y se usan para crear tu avatar 3D. Se almacenan con el registro de generación para que el resultado pueda reproducirse, re-riggearse y re-scorearse para control de calidad, y solo son visibles para tu cuenta. Se eliminan cuando borras la generación o tu cuenta, sujeto a las ventanas de retención de la Sección 5. <strong>No</strong> las usamos para entrenar modelos, <strong>no</strong> las compartimos con anunciantes, y <strong>no</strong> derivamos ni almacenamos una plantilla facial ni ningún otro identificador biométrico a partir de ellas. Usar el flujo de selfie es opcional: puedes subir una foto de tu galería o describir un personaje con palabras y nunca proporcionar una foto."
+		"you_have_the_rights_to_know_access": "Tienes derecho a conocer, acceder, corregir, eliminar y portar tu información personal, y a no ser discriminado por ejercer estos derechos. Ejércelos a través de <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sección 6). Verificamos las solicitudes utilizando tu sesión iniciada, el correo electrónico de tu cuenta o un mensaje firmado por tu wallet. Un agente autorizado puede actuar en tu nombre con permiso por escrito."
 	},
 	"legal_risk": {
 		"10_contact": "10. Contacto",
