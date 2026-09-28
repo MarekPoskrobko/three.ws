@@ -205,6 +205,13 @@
 			"url": "/galaxy",
 			"alt": "The Agent Galaxy page with hundreds of labelled agent stars clustered in 3D space and the natural-language search box over them.",
 			"caption": "Captured from the live /galaxy route for the galaxy announcement."
+		},
+		{
+			"id": "data-desk-hero",
+			"surface": "/data-desk",
+			"url": "/data-desk",
+			"alt": "A dark three.ws dashboard titled Data Desk with a counter reading DATASETS LIVE 0 and text explaining that fresh-wallet workers buy datasets with verifiable Solana settlement receipts.",
+			"caption": "Captured from the live /data-desk route for the data-desk announcement."
 		}
 	]
 }
