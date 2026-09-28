@@ -11284,7 +11284,7 @@
 		"one_frontal_photo_and_up_to_two_optional_sid": "一張正面照，以及最多兩張可選的側面照（若使用自拍流程）",
 		"building_your_3d_avatar_and_reproducing_re_r": "建構你的 3D 頭像，並重現、重新綁定骨架或重新評分該結果",
 		"1a_photos_you_capture_or_upload": "1a. 你拍攝或上傳的照片",
-		"if_you_use_the_selfie_flow_the_photos_you": "若你使用自拍流程，所拍攝的照片（一張正面照與最多兩張可選的側面照）會上傳至我們的重建服務，用以建構你的 3D 頭像。這些照片會連同生成紀錄一併儲存，以便結果得以重現、重新綁定骨架與重新評分，且僅你的帳號可見。當你刪除生成紀錄或帳號時，照片即會被刪除，惟受第 5 條保留期限約束。我們<strong>不</strong>會用它們訓練模型，<strong>不</strong>會與廣告商分享，也不會<strong>從中衍生或儲存臉部模板或任何其他生物特徵識別碼。使用自拍流程屬自願：你也可從相簿上傳照片，或純文字描述角色，完全不提供照片。"
+		"if_you_use_the_selfie_flow_the_photos_you": "若您使用自拍流程，您拍攝的照片（一張正面照與最多兩張側面照）將上傳至我們的重建服務，用於建構您的 3D 虛擬形象。這些照片會連同生成紀錄一併儲存，以便重現、重新綁定骨架與重新評分品質，且僅您的帳號可見。當您刪除生成紀錄或帳號時，照片即會被刪除，惟受限於第 5 條規定的保留期限。我們<strong>不會</strong>用於訓練模型，<strong>不會</strong>分享給廣告商，亦<strong>不會</strong>從中衍生或儲存臉部模板或任何其他生物特徵識別資訊。使用自拍流程屬自願：您也可從相簿上傳照片，或以文字描述角色，完全無需提供照片。"
 	},
 	"legal_risk": {
 		"10_contact": "10. 聯絡方式",
@@ -15691,7 +15691,7 @@
 		"largest_first": "最大優先",
 		"load_more": "載入更多",
 		"meta_description": "數百個免費 CC0 3D 物件與道具 — 家具、燈光、電子產品、容器、裝飾品。即時預覽任何物件，或下載 GLB 並在任何地方使用。無需署名。",
-		"meta_og_description": "免費 CC0 3D 道具，隨時可置入任何場景。預覽、動畫化或在工作室中使用。",
+		"meta_og_description": "免費 CC0 3D 道具，即拖即用於任意場景。線上預覽或下載 GLB，無需標註出處。",
 		"meta_og_title": "物件庫 · three.ws",
 		"meta_title": "物件庫 · three.ws",
 		"meta_twitter_description": "免費 CC0 3D 道具，隨時可置入任何場景。",

@@ -11284,7 +11284,7 @@
 		"one_frontal_photo_and_up_to_two_optional_sid": "Bir dona oldingi (frontal) rasm va ixtiyoriy ravishda ikki dona yana tomoni rasmlar, agar siz selfie rejimidan foydalansangiz",
 		"building_your_3d_avatar_and_reproducing_re_r": "Sizning 3D avatarizni yaratish, shuningdek natijani qayta ishlab chiqarish, qayta riglash yoki qayta baholash",
 		"1a_photos_you_capture_or_upload": "1a. Siz yuklagan yoki olgan rasmlar",
-		"if_you_use_the_selfie_flow_the_photos_you": "Agar siz selfie rejimidan foydalansangiz, siz olgan rasmlar (bir dona oldingi rasm va ixtiyoriy ravishda ikki dona yana tomoni rasmlar) bizning rekonstruksiya xizmatimizga yuklanadi va 3D avatarizni yaratish uchun ishlatiladi. Ular natija qayta ishlab chiqarilishi, qayta riglashi va sifati qayta baholanishi uchun generatsiya yozuvi bilan birga saqlanadi, va faqat sizning hisobingizga ko'rinadi. Ular siz generatsiyani yoki hisobingizni o'chirganda o'chiriladi, bu 5-bo'limda ko'rsatilgan saqlash muddatlariga ko'ra amal qiladi. Biz ularni <strong>modelni o'qitish</strong> uchun <strong>ismayl qilamiz</strong>, ularni reklam beruvchilar bilan <strong>baham ko'rmaymiz</strong>, va ularning asosida yuz shabloni yoki boshqa biometrik identifikator <strong>yaratmaymiz</strong> va saqlamaymiz. Selfie rejimidan foydalanish ixtiyoriy: siz rasmni galeriyangizdan yuklashingiz yoki rasmsiz shaxsni so'zlar bilan tasvirlashingiz mumkin."
+		"if_you_use_the_selfie_flow_the_photos_you": "Agar siz selfie rejimidan foydalansangiz, siz olgan rasmlaringiz (birta oldingi ko'rinish va ixtiyoriy ravishda ikki ta yanburchak burchagi) bizning rekonstruksiya xizmatimizga yuklanadi va 3D avatar yaratish uchun ishlatiladi. Ular natija qayta ishlab chiqilishi, qayta riglanishi va sifat uchun qayta baholanishi uchun generatsiya yozuvi bilan saqlanadi, va ular faqat sizning hisobingizga ko'rinadi. Ular generatsiya yoki hisobingiz o'chirilganda o'chiriladi, bu 5-bo'limdagi saqlash muddatlariga bog'liq. Biz <strong>emas</strong> ularni modellarni o'qitish uchun ishlatamiz, biz <strong>emas</strong> ularni reklam beruvchilar bilan baham ko'ramiz, va biz <strong>emas</strong> ularning yuz shabloni yoki boshqa biometrik identifikatorini hosil yoki saqlamaymiz. Selfie rejimidan foydalanish ixtiyoriy: siz gallereyadan rasm yuklashingiz yoki rasmsiz so'zlarda personajni tasvirlashingiz mumkin."
 	},
 	"legal_risk": {
 		"10_contact": "10. Aloqa",
@@ -15691,7 +15691,7 @@
 		"largest_first": "Eng kattasi birinchi",
 		"load_more": "Yuklash",
 		"meta_description": "Yuzlab bepul CC0 3D obyektlari va rekvizitlari — mebel, yoritish, elektronika, konteynerlar, dekor. Har qandayini jonli ko'rib chiqing yoki GLB yuklab oling va istalgan joyda foydalaning. Mualliflikni ko'rsatish shart emas.",
-		"meta_og_description": "Har qanday sahnaga qo'yishga tayyor bepul CC0 3D rekvizitlar. Ko'rib chiqing, animatsiya qiling yoki Studiyada foydalaning.",
+		"meta_og_description": "Bepul CC0 3D obyektlari, har qanday sahngaga qo'shish uchun tayyor. Jonli ko'ring yoki GLBni yuklab oling, attribution talab qilinmaydi.",
 		"meta_og_title": "Obyektlar Kutubxonasi · three.ws",
 		"meta_title": "Obyektlar Kutubxonasi · three.ws",
 		"meta_twitter_description": "Har qanday sahnaga qo'yishga tayyor bepul CC0 3D rekvizitlar.",
