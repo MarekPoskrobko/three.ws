@@ -79,6 +79,17 @@ export function evmLegChain(ref) {
 	return Object.values(EVM_LEG_CHAINS).find((c) => String(c.chainId) === s || c.caip2 === s) || null;
 }
 
+/** A refused EVM-leg operation, carrying the HTTP status and a stable code. */
+export class EvmLegError extends Error {
+	constructor(code, message, status = 400, detail = null) {
+		super(message);
+		this.name = 'EvmLegError';
+		this.code = code;
+		this.status = status;
+		this.detail = detail;
+	}
+}
+
 /** A chain entry or a ToolInputError-shaped throw naming the supported slugs. */
 export function requireEvmLegChain(ref) {
 	const c = evmLegChain(ref);
