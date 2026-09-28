@@ -2,10 +2,13 @@
 //
 // Returns the most-recent tip events written by /api/x402/dance-tip. Powers
 // the initial render of the /club "Live tips" widget on page boot; the SSE
-// channel at /api/club/tips/stream takes over for live updates.
+// channel at /api/club/tips/stream takes over for live updates. Rows carry
+// `agent` (platform-wallet payer) and the style's choreography; see
+// api/_lib/club/tip-rows.js.
 
 import { sql } from '../_lib/db.js';
 import { cors, json, method, wrap } from '../_lib/http.js';
+import { shapeTipRow } from '../_lib/club/tip-rows.js';
 
 const MAX_LIMIT = 100;
 const DEFAULT_LIMIT = 20;
@@ -25,7 +28,8 @@ export default wrap(async (req, res) => {
 	const rows = await (dancer
 		? sql`
 			select ticket_id, dancer, dance, clip, label, payer, network,
-			       amount_atomics, asset, started_at, ends_at, created_at
+			       amount_atomics, asset, started_at, ends_at, created_at,
+			       exists (select 1 from x402_ring_wallets w where w.pubkey = club_tips.payer) as is_agent
 			from club_tips
 			where dancer = ${dancer}
 			order by created_at desc
@@ -33,11 +37,12 @@ export default wrap(async (req, res) => {
 		`
 		: sql`
 			select ticket_id, dancer, dance, clip, label, payer, network,
-			       amount_atomics, asset, started_at, ends_at, created_at
+			       amount_atomics, asset, started_at, ends_at, created_at,
+			       exists (select 1 from x402_ring_wallets w where w.pubkey = club_tips.payer) as is_agent
 			from club_tips
 			order by created_at desc
 			limit ${limit}
 		`);
 
-	return json(res, 200, { tips: rows });
+	return json(res, 200, { tips: rows.map(shapeTipRow) });
 });

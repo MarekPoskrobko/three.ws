@@ -24,6 +24,7 @@ import { installAccessControl } from '../_lib/x402/access-control.js';
 import { withService } from '../_lib/x402/bazaar-helpers.js';
 import { sql } from '../_lib/db.js';
 import { priceFor } from '../_lib/x402-prices.js';
+import { STYLES } from '../_lib/club/styles.js';
 
 const ROUTE = '/api/x402/dance-tip';
 
@@ -36,65 +37,7 @@ const DESCRIPTION =
 	'dancer and play the routine — sequence styles chain multiple clips ' +
 	'back-to-back, and pole styles turn her into the pole.';
 
-// `track` names map to /public/club/audio/<track>.{ogg,mp3} loops the /club
-// page crossfades to when the dance starts. The client picks whichever format
-// the browser supports — see src/club-audio.js loadBuffer().
-export const STYLES = Object.freeze({
-	// Free-floor (existing) — single clip looped for the full duration.
-	hiphop:   { clip: 'dance',    label: 'Hip Hop',  loop: true, durationSec: 12, track: 'hiphop' },
-	rumba:    { clip: 'rumba',    label: 'Rumba',    loop: true, durationSec: 14, track: 'rumba' },
-	silly:    { clip: 'silly',    label: 'Silly',    loop: true, durationSec: 10, track: 'silly' },
-	thriller: { clip: 'thriller', label: 'Thriller', loop: true, durationSec: 14, track: 'thriller' },
-	capoeira: { clip: 'capoeira', label: 'Capoeira', loop: true, durationSec: 12, track: 'capoeira' },
-	// 16.1s of choreography, the longest single-clip style on the stage: booked
-	// for one full pass rather than cut mid-routine.
-	offabean: { clip: 'av-offabean-dance', label: 'Offabean', loop: true, durationSec: 16, track: 'hiphop' },
-
-	// Pole work — `pole: true` tells the /club stage to turn the dancer into the
-	// pole and dance against it (back to the crowd) rather than facing out like
-	// the free-floor styles. The twerk loops on the pole for the full duration.
-	twerk: {
-		clip: 'twerk', label: 'Pole Twerk', loop: true, durationSec: 12,
-		track: 'im-in-love-wit-a-stripper-fast', pole: true,
-	},
-
-	// Choreographed routines — sequences chain multiple clips back-to-back at
-	// PoleStation playback time (the feature free-floor styles lack). Every clip
-	// here is a real, deployed entry in /animations/manifest.json so the routine
-	// always performs; durationSec is the sum of the steps. The audio loop
-	// crossfades to the dedicated `pole` track (/public/club/audio/pole.*).
-	spin: {
-		label: 'Spin',
-		durationSec: 10,
-		track: 'pole',
-		sequence: [
-			{ clip: 'capoeira', durationSec: 6 },
-			{ clip: 'dance',    durationSec: 4 },
-		],
-	},
-	climb: {
-		label: 'Slow Burn',
-		durationSec: 14,
-		track: 'pole',
-		sequence: [
-			{ clip: 'thriller', durationSec: 7 },
-			{ clip: 'capoeira', durationSec: 4 },
-			{ clip: 'dance',    durationSec: 3 },
-		],
-	},
-	combo: {
-		label: 'Full Combo',
-		durationSec: 18,
-		track: 'pole',
-		sequence: [
-			{ clip: 'rumba',    durationSec: 4 },
-			{ clip: 'capoeira', durationSec: 4 },
-			{ clip: 'thriller', durationSec: 4 },
-			{ clip: 'silly',    durationSec: 3 },
-			{ clip: 'dance',    durationSec: 3 },
-		],
-	},
-});
+export { STYLES };
 
 const VALID_DANCERS = new Set(['1', '2', '3', '4']);
 

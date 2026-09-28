@@ -54,6 +54,9 @@ import { ClubCamera } from './club-camera.js';
 import { ClubAudio, styleAudioFor, TRACK_LABELS } from './club-audio.js';
 import { DANCES } from './club-dances.js';
 import { playSequence, ticketSteps } from './club-sequence.js';
+import { ClubMoney } from './club-money.js';
+import { ClubFloorCrowd } from './club-floor-crowd.js';
+import { ClubTipHud } from './club-tip-hud.js';
 import { detectProfile, PROFILES, createFrameWatchdog, isMobileLayout } from './club-perf.js';
 import {
 	createFrameGovernor, trackWindowFocus, getPowerSaver, setPowerSaver, onPowerSaverChange,
@@ -103,6 +106,26 @@ const PERFORMANCE_FADE = 0.45; // seconds for clip crossfade
 // Top of the stage GLB. Authored in scripts/build-club-props.mjs at y=0.18.
 // Mirrored here so the dancer rig + pole base sit on the disc face.
 const STAGE_TOP_Y = 0.18;
+// Stage disc radius, mirrored from STAGE_RADIUS in scripts/build-club-props.mjs.
+// Bills land inside it and the floor crowd stands outside it.
+const STAGE_DISC_RADIUS = 1.1;
+// How many $0.001 bills can be alive in the room at once, per device tier. Past
+// that the oldest bill on a pile is recycled, so a busy night never grows the scene.
+const MONEY_CAPACITY = { high: 360, medium: 220, low: 90 };
+// Bills laid on a stage's pile at boot from that dancer's tips today.
+const PILE_SEED_MAX = 70;
+// A tip you pay throws a clump from the camera; a person's live tip drops a
+// smaller clump from the rig; an agent tip drops a single violet bill.
+const BILLS_THROWN = 9;
+const BILLS_REMOTE_HUMAN = 6;
+// People standing around the stages, per device tier (each is a skinned rig).
+const FLOOR_CROWD = { high: 12, medium: 8, low: 4 };
+const FLOOR_CROWD_RIGS = [
+	{ name: 'Aria', url: '/avatars/default.glb' },
+	{ name: 'Michelle', url: '/avatars/michelle.glb' },
+	{ name: 'Realistic', url: '/avatars/realistic-female.glb' },
+	{ name: 'Studio', url: '/avatars/studio.glb' },
+];
 
 const POLES = Array.from({ length: POLE_COUNT }, (_, i) => {
 	// Spread across an arc from -55° to +55° at the front of the room.
@@ -207,11 +230,14 @@ function renderTipRow(rowLike, { live = false, prepend = true } = {}) {
 	row.className = 'club-tip-row';
 	if (live) row.classList.add('is-live');
 	const who = payer ? `${payer.slice(0, 4)}...${payer.slice(-4)}` : 'someone';
+	// A platform wallet (x402 ring or roster agent) is labeled as an agent, never
+	// passed off as a person in the room.
+	const agentBadge = rowLike.agent ? '<span class="club-tip-agent" title="Paid by a three.ws platform agent wallet">agent</span>' : '';
 	const safeLabel = String(label).replace(/[<>&]/g, '');
 	const time = formatTimestamp(timestamp);
 	row.innerHTML = `
 		<span class="club-tip-time">${time}</span>
-		<span class="club-tip-mid"><span class="club-tip-who">${who}</span> tipped ${dancerName} &rarr; ${safeLabel}</span>
+		<span class="club-tip-mid"><span class="club-tip-who">${who}</span>${agentBadge} tipped ${dancerName} &rarr; ${safeLabel}</span>
 		<span class="club-tip-amt">${fmtUsd(amountAtomics)}</span>
 	`;
 	if (prepend) {
@@ -349,12 +375,18 @@ function subscribeTipStream() {
 			}
 		});
 		es.addEventListener('tip', (e) => {
+			let row;
 			try {
-				const row = JSON.parse(e.data);
-				renderTipRow(row, { live: true });
+				row = JSON.parse(e.data);
 			} catch (err) {
 				log.warn('[club] tip event parse failed', err);
+				return;
 			}
+			// Only a tip this tab has not already shown reaches the stage: our own
+			// tip's echo is dropped here, exactly as the feed drops it.
+			const fresh = !renderedTicketIds.has(row?.ticket_id);
+			renderTipRow(row, { live: true });
+			if (fresh) stageRemoteTip(row);
 		});
 		es.onerror = () => {
 			// EventSource auto-reconnects in some browsers but keeps the
@@ -629,6 +661,12 @@ class PoleStation {
 		this.performing = false;
 		this.walkPhase = 'idle';      // 'idle' | 'to-pole' | 'dancing' | 'returning'
 		this._phaseTarget = this.rig.position.clone();
+		// Bumped whenever a routine starts or is cut off, so a routine that was
+		// taken over mid-sequence stops at its next step and never walks the
+		// dancer off the stage under the routine that replaced it.
+		this._perfGen = 0;
+		// Standing height the tip tag floats above.
+		this.headHeight = DANCER_HEIGHT_M;
 
 		// Render-loop coupled sleepers (sleep() resolves them in tick()).
 		// Wall-clock setTimeout would drift if the tab is throttled or paused;
@@ -880,6 +918,7 @@ class PoleStation {
 		// (its isCancelled sees performing === false), and re-home the rig.
 		const wasPerforming = this.performing;
 		this.performing = false;
+		this._perfGen += 1;
 		this.walkPhase = 'idle';
 		while (this._sleepers.length) this._sleepers.pop().resolve();
 		this.activeTicket = null;
@@ -927,16 +966,39 @@ class PoleStation {
 		return new Vector3(this.layout.x, 0, this.layout.z + 0.02);
 	}
 
+	/**
+	 * Put the dancer through a paid routine. `ticket.local` marks a tip this
+	 * visitor paid; anything else came in over the tips stream. A routine that
+	 * is already playing is cut off and replaced: the new one starts from its
+	 * first step, straight at the pole if she is already on it.
+	 */
 	async startPerformance(ticket) {
+		const takeover = this.performing;
+		const onPole = this.walkPhase === 'dancing';
+		if (takeover) {
+			// Wake the old routine's pending step so its loop sees it was replaced.
+			while (this._sleepers.length) this._sleepers.pop().resolve();
+		}
+		this._perfGen += 1;
 		this.activeTicket = ticket;
 		this.performing = true;
 		this.activeUntil = Date.now() + (ticket.durationSec || 12) * 1000;
-		this.walkPhase = 'to-pole';
-		this._phaseTarget = this.poleBasePos;
 
 		// Spotlight ramps up while the dancer walks on stage.
 		this._spotTarget = this.spotActiveIntensity;
 		this._accentTarget = 2.4;
+		updatePoleCardStatus(this.id, 'performing', { local: ticket.local === true });
+
+		if (onPole) {
+			this._arriveAtPole().catch((err) => log.warn(`[club] dancer ${this.id} takeover failed`, err));
+			return;
+		}
+		this.walkPhase = 'to-pole';
+		this._phaseTarget = this.poleBasePos;
+		if (takeover) {
+			// She was mid-walk for the old routine; the walk clip is already playing.
+			return;
+		}
 
 		// Auto-cam: if the user opted in and no manual VIP/house shot is active,
 		// switch to an orbiting auto-cam for the duration. We remember that the
@@ -947,9 +1009,6 @@ class PoleStation {
 		} else {
 			this._autoCammed = false;
 		}
-
-		// Update pole card status.
-		updatePoleCardStatus(this.id, 'performing');
 
 		// Crossfade idle → walking → dance once the dancer reaches the pole.
 		await this.anim?.crossfadeTo(WALK_CLIP, PERFORMANCE_FADE);
@@ -974,6 +1033,7 @@ class PoleStation {
 
 	async _arriveAtPole() {
 		this.walkPhase = 'dancing';
+		const gen = this._perfGen;
 		const requested = ticketSteps(this.activeTicket).length
 			? ticketSteps(this.activeTicket)
 			: [{ clip: this.activeTicket?.clip || FALLBACK_CLIP, durationSec: this.activeTicket?.durationSec || 12 }];
@@ -994,7 +1054,7 @@ class PoleStation {
 				anim: this.anim,
 				steps,
 				fadeSec: PERFORMANCE_FADE,
-				isCancelled: () => !this.performing,
+				isCancelled: () => !this.performing || gen !== this._perfGen,
 				sleep: (ms) => this.sleep(ms),
 			});
 		} catch (err) {
@@ -1007,6 +1067,8 @@ class PoleStation {
 		// pole to her idle home. Cancellation is a fast-path: performing is
 		// already false, so _endPerformance won't toggle it back, but the
 		// walking + audio cleanup still runs.
+		// A routine that was taken over leaves the stage to its replacement.
+		if (gen !== this._perfGen) return;
 		if (this.walkPhase === 'dancing') await this._endPerformance();
 	}
 
@@ -1121,6 +1183,199 @@ function angleDelta(from, to) {
 
 const stations = POLES.map((layout, i) => new PoleStation(i, layout));
 if (typeof window !== 'undefined') window.__clubStations = stations;
+
+// ── Money on the stages ──────────────────────────────────────────────────
+// Every settled tip becomes $0.001 bills: thrown from the camera for a tip you
+// pay, dropped from the rig for anyone else's (violet for a platform agent).
+// Landed bills stay on the stage, so each pile is that dancer's night so far.
+const money = new ClubMoney({
+	scene,
+	capacity: MONEY_CAPACITY[activeProfile.tier] ?? MONEY_CAPACITY.medium,
+	reducedMotion: prefersReducedMotion,
+});
+
+// The floating tip tags over each dancer (built right after the pole cards, so
+// declared here where the render loop and the x402 gate can both reach it).
+let tipHud = null;
+// True once the x402 widget is live; a tag built after that point starts enabled.
+let tipButtonsLive = false;
+
+// People standing around the stages. Built once the visitor is inside (see
+// mountFloorCrowd) so its downloads never compete with the alley walk-in.
+let floorCrowd = null;
+let venueRootRef = null;
+let manifestRef = null;
+// The default viewpoint the crowd keeps clear (camera.position at boot).
+const CROWD_CLEAR_VIEW = { x: 0, z: 6 };
+
+function mountFloorCrowd() {
+	if (floorCrowd || !venueRootRef || !manifestRef) return;
+	const count = FLOOR_CROWD[activeProfile.tier] ?? FLOOR_CROWD.medium;
+	if (!count) return;
+	try {
+		floorCrowd = new ClubFloorCrowd({ renderer, scene, manifest: manifestRef, bundled: FLOOR_CROWD_RIGS });
+		floorCrowd.mount({
+			envRoot: venueRootRef,
+			// Also keep each pole's close-up (VIP) sightline clear: ClubCamera.setVip
+			// looks from yaw + PI, the side of the pole she faces.
+			stages: stations.map((st) => ({
+				id: st.id,
+				x: st.layout.x,
+				z: st.layout.z,
+				radius: STAGE_DISC_RADIUS,
+				clearDirs: [st.layout.yaw + Math.PI],
+			})),
+			camera: CROWD_CLEAR_VIEW,
+			count,
+		});
+	} catch (err) {
+		// The room still works empty; a crowd failure never blocks tipping.
+		log.warn('[club] floor crowd failed', err);
+		floorCrowd = null;
+	}
+}
+
+/**
+ * Rebuild a performance ticket from a tips-stream row. The row carries the
+ * style's choreography (api/_lib/club/tip-rows.js), so a spectator sees the
+ * same routine the payer bought.
+ */
+function ticketFromRow(row) {
+	const booked = (Date.parse(row.ends_at) - Date.parse(row.started_at)) / 1000;
+	return {
+		ticketId: row.ticket_id,
+		dancer: String(row.dancer),
+		dance: row.dance,
+		clip: row.clip,
+		label: row.label || row.dance,
+		durationSec: row.durationSec || (Number.isFinite(booked) && booked > 0 ? booked : 12),
+		sequence: row.sequence,
+		pole: row.pole === true,
+		track: row.track,
+		payer: row.payer,
+		local: false,
+	};
+}
+
+/**
+ * Put a tip that arrived over the stream onto the stage. An agent's tip drops
+ * one violet bill and nothing more: only a person's tip puts a dancer through a
+ * routine, so the platform's own traffic never passes for a crowd. A person's
+ * tip drops a clump, gets the people at that stage cheering, and she dances
+ * unless she is mid-routine for this visitor.
+ */
+function stageRemoteTip(row) {
+	const dancer = String(row?.dancer ?? '');
+	const agent = row?.agent === true;
+	bumpPoleStats(dancer, { agent });
+	const station = stations.find((st) => st.id === dancer);
+	if (!station) return;
+	if (agent) {
+		money.dropOn(station.id, 1, { agent: true });
+		return;
+	}
+	money.dropOn(station.id, BILLS_REMOTE_HUMAN);
+	floorCrowd?.cheer(station.id);
+	if (station.performing && station.activeTicket?.local) return;
+	const ticket = ticketFromRow(row);
+	station.startPerformance(ticket).catch((err) => log.warn('[club] remote performance failed', err));
+	// Only follow the music if this tab already has sound running; a spectator
+	// who never clicked anything keeps their silence.
+	const track = ticket.track || styleAudioFor(ticket.dance);
+	if (track && audio.ctx?.state === 'running') {
+		audio.fadeToStyle(track).catch((err) => log.warn('[club] fadeToStyle', err));
+	}
+}
+
+// ── Tips today, per dancer ───────────────────────────────────────────────
+// Each pole card says how many tips she took in the last 24 hours and splits
+// people from platform agents, read from /api/club/leaderboard (which flags a
+// payer in x402_ring_wallets). The stream bumps the counts live between polls.
+const POLE_STATS_URL = '/api/club/leaderboard?window=day';
+const POLE_STATS_REFRESH_MS = 60_000;
+/** @type {Map<string, {people:number, agents:number}>} */
+const poleStats = new Map();
+let poleStatsSeeded = false;
+const compactNumber = new Intl.NumberFormat(undefined, { notation: 'compact', maximumFractionDigits: 1 });
+
+function renderPoleStats(id) {
+	const el = document.getElementById(`club-pole-stats-${id}`);
+	const stat = poleStats.get(id);
+	if (!el || !stat) return;
+	const { people, agents } = stat;
+	let text;
+	let label;
+	if (!people && !agents) {
+		text = 'No tips yet today';
+		label = 'No tips in the last 24 hours';
+	} else {
+		text = `${compactNumber.format(people)} from people · ${compactNumber.format(agents)} from agents`;
+		label = `Last 24 hours: ${people} tips from people, ${agents} from platform agents`;
+	}
+	el.textContent = text;
+	el.setAttribute('aria-label', label);
+	el.classList.remove('is-loading');
+}
+
+function bumpPoleStats(id, { agent }) {
+	const stat = poleStats.get(id);
+	if (!stat) return;
+	if (agent) stat.agents += 1;
+	else stat.people += 1;
+	renderPoleStats(id);
+}
+
+async function refreshPoleStats() {
+	if (document.hidden && poleStatsSeeded) return;
+	let rows;
+	try {
+		const res = await fetch(POLE_STATS_URL, { headers: { accept: 'application/json' } });
+		if (!res.ok) throw new Error(`HTTP ${res.status}`);
+		rows = (await res.json())?.rows;
+	} catch (err) {
+		log.warn('[club] tips-today fetch failed', err);
+		for (const st of stations) {
+			const el = document.getElementById(`club-pole-stats-${st.id}`);
+			if (el && !poleStats.has(st.id)) {
+				el.textContent = 'Tip count unavailable';
+				el.classList.remove('is-loading');
+			}
+		}
+		return;
+	}
+	if (!Array.isArray(rows)) return;
+	for (const row of rows) {
+		const id = String(row.dancer);
+		const total = Number(row.tip_count) || 0;
+		const agents = Math.min(total, Number(row.agent_tip_count) || 0);
+		const people = total - agents;
+		const prev = poleStats.get(id);
+		// The server caches for 15s, so never let a poll undo a tip the stream
+		// already counted.
+		poleStats.set(id, {
+			people: Math.max(people, prev?.people ?? 0),
+			agents: Math.max(agents, prev?.agents ?? 0),
+		});
+		renderPoleStats(id);
+	}
+	if (!poleStatsSeeded) {
+		poleStatsSeeded = true;
+		seedPiles();
+	}
+}
+
+// Lay each stage's pile from that dancer's real tips today: people's bills
+// first, the rest violet for agents, capped so the pile reads as a pile.
+function seedPiles() {
+	for (const st of stations) {
+		const stat = poleStats.get(st.id);
+		if (!stat) continue;
+		const total = Math.min(PILE_SEED_MAX, stat.people + stat.agents);
+		const human = Math.min(stat.people, total);
+		money.seed(st.id, human, { agent: false });
+		money.seed(st.id, total - human, { agent: true });
+	}
+}
 
 // ── Disco / strobe light cycling ─────────────────────────────────────────
 // A slowly rotating set of fill lights to keep the room feeling alive even
@@ -1420,7 +1675,25 @@ async function bootstrap() {
 		const wanted = dancerUrls[station.idx] || AVATAR_URL;
 		const template = avatarTemplates.get(wanted) || fallbackTemplate;
 		station.attachAvatar(template, animationDefs, fallbackTemplate);
+		money.setStage(station.id, {
+			x: station.layout.x,
+			z: station.layout.z,
+			topY: STAGE_TOP_Y,
+			radius: STAGE_DISC_RADIUS,
+		});
 	}
+
+	// Tips today per dancer (pole cards) and the piles they seed, then a slow
+	// poll; the stream keeps both live in between.
+	refreshPoleStats();
+	setInterval(refreshPoleStats, POLE_STATS_REFRESH_MS);
+
+	// The crowd fills the floor once the visitor is inside. A cached pass or the
+	// express entry has already dropped the door by now; otherwise wait for it.
+	venueRootRef = venueGltf.scene;
+	manifestRef = manifest;
+	if (!document.getElementById('club-door')) mountFloorCrowd();
+	else window.addEventListener('club:admitted', mountFloorCrowd, { once: true });
 
 	// Ambient dust particles — skip on low-perf devices.
 	if (activeProfile.tier !== 'low') {
@@ -1548,6 +1821,8 @@ window.addEventListener('pagehide', () => {
 });
 
 function enableTipButtons() {
+	tipButtonsLive = true;
+	tipHud?.setEnabled(true);
 	for (const card of poleCardEls.values()) {
 		const btn = card.querySelector('.club-tip-btn');
 		if (!btn) continue;
@@ -1577,8 +1852,10 @@ async function tipDancer({ dancer, dance, button }) {
 		setStatus(`No dancer ${dancer} on stage.`, { kind: 'error' });
 		return;
 	}
-	if (station.performing) {
-		setStatus(`Dancer ${dancer} is already performing — tip another pole.`, { kind: 'warn' });
+	// Your own routine still playing on this pole blocks a second tip there.
+	// Anyone else's routine does not: your tip takes the pole over.
+	if (station.performing && station.activeTicket?.local) {
+		setStatus(`${dancerNameFor(station.id)} is still dancing for you. Tip another pole.`, { kind: 'warn' });
 		return;
 	}
 
@@ -1627,7 +1904,12 @@ async function tipDancer({ dancer, dance, button }) {
 		// A short triple buzz on phones the moment USDC settles — the tip lands
 		// in your hand the way it lands on stage.
 		try { navigator.vibrate?.([18, 40, 60]); } catch { /* unsupported */ }
-		station.startPerformance(ticket).catch((err) => {
+		// Make it rain: the bills leave from where you're watching and land on
+		// her stage, and the people at that stage cheer.
+		money?.throwTo(station.id, camera.position, BILLS_THROWN);
+		floorCrowd?.cheer(station.id);
+		bumpPoleStats(station.id, { agent: false });
+		station.startPerformance({ ...ticket, local: true }).catch((err) => {
 			log.warn('[club] startPerformance failed', err);
 			setStatus('Performance hit a snag — tip again to retry.', { kind: 'warn' });
 		});
@@ -1663,7 +1945,10 @@ async function tipDancer({ dancer, dance, button }) {
 		}
 	} finally {
 		button?.classList.remove('is-pending');
-		if (button && originalLabel) button.textContent = originalLabel;
+		// A settled tip leaves the button showing her routine for you; only a
+		// failed or cancelled one goes back to its Tip label.
+		const dancingForYou = station.performing && station.activeTicket?.local;
+		if (button && originalLabel && !dancingForYou) button.textContent = originalLabel;
 	}
 }
 
@@ -1777,7 +2062,9 @@ const poleCardEls = new Map();
 // loop never queries the DOM and only writes styles on a visible change.
 const poleProgressEls = new Map();
 
-function updatePoleCardStatus(poleId, status) {
+// `local` marks a routine this visitor paid for. Only that one locks the Tip
+// button: anyone else's routine can be taken over by a tip from here.
+function updatePoleCardStatus(poleId, status, { local = false } = {}) {
 	const cardEl = poleCardEls.get(poleId);
 	if (!cardEl) return;
 	const dotEl = cardEl.querySelector('.club-status-dot');
@@ -1793,11 +2080,12 @@ function updatePoleCardStatus(poleId, status) {
 		labelEl.textContent = status === 'performing' ? 'Performing' : status === 'backstage' ? 'Backstage' : 'Idle';
 	}
 	if (btnEl) {
-		if (status === 'performing') {
+		if (status === 'performing' && local) {
 			btnEl.disabled = true;
-			btnEl.textContent = 'Performing...';
+			btnEl.textContent = 'Dancing for you';
 		} else {
-			btnEl.disabled = false;
+			// Never enable ahead of the payment widget.
+			btnEl.disabled = !tipButtonsLive;
 			btnEl.textContent = 'Tip $0.001';
 		}
 	}
@@ -2135,7 +2423,7 @@ function renderPoles() {
 			<div class="club-pole-status" aria-label="Status: Idle">
 				<span class="club-status-dot is-idle" aria-hidden="true"></span>
 				<span class="club-pole-status-label">Idle</span>
-				<span class="club-pole-stats" id="club-pole-stats-${pole.id}" aria-label="Tips today: 0">0 tips today</span>
+				<span class="club-pole-stats is-loading" id="club-pole-stats-${pole.id}" aria-label="Loading tips today">Counting tonight's tips…</span>
 			</div>
 			<div class="club-pole-progress" style="display:none" role="progressbar" aria-label="Performance progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
 				<div class="club-pole-progress-bar" style="width:0%"></div>
@@ -2443,15 +2731,56 @@ function animate(frameNow) {
 	// Camera state machine — orbit / VIP / house / auto.
 	clubCam.tick(dt);
 
+	// Bills in the air, and the people around the stages. The crowd is not
+	// drawn while the alley still covers the room, so it is not stepped either.
+	money.update(dt);
+	if (!covered) floorCrowd?.update(dt);
+	tipHud?.setHidden(covered || !stageWarmed);
+
 	// Audio-reactive bloom — pulse intensity with the beat (skip under reduced motion).
 	if (!prefersReducedMotion) bloomEffect.intensity = 1.0 + peak * 1.5;
 
 	if (covered) return;
 	composer.render(dt);
 	stageWarmed = true;
+	// Pin the tip tags after the render, when the camera matrices are this frame's.
+	tipHud?.update();
 }
 
 renderPoles();
+
+// Tip from inside the room: a tag over each dancer, and clicking her (or her
+// pole) opens the style picker on it. The sidebar select stays the one record
+// of which style each pole will dance, so the two surfaces always agree.
+{
+	const layer = document.getElementById('club-tags');
+	const selectFor = (id) => polesPanel?.querySelector(`.club-pole-select[data-dancer="${id}"]`);
+	if (layer && canvas) {
+		tipHud = new ClubTipHud({
+			layer,
+			canvas,
+			camera,
+			dances: DANCES,
+			dancers: stations.map((st) => ({
+				id: st.id,
+				name: dancerNameFor(st.id),
+				accent: `#${POLE_COLORS[st.idx % POLE_COLORS.length].toString(16).padStart(6, '0')}`,
+				station: st,
+			})),
+			getStyle: (id) => selectFor(id)?.value || DANCES[0].key,
+			setStyle: (id, key) => {
+				const sel = selectFor(id);
+				if (sel) sel.value = key;
+			},
+			onTip: (id, key, button) => tipDancer({ dancer: id, dance: key, button }),
+		});
+		tipHud.setEnabled(tipButtonsLive);
+		polesPanel?.addEventListener('change', (e) => {
+			const sel = e.target.closest?.('.club-pole-select');
+			if (sel) tipHud.refreshStyle(sel.dataset.dancer);
+		});
+	}
+}
 
 // Bind the auto-follow checkbox to persisted state.
 {

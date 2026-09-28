@@ -7,6 +7,10 @@
 // `window` is a strict whitelist, never user-injected SQL. Each entry in
 // QUERIES is its own tagged template so the underlying Neon HTTP client
 // parameterizes the interval literal safely.
+//
+// `agent_tip_count` is the share of `tip_count` paid from a registered platform
+// wallet (x402_ring_wallets: the ring payer and the roster agents), so the page
+// can say how much of a dancer's night came from people and how much from agents.
 
 import { sql, isDbUnavailableError, isDbCapacityError } from '../_lib/db.js';
 import { cacheWrap } from '../_lib/cache.js';
@@ -26,10 +30,12 @@ const QUERIES = {
 			d.display_name,
 			coalesce(sum(t.amount_atomics), 0)::text as total_atomics,
 			count(t.*)::int as tip_count,
+			count(t.*) filter (where w.pubkey is not null)::int as agent_tip_count,
 			coalesce(sum(case when t.paid_at is null then t.amount_atomics else 0 end), 0)::text as unpaid_atomics
 		from club_dancer_wallets d
 		left join club_tips t
 			on t.dancer = d.dancer and t.created_at >= now() - interval '1 hour'
+		left join x402_ring_wallets w on w.pubkey = t.payer
 		group by d.dancer, d.display_name
 		order by coalesce(sum(t.amount_atomics), 0) desc, d.dancer asc
 	`,
@@ -39,10 +45,12 @@ const QUERIES = {
 			d.display_name,
 			coalesce(sum(t.amount_atomics), 0)::text as total_atomics,
 			count(t.*)::int as tip_count,
+			count(t.*) filter (where w.pubkey is not null)::int as agent_tip_count,
 			coalesce(sum(case when t.paid_at is null then t.amount_atomics else 0 end), 0)::text as unpaid_atomics
 		from club_dancer_wallets d
 		left join club_tips t
 			on t.dancer = d.dancer and t.created_at >= now() - interval '24 hours'
+		left join x402_ring_wallets w on w.pubkey = t.payer
 		group by d.dancer, d.display_name
 		order by coalesce(sum(t.amount_atomics), 0) desc, d.dancer asc
 	`,
@@ -52,10 +60,12 @@ const QUERIES = {
 			d.display_name,
 			coalesce(sum(t.amount_atomics), 0)::text as total_atomics,
 			count(t.*)::int as tip_count,
+			count(t.*) filter (where w.pubkey is not null)::int as agent_tip_count,
 			coalesce(sum(case when t.paid_at is null then t.amount_atomics else 0 end), 0)::text as unpaid_atomics
 		from club_dancer_wallets d
 		left join club_tips t
 			on t.dancer = d.dancer and t.created_at >= now() - interval '7 days'
+		left join x402_ring_wallets w on w.pubkey = t.payer
 		group by d.dancer, d.display_name
 		order by coalesce(sum(t.amount_atomics), 0) desc, d.dancer asc
 	`,
@@ -65,9 +75,11 @@ const QUERIES = {
 			d.display_name,
 			coalesce(sum(t.amount_atomics), 0)::text as total_atomics,
 			count(t.*)::int as tip_count,
+			count(t.*) filter (where w.pubkey is not null)::int as agent_tip_count,
 			coalesce(sum(case when t.paid_at is null then t.amount_atomics else 0 end), 0)::text as unpaid_atomics
 		from club_dancer_wallets d
 		left join club_tips t on t.dancer = d.dancer
+		left join x402_ring_wallets w on w.pubkey = t.payer
 		group by d.dancer, d.display_name
 		order by coalesce(sum(t.amount_atomics), 0) desc, d.dancer asc
 	`,

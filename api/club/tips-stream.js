@@ -22,6 +22,7 @@
 
 import { sql } from '../_lib/db.js';
 import { cors, method } from '../_lib/http.js';
+import { shapeTipRow } from '../_lib/club/tip-rows.js';
 
 // ── Per-instance shared poll state ───────────────────────────────────────────
 // Each registered listener is a function: (event, data) => void.
@@ -55,7 +56,8 @@ async function runSharedPoll() {
 	try {
 		const rows = await sql`
 			select ticket_id, dancer, dance, clip, label, payer, network,
-			       amount_atomics, asset, started_at, ends_at, created_at
+			       amount_atomics, asset, started_at, ends_at, created_at,
+			       exists (select 1 from x402_ring_wallets w where w.pubkey = club_tips.payer) as is_agent
 			from club_tips
 			where (created_at, ticket_id) > (${sharedCursor.toISOString()}::timestamptz, ${sharedCursorId})
 			order by created_at asc, ticket_id asc
@@ -68,9 +70,10 @@ async function runSharedPoll() {
 			const last = rows[rows.length - 1];
 			sharedCursor = last.created_at instanceof Date ? last.created_at : new Date(last.created_at);
 			sharedCursorId = last.ticket_id;
-			// Fan out to all connected clients.
+			// Fan out to all connected clients. Shape once, not once per listener.
+			const events = rows.map(shapeTipRow);
 			for (const send of clients) {
-				for (const row of rows) {
+				for (const row of events) {
 					send('tip', row);
 				}
 			}

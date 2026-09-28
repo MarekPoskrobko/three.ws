@@ -95,15 +95,47 @@ describe('GET /api/club/tips', () => {
 		expect(status).toBe(200);
 		// Dates round-trip through JSON.stringify as ISO strings; rebuild the
 		// expectation accordingly so the deep-equal compares apples to apples.
+		// Each row also carries `agent` (payer is a platform wallet) and the
+		// style's choreography, so a spectator replays the routine that was bought.
 		expect(body).toEqual({
 			tips: [{
 				...sampleRow,
 				started_at: sampleRow.started_at.toISOString(),
 				ends_at: sampleRow.ends_at.toISOString(),
 				created_at: sampleRow.created_at.toISOString(),
+				agent: false,
+				durationSec: 14,
+				track: 'rumba',
 			}],
 		});
 		expect(sqlState.calls).toHaveLength(1);
+	});
+
+	it('flags a platform-wallet payer as an agent and drops the raw column', async () => {
+		sqlState.queue.push([{ ...sampleRow, is_agent: true }]);
+		const { body } = await invoke();
+		expect(body.tips[0].agent).toBe(true);
+		expect(body.tips[0]).not.toHaveProperty('is_agent');
+		expect(sqlState.calls[0].query).toContain('x402_ring_wallets');
+	});
+
+	it('attaches the clip sequence and pole flag a routine was sold with', async () => {
+		sqlState.queue.push([
+			{ ...sampleRow, ticket_id: 't-2', dance: 'combo', clip: 'rumba', label: 'Full Combo' },
+			{ ...sampleRow, ticket_id: 't-3', dance: 'twerk', clip: 'twerk', label: 'Pole Twerk' },
+		]);
+		const { body } = await invoke();
+		const [combo, twerk] = body.tips;
+		expect(combo.sequence.map((s) => s.clip)).toEqual(['rumba', 'capoeira', 'thriller', 'silly', 'dance']);
+		expect(combo.durationSec).toBe(18);
+		expect(twerk.pole).toBe(true);
+	});
+
+	it('keeps a row whose style is no longer sold as-is', async () => {
+		sqlState.queue.push([{ ...sampleRow, dance: 'retired-style' }]);
+		const { body } = await invoke();
+		expect(body.tips[0]).not.toHaveProperty('durationSec');
+		expect(body.tips[0].clip).toBe('rumba');
 	});
 
 	it('defaults to limit=20 when not provided', async () => {

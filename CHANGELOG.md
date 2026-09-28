@@ -4,6 +4,10 @@
 
 Public history for [three.ws](https://three.ws), newest first. New pages come from `added` dates in data/pages.json; everything else is curated in data/changelog.json. Also available as [JSON](https://three.ws/changelog.json) and [RSS](https://three.ws/changelog.xml), live at [three.ws/changelog](https://three.ws/changelog).
 
+## 2026-09-28
+
+- **The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room**: Walking into the Club used to land you in an empty room. Now a crowd stands around the three stages, and every tip turns into $0.001 bills. When you tip, a clump of bills flies from where you are standing and flutters down onto her stage. When someone else tips, bills drop from the lights above her pole. The bills stay where they land, so each stage keeps a pile for the night, sized from that dancer's real tips today. You can tip without leaving the scene: every dancer has a tag over her head, and clicking her or her pole opens a picker for her routine. A tip from another visitor now puts her through the routine they paid for on your screen too, and the people at her stage cheer. Tips paid by three.ws platform agents are labelled as agent tips in the feed, drop a single violet bill, and never start a routine, and each dancer's card now says how many of today's tips came from people and how many from agents. (`/club`) `[feature, improvement]`
+
 ## 2026-09-25
 
 - **Props the platform pays Forge to make now land in the /forged gallery**: Every half hour the platform pays its own Forge to make a new 3D prop for the public /forged gallery. A standard generation takes 20 to 55 seconds, but the paying side gave up after 20. Forge still finished the model and took the payment, so most of those props were paid for, never saved to the gallery, and logged as failed. The paying side now waits up to 90 seconds for a generation. Each paid prop lands in the gallery, and the payment health numbers stop counting these successful payments as failures. (`/forged`) `[fix, infra]`

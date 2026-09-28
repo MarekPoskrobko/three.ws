@@ -1,14 +1,25 @@
 {
-	"generated_at": "2026-09-25T19:21:51.999Z",
+	"generated_at": "2026-09-28T03:03:43.032Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3757,
+	"total": 3758,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-28",
+			"type": "update",
+			"title": "The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room",
+			"summary": "Walking into the Club used to land you in an empty room. Now a crowd stands around the three stages, and every tip turns into $0.001 bills. When you tip, a clump of bills flies from where you are standing and flutters down onto her stage. When someone else tips, bills drop from the lights above her pole. The bills stay where they land, so each stage keeps a pile for the night, sized from that dancer's real tips today. You can tip without leaving the scene: every dancer has a tag over her head, and clicking her or her pole opens a picker for her routine. A tip from another visitor now puts her through the routine they paid for on your screen too, and the people at her stage cheer. Tips paid by three.ws platform agents are labelled as agent tips in the feed, drop a single violet bill, and never start a routine, and each dancer's card now says how many of today's tips came from people and how many from agents.",
+			"link": "/club",
+			"tags": [
+				"feature",
+				"improvement"
+			]
+		},
 		{
 			"date": "2026-09-25",
 			"type": "update",
@@ -1596,16 +1607,6 @@
 			"tags": [
 				"fix",
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The homepage stops calling its Community strip live when no new models are arriving",
-			"summary": "The Community strip on the homepage is headed \"Made with Forge. Right now.\" and carries a pulsing live chip. That chip was switched on by the Fresh tab alone, so it asserted liveness no matter how old the newest model on the strip actually was. When our object storage started rejecting the platform's credential on 2026-09-07, finished generations could no longer be recorded, the strip froze on the last model stored before that, and the chip went on pulsing live over two-day-old work with nothing on the page to say otherwise. The chip is now earned by the data: it appears only when the newest model on the strip is from the last six hours, and it reads the newest timestamp in the list rather than trusting the order it arrives in. Older models still show exactly as before, because a quiet stretch is worth showing; it just is not live.",
-			"link": "/",
-			"tags": [
-				"fix"
 			]
 		}
 	]

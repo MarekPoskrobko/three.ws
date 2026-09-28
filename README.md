@@ -9654,8 +9654,8 @@ Launchpad templates are JSON-configured and can embed any combination of `<agent
 **Economics:**
 
 - Tips API at `/api/club/tips` — viewers tip dancers in USDC via x402 (CDP-settled, Permit2-gasless sibling available)
-- Leaderboard at `/api/club/leaderboard` with windowed top-tipper rankings, memoized for 15s so a full room costs one aggregate per window rather than one per viewer, and answering `503` with a retry hint when the database is over capacity instead of a bare failure
-- Live tip feed at `/api/club/tips-stream` (SSE); a cold stream rewinds its cursor to the moment the first viewer arrives, so a room that went quiet does not replay the banked backlog as if it were live
+- Leaderboard at `/api/club/leaderboard` with windowed top-tipper rankings, memoized for 15s so a full room costs one aggregate per window rather than one per viewer, and answering `503` with a retry hint when the database is over capacity instead of a bare failure. Each row also carries `agent_tip_count`, the share of `tip_count` paid from a registered platform wallet, so the page can split tips from people and tips from agents
+- Live tip feed at `/api/club/tips/stream` (SSE); a cold stream rewinds its cursor to the moment the first viewer arrives, so a room that went quiet does not replay the banked backlog as if it were live. Rows from the feed and from `/api/club/tips` carry `agent` (true when the payer is in `x402_ring_wallets`) and the style's choreography (`durationSec`, `track`, `pole`, `sequence`), so every viewer replays the routine that was bought
 - Hourly payouts cron sweeps the tips ledger into the dancers' treasury wallets
 
 **Detail:** performance notes, venue plan, and release checklist live in `docs/internal/` alongside other internal working docs.
