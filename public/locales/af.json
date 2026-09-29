@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · die Gemeenskap · three.ws",
 		"the_commons": "die Gemeenskap"
 	},
+	"airdrops": {
+		"address_label": "Geldbouteadres",
+		"address_placeholder": "Geldbouteadres (Solana of 0x…)",
+		"also_tracked": "Ook gevolg",
+		"check_btn": "Kwalifisering toets",
+		"copy_aria": "Kopieer adres",
+		"copy_btn": "Kopieer",
+		"count_not": "Nie gekwalifiseer nie",
+		"count_progress": "Besig",
+		"count_qualified": "Gekwalifiseer",
+		"count_tracked": "Gevolg",
+		"dir_fineprint": "Statusse weerspieël openbare verslagdoening soos op die datum bo en verander dikwels; niks hier is 'n onderskrywing of finansiële advies nie. Geskatte reeks is openbare spekulasie, nie beloftes nie. Toets 'n geldboute om tellings teen hierdie kriteria te sien.",
+		"error_title": "Kon nie hierdie geldboute skandeer nie",
+		"est_label": "Geskat as alle gekwalifiseerde airdrops uitbetaal",
+		"filter_all": "Alles",
+		"filter_aria": "Filter op kwalifisering",
+		"filter_not": "Nie gekwalifiseer",
+		"filter_progress": "Besig",
+		"filter_qualified": "Gekwalifiseer",
+		"form_aria": "Toets 'n geldboute",
+		"form_hint": "Druk <kbd>/</kbd> om te fokus. Die ketting word van die adres afgelei. Sien ook die <a href=\"/portfolio\">geldbouteportefeulje</a>.",
+		"kicker": "Regte on-chain aktiwiteit · leef getel",
+		"loading_note": "Skandeer on-chain geskiedenis. 'n Druwe geldboute neem 'n paar sekondes.",
+		"meta_desc": "Toets enige Solana of Ethereum-geldboute teen lewende airdrop-kriteria: 'n regte on-chain aktiwiteitsskan, 'n 0-100 kwalifiserings telling per program, presies wat jy mis, en die handmatige stappe wat 'n skan nie kan sien nie. Vry, sleutelloos, geen rekening.",
+		"page_title": "Airdrop-toetser · three.ws",
+		"portfolio_chip": "Portefeulje",
+		"programs": "Programme",
+		"recent_label": "Onlangs:",
+		"retry_btn": "Probeer weer",
+		"scan_measured": "Wat die skan gemeet het",
+		"share_aria": "Kopieer skakel na hierdie verslag",
+		"share_btn": "Deel",
+		"sub": "Plak enige <strong>Solana</strong> of <strong>Ethereum</strong> geldboute en sien vir watter airdrops dit kwalifiseer. Die telling kom van 'n regte skan van die geldboute se on-chain geskiedenis; die kontrolelys vertel presies wat ontbreek en wat 'n skan nie kan sien nie.",
+		"title": "Airdrop <em>Toetser</em>",
+		"tracked_programs": "Gevolgde programme"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Reageer op hierdie lesing",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Optree binne streng bestedingslimiete",
@@ -2936,6 +2972,10 @@
 		"starting": "Begin…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Ontmoet die ontwikkelaars, uitrepporters, en gemeenskapslede wat three.ws beter maak.",
+		"meta_title": "Bydraers · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Blaai deur alle munte →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto-afgeleides · three.ws",
 		"meta_title": "Kripto-afgeleides · three.ws",
 		"meta_twitter_description": "Lewendige deurlopende termynmarkte — prys, 24h beweging, finansieringskoers, oop rente, en 24h volume.",
-		"meta_twitter_title": "Kripto-afgeleides · three.ws"
+		"meta_twitter_title": "Kripto-afgeleides · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Open enige kontrak vir sy volledige detailblad: basis teen sy eie indeks, wat die finansieringstempo kos op 'n posisie wat jy self grootte, en dieselfde onderliggende beprys op elke ander platform."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Veranderinge aan Hierdie Beleid",
 		"12_contact": "12. Kontak",
 		"1_information_we_collect": "1. Inligting wat Ons Versamel",
+		"1a_photos_you_capture_or_upload": "1a. Foto's Wat Jy Opneem of Op Laai",
 		"2_how_we_use_your_information": "2. Hoe Ons Jou Inligting Gebruik",
 		"3_on_chain_data": "3. Op-ketting Data",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D-modelle (GLB/glTF), kleinkiekies, agent metadata",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API-oproepe, legstuklaai-gebeure (geen IP's, geen vingerafdrukke)",
 		"authentication_account_management": "Verifikasie & rekeningbestuur",
 		"authentication_security": "Verifikasie, sekuriteit",
+		"building_your_3d_avatar_and_reproducing_re_r": "Die bou van jou 3D-avatar, en die reproduksie, her-rigging of her-beoordeling van daardie resultaat",
 		"business_transfers_in_connection_with_a_merg": "<strong>Besigheidsoordragte:</strong> in verband met 'n samesmelting, verkryging of verkoop van bates, met kennisgewing aan geaffekteerde gebruikers.",
 		"category": "Kategorie",
 		"connected_home_data": "Gekoppelde-huisdata",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identiteitsverifikasie, intekeningstatus",
 		"if_you_are_a_california_resident_the": "Indien jy 'n inwoner van Kalifornië is: die kategorieë persoonlike inligting wat ons versamel, word in Afdeling 1 gelys, die doeleindes in Afdeling 2, en die ontvangers in Afdeling 4. Ons verkoop <strong>nie</strong> persoonlike inligting nie en deel dit <strong>nie</strong> vir kruiskonteks-gedragsadvertensies nie, so daar is niks om van te onttrek nie; blaaier-onttrekkingsseine soos Global Privacy Control word by verstek geëer omdat daar geen verkoop of deling is om te stop nie. Ons gebruik of openbaar nie sensitiewe persoonlike inligting vir doeleindes wat 'n reg op beperking vereis nie.",
 		"if_you_connect_a_home_assistant_instance": "As jy 'n Home Assistant-instansie koppel, is die toegangstoken wat jy verskaf 'n identiteitsbewys tot 'n fisiese gebou. Ons versleutel dit in rus met dieselfde primitief wat ons vir bewaarder-walletsleutels gebruik, wys dit nooit weer nie, en wis dit die oomblik wat jy die huis ontkoppel. Aksies wat 'n gebou oopmaak (ontgrendel, oopmaak, ontwapen) vereis altyd 'n uitdruklike menslike bevestiging, wat nie deur 'n KI-model geproduseer kan word nie, totdat jy 'n staande toelaatheid vir een spesifieke entiteit verleen.",
+		"if_you_use_the_selfie_flow_the_photos_you": "As jy die selfie-vloei gebruik, word die foto's wat jy opneem (een frontale beeld en tot twee optionele syhoekies) na ons rekonstruksiediens opgelaai en gebruik om jou 3D-avatar te bou. Hulle word gestoor met die generasierekord sodat die resultaat gereproduceer, hergerig en herbeoordeel kan word vir gehalte, en hulle is slegs sigbaar vir jou rekening. Hulle word verwyder wanneer jy die generasie of jou rekening verwyder, onderhewig aan die bewaringsvensters in Afdeling 5. Ons gebruik hulle <strong>nie</strong> om modelle te ontwikkel nie, ons deel hulle <strong>nie</strong> met adverteerders nie, en ons lei <strong>geen</strong> gesigtemplate of enige ander biometriese identifiseerder daarvan af of stoor dit nie. Die gebruik van die selfie-vloei is optioneel: jy kan 'n foto uit jou galery op laai, of 'n karakter in woorde beskryf en nooit 'n foto voorsien nie.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktuurverskaffers:</strong> Google Cloud Platform (gasheer en verwerking), Neon (databasis), Cloudflare (berging en CDN), Resend (transaksionele e-pos), en Privy (opsionele aanmelding). Elkeen verwerk data namens ons onder sy eie privaatheidsbeleid en dataverwerkingsterme.",
 		"legal_acceptance_records": "Rekords van wetlike aanvaarding",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Rekords van wetlike aanvaarding</strong> (jou aanvaarding van die Diensbepalings en Risiko-openbaarmaking) word vir die leeftyd van jou rekening behou en daarna vir so lank as wat nodig is om regseise te vestig of te verdedig. Hierdie behoud is 'n wetlike verpligting en oorleef 'n rekeningverwyderingsversoek.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privaatheidsbeleid · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-geskopeerde toegang:</strong> wanneer jy via OAuth koppel, kan die konnektor slegs die three.ws rekeningdata lees en skryf wat gedek word deur die omvange wat jy toestaan (avatars, agente, geheue, profiel). Dit kan nie toegang verkry tot jou KI-kliënt se kletsgeskiedenis, geheue of plaaslike lêers nie.",
 		"on_chain_data": "Op-ketting data",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Een frontale foto en tot twee optionele syhoekies, as jy die selfie-vloei gebruik",
 		"operating_the_three_ws_home_features_you": "Bedryf die three.ws Huis-funksies wat jy geaktiveer het, en gee jou 'n ouditeerbare spoor daarvan",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Betalingsdata (x402):</strong> betaalde gereedskap vereffen in USDC via die x402 betaalprotokol. Wanneer jy per oproep betaal, ontvang ons jou publieke beursie-adres en die betaling/vereffeningstransaksiehandtekening, geverifieer deur 'n betalingsfasiliteerder (Coinbase CDP en/of die publieke x402.org fasiliteerder). Ons ontvang, versoek of stoor nooit jou private sleutels of saadfrase nie. Die enigste teken waarna three.ws self verwys, is <code>$THREE</code>; USDC word suiwer vir vereffening gebruik.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Betalingsfasiliteerders:</strong> vir betaalde kenmerke wat op-ketting vereffen word (x402), loop betalingsverifikasie deur 'n fasiliteerder soos Coinbase Developer Platform of die publieke x402.org fasiliteerder. Hulle sien jou publieke beursie-adres en transaksiehandtekeninge, nooit private sleutels nie.",
+		"photos_you_capture_or_upload": "Foto's wat jy opneem of op laai",
 		"privacy_policy": "Privaatheidsbeleid",
 		"privacy_questions_privacy_three_ws": "Privaatheidsvrae: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bewys van ooreenkoms, wetlike nakoming",
@@ -11279,12 +11325,7 @@
 		"why": "Hoekom",
 		"you_can_see_export_and_delete_everything": "Jy kan alles wat hierdie funksie hou, te eniger tyd sien, uitvoer en verwyder, en jou eie bewaringsvenster vir die aksielog stel. Sien <a href=\"/docs/home-privacy\">Huis-privacy en -bewaring</a> vir die volledige inventaris en die API.",
 		"you_have_the_right_to_lodge_a": "Jy het die reg om 'n klag by jou plaaslike toesighoudende owerheid in te dien. Jy kan ons ook eers kontak by <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; ons sal die geleentheid verwelkom om jou bekommernis direk op te los.",
-		"you_have_the_rights_to_know_access": "Jy het die regte om jou persoonlike inligting te ken, toegang daartoe te verkry, dit te korrigeer, te skrap en oor te dra, en om nie gediskrimineer te word vir die uitoefening daarvan nie. Oefen dit uit via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Afdeling 6). Ons verifieer versoeke deur jou aangemelde sessie, jou rekening-e-pos, of 'n boodskap wat deur jou beursie onderteken is. 'n Gemagtigde agent mag namens jou optree met skriftelike toestemming.",
-		"photos_you_capture_or_upload": "Foto's wat jy opneem of op laai",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Een frontale foto en tot twee optionele syhoekies, as jy die selfie-vloei gebruik",
-		"building_your_3d_avatar_and_reproducing_re_r": "Die bou van jou 3D-avatar, en die reproduksie, her-rigging of her-beoordeling van daardie resultaat",
-		"1a_photos_you_capture_or_upload": "1a. Foto's Wat Jy Opneem of Op Laai",
-		"if_you_use_the_selfie_flow_the_photos_you": "As jy die selfie-vloei gebruik, word die foto's wat jy opneem (een frontale beeld en tot twee optionele syhoekies) na ons rekonstruksiediens opgelaai en gebruik om jou 3D-avatar te bou. Hulle word gestoor met die generasierekord sodat die resultaat gereproduceer, hergerig en herbeoordeel kan word vir gehalte, en hulle is slegs sigbaar vir jou rekening. Hulle word verwyder wanneer jy die generasie of jou rekening verwyder, onderhewig aan die bewaringsvensters in Afdeling 5. Ons gebruik hulle <strong>nie</strong> om modelle te ontwikkel nie, ons deel hulle <strong>nie</strong> met adverteerders nie, en ons lei <strong>geen</strong> gesigtemplate of enige ander biometriese identifiseerder daarvan af of stoor dit nie. Die gebruik van die selfie-vloei is optioneel: jy kan 'n foto uit jou galery op laai, of 'n karakter in woorde beskryf en nooit 'n foto voorsien nie."
+		"you_have_the_rights_to_know_access": "Jy het die regte om jou persoonlike inligting te ken, toegang daartoe te verkry, dit te korrigeer, te skrap en oor te dra, en om nie gediskrimineer te word vir die uitoefening daarvan nie. Oefen dit uit via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Afdeling 6). Ons verifieer versoeke deur jou aangemelde sessie, jou rekening-e-pos, of 'n boodskap wat deur jou beursie onderteken is. 'n Gemagtigde agent mag namens jou optree met skriftelike toestemming."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontak",

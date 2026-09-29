@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · 公共區域 · three.ws",
 		"the_commons": "公共區域"
 	},
+	"airdrops": {
+		"address_label": "錢包地址",
+		"address_placeholder": "錢包地址 (Solana 或 0x…)",
+		"also_tracked": "同步追蹤",
+		"check_btn": "查詢資格",
+		"copy_aria": "複製地址",
+		"copy_btn": "複製",
+		"count_not": "不符合資格",
+		"count_progress": "進行中",
+		"count_qualified": "符合資格",
+		"count_tracked": "已追蹤",
+		"dir_fineprint": "狀態反映截至上述日期的公開報告，且經常變動；此處內容不構成背書或財務建議。預估區間僅為公開推測，非承諾。查詢錢包以查看其對這些標準的評分。",
+		"error_title": "無法掃描此錢包",
+		"est_label": "若所有符合資格的空投均發放，預估總值",
+		"filter_all": "全部",
+		"filter_aria": "按資格篩選",
+		"filter_not": "不符合資格",
+		"filter_progress": "進行中",
+		"filter_qualified": "符合資格",
+		"form_aria": "查詢錢包",
+		"form_hint": "按 <kbd>/</kbd> 聚焦。鏈別會從地址自動偵測。另請參閱 <a href=\"/portfolio\">錢包投組</a>。",
+		"kicker": "真實鏈上活動 · 即時評分",
+		"loading_note": "正在掃描鏈上歷史。活躍錢包需數秒。",
+		"meta_desc": "對任何 Solana 或 Ethereum 錢包進行即時空投標準核查：真實鏈上活動掃描、每項計畫 0-100 資格分、精確缺項清單、以及掃描無法覆蓋的手動步驟。免費、無需私鑰、免註冊。",
+		"page_title": "空投查詢器 · three.ws",
+		"portfolio_chip": "投組",
+		"programs": "計畫",
+		"recent_label": "最近：",
+		"retry_btn": "重試",
+		"scan_measured": "掃描測量項目",
+		"share_aria": "複製此報告連結",
+		"share_btn": "分享",
+		"sub": "貼上任意 <strong>Solana</strong> 或 <strong>Ethereum</strong> 錢包，查看符合哪些空投。分數來自對錢包鏈上歷史的真實掃描；檢查清單會列出確切缺項，以及掃描看不到的步驟。",
+		"title": "空投 <em>查詢器</em>",
+		"tracked_programs": "已追蹤計畫"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "根據這個閱讀行動",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> 在硬性支出限制內行動",
@@ -2936,6 +2972,10 @@
 		"starting": "啟動中…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">星座</span>"
+	},
+	"contributors": {
+		"meta_description": "認識讓 three.ws 變得更好的開發者、議題回報者與社群成員。",
+		"meta_title": "貢獻者 · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "瀏覽所有幣種 →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "加密衍生品 · three.ws",
 		"meta_title": "加密衍生品 · three.ws",
 		"meta_twitter_description": "即時永續期貨市場 — 價格、24 小時變動、資金利率、未平倉合約和 24 小時交易量。",
-		"meta_twitter_title": "加密衍生品 · three.ws"
+		"meta_twitter_title": "加密衍生品 · three.ws",
+		"open_any_contract_for_its_full_detail_page": "開啟任意合約查看完整詳情頁：針對其自身指數的基差、你自行設定倉位規模時的資金費率成本，以及同一標的在所有其他場地的定價。"
 	},
 	"dex_volumes": {
 		"defi": "去中心化金融",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. 本政策的變更",
 		"12_contact": "12. 聯絡方式",
 		"1_information_we_collect": "1. 我們收集的資訊",
+		"1a_photos_you_capture_or_upload": "1a. 你拍攝或上傳的照片",
 		"2_how_we_use_your_information": "2. 我們如何使用您的資訊",
 		"3_on_chain_data": "3. 鏈上數據",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D 模型 (GLB/glTF)、縮圖、代理元數據",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API 呼叫、小工具載入事件 (無 IP、無指紋)",
 		"authentication_account_management": "身份驗證與帳戶管理",
 		"authentication_security": "身份驗證、安全性",
+		"building_your_3d_avatar_and_reproducing_re_r": "建構你的 3D 頭像，並重現、重新綁定骨架或重新評分該結果",
 		"business_transfers_in_connection_with_a_merg": "<strong>業務轉讓：</strong>涉及合併、收購或資產出售時，並會通知受影響的用戶。",
 		"category": "類別",
 		"connected_home_data": "已連接住宅資料",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "身份驗證、訂閱狀態",
 		"if_you_are_a_california_resident_the": "如果您是加州居民：我們收集的個人資訊類別列於第 1 節，目的列於第 2 節，接收者列於第 4 節。我們<strong>不</strong>出售個人資訊，且<strong>不</strong>為跨情境行為廣告目的分享個人資訊，因此沒有可選擇退出的選項；瀏覽器退出訊號 (例如全球隱私控制) 預設會被遵守，因為沒有出售或分享行為需要停止。我們不會將敏感個人資訊用於需要限制權利的目的。",
 		"if_you_connect_a_home_assistant_instance": "當您連接 Home Assistant 實例時，您提供的存取權杖即為實體建築的憑證。我們使用與保管錢包金鑰相同的原語在靜態時加密該權杖，絕不再顯示，並在您斷開住宅連線的瞬間將其刪除。開啟建築（解鎖、開啟、解除武裝）的操作始終需要明確的人工確認，此確認無法由 AI 模型產生，直至您為特定實體授予永久允許為止。",
+		"if_you_use_the_selfie_flow_the_photos_you": "若您使用自拍流程，您拍攝的照片（一張正面照與最多兩張側面照）將上傳至我們的重建服務，用於建構您的 3D 虛擬形象。這些照片會連同生成紀錄一併儲存，以便重現、重新綁定骨架與重新評分品質，且僅您的帳號可見。當您刪除生成紀錄或帳號時，照片即會被刪除，惟受限於第 5 條規定的保留期限。我們<strong>不會</strong>用於訓練模型，<strong>不會</strong>分享給廣告商，亦<strong>不會</strong>從中衍生或儲存臉部模板或任何其他生物特徵識別資訊。使用自拍流程屬自願：您也可從相簿上傳照片，或以文字描述角色，完全無需提供照片。",
 		"infrastructure_providers_google_cloud_platfo": "<strong>基礎設施供應商：</strong>Google Cloud Platform (託管與運算)、Neon (資料庫)、Cloudflare (儲存與 CDN)、Resend (交易電子郵件) 和 Privy (可選登入)。每個供應商都根據其自身的隱私政策和資料處理條款，代表我們處理資料。",
 		"legal_acceptance_records": "法律接受記錄",
 		"legal_acceptance_records_your_acceptance_of": "<strong>法律接受記錄</strong> (您對服務條款和風險披露的接受) 會在您的帳戶生命週期內保留，之後也會在建立或辯護法律主張所需的期間內保留。此保留是法律義務，並在帳戶刪除請求後仍然有效。",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "隱私權政策 · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth 範圍存取權限:</strong> 當您透過 OAuth 連接時，連接器只能讀取和寫入您授予範圍內的 three.ws 帳戶資料（頭像、代理、記憶體、個人資料）。它無法存取您的 AI 用戶端聊天記錄、記憶體或本地檔案。",
 		"on_chain_data": "鏈上資料",
+		"one_frontal_photo_and_up_to_two_optional_sid": "一張正面照，以及最多兩張可選的側面照（若使用自拍流程）",
 		"operating_the_three_ws_home_features_you": "操作您已啟用的 three.ws 住宅功能，並為您提供其審計追蹤",
 		"payment_data_x402_paid_tools_settle_in": "<strong>支付資料 (x402):</strong> 付費工具透過 x402 支付協定在 USDC 結算。當您按次付費時，我們會收到您的公開錢包地址以及支付/結算交易簽名，這些都透過支付服務商（Coinbase CDP 和/或公共 x402.org 服務商）進行驗證。我們絕不會接收、請求或儲存您的私鑰或助記詞。three.ws 本身唯一引用的代幣是 <code>$THREE</code>；USDC 純粹用於結算。",
 		"payment_facilitators_for_paid_features_settl": "<strong>支付服務商:</strong> 對於在鏈上結算的付費功能 (x402)，支付驗證透過 Coinbase Developer Platform 或公共 x402.org 等服務商進行。他們會看到您的公開錢包地址和交易簽名，但絕不會看到私鑰。",
+		"photos_you_capture_or_upload": "你拍攝或上傳的照片",
 		"privacy_policy": "隱私權政策",
 		"privacy_questions_privacy_three_ws": "隱私權問題：<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "協議證明、法律合規",
@@ -11279,12 +11325,7 @@
 		"why": "為何",
 		"you_can_see_export_and_delete_everything": "您隨時可以查看、匯出及刪除此功能所保存的所有資料，並可自行設定操作日誌的保留窗口。請參閱 <a href=\"/docs/home-privacy\">住宅隱私與保留</a> 以取得完整清單與 API。",
 		"you_have_the_right_to_lodge_a": "您有權向當地監管機構提出投訴。您也可以先透過 <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> 聯絡我們；我們很樂意直接解決您的疑慮。",
-		"you_have_the_rights_to_know_access": "您有權知悉、存取、更正、刪除和轉移您的個人資訊，並且不會因行使這些權利而受到歧視。請透過 <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> 行使這些權利（第 6 節）。我們將使用您的登入工作階段、您的帳戶電子郵件或您的錢包簽署的訊息來驗證請求。經授權的代理人可憑書面許可代表您行事。",
-		"photos_you_capture_or_upload": "你拍攝或上傳的照片",
-		"one_frontal_photo_and_up_to_two_optional_sid": "一張正面照，以及最多兩張可選的側面照（若使用自拍流程）",
-		"building_your_3d_avatar_and_reproducing_re_r": "建構你的 3D 頭像，並重現、重新綁定骨架或重新評分該結果",
-		"1a_photos_you_capture_or_upload": "1a. 你拍攝或上傳的照片",
-		"if_you_use_the_selfie_flow_the_photos_you": "若您使用自拍流程，您拍攝的照片（一張正面照與最多兩張側面照）將上傳至我們的重建服務，用於建構您的 3D 虛擬形象。這些照片會連同生成紀錄一併儲存，以便重現、重新綁定骨架與重新評分品質，且僅您的帳號可見。當您刪除生成紀錄或帳號時，照片即會被刪除，惟受限於第 5 條規定的保留期限。我們<strong>不會</strong>用於訓練模型，<strong>不會</strong>分享給廣告商，亦<strong>不會</strong>從中衍生或儲存臉部模板或任何其他生物特徵識別資訊。使用自拍流程屬自願：您也可從相簿上傳照片，或以文字描述角色，完全無需提供照片。"
+		"you_have_the_rights_to_know_access": "您有權知悉、存取、更正、刪除和轉移您的個人資訊，並且不會因行使這些權利而受到歧視。請透過 <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> 行使這些權利（第 6 節）。我們將使用您的登入工作階段、您的帳戶電子郵件或您的錢包簽署的訊息來驗證請求。經授權的代理人可憑書面許可代表您行事。"
 	},
 	"legal_risk": {
 		"10_contact": "10. 聯絡方式",

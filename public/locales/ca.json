@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Àgora · els Comuns · three.ws",
 		"the_commons": "els Comuns"
 	},
+	"airdrops": {
+		"address_label": "Adreça del moneder",
+		"address_placeholder": "Adreça del moneder (Solana o 0x…)",
+		"also_tracked": "També rastrejats",
+		"check_btn": "Comprovar elegibilitat",
+		"copy_aria": "Copiar adreça",
+		"copy_btn": "Copiar",
+		"count_not": "No elegible",
+		"count_progress": "En curs",
+		"count_qualified": "Elegible",
+		"count_tracked": "Rastrejats",
+		"dir_fineprint": "Els estats reflecten informes públics a la data indicada i canvien sovint; res d'aquí és un endossament ni assessorament financer. Els rangs estimats són especulació pública, no promeses. Comprova un moneder per veure les puntuacions contra aquests criteris.",
+		"error_title": "No s'ha pogut escanejar aquest moneder",
+		"est_label": "Estimat si tots els airdrops elegibles paguen",
+		"filter_all": "Tots",
+		"filter_aria": "Filtrar per elegibilitat",
+		"filter_not": "No elegible",
+		"filter_progress": "En curs",
+		"filter_qualified": "Elegible",
+		"form_aria": "Comprovar un moneder",
+		"form_hint": "Prem <kbd>/</kbd> per enfocar. La cadena es detecta de l'adreça. També vegeu el <a href=\"/portfolio\">portafoli de moneders</a>.",
+		"kicker": "Activitat real on-chain · puntuació en viu",
+		"loading_note": "Escanejant historial on-chain. Un moneder actiu triga uns segons.",
+		"meta_desc": "Comprova qualsevol moneder Solana o Ethereum contra criteris d'airdrop en viu: un escaneig real d'activitat on-chain, una puntuació d'elegibilitat 0-100 per programa, exactament el que et falta, i els passos manuals que un escaneig no pot veure. Gratuït, sense claus, sense compte.",
+		"page_title": "Verificador d'Airdrops · three.ws",
+		"portfolio_chip": "Portafoli",
+		"programs": "Programes",
+		"recent_label": "Recents:",
+		"retry_btn": "Reintentar",
+		"scan_measured": "Què ha mesurat l'escaneig",
+		"share_aria": "Copiar enllaç a aquest informe",
+		"share_btn": "Compartir",
+		"sub": "Enganxa qualsevol moneder <strong>Solana</strong> o <strong>Ethereum</strong> i mira per quins airdrops qualifica. La puntuació ve d'un escaneig real de l'historial on-chain del moneder; la llista de comprovació t'indica exactament el que falta i el que un escaneig no pot veure.",
+		"title": "<em>Verificador</em> d'Airdrops",
+		"tracked_programs": "Programes rastrejats"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Actua segons aquesta lectura",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Actua dins de límits de despesa estrictes",
@@ -2936,6 +2972,10 @@
 		"starting": "Iniciant…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Coneix els desenvolupadors, reporters d'errors i membres de la comunitat que fan three.ws millor.",
+		"meta_title": "Col·laboradors · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Explora totes les monedes →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Criptoderivats · three.ws",
 		"meta_title": "Criptoderivats · three.ws",
 		"meta_twitter_description": "Mercats de futurs perpetus en directe — preu, moviment en 24h, taxa de finançament, interès obert i volum en 24h.",
-		"meta_twitter_title": "Criptoderivats · three.ws"
+		"meta_twitter_title": "Criptoderivats · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Obre qualsevol contracte per a la seva pàgina de detall completa: base contra el seu propi índex, el que costa la taxa de finançament en una posició que et mesures tu, i el mateix subjacent preçat a tots els altres llocs."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Canvis en aquesta política",
 		"12_contact": "12. Contacte",
 		"1_information_we_collect": "1. Informació que recopilem",
+		"1a_photos_you_capture_or_upload": "1a. Fotos que captures o pugis",
 		"2_how_we_use_your_information": "2. Com utilitzem la teva informació",
 		"3_on_chain_data": "3. Dades on-chain",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Models 3D (GLB/glTF), miniatures, metadades d'agent",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Crides a l'API, esdeveniments de càrrega de widgets (sense IP, sense empremtes digitals)",
 		"authentication_account_management": "Autenticació i gestió de comptes",
 		"authentication_security": "Autenticació, seguretat",
+		"building_your_3d_avatar_and_reproducing_re_r": "Crear el teu avatar 3D, i reproduir, re-riggejar o re-puntuar el resultat",
 		"business_transfers_in_connection_with_a_merg": "<strong>Transferències de negoci:</strong> en relació amb una fusió, adquisició o venda d'actius, amb avís als usuaris afectats.",
 		"category": "Categoria",
 		"connected_home_data": "Dades de la casa connectada",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verificació d'identitat, estat de la subscripció",
 		"if_you_are_a_california_resident_the": "Si sou resident de Califòrnia: les categories d'informació personal que recopilem es detallen a la Secció 1, les finalitats a la Secció 2 i els destinataris a la Secció 4. <strong>No</strong> venem informació personal i <strong>no</strong> la compartim per a publicitat conductual entre contextos, per la qual cosa no hi ha res de què donar-se de baixa; els senyals de rebuig del navegador, com ara el Control Global de Privadesa, s'honoren per defecte perquè no hi ha venda ni compartició a aturar. No utilitzem ni divulguem informació personal sensible per a finalitats que requerin un dret a limitar.",
 		"if_you_connect_a_home_assistant_instance": "Si connectes una instància de Home Assistant, el token d'accés que proporciones és una credencial per a un edifici físic. Lo encriptem en repos amb el mateix primitive que utilitzem per les claus de la cartera de custòdia, mai el tornem a mostrar i l'esborrem en el moment en que desconnectes la casa. Les accions que obren un edifici (desbloqueig, obertura, desactivació) sempre requereixen una confirmació humana explícita, que no pot ser generada per un model d'IA, fins que concedis una asignació permanent per a una entitat específica.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Si utilitzes el flux de selfie, les fotos que captures (una imatge frontal i fins a dos angles laterals opcionals) es pujen al nostre servei de reconstrucció i s'utilitzen per crear el teu avatar 3D. S'emmagatzemen juntament amb el registre de generació perquè el resultat es pugui reproduir, re-riggejar i re-puntuar per qualitat, i només són visibles per al teu compte. S'eliminen quan elimines la generació o el teu compte, subjecte a les finestres de retenció de la Secció 5. <strong>No</strong> les utilitzem per entrenar models, <strong>no</strong> les compartim amb anunciants, i <strong>no</strong> derivem ni emmagatzemem cap plantilla facial ni altre identificador biomètric a partir d'elles. Utilitzar el flux de selfie és opcional: pots pujar una foto de la teva galeria o descriure un personatge amb paraules i no proporcionar mai una foto.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Proveïdors d'infraestructura:</strong> Google Cloud Platform (allotjament i computació), Neon (base de dades), Cloudflare (emmagatzematge i CDN), Resend (correu electrònic transaccional) i Privy (inici de sessió opcional). Cadascun processa dades en nom nostre sota la seva pròpia política de privadesa i condicions de processament de dades.",
 		"legal_acceptance_records": "Registres d'acceptació legal",
 		"legal_acceptance_records_your_acceptance_of": "Els <strong>registres d'acceptació legal</strong> (la vostra acceptació de les Condicions del servei i la Divulgació de riscos) es conserven durant la vida del vostre compte i, posteriorment, durant el temps necessari per establir o defensar reclamacions legals. Aquesta retenció és una obligació legal i sobreviu a una sol·licitud de supressió del compte.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Política de privadesa · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "Accés amb àmbit OAuth de <strong>:</strong> quan et connectes via OAuth, el connector només pot llegir i escriure les dades del compte de three.ws cobertes pels àmbits que concedeixes (avatars, agents, memòria, perfil). No pot accedir a l'historial de xat, la memòria o els fitxers locals del teu client d'IA.",
 		"on_chain_data": "Dades on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Una foto frontal i fins a dos angles laterals opcionals, si utilitzes el flux de selfie",
 		"operating_the_three_ws_home_features_you": "Operar les característiques three.ws Home que has activat, i proporcionar un registre d'auditoria d'elles",
 		"payment_data_x402_paid_tools_settle_in": "Dades de pagament de <strong> (x402):</strong> les eines de pagament es liquiden a USDC mitjançant el protocol de pagament x402. Quan pagues per trucada, rebem la teva adreça de cartera pública i la signatura de la transacció de pagament/liquidació, verificada a través d'un facilitador de pagaments (Coinbase CDP i/o el facilitador públic x402.org). Mai rebem, sol·licitem o emmagatzemem les teves claus privades o frase de recuperació. L'únic token al qual fa referència three.ws és <code>$THREE</code>; USDC s'utilitza purament per a la liquidació.",
 		"payment_facilitators_for_paid_features_settl": "Facilitadors de pagament de <strong>:</strong> per a funcions de pagament liquidades on-chain (x402), la verificació del pagament es realitza a través d'un facilitador com Coinbase Developer Platform o el facilitador públic x402.org. Veuen la teva adreça de cartera pública i les signatures de les transaccions, mai les claus privades.",
+		"photos_you_capture_or_upload": "Fotos que captures o pugis",
 		"privacy_policy": "Política de privadesa",
 		"privacy_questions_privacy_three_ws": "Preguntes sobre privadesa: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Prova d'acord, compliment legal",
@@ -11279,12 +11325,7 @@
 		"why": "Per què",
 		"you_can_see_export_and_delete_everything": "Pots veure, exportar i esborrar tot el que aquesta funcionalitat guarda en qualsevol moment, i establir la teva pròpia finestra de retenció per al registre d'accions. Consulta <a href=\"/docs/home-privacy\">Home privacy and retention</a> per a l'inventari complet i l'API.",
 		"you_have_the_right_to_lodge_a": "Teniu dret a presentar una reclamació davant la vostra autoritat de supervisió local. També podeu contactar-nos primer a <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; agrairíem l'oportunitat de resoldre la vostra preocupació directament.",
-		"you_have_the_rights_to_know_access": "Teniu dret a conèixer, accedir, rectificar, suprimir i portar la vostra informació personal, i a no ser discriminat per exercir-los. Exerciteu-los a través de <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Secció 6). Verifiquem les sol·licituds utilitzant la vostra sessió iniciada, el vostre correu electrònic de compte o un missatge signat per la vostra cartera. Un agent autoritzat pot actuar en nom vostre amb permís escrit.",
-		"photos_you_capture_or_upload": "Fotos que captures o pugis",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Una foto frontal i fins a dos angles laterals opcionals, si utilitzes el flux de selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Crear el teu avatar 3D, i reproduir, re-riggejar o re-puntuar el resultat",
-		"1a_photos_you_capture_or_upload": "1a. Fotos que captures o pugis",
-		"if_you_use_the_selfie_flow_the_photos_you": "Si utilitzes el flux de selfie, les fotos que captures (una imatge frontal i fins a dos angles laterals opcionals) es pujen al nostre servei de reconstrucció i s'utilitzen per crear el teu avatar 3D. S'emmagatzemen juntament amb el registre de generació perquè el resultat es pugui reproduir, re-riggejar i re-puntuar per qualitat, i només són visibles per al teu compte. S'eliminen quan elimines la generació o el teu compte, subjecte a les finestres de retenció de la Secció 5. <strong>No</strong> les utilitzem per entrenar models, <strong>no</strong> les compartim amb anunciants, i <strong>no</strong> derivem ni emmagatzemem cap plantilla facial ni altre identificador biomètric a partir d'elles. Utilitzar el flux de selfie és opcional: pots pujar una foto de la teva galeria o descriure un personatge amb paraules i no proporcionar mai una foto."
+		"you_have_the_rights_to_know_access": "Teniu dret a conèixer, accedir, rectificar, suprimir i portar la vostra informació personal, i a no ser discriminat per exercir-los. Exerciteu-los a través de <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Secció 6). Verifiquem les sol·licituds utilitzant la vostra sessió iniciada, el vostre correu electrònic de compte o un missatge signat per la vostra cartera. Un agent autoritzat pot actuar en nom vostre amb permís escrit."
 	},
 	"legal_risk": {
 		"10_contact": "10. Contacte",

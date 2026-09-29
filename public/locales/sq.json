@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Komuna · three.ws",
 		"the_commons": "Komuna"
 	},
+	"airdrops": {
+		"address_label": "Adresa e portofolit",
+		"address_placeholder": "Adresa e portofolit (Solana ose 0x…)",
+		"also_tracked": "Po gjurmohen",
+		"check_btn": "Kontrollo kualifikimin",
+		"copy_aria": "Kopjo adresën",
+		"copy_btn": "Kopjo",
+		"count_not": "Jo i kualifikuar",
+		"count_progress": "Në proces",
+		"count_qualified": "I kualifikuar",
+		"count_tracked": "I gjurmuar",
+		"dir_fineprint": "Statuset reflektojnë raportimin publik sa të datës së mësipërme dhe ndryshojnë shpesh; asgjë këtu nuk është një përkrahje ose këshillë financiare. Intervallet e procenuara janë spekulime publike, jo premtime. Kontrollo një portofoli për të parë pikët kundër këtyre kriteresh.",
+		"error_title": "Nuk mund të skanohet ky portofoli",
+		"est_label": "E procenuar nëse të gjitha airdropet e kualifikuara paguajnë",
+		"filter_all": "Të gjitha",
+		"filter_aria": "Filtro sipas kualifikimit",
+		"filter_not": "Jo i kualifikuar",
+		"filter_progress": "Në proces",
+		"filter_qualified": "I kualifikuar",
+		"form_aria": "Kontrollo një portofoli",
+		"form_hint": "Shtyp <kbd>/</kbd> për të fokusuar. Shkalla detektohet nga adresa. Shiko edhe <a href=\"/portfolio\">portofolin e portofolit</a>.",
+		"kicker": "Aktivitet real on-chain · vlerësuar live",
+		"loading_note": "Duke skanuar historikun on-chain. Një portofoli i zbrendur merr disa sekonda.",
+		"meta_desc": "Kontrollo çdo portofoli Solana ose Ethereum kundër kriteresh live të airdropave: një skanim real i aktivitetit on-chain, një pikësim 0-100 i kualifikimit për program, saktësisht çfarë mungon, dhe hapat manualë që një skanim nuk mund t'i shohë. Falas, pa çelës, pa llogari.",
+		"page_title": "Kontrollues Airdrop · three.ws",
+		"portfolio_chip": "Portofoli",
+		"programs": "Programet",
+		"recent_label": "Të fundit:",
+		"retry_btn": "Provo përsëri",
+		"scan_measured": "Çfarë matu skanimi",
+		"share_aria": "Kopjo lidhjen drejt këtij raporti",
+		"share_btn": "Ndaj",
+		"sub": "Ngjis çdo portofoli <strong>Solana</strong> ose <strong>Ethereum</strong> dhe shiko për cilat airdropa kualifikohet. Pikësimja vjen nga një skanim real i historikut on-chain të portofolit; lista e kontrollit tregon saktësisht çfarë mungon dhe çfarë nuk mund t'i shohë një skanim.",
+		"title": "<em>Checker</em> i Airdropave",
+		"tracked_programs": "Programet e gjurmuara"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Veproni sipas këtij leximi",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Vepron brenda kufijve të rreptë të shpenzimeve",
@@ -2936,6 +2972,10 @@
 		"starting": "Po fillon…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Njihuni zhvilluesit, reporterët e çështjeve, dhe anëtarët e komunitetit që e bëjnë three.ws më të mirë.",
+		"meta_title": "Kontribuuesit · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Shfleto të gjitha monedhat →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivate Kripto · three.ws",
 		"meta_title": "Derivate Kripto · three.ws",
 		"meta_twitter_description": "Tregje live të kontratave të së ardhmes (futures) të përhershme — çmimi, lëvizja 24-orëshe, norma e financimit, interesi i hapur dhe volumi 24-orësh.",
-		"meta_twitter_title": "Derivate Kripto · three.ws"
+		"meta_twitter_title": "Derivate Kripto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Hap çdo kontratë për faqen e saj të detajuar të plotë: baza kundër indeksit të saj vet, çfarë kushton rata e financimit në një pozicion që e dimensionosh vetë, dhe të njëjti thelbësor me çmim në çdo treg tjetër."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Ndryshimet në këtë Politikë",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Informacioni që Mbledhim",
+		"1a_photos_you_capture_or_upload": "1a. Fotot që Nxirrni ose Ngarkoni",
 		"2_how_we_use_your_information": "2. Si i Përdorim Informacionet Tuaja",
 		"3_on_chain_data": "3. Të Dhënat në Zinxhir",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Modele 3D (GLB/glTF), miniaturat, metadatat e agjentit",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Thirrje API, ngjarje ngarkimi widget-i (pa IP, pa gjurmë gishtash)",
 		"authentication_account_management": "Autentifikimi & menaxhimi i llogarisë",
 		"authentication_security": "Autentifikimi, siguria",
+		"building_your_3d_avatar_and_reproducing_re_r": "Ndërtimi i avatarit tuaj 3D, dhe riprodhimi, ririgimi ose rireskorimi i atij rezultati",
 		"business_transfers_in_connection_with_a_merg": "<strong>Transferta biznesi:</strong> në lidhje me një bashkim, blerje ose shitje asetesh, me njoftim për përdoruesit e prekur.",
 		"category": "Kategoria",
 		"connected_home_data": "Të dhënat e shtëpisë lidhur",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verifikimi i identitetit, statusi i abonimit",
 		"if_you_are_a_california_resident_the": "Nëse jeni banor i Kalifornisë: kategoritë e informacionit personal që mbledhim janë renditur në Seksionin 1, qëllimet në Seksionin 2, dhe marrësit në Seksionin 4. Ne <strong>nuk</strong> shesim informacion personal dhe <strong>nuk</strong> e ndajmë atë për reklama sjellore ndër-kontekst, kështu që nuk ka asgjë për të hequr dorë; sinjalet e heqjes dorë nga shfletuesi si Global Privacy Control respektohen si parazgjedhje sepse nuk ka shitje ose ndarje për të ndaluar. Ne nuk përdorim ose zbulojmë informacion personal të ndjeshëm për qëllime që kërkojnë një të drejtë për të kufizuar.",
 		"if_you_connect_a_home_assistant_instance": "Nëse lidhni një instancë të Home Assistant, tokeni i aksesit që jeni të dhëni është një kredencial për një ndërtesë fizike. Ne e enkriptojmë në shtetë me të njëjtën primitiv që përdorim për çelësat e portmonedave të depozituara, nuk e shfaqim më pak, dhe e fshijmë në momentin e çfarëtoni lidhjen e shtëpisë. Veprimet që hapin një ndërtesë (deleksim, hapje, çaktivizim) kërkojnë gjithmonë një konfirmim eksplizit të njeriut, që nuk mund të prodhëhet nga një model AI, deri sa të jepni një leje të vazhdueshme për një entitet specifik.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Nëse përdorni rrjedhën selfie, fotot që nxirrni (një imazh frontal dhe deri në dy kënda opsionale anësore) ngarkohen në shërbimin tonë rindërtimi dhe përdoren për të ndërtuar avatarin tuaj 3D. Ato ruhen me regjistrimin e gjenerimit në mënyrë që rezultati të mund të riprodhohet, të ririgjohet dhe të rireskorohet për cilësi, dhe janë të dukshme vetëm për llogarinë tuaj. Ato fshihen kur fshini gjenerimin ose llogarinë tuaj, me përjashtimin e dritareve të ruajtjes në Seksionin 5. Ne <strong> nuk </strong> i përdorim ato për të trajnuar modele, <strong> nuk </strong> i ndajmë me reklamuesit, dhe <strong> nuk </strong> nxjerrim apo ruajmë një shablon fytyre ose identifikues biomentrik tjetër nga ato. Përdorimi i rrjedhës selfie është opsional: mund të ngarkoni një foto nga galeria juaj, ose të përshkruani një personazh me fjalë dhe të mos ofroni kurrë një foto.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Ofruesit e infrastrukturës:</strong> Google Cloud Platform (hosting dhe llogaritje), Neon (bazë të dhënash), Cloudflare (ruajtje dhe CDN), Resend (email transaksional), dhe Privy (hyrje opsionale). Secili përpunon të dhëna në emër tonë sipas politikës së tij të privatësisë dhe kushteve të përpunimit të të dhënave.",
 		"legal_acceptance_records": "Regjistrime të pranimit ligjor",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Regjistrime të pranimit ligjor</strong> (pranimi juaj i Kushteve të Shërbimit dhe Deklaratës së Rrezikut) mbahen për jetëgjatësinë e llogarisë suaj dhe më pas për aq kohë sa është e nevojshme për të themeluar ose mbrojtur pretendime ligjore. Ky mbajtje është një detyrim ligjor dhe mbijeton një kërkesë për fshirjen e llogarisë.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politika e Privatësisë · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "Aksesi me fushëveprim OAuth i <strong>:</strong> kur lidheni përmes OAuth, lidhësi mund të lexojë dhe shkruajë vetëm të dhënat e llogarisë three.ws të mbuluara nga fushëveprimet që ju jepni (avatarë, agjentë, memorie, profil). Ai nuk mund të aksesojë historikun e bisedave, memorien ose skedarët lokalë të klientit tuaj të AI.",
 		"on_chain_data": "Të dhëna on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Një foto frontale dhe deri në dy kënda opsionale anësore, nëse përdorni rrjedhën selfie",
 		"operating_the_three_ws_home_features_you": "Përdorimi i funksioneve three.ws Home që keni aktivizuar, duke ju dhënë një histori të audits për ato",
 		"payment_data_x402_paid_tools_settle_in": "Të dhënat e pagesës së <strong> (x402):</strong> mjetet me pagesë shlyhen në USDC nëpërmjet protokollit të pagesës x402. Kur paguani për thirrje, ne marrim adresën tuaj publike të portofolit dhe nënshkrimin e transaksionit të pagesës/shlyerjes, të verifikuar përmes një lehtësuesi pagesash (Coinbase CDP dhe/ose lehtësuesi publik x402.org). Ne kurrë nuk marrim, kërkojmë ose ruajmë çelësat tuaj privatë ose frazën e farës. I vetmi token që three.ws vetë referon është <code>$THREE</code>; USDC përdoret thjesht për shlyerje.",
 		"payment_facilitators_for_paid_features_settl": "Lehtësuesit e pagesave të <strong>:</strong> për veçoritë me pagesë të shlyera on-chain (x402), verifikimi i pagesës bëhet përmes një lehtësuesi si Coinbase Developer Platform ose lehtësuesi publik x402.org. Ata shohin adresën tuaj publike të portofolit dhe nënshkrimet e transaksioneve, kurrë çelësat privatë.",
+		"photos_you_capture_or_upload": "Fotot që nxirrni ose ngarkoni",
 		"privacy_policy": "Politika e Privatësisë",
 		"privacy_questions_privacy_three_ws": "Pyetje mbi privatësinë: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Vërtetim marrëveshjeje, pajtueshmëri ligjore",
@@ -11279,12 +11325,7 @@
 		"why": "Pse",
 		"you_can_see_export_and_delete_everything": "Ju mund të shikoni, të eksportoni dhe të fshini çdo gjë që kjo funksion mbaj në çdo moment, dhe të vendosni dritaren tuaj të ruajtjes për regjistrin e veprimeve. Shihni <a href=\"/docs/home-privacy\">Home privacy and retention</a> për inventarin plotë dhe API-në.",
 		"you_have_the_right_to_lodge_a": "Ju keni të drejtën të paraqisni një ankesë pranë autoritetit tuaj mbikëqyrës lokal. Mund të na kontaktoni fillimisht në <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; ne do të mirëprisnim mundësinë për të zgjidhur shqetësimin tuaj drejtpërdrejt.",
-		"you_have_the_rights_to_know_access": "Ju keni të drejtat të dini, të aksesoni, korrigjoni, fshini dhe transferoni informacionin tuaj personal, si dhe të mos diskriminoheni për ushtrimin e tyre. Ushtrojini ato përmes <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksioni 6). Ne verifikojmë kërkesat duke përdorur sesionin tuaj të hyrë, emailin e llogarisë tuaj, ose një mesazh të nënshkruar nga portofoli juaj. Një agjent i autorizuar mund të veprojë për ju me leje me shkrim.",
-		"photos_you_capture_or_upload": "Fotot që nxirrni ose ngarkoni",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Një foto frontale dhe deri në dy kënda opsionale anësore, nëse përdorni rrjedhën selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Ndërtimi i avatarit tuaj 3D, dhe riprodhimi, ririgimi ose rireskorimi i atij rezultati",
-		"1a_photos_you_capture_or_upload": "1a. Fotot që Nxirrni ose Ngarkoni",
-		"if_you_use_the_selfie_flow_the_photos_you": "Nëse përdorni rrjedhën selfie, fotot që nxirrni (një imazh frontal dhe deri në dy kënda opsionale anësore) ngarkohen në shërbimin tonë rindërtimi dhe përdoren për të ndërtuar avatarin tuaj 3D. Ato ruhen me regjistrimin e gjenerimit në mënyrë që rezultati të mund të riprodhohet, të ririgjohet dhe të rireskorohet për cilësi, dhe janë të dukshme vetëm për llogarinë tuaj. Ato fshihen kur fshini gjenerimin ose llogarinë tuaj, me përjashtimin e dritareve të ruajtjes në Seksionin 5. Ne <strong> nuk </strong> i përdorim ato për të trajnuar modele, <strong> nuk </strong> i ndajmë me reklamuesit, dhe <strong> nuk </strong> nxjerrim apo ruajmë një shablon fytyre ose identifikues biomentrik tjetër nga ato. Përdorimi i rrjedhës selfie është opsional: mund të ngarkoni një foto nga galeria juaj, ose të përshkruani një personazh me fjalë dhe të mos ofroni kurrë një foto."
+		"you_have_the_rights_to_know_access": "Ju keni të drejtat të dini, të aksesoni, korrigjoni, fshini dhe transferoni informacionin tuaj personal, si dhe të mos diskriminoheni për ushtrimin e tyre. Ushtrojini ato përmes <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksioni 6). Ne verifikojmë kërkesat duke përdorur sesionin tuaj të hyrë, emailin e llogarisë tuaj, ose një mesazh të nënshkruar nga portofoli juaj. Një agjent i autorizuar mund të veprojë për ju me leje me shkrim."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",

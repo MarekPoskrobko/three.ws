@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Bendruomenė · three.ws",
 		"the_commons": "Bendruomenė"
 	},
+	"airdrops": {
+		"address_label": "Piniginės adresas",
+		"address_placeholder": "Piniginės adresas (Solana arba 0x…)",
+		"also_tracked": "Taip pat sekančios",
+		"check_btn": "Patikrinti tinkamumą",
+		"copy_aria": "Kopijuoti adresą",
+		"copy_btn": "Kopijuoti",
+		"count_not": "Netinka",
+		"count_progress": "Vykdoma",
+		"count_qualified": "Tinka",
+		"count_tracked": "Sekamos",
+		"dir_fineprint": "Būsena atspindi viešą ataskaitą nuo nurodytos datos ir dažnai keičiasi; čia nėra jokių rekomendacijų ar finansinės patarimų. Įvertinti intervalai yra viešos spekuliacijos, ne pažadai. Patikrinkite piniginę, kad pamatytumėte balus pagal šiuos kriterijus.",
+		"error_title": "Nepavyko nuskenuoti šios piniginės",
+		"est_label": "Įvertinta, jei visi tinkami airdropai išmokėtų",
+		"filter_all": "Visos",
+		"filter_aria": "Filtruoti pagal tinkamumą",
+		"filter_not": "Netinka",
+		"filter_progress": "Vykdoma",
+		"filter_qualified": "Tinka",
+		"form_aria": "Patikrinti piniginę",
+		"form_hint": "Paspauskite <kbd>/</kbd>, kad fokusuotumėte. Grandinė nustatyta iš adreso. Taip pat žr. <a href=\"/portfolio\">piniginės portfelį</a>.",
+		"kicker": "Tikra on-chain veikla · vertinama realiu laiku",
+		"loading_note": "Skenuojama on-chain istorija. Užimta piniginė užtrunka kelias sekundes.",
+		"meta_desc": "Patikrinkite bet kurią Solana arba Ethereum piniginę pagal gyvus airdrop kriterijus: tikras on-chain veiklos skenavimas, 0–100 tinkamumo balas kiekvienai programai, ką tiksliai trūksta, ir rankiniai veiksmai, kurių skeneris nematys. Nemokamai, be raktų, be paskyros.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfelis",
+		"programs": "Programos",
+		"recent_label": "Neseniai:",
+		"retry_btn": "Bandyti dar kartą",
+		"scan_measured": "Ką išmatavo skenavimas",
+		"share_aria": "Kopijuoti nuorodą į šią ataskaitą",
+		"share_btn": "Dalintis",
+		"sub": "Įklijuokite bet kurią <strong>Solana</strong> arba <strong>Ethereum</strong> piniginę ir pamatykite, kuriuose airdropuose ji tinka. Balas gaunamas iš tikro piniginės on-chain istorijos skenavimo; kontrolinis sąrašas parodo, ką tiksliai trūksta ir ką skeneris nematys.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Sekamos programos"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Imtis veiksmų pagal šią informaciją",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Veikia griežtų išlaidų limitų ribose",
@@ -2936,6 +2972,10 @@
 		"starting": "Paleidžiama…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Susipažinkite su kūrėjais, problemų pranešėjais ir bendruomenės nariais, kurie padaro three.ws geriau.",
+		"meta_title": "Pradininkai · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Naršyti visas monetas →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto išvestinės finansinės priemonės · three.ws",
 		"meta_title": "Kripto išvestinės finansinės priemonės · three.ws",
 		"meta_twitter_description": "Tiesioginės nuolatinių ateities sandorių rinkos – kaina, 24 val. pokytis, finansavimo norma, atviros pozicijos ir 24 val. apimtis.",
-		"meta_twitter_title": "Kripto išvestinės finansinės priemonės · three.ws"
+		"meta_twitter_title": "Kripto išvestinės finansinės priemonės · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Atidarykite bet kurią sutartį, kad pamatytumėte jos pilną informacijos puslapį: bazę prieš savo indeksą, ką kainuoja finansavimo rata pozicijoje, kurią dydį nustatote patys, ir tą pačią pagrindinę vertę kiekvienoje kitoje biržoje."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Šios politikos pakeitimai",
 		"12_contact": "12. Kontaktai",
 		"1_information_we_collect": "1. Renkama informacija",
+		"1a_photos_you_capture_or_upload": "1a. Nuotraukos, kurias sukuriat arba įkeliate",
 		"2_how_we_use_your_information": "2. Kaip naudojame jūsų informaciją",
 		"3_on_chain_data": "3. Duomenys grandinėje",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modeliai (GLB/glTF), miniatiūros, agento metaduomenys",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API iškvietimai, valdiklių įkėlimo įvykiai (be IP adresų, be skaitmeninių pėdsakų)",
 		"authentication_account_management": "Autentifikavimas ir paskyros valdymas",
 		"authentication_security": "Autentifikavimas, saugumas",
+		"building_your_3d_avatar_and_reproducing_re_r": "Jūsų 3D avatario kūrimas bei šio rezultato reprodukovimas, perriginimas arba pervertinimas",
 		"business_transfers_in_connection_with_a_merg": "<strong>Verslo perdavimai:</strong> susiję su įmonių susijungimu, įsigijimu ar turto pardavimu, apie tai pranešus paveiktiems vartotojams.",
 		"category": "Kategorija",
 		"connected_home_data": "Prijungto namo duomenys",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Tapatybės patvirtinimas, prenumeratos būsena",
 		"if_you_are_a_california_resident_the": "Jei esate Kalifornijos gyventojas: asmens duomenų kategorijos, kurias renkame, nurodytos 1 skirsnyje, tikslai – 2 skirsnyje, o gavėjai – 4 skirsnyje. Mes <strong>neparduodame</strong> asmens duomenų ir <strong>nesidalijame</strong> jais elgsenos reklamai tarp kontekstų, todėl nėra ko atsisakyti; naršyklės atsisakymo signalai, tokie kaip „Global Privacy Control“, yra gerbiami pagal numatytuosius nustatymus, nes nėra pardavimo ar dalijimosi, kurį reikėtų sustabdyti. Mes nenaudojame ir neatskleidžiame jautrių asmens duomenų tikslams, reikalaujantiems apribojimo teisės.",
 		"if_you_connect_a_home_assistant_instance": "Jei prijungiate Home Assistant instanciją, Jūsų pateiktas prieigos raktas yra kredencialas fizinei pastatai. Mes jį šifruojame atramoje tą pačia primitiva, kurią naudojame valdomiems piniginės raktai, niekada jį vėl nerodome ir ištriname tiesioginio atjungimo momentu. Veiksmai, atidarantys pastatą (atrakinti, atidaryti, išjungti signalizaciją), visada reikalauja aiškaus žmogaus patvirtinimo, kurio negali sukurti AI modelis, kol Jūs nesuteiksite nuolatinę leidimą vienam konkretiam objektui.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Jei naudojate selfie srautą, jūsų sukuriamos nuotraukos (viena frontalinė ir iki dviejų pasirinktinių šoninių) įkeliamos į mūsų atkūrimo paslaugą ir naudojamos jūsų 3D avatario kūrimui. Jos saugomos kartu su generavimo įrašu, kad rezultatą būtų galima atkurti, perriginti ir pervertinti kokybei, o juos mato tik jūsų paskyra. Jos pašalinamos, kai pašalinate generavimą arba paskyrą, laikydamiesi 5 skyriuje nurodytų saugojimo laikotarpių. Mes <strong>nenaudojame</strong> jų modelių apmokymui, mes <strong>nepadalijame</strong> jų su reklamuotojais, ir mes <strong>nekuriamė</strong> nei veido šablono, nei jokio kito biometrinio identifikatoriaus iš jų. Selfie srauto naudojimas yra pasirinktinis: galite įkelti nuotrauką iš galerijos arba aprašyti personažą žodžiais ir visiškai nebereikėti pateikti nuotraukos.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktūros teikėjai:</strong> Google Cloud Platform (talpinimas ir skaičiavimai), Neon (duomenų bazė), Cloudflare (saugykla ir CDN), Resend (transakcinis el. paštas) ir Privy (neprivalomas prisijungimas). Kiekvienas tvarko duomenis mūsų vardu pagal savo privatumo politiką ir duomenų tvarkymo sąlygas.",
 		"legal_acceptance_records": "Teisinio sutikimo įrašai",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Teisinio sutikimo įrašai</strong> (jūsų sutikimas su Paslaugų teikimo sąlygomis ir Rizikos atskleidimu) saugomi visą jūsų paskyros gyvavimo laikotarpį ir po to tiek, kiek reikia teisiniams reikalavimams pagrįsti ar ginti. Šis saugojimas yra teisinė prievolė ir išlieka net po paskyros ištrynimo prašymo.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privatumo politika · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth apribota prieiga:</strong> kai jungiatės per OAuth, jungtis gali skaityti ir rašyti tik tuos three.ws paskyros duomenis, kuriuos apima jūsų suteiktos teisės (avatarai, agentai, atmintis, profilis). Ji negali pasiekti jūsų AI kliento pokalbių istorijos, atminties ar vietinių failų.",
 		"on_chain_data": "Duomenys grandinėje",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Viena frontalinė nuotrauka ir iki dviejų pasirinktinių šoninių kampų, jei naudojate selfie srautą",
 		"operating_the_three_ws_home_features_you": "Valdyti Jūsų įjungtas three.ws Home funkcijas ir suteikti Jums jų audito takelį",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Mokėjimo duomenys (x402):</strong> mokami įrankiai atsiskaito USDC per x402 mokėjimo protokolą. Kai mokate už iškvietimą, gauname jūsų viešą piniginės adresą ir mokėjimo/atsiskaitymo operacijos parašą, patvirtintą per mokėjimo tarpininką (Coinbase CDP ir (arba) viešąjį x402.org tarpininką). Niekada negauname, neprašome ir nesaugome jūsų privačių raktų ar sėklos frazės. Vienintelis žetonas, į kurį three.ws pati nurodo, yra <code>$THREE</code>; USDC naudojamas tik atsiskaitymams.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Mokėjimo tarpininkai:</strong> mokamoms funkcijoms, atsiskaitomoms grandinėje (x402), mokėjimų patvirtinimas vyksta per tarpininką, pvz., Coinbase Developer Platform arba viešąjį x402.org tarpininką. Jie mato jūsų viešą piniginės adresą ir operacijų parašus, bet niekada privačių raktų.",
+		"photos_you_capture_or_upload": "Nuotraukos, kurias sukuriat arba įkeliate",
 		"privacy_policy": "Privatumo politika",
 		"privacy_questions_privacy_three_ws": "Klausimai dėl privatumo: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Susitarimo įrodymas, teisės aktų laikymasis",
@@ -11279,12 +11325,7 @@
 		"why": "Kodėl",
 		"you_can_see_export_and_delete_everything": "Jūs bet kada galite peržiūrėti, eksportuoti ir ištrinti viską, ką ši funkcija saugo, bei nustatyti savo saugojimo langą veiksmų žurnalui. Pilną inventorių ir API rasite <a href=\"/docs/home-privacy\">Namo privatumo ir saugojimo politika</a>.",
 		"you_have_the_right_to_lodge_a": "Turite teisę pateikti skundą vietinei priežiūros institucijai. Taip pat galite pirmiausia susisiekti su mumis adresu <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; mielai išspręstume jūsų problemą tiesiogiai.",
-		"you_have_the_rights_to_know_access": "Turite teisę žinoti, pasiekti, taisyti, ištrinti ir perkelti savo asmeninę informaciją, taip pat teisę nebūti diskriminuojamiems už šių teisių įgyvendinimą. Jas įgyvendinkite per <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (6 skirsnis). Prašymus tikriname naudodami jūsų prisijungimo sesiją, paskyros el. paštą arba jūsų piniginės pasirašytą pranešimą. Įgaliotas atstovas gali veikti jūsų vardu turėdamas rašytinį leidimą.",
-		"photos_you_capture_or_upload": "Nuotraukos, kurias sukuriat arba įkeliate",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Viena frontalinė nuotrauka ir iki dviejų pasirinktinių šoninių kampų, jei naudojate selfie srautą",
-		"building_your_3d_avatar_and_reproducing_re_r": "Jūsų 3D avatario kūrimas bei šio rezultato reprodukovimas, perriginimas arba pervertinimas",
-		"1a_photos_you_capture_or_upload": "1a. Nuotraukos, kurias sukuriat arba įkeliate",
-		"if_you_use_the_selfie_flow_the_photos_you": "Jei naudojate selfie srautą, jūsų sukuriamos nuotraukos (viena frontalinė ir iki dviejų pasirinktinių šoninių) įkeliamos į mūsų atkūrimo paslaugą ir naudojamos jūsų 3D avatario kūrimui. Jos saugomos kartu su generavimo įrašu, kad rezultatą būtų galima atkurti, perriginti ir pervertinti kokybei, o juos mato tik jūsų paskyra. Jos pašalinamos, kai pašalinate generavimą arba paskyrą, laikydamiesi 5 skyriuje nurodytų saugojimo laikotarpių. Mes <strong>nenaudojame</strong> jų modelių apmokymui, mes <strong>nepadalijame</strong> jų su reklamuotojais, ir mes <strong>nekuriamė</strong> nei veido šablono, nei jokio kito biometrinio identifikatoriaus iš jų. Selfie srauto naudojimas yra pasirinktinis: galite įkelti nuotrauką iš galerijos arba aprašyti personažą žodžiais ir visiškai nebereikėti pateikti nuotraukos."
+		"you_have_the_rights_to_know_access": "Turite teisę žinoti, pasiekti, taisyti, ištrinti ir perkelti savo asmeninę informaciją, taip pat teisę nebūti diskriminuojamiems už šių teisių įgyvendinimą. Jas įgyvendinkite per <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (6 skirsnis). Prašymus tikriname naudodami jūsų prisijungimo sesiją, paskyros el. paštą arba jūsų piniginės pasirašytą pranešimą. Įgaliotas atstovas gali veikti jūsų vardu turėdamas rašytinį leidimą."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontaktai",

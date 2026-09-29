@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Goobta Guud · three.ws",
 		"the_commons": "Goobta Guud"
 	},
+	"airdrops": {
+		"address_label": "Cinwaanka Wallet-ka",
+		"address_placeholder": "Cinwaanka Wallet-ka (Solana ama 0x…)",
+		"also_tracked": "Labaan la raacayo",
+		"check_btn": "Eeg ugu dambeynta",
+		"copy_aria": "Nuqul cinwaanka",
+		"copy_btn": "Nuqul",
+		"count_not": "Kuma ugu dambeyn",
+		"count_progress": "Waa socda",
+		"count_qualified": "Waa ugu dambeyn",
+		"count_tracked": "Waa la raacay",
+		"dir_fineprint": "Haalaha waxay muujinayaan warbixin dadweynaha ah ee taariikhda kor u qoran iyo waxay marnaba beddelaan; wax kasta oo halkan ka jira ma ahaa taageero ama talo maaliyadeed. Qiimaha laga soo saaro waa falanqaynta dadweynaha, ma ahaa ballan-qood. Eeg wallet-kan si aad u aragto qiimaha ka hor yimaada meelahaas.",
+		"error_title": "Awood ma aheyn in la skaneeyo wallet-kan",
+		"est_label": "Qiimaha laga soo saaro haddii dhammaan drops-ka ugu dambeeya u bixiyaan",
+		"filter_all": "Dhammaan",
+		"filter_aria": "Filtar ugu dambeynta",
+		"filter_not": "Kuma ugu dambeyn",
+		"filter_progress": "Waa socda",
+		"filter_qualified": "Waa ugu dambeyn",
+		"form_aria": "Eeg wallet",
+		"form_hint": "Dabool <kbd>/</kbd> si aad u diiradda u saarto. Chain-ka waxaa la ogaa cinwaanka. Hadaad aragto <a href=\"/portfolio\">portfolio-ga wallet-ka</a>.",
+		"kicker": "Shaqo on-chain ah oo dhab ah · qiimaha live ah",
+		"loading_note": "Waa la skaneeyaa tarikhda on-chain. Wallet iskaashayaa waxay qaadataa ilbiriqsiyaal.",
+		"meta_desc": "Eeg wallet kasta oo Solana ama Ethereum ah ka hor live airdrop criteria: skan dhab ah oo on-chain activity ah, qiimo 0-100 ugu dambeyn per barnaamij, sida saxda ah waxaad ka maqan tahay, iyo tallaabooyinka manual ah oo skan ma arag. Bilaash, keyless, account ma jiro.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Barnaamijyada",
+		"recent_label": "Dhamaadka ah:",
+		"retry_btn": "Isdiiwaangel",
+		"scan_measured": "Waxa skanku qaaday",
+		"share_aria": "Nuqul link-ka warbixintan",
+		"share_btn": "Wadaag",
+		"sub": "Ku dar wallet kasta oo <strong>Solana</strong> ama <strong>Ethereum</strong> iyo arag airdrops-ka ay ugu dambeysato. Qiimaha waxa uu yimaadaa skan dhab ah oo tarikhda on-chain ee wallet-ka; checkliska waxa uu ku sheegayaa sida saxda ah waxa ka maqan iyo waxa skanku ma arag.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Barnaamijyada la raacayo"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Ku dhaqan akhriskan",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Wuxuu ku dhaqmaa xaddidaadyo adag oo kharash ah",
@@ -2936,6 +2972,10 @@
 		"starting": "Bilaabmaya…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Kula hadal horumarayaashii, warbixinta khaladaha, iyo xubnaha bulshada oo three.ws u sii wadaa.",
+		"meta_title": "Contributors · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Fiiri dhammaan lacagaha →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivatives-ka Crypto · three.ws",
 		"meta_title": "Derivatives-ka Crypto · three.ws",
 		"meta_twitter_description": "Suuqyada futures-ka joogtada ah ee tooska ah — qiimaha, isbeddelka 24 saac, heerka maalgelinta, xiisaha furan, iyo mugga 24 saac.",
-		"meta_twitter_title": "Derivatives-ka Crypto · three.ws"
+		"meta_twitter_title": "Derivatives-ka Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Fur qof kasta oo contract ah si aad u aragto buuggiisa faahfaahinta: basis-ka ka hor index-kiisa gaar ah, waxa funding rate-ku kharashayaa meeshaad qaadato, iyo underlying-ka isku mid ah oo qiimaha laga qaado meel kasta oo kale."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Isbeddelada Siyaasaddan",
 		"12_contact": "12. Xiriir",
 		"1_information_we_collect": "1. Macluumaadka aan Ururinno",
+		"1a_photos_you_capture_or_upload": "1a. Sawirrada Aad Qaadataan Ama U Kala Soo Galiyaan",
 		"2_how_we_use_your_information": "2. Sida aan u Isticmaalno Macluumaadkaaga",
 		"3_on_chain_data": "3. Xogta Silsiladda",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Moodooyinka 3D (GLB/glTF), sawirada yaryar, metadata wakiilka",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Wicitaanada API, dhacdooyinka raridda widget-ka (ma jiraan IP-yo, ma jiraan faro-gacmeedyo)",
 		"authentication_account_management": "Xaqiijinta & Maareynta Akoonka",
 		"authentication_security": "Xaqiijinta, Amniga",
+		"building_your_3d_avatar_and_reproducing_re_r": "Dhismaha avatar-kaaga 3D, iyo ku celcelinta, ku marinta mar kale, ama qiimaynta mar kale ee natiijada",
 		"business_transfers_in_connection_with_a_merg": "<strong>Wareejinta ganacsiga:</strong> oo la xiriirta isku-darka, iibsashada, ama iibinta hantida, iyadoo la ogeysiinayo isticmaalayaasha ay khusayso.",
 		"category": "Qayb",
 		"connected_home_data": "Xogta guryaha la xiriira",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Xaqiijinta aqoonsiga, xaaladda is-diiwaangelinta",
 		"if_you_are_a_california_resident_the": "Haddii aad tahay degane California: qaybaha macluumaadka shakhsi ahaaneed ee aan ururinno waxay ku qoran yihiin Qaybta 1, ujeedooyinka ku qoran Qaybta 2, iyo kuwa wax helaya ee ku qoran Qaybta 4. Ma <strong>iibinno</strong> macluumaad shakhsi ah mana <strong>wadaagno</strong> si loogu isticmaalo xayaysiisyada dabeecadda ee xaaladaha kala duwan, sidaa darteed ma jiraan wax laga baxo; calaamadaha ka-bixitaanka browser-ka sida Xakamaynta Qarsoodiga Caalamiga ah waa la ixtiraamaa si caadi ah sababtoo ah ma jirto iibin ama wadaagid la joojiyo. Ma isticmaalno ama ma shaacinno macluumaad shakhsi ah oo xasaasi ah ujeedooyin u baahan xaq u lahaansho xaddidid.",
 		"if_you_connect_a_home_assistant_instance": "Haddii aad xiriirto Home Assistant instance, access token aad siinaysan waa sharaf uu guryo joogto ah. Waxaan ku encipher-inayaa marka aad joogto ah isticmaasho primitive-kan oo aan isticmaalo xogta wallet-key ee custodial, ma haysan ever ee ka muuqda, wuxuuna la waybaa marka aad kaxiso guryuhu. Falalka oo ka dhex muga guryo (furenta, furitaanka, de-militarizing) waxay u baahan yihiin xaqiiqad dad ah oo muuqda, oo aan laga sameyn karin nooc AI model, ilaa aad siinaysan tahay standing allowance kii hal xubn.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Haddii aad isticmaasho nidaamka selfie-ga, sawirrada aad qaadataan (mid sawir hore iyo labo dhinacyo oo doon-doonaan) ayaa loo kala soo galiyaa adeegga soo noqnoqoshada iyo loo isticmaalaa in la dhiso avatar-kaaga 3D. Waxaa la kaydinayaa kuwa xusuuska soo saarista si natiijadu la celceliyo, la marayo mar kale, iyo la qiimayo mar kale oo caadi ah, waxayna muuji lahaa kuwa xisaabtaaga gaar ah. Waxaa la tirtiray marka aad tirtirayso soo saarka ama xisaabtaaga, ku saleysan xillabyada kaydinta ee Qodobka 5. Ma <strong>isticiimanno</strong> inay loo barto mudellooyin, ma <strong>la wadaago</strong> kuwa suuqa u qaabilsan, iyo ma <strong>la soo saaro</strong> ama la kaydiyo tusmo wajih ah ama aqoonsi kale oo biyometri ah ka soo horjeeda. Isticmaalka nidaamka selfie-ga waa doon-doonaan: waxaad kala soo gali kartaa sawir ka mid ah galleriyadaada, ama waxaad kala hadlaa qof 3D oo aad uusan sawir bixin.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Bixiyeyaasha kaabayaasha:</strong> Google Cloud Platform (martigelinta iyo xisaabinta), Neon (database), Cloudflare (kaydinta iyo CDN), Resend (emailka ganacsiga), iyo Privy (galitaanka ikhtiyaariga ah). Mid kasta wuxuu xogta ku habaynayaa annaga oo wakiil ka ah, iyadoo la raacayo siyaasaddiisa gaarka ah iyo shuruudaha habaynta xogta.",
 		"legal_acceptance_records": "Diiwaannada aqbalaadda sharciga ah",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Diiwaannada aqbalaadda sharciga ah</strong> (aqbalaaddaada Shuruudaha Adeegga iyo Shaacinta Khatarta) waa la haynayaa inta akoonkaagu jiro iyo ka dib inta loo baahdo si loo dhiso ama loo difaaco sheegashooyinka sharciga ah. Hayntaani waa waajib sharci ah waxayna sii jirtaa codsi tirtirid akoon.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Siyaasadda Asturnaanta · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Helitaanka xaddidan ee OAuth:</strong> markaad ku xirto OAuth, isku xiraha wuxuu akhrin karaa oo qori karaa oo kaliya xogta akoonka three.ws ee ay daboolayaan xaddidaadaha aad ogolaato (avatars, agents, memory, profile). Ma heli karo taariikhda sheekaysiga macmiilkaaga AI, xusuusta, ama faylasha deegaanka.",
 		"on_chain_data": "Xogta silsiladda",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Mid sawir hore iyo labo dhinacyo oo doon-doonaan, haddii aad isticmaasho nidaamka selfie-ga",
 		"operating_the_three_ws_home_features_you": "Siinta three.ws Home features aad u oggolaatay, iyo inaad siinaysan tahay audit trail oo ku saabsan",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Xogta lacag bixinta (x402):</strong> qalabka lacagta ah waxay ku xalliyaan USDC iyagoo isticmaalaya borotokoolka lacag bixinta ee x402. Markaad bixiso wicitaan kasta waxaan helnaa ciwaanka boorsadaada dadweynaha iyo saxiixa macaamilka lacag bixinta/xallinta, oo lagu xaqiijiyay iyada oo loo marayo fududeeye lacag bixinta (Coinbase CDP iyo/ama fududeeyaha dadweynaha ee x402.org). Marnaba ma helno, ma codsano, ama ma kaydinno furayaashaada gaarka ah ama weedha abuurka. Calaamadda kaliya ee three.ws lafteeda ay tixraacdo waa <code>$THREE</code>; USDC waxaa loo isticmaalaa si gaar ah xallinta.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Fududeeyayaasha lacag bixinta:</strong> qalabka lacagta ah ee lagu xalliyo silsiladda (x402), xaqiijinta lacag bixinta waxay martaa fududeeye sida Coinbase Developer Platform ama fududeeyaha dadweynaha ee x402.org. Waxay arkaan ciwaanka boorsadaada dadweynaha iyo saxiixyada macaamilka, marnaba furayaasha gaarka ah.",
+		"photos_you_capture_or_upload": "Sawirrada aad qaadataan ama aad u kala soo galiyaan",
 		"privacy_policy": "Siyaasadda Asturnaanta",
 		"privacy_questions_privacy_three_ws": "Su'aalaha asturnaanta: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Caddaynta heshiiska, u hoggaansanaanta sharciga",
@@ -11279,12 +11325,7 @@
 		"why": "Sababta",
 		"you_can_see_export_and_delete_everything": "Aad arki karto, export-in karto oo tirtir karto wax kasta oo feature-kan haysto wakhtiga oo dhan, oo u dooro xakamadka retention-ka aad ee logga dhaqanka. Ee <a href=\"/docs/home-privacy\">Home privacy and retention</a> si aad u arko inventariska buuxa iyo API-ka.",
 		"you_have_the_right_to_lodge_a": "Waxaad xaq u leedahay inaad cabasho u gudbiso hay'adda kormeerka ee deegaankaaga. Waxaad sidoo kale nala soo xiriiri kartaa marka hore <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; waxaan soo dhaweyneynaa fursadda aan si toos ah uga xallin karno walaacaaga.",
-		"you_have_the_rights_to_know_access": "Waxaad xaq u leedahay inaad ogaato, gasho, saxdo, tirtirto, oo aad wareejiso macluumaadkaaga shakhsi ahaaneed, iyo inaan lagu takoorin isticmaalka xuquuqdaas. Ku isticmaal iyaga <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Qaybta 6). Waxaan xaqiijinaynaa codsiyada annagoo isticmaalayna fadhigaaga galay, emailka akoonkaaga, ama fariin ay saxiixday boorsadaada (wallet). Wakiil idman ayaa kuugu dhaqmi kara ogolaansho qoraal ah.",
-		"photos_you_capture_or_upload": "Sawirrada aad qaadataan ama aad u kala soo galiyaan",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Mid sawir hore iyo labo dhinacyo oo doon-doonaan, haddii aad isticmaasho nidaamka selfie-ga",
-		"building_your_3d_avatar_and_reproducing_re_r": "Dhismaha avatar-kaaga 3D, iyo ku celcelinta, ku marinta mar kale, ama qiimaynta mar kale ee natiijada",
-		"1a_photos_you_capture_or_upload": "1a. Sawirrada Aad Qaadataan Ama U Kala Soo Galiyaan",
-		"if_you_use_the_selfie_flow_the_photos_you": "Haddii aad isticmaasho nidaamka selfie-ga, sawirrada aad qaadataan (mid sawir hore iyo labo dhinacyo oo doon-doonaan) ayaa loo kala soo galiyaa adeegga soo noqnoqoshada iyo loo isticmaalaa in la dhiso avatar-kaaga 3D. Waxaa la kaydinayaa kuwa xusuuska soo saarista si natiijadu la celceliyo, la marayo mar kale, iyo la qiimayo mar kale oo caadi ah, waxayna muuji lahaa kuwa xisaabtaaga gaar ah. Waxaa la tirtiray marka aad tirtirayso soo saarka ama xisaabtaaga, ku saleysan xillabyada kaydinta ee Qodobka 5. Ma <strong>isticiimanno</strong> inay loo barto mudellooyin, ma <strong>la wadaago</strong> kuwa suuqa u qaabilsan, iyo ma <strong>la soo saaro</strong> ama la kaydiyo tusmo wajih ah ama aqoonsi kale oo biyometri ah ka soo horjeeda. Isticmaalka nidaamka selfie-ga waa doon-doonaan: waxaad kala soo gali kartaa sawir ka mid ah galleriyadaada, ama waxaad kala hadlaa qof 3D oo aad uusan sawir bixin."
+		"you_have_the_rights_to_know_access": "Waxaad xaq u leedahay inaad ogaato, gasho, saxdo, tirtirto, oo aad wareejiso macluumaadkaaga shakhsi ahaaneed, iyo inaan lagu takoorin isticmaalka xuquuqdaas. Ku isticmaal iyaga <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Qaybta 6). Waxaan xaqiijinaynaa codsiyada annagoo isticmaalayna fadhigaaga galay, emailka akoonkaaga, ama fariin ay saxiixday boorsadaada (wallet). Wakiil idman ayaa kuugu dhaqmi kara ogolaansho qoraal ah."
 	},
 	"legal_risk": {
 		"10_contact": "10. La Xiriir",

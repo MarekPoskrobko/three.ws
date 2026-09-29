@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Lommebokadresse",
+		"address_placeholder": "Lommebokadresse (Solana eller 0x…)",
+		"also_tracked": "Også sporet",
+		"check_btn": "Sjekk kvalifisering",
+		"copy_aria": "Kopier adresse",
+		"copy_btn": "Kopier",
+		"count_not": "Ikke kvalifisert",
+		"count_progress": "Pågår",
+		"count_qualified": "Kvalifisert",
+		"count_tracked": "Sporet",
+		"dir_fineprint": "Statuser gjenspeiler offentlig rapportering per datoen ovenfor og endres ofte; ingenting her er et godkjenn eller finansiell rådgivning. Estimerte spenn er offentlig spekulasjon, ikke lover. Sjekk en lommebok for å se score mot disse kriteriene.",
+		"error_title": "Kunne ikke skanne denne lommeboken",
+		"est_label": "Estimert hvis alle kvalifiserte drops utbetales",
+		"filter_all": "Alle",
+		"filter_aria": "Filtrer etter kvalifisering",
+		"filter_not": "Ikke kvalifisert",
+		"filter_progress": "Pågår",
+		"filter_qualified": "Kvalifisert",
+		"form_aria": "Sjekk en lommebok",
+		"form_hint": "Trykk <kbd>/</kbd> for å fokusere. Kjeden oppdages fra adressen. Se også <a href=\"/portfolio\">lommebokportefølje</a>.",
+		"kicker": "Ekte on-chain-aktivitet · scannet live",
+		"loading_note": "Skanner on-chain-historikk. En travl lommebok tar noen sekunder.",
+		"meta_desc": "Sjekk enhver Solana- eller Ethereum-lommebok mot live airdrop-kriterier: en ekte on-chain-aktivitetsskanning, en 0-100 kvalifiseringsscore per program, nøyaktig hva du mangler, og de manuelle stegene en skanning ikke kan se. Gratis, nøkkellos, ingen konto.",
+		"page_title": "Airdrop-sjekker · three.ws",
+		"portfolio_chip": "Portefølje",
+		"programs": "Programmer",
+		"recent_label": "Nylige:",
+		"retry_btn": "Prøv igjen",
+		"scan_measured": "Hva skanningen målte",
+		"share_aria": "Kopier lenke til denne rapporten",
+		"share_btn": "Del",
+		"sub": "Lim inn en hvilken som helst <strong>Solana</strong>- eller <strong>Ethereum</strong>-lommebok og se hvilke airdrops den kvalifiserer for. Scoren kommer fra en ekte skanning av lommebokens on-chain-historikk; sjekklisten forteller nøyaktig hva som mangler og hva en skanning ikke kan se.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Sporede programmer"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Handle på denne lesningen",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Handler innenfor harde utgiftsgrenser",
@@ -2936,6 +2972,10 @@
 		"starting": "Starter…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Konstellasjon</span>"
+	},
+	"contributors": {
+		"meta_description": "Møt utviklerne, feilrapporterne og fellesskapsmedlemmene som gjør three.ws bedre.",
+		"meta_title": "Bidragsytere · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Bla gjennom alle mynter →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Krypto Derivater · three.ws",
 		"meta_title": "Krypto Derivater · three.ws",
 		"meta_twitter_description": "Live evigvarende futuresmarkeder — pris, 24t bevegelse, finansieringsrate, åpen interesse og 24t volum.",
-		"meta_twitter_title": "Krypto Derivater · three.ws"
+		"meta_twitter_title": "Krypto Derivater · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Åpne en hvilken som helst kontrakt for full detaljside: basis mot sin egen indeks, hva finansieringsraten koster på en posisjon du størrelser selv, og samme underliggende priset på hver annen handelsplass."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Endringer i denne erklæringen",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Informasjon vi samler inn",
+		"1a_photos_you_capture_or_upload": "1a. Bilder du tar eller laster opp",
 		"2_how_we_use_your_information": "2. Hvordan vi bruker informasjonen din",
 		"3_on_chain_data": "3. On-chain data",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D-modeller (GLB/glTF), miniatyrbilder, agentmetadata",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API-kall, widget-lastingshendelser (ingen IP-adresser, ingen fingeravtrykk)",
 		"authentication_account_management": "Autentisering og kontoadministrasjon",
 		"authentication_security": "Autentisering, sikkerhet",
+		"building_your_3d_avatar_and_reproducing_re_r": "Bygging av din 3D-avatar, og reprodusering, re-rigging eller re-scoring av resultatet",
 		"business_transfers_in_connection_with_a_merg": "<strong>Virksomhetsoverføringer:</strong> i forbindelse med en fusjon, et oppkjøp eller salg av eiendeler, med varsel til berørte brukere.",
 		"category": "Kategori",
 		"connected_home_data": "Data fra tilkoblede hjem",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identitetsverifisering, abonnementsstatus",
 		"if_you_are_a_california_resident_the": "Hvis du er bosatt i California: kategoriene av personopplysninger vi samler inn er oppført i Seksjon 1, formålene i Seksjon 2, og mottakerne i Seksjon 4. Vi <strong>selger ikke</strong> personopplysninger og <strong>deler dem ikke</strong> for atferdsbasert annonsering på tvers av kontekster, så det er ingenting å melde seg av; nettleserens opt-out-signaler, som Global Privacy Control, respekteres som standard fordi det ikke er noe salg eller deling å stoppe. Vi bruker eller avslører ikke sensitive personopplysninger til formål som krever en rett til begrensning.",
 		"if_you_connect_a_home_assistant_instance": "Hvis du koble til en Home Assistant-instans, er tilgangstokenet du gir en legitimasjon til et fysisk bygg. Vi krypterer det i ro med den samme primitiven vi bruker for kustodielle wallet-nøkler, viser det aldri igjen, og sletter det øyeblikket du koble fra hjemmet. Handlinger som åpner et bygg (låsing opp, åpning, avarming) krever alltid en uttrykkelig bekreftelse fra en menneskelig bruker, som ikke kan produseres av et AI-modell, inntil du gir en stående tillatelse for én spesifikk entitet.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Hvis du bruker selfie-flyten, lastes bildene du tar (ett frontbilde og opp til to valgfrie sidevinkler) opp til vår rekonstruksjonstjeneste og brukes til å bygge din 3D-avatar. De lagres med genereringsrekorden slik at resultatet kan reproduseres, re-rigges og re-scores for kvalitet, og de er synlige bare for din konto. De slettes når du sletter genereringen eller kontoen din, under forbehold av oppbevaringsvinduene i avsnitt 5. Vi <strong>bruker</strong> dem <strong>ikke</strong> til å trene modeller, vi <strong>deler</strong> dem ikke med annonsører, og vi utleder eller lagrer ingen ansiktsskjema eller annen biometrisk identifikator fra dem. Bruk av selfie-flyten er valgfritt: du kan laste opp et bilde fra galleriet ditt i stedet, eller beskrive en karakter med ord og aldri levere et bilde i det hele tatt.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastrukturleverandører:</strong> Google Cloud Platform (hosting og beregning), Neon (database), Cloudflare (lagring og CDN), Resend (transaksjonell e-post), og Privy (valgfri pålogging). Hver behandler data på våre vegne under sin egen personvernerklæring og databehandlingsvilkår.",
 		"legal_acceptance_records": "Journalføring av juridisk aksept",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Journalføring av juridisk aksept</strong> (din aksept av Tjenestevilkårene og Risikoopplysningene) beholdes i hele kontoens levetid og deretter så lenge det er nødvendig for å etablere eller forsvare rettslige krav. Denne oppbevaringen er en rettslig forpliktelse og overlever en forespørsel om sletting av konto.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Personvernregler · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-begrenset tilgang:</strong> når du kobler til via OAuth, kan koblingen kun lese og skrive three.ws kontodata dekket av omfanget du gir (avatarer, agenter, minne, profil). Den har ikke tilgang til AI-klientens chat-historikk, minne eller lokale filer.",
 		"on_chain_data": "On-chain data",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Ett frontbilde og opp til to valgfrie sidevinkler, hvis du bruker selfie-flyten",
 		"operating_the_three_ws_home_features_you": "Drift av three.ws Home-funksjonene du har aktivert, og gi deg et revisjonsspor av dem",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Betalingsdata (x402):</strong> betalte verktøy gjøres opp i USDC via x402 betalingsprotokollen. Når du betaler per kall, mottar vi din offentlige lommebokadresse og transaksjonssignaturen for betaling/oppgjør, verifisert gjennom en betalingsformidler (Coinbase CDP og/eller den offentlige x402.org-formidleren). Vi mottar, ber om eller lagrer aldri dine private nøkler eller seed-frase. Det eneste tokenet three.ws selv refererer til er <code>$THREE</code>; USDC brukes utelukkende til oppgjør.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Betalingsformidlere:</strong> for betalte funksjoner som gjøres opp on-chain (x402), går betalingsverifiseringen via en formidler som Coinbase Developer Platform eller den offentlige x402.org-formidleren. De ser din offentlige lommebokadresse og transaksjonssignaturer, aldri private nøkler.",
+		"photos_you_capture_or_upload": "Bilder du tar eller laster opp",
 		"privacy_policy": "Personvernregler",
 		"privacy_questions_privacy_three_ws": "Personvernspørsmål: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bevis på avtale, juridisk samsvar",
@@ -11279,12 +11325,7 @@
 		"why": "Hvorfor",
 		"you_can_see_export_and_delete_everything": "Du kan se, eksportere og slette alt denne funksjonen holder når som helst, og sett ditt eget oppbevaringsvindu for handlingloggen. Se <a href=\"/docs/home-privacy\">Home privacy and retention</a> for den komplette oversikten og API-et.",
 		"you_have_the_right_to_lodge_a": "Du har rett til å klage til din lokale tilsynsmyndighet. Du kan også kontakte oss først på <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; vi ønsker gjerne å løse bekymringen din direkte.",
-		"you_have_the_rights_to_know_access": "Du har rett til å vite, få tilgang til, korrigere, slette og portere din personlige informasjon, og til ikke å bli diskriminert for å utøve disse rettighetene. Utøv dem via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksjon 6). Vi verifiserer forespørsler ved hjelp av din påloggede sesjon, din konto-e-post, eller en melding signert av lommeboken din. En autorisert agent kan handle på dine vegne med skriftlig tillatelse.",
-		"photos_you_capture_or_upload": "Bilder du tar eller laster opp",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Ett frontbilde og opp til to valgfrie sidevinkler, hvis du bruker selfie-flyten",
-		"building_your_3d_avatar_and_reproducing_re_r": "Bygging av din 3D-avatar, og reprodusering, re-rigging eller re-scoring av resultatet",
-		"1a_photos_you_capture_or_upload": "1a. Bilder du tar eller laster opp",
-		"if_you_use_the_selfie_flow_the_photos_you": "Hvis du bruker selfie-flyten, lastes bildene du tar (ett frontbilde og opp til to valgfrie sidevinkler) opp til vår rekonstruksjonstjeneste og brukes til å bygge din 3D-avatar. De lagres med genereringsrekorden slik at resultatet kan reproduseres, re-rigges og re-scores for kvalitet, og de er synlige bare for din konto. De slettes når du sletter genereringen eller kontoen din, under forbehold av oppbevaringsvinduene i avsnitt 5. Vi <strong>bruker</strong> dem <strong>ikke</strong> til å trene modeller, vi <strong>deler</strong> dem ikke med annonsører, og vi utleder eller lagrer ingen ansiktsskjema eller annen biometrisk identifikator fra dem. Bruk av selfie-flyten er valgfritt: du kan laste opp et bilde fra galleriet ditt i stedet, eller beskrive en karakter med ord og aldri levere et bilde i det hele tatt."
+		"you_have_the_rights_to_know_access": "Du har rett til å vite, få tilgang til, korrigere, slette og portere din personlige informasjon, og til ikke å bli diskriminert for å utøve disse rettighetene. Utøv dem via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksjon 6). Vi verifiserer forespørsler ved hjelp av din påloggede sesjon, din konto-e-post, eller en melding signert av lommeboken din. En autorisert agent kan handle på dine vegne med skriftlig tillatelse."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",

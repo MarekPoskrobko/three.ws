@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Adresa portofel",
+		"address_placeholder": "Adresa portofel (Solana sau 0x…)",
+		"also_tracked": "De asemenea urmărite",
+		"check_btn": "Verifică eligibilitatea",
+		"copy_aria": "Copiază adresa",
+		"copy_btn": "Copiază",
+		"count_not": "Neeligibil",
+		"count_progress": "În curs",
+		"count_qualified": "Eligibil",
+		"count_tracked": "Urmărite",
+		"dir_fineprint": "Staturile reflectă raportarea publică la data de mai sus și se schimbă des; nimic aici nu este un endosament sau un sfat financiar. Intervalurile estimate sunt speculații publice, nu promisiuni. Verifică un portofel pentru a vedea scorurile față de aceste criterii.",
+		"error_title": "Nu s-a putut scana acest portofel",
+		"est_label": "Estimat dacă toate drop-urile eligibile plătesc",
+		"filter_all": "Toate",
+		"filter_aria": "Filtrează după eligibilitate",
+		"filter_not": "Neeligibil",
+		"filter_progress": "În curs",
+		"filter_qualified": "Eligibil",
+		"form_aria": "Verifică un portofel",
+		"form_hint": "Apasă <kbd>/</kbd> pentru a focaliza. Lanțul este detectat din adresă. Vezi și <a href=\"/portfolio\">portofelul wallet</a>.",
+		"kicker": "Activitate reală on-chain · scorată live",
+		"loading_note": "Se scanează istoricul on-chain. Un portofel activ durează câteva secunde.",
+		"meta_desc": "Verifică orice portofel Solana sau Ethereum împotriva criteriilor live de airdrop: un scan real al activității on-chain, un scor de eligibilitate 0-100 per program, exact ce îți lipsește, și pașii manuali pe care un scan nu-i vede. Gratuit, fără chei, fără cont.",
+		"page_title": "Verificator Airdrop · three.ws",
+		"portfolio_chip": "Portofel",
+		"programs": "Programe",
+		"recent_label": "Recente:",
+		"retry_btn": "Reîncearcă",
+		"scan_measured": "Ce a măsurat scanul",
+		"share_aria": "Copiază linkul către acest raport",
+		"share_btn": "Distribuie",
+		"sub": "Lipește orice portofel <strong>Solana</strong> sau <strong>Ethereum</strong> și vezi pentru ce airdrop-uri este eligibil. Scorul vine dintr-un scan real al istoricului on-chain al portofelului; checklist-ul îți spune exact ce lipsește și ce nu poate vedea un scan.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Programe urmărite"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Acționează pe baza acestei lecturi",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Acționează în limite stricte de cheltuieli",
@@ -2936,6 +2972,10 @@
 		"starting": "Se începe…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Cunoaște dezvoltatorii, reporterii de issue-uri și membrii comunității care fac three.ws mai bun.",
+		"meta_title": "Contribuitori · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Răsfoiește toate monedele →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivate Crypto · three.ws",
 		"meta_title": "Derivate Crypto · three.ws",
 		"meta_twitter_description": "Piețe live de futures perpetue — preț, mișcare de 24h, rată de finanțare, interes deschis și volum de 24h.",
-		"meta_twitter_title": "Derivate Crypto · three.ws"
+		"meta_twitter_title": "Derivate Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Deschide orice contract pentru pagina sa completă de detalii: bază față de propriul index, costul ratei de finanțare pe o poziție dimensionată de tine, și același subiacent prețuit pe fiecare altă piață."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Modificări ale acestei Politici",
 		"12_contact": "12. Contact",
 		"1_information_we_collect": "1. Informații pe care le colectăm",
+		"1a_photos_you_capture_or_upload": "1a. Fotoğrafele pe care le capturezi sau le încarci",
 		"2_how_we_use_your_information": "2. Cum utilizăm informațiile dumneavoastră",
 		"3_on_chain_data": "3. Date On-Chain",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Modele 3D (GLB/glTF), miniaturi, metadate agent",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Apeluri API, evenimente de încărcare a widget-urilor (fără IP-uri, fără amprente digitale)",
 		"authentication_account_management": "Autentificare și gestionarea contului",
 		"authentication_security": "Autentificare, securitate",
+		"building_your_3d_avatar_and_reproducing_re_r": "Crearea avatarului tău 3D, precum și reproducerea, re-rigarea sau re-evaluarea acelui rezultat",
 		"business_transfers_in_connection_with_a_merg": "<strong>Transferuri de afaceri:</strong> în legătură cu o fuziune, achiziție sau vânzare de active, cu notificare către utilizatorii afectați.",
 		"category": "Categorie",
 		"connected_home_data": "Datele locuinței conectate",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verificarea identității, statutul abonamentului",
 		"if_you_are_a_california_resident_the": "Dacă ești rezident în California: categoriile de informații personale pe care le colectăm sunt enumerate în Secțiunea 1, scopurile în Secțiunea 2 și destinatarii în Secțiunea 4. Nu <strong>vindem</strong> informații personale și nu le <strong>partajăm</strong> pentru publicitate comportamentală cross-context, deci nu există nimic de la care să te dezabonezi; semnalele de dezabonare din browser, cum ar fi Global Privacy Control, sunt respectate implicit, deoarece nu există vânzare sau partajare de oprit. Nu utilizăm sau divulgăm informații personale sensibile în scopuri care necesită un drept de limitare.",
 		"if_you_connect_a_home_assistant_instance": "Dacă conectezi o instanță Home Assistant, tokenul de acces pe care îl furnizezi este o credențială pentru o clădire fizică. Îl criptăm în repaus folosind aceeași primitivă pe care o folosim pentru cheile portofelelor în custodie, nu îl mai afișăm niciodată și îl ștergem imediat ce deconectezi locuința. Acțiunile care deschid o clădire (deblocare, deschidere, dezarmare) necesită întotdeauna o confirmare explicită din partea unei persoane, care nu poate fi prodítrí de un model AI, până când acorzi o permisiune permanentă pentru o anumită entitate.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Dacă folosești fluxul selfie, fotografiile pe care le capturezi (o imagine frontală și până la două unghiuri laterale opționale) sunt încărcate în serviciul nostru de reconstrucție și utilizate pentru a-ți construi avatarul 3D. Ele sunt stocate împreună cu înregistrarea generării, astfel încât rezultatul să poată fi reprodus, re-rigat și re-evaluat din punct de vedere al calității, și sunt vizibile doar pentru contul tău. Ele sunt șterse atunci când ștergi generarea sau contul tău, sub rezervă ferestrelor de retenție din Secțiunea 5. <strong>Nu</strong> le folosim pentru a antrena modele, <strong>nu</strong> le împărtășim cu publicitari, și <strong>nu</strong> derivăm sau stocăm un șablon facial sau orice alt identificator biometric din ele. Utilizarea fluxului selfie este opțională: poți încărca o fotografie din galerie, sau poți descrie un personaj în cuvinte, fără să furnizezi nicio fotografie.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Furnizori de infrastructură:</strong> Google Cloud Platform (găzduire și calcul), Neon (bază de date), Cloudflare (stocare și CDN), Resend (email tranzacțional) și Privy (autentificare opțională). Fiecare prelucrează date în numele nostru conform propriei politici de confidențialitate și termenilor de prelucrare a datelor.",
 		"legal_acceptance_records": "Înregistrări de acceptare legală",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Înregistrări de acceptare legală</strong> (acceptarea ta a Termenilor și Condițiilor și a Declarației de Risc) sunt reținute pe durata de viață a contului tău și ulterior, atât timp cât este necesar pentru a stabili sau apăra pretenții legale. Această reținere este o obligație legală și supraviețuiește unei cereri de ștergere a contului.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politica de Confidențialitate · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Acces cu scop OAuth:</strong> când vă conectați prin OAuth, conectorul poate citi și scrie doar datele contului three.ws acoperite de permisiunile pe care le acordați (avatare, agenți, memorie, profil). Nu poate accesa istoricul de chat, memoria sau fișierele locale ale clientului dvs. AI.",
 		"on_chain_data": "Date on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "O fotografie frontală și până la două unghiuri laterale opționale, dacă folosești fluxul selfie",
 		"operating_the_three_ws_home_features_you": "Operarea funcțiilor three.ws Home pe care le-ai activat și furnizarea unui jurnal de audit al acestora",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Date de plată (x402):</strong> instrumentele plătite se decontează în USDC prin protocolul de plată x402. Când plătiți per apel, primim adresa portofelului dvs. public și semnătura tranzacției de plată/decontare, verificate printr-un facilitator de plăți (Coinbase CDP și/sau facilitatorul public x402.org). Nu primim, solicităm sau stocăm niciodată cheile dvs. private sau fraza de recuperare. Singurul token la care three.ws face referire este <code>$THREE</code>; USDC este folosit pur pentru decontare.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Facilitatori de plată:</strong> pentru funcționalitățile plătite decontate on-chain (x402), verificarea plăților se realizează printr-un facilitator precum Coinbase Developer Platform sau facilitatorul public x402.org. Aceștia văd adresa portofelului dvs. public și semnăturile tranzacțiilor, niciodată cheile private.",
+		"photos_you_capture_or_upload": "Fotoğrafele pe care le capturezi sau le încarci",
 		"privacy_policy": "Politica de Confidențialitate",
 		"privacy_questions_privacy_three_ws": "Întrebări privind confidențialitatea: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Dovada acordului, conformitate legală",
@@ -11279,12 +11325,7 @@
 		"why": "De ce",
 		"you_can_see_export_and_delete_everything": "Poți vedea, exporta și șterge orice deține această funcție oricând și poți seta propria fereastră de păstrare pentru jurnalul de acțiuni. Vezi <a href=\"/docs/home-privacy\">Home privacy and retention</a> pentru inventarul complet și API.",
 		"you_have_the_right_to_lodge_a": "Ai dreptul de a depune o plângere la autoritatea locală de supraveghere. De asemenea, ne poți contacta mai întâi la <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; am aprecia oportunitatea de a-ți rezolva direct problema.",
-		"you_have_the_rights_to_know_access": "Ai dreptul de a cunoaște, accesa, corecta, șterge și porta informațiile tale personale, și de a nu fi discriminat pentru exercitarea acestora. Le poți exercita prin <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Secțiunea 6). Verificăm solicitările folosind sesiunea ta autentificată, e-mailul contului tău sau un mesaj semnat de portofelul tău. Un agent autorizat poate acționa în numele tău cu permisiune scrisă.",
-		"photos_you_capture_or_upload": "Fotoğrafele pe care le capturezi sau le încarci",
-		"one_frontal_photo_and_up_to_two_optional_sid": "O fotografie frontală și până la două unghiuri laterale opționale, dacă folosești fluxul selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Crearea avatarului tău 3D, precum și reproducerea, re-rigarea sau re-evaluarea acelui rezultat",
-		"1a_photos_you_capture_or_upload": "1a. Fotoğrafele pe care le capturezi sau le încarci",
-		"if_you_use_the_selfie_flow_the_photos_you": "Dacă folosești fluxul selfie, fotografiile pe care le capturezi (o imagine frontală și până la două unghiuri laterale opționale) sunt încărcate în serviciul nostru de reconstrucție și utilizate pentru a-ți construi avatarul 3D. Ele sunt stocate împreună cu înregistrarea generării, astfel încât rezultatul să poată fi reprodus, re-rigat și re-evaluat din punct de vedere al calității, și sunt vizibile doar pentru contul tău. Ele sunt șterse atunci când ștergi generarea sau contul tău, sub rezervă ferestrelor de retenție din Secțiunea 5. <strong>Nu</strong> le folosim pentru a antrena modele, <strong>nu</strong> le împărtășim cu publicitari, și <strong>nu</strong> derivăm sau stocăm un șablon facial sau orice alt identificator biometric din ele. Utilizarea fluxului selfie este opțională: poți încărca o fotografie din galerie, sau poți descrie un personaj în cuvinte, fără să furnizezi nicio fotografie."
+		"you_have_the_rights_to_know_access": "Ai dreptul de a cunoaște, accesa, corecta, șterge și porta informațiile tale personale, și de a nu fi discriminat pentru exercitarea acestora. Le poți exercita prin <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Secțiunea 6). Verificăm solicitările folosind sesiunea ta autentificată, e-mailul contului tău sau un mesaj semnat de portofelul tău. Un agent autorizat poate acționa în numele tău cu permisiune scrisă."
 	},
 	"legal_risk": {
 		"10_contact": "10. Contact",

@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Adresa peňaženky",
+		"address_placeholder": "Adresa peňaženky (Solana alebo 0x…)",
+		"also_tracked": "Sledované tiež",
+		"check_btn": "Skontrolovať nárok",
+		"copy_aria": "Kopírovať adresu",
+		"copy_btn": "Kopírovať",
+		"count_not": "Není nárok",
+		"count_progress": "Prebieha",
+		"count_qualified": "S nárokom",
+		"count_tracked": "Sledované",
+		"dir_fineprint": "Stavy odrážajú verejné reporty k dňu uvedenému vyššie a často sa menia; nič tu nie je odporúčanie ani finančný poradenstvo. Odhadované rozpäty sú len špekulácie, nie sľuby. Skontrolujte peňaženku a uvidíte skóre podľa týchto kritérií.",
+		"error_title": "Nepodarilo sa naskenovať túto peňaženku",
+		"est_label": "Odhad, ak by vyplatili všetky kvalifikované airdropy",
+		"filter_all": "Všetky",
+		"filter_aria": "Filtrovať podľa nároku",
+		"filter_not": "Bez nároku",
+		"filter_progress": "Prebieha",
+		"filter_qualified": "S nárokom",
+		"form_aria": "Skontrolovať peňaženku",
+		"form_hint": "Stlačte <kbd>/</kbd> pre fokus. Sieť sa detekuje z adresy. Pozrite si aj <a href=\"/portfolio\">portfólio peňaženky</a>.",
+		"kicker": "Skutočná on-chain aktivita · vyhodnotená live",
+		"loading_note": "Skenovanie on-chain histórie. Zaujatá peňaženka trvá pár sekúnd.",
+		"meta_desc": "Skontrolujte akúkoľvek Solana alebo Ethereum peňaženku podľa live kritérií airdropov: skutočný on-chain sken, skóre nároku 0–100 pre program, presne čo chýba, a manuálne kroky, ktoré sken nevidí. Zadarmo, bez kľúčov, bez účtu.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfólio",
+		"programs": "Programy",
+		"recent_label": "Nedávno:",
+		"retry_btn": "Skúsiť znova",
+		"scan_measured": "Čo sken meral",
+		"share_aria": "Kopírovať odkaz na tento report",
+		"share_btn": "Zdieľať",
+		"sub": "Vložte akúkoľvek <strong>Solana</strong> alebo <strong>Ethereum</strong> peňaženku a uvidíte, pre ktoré airdropy sa kvalifikuje. Skóre prichádza zo skutočného skenu on-chain histórie peňaženky; kontrolný zoznam vám povie presne, čo chýba a čo sken nevidí.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Sledované programy"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Jednajte na základe tohto prečítania",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Jedná v rámci pevných limitov výdavkov",
@@ -2936,6 +2972,10 @@
 		"starting": "Začína sa…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Konštelácia</span>"
+	},
+	"contributors": {
+		"meta_description": "Poznajte vývojárov, hlásiteľov chýb a členov komunity, ktorí robia three.ws lepším.",
+		"meta_title": "Prispievatelia · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Prehliadnuť všetky mince →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Krypto deriváty · three.ws",
 		"meta_title": "Krypto deriváty · three.ws",
 		"meta_twitter_description": "Živé perpetuálne futures trhy — cena, 24h pohyb, financovanie, otvorený záujem a 24h objem.",
-		"meta_twitter_title": "Krypto deriváty · three.ws"
+		"meta_twitter_title": "Krypto deriváty · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Otvorte akýkoľvek kontrakt pre jeho plnú detailnú stránku: basis proti vlastnému indexu, čo stojí funding rate na pozícii, ktorú si nastavíte sami, a ten istý underlying cenovaný na každom inom venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Spremembe te politike",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Podatki, ki jih zbiramo",
+		"1a_photos_you_capture_or_upload": "1a. Fotky, ktoré zachytíte alebo nahrajete",
 		"2_how_we_use_your_information": "2. Kako uporabljamo vaše podatke",
 		"3_on_chain_data": "3. Podatki na verigi blokov",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modeli (GLB/glTF), sličice, metapodatki agenta",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Klici API-ja, dogodki nalaganja pripomočkov (brez IP-jev, brez prstnih odtisov)",
 		"authentication_account_management": "Avtentikacija in upravljanje računa",
 		"authentication_security": "Avtentikacija, varnost",
+		"building_your_3d_avatar_and_reproducing_re_r": "Vytváranie vášho 3D avatara a reprodukovanie, re-rigovanie alebo re-skórovanie tohto výsledku",
 		"business_transfers_in_connection_with_a_merg": "<strong>Poslovni prenosi:</strong> v povezavi z združitvijo, prevzemom ali prodajo sredstev, z obvestilom prizadetim uporabnikom.",
 		"category": "Kategorija",
 		"connected_home_data": "Údaje o prepojenom dome",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Preverjanje identitete, status naročnine",
 		"if_you_are_a_california_resident_the": "Če ste prebivalec Kalifornije: kategorije osebnih podatkov, ki jih zbiramo, so navedene v razdelku 1, nameni v razdelku 2 in prejemniki v razdelku 4. Osebnih podatkov <strong>ne</strong> prodajamo in jih <strong>ne</strong> delimo za vedenjsko oglaševanje med konteksti, zato se ni mogoče odjaviti od ničesar; signali za odjavo brskalnika, kot je Global Privacy Control, so privzeto upoštevani, ker ni prodaje ali deljenja, ki bi ju bilo treba ustaviti. Občutljivih osebnih podatkov ne uporabljamo ali razkrivamo za namene, ki zahtevajo pravico do omejitve.",
 		"if_you_connect_a_home_assistant_instance": "Ak pripojíte inštanciu Home Assistant, poskytnutý pristupový token je overenie fyzickej budovy. Šifrujeme ho v pokoji rovnakým prvkom ako pre kľúče kustodijových peňaženiek, nikdy ho znovu nezobrazíme a vymažeme okamžite, keď sa dom odpojíte. Akcie, otvárajúce budovu (odkľúčovanie, otváranie, demontáž), vždy vyžadujú explicitné ľudské potvrdenie, ktoré nemôže byť vygenerované modelom AI, kým nepovoľíte stály prístup pre jednu konkrétnu entitu.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ak používate selfie flow, fotky, ktoré zachytíte (jeden frontálny snímok a až dva voliteľné bočné uhlopriečky), sa nahrajú do nášho reconštrukčného servisu a použijú sa na vytvorenie vášho 3D avatara. Sú uložené spolu s záznamom generácie, aby sa výsledok dal reprodukovať, re-rigovať a re-skórovať pre kvalitu, a sú viditeľné len pre váš účet. Sú vymazané, keď vymažete generáciu alebo účet, v súlade s uchovávaním v sekcii 5. <strong>Nepoužívame</strong> ich na tréning modelov, <strong>nedelíme</strong> ich inzerentom a <strong>nevytvárame ani neukladáme</strong> z nich žiadnu tvárovú šablónu ani iný biometrický identifikátor. Použitie selfie flow je voliteľné: môžete nahrať fotku z galérie alebo opísať postavu slovami a vôbec neposkytnúť žiadnu fotku.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Ponudniki infrastrukture:</strong> Google Cloud Platform (gostovanje in izračuni), Neon (podatkovna baza), Cloudflare (shranjevanje in CDN), Resend (transakcijska e-pošta) in Privy (neobvezna prijava). Vsak obdeluje podatke v našem imenu v skladu s svojo politiko zasebnosti in pogoji obdelave podatkov.",
 		"legal_acceptance_records": "Zapisi o pravnem sprejetju",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Zapisi o pravnem sprejetju</strong> (vaše sprejetje Pogojev storitve in Razkritja tveganj) se hranijo za čas trajanja vašega računa in nato tako dolgo, kot je potrebno za uveljavljanje ali obrambo pravnih zahtevkov. To shranjevanje je pravna obveznost in ostane veljavno tudi po zahtevi za izbris računa.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politika zasebnosti · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Dostop z omejitvijo OAuth:</strong> ko se povežete prek OAuth, lahko povezovalnik bere in piše samo podatke računa three.ws, ki so zajeti v dodeljenih obsegih (avatarji, agenti, pomnilnik, profil). Ne more dostopati do zgodovine klepetov, pomnilnika ali lokalnih datotek vašega odjemalca AI.",
 		"on_chain_data": "Podatki v verigi blokov",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Jedna frontálna fotka a až dve voliteľné bočné uhlopriečky, ak používate selfie flow",
 		"operating_the_three_ws_home_features_you": "Prevádzkovanie funkcií three.ws Home, ktoré ste povolili, a poskytovanie auditu týchto akcií",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Podatki o plačilu (x402):</strong> plačljiva orodja se poravnajo v USDC prek plačilnega protokola x402. Ko plačate na klic, prejmemo vaš javni naslov denarnice in podpis transakcije plačila/poravnave, preverjen prek posrednika plačil (Coinbase CDP in/ali javni posrednik x402.org). Nikoli ne prejmemo, ne zahtevamo in ne shranjujemo vaših zasebnih ključev ali semenske fraze. Edini žeton, na katerega se three.ws sam sklicuje, je <code>$THREE</code>; USDC se uporablja izključno za poravnavo.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Posredniki plačil:</strong> za plačljive funkcije, poravnane v verigi blokov (x402), preverjanje plačil poteka prek posrednika, kot je Coinbase Developer Platform ali javni posrednik x402.org. Vidijo vaš javni naslov denarnice in podpise transakcij, nikoli zasebnih ključev.",
+		"photos_you_capture_or_upload": "Fotky, ktoré zachytíte alebo nahrajete",
 		"privacy_policy": "Politika zasebnosti",
 		"privacy_questions_privacy_three_ws": "Vprašanja o zasebnosti: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Dokazilo o soglasju, pravna skladnost",
@@ -11279,12 +11325,7 @@
 		"why": "Prečo",
 		"you_can_see_export_and_delete_everything": "Môžete vidieť, exportovať a vymazať všetko, čo táto funkcia obsahuje, kedykoľvek, a nastaviť si svoje okno uchovávania pre protokol akcií. Pozrite si <a href=\"/docs/home-privacy\">Ochranu súkromia a uchovávanie doma</a> kompletný zoznam a rozhranie API.",
 		"you_have_the_right_to_lodge_a": "Máte právo podať sťažnosť u vášho miestneho dozorného orgánu. Môžete nás tiež najprv kontaktovať na <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; uvítame príležitosť vyriešiť váš problém priamo.",
-		"you_have_the_rights_to_know_access": "Máte právo vedieť, pristupovať, opravovať, mazať a prenášať svoje osobné údaje a nebyť diskriminovaní za ich uplatňovanie. Uplatnite ich prostredníctvom <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sekcia 6). Žiadosti overujeme pomocou vašej prihlásenej relácie, e-mailu vášho účtu alebo správy podpísanej vašou peňaženkou. Splnomocnený zástupca môže konať vo vašom mene s písomným povolením.",
-		"photos_you_capture_or_upload": "Fotky, ktoré zachytíte alebo nahrajete",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Jedna frontálna fotka a až dve voliteľné bočné uhlopriečky, ak používate selfie flow",
-		"building_your_3d_avatar_and_reproducing_re_r": "Vytváranie vášho 3D avatara a reprodukovanie, re-rigovanie alebo re-skórovanie tohto výsledku",
-		"1a_photos_you_capture_or_upload": "1a. Fotky, ktoré zachytíte alebo nahrajete",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ak používate selfie flow, fotky, ktoré zachytíte (jeden frontálny snímok a až dva voliteľné bočné uhlopriečky), sa nahrajú do nášho reconštrukčného servisu a použijú sa na vytvorenie vášho 3D avatara. Sú uložené spolu s záznamom generácie, aby sa výsledok dal reprodukovať, re-rigovať a re-skórovať pre kvalitu, a sú viditeľné len pre váš účet. Sú vymazané, keď vymažete generáciu alebo účet, v súlade s uchovávaním v sekcii 5. <strong>Nepoužívame</strong> ich na tréning modelov, <strong>nedelíme</strong> ich inzerentom a <strong>nevytvárame ani neukladáme</strong> z nich žiadnu tvárovú šablónu ani iný biometrický identifikátor. Použitie selfie flow je voliteľné: môžete nahrať fotku z galérie alebo opísať postavu slovami a vôbec neposkytnúť žiadnu fotku."
+		"you_have_the_rights_to_know_access": "Máte právo vedieť, pristupovať, opravovať, mazať a prenášať svoje osobné údaje a nebyť diskriminovaní za ich uplatňovanie. Uplatnite ich prostredníctvom <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sekcia 6). Žiadosti overujeme pomocou vašej prihlásenej relácie, e-mailu vášho účtu alebo správy podpísanej vašou peňaženkou. Splnomocnený zástupca môže konať vo vašom mene s písomným povolením."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",

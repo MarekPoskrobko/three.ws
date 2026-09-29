@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Àwọn Àgbègbè Gbòógì · three.ws",
 		"the_commons": "Àwọn Àgbègbè Gbòógì"
 	},
+	"airdrops": {
+		"address_label": "Ọ̀nà àbójú",
+		"address_placeholder": "Ọ̀nà àbójú (Solana tàbí 0x…)",
+		"also_tracked": "Àwọn tí a ṣe wáyé nípa wọn",
+		"check_btn": "Ṣàyéwò àìlera",
+		"copy_aria": "Kópi ọ̀nà àbójú",
+		"copy_btn": "Kópi",
+		"count_not": "Kò ní àìlera",
+		"count_progress": "N ṣèlè",
+		"count_qualified": "Ní àìlera",
+		"count_tracked": "Tí a ṣe wáyé nípa wọn",
+		"dir_fineprint": "Ìpinnu wáyé nípa àkóso ọjọ́ tó wà lórí kékòòrù tó jẹ́wọ́ nípa ọjọ́ tó wà lórí, ṣùgbọ́n yóò máa yí padà nípa bẹ́ẹ̀ ni; kò sí ohun tó wà nínú yìí tí ó jẹ́ ìtànṣe tàbí ìmúranra owó. Ìpinnu àpẹrẹ tó wà ní àìpẹ̀ kò jẹ́ ìbànújẹ, ṣùgbọ́n àkúnyẹ̀yàn. Ṣàyéwò àkọ́lé tó wà ní ọ̀nà àbójú láti rí ìpinnu wáyé nípa wọn nípa àwọn ìtọ́kasí yìí.",
+		"error_title": "Kò sí i fẹ́ ṣàyéwò àkọ́lé yìí",
+		"est_label": "Àpẹrẹ bí gbogbo àpapọ̀ tó ní àìlera bá fi owó",
+		"filter_all": "Gbogbo",
+		"filter_aria": "Ṣàlàyé nípa àìlera",
+		"filter_not": "Kò ní àìlera",
+		"filter_progress": "N ṣèlè",
+		"filter_qualified": "Ní àìlera",
+		"form_aria": "Ṣàyéwò àkọ́lé",
+		"form_hint": "Dabọ <kbd>/</kbd> lati fọkusi. Ó wà nípa àpẹrẹ àwọn ọ̀nà. Ṣíwájú nípa <a href=\"/portfolio\">pọ̀tifólíì àkọ́lé</a>.",
+		"kicker": "Ìṣẹ́lẹ̀ on-chain níjọ́wú · ó wà nípa àpẹrẹ àwọn ọ̀nà",
+		"loading_note": "Ń wáyé àkọ́lé on-chain. Akọ́lé tí ó wà nípa àpẹrẹ àwọn ọ̀nà yóò gba àwọn àìsẹ́ kan.",
+		"meta_desc": "Ṣàlàyé àkọ́lé Solana tabi Ethereum nípa àwọn ìtàn on-chain níjọ́wú: wáyé àìlera on-chain níjọ́wú, ìpinnu 0-100 fún gbogbo àkóso, nkan tí o kò ní nípa àpẹrẹ, àti àwọn ìpinnu ẹ̀kọ́ tí wáyé kò lè rí. Ọfẹ́, kò sí àwọn kí, kò sí àkọ́lé.",
+		"page_title": "Olùwáyé Airdrop · three.ws",
+		"portfolio_chip": "Pọ̀tifólíì",
+		"programs": "Àkóso",
+		"recent_label": "Àkúnya:",
+		"retry_btn": "Gbádùn ṣíṣe",
+		"scan_measured": "Nkan tí wáyé gba",
+		"share_aria": "Kópi àbẹ́rẹ̀ sí ìtàn míì",
+		"share_btn": "Fífi hàn",
+		"sub": "Tẹ àkọ́lé <strong>Solana</strong> tabi <strong>Ethereum</strong> kankan síi àti ríi àwọn airdrop tí ó jẹ́ péye fún. Ìpinnu wá nípa wáyé níjọ́wú àkọ́lé on-chain; àkọ́lé àfikún ṣọ́rọ̀ nípa nkan tí ó kò ní àti nkan tí wáyé kò lè rí.",
+		"title": "Airdrop <em>Olùwáyé</em>",
+		"tracked_programs": "Àkóso tí a ṣe wáyé"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Ṣe lórí ìtúpalẹ̀ yìí",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Ṣe láàárín àwọn ààlà ìnáwó tí ó le koko",
@@ -2936,6 +2972,10 @@
 		"starting": "Ní bíbẹ̀rẹ̀…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Mọ̀ àwọn olùkọ́, àwọn tí ó ṣe rántí ìṣòro, àti àwọn àgbègbè tí a ṣe dá three.ws lẹ́wa.",
+		"meta_title": "Àwọn tí a ṣe dá sílẹ̀ · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Ṣawari gbogbo owó-ìfowópamọ́ →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Àwọn ohun àtọ́wọ́gbà Kíríptò · three.ws",
 		"meta_title": "Àwọn ohun àtọ́wọ́gbà Kíríptò · three.ws",
 		"meta_twitter_description": "Àwọn ọjà ọjọ́ iwájú tí kò lópin láàyè — iye owó, ìyípadà wákàtí 24, ìwọ̀n owó ìfúnni, ànfàní ṣíṣí, àti ìwọ̀n ìṣòwò wákàtí 24.",
-		"meta_twitter_title": "Àwọn ohun àtọ́wọ́gbà Kíríptò · three.ws"
+		"meta_twitter_title": "Àwọn ohun àtọ́wọ́gbà Kíríptò · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Fífi àkọ́lé kan síi wá nípa àpẹrẹ rẹ̀ tó péye: ìpinnu nípa àpẹrẹ rẹ̀, kí ni àfíkun fíi ṣe nípa àpẹrẹ tí o gba, àti àpẹrẹ kan ní gbogbo àgbègbè míì."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Àwọn Àtúnṣe sí Ìlànà Yìí",
 		"12_contact": "12. Ìbáwígbà",
 		"1_information_we_collect": "1. Àwọn Ìsọfúnni Tí A Kó Jọ",
+		"1a_photos_you_capture_or_upload": "1a. Àwọn Àwòrán Tí O Ti Ṣàlàyé Tàbí Fi Sílẹ̀",
 		"2_how_we_use_your_information": "2. Bí A Ṣe Ń Lo Àwọn Ìsọfúnni Rẹ",
 		"3_on_chain_data": "3. Àdàkọ̀ Lórí Ẹ̀wọ̀n",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Àwọn àwòrán 3D (GLB/glTF), àwọn àwòrán kékeré, àdàkọ̀ aládàáṣe",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Ìpè API, àwọn ìṣẹ̀lẹ̀ ìgbékalẹ̀ wíjíìtì (láìsí IP, láìsí àmì ìka)",
 		"authentication_account_management": "Ìfìdíìdá àti ìṣàkóso àkọọ́lẹ̀",
 		"authentication_security": "Ìfìdíìdá, ààbò",
+		"building_your_3d_avatar_and_reproducing_re_r": "Kó 3D avatar rẹ, àti ìdájú, ìtúnṣe tàbí ìtúnṣe ọ́fíìsì náà",
 		"business_transfers_in_connection_with_a_merg": "<strong>Ìyípadà iṣẹ́-ìṣòwò:</strong> ní ìsopọ̀ pẹ̀lú ìdàpọ̀, ìgbàwọlé, tàbí títà àwọn ohun-ìní, pẹ̀lú ìkéde fún àwọn olùlo tí ó kan.",
 		"category": "Ẹ̀ka",
 		"connected_home_data": "Dátà ilé tí a so pọ̀",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Ìfìdíìdá ara ẹni múlẹ̀, ipò àbáwọlé",
 		"if_you_are_a_california_resident_the": "Bí o bá jẹ́ olùgbé California: àwọn ẹ̀ka ìwífún ara ẹni tí a kó jọ wà ní Abala 1, àwọn ète rẹ̀ ní Abala 2, àti àwọn olùgbà rẹ̀ ní Abala 4. A <strong>kò</strong> ta ìwífún ara ẹni bẹ́ẹ̀ ni a <strong>kò</strong> pín in fún ìpolówó ọjà ìwà-hùwàsí kọjá àyíká, nítorí náà kò sí ohun tí o lè yọ kúrò nínú rẹ̀; àwọn àmì ìyọkúrò aṣàwákiri bíi Global Privacy Control ni a máa ń bọ̀wọ̀ fún láìfọwọ́sí nítorí kò sí títà tàbí pínpín láti dáwọ́ dúró. A kò lo tàbí ṣí ìwífún ara ẹni tó ní ìfura sílẹ̀ fún àwọn ète tó nílò ẹ̀tọ́ láti fi òpin sí i.",
 		"if_you_connect_a_home_assistant_instance": "Bí o bá so ẹ̀rọ Home Assistant pọ̀, tòkẹ́nì ìwọlé tí o pèsè jẹ́ ìwé ẹ̀rí sí ilé gidi kan. A ń fi kóòdù pamọ́ pẹ̀lú ìlànà kan náà tí a ń lò fún kọ́kọ́rọ́ àpamọ́wọ́ tí a ń tọ́jú, a kò ní fi hàn mọ́, a sì ń pa á rẹ́ ní kété tí o bá ké ilé náà kúrò. Àwọn ìṣe tí ó ń ṣí ilé (ṣíṣí kọ́kọ́rọ́, ṣíṣí ilẹ̀kùn, píparí ààbò) máa ń béèrè ìfẹ̀sí ẹ̀dá ènìyàn ní kedere nígbà gbogbo, èyí tí àwòṣe AI kò lè ṣe, títí tí o fi fún ní àṣẹ tí ó dúró fún ohun kan pàtó.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Bí o bá ṣe ìpinnu selfie, àwọn àwòrán tí o ti ṣàlàyé (àwòrán kan lórí ẹ́yìn àti àwòrán mẹ́jì tó lẹ́wa ní àfikun) wá ṣe fífi wá sí ìṣẹ́lẹ̀ àdájú wa àti wá ṣe fífi wá kó 3D avatar rẹ. Wọ́n wà ní àkọ́lé àdájú nípa bẹ́ẹ̀ kó lè dájú, tó ṣe tó kó sílẹ̀ àti tó ṣe ọ́fíìsì fún ìbáṣe, àti wọ́n wá lè wá níwọn tí ó jẹ́ àkọ́lé rẹ nikan. A yóò fi wọ́n sísọ̀ró nípa bẹ́ẹ̀ tí o bá fi àdájú tàbí àkọ́lé rẹ sísọ̀ró, nípa àwọn àkọ́kọ́ àìlerí ní Apá 5. A kò <strong>ṣe</strong> fífi wọ́n kó mọ́dèl, a kò <strong>ṣe</strong> fífi wọ́n han fún àwọn olùfẹ́yìn, àti a kò <strong>ṣe</strong> dá tàbí fi àfikun ẹ́yìn tàbí àkànṣe àfikun míì míì nípa wọ́n sílẹ̀. Ìṣe selfie kò síi: o lè fi àwòrán láti àkọ́lé àwòrán rẹ sílẹ̀, tàbí ṣàpéjúwe ẹ̀dá kan ní ọ̀rọ̀ kí o kò fi àwòrán kan ráyì.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Àwọn tó ń pèsè amúlùmálà:</strong> Google Cloud Platform (ìgbàlejò àti ìṣirò), Neon (ìpamọ́ ìwífún), Cloudflare (ìpamọ́ àti CDN), Resend (ìmeèlì ìṣòwò), àti Privy (ìwọlé tí kò dandan). Ọ̀kọ̀ọkan wọn ń ṣe ìtọ́jú ìwífún fún wa lábẹ́ ètò ìpamọ́ àti àwọn àdéhùn ìtọ́jú ìwífún tiwọn.",
 		"legal_acceptance_records": "Àwọn àkọsílẹ̀ ìfọwọ́sí òfin",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Àwọn àkọsílẹ̀ ìfọwọ́sí òfin</strong> (ìfọwọ́sí rẹ sí Àwọn Ìlànà Ìṣiṣẹ́ àti Ìfihàn Ewu) ni a máa ń tọ́jú fún gbogbo ìgbà tí àkọọ́lẹ̀ rẹ bá wà àti lẹ́yìn náà fún ìgbà tó bá ti yẹ láti fi ìdí ẹ̀sùn òfin múlẹ̀ tàbí láti gbèjà rẹ̀. Ìtọ́jú yìí jẹ́ ojúṣe òfin, yóò sì wà títí lẹ́yìn ìbéèrè ìparẹ́ àkọọ́lẹ̀.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Ìlànà Ìpamọ́ · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "Ìwọlé tí a fi ààlà sí fún OAuth ti <strong>:</strong> nígbà tí o bá sopọ̀ nípasẹ̀ OAuth, asopọ̀ náà lè kà àti kọ data àkọọlẹ̀ three.ws nìkan tí àwọn ààlà tí o fún láṣẹ bo (àwọn àwòrán, àwọn aṣojú, ìrántí, profaili). Kò lè wọlé sí ìtàn ìjíròrò, ìrántí, tàbí àwọn faili agbègbè ti oníbàárà AI rẹ.",
 		"on_chain_data": "Data lórí-ìtẹ̀wọ̀n",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Àwòrán kan lórí ẹ́yìn àti àwòrán mẹ́jì tó lẹ́wa ní àfikun, bí o bá ṣe ìpinnu selfie",
 		"operating_the_three_ws_home_features_you": "Ṣíṣiṣẹ́ àwọn ìyẹ̀wù three.ws Home tí o mú ṣiṣẹ́, àti fífún ọ ní àkọsílẹ̀ àyẹ̀wò wọn",
 		"payment_data_x402_paid_tools_settle_in": "Data ìsanwó ti <strong> (x402):</strong> àwọn irinṣẹ́ tí a sanwó fún ń parí ìṣòwò wọn ní USDC nípasẹ̀ ìlànà ìsanwó x402. Nígbà tí o bá sanwó fún ìpè kọ̀ọ̀kan, a máa ń gba àdírẹ́sì àpò-ìfowópamọ́ gbogboogbò rẹ àti àmì ìfọwọ́sí ìṣòwò ìsanwó/ìparí, tí a fìdí rẹ̀ múlẹ̀ nípasẹ̀ olùrànlọ́wọ́ ìsanwó (Coinbase CDP àti/tàbí olùrànlọ́wọ́ gbogboogbò x402.org). A kì í gbà, béèrè, tàbí tọ́jú àwọn kọ́kọ́rọ́ àṣírí rẹ tàbí gbólóhùn irúgbìn. Àmì-ìdámọ̀ kan ṣoṣo tí three.ws fúnra rẹ̀ tọ́ka sí ni <code>$THREE</code>; a máa ń lo USDC fún ìparí ìṣòwò nìkan.",
 		"payment_facilitators_for_paid_features_settl": "Àwọn olùrànlọ́wọ́ ìsanwó ti <strong>:</strong> fún àwọn àbùdá tí a sanwó fún tí a parí lórí-ìtẹ̀wọ̀n (x402), ìfìdí-múlẹ̀ ìsanwó máa ń lọ nípasẹ̀ olùrànlọ́wọ́ bíi Coinbase Developer Platform tàbí olùrànlọ́wọ́ gbogboogbò x402.org. Wọ́n rí àdírẹ́sì àpò-ìfowópamọ́ gbogboogbò rẹ àti àmì ìfọwọ́sí ìṣòwò, kì í ṣe àwọn kọ́kọ́rọ́ àṣírí rẹ láé.",
+		"photos_you_capture_or_upload": "Àwọn àwòrán tí o ti ṣàlàyé tàbí fi sílẹ̀",
 		"privacy_policy": "Ìlànà Ìpamọ́",
 		"privacy_questions_privacy_three_ws": "Àwọn ìbéèrè ìpamọ́: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Ẹ̀rí ìgbàgbọ́, ìtẹ̀lé òfin",
@@ -11279,12 +11325,7 @@
 		"why": "Ìdí",
 		"you_can_see_export_and_delete_everything": "O lè rí, kó jáde, kí o sì pa gbogbo ohun tí ìyẹ̀wù yìí ní rẹ́ nígbàkúgbà, kí o sì ṣètò fèrèsé ìdádúró tirẹ fún àkọsílẹ̀ ìṣe. Wo <a href=\"/docs/home-privacy\">Ìpamọ́ àti ìdádúró ilé</a> fún àkójọ pípé àti API náà.",
 		"you_have_the_right_to_lodge_a": "O ní ẹ̀tọ́ láti fi ẹjọ́ kò sí àjọ tí ó ń bójú tó ọ̀rọ̀ ní àdúgbò rẹ. O tún lè kàn sí wa ní àkọ́kọ́ ní <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; a óò fi ayọ̀ gbà á láti yanjú ọ̀rọ̀ rẹ tààrà.",
-		"you_have_the_rights_to_know_access": "O ní ẹ̀tọ́ láti mọ̀, wọlé sí, tún ṣe, pa rẹ́, àti gbé ìsọfúnni ara ẹni rẹ lọ, àti láti má ṣe fi ìyàtọ̀ hàn sí ọ fún lílo wọn. Lo wọn nípasẹ̀ <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Apá 6). A máa ń fìdí àwọn ìbéèrè múlẹ̀ nípa lílo ìgbà tí o wọlé, imeeli àkọọ́lẹ̀ rẹ, tàbí ìránṣẹ́ tí àpò owó rẹ fọwọ́ sí. Aṣojú tí a fún láṣẹ lè ṣiṣẹ́ fún ọ pẹ̀lú ìwé àṣẹ.",
-		"photos_you_capture_or_upload": "Àwọn àwòrán tí o ti ṣàlàyé tàbí fi sílẹ̀",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Àwòrán kan lórí ẹ́yìn àti àwòrán mẹ́jì tó lẹ́wa ní àfikun, bí o bá ṣe ìpinnu selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Kó 3D avatar rẹ, àti ìdájú, ìtúnṣe tàbí ìtúnṣe ọ́fíìsì náà",
-		"1a_photos_you_capture_or_upload": "1a. Àwọn Àwòrán Tí O Ti Ṣàlàyé Tàbí Fi Sílẹ̀",
-		"if_you_use_the_selfie_flow_the_photos_you": "Bí o bá ṣe ìpinnu selfie, àwọn àwòrán tí o ti ṣàlàyé (àwòrán kan lórí ẹ́yìn àti àwòrán mẹ́jì tó lẹ́wa ní àfikun) wá ṣe fífi wá sí ìṣẹ́lẹ̀ àdájú wa àti wá ṣe fífi wá kó 3D avatar rẹ. Wọ́n wà ní àkọ́lé àdájú nípa bẹ́ẹ̀ kó lè dájú, tó ṣe tó kó sílẹ̀ àti tó ṣe ọ́fíìsì fún ìbáṣe, àti wọ́n wá lè wá níwọn tí ó jẹ́ àkọ́lé rẹ nikan. A yóò fi wọ́n sísọ̀ró nípa bẹ́ẹ̀ tí o bá fi àdájú tàbí àkọ́lé rẹ sísọ̀ró, nípa àwọn àkọ́kọ́ àìlerí ní Apá 5. A kò <strong>ṣe</strong> fífi wọ́n kó mọ́dèl, a kò <strong>ṣe</strong> fífi wọ́n han fún àwọn olùfẹ́yìn, àti a kò <strong>ṣe</strong> dá tàbí fi àfikun ẹ́yìn tàbí àkànṣe àfikun míì míì nípa wọ́n sílẹ̀. Ìṣe selfie kò síi: o lè fi àwòrán láti àkọ́lé àwòrán rẹ sílẹ̀, tàbí ṣàpéjúwe ẹ̀dá kan ní ọ̀rọ̀ kí o kò fi àwòrán kan ráyì."
+		"you_have_the_rights_to_know_access": "O ní ẹ̀tọ́ láti mọ̀, wọlé sí, tún ṣe, pa rẹ́, àti gbé ìsọfúnni ara ẹni rẹ lọ, àti láti má ṣe fi ìyàtọ̀ hàn sí ọ fún lílo wọn. Lo wọn nípasẹ̀ <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Apá 6). A máa ń fìdí àwọn ìbéèrè múlẹ̀ nípa lílo ìgbà tí o wọlé, imeeli àkọọ́lẹ̀ rẹ, tàbí ìránṣẹ́ tí àpò owó rẹ fọwọ́ sí. Aṣojú tí a fún láṣẹ lè ṣiṣẹ́ fún ọ pẹ̀lú ìwé àṣẹ."
 	},
 	"legal_risk": {
 		"10_contact": "10. Ìbáṣepọ̀",

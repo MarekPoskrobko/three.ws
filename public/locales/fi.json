@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · yhteiset tilat · three.ws",
 		"the_commons": "yhteiset tilat"
 	},
+	"airdrops": {
+		"address_label": "Lompakko-osoite",
+		"address_placeholder": "Lompakko-osoite (Solana tai 0x…)",
+		"also_tracked": "Myös seurattu",
+		"check_btn": "Tarkista oikeutus",
+		"copy_aria": "Kopioi osoite",
+		"copy_btn": "Kopioi",
+		"count_not": "Ei oikeutettu",
+		"count_progress": "Käsittelyssä",
+		"count_qualified": "Oikeutettu",
+		"count_tracked": "Seurattu",
+		"dir_fineprint": "Tilat heijastavat julkista raportointia yllä olevana päivämääränä ja muuttuvat usein; tämä ei ole suositus tai sijoitusneuvoa. Arvioidut alueet ovat julkista spekulaatiota, ei lupauksia. Tarkista lompakko nähdäksesi pisteet näiden kriteerien mukaan.",
+		"error_title": "Lompakkoa ei voitu skannata",
+		"est_label": "Arvioitu, jos kaikki oikeutetut airdropit maksetaan",
+		"filter_all": "Kaikki",
+		"filter_aria": "Suodata oikeutuksen mukaan",
+		"filter_not": "Ei oikeutettu",
+		"filter_progress": "Käsittelyssä",
+		"filter_qualified": "Oikeutettu",
+		"form_aria": "Tarkista lompakko",
+		"form_hint": "Paina <kbd>/</kbd> fokusoidaksesi. Ketju tunnistetaan osoitteesta. Katso myös <a href=\"/portfolio\">lompakkoportfolio</a>.",
+		"kicker": "Eteinen on-chain-aktiviteetti · pisteytetty reaaliajassa",
+		"loading_note": "Skannataan on-chain-historiaa. Käteinen lompakko vie muutaman sekunnin.",
+		"meta_desc": "Tarkista mikä tahansa Solana- tai Ethereum-lompakko live-airdrop-kriteereihin vasten: oikea on-chain-aktiviteetin skannaus, 0–100 oikeutuspiste ohjelmaakohtaisesti, tarkalleen se, mitä puuttuu, ja manuaaliset vaiheet, joita skannaus ei näe. Ilmainen, avaimeton, ilman tiliä.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Ohjelmat",
+		"recent_label": "Viimeisimmät:",
+		"retry_btn": "Yritä uudelleen",
+		"scan_measured": "Mitä skannaus mittoi",
+		"share_aria": "Kopioi linkki tähän raporttiin",
+		"share_btn": "Jaa",
+		"sub": "Liitä mikä tahansa <strong>Solana</strong>- tai <strong>Ethereum</strong>-lompakko ja näe, mihin airdroppeihin se on oikeutettu. Pisteytys perustuu lompakon on-chain-historian oikeaan skannaukseen; tarkistuslista kertoo tarkalleen, mitä puuttuu ja mitä skannaus ei näe.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Seuratuilla ohjelmilla"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Toimi tämän lukemisen perusteella",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Toimii tiukkojen kulutusrajojen puitteissa",
@@ -2936,6 +2972,10 @@
 		"starting": "Aloitetaan…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Tähtikuvio</span>"
+	},
+	"contributors": {
+		"meta_description": "Tutustu kehittäjiin, buugin raportoijihin ja yhteisön jäseniin, jotka tekevät three.ws paremmaksi.",
+		"meta_title": "Avustajat · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Selaa kaikkia kolikoita →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Krypto Derivaatat · three.ws",
 		"meta_title": "Krypto Derivaatat · three.ws",
 		"meta_twitter_description": "Elävät jatkuvat futuurimarkkinat — hinta, 24h muutos, rahoitusaste, avoin kiinnostus ja 24h volyymi.",
-		"meta_twitter_title": "Krypto Derivaatat · three.ws"
+		"meta_twitter_title": "Krypto Derivaatat · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Avaa mikä tahansa sopimus sen täydelliselle yksityissivulle: peruste oman indeksinsä vasten, mitä rahoitusmaksu maksaa itsesi koostaessa position, ja sama underlying hinnoiteltuna jokaisella muullakin markkinapaikalla."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Muutokset tähän käytäntöön",
 		"12_contact": "12. Yhteystiedot",
 		"1_information_we_collect": "1. Keräämämme tiedot",
+		"1a_photos_you_capture_or_upload": "1a. Kuvat, jotka otat tai lataat",
 		"2_how_we_use_your_information": "2. Miten käytämme tietojasi",
 		"3_on_chain_data": "3. Ketjun sisäinen data",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D-mallit (GLB/glTF), pienoiskuvat, agentin metatiedot",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API-kutsut, widgetien lataustapahtumat (ei IP-osoitteita, ei sormenjälkiä)",
 		"authentication_account_management": "Todennus ja tilinhallinta",
 		"authentication_security": "Todennus, turvallisuus",
+		"building_your_3d_avatar_and_reproducing_re_r": "3D-avatarisi luominen sekä tuloksen uudelleen tuottaminen, uudelleen riggaus ja uudelleen arviointi",
 		"business_transfers_in_connection_with_a_merg": "<strong>Liiketoiminnan siirrot:</strong> fuusion, yritysoston tai omaisuuden myynnin yhteydessä, ilmoittaen asiasta asianomaisille käyttäjille.",
 		"category": "Luokka",
 		"connected_home_data": "Yhdistetyn kodin tiedot",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identiteetin varmennus, tilauksen tila",
 		"if_you_are_a_california_resident_the": "Jos olet Kalifornian asukas: keräämämme henkilötietojen luokat on lueteltu kohdassa 1, tarkoitukset kohdassa 2 ja vastaanottajat kohdassa 4. Emme <strong>myy</strong> henkilötietoja emmekä <strong>jaa</strong> niitä kontekstirajattuun käyttäytymiseen perustuvaan mainontaan, joten mitään ei tarvitse kieltää; selaimen kieltäytymissignaalit, kuten Global Privacy Control, huomioidaan oletusarvoisesti, koska myyntiä tai jakamista ei ole estettävänä. Emme käytä tai luovuta arkaluonteisia henkilötietoja tarkoituksiin, jotka edellyttäisivät rajoitusoikeutta.",
 		"if_you_connect_a_home_assistant_instance": "Jos yhdistät Home Assistant -ilmoituksen, tarjoamasi pääsyavain on todennusmerkki fyysisestä rakennuksesta. Salaamme sen levossa samalla primitive-tekniikalla, jota käytämme hoitavien lompakkokeysien salaukseen, emme näytä sitä enää koskaan ja poistamme sen hetken, kun katkaiset kodin yhteyden. Toimintojen, jotka avaavat rakennuksen (lukitseminen, avaaminen, aseistuksen poistaminen), on aina vaadittava nimenomainen ihmisen vahvistus, jota AI-malli ei voi tuottaa, kunnes myönnät pysyvän luvan yhdelle tietylle osapuolelle.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Jos käytät selfie-virtaa, ottamasi kuvat (yksi etukuva ja enintään kaksi valinnaista sivukuvaa) lähetetään rekonstruktiopalveluumme ja niitä käytetään 3D-avatarisi luomiseen. Ne tallennetaan luontitietueeseen, jotta tulos voidaan tuottaa, rigata ja arvioida uudelleen laadun varmistamiseksi, ja ne ovat näkyvissä vain tilillesi. Ne poistetaan, kun poistat luonnin tai tilisi, noudattaen säilytysaikoja kohdassa 5. Emme <strong>käytä</strong> niä mallien kouluttamiseen, emme <strong>jaa</strong> niitä mainostajille, emmekä <strong>muodosta tai tallenna</strong> kasvomallia tai muuta biometristä tunnistetta niistä. Selfie-virran käyttö on valinnaista: voit ladata kuvan galleriastasi tai kuvata hahmon sanoin ilman, että annat mitään kuvaa.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktuurin tarjoajat:</strong> Google Cloud Platform (hosting ja laskenta), Neon (tietokanta), Cloudflare (tallennus ja CDN), Resend (transaktioviestejä varten) ja Privy (valinnainen sisäänkirjautuminen). Jokainen käsittelee tietoja puolestamme oman tietosuojakäytäntönsä ja tietojenkäsittelyehtojensa mukaisesti.",
 		"legal_acceptance_records": "Lakisääteiset hyväksyntätiedot",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Lakisääteiset hyväksyntätiedot</strong> (palveluehtojen ja riskien julkistamisen hyväksyntäsi) säilytetään tilisi eliniän ajan ja sen jälkeen niin kauan kuin on tarpeen oikeudellisten vaateiden esittämiseksi tai puolustamiseksi. Tämä säilytys on lakisääteinen velvoite ja säilyy tilin poistopyynnöstä huolimatta.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Tietosuojakäytäntö · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-rajattu pääsy:</strong> kun yhdistät OAuthin kautta, yhdistäjä voi lukea ja kirjoittaa vain myöntämiesi käyttöoikeuksien kattamia three.ws-tilitietoja (avatarit, agentit, muisti, profiili). Se ei voi käyttää tekoälyasiakkaasi chat-historiaa, muistia tai paikallisia tiedostoja.",
 		"on_chain_data": "Lohkoketjutiedot",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Yksi etukuva ja enintään kaksi valinnaista sivukuvaa, jos käytät selfie-virtaa",
 		"operating_the_three_ws_home_features_you": "Käytössä olevat three.ws Koti -toiminnot, jotka olet ottanut käyttöön, ja niistä tarkastusjälki",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Maksutiedot (x402):</strong> maksetut työkalut selvitetään USDC kautta x402-maksuprotokollalla. Kun maksat puhelukohtaisesti, saamme julkisen lompakko-osoitteesi ja maksu-/selvitystapahtuman allekirjoituksen, jotka vahvistetaan maksunvälittäjän (Coinbase CDP ja/tai julkinen x402.org-välittäjä) kautta. Emme koskaan vastaanota, pyydä tai tallenna yksityisiä avaimiasi tai siemenlauseketta. Ainoa token, johon three.ws itse viittaa, on <code>$THREE</code>; USDC käytetään puhtaasti selvitykseen.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Maksunvälittäjät:</strong> maksettujen ominaisuuksien osalta, jotka selvitetään lohkoketjussa (x402), maksun vahvistus tapahtuu välittäjän, kuten Coinbase Developer Platformin tai julkisen x402.org-välittäjän, kautta. He näkevät julkisen lompakko-osoitteesi ja tapahtumien allekirjoitukset, eivät koskaan yksityisiä avaimia.",
+		"photos_you_capture_or_upload": "Kuvat, jotka otat tai lataat",
 		"privacy_policy": "Tietosuojakäytäntö",
 		"privacy_questions_privacy_three_ws": "Tietosuojaan liittyvät kysymykset: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Sopimuksen todiste, lainmukaisuus",
@@ -11279,12 +11325,7 @@
 		"why": "Miksi",
 		"you_can_see_export_and_delete_everything": "Voit nähdä, viedä ja poistaa kaiken, mitä tämä toiminto sisältää, milloin tahansa, ja asettaa oman säilyttämisikkunasi toimintolokille. Katso <a href=\"/docs/home-privacy\">Kotien yksityisyys ja säilyttäminen</a> täydellistä luetteloa ja API:ta varten.",
 		"you_have_the_right_to_lodge_a": "Sinulla on oikeus tehdä valitus paikalliselle valvontaviranomaiselle. Voit myös ottaa meihin ensin yhteyttä osoitteessa <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; otamme mielellämme vastaan mahdollisuuden ratkaista huolesi suoraan.",
-		"you_have_the_rights_to_know_access": "Sinulla on oikeus tietää, päästä käsiksi, korjata, poistaa ja siirtää henkilötietojasi, eikä sinua saa syrjiä näiden oikeuksien käyttämisen vuoksi. Käytä niitä osoitteen <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> kautta (kohta 6). Vahvistamme pyynnöt käyttämällä kirjautunutta istuntoasi, tiliisi liitettyä sähköpostiosoitetta tai lompakollasi allekirjoitettua viestiä. Valtuutettu edustaja voi toimia puolestasi kirjallisella luvalla.",
-		"photos_you_capture_or_upload": "Kuvat, jotka otat tai lataat",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Yksi etukuva ja enintään kaksi valinnaista sivukuvaa, jos käytät selfie-virtaa",
-		"building_your_3d_avatar_and_reproducing_re_r": "3D-avatarisi luominen sekä tuloksen uudelleen tuottaminen, uudelleen riggaus ja uudelleen arviointi",
-		"1a_photos_you_capture_or_upload": "1a. Kuvat, jotka otat tai lataat",
-		"if_you_use_the_selfie_flow_the_photos_you": "Jos käytät selfie-virtaa, ottamasi kuvat (yksi etukuva ja enintään kaksi valinnaista sivukuvaa) lähetetään rekonstruktiopalveluumme ja niitä käytetään 3D-avatarisi luomiseen. Ne tallennetaan luontitietueeseen, jotta tulos voidaan tuottaa, rigata ja arvioida uudelleen laadun varmistamiseksi, ja ne ovat näkyvissä vain tilillesi. Ne poistetaan, kun poistat luonnin tai tilisi, noudattaen säilytysaikoja kohdassa 5. Emme <strong>käytä</strong> niä mallien kouluttamiseen, emme <strong>jaa</strong> niitä mainostajille, emmekä <strong>muodosta tai tallenna</strong> kasvomallia tai muuta biometristä tunnistetta niistä. Selfie-virran käyttö on valinnaista: voit ladata kuvan galleriastasi tai kuvata hahmon sanoin ilman, että annat mitään kuvaa."
+		"you_have_the_rights_to_know_access": "Sinulla on oikeus tietää, päästä käsiksi, korjata, poistaa ja siirtää henkilötietojasi, eikä sinua saa syrjiä näiden oikeuksien käyttämisen vuoksi. Käytä niitä osoitteen <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> kautta (kohta 6). Vahvistamme pyynnöt käyttämällä kirjautunutta istuntoasi, tiliisi liitettyä sähköpostiosoitetta tai lompakollasi allekirjoitettua viestiä. Valtuutettu edustaja voi toimia puolestasi kirjallisella luvalla."
 	},
 	"legal_risk": {
 		"10_contact": "10. Yhteystiedot",

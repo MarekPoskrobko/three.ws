@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · y Cymanfa · three.ws",
 		"the_commons": "y Cymanfa"
 	},
+	"airdrops": {
+		"address_label": "Cyfeiriad bwrdd",
+		"address_placeholder": "Cyfeiriad bwrdd (Solana neu 0x…)",
+		"also_tracked": "Hefyd yn cael ei thracio",
+		"check_btn": "Gwirio cymhwyster",
+		"copy_aria": "Copïo cyfeiriad",
+		"copy_btn": "Copïo",
+		"count_not": "Dim cymhwyster",
+		"count_progress": "Yn y broses",
+		"count_qualified": "Cymwys",
+		"count_tracked": "Wedi'i thracio",
+		"dir_fineprint": "Mae statwsau yn adroddiadau cyhoeddus fel y dyddiad uchod a newid yn aml; dim ond yma yw cefnogaeth neu gyngor ariannol. Mae amcangyfrifon estynedig yn ymddiddanion cyhoeddus, nid addewidion. Gwirio bwrdd i weld sgoriau yn erbyn y meini prawf hyn.",
+		"error_title": "Ni ellir scanio'r bwrdd hwn",
+		"est_label": "Estimedig os bydd pob drop cymwys yn talu allan",
+		"filter_all": "Holl",
+		"filter_aria": "Hidlo yn ôl cymhwyster",
+		"filter_not": "Dim cymhwyster",
+		"filter_progress": "Yn y broses",
+		"filter_qualified": "Cymwys",
+		"form_aria": "Gwirio bwrdd",
+		"form_hint": "Gwasgwch <kbd>/</kbd> i ffocuso. Mae'r clwyd yn cael ei ddarganfod o'r cyfeiriad. Gweler hefyd <a href=\"/portfolio\">portffolio bwrdd</a>.",
+		"kicker": "Gweithgaredd on-chain go iawn · sgored yn fyw",
+		"loading_note": "Yn scanio hanes on-chain. Mae bwrdd brysur yn cymryd ychydig eiliadau.",
+		"meta_desc": "Gwirio unrhyw Solana neu fwrdd Ethereum yn erbyn meini prawf airdrop fyw: scan gweithgaredd on-chain go iawn, sgôr cymhwyster 0-100 bob rhaglen, beth sydd ar goll yn union, a'r camau llaw a scan ni all eu gweld. Am ddim, heb allwedd, heb gyfrif.",
+		"page_title": "Gwirydd Airdrop · three.ws",
+		"portfolio_chip": "Portffolio",
+		"programs": "Rhaglenni",
+		"recent_label": "Diweddar:",
+		"retry_btn": "Aildrio",
+		"scan_measured": "Beth a mesurwyd gan y scan",
+		"share_aria": "Copïo dolen at yr adroddiad hwn",
+		"share_btn": "Rhannu",
+		"sub": "Gludwch unrhyw <strong>Solana</strong> neu <strong>Ethereum</strong> bwrdd a gweler pa airdrops y mae'n cymwys iddynt. Mae'r sgôr yn dod o scan go iawn o hanes on-chain y bwrdd; mae'r rhestr gwirio yn dweud wrthych beth sydd ar goll yn union a beth na all scan ei weld.",
+		"title": "<em>Gwirydd</em> Airdrop",
+		"tracked_programs": "Rhaglenni a traciwyd"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Gweithredwch ar sail y darlleniad hwn",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Yn gweithredu o fewn terfynau gwario caled",
@@ -2936,6 +2972,10 @@
 		"starting": "Yn cychwyn…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Cyfarfod y datblygwyr, rhywogaethwyr materion, a aelodau'r gymuned sy'n gwneud three.ws yn well.",
+		"meta_title": "Cyfranwyr · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Pori pob darn arian →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Deilliadau Crypto · three.ws",
 		"meta_title": "Deilliadau Crypto · three.ws",
 		"meta_twitter_description": "Marchnadoedd dyfodol parhaol byw — pris, symudiad 24 awr, cyfradd ariannu, diddordeb agored, a chyfaint 24 awr.",
-		"meta_twitter_title": "Deilliadau Crypto · three.ws"
+		"meta_twitter_title": "Deilliadau Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Agor unrhyw gontract i'w tudalen manylion llawn: sylfaen yn erbyn ei hunain dex, beth y mae'r cyfradd gyllid yn costio ar swydd a ryddech chi eich hun, a'r sylfaen unigolyn a brisir ar bob lleoliad arall."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Newidiadau i'r Polisi Hwn",
 		"12_contact": "12. Cyswllt",
 		"1_information_we_collect": "1. Gwybodaeth Rydym yn Ei Chasglu",
+		"1a_photos_you_capture_or_upload": "1a. Lluniau a Gyfnghesoch neu a Llwythoch i Fyny",
 		"2_how_we_use_your_information": "2. Sut Rydym yn Defnyddio Eich Gwybodaeth",
 		"3_on_chain_data": "3. Data Ar-Gadwyn",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Modelau 3D (GLB/glTF), bawdluniau, metadata asiant",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Galwadau API, digwyddiadau llwytho teclyn (dim cyfeiriadau IP, dim olion bysedd)",
 		"authentication_account_management": "Dilysu a rheoli cyfrif",
 		"authentication_security": "Dilysu, diogelwch",
+		"building_your_3d_avatar_and_reproducing_re_r": "Creu eich avatar 3D, a'i adolygu, ail-rigio neu ail-sgorio",
 		"business_transfers_in_connection_with_a_merg": "<strong>Trosglwyddiadau busnes:</strong> mewn cysylltiad ag uno, caffaeliad, neu werthu asedau, gyda hysbysiad i ddefnyddwyr yr effeithir arnynt.",
 		"category": "Categori",
 		"connected_home_data": "Data cartref cysylltiedig",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Dilysu hunaniaeth, statws tanysgrifiad",
 		"if_you_are_a_california_resident_the": "Os ydych chi'n breswylydd California: mae'r categorïau o wybodaeth bersonol rydym yn eu casglu wedi'u rhestru yn Adran 1, y dibenion yn Adran 2, a'r derbynwyr yn Adran 4. Nid ydym <strong>yn gwerthu</strong> gwybodaeth bersonol ac nid ydym <strong>yn ei rhannu</strong> ar gyfer hysbysebu ymddygiadol traws-gyd-destunol, felly nid oes dim i optio allan ohono; caiff signalau optio allan porwr megis Rheolaeth Preifatrwydd Byd-eang eu hanrhydeddu yn ddiofyn oherwydd nad oes gwerthu na rhannu i'w atal. Nid ydym yn defnyddio nac yn datgelu gwybodaeth bersonol sensitif at ddibenion sy'n gofyn am hawl i gyfyngu.",
 		"if_you_connect_a_home_assistant_instance": "Os ydych chi'n cysylltu exemplwr Home Assistant, y token mynediad rydych chi'n ei darparu yw credensial i adeilad ffiysgol. Rydyn ni'n ei chyfrifo wrth ei storio gyda'r un primitif rydyn ni'n ei defnyddio i allweddi poced custoidal, ni ddangoswn eto, a dileirwn yr anhawster yr ydych chi'n datrys y cartref. Mae gweithredoedd sy'n agor adeilad (agor drwy agor, agor, a dileidio) yn ei angen cadarnhaeth bersonol esboniadol yn union, na all ei gynhyrchu gan model AI, hyd oniych chi roi udoliad sefydlog i un entiti benodol.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Os ydych chi'n defnyddio'r llif selfie, mae'r lluniau a gyfnghesoch (un ddelwedd fronol a hyd at ddau ochr dewisol) yn cael eu huwchlwytho i'n gwasanaeth adail a'u defnyddio i adeiladu eich avatar 3D. Maent yn cael eu storio gyda'r cofnod generu fel y gall y canlyniad gael ei adolygu, ei ail-rigio ac ei ail-sgorio am ansawdd, ac maent yn weladwy i'ch cyfrif yn unig. Maent yn cael eu dileu pan fyddwch chi'n dileu'r generiad neu'ch cyfrif, yn ddarostyngedig i ffenestrau cadwraniad yn Adran 5. Ni <strong>ddim</strong> eu defnyddio i hyfforddi modelau, ni <strong>ddim</strong> eu rhannu gyda hysbysebwyr, ac ni <strong>ddim</strong> eu derbyn na'u storio fel deilen wyneb na unrhyw adnodd biometrig arall ohonynt. Mae defnyddio'r llif selfie yn dewisol: gallwch uwchlwytho llun o'ch oriel yn hytrach, neu disgrifio cymeriad mewn geiriau a pheidio â darparu llun o gwbl.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Darparwyr seilwaith:</strong> Google Cloud Platform (cynnal a chyfrifo), Neon (cronfa ddata), Cloudflare (storio a CDN), Resend (e-bost trafodion), a Privy (mewngofnodi dewisol). Mae pob un yn prosesu data ar ein rhan o dan ei bolisi preifatrwydd a'i delerau prosesu data ei hun.",
 		"legal_acceptance_records": "Cofnodion derbyniad cyfreithiol",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Cofnodion derbyniad cyfreithiol</strong> (eich derbyniad o'r Telerau Gwasanaeth a'r Datgeliad Risg) yn cael eu cadw am oes eich cyfrif ac wedyn cyhyd ag y bo angen i sefydlu neu amddiffyn hawliadau cyfreithiol. Mae'r cadw hwn yn rhwymedigaeth gyfreithiol ac yn parhau ar ôl cais i ddileu cyfrif.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Polisi Preifatrwydd · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "Mynediad <strong>OAuth-gyfyngedig:</strong> pan fyddwch chi'n cysylltu trwy OAuth, dim ond data cyfrif three.ws y gall y cysylltydd ei ddarllen a'i ysgrifennu, sef yr hyn a gwmpesir gan y cwmpasau rydych chi'n eu caniatáu (avatarau, asiantau, cof, proffil). Ni all gael mynediad at hanes sgwrsio, cof, na ffeiliau lleol eich cleient AI.",
 		"on_chain_data": "Data ar-gadwyn",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Un llun fronol ac hyd at ddau ochr dewisol, os ydych chi'n defnyddio'r llif selfie",
 		"operating_the_three_ws_home_features_you": "Gweithredu nodweddion three.ws Cartref rydych chi'n eu galluogi, a roi i chi dreilgwydd archwilio o'r nodweddion.",
 		"payment_data_x402_paid_tools_settle_in": "Data talu <strong> (x402):</strong> mae offer taledig yn setlo yn USDC trwy brotocol talu x402. Pan fyddwch chi'n talu fesul galwad, rydym yn derbyn eich cyfeiriad waled cyhoeddus a llofnod trafodiad y taliad/setliad, wedi'i wirio trwy hwylusydd taliadau (Coinbase CDP a/neu hwylusydd cyhoeddus x402.org). Nid ydym byth yn derbyn, gofyn am, nac yn storio eich allweddi preifat neu ymadrodd had. Yr unig docyn y mae three.ws ei hun yn cyfeirio ato yw <code>$THREE</code>; defnyddir USDC yn bur ar gyfer setliad.",
 		"payment_facilitators_for_paid_features_settl": "Hwyluswyr taliadau <strong>:</strong> ar gyfer nodweddion taledig sy'n setlo ar-gadwyn (x402), mae dilysu taliadau'n digwydd trwy hwylusydd fel Coinbase Developer Platform neu hwylusydd cyhoeddus x402.org. Maent yn gweld eich cyfeiriad waled cyhoeddus a llofnodion trafodion, byth allweddi preifat.",
+		"photos_you_capture_or_upload": "Lluniau a gyfnghesoch neu a llwythoch i fyny",
 		"privacy_policy": "Polisi Preifatrwydd",
 		"privacy_questions_privacy_three_ws": "Cwestiynau preifatrwydd: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Prawf cytundeb, cydymffurfiaeth gyfreithiol",
@@ -11279,12 +11325,7 @@
 		"why": "Pam",
 		"you_can_see_export_and_delete_everything": "Gallwch chi gweld, allforio, a dileu pob unrhyw beth rydych ei nodwedd yn ei gadw am unrhyw amser, a osod eich ffenestr cadw eich hun ar gyfer log weithredu. Gweler <a href=\"/docs/home-privacy\">Preifatrwydd a chadw cartref</a> ar gyfer y store llawn a'r API.",
 		"you_have_the_right_to_lodge_a": "Mae gennych hawl i gyflwyno cwyn i'ch awdurdod goruchwylio lleol. Gallwch hefyd gysylltu â ni yn gyntaf yn <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; byddem yn croesawu'r cyfle i ddatrys eich pryder yn uniongyrchol.",
-		"you_have_the_rights_to_know_access": "Mae gennych yr hawliau i wybod, cyrchu, cywiro, dileu, a phorthi eich gwybodaeth bersonol, ac i beidio â chael eich gwahaniaethu am eu harfer. Arferwch nhw trwy <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Adran 6). Rydym yn gwirio ceisiadau gan ddefnyddio'ch sesiwn mewngofnodi, eich e-bost cyfrif, neu neges wedi'i llofnodi gan eich waled. Gall asiant awdurdodedig weithredu ar eich rhan gyda chaniatâd ysgrifenedig.",
-		"photos_you_capture_or_upload": "Lluniau a gyfnghesoch neu a llwythoch i fyny",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Un llun fronol ac hyd at ddau ochr dewisol, os ydych chi'n defnyddio'r llif selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Creu eich avatar 3D, a'i adolygu, ail-rigio neu ail-sgorio",
-		"1a_photos_you_capture_or_upload": "1a. Lluniau a Gyfnghesoch neu a Llwythoch i Fyny",
-		"if_you_use_the_selfie_flow_the_photos_you": "Os ydych chi'n defnyddio'r llif selfie, mae'r lluniau a gyfnghesoch (un ddelwedd fronol a hyd at ddau ochr dewisol) yn cael eu huwchlwytho i'n gwasanaeth adail a'u defnyddio i adeiladu eich avatar 3D. Maent yn cael eu storio gyda'r cofnod generu fel y gall y canlyniad gael ei adolygu, ei ail-rigio ac ei ail-sgorio am ansawdd, ac maent yn weladwy i'ch cyfrif yn unig. Maent yn cael eu dileu pan fyddwch chi'n dileu'r generiad neu'ch cyfrif, yn ddarostyngedig i ffenestrau cadwraniad yn Adran 5. Ni <strong>ddim</strong> eu defnyddio i hyfforddi modelau, ni <strong>ddim</strong> eu rhannu gyda hysbysebwyr, ac ni <strong>ddim</strong> eu derbyn na'u storio fel deilen wyneb na unrhyw adnodd biometrig arall ohonynt. Mae defnyddio'r llif selfie yn dewisol: gallwch uwchlwytho llun o'ch oriel yn hytrach, neu disgrifio cymeriad mewn geiriau a pheidio â darparu llun o gwbl."
+		"you_have_the_rights_to_know_access": "Mae gennych yr hawliau i wybod, cyrchu, cywiro, dileu, a phorthi eich gwybodaeth bersonol, ac i beidio â chael eich gwahaniaethu am eu harfer. Arferwch nhw trwy <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Adran 6). Rydym yn gwirio ceisiadau gan ddefnyddio'ch sesiwn mewngofnodi, eich e-bost cyfrif, neu neges wedi'i llofnodi gan eich waled. Gall asiant awdurdodedig weithredu ar eich rhan gyda chaniatâd ysgrifenedig."
 	},
 	"legal_risk": {
 		"10_contact": "10. Cyswllt",

@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · a Commons · three.ws",
 		"the_commons": "a Commons"
 	},
+	"airdrops": {
+		"address_label": "Pénztárcím",
+		"address_placeholder": "Pénztárcím (Solana vagy 0x…)",
+		"also_tracked": "Ezeket is követjük",
+		"check_btn": "Jogosultság ellenőrzése",
+		"copy_aria": "Cím másolása",
+		"copy_btn": "Másolás",
+		"count_not": "Nem jogosult",
+		"count_progress": "Folyamatban",
+		"count_qualified": "Jogosult",
+		"count_tracked": "Követett",
+		"dir_fineprint": "Az állapotok a fenti dátum szerinti nyilvános jelentéseket tükrözik és gyakran változnak; semmi itt nem ajánlás vagy pénzügyi tanácsadás. A becsült tartományok kizárólag publikus spekulációk, nem ígéretek. Ellenőrizd a pénztárat a pontok megtekintéséhez ezekhez a kritériumokhoz.",
+		"error_title": "Nem sikerült beolvasni ezt a pénztárat",
+		"est_label": "Becsült érték, ha minden jogosult airdrop kifizet",
+		"filter_all": "Összes",
+		"filter_aria": "Szűrés jogosultság szerint",
+		"filter_not": "Nem jogosult",
+		"filter_progress": "Folyamatban",
+		"filter_qualified": "Jogosult",
+		"form_aria": "Pénztár ellenőrzése",
+		"form_hint": "Nyomd meg a <kbd>/</kbd> billentyűt a fókuszhoz. A láncot a címből detektáljuk. Lásd még a <a href=\"/portfolio\">pénztár portfólió</a>.",
+		"kicker": "Valódi on-chain aktivitás · élő pontozás",
+		"loading_note": "On-chain előzmények beolvasása. Egy foglalt pénztár néhány másodpercet vesz igénybe.",
+		"meta_desc": "Ellenőrizd bármely Solana vagy Ethereum pénztárat élő airdrop-kritériumok alapján: valódi on-chain aktivitás-ellenőrzés, 0–100-as jogosultságipont programonként, pontosan mi hiányzik, és a manuális lépések, amiket az ellenőrzés nem lát. Ingyenes, kulcsmentes, fiók nélkül.",
+		"page_title": "Airdrop Ellenőrző · three.ws",
+		"portfolio_chip": "Portfólió",
+		"programs": "Programok",
+		"recent_label": "Legutóbbi:",
+		"retry_btn": "Újrapróbálás",
+		"scan_measured": "Mit mért az ellenőrzés",
+		"share_aria": "Jelentés linkjének másolása",
+		"share_btn": "Megosztás",
+		"sub": "Illessz be bármely <strong>Solana</strong> vagy <strong>Ethereum</strong> pénztárat, és lásd, melyik airdrop-ra jogosult. A pontszám egy valódi on-chain előzmény-ellenőrzésből származik; a ellenőrzőlista pontosan megmutatja, mi hiányzik, és mit nem lát az ellenőrzés.",
+		"title": "Airdrop <em>Ellenőrző</em>",
+		"tracked_programs": "Követett programok"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Cselekedj a megértés alapján",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Cselekszik a szigorú költési határokon belül",
@@ -2936,6 +2972,10 @@
 		"starting": "Indítás…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Csillagkép</span>"
+	},
+	"contributors": {
+		"meta_description": "Ismerd meg a fejlesztőket, hibajelentőket és közösségi tagokat, akik jobbá teszik a three.ws-t.",
+		"meta_title": "Közreműködők · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Minden érme böngészése →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto Derivatívák · three.ws",
 		"meta_title": "Kripto Derivatívák · three.ws",
 		"meta_twitter_description": "Élő határozatlan jövőbeli piacok — ár, 24 órás mozgás, finanszírozási ráta, nyitott érdeklődés és 24 órás forgalom.",
-		"meta_twitter_title": "Kripto Derivatívák · three.ws"
+		"meta_twitter_title": "Kripto Derivatívák · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Nyisd meg bármely szerződést a teljes részletes oldalához: basis a saját indexéhez képest, a funding rate költsége a te általad méretezett pozíción, és ugyanaz az underlying árazva minden más helyszínen."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Az irányelv módosításai",
 		"12_contact": "12. Kapcsolat",
 		"1_information_we_collect": "1. Az általunk gyűjtött információk",
+		"1a_photos_you_capture_or_upload": "1a. Rögzített vagy feltöltött fotók",
 		"2_how_we_use_your_information": "2. Hogyan használjuk fel az Ön adatait",
 		"3_on_chain_data": "3. Láncon belüli adatok",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modellek (GLB/glTF), bélyegképek, ügynök metaadatok",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API hívások, widget betöltési események (IP-címek és ujjlenyomatok nélkül)",
 		"authentication_account_management": "Hitelesítés és fiókkezelés",
 		"authentication_security": "Hitelesítés, biztonság",
+		"building_your_3d_avatar_and_reproducing_re_r": "A 3D avatarod építése, valamint az eredmény reprodukálása, újra riggelése vagy újrapontozása",
 		"business_transfers_in_connection_with_a_merg": "<strong>Üzleti átruházások:</strong> egyesülés, felvásárlás vagy eszközértékesítés kapcsán, az érintett felhasználók értesítésével.",
 		"category": "Kategória",
 		"connected_home_data": "Csatlakozott otthoni adat",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Személyazonosság ellenőrzése, előfizetés állapota",
 		"if_you_are_a_california_resident_the": "Ha Ön kaliforniai lakos: az általunk gyűjtött személyes adatok kategóriái az 1. szakaszban, az adatkezelés céljai a 2. szakaszban, a címzettek pedig a 4. szakaszban találhatók. Nem <strong>értékesítünk</strong> személyes adatokat, és nem <strong>osztjuk</strong> meg azokat kontextusok közötti viselkedésalapú hirdetések céljából, így nincs mit letiltani; az olyan böngészőbeli letiltási jelzéseket, mint a Global Privacy Control, alapértelmezetten tiszteletben tartjuk, mivel nincs értékesítés vagy megosztás, amit le kellene állítani. Nem használunk fel és nem hozunk nyilvánosságra érzékeny személyes adatokat olyan célokra, amelyek korlátozási jogot igényelnének.",
 		"if_you_connect_a_home_assistant_instance": "Ha csatlakoztatod a Home Assistant példányt, a áltad megadott hozzáférési token egy fizikai épület hitelesítő igazolása. Titkosítjuk nyugalmi állapotban ugyanazzal az alapvető eszközzel, amelyet a kustodiális pénztárca-kulcsokhoz használunk, soha nem jelenítjük meg újra, és azonnal töröljük, amint leválasztod az otthont. Egy épületet megnyitó műveletek (nyitás, engedélyezés, leszerelés) mindig kifejezett emberi megerősítést igényelnek, amelyet egy AI modell nem állít elő, amíg nem adsz állandó engedélyt egy konkrét entitásra.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ha a selfie-folyamatot használod, a rögzített fotók (egy frontális kép és legfeljebb két opcionális oldalirányú kép) feltöltődnek a rekonstrukciós szolgáltatásunkba, és a 3D avatarod építésére szolgálnak. Ezek a generálási rekorddal együtt tárolásra kerülnek, hogy az eredmény reprodukálható, újra riggelhető és újrapontozható legyen minőség szempontjából, és kizárólag a fiókod számára láthatók. Törlésre kerülnek, ha a generálást vagy a fiókodat törlöd, a 5. szakaszban meghatározott megőrzési időablakok figyelembevételével. <strong>Nem</strong> használjuk őket modellek betanítására, <strong>nem</strong> osztjuk meg hirdetőkkel, és <strong>nem</strong> vezetünk le és nem tárolunk belőlük arc-sablont vagy bármilyen más biometrikus azonosítót. A selfie-folyamat használata opcionális: helyette feltölthetsz egy fotót a galériádból, vagy szavakkal írhatod le a karaktert, anélkül, hogy bármilyen fotót megadnál.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktúra szolgáltatók:</strong> Google Cloud Platform (tárhely és számítási kapacitás), Neon (adatbázis), Cloudflare (tárolás és CDN), Resend (tranzakciós e-mail) és Privy (opcionális bejelentkezés). Mindegyik a saját adatvédelmi szabályzata és adatfeldolgozási feltételei szerint dolgozza fel az adatokat a nevünkben.",
 		"legal_acceptance_records": "Jogi elfogadási nyilvántartások",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Jogi elfogadási nyilvántartások</strong> (a Szolgáltatási feltételek és a Kockázatfeltárás elfogadása) a fiókja fennállásának idejére, majd azt követően addig megőrzésre kerülnek, ameddig jogi igények érvényesítéséhez vagy védelméhez szükséges. Ez a megőrzés jogi kötelezettség, és a fióktörlési kérelem ellenére is fennmarad.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Adatvédelmi Szabályzat · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-hatókörű hozzáférés:</strong> OAuth-on keresztül történő csatlakozáskor a csatlakozó csak az Ön által megadott hatókörökbe tartozó three.ws fiókadatokat (avatárok, ügynökök, memória, profil) olvashatja és írhatja. Nem férhet hozzá az AI kliens csevegési előzményeihez, memóriájához vagy helyi fájljaihoz.",
 		"on_chain_data": "Láncon belüli adatok",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Egy frontális fotó és legfeljebb két opcionális oldalirányú kép, ha a selfie-folyamatot használod",
 		"operating_the_three_ws_home_features_you": "A three.ws Otthon általad engedélyezett funkcióinak üzemeltetése és az auditnyomuk biztosítása",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Fizetési adatok (x402):</strong> a fizetős eszközök elszámolása USDC-ben történik a x402 fizetési protokollon keresztül. Hívásonkénti fizetés esetén megkapjuk az Ön nyilvános tárcacímét és a fizetési/elszámolási tranzakció aláírását, amelyet egy fizetésközvetítő (Coinbase CDP és/vagy a nyilvános x402.org közvetítő) ellenőriz. Soha nem kapjuk meg, nem kérjük és nem tároljuk az Ön privát kulcsait vagy seed kifejezését. Az egyetlen token, amelyre three.ws maga hivatkozik, a <code>$THREE</code>; a USDC kizárólag elszámolásra szolgál.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Fizetésközvetítők:</strong> a láncon belüli elszámolású fizetős funkciók (x402) esetében a fizetés ellenőrzése egy közvetítőn keresztül történik, mint például a Coinbase Developer Platform vagy a nyilvános x402.org közvetítő. Ők látják az Ön nyilvános tárcacímét és tranzakciós aláírásait, soha nem a privát kulcsokat.",
+		"photos_you_capture_or_upload": "Rögzített vagy feltöltött fotók",
 		"privacy_policy": "Adatvédelmi Szabályzat",
 		"privacy_questions_privacy_three_ws": "Adatvédelmi kérdések: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Megállapodás igazolása, jogi megfelelés",
@@ -11279,12 +11325,7 @@
 		"why": "Mért",
 		"you_can_see_export_and_delete_everything": "Bármikor láthatod, exportálhatod és törölheted ezt a funkció által tárolt mindent, és beállíthatod saját megőrzési ablakod az akciónaplóhoz. A teljes készletet és az API-t a <a href=\"/docs/home-privacy\">Otthon magánélete és őrizete</a> oldalon találod.",
 		"you_have_the_right_to_lodge_a": "Joga van panaszt tenni a helyi felügyeleti hatóságnál. Először is felveheti velünk a kapcsolatot a <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> címen; örömmel vennénk, ha közvetlenül megoldhatnánk aggodalmát.",
-		"you_have_the_rights_to_know_access": "Joga van személyes adatai megismeréséhez, hozzáféréséhez, helyesbítéséhez, törléséhez és hordozhatóságához, és nem érheti hátrányos megkülönböztetés e jogok gyakorlása miatt. E jogokat a <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> címen (6. szakasz) gyakorolhatja. A kéréseket az Ön bejelentkezett munkamenete, fiókjának e-mail címe vagy a tárcájával aláírt üzenet alapján ellenőrizzük. Meghatalmazott ügynök írásos engedéllyel járhat el Ön helyett.",
-		"photos_you_capture_or_upload": "Rögzített vagy feltöltött fotók",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Egy frontális fotó és legfeljebb két opcionális oldalirányú kép, ha a selfie-folyamatot használod",
-		"building_your_3d_avatar_and_reproducing_re_r": "A 3D avatarod építése, valamint az eredmény reprodukálása, újra riggelése vagy újrapontozása",
-		"1a_photos_you_capture_or_upload": "1a. Rögzített vagy feltöltött fotók",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ha a selfie-folyamatot használod, a rögzített fotók (egy frontális kép és legfeljebb két opcionális oldalirányú kép) feltöltődnek a rekonstrukciós szolgáltatásunkba, és a 3D avatarod építésére szolgálnak. Ezek a generálási rekorddal együtt tárolásra kerülnek, hogy az eredmény reprodukálható, újra riggelhető és újrapontozható legyen minőség szempontjából, és kizárólag a fiókod számára láthatók. Törlésre kerülnek, ha a generálást vagy a fiókodat törlöd, a 5. szakaszban meghatározott megőrzési időablakok figyelembevételével. <strong>Nem</strong> használjuk őket modellek betanítására, <strong>nem</strong> osztjuk meg hirdetőkkel, és <strong>nem</strong> vezetünk le és nem tárolunk belőlük arc-sablont vagy bármilyen más biometrikus azonosítót. A selfie-folyamat használata opcionális: helyette feltölthetsz egy fotót a galériádból, vagy szavakkal írhatod le a karaktert, anélkül, hogy bármilyen fotót megadnál."
+		"you_have_the_rights_to_know_access": "Joga van személyes adatai megismeréséhez, hozzáféréséhez, helyesbítéséhez, törléséhez és hordozhatóságához, és nem érheti hátrányos megkülönböztetés e jogok gyakorlása miatt. E jogokat a <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> címen (6. szakasz) gyakorolhatja. A kéréseket az Ön bejelentkezett munkamenete, fiókjának e-mail címe vagy a tárcájával aláírt üzenet alapján ellenőrizzük. Meghatalmazott ügynök írásos engedéllyel járhat el Ön helyett."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kapcsolat",

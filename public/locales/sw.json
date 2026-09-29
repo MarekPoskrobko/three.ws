@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Anwani ya Pewa",
+		"address_placeholder": "Anwani ya Pewa (Solana au 0x…)",
+		"also_tracked": "Inayofuatiliwa Pia",
+		"check_btn": "Angalia Ustahiki",
+		"copy_aria": "Nakili anwani",
+		"copy_btn": "Nakili",
+		"count_not": "Haistahili",
+		"count_progress": "Inaendelea",
+		"count_qualified": "Imestahili",
+		"count_tracked": "Imefuatiliwa",
+		"dir_fineprint": "Hali zinatokana na ripoti za umma kama ilivyo kwenye tarehe hapo juu na zinabadilika mara kwa mara; hakuna hapa ni ushindani au ushauri wa kifedha. Vipimo vya makadirio si ahadi. Angalia pewa kupata alama dhidi ya viwango hivi.",
+		"error_title": "Haikuweza kuskani pewa hii",
+		"est_label": "Makadirio ikiwa matangazo yote ya ustahiki yalipwa",
+		"filter_all": "Zote",
+		"filter_aria": "Chuja kwa ustahiki",
+		"filter_not": "Haistahili",
+		"filter_progress": "Inaendelea",
+		"filter_qualified": "Imestahili",
+		"form_aria": "Angalia pewa",
+		"form_hint": "Bofya <kbd>/</kbd> kukusudia. Mfumo wa chenji unagunduliwa kutoka kwenye anwani. Pia angalia <a href=\"/portfolio\">portfolio ya pewa</a>.",
+		"kicker": "Shughuli halisi ya on-chain · imepimwa live",
+		"loading_note": "Inaskani historia ya on-chain. Pewa yenye shughuli nyingi inachukua sekunde chache.",
+		"meta_desc": "Angalia pewa yoyote ya Solana au Ethereum dhidi ya viwango vya matangazo ya live: uskanaji wa shughuli halisi ya on-chain, alama 0-100 ya ustahiki kwa kila programu, kile unachokosa kwa usahihi, na hatua za mkono uskanaji hauwezi kuona. Bure, bila kifunguo, bila akaunti.",
+		"page_title": "Angalia Matangazo · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Programu",
+		"recent_label": "Hivi karibuni:",
+		"retry_btn": "Jaribu Tena",
+		"scan_measured": "Uskanaji umepima nini",
+		"share_aria": "Nakili kiungo kwenye ripoti hii",
+		"share_btn": "Shiriki",
+		"sub": "Weka anwani yoyote ya <strong>Solana</strong> au <strong>Ethereum</strong> na uone matangazo anayostahili. Alama inatoka kwenye uskanaji halisi wa historia ya on-chain ya pewa; orodha ya uchambuzi inakupa kile kinachokosa kwa usahihi na kile uskanaji hauwezi kuona.",
+		"title": "<em>Checker</em> ya Matangazo",
+		"tracked_programs": "Programu zilizofuatiliwa"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Fanya kazi kwenye hii",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Inafanya kazi ndani ya mipaka ya matumizi ngumu",
@@ -2936,6 +2972,10 @@
 		"starting": "Kuanza…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Mng'aro</span>"
+	},
+	"contributors": {
+		"meta_description": "Jadili watekelezi, wariponi wa matatizo, na wanachama wa jamii wanaofanya three.ws iwe bora.",
+		"meta_title": "Wachangiaji · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Tazama sarafu zote →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivativi za Crypto · three.ws",
 		"meta_title": "Derivativi za Crypto · three.ws",
 		"meta_twitter_description": "Masoko ya baadaye yasiyo na kikomo yanayoendelea — bei, mabadiliko ya 24h, kiwango cha ufadhili, maslahi ya wazi, na kiasi cha 24h.",
-		"meta_twitter_title": "Derivativi za Crypto · three.ws"
+		"meta_twitter_title": "Derivativi za Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Fungua mkataba wowote kwa ukurasa wake wa maelezo kamili: msingi dhidi ya kipimo chake mwenyewe, gharama ya kiwango cha fedha kwenye nafasi unayoiweka mwenyewe, na msingi sawa uliowasilishwa kwenye mahali pengine popote."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Mabadiliko kwa Sera Hii",
 		"12_contact": "12. Mawasiliano",
 		"1_information_we_collect": "1. Taarifa Tunazokusanya",
+		"1a_photos_you_capture_or_upload": "1a. Picha Unazopiga au Kupakia",
 		"2_how_we_use_your_information": "2. Jinsi Tunavyotumia Taarifa Zako",
 		"3_on_chain_data": "3. Data ya Mnyororo",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Miundo ya 3D (GLB/glTF), vijipicha, metadata ya wakala",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Simu za API, matukio ya upakiaji wa wijeti (hakuna IP, hakuna alama za vidole)",
 		"authentication_account_management": "Uthibitishaji & usimamizi wa akaunti",
 		"authentication_security": "Uthibitishaji, usalama",
+		"building_your_3d_avatar_and_reproducing_re_r": "Kujenga avatar yako ya 3D, na kurejesha, kure-rig au kurekebisha matokeo hayo",
 		"business_transfers_in_connection_with_a_merg": "<strong>Uhamishaji wa biashara:</strong> kuhusiana na muunganiko, ununuzi, au uuzaji wa mali, kwa taarifa kwa watumiaji walioathirika.",
 		"category": "Kategoria",
 		"connected_home_data": "Data ya nyumba ya mtandao",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Uthibitishaji wa utambulisho, hali ya usajili",
 		"if_you_are_a_california_resident_the": "Ikiwa wewe ni mkazi wa California: aina za taarifa za kibinafsi tunazokusanya zimeorodheshwa katika Sehemu ya 1, madhumuni katika Sehemu ya 2, na wapokeaji katika Sehemu ya 4. Sisi <strong>hatuuzi</strong> taarifa za kibinafsi na <strong>hatushiriki</strong> kwa matangazo ya kitabia ya muktadha tofauti, hivyo hakuna cha kujiondoa; ishara za kujiondoa za kivinjari kama vile Udhibiti wa Faragha wa Kimataifa huheshimiwa kwa chaguo-msingi kwa sababu hakuna uuzaji au ushirikishaji wa kusitisha. Hatutumii au kufichua taarifa nyeti za kibinafsi kwa madhumuni yanayohitaji haki ya kuzuia.",
 		"if_you_connect_a_home_assistant_instance": "Unapounganisha Home Assistant instance, access token unayoowa ni credential kwa jengo la kimwili. Tunafunga kwa encryption kitakachoimia kwa primitive ile ile tunayotumia kwa maneno ya wallet ya custodial, haitaonyeshwa tena, na utasandukwa mapema unapokata unganisha nyumba. Matendo yanayofungua jengo (kufungua, kufungua, kuzuia) yadai kudhoofisha kuwa na idhini ya binadamu, ambayo haiwezi kutengenezwa na AI model, mpaka unapatoa idhini ya kudumu kwa entity moja.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ikiwa unatumia mchakato wa selfie, picha unazopiga (picha moja ya mbele na hadi picha mbili za upande zisizohitajika) hupakiwa kwenye huduma yetu ya ujenzi na kumatumiwa kujenga avatar yako ya 3D. Hizi huhifadhiwa pamoja na rekodi ya ujenzi ili matokeo yaweze kurudishwa, kupewa rig upya na kurekebishwa kwa ubora, na zinaonekana kwa akaunti yako tu. Hizi hufutwa unapofuta ujenzi au akaunti yako, kulingana na vipindi vya uhifadhi kwenye Sehemu 5. Hatutumii <strong>sio</strong> kwa ajili ya kufanya mafunzo ya modeli, hatuzishiriki <strong>sio</strong> na wauzaji wa matangazo, na hatutoi <strong>sio</strong> au hifadhi template ya uso au kitambulisho kingine cha biometric kutoka kwazo. Kutumia mchakato wa selfie ni chaguo: unaweza kupakia picha kutoka kwenye galeri yako, au kuelezea mwanacharacta kwa maneno na huwezi kutoa picha hata moja.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Watoa huduma wa miundombinu:</strong> Google Cloud Platform (kukaa na kukokotoa), Neon (hifadhidata), Cloudflare (hifadhi na CDN), Resend (barua pepe za miamala), na Privy (kuingia kwa hiari). Kila mmoja huchakata data kwa niaba yetu chini ya sera yake ya faragha na masharti ya usindikaji wa data.",
 		"legal_acceptance_records": "Rekodi za kukubali kisheria",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Rekodi za kukubali kisheria</strong> (kukubali kwako Masharti ya Huduma na Ufichuzi wa Hatari) huhifadhiwa kwa muda wote wa akaunti yako na baadaye kwa muda unaohitajika kuanzisha au kutetea madai ya kisheria. Uhifadhi huu ni wajibu wa kisheria na huendelea hata baada ya ombi la kufuta akaunti.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Sera ya Faragha · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Ufikiaji wa OAuth-scoped:</strong> unapo unganisha kupitia OAuth, kiunganishi kinaweza kusoma na kuandika tu data ya akaunti ya three.ws inayofunikwa na ruhusa unazotoa (avatars, mawakala, kumbukumbu, wasifu). Haiwezi kufikia historia ya gumzo ya mteja wako wa AI, kumbukumbu, au faili za ndani.",
 		"on_chain_data": "Data ya mnyororo",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Picha moja ya mbele na hadi picha mbili za upande zisizohitajika, ikiwa unatumia mchakato wa selfie",
 		"operating_the_three_ws_home_features_you": "Kusimamia features za three.ws Home ulizoziwezesha, na kuwa na audit trail ya zao",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Data ya malipo (x402):</strong> zana za kulipia hulipwa kwa USDC kupitia itifaki ya malipo ya x402. Unapolipa kwa kila simu, tunapokea anwani yako ya pochi ya umma na saini ya muamala wa malipo/malipo, iliyothibitishwa kupitia mwezeshaji wa malipo (Coinbase CDP na/au mwezeshaji wa umma wa x402.org). Hatupokei, hatuombi, wala hatuhifadhi funguo zako za faragha au maneno ya siri. Tokeni pekee ambayo three.ws inarejelea ni <code>$THREE</code>; USDC inatumika tu kwa malipo.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Wawezeshaji wa malipo:</strong> kwa vipengele vya kulipia vilivyolipwa kwenye mnyororo (x402), uthibitishaji wa malipo hupitia mwezeshaji kama vile Coinbase Developer Platform au mwezeshaji wa umma wa x402.org. Wanaona anwani yako ya pochi ya umma na saini za muamala, kamwe si funguo za faragha.",
+		"photos_you_capture_or_upload": "Picha unazopiga au kupakia",
 		"privacy_policy": "Sera ya Faragha",
 		"privacy_questions_privacy_three_ws": "Maswali ya faragha: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Uthibitisho wa makubaliano, uzingatiaji wa sheria",
@@ -11279,12 +11325,7 @@
 		"why": "Kwa nini",
 		"you_can_see_export_and_delete_everything": "Unaweza kuona, kutesha na kusanduka kila kitu hiki feature inahifadiki kwa wakati wowote, na weka retention window yako mwenyewe kwa action log. Angalia <a href=\"/docs/home-privacy\">Home privacy and retention</a> kwa inventori kamili na API.",
 		"you_have_the_right_to_lodge_a": "Una haki ya kuwasilisha malalamiko kwa mamlaka yako ya usimamizi wa ndani. Unaweza pia kuwasiliana nasi kwanza kwa <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; tungependa fursa ya kutatua suala lako moja kwa moja.",
-		"you_have_the_rights_to_know_access": "Una haki ya kujua, kufikia, kusahihisha, kufuta, na kuhamisha taarifa zako za kibinafsi, na kutobaguliwa kwa kuzitumia. Zitumie kupitia <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sehemu ya 6). Tunathibitisha maombi kwa kutumia kipindi chako cha kuingia, barua pepe ya akaunti yako, au ujumbe uliotiwa saini na pochi yako. Wakala aliyeidhinishwa anaweza kukufanyia kazi kwa idhini iliyoandikwa.",
-		"photos_you_capture_or_upload": "Picha unazopiga au kupakia",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Picha moja ya mbele na hadi picha mbili za upande zisizohitajika, ikiwa unatumia mchakato wa selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Kujenga avatar yako ya 3D, na kurejesha, kure-rig au kurekebisha matokeo hayo",
-		"1a_photos_you_capture_or_upload": "1a. Picha Unazopiga au Kupakia",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ikiwa unatumia mchakato wa selfie, picha unazopiga (picha moja ya mbele na hadi picha mbili za upande zisizohitajika) hupakiwa kwenye huduma yetu ya ujenzi na kumatumiwa kujenga avatar yako ya 3D. Hizi huhifadhiwa pamoja na rekodi ya ujenzi ili matokeo yaweze kurudishwa, kupewa rig upya na kurekebishwa kwa ubora, na zinaonekana kwa akaunti yako tu. Hizi hufutwa unapofuta ujenzi au akaunti yako, kulingana na vipindi vya uhifadhi kwenye Sehemu 5. Hatutumii <strong>sio</strong> kwa ajili ya kufanya mafunzo ya modeli, hatuzishiriki <strong>sio</strong> na wauzaji wa matangazo, na hatutoi <strong>sio</strong> au hifadhi template ya uso au kitambulisho kingine cha biometric kutoka kwazo. Kutumia mchakato wa selfie ni chaguo: unaweza kupakia picha kutoka kwenye galeri yako, au kuelezea mwanacharacta kwa maneno na huwezi kutoa picha hata moja."
+		"you_have_the_rights_to_know_access": "Una haki ya kujua, kufikia, kusahihisha, kufuta, na kuhamisha taarifa zako za kibinafsi, na kutobaguliwa kwa kuzitumia. Zitumie kupitia <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sehemu ya 6). Tunathibitisha maombi kwa kutumia kipindi chako cha kuingia, barua pepe ya akaunti yako, au ujumbe uliotiwa saini na pochi yako. Wakala aliyeidhinishwa anaweza kukufanyia kazi kwa idhini iliyoandikwa."
 	},
 	"legal_risk": {
 		"10_contact": "10. Mawasiliano",

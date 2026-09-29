@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Ühisala · three.ws",
 		"the_commons": "Ühisala"
 	},
+	"airdrops": {
+		"address_label": "Rahakoti aadress",
+		"address_placeholder": "Rahakoti aadress (Solana või 0x…)",
+		"also_tracked": "Ka jälgitud",
+		"check_btn": "Kontrolli sobivust",
+		"copy_aria": "Kopeeri aadress",
+		"copy_btn": "Kopeeri",
+		"count_not": "Ei kvalifitseeru",
+		"count_progress": "Töötlemisel",
+		"count_qualified": "Kvalifitseerunud",
+		"count_tracked": "Jälgitud",
+		"dir_fineprint": "Staatused peegeldavad avalikku aruandlust ülaltoodud kuupäeval ja muutuvad sageli; siin ei ole midagi soovitus ega finantsnõustamine. Hinnatud vahemiked on avalik spekulatsioon, mitte lubadused. Kontrolli rahakotti, et näha skoore neid kriteeriume vastu.",
+		"error_title": "Ei suutnud seda rahakotti skannida",
+		"est_label": "Hinnang, kui kõik kvalifitseerunud airdropid makstavad välja",
+		"filter_all": "Kõik",
+		"filter_aria": "Filtreeri sobivuse järgi",
+		"filter_not": "Ei kvalifitseeru",
+		"filter_progress": "Töötlemisel",
+		"filter_qualified": "Kvalifitseerunud",
+		"form_aria": "Kontrolli rahakotti",
+		"form_hint": "Vajuta <kbd>/</kbd>, et fookus saada. Ahel tuvastatakse aadressist automaatselt. Vaata ka <a href=\"/portfolio\">rahakoti portfell</a>.",
+		"kicker": "Tegelik on-chain tegevus · skooritud reaalajas",
+		"loading_note": "On-chain ajalugu skannitakse. Hõivatud rahakott võtab paar sekundit.",
+		"meta_desc": "Kontrolli mis tahes Solana või Ethereum rahakoti live airdrop-kriteeriumide vastu: tegelik on-chain tegevuse skann, 0-100 sobivuse skoor programmi kohta, täpselt see, mis puudub, ja käsuread, mida skann ei näe. Tasuta, võtmeta, konto puudub.",
+		"page_title": "Airdropi Kontrollija · three.ws",
+		"portfolio_chip": "Portfell",
+		"programs": "Programmid",
+		"recent_label": "Viimased:",
+		"retry_btn": "Proovi uuesti",
+		"scan_measured": "Mida skann mõõtis",
+		"share_aria": "Kopeeri link selle aruandele",
+		"share_btn": "Jaga",
+		"sub": "Kleebi mis tahes <strong>Solana</strong> või <strong>Ethereum</strong> rahakott ja näe, millised airdropid kvalifitseeruvad. Skoor pärineb rahakoti on-chain ajaloo tegelikust skannist; kontrollloend ütleb täpselt, mis puudub ja mida skann ei saa näha.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Jälgitud programmid"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Tegutse selle lugemi põhjal",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Tegutseb rangete kululimiitide piires",
@@ -2936,6 +2972,10 @@
 		"starting": "Käivitub…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Tutvu arendajatega, veateadetega ja kogukonna liikmetega, kes teevad three.ws paremaks.",
+		"meta_title": "Kaastöötajad · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Sirvi kõiki münte →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Krüptoderivatiivid · three.ws",
 		"meta_title": "Krüptoderivatiivid · three.ws",
 		"meta_twitter_description": "Reaalajas igavesed futuuriturud — hind, 24h muutus, finantseerimismäär, avatud intress ja 24h maht.",
-		"meta_twitter_title": "Krüptoderivatiivid · three.ws"
+		"meta_twitter_title": "Krüptoderivatiivid · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Ava mis tahes leping selle täieliku detaililehe jaoks: baas oma indeksi vastu, mis funding rate maksab positsioonile, mille suurus sa ise määrad, ja sama alusvara hinnatud igal teisel veebisaidil."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Muudatused käesolevas poliitikas",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Kogutav teave",
+		"1a_photos_you_capture_or_upload": "1a. Sinu poolt tehtud või üles laetud fotod",
 		"2_how_we_use_your_information": "2. Kuidas me teie teavet kasutame",
 		"3_on_chain_data": "3. Ahelasisesed andmed",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D mudelid (GLB/glTF), pisipildid, agendi metaandmed",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API päringud, vidinate laadimissündmused (IP-sid ja sõrmejälgi pole)",
 		"authentication_account_management": "Autentimine ja kontohaldus",
 		"authentication_security": "Autentimine, turvalisus",
+		"building_your_3d_avatar_and_reproducing_re_r": "Sinu 3D avatarit ehitades ning selle tulemuse reprodutseerides, uuesti rigides või uuesti hinnates",
 		"business_transfers_in_connection_with_a_merg": "<strong>Ettevõtte üleminekud:</strong> seoses ühinemise, omandamise või varade müügiga, teavitades mõjutatud kasutajaid.",
 		"category": "Kategooria",
 		"connected_home_data": "Ühendusega kodu andmed",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Isikusamasuse kontroll, tellimuse staatus",
 		"if_you_are_a_california_resident_the": "Kui olete California elanik: kogutavate isikuandmete kategooriad on loetletud jaotises 1, eesmärgid jaotises 2 ja vastuvõtjad jaotises 4. Me <strong>ei</strong> müü isikuandmeid ega <strong>jaga</strong> neid kontekstideüleseks käitumispõhiseks reklaamiks, seega pole midagi, millest loobuda; brauseri loobumissignaale, nagu Global Privacy Control, austatakse vaikimisi, sest müüki ega jagamist ei toimu, mida peatada. Me ei kasuta ega avalda tundlikke isikuandmeid eesmärkidel, mis nõuavad piiramisõigust.",
 		"if_you_connect_a_home_assistant_instance": "Kui ühendad Home Assistanti instantsi, on sinu poolt pakutud pääsivõti kredentiaal füüsilisele hoonele. Krüpteerime seda vaikimisi samal algoritmil, mida kasutame hoiustatavate rahakottide võtmetele, ei näita seda kunagi uuesti ja kustutame kohe, kui lõid ühenduse hoonega. Hoone avavad tegevused (lukimine, avamine, demineerimine) nõuavad alati väljendatud inimmõistja kinnitust, mida AI mudel ei suuda genereerida, kuni lubad püsiva lubade ühele kindlale entiteedile.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Kui kasutad selfivoo, laetakse sinu poolt tehtud fotod (üks esipilt ja kuni kaks valikulist külgpilti) meie rekonstruktsiooniteenusesse ja kasutatakse sinu 3D avatari loomiseks. Need salvestatakse genereerimiskirjega, et tulemust oleks võimalik reprodutseerida, uuesti rigida ja uuesti hinnata kvaliteedi poolest, ja need on nähtavad ainult sinu kontole. Need kustutatakse, kui kustutad genereerimise või oma konto, vastavalt hoidmisajadele jaotises 5. Me <strong>ei</strong> kasuta neid mudelite treenimiseks, me <strong>ei</strong> jaga neid reklaamikutega, ja me <strong>ei</strong> johta ega salvesta neist näomalli ega muud biomeetrilist identifikaatorit. Selfivoo kasutamine on valikuline: saad üles laadida pildi oma galeriist või kirjeldada isiku sõnadega ja mitte kunagi pilti esitada.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktuuri pakkujad:</strong> Google Cloud Platform (majutamine ja arvutusvõimsus), Neon (andmebaas), Cloudflare (salvestusruum ja CDN), Resend (tehingulised e-kirjad) ja Privy (valikuline sisselogimine). Igaüks töötleb andmeid meie nimel oma privaatsuspoliitika ja andmetöötlustingimuste alusel.",
 		"legal_acceptance_records": "Õigusliku nõustumise dokumendid",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Õigusliku nõustumise dokumendid</strong> (teie nõustumine kasutustingimuste ja riskiavaldusega) säilitatakse teie konto eluea jooksul ja pärast seda nii kaua, kui on vaja õigusnõuete esitamiseks või kaitsmiseks. See säilitamine on õiguslik kohustus ja jääb kehtima ka pärast konto kustutamise taotlust.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privaatsuspoliitika · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-i piiratud juurdepääs:</strong> kui ühendate OAuth-i kaudu, saab ühendaja lugeda ja kirjutada ainult three.ws kontoandmeid, mis on hõlmatud teie antud ulatuses (avatarid, agendid, mälu, profiil). See ei pääse ligi teie tehisintellekti kliendi vestlusajaloole, mälule ega kohalikele failidele.",
 		"on_chain_data": "Ahelasisesed andmed",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Üks esipildi foto ja kuni kaks valikulist külgpilti, kui kasutad selfivoo",
 		"operating_the_three_ws_home_features_you": "three.ws Home võimaluste haldamine, mida sa lubasid, ja nende auditijälje tagamine",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Makseandmed (x402):</strong> tasulised tööriistad arveldatakse USDC-s x402 makseprotokolli kaudu. Kui maksate kõne kohta, saame teie avaliku rahakoti aadressi ja makse/arvelduse tehingu allkirja, mis on kontrollitud maksevahendaja (Coinbase CDP ja/või avaliku x402.org vahendaja) kaudu. Me ei saa, küsi ega salvesta kunagi teie privaatvõtmeid ega seemnefraasi. Ainus token, millele three.ws ise viitab, on <code>$THREE</code>; USDC-t kasutatakse puhtalt arveldamiseks.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Maksevahendajad:</strong> ahelasiseselt arveldatud tasuliste funktsioonide puhul (x402), makse kinnitamine toimub vahendaja, näiteks Coinbase Developer Platformi või avaliku x402.org vahendaja kaudu. Nad näevad teie avalikku rahakoti aadressi ja tehingu allkirju, mitte kunagi privaatvõtmeid.",
+		"photos_you_capture_or_upload": "Sinu poolt tehtud või üles laetud fotod",
 		"privacy_policy": "Privaatsuspoliitika",
 		"privacy_questions_privacy_three_ws": "Privaatsusküsimused: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Nõusoleku tõendamine, õigusaktidele vastavus",
@@ -11279,12 +11325,7 @@
 		"why": "Miks",
 		"you_can_see_export_and_delete_everything": "Sa saad näha, eksportida ja kustutada kõik, mida see funktsioon hoiab, millalgi ajal, ja seada oma taastamisaken tegude logile. Vaata <a href=\"/docs/home-privacy\">Home privacy and retention</a> täieliku inventari ja API jaoks.",
 		"you_have_the_right_to_lodge_a": "Teil on õigus esitada kaebus oma kohalikule järelevalveasutusele. Võite meiega esmalt ühendust võtta aadressil <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; me tervitaksime võimalust teie mure otse lahendada.",
-		"you_have_the_rights_to_know_access": "Teil on õigus teada, oma isikuandmetele ligi pääseda, neid parandada, kustutada ja üle kanda, ning teid ei diskrimineerita nende õiguste kasutamise eest. Kasutage neid õigusi aadressil <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (punkt 6). Kontrollime taotlusi teie sisselogitud seansi, kontoga seotud e-posti või teie rahakotiga allkirjastatud sõnumi abil. Volitatud esindaja võib teie eest tegutseda kirjaliku loaga.",
-		"photos_you_capture_or_upload": "Sinu poolt tehtud või üles laetud fotod",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Üks esipildi foto ja kuni kaks valikulist külgpilti, kui kasutad selfivoo",
-		"building_your_3d_avatar_and_reproducing_re_r": "Sinu 3D avatarit ehitades ning selle tulemuse reprodutseerides, uuesti rigides või uuesti hinnates",
-		"1a_photos_you_capture_or_upload": "1a. Sinu poolt tehtud või üles laetud fotod",
-		"if_you_use_the_selfie_flow_the_photos_you": "Kui kasutad selfivoo, laetakse sinu poolt tehtud fotod (üks esipilt ja kuni kaks valikulist külgpilti) meie rekonstruktsiooniteenusesse ja kasutatakse sinu 3D avatari loomiseks. Need salvestatakse genereerimiskirjega, et tulemust oleks võimalik reprodutseerida, uuesti rigida ja uuesti hinnata kvaliteedi poolest, ja need on nähtavad ainult sinu kontole. Need kustutatakse, kui kustutad genereerimise või oma konto, vastavalt hoidmisajadele jaotises 5. Me <strong>ei</strong> kasuta neid mudelite treenimiseks, me <strong>ei</strong> jaga neid reklaamikutega, ja me <strong>ei</strong> johta ega salvesta neist näomalli ega muud biomeetrilist identifikaatorit. Selfivoo kasutamine on valikuline: saad üles laadida pildi oma galeriist või kirjeldada isiku sõnadega ja mitte kunagi pilti esitada."
+		"you_have_the_rights_to_know_access": "Teil on õigus teada, oma isikuandmetele ligi pääseda, neid parandada, kustutada ja üle kanda, ning teid ei diskrimineerita nende õiguste kasutamise eest. Kasutage neid õigusi aadressil <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (punkt 6). Kontrollime taotlusi teie sisselogitud seansi, kontoga seotud e-posti või teie rahakotiga allkirjastatud sõnumi abil. Volitatud esindaja võib teie eest tegutseda kirjaliku loaga."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",

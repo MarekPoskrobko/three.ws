@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Jamoat maydoni · three.ws",
 		"the_commons": "Jamoat maydoni"
 	},
+	"airdrops": {
+		"address_label": "Hamyon manzili",
+		"address_placeholder": "Hamyon manzili (Solana yoki 0x…)",
+		"also_tracked": "Shu ham kuzatiladi",
+		"check_btn": "Uchunlikni tekshirish",
+		"copy_aria": "Manzilni nusxalash",
+		"copy_btn": "Nusxalash",
+		"count_not": "Uchunli emas",
+		"count_progress": "Jarayonda",
+		"count_qualified": "Uchunli",
+		"count_tracked": "Kuzatilgan",
+		"dir_fineprint": "Holatlar yuqoridagi sanadagi ochiq hisobotlarga asoslanadi va tez o'zgarishi mumkin; bu yerda hech qanday tasdiqlov yoki moliyaviy maslahat yo'q. Taxminiy oralig'om — faqat spekulyatsiya, va'dalar emas. Hamyonni tekshirib, me'yorlarga nisbatan ballarni ko'ring.",
+		"error_title": "Bu hamyonni skanerlash imkonsiz",
+		"est_label": "Barcha uchunli airdrop'lar to'lanadigan bo'lsa taxminiy qiymat",
+		"filter_all": "Hammasi",
+		"filter_aria": "Uchunlik bo'yicha filtrlash",
+		"filter_not": "Uchunli emas",
+		"filter_progress": "Jarayonda",
+		"filter_qualified": "Uchunli",
+		"form_aria": "Hamyonni tekshirish",
+		"form_hint": "Fokuslash uchun <kbd>/</kbd> ni bosing. Tarmoq manzildan aniqlanadi. Ham <a href=\"/portfolio\">hamyon portfeli</a> ni ko'ring.",
+		"kicker": "Haqiqiy on-chain faollik · real vaqtda baholangan",
+		"loading_note": "On-chain tarix skanerlanmoqda. Band hamyon bir necha soniya oladi.",
+		"meta_desc": "Har qanday Solana yoki Ethereum hamyonini jonli airdrop me'yorlariga nisbatan tekshiring: haqiqiy on-chain faollik skaneri, dastur har biri uchun 0-100 uchunlik balli, nima yetmayotgani va skaner ko'ra olmasligi uchun qo'lda bajariladigan qadamlar. Bepul, kalitsiz, hisob kerak emas.",
+		"page_title": "Airdrop Tekshiruvchisi · three.ws",
+		"portfolio_chip": "Portfel",
+		"programs": "Dasturlar",
+		"recent_label": "Yaqindagilar:",
+		"retry_btn": "Qayta urinish",
+		"scan_measured": "Skaner nima o'lchadi",
+		"share_aria": "Bu hisobotga havolani nusxalash",
+		"share_btn": "Ulashish",
+		"sub": "Istalgan <strong>Solana</strong> yoki <strong>Ethereum</strong> hamyonini joylashtiring va qaysi airdrop'lar uchun uchunligi aniqlansin. Ball hamyonning on-chain tarixining haqiqiy skaneridan kelib chiqadi; ro'yxat esa nima yetmayotganini va skaner ko'ra olmasligi narsalarni ko'rsatadi.",
+		"title": "Airdrop <em>Tekshiruvchisi</em>",
+		"tracked_programs": "Kuzatilayotgan dasturlar"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Ushbu tahlilga asosan harakat qiling",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Qattiq xarajat chegaralari doirasida harakat qiladi",
@@ -2936,6 +2972,10 @@
 		"starting": "Boshlanmoqda…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "three.ws ni yaxshilab boruvchi dasturchilar, xatoliklarni xabar beruvchilar va jamoa a'zolari bilan tanishing.",
+		"meta_title": "Hissa qo'shganlar · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Barcha tangalarni ko'rish →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto Derivativlar · three.ws",
 		"meta_title": "Kripto Derivativlar · three.ws",
 		"meta_twitter_description": "Jonli doimiy fyuchers bozorlari — narx, 24 soatlik oʻzgarish, moliyalashtirish stavkasi, ochiq foiz va 24 soatlik hajm.",
-		"meta_twitter_title": "Kripto Derivativlar · three.ws"
+		"meta_twitter_title": "Kripto Derivativlar · three.ws",
+		"open_any_contract_for_its_full_detail_page": "To'liq tafsilotlar sahifasi uchun istalgan shartnomani oching: o'z indeksiga nisbatan baza, o'zingiz o'lchagan pozitsiya uchun funding rate xarajati, va har bir boshqa platformada narxlangan bir xil asosiy aktiv."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Ushbu Siyosatga Kiritilgan Oʻzgarishlar",
 		"12_contact": "12. Aloqa",
 		"1_information_we_collect": "1. Biz yig'adigan ma'lumotlar",
+		"1a_photos_you_capture_or_upload": "1a. Siz yuklagan yoki olgan rasmlar",
 		"2_how_we_use_your_information": "2. Ma'lumotlaringizdan qanday foydalanamiz",
 		"3_on_chain_data": "3. On-chain ma'lumotlar",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modellar (GLB/glTF), eskizlar, agent metama'lumotlari",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API chaqiruvlari, vidjet yuklash hodisalari (IP-manzillar yo'q, barmoq izlari yo'q)",
 		"authentication_account_management": "Autentifikatsiya va hisobni boshqarish",
 		"authentication_security": "Autentifikatsiya, xavfsizlik",
+		"building_your_3d_avatar_and_reproducing_re_r": "Sizning 3D avatarizni yaratish, shuningdek natijani qayta ishlab chiqarish, qayta riglash yoki qayta baholash",
 		"business_transfers_in_connection_with_a_merg": "<strong>Biznes o'tkazmalari:</strong> qo'shilish, sotib olish yoki aktivlarni sotish munosabati bilan, ta'sirlangan foydalanuvchilarga xabar bergan holda.",
 		"category": "Kategoriya",
 		"connected_home_data": "Ulangan uy ma'lumotlari",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Shaxsni tasdiqlash, obuna holati",
 		"if_you_are_a_california_resident_the": "Agar siz Kaliforniya rezidenti boʻlsangiz: biz yigʻadigan shaxsiy maʼlumotlar toifalari 1-boʻlimda, maqsadlar 2-boʻlimda va oluvchilar 4-boʻlimda koʻrsatilgan. Biz shaxsiy maʼlumotlarni <strong>sotmaymiz</strong> va uni kontekstlararo xulq-atvor reklamasi uchun <strong>baham koʻrmaymiz</strong>, shuning uchun voz kechish uchun hech narsa yoʻq; Global Maxfiylik Nazorati kabi brauzerning voz kechish signallari sukut boʻyicha hurmat qilinadi, chunki toʻxtatish uchun sotish yoki baham koʻrish yoʻq. Biz cheklash huquqini talab qiladigan maqsadlar uchun sezgir shaxsiy maʼlumotlardan foydalanmaymiz yoki oshkor etmaymiz.",
 		"if_you_connect_a_home_assistant_instance": "Agar Home Assistant nusxasini ulatsangiz, ta'minot tokeningiz fiziksiy bino uchun kredensial hisoblanadi. Biz uni custodial wallet kalitlari uchun ishlatiladigan xuddi shu asosiy vosita bilan saqlashda shifrlaymiz, qayta ko'rsatmaymiz va uy ulanishni bekor qilganingizda o'chirib tashlaymiz. Bina ochuvchi harakatlar (kilidini ochish, ochish, o'chirish) doimiy ravishda aniq inson tasdiqlashini talab qiladi, bu AI model tomonidan ishlab chiqarila olmaydi, siz bitta aniq entitetga doimiy ruxsat bergunigacha.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Agar siz selfie rejimidan foydalansangiz, siz olgan rasmlaringiz (birta oldingi ko'rinish va ixtiyoriy ravishda ikki ta yanburchak burchagi) bizning rekonstruksiya xizmatimizga yuklanadi va 3D avatar yaratish uchun ishlatiladi. Ular natija qayta ishlab chiqilishi, qayta riglanishi va sifat uchun qayta baholanishi uchun generatsiya yozuvi bilan saqlanadi, va ular faqat sizning hisobingizga ko'rinadi. Ular generatsiya yoki hisobingiz o'chirilganda o'chiriladi, bu 5-bo'limdagi saqlash muddatlariga bog'liq. Biz <strong>emas</strong> ularni modellarni o'qitish uchun ishlatamiz, biz <strong>emas</strong> ularni reklam beruvchilar bilan baham ko'ramiz, va biz <strong>emas</strong> ularning yuz shabloni yoki boshqa biometrik identifikatorini hosil yoki saqlamaymiz. Selfie rejimidan foydalanish ixtiyoriy: siz gallereyadan rasm yuklashingiz yoki rasmsiz so'zlarda personajni tasvirlashingiz mumkin.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infratuzilma provayderlari:</strong> Google Cloud Platform (xosting va hisoblash), Neon (maʼlumotlar bazasi), Cloudflare (saqlash va CDN), Resend (tranzaksion elektron pochta) va Privy (ixtiyoriy kirish). Har biri bizning nomimizdan oʻzining maxfiylik siyosati va maʼlumotlarni qayta ishlash shartlari asosida maʼlumotlarni qayta ishlaydi.",
 		"legal_acceptance_records": "Huquqiy qabul yozuvlari",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Huquqiy qabul yozuvlari</strong> (Xizmat koʻrsatish shartlari va Tavakkalchilikni oshkor qilishni qabul qilishingiz) hisobingizning butun muddati davomida va undan keyin huquqiy daʼvolarni asoslash yoki himoya qilish uchun zarur boʻlgan muddat davomida saqlanadi. Bu saqlash huquqiy majburiyat boʻlib, hisobni oʻchirish soʻrovidan keyin ham amal qiladi.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Maxfiylik siyosati · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-doiraviy kirish:</strong> OAuth orqali ulanganda, ulagich faqat siz bergan doiralar (avatarlar, agentlar, xotira, profil) bilan qoplangan three.ws hisob maʼlumotlarini oʻqishi va yozishi mumkin. U sizning AI mijozingizning chat tarixi, xotirasi yoki mahalliy fayllariga kira olmaydi.",
 		"on_chain_data": "Zanjirdagi maʼlumotlar",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Bir dona oldingi (frontal) rasm va ixtiyoriy ravishda ikki dona yana tomoni rasmlar, agar siz selfie rejimidan foydalansangiz",
 		"operating_the_three_ws_home_features_you": "Siz yoqgan three.ws Uy imkoniyatlarini boshqarish va ular haqida audit trail berish",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Toʻlov maʼlumotlari (x402):</strong> pullik vositalar USDC da x402 toʻlov protokoli orqali hisob-kitob qilinadi. Har bir chaqiruv uchun toʻlaganingizda, biz sizning ommaviy hamyon manzilingizni va toʻlov/hisob-kitob tranzaksiyasi imzosini olamiz, bu toʻlov vositachisi (Coinbase CDP va/yoki ommaviy x402.org vositachisi) orqali tasdiqlanadi. Biz hech qachon shaxsiy kalitlaringizni yoki urugʻ iborangizni olmaymiz, soʻramaymiz yoki saqlamaymiz. three.ws ning oʻzi murojaat qiladigan yagona token <code>$THREE</code>; USDC faqat hisob-kitob uchun ishlatiladi.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Toʻlov vositachilari:</strong> zanjirda hisob-kitob qilinadigan pullik funksiyalar (x402) uchun toʻlovni tasdiqlash Coinbase Developer Platform yoki ommaviy x402.org vositachisi kabi vositachi orqali amalga oshiriladi. Ular sizning ommaviy hamyon manzilingizni va tranzaksiya imzolarini koʻradi, shaxsiy kalitlarni hech qachon emas.",
+		"photos_you_capture_or_upload": "Siz yuklagan yoki olgan rasmlar",
 		"privacy_policy": "Maxfiylik siyosati",
 		"privacy_questions_privacy_three_ws": "Maxfiylik boʻyicha savollar: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Kelishuvni tasdiqlash, huquqiy muvofiqlik",
@@ -11279,12 +11325,7 @@
 		"why": "Nima uchun",
 		"you_can_see_export_and_delete_everything": "Bu imkoniyat nima bo'lsa ham, istalgan vaqtda barcha narsani ko'ra olasiz, eksport qilasiz va o'chirib tashlaysiz, va harakat jurnali uchun o'zingizning saqlash oynangizni belgilaysiz. To'liq ro'yxat va API uchun <a href=\"/docs/home-privacy\">Uy shaxsiyati va saqlash</a> ga qarang.",
 		"you_have_the_right_to_lodge_a": "Siz mahalliy nazorat organiga shikoyat qilish huquqiga egasiz. Shuningdek, avval biz bilan <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> orqali bogʻlanishingiz mumkin; biz sizning muammoingizni bevosita hal qilish imkoniyatini mamnuniyat bilan qabul qilamiz.",
-		"you_have_the_rights_to_know_access": "Siz shaxsiy maʼlumotlaringizni bilish, unga kirish, tuzatish, oʻchirish va koʻchirish huquqiga egasiz, shuningdek, ularni amalga oshirganingiz uchun kamsitilmaslik huquqiga egasiz. Ularni <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> orqali (6-boʻlim) amalga oshiring. Biz soʻrovlarni sizning tizimga kirgan sessiyangiz, hisob elektron pochtangiz yoki hamyoningiz tomonidan imzolangan xabar orqali tekshiramiz. Vakolatli agent yozma ruxsat bilan sizning nomingizdan harakat qilishi mumkin.",
-		"photos_you_capture_or_upload": "Siz yuklagan yoki olgan rasmlar",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Bir dona oldingi (frontal) rasm va ixtiyoriy ravishda ikki dona yana tomoni rasmlar, agar siz selfie rejimidan foydalansangiz",
-		"building_your_3d_avatar_and_reproducing_re_r": "Sizning 3D avatarizni yaratish, shuningdek natijani qayta ishlab chiqarish, qayta riglash yoki qayta baholash",
-		"1a_photos_you_capture_or_upload": "1a. Siz yuklagan yoki olgan rasmlar",
-		"if_you_use_the_selfie_flow_the_photos_you": "Agar siz selfie rejimidan foydalansangiz, siz olgan rasmlaringiz (birta oldingi ko'rinish va ixtiyoriy ravishda ikki ta yanburchak burchagi) bizning rekonstruksiya xizmatimizga yuklanadi va 3D avatar yaratish uchun ishlatiladi. Ular natija qayta ishlab chiqilishi, qayta riglanishi va sifat uchun qayta baholanishi uchun generatsiya yozuvi bilan saqlanadi, va ular faqat sizning hisobingizga ko'rinadi. Ular generatsiya yoki hisobingiz o'chirilganda o'chiriladi, bu 5-bo'limdagi saqlash muddatlariga bog'liq. Biz <strong>emas</strong> ularni modellarni o'qitish uchun ishlatamiz, biz <strong>emas</strong> ularni reklam beruvchilar bilan baham ko'ramiz, va biz <strong>emas</strong> ularning yuz shabloni yoki boshqa biometrik identifikatorini hosil yoki saqlamaymiz. Selfie rejimidan foydalanish ixtiyoriy: siz gallereyadan rasm yuklashingiz yoki rasmsiz so'zlarda personajni tasvirlashingiz mumkin."
+		"you_have_the_rights_to_know_access": "Siz shaxsiy maʼlumotlaringizni bilish, unga kirish, tuzatish, oʻchirish va koʻchirish huquqiga egasiz, shuningdek, ularni amalga oshirganingiz uchun kamsitilmaslik huquqiga egasiz. Ularni <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> orqali (6-boʻlim) amalga oshiring. Biz soʻrovlarni sizning tizimga kirgan sessiyangiz, hisob elektron pochtangiz yoki hamyoningiz tomonidan imzolangan xabar orqali tekshiramiz. Vakolatli agent yozma ruxsat bilan sizning nomingizdan harakat qilishi mumkin."
 	},
 	"legal_risk": {
 		"10_contact": "10. Aloqa",

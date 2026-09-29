@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Plånboksadress",
+		"address_placeholder": "Plånboksadress (Solana eller 0x…)",
+		"also_tracked": "Spåras även",
+		"check_btn": "Kolla berättigande",
+		"copy_aria": "Kopiera adress",
+		"copy_btn": "Kopiera",
+		"count_not": "Ej berättigad",
+		"count_progress": "Pågår",
+		"count_qualified": "Berättigad",
+		"count_tracked": "Spårade",
+		"dir_fineprint": "Statuser speglar offentlig rapportering per ovanstående datum och ändras ofta; inget här är ett omdöme eller finansiell rådgivning. Uppskattade intervall är spekulation, inte löften. Kolla en plånbok för att se poäng mot dessa kriterier.",
+		"error_title": "Kunde inte skanna den här plånboken",
+		"est_label": "Uppskattat om alla berättigade airdrops betalas ut",
+		"filter_all": "Alla",
+		"filter_aria": "Filtrera efter berättigande",
+		"filter_not": "Ej berättigad",
+		"filter_progress": "Pågår",
+		"filter_qualified": "Berättigad",
+		"form_aria": "Kolla en plånbok",
+		"form_hint": "Tryck <kbd>/</kbd> för att fokusera. Kedjan upptäcks från adressen. Se även <a href=\"/portfolio\">plånboksportföljen</a>.",
+		"kicker": "Riktig on-chain-aktivitet · poängsätts live",
+		"loading_note": "Skannar on-chain-historik. En aktiv plånbok tar några sekunder.",
+		"meta_desc": "Kolla vilken Solana- eller Ethereum-plånbok som helst mot live-airdropkriterier: en riktig on-chain-aktivitetsskanning, ett 0–100 berättigande-poäng per program, exakt vad som saknas, och de manuella stegen en skanning inte kan se. Gratis, utan nycklar, inget konto.",
+		"page_title": "Airdrop-koll · three.ws",
+		"portfolio_chip": "Portfölj",
+		"programs": "Program",
+		"recent_label": "Senaste:",
+		"retry_btn": "Försök igen",
+		"scan_measured": "Vad skanningen mätte",
+		"share_aria": "Kopiera länk till den här rapporten",
+		"share_btn": "Dela",
+		"sub": "Klistra in vilken <strong>Solana</strong>- eller <strong>Ethereum</strong>-plånbok som helst och se vilka airdrops den kvalificerar för. Poängen kommer från en riktig skanning av plånbokens on-chain-historik; checklisten visar exakt vad som saknas och vad en skanning inte kan se.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Spårade program"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Agera på denna läsning",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Agerar inom hårda utgiftsgränser",
@@ -2936,6 +2972,10 @@
 		"starting": "Startar…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Konstellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Möt utvecklare, felrapporterare och community-medlemmar som gör three.ws bättre.",
+		"meta_title": "Bidragsgivare · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Bläddra bland alla mynt →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Krypto Derivat · three.ws",
 		"meta_title": "Krypto Derivat · three.ws",
 		"meta_twitter_description": "Live eviga terminsmarknader — pris, 24h förändring, finansieringsränta, öppet intresse och 24h volym.",
-		"meta_twitter_title": "Krypto Derivat · three.ws"
+		"meta_twitter_title": "Krypto Derivat · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Öppna vilket kontrakt som helst för dess fullständiga detaljsida: basis mot sitt eget index, vad finansieringskostnaden blir på en position du storlekar själv, och samma underliggande prisad på varje annan handelsplats."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Ändringar i denna policy",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Information vi samlar in",
+		"1a_photos_you_capture_or_upload": "1a. Foton du tar eller laddar upp",
 		"2_how_we_use_your_information": "2. Hur vi använder din information",
 		"3_on_chain_data": "3. Data på blockkedjan",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D-modeller (GLB/glTF), miniatyrbilder, agentmetadata",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API-anrop, widgetladdningshändelser (inga IP-adresser, inga fingeravtryck)",
 		"authentication_account_management": "Autentisering & kontohantering",
 		"authentication_security": "Autentisering, säkerhet",
+		"building_your_3d_avatar_and_reproducing_re_r": "Att bygga din 3D-avatar, och reproducera, re-rigga eller re-sköra resultatet",
 		"business_transfers_in_connection_with_a_merg": "<strong>Företagsöverlåtelser:</strong> i samband med en fusion, förvärv eller försäljning av tillgångar, med meddelande till berörda användare.",
 		"category": "Kategori",
 		"connected_home_data": "Ansluten hemdata",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identitetsverifiering, prenumerationsstatus",
 		"if_you_are_a_california_resident_the": "Om du är bosatt i Kalifornien: kategorierna av personlig information vi samlar in listas i avsnitt 1, syftena i avsnitt 2 och mottagarna i avsnitt 4. Vi <strong>säljer inte</strong> personlig information och <strong>delar den inte</strong> för beteendebaserad annonsering över olika sammanhang, så det finns inget att välja bort; webbläsarbaserade opt-out-signaler som Global Privacy Control respekteras som standard eftersom det inte finns någon försäljning eller delning att stoppa. Vi använder eller avslöjar inte känslig personlig information för ändamål som kräver en rätt att begränsa.",
 		"if_you_connect_a_home_assistant_instance": "Om du ansluter en Home Assistant-instans är åtkomsttoken du anger ett legitimation för en fysisk byggnad. Vi krypterar den i vila med samma primitiv som vi använder för förvaltningsnycklar, visar den aldrig igen och raderar den direkt när du kopplar ifrån hemmet. Åtgärder som öppnar en byggnad (lås upp, öppna, avväpna) kräver alltid en uttrycklig mänsklig bekräftelse, som inte kan produceras av en AI-modell, tills du ger ett permanent tillstånd för en specifik entitet.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Om du använder selfie-flödet laddas de foton du tar (ett frontfoto och upp till två valfria sidvinklar) upp till vår rekonstruktionstjänst och används för att bygga din 3D-avatar. De sparas tillsammans med generationsposten så att resultatet kan reproduceras, re-riggas och re-sköras för kvalitet, och de är synliga endast för ditt konto. De raderas när du raderar generationen eller ditt konto, med beaktande av förvaringsperioderna i avsnitt 5. Vi <strong>använder</strong> dem inte för att träna modeller, vi <strong>delar</strong> dem inte med annonsörer, och vi <strong>härleder eller lagrar</strong> ingen ansiktsmall eller annan biometrisk identifierare från dem. Att använda selfie-flödet är valfritt: du kan ladda upp ett foto från galleriet istället, eller beskriva en karaktär med ord och aldrig lämna ett foto alls.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastrukturleverantörer:</strong> Google Cloud Platform (hosting och beräkning), Neon (databas), Cloudflare (lagring och CDN), Resend (transaktionell e-post) och Privy (valfri inloggning). Var och en behandlar data å våra vägnar enligt sin egen integritetspolicy och sina databehandlingsvillkor.",
 		"legal_acceptance_records": "Register över juridiskt godkännande",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Register över juridiskt godkännande</strong> (ditt godkännande av användarvillkoren och riskinformationen) sparas under hela ditt kontos livslängd och därefter så länge som det behövs för att fastställa eller försvara rättsliga anspråk. Denna lagring är en rättslig skyldighet och kvarstår även efter en begäran om kontoradering.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Integritetspolicy · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-begränsad åtkomst:</strong> när du ansluter via OAuth kan anslutningen endast läsa och skriva de three.ws kontodata som omfattas av de behörigheter du beviljar (avatarer, agenter, minne, profil). Den kan inte komma åt din AI-klients chatthistorik, minne eller lokala filer.",
 		"on_chain_data": "On-chain-data",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Ett frontfoto och upp till två valfria sidvinklar, om du använder selfie-flödet",
 		"operating_the_three_ws_home_features_you": "Drift av de three.ws Hem-funktioner du aktiverat, och ge dig en granskningsspårning av dem",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Betalningsdata (x402):</strong> betalverktyg avräknas i USDC via x402 betalningsprotokollet. När du betalar per anrop mottar vi din publika plånboksadress och transaktionssignaturen för betalning/avräkning, verifierad via en betalningsförmedlare (Coinbase CDP och/eller den publika x402.org-förmedlaren). Vi mottar, begär eller lagrar aldrig dina privata nycklar eller seed phrase. Den enda token som three.ws själv refererar till är <code>$THREE</code>; USDC används enbart för avräkning.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Betalningsförmedlare:</strong> för betalda funktioner som avräknas on-chain (x402), sker betalningsverifiering via en förmedlare som Coinbase Developer Platform eller den publika x402.org-förmedlaren. De ser din publika plånboksadress och transaktionssignaturer, aldrig privata nycklar.",
+		"photos_you_capture_or_upload": "Foton du tar eller laddar upp",
 		"privacy_policy": "Integritetspolicy",
 		"privacy_questions_privacy_three_ws": "Integritetsfrågor: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bevis på överenskommelse, juridisk efterlevnad",
@@ -11279,12 +11325,7 @@
 		"why": "Varför",
 		"you_can_see_export_and_delete_everything": "Du kan se, exportera och radera allt denna funktion innehåller när som helst, och ställa in ditt eget retentionsfönster för aktivitetsloggen. Se <a href=\"/docs/home-privacy\">Hem integritet och retentionsperiod</a> för den fullständiga inventeringen och API:et.",
 		"you_have_the_right_to_lodge_a": "Du har rätt att lämna in ett klagomål till din lokala tillsynsmyndighet. Du kan också kontakta oss först på <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; vi välkomnar möjligheten att lösa ditt ärende direkt.",
-		"you_have_the_rights_to_know_access": "Du har rätt att få veta, få tillgång till, korrigera, radera och portera din personliga information, och att inte bli diskriminerad för att du utövar dessa rättigheter. Utöva dem via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Avsnitt 6). Vi verifierar förfrågningar med din inloggade session, din kontoe-post eller ett meddelande signerat av din plånbok. En auktoriserad agent får agera för din räkning med skriftligt tillstånd.",
-		"photos_you_capture_or_upload": "Foton du tar eller laddar upp",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Ett frontfoto och upp till två valfria sidvinklar, om du använder selfie-flödet",
-		"building_your_3d_avatar_and_reproducing_re_r": "Att bygga din 3D-avatar, och reproducera, re-rigga eller re-sköra resultatet",
-		"1a_photos_you_capture_or_upload": "1a. Foton du tar eller laddar upp",
-		"if_you_use_the_selfie_flow_the_photos_you": "Om du använder selfie-flödet laddas de foton du tar (ett frontfoto och upp till två valfria sidvinklar) upp till vår rekonstruktionstjänst och används för att bygga din 3D-avatar. De sparas tillsammans med generationsposten så att resultatet kan reproduceras, re-riggas och re-sköras för kvalitet, och de är synliga endast för ditt konto. De raderas när du raderar generationen eller ditt konto, med beaktande av förvaringsperioderna i avsnitt 5. Vi <strong>använder</strong> dem inte för att träna modeller, vi <strong>delar</strong> dem inte med annonsörer, och vi <strong>härleder eller lagrar</strong> ingen ansiktsmall eller annan biometrisk identifierare från dem. Att använda selfie-flödet är valfritt: du kan ladda upp ett foto från galleriet istället, eller beskriva en karaktär med ord och aldrig lämna ett foto alls."
+		"you_have_the_rights_to_know_access": "Du har rätt att få veta, få tillgång till, korrigera, radera och portera din personliga information, och att inte bli diskriminerad för att du utövar dessa rättigheter. Utöva dem via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Avsnitt 6). Vi verifierar förfrågningar med din inloggade session, din kontoe-post eller ett meddelande signerat av din plånbok. En auktoriserad agent får agera för din räkning med skriftligt tillstånd."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",

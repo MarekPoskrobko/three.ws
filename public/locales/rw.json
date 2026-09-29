@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Ubwiyunge · three.ws",
 		"the_commons": "Ubwiyunge"
 	},
+	"airdrops": {
+		"address_label": "Adiresi ya poche",
+		"address_placeholder": "Adiresi ya poche (Solana cyangwa 0x…)",
+		"also_tracked": "Byabaye byibwaho",
+		"check_btn": "Reba ubushobozi",
+		"copy_aria": "Kopera adiresi",
+		"copy_btn": "Kopera",
+		"count_not": "Ntabwo ushobora",
+		"count_progress": "Hagati aho",
+		"count_qualified": "Ushobora",
+		"count_tracked": "Byibwaho",
+		"dir_fineprint": "Ibimenyetso birashyiraho ibyo bishyirwa mu rubuga ku wa mbere nk'uko byabaye ku itariki iri hejuru kandi biguha neza; nta kindi hano kiri ibyo kwemeza cyangwa inama y'imirimo y'amaranga. Ibice bya kabiri byemewe ni ibitekerezo by'abantu, si ibyo bategerezwa. Reba poche kugira urebe amasoko y'iyi mirango.",
+		"error_title": "Ntibyabaye kubona iyi poche",
+		"est_label": "Byemewe niba ibyoherewe byose biha",
+		"filter_all": "Byose",
+		"filter_aria": "Hindura nkenerwa y'ubushobozi",
+		"filter_not": "Ntabwo ushobora",
+		"filter_progress": "Hagati aho",
+		"filter_qualified": "Ushobora",
+		"form_aria": "Reba poche",
+		"form_hint": "Dushya <kbd>/</kbd> kugira ngo ufate. Urwego ruvugwa kuva kuri adiresi. Reba kandi <a href=\"/portfolio\">portefeuille y'ibyo ufite</a>.",
+		"kicker": "Imirimo y'ukuri ku chain · ibimenyetso biva mu buzima",
+		"loading_note": "Gukora skani y'amateka ku chain. Poche iri mu gikorwa gishobora gukura amasegonda make.",
+		"meta_desc": "Reba yose Solana cyangwa poche ya Ethereum ku mirango ya airdrop iri mu buzima: skani y'ukuri ya imirimo ku chain, isoko 0-100 y'ubushobozi bwa buri programu, ibyo wabaye ufite n'ibyo skani ntibishobora kubona. Ntibishoboka, ntibishoboka, nta konti.",
+		"page_title": "Umusaruro w'Airdrop · three.ws",
+		"portfolio_chip": "Portefeuille",
+		"programs": "Programme",
+		"recent_label": "Amajyepfo:",
+		"retry_btn": "Ongera ugerageze",
+		"scan_measured": "Ibyo skani yemeye",
+		"share_aria": "Kopera link y'iyi ripoti",
+		"share_btn": "Shyirahamwe",
+		"sub": "Andika yose <strong>Solana</strong> cyangwa <strong>Ethereum</strong> poche ugire ube uzi ibyo ishobora gukurikirana. Isoko ivuye mu skani y'ukuri y'amateka ya poche ku chain; checkliste ikubaza ibyo ufite n'ibyo skani ntibishobora kubona.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Programme zibwaho"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Kora ku byasomwe",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Ikora mu mbibi zikomeye zo gukoresha",
@@ -2936,6 +2972,10 @@
 		"starting": "Itangira…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Ubane abahanga, ababivuga ibibazo, n'abaturage b'umuryango batuma three.ws biruta.",
+		"meta_title": "Abakozi hamwe · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Reba ibiceri byose →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivatives za Crypto · three.ws",
 		"meta_title": "Derivatives za Crypto · three.ws",
 		"meta_twitter_description": "Amasoko y'igihe cyose y'ibizaza akora ako kanya — igiciro, impinduka mu masaha 24, igipimo cy'inkunga, inyungu zitarishyurwa, n'ubucuruzi bw'amasaha 24.",
-		"meta_twitter_title": "Derivatives za Crypto · three.ws"
+		"meta_twitter_title": "Derivatives za Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Fungura yose contract kugira upate urupapuro rwose rw'ibisobanuro: ibyo gushyira mu bikorwa ku buri index, ibyo gushyira mu bikorwa bya funding rate ku nkunga ufite, n'ibyo gushyira mu bikorwa by'ibintu byose ku buri ahandi."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Impinduka kuri iyi Politiki",
 		"12_contact": "12. Uko watugeraho",
 		"1_information_we_collect": "1. Amakuru Dukusanya",
+		"1a_photos_you_capture_or_upload": "1a. Ibishusho Ufita cyangwa Uhashyiraho",
 		"2_how_we_use_your_information": "2. Uburyo Dukoresha Amakuru Yawe",
 		"3_on_chain_data": "3. Amakuru ya On-Chain",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Modeli za 3D (GLB/glTF), amashusho mato, amakuru y'inyongera y'umukozi",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Ibihamagarwa bya API, ibikorwa byo gupakira widget (nta IP, nta bikuranga)",
 		"authentication_account_management": "Kwemeza umwirondoro no kuyobora konti",
 		"authentication_security": "Kwemeza umwirondoro, umutekano",
+		"building_your_3d_avatar_and_reproducing_re_r": "Gukora avatar yawe ya 3D, kandi gusubira gukora, gusubira gushyiraho amaboneza cyangwa gusubira gushyiraho ibipimo byo kwiyubaka",
 		"business_transfers_in_connection_with_a_merg": "<strong>Ihererekanyabikorwa ry'ubucuruzi:</strong> mu rwego rwo guhuza ibigo, kugura ibindi, cyangwa kugurisha umutungo, bimenyeshejwe abakoresha bireba.",
 		"category": "Icyiciro",
 		"connected_home_data": "Amakuru y'Umuryango w'Umuryango",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Kwemeza umwirondoro, imiterere y'ubunyamuryango",
 		"if_you_are_a_california_resident_the": "Niba utuye muri California: ibyiciro by'amakuru bwite dukusanya byanditse mu Gice cya 1, intego mu Gice cya 2, n'abagenewe mu Gice cya 4. Ntabwo <strong>tugurisha</strong> amakuru bwite kandi ntabwo <strong>tuyasangira</strong> n'abandi mu kwamamaza bishingiye ku myitwarire itandukanye, ku buryo nta kintu cyo kwanga guhagarika gihari; ibimenyetso byo kwanga bya browser nka Global Privacy Control byubahirizwa mu buryo busanzwe kuko nta kugurisha cyangwa gusangira bigomba guhagarikwa. Ntabwo dukoresha cyangwa ngo dushyire ahagaragara amakuru bwite y'ibanga mu ntego zisaba uburenganzira bwo kubuza.",
 		"if_you_connect_a_home_assistant_instance": "Niba uhuza umuryango w'Umuryango w'Umuryango, itoken y'ubuhanga wahawe ni uburenganzira bwo kwiyandikisha mu nzu y'umutwe. Turigabanya mu buryo butagira ibyago n'icyo cyo gukurikirana twikoresha ku mifungurwa y'ibanki z'ubutunzi, ntibazaboneka rindi, kandi dutabura igihe uvuga umuryango. Ibikorwa byo kufungura nzu (kufungura, kufungura, gukurikirana) birondera ibyemezo by'umuntu byiteye imbere, bitashobora kugenzurwa n'umudeli w'AI, gushika uhawe uburenganzira bwo gukurikirana ku kintu kimwe gusa.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Niba ufata inzira y'ishusho ry'umutwe, ibishusho ufita (ishusho rimwe ry'imbere n'ibiri by'ibice byose bishoboka) bisohoka kwisohoka kuri serivisi y'ubwubatsi bwacu kandi bikoreshwa gukora avatar yawe ya 3D. Birabakwa hamwe n'irekodo ry'ubwubatsi kugira ngo ibyakozwe bisubirwe gukorwa, gusubira gushyiraho amaboneza kandi gusubira gushyiraho ibipimo byo kwiyubaka, ariko birabonwa n'umukiri w'akaunti yawe gusa. Birova niba wavuga ibyakozwe cyangwa akaunti yawe, biciye ku ntego z'ibyabaye mu Gice 5. Ntibyikoreshwa <strong>ntibyo</strong> gukora imoderi, ntibyabwiwe <strong>ntibyo</strong> n'abakoresha ibicuruzwa, kandi ntibyavugwa <strong>ntibyo</strong> kugira ngo bikoreshwe gukora urutonde rw'ubwoko bw'umutwe cyangwa icyo gishobora kuba ikimenyetso cy'ubwoko bw'umuntu. Gufata inzira y'ishusho ry'umutwe ni ibyo wifuza: ushobora gushyiraho ishusho ku galeri yawe, cyangwa usobanura umunyamuryango mu magambo kandi ntushyiraho ishusho na kimwe.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Abatanga ibikorwa remezo:</strong> Google Cloud Platform (gucumbikira no gutunganya), Neon (database), Cloudflare (ububiko na CDN), Resend (imeri y'ibikorwa), na Privy (kwinjira ku bushake). Buri umwe atunganya amakuru mu izina ryacu akurikije politiki ye bwite y'ibanga n'amasezerano yo gutunganya amakuru.",
 		"legal_acceptance_records": "Inyandiko z'ubwemeranywe n'amategeko",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Inyandiko z'ubwemeranywe n'amategeko</strong> (ubwemeranywe bwawe bw'Amategeko y'Imikoreshereze n'Ibisobanuro by'Ingaruka) zibitswe igihe cyose konti yawe ihari kandi nyuma yaho igihe cyose bikenewe kugira ngo hashyirweho cyangwa hirindwe ibirego by'amategeko. Uku kubika ni inshingano y'amategeko kandi birakomeza nubwo wasaba gusiba konti.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politiki y'ibanga · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Kugera kuri OAuth bifite imbibi:</strong> iyo uhujije ukoresheje OAuth, ihuriro rishobora gusoma no kwandika gusa amakuru ya konti ya three.ws arengewe n'imbibi wemeye (amashusho, abakozi, ububiko, amakuru y'umwirondoro). Ntishobora kugera ku mateka y'ibiganiro bya AI yawe, ububiko, cyangwa dosiye z'ibanze.",
 		"on_chain_data": "Amakuru yo kuri blockchain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Ishusho rimwe ry'imbere n'ibiri by'ibice byose bishoboka, niba ufata inzira y'ishusho ry'umutwe",
 		"operating_the_three_ws_home_features_you": "Gukora ibyerekeye three.ws Home wavuguye, n'ugufasha kugira inama y'ibyakozwe byabo",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Amakuru y'ubwishyu (x402):</strong> ibikoresho byishyuwe byishyurirwa muri USDC binyuze muri protocole y'ubwishyu ya x402. Iyo wishyuye kuri buri gikorwa, tubona aderesi yawe ya wallet rusange n'umukono w'ubwishyu n'uw'iyishyurwa, byemejwe n'umufasha mu kwishyura (Coinbase CDP cyangwa/na umufasha rusange wa x402.org). Ntitwigera twakira, dusaba, cyangwa tubika imfunguzo zawe bwite cyangwa interuro y'ibanga. Ikimenyetso kimwe gusa three.ws yifashisha ni <code>$THREE</code>; USDC ikoreshwa gusa mu kwishyura.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Abafasha mu kwishyura:</strong> ku bikoresho byishyuwe byishyurirwa kuri blockchain (x402), igenzura ry'ubwishyu rikorwa n'umufasha nka Coinbase Developer Platform cyangwa umufasha rusange wa x402.org. Babona aderesi yawe ya wallet rusange n'imikono y'ibikorwa, ntabwo babona imfunguzo zawe bwite.",
+		"photos_you_capture_or_upload": "Ibishusho ufita cyangwa uhashyiraho",
 		"privacy_policy": "Politiki y'ibanga",
 		"privacy_questions_privacy_three_ws": "Ibibazo bijyanye n'ibanga: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Ihamya ry'amasezerano, iyubahirizwa ry'amategeko",
@@ -11279,12 +11325,7 @@
 		"why": "Impamvu",
 		"you_can_see_export_and_delete_everything": "Ushobora kureba, gusohoka n'ugusiba byose iyi ngingo ifite igihe cyose, kandi utege imbere y'uko urupapuro rw'ibyakozwe ruzaba rigamije. Reba <a href=\"/docs/home-privacy\">Ubuzima bwo mu rugo n'igihe cyo kuzigama</a> kugira urupapuro ruzuye n'API.",
 		"you_have_the_right_to_lodge_a": "Ufite uburenganzira bwo kugeza ikirego ku rwego rw'ubugenzuzi rw'aho utuye. Ushobora kandi kutwandikira mbere kuri <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; twishimiye amahirwe yo gukemura ikibazo cyawe mu buryo bweruye.",
-		"you_have_the_rights_to_know_access": "Ufite uburenganzira bwo kumenya, kugera kuri, gukosora, gusiba, no kwimura amakuru yawe bwite, no kutagupinga kubera ko wabukoresheje. Ubukoreshe binyuze kuri <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Ingingo ya 6). Tugenzura ibyifuzo dukoresheje session yawe winjiyemo, imeyili ya konti yawe, cyangwa ubutumwa bwasinywe na wallet yawe. Umukozi wemewe ashobora kugukorera afite uruhushya rwanditse.",
-		"photos_you_capture_or_upload": "Ibishusho ufita cyangwa uhashyiraho",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Ishusho rimwe ry'imbere n'ibiri by'ibice byose bishoboka, niba ufata inzira y'ishusho ry'umutwe",
-		"building_your_3d_avatar_and_reproducing_re_r": "Gukora avatar yawe ya 3D, kandi gusubira gukora, gusubira gushyiraho amaboneza cyangwa gusubira gushyiraho ibipimo byo kwiyubaka",
-		"1a_photos_you_capture_or_upload": "1a. Ibishusho Ufita cyangwa Uhashyiraho",
-		"if_you_use_the_selfie_flow_the_photos_you": "Niba ufata inzira y'ishusho ry'umutwe, ibishusho ufita (ishusho rimwe ry'imbere n'ibiri by'ibice byose bishoboka) bisohoka kwisohoka kuri serivisi y'ubwubatsi bwacu kandi bikoreshwa gukora avatar yawe ya 3D. Birabakwa hamwe n'irekodo ry'ubwubatsi kugira ngo ibyakozwe bisubirwe gukorwa, gusubira gushyiraho amaboneza kandi gusubira gushyiraho ibipimo byo kwiyubaka, ariko birabonwa n'umukiri w'akaunti yawe gusa. Birova niba wavuga ibyakozwe cyangwa akaunti yawe, biciye ku ntego z'ibyabaye mu Gice 5. Ntibyikoreshwa <strong>ntibyo</strong> gukora imoderi, ntibyabwiwe <strong>ntibyo</strong> n'abakoresha ibicuruzwa, kandi ntibyavugwa <strong>ntibyo</strong> kugira ngo bikoreshwe gukora urutonde rw'ubwoko bw'umutwe cyangwa icyo gishobora kuba ikimenyetso cy'ubwoko bw'umuntu. Gufata inzira y'ishusho ry'umutwe ni ibyo wifuza: ushobora gushyiraho ishusho ku galeri yawe, cyangwa usobanura umunyamuryango mu magambo kandi ntushyiraho ishusho na kimwe."
+		"you_have_the_rights_to_know_access": "Ufite uburenganzira bwo kumenya, kugera kuri, gukosora, gusiba, no kwimura amakuru yawe bwite, no kutagupinga kubera ko wabukoresheje. Ubukoreshe binyuze kuri <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Ingingo ya 6). Tugenzura ibyifuzo dukoresheje session yawe winjiyemo, imeyili ya konti yawe, cyangwa ubutumwa bwasinywe na wallet yawe. Umukozi wemewe ashobora kugukorera afite uruhushya rwanditse."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kwandikira",

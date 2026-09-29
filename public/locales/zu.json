@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "I-Agora · ama-Commons · three.ws",
 		"the_commons": "ama-Commons"
 	},
+	"airdrops": {
+		"address_label": "Ikheli le-Wallet",
+		"address_placeholder": "Ikheli le-Wallet (Solana noma 0x…)",
+		"also_tracked": "Kuyabekezelwa futhi",
+		"check_btn": "Hlola ukufaneleka",
+		"copy_aria": "Khipha ikheli",
+		"copy_btn": "Khipha",
+		"count_not": "Akuyifanele",
+		"count_progress": "Kuyasebenza",
+		"count_qualified": "Kuyifanele",
+		"count_tracked": "Kuyabekezelwe",
+		"dir_fineprint": "Imistatus ibonisa ukubhalwa ngokwezomnotho ngesuku eliphezulu kanye nokuguquka kakhulu; akukho lapha okusho ukukhuthaza noma icebo ngokwezemali. Izinga ezilinganisiwe zizimbono zomphakathi, ezingezimphiwe. Hlola i-wallet ukuze ubone ama-sco ngokwezi zinqumo.",
+		"error_title": "Akunayo ithuba yokuhlola le wallet",
+		"est_label": "Kulinganiswe uma yonke idrop ekuyifanele iphumelela",
+		"filter_all": "Zonke",
+		"filter_aria": "Hlola ngokufaneleka",
+		"filter_not": "Akuyifanele",
+		"filter_progress": "Kuyasebenza",
+		"filter_qualified": "Kuyifanele",
+		"form_aria": "Hlola i-wallet",
+		"form_hint": "Shayela <kbd>/</kbd> ukuze ubekezele. I-chain itholakala kwikheli. Funda kanjalo <a href=\"/portfolio\">i-portfolio ye-wallet</a>.",
+		"kicker": "Umsebenzi wethu on-chain · kubalwa ngokushesha",
+		"loading_note": "Kuhlelwa umlando on-chain. I-wallet eyigqamile ithatha amasekhondi amabala.",
+		"meta_desc": "Hlola yonke Solana noma i-wallet ye-Ethereum ngokwezinqumo ze-airdrop eziphilayo: ukuhlola kwethu kwakho okwenziwa on-chain, isco 0-100 sokufaneleka ngokwe-inkqubo, lokho ongakwenzanga ngokuchaza, nezinyathelo ezizokwenza ngokwakho ezingabonakali ukuhlola. Mahala, akukho ikheli, akukho i-akhawunti.",
+		"page_title": "Ukuhlola Airdrop · three.ws",
+		"portfolio_chip": "I-Portfolio",
+		"programs": "Imikhakha",
+		"recent_label": "Ezintsha:",
+		"retry_btn": "Phinda",
+		"scan_measured": "Okubaliwe yiskeni",
+		"share_aria": "Khipha ilinkhu eyalelo xazululo",
+		"share_btn": "Yabelana",
+		"sub": "Fake yonke <strong>Solana</strong> noma <strong>Ethereum</strong> i-wallet uze ubonke eyiphi idrop ekufanele kuyo. Isco sivela kuuhlola okwenziwayo kwalomlando wokusebenza kwe-wallet on-chain; uhlu lwenqubo kushilo ukuthi kuyekwe yini futhi ukuhlola akusabonakalisi.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Imikhakha ebekezelwe"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Yenza ngalokhu okufundiwe",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Isebenza ngaphakathi kwemikhawulo eqinile yokusebenzisa imali",
@@ -2936,6 +2972,10 @@
 		"starting": "Iyaqala…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Thola abaqeqeshi, ababikayo izinkinga, nabalungu bezemvelo abenza three.ws ngcono.",
+		"meta_title": "Abahambisani · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Phequlula zonke izinhlamvu zemali →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Ama-Crypto Derivatives · three.ws",
 		"meta_title": "Ama-Crypto Derivatives · three.ws",
 		"meta_twitter_description": "Izimakethe ze-futures ezingapheli ezibukhoma — intengo, ukunyakaza kwamahora angu-24, izinga lokuxhasa, inzalo evulekile, kanye nevolumu yamahora angu-24.",
-		"meta_twitter_title": "Ama-Crypto Derivatives · three.ws"
+		"meta_twitter_title": "Ama-Crypto Derivatives · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Vula yonke ikhontrakthi ukuze uthole iphepha lakho eliphezulu: isisekelo ngakho konke, lokho kufaka imali ekusebenzeni okwenza wena, futhi okufanayo kuyatholakala kuwo onke amapleyisi."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Izinguquko Kule Nqubomgomo",
 		"12_contact": "12. Xhumana Nathi",
 		"1_information_we_collect": "1. Ulwazi Esiluqoqayo",
+		"1a_photos_you_capture_or_upload": "1a. Izithombe Ozithola noma Ozifaka",
 		"2_how_we_use_your_information": "2. Indlela Esisebenzisa Ngayo Ulwazi Lwakho",
 		"3_on_chain_data": "3. Idatha Ye-On-Chain",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Amamodeli e-3D (GLB/glTF), izithombe ezincane, imethadatha ye-agent",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Izingcingo ze-API, imicimbi yokulayisha iwijethi (ngaphandle kwama-IP, ngaphandle kwezithupha)",
 		"authentication_account_management": "Ukuqinisekisa ubuwena nokuphathwa kwe-akhawunti",
 		"authentication_security": "Ukuqinisekisa ubuwena, ukuphepha",
+		"building_your_3d_avatar_and_reproducing_re_r": "Ukwakha i-3D avatar yakho, kanye nokuzalisa kabusha, ukulungisa kabusha noma ukubeka kabusha isiphumo leso",
 		"business_transfers_in_connection_with_a_merg": "<strong>Ukudluliswa kwebhizinisi:</strong> ngokuhambisana nokuhlanganiswa, ukutholwa, noma ukudayiswa kwempahla, ngesaziso kubasebenzisi abathintekile.",
 		"category": "Isigaba",
 		"connected_home_data": "Data yendlu ehlanganisiwe",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Ukuqinisekisa ubuwena, isimo sokubhalisa",
 		"if_you_are_a_california_resident_the": "Uma ungumhlali waseCalifornia: izigaba zolwazi lomuntu siqu esiluqoqayo zibalwe kuSigaba 1, izinhloso kuSigaba 2, nabamukeli kuSigaba 4. Thina <strong>asithengisi</strong> ulwazi lomuntu siqu futhi <strong>asabelani</strong> ngalo ukuze kusetshenziswe ukukhangisa okusekelwe ekuziphatheni okuhlukene kwezimo, ngakho-ke akukho okumele ukhethe ukuphuma kukho; izimpawu zokukhetha ukuphuma zesiphequluli ezifana ne-Global Privacy Control zihlonishwa ngokuzenzakalelayo ngoba akukho ukuthengisa noma ukwabelana okumele kumiswe. Asisebenzisi noma sidalule ulwazi lomuntu siqu olubucayi ngezinjongo ezidinga ilungelo lokukhawulela.",
 		"if_you_connect_a_home_assistant_instance": "Uma uhlanganisa isiqinisekiso se-Home Assistant, itokheni yokungena onika yona ingumthelela wendlu emphakathini. Siyayifihla phansi kwezinto ezifanayo esisebenzisayo ukugcina ama-khi womthwalo, asiyibonisi futhi, kwaye siyayisusa ngokushesha uma uqeda ukuhlanganisa indlu. Imisebenzi eyivula indlu (ukuvula, ukuvula, ukukhipha) kuyadingeka ukuthi kube khona ukwamukela okusobala komuntu, okungenziwa yimodeli ye-AI, ngaphambi kokuthi ulinikeze imvume emele kanye nento eyodwa.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Uma usebenzisa indlela yeselfie, izithombe ozithola (isithombe esisodwa esibuka phambili kanye nezithombe ezimbili ezingakhethiwe zokubuka ngasecaleni) zifakwa kwisesebenzi sethu sokwakha kabusha kanye nezisetyenziswa ukwakha i-3D avatar yakho. Zihlala nezirekodi zokuzalwa ukuze isiphumo singazaliswa kabusha, singalungiswa kabusha kanye nokubekwa kabusha ukuze kutholakale ubuchwepheshe, futhi azibonakala kuphela ekhawunti yakho. Zishiywe uma ushiyayo isiphumo noma ikhawunti yakho, ngokubhekene nezikhathi zokugcina ezisigatsheni 5. Asizisebenzisi <strong>ukuzalisa</strong> imodeli, asizabelani <strong>nababhalisi abangabazali</strong>, futhi asiziquketheli <strong>noma sizigcine</strong> ithempleyithi yobuso noma yinye into eyobayometriki kuyo. Ukusebenzisa indlela yeselfie akusemthethweni: ungakwazi ukuphakamisa isithombe esivela egalilini yakho, noma uchaze umuntu ngamagama ungenakwazi ukuphakamisa isithombe.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Abahlinzeki bengqalasizinda:</strong> I-Google Cloud Platform (ukusingathwa nokubala), I-Neon (database), I-Cloudflare (isitoreji ne-CDN), I-Resend (i-imeyili yokwenziwe), ne-Privy (ukungena okungakhethwa). Ngamunye ucubungula idatha egameni lethu ngaphansi kwenqubomgomo yakhe yobumfihlo nemigomo yokucubungula idatha.",
 		"legal_acceptance_records": "Amarekhodi okwamukelwa ngokusemthethweni",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Amarekhodi okwamukelwa ngokusemthethweni</strong> (ukwamukela kwakho Imigomo Yesevisi kanye Nokudalulwa Kobungozi) agcinwa impilo yonke ye-akhawunti yakho futhi ngemuva kwalokho isikhathi eside njengoba kudingeka ukusungula noma ukuvikela izimangalo zomthetho. Lokhu kugcinwa kuyisibopho somthetho futhi kuhlala ngisho nangemva kwesicelo sokususwa kwe-akhawunti.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Inqubomgomo Yobumfihlo · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Ukufinyelela okulinganiselwe kwe-OAuth:</strong> uma uxhumeka nge-OAuth, isixhumi singafunda futhi sibhale kuphela idatha ye-akhawunti ye-three.ws ehlanganiswa yizilinganiso ozinikezayo (ama-avatar, ama-agent, inkumbulo, iphrofayela). Akukwazi ukufinyelela umlando wengxoxo weklayenti lakho le-AI, inkumbulo, noma amafayela asendaweni.",
 		"on_chain_data": "Idatha eseketheni",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Isithombe esisodwa esibuka phambili kanye nezithombe ezimbili ezingakhethiwe zokubuka ngasecaleni, uma usebenzisa indlela yeselfie",
 		"operating_the_three_ws_home_features_you": "Ukuphatha izici ze-three.ws Home owazivulela, kanye nokunika izwe lobungcwele lwezo",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Idatha yokukhokha (x402):</strong> amathuluzi akhokhelwayo ahlala ku-USDC ngephrothokholi yokukhokha ye-x402. Uma ukhokha ngocingo ngalunye sithola ikheli lakho lesikhwama somphakathi kanye nesiginesha yokukhokha/yokuhlala, eqinisekiswe ngomxhumanisi wokukhokha (i-Coinbase CDP kanye/noma umxhumanisi womphakathi we-x402.org). Asilokothi sithole, sicele, noma sigcine okhiye bakho abayimfihlo noma ibinzana lembewu. I-token kuphela i-three.ws ngokwayo ebhekisela kuyo yi-<code>$THREE</code>; USDC isetshenziselwa ukuhlala kuphela.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Abaxhumanisi bokukhokha:</strong> ngezici ezikhokhelwayo ezihlala ku-chain (x402), ukuqinisekiswa kokukhokha kwenziwa ngomxhumanisi onjenge-Coinbase Developer Platform noma umxhumanisi womphakathi we-x402.org. Babona ikheli lakho lesikhwama somphakathi kanye neziginesha zokwenziwe, hhayi okhiye abayimfihlo.",
+		"photos_you_capture_or_upload": "Izithombe ozithola noma ozifaka",
 		"privacy_policy": "Inqubomgomo Yobumfihlo",
 		"privacy_questions_privacy_three_ws": "Imibuzo yobumfihlo: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Ubufakazi besivumelwano, ukuthobela umthetho",
@@ -11279,12 +11325,7 @@
 		"why": "Kungani",
 		"you_can_see_export_and_delete_everything": "Ungayibona, ukuyihambisa nokuyisusa konke lokhu icici ligcina nganoma yisiphi isikhathi, kwaye ubeke isikhathi sakho sokugcina log yezenzo. Bheka <a href=\"/docs/home-privacy\">Home privacy and retention</a> ukwazisa uhlelo lwezinto zonke ne-API.",
 		"you_have_the_right_to_lodge_a": "Unelungelo lokufaka isikhalazo kugunya lakho lokugada lendawo. Ungaphinda usithinte kuqala ku-<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; singakwamukela ithuba lokuxazulula inkinga yakho ngokuqondile.",
-		"you_have_the_rights_to_know_access": "Unamalungelo okwazi, ukufinyelela, ukulungisa, ukususa, nokudlulisa ulwazi lwakho lomuntu siqu, futhi unelungelo lokungabandlululwa ngokusebenzisa wona. Wasebenzise nge-<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Isigaba 6). Siqinisekisa izicelo sisebenzisa iseshini yakho engenile, i-imeyili ye-akhawunti yakho, noma umyalezo osayinwe isikhwama sakho. Ummeleli ogunyaziwe angakwenzela lokho ngemvume ebhaliwe.",
-		"photos_you_capture_or_upload": "Izithombe ozithola noma ozifaka",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Isithombe esisodwa esibuka phambili kanye nezithombe ezimbili ezingakhethiwe zokubuka ngasecaleni, uma usebenzisa indlela yeselfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Ukwakha i-3D avatar yakho, kanye nokuzalisa kabusha, ukulungisa kabusha noma ukubeka kabusha isiphumo leso",
-		"1a_photos_you_capture_or_upload": "1a. Izithombe Ozithola noma Ozifaka",
-		"if_you_use_the_selfie_flow_the_photos_you": "Uma usebenzisa indlela yeselfie, izithombe ozithola (isithombe esisodwa esibuka phambili kanye nezithombe ezimbili ezingakhethiwe zokubuka ngasecaleni) zifakwa kwisesebenzi sethu sokwakha kabusha kanye nezisetyenziswa ukwakha i-3D avatar yakho. Zihlala nezirekodi zokuzalwa ukuze isiphumo singazaliswa kabusha, singalungiswa kabusha kanye nokubekwa kabusha ukuze kutholakale ubuchwepheshe, futhi azibonakala kuphela ekhawunti yakho. Zishiywe uma ushiyayo isiphumo noma ikhawunti yakho, ngokubhekene nezikhathi zokugcina ezisigatsheni 5. Asizisebenzisi <strong>ukuzalisa</strong> imodeli, asizabelani <strong>nababhalisi abangabazali</strong>, futhi asiziquketheli <strong>noma sizigcine</strong> ithempleyithi yobuso noma yinye into eyobayometriki kuyo. Ukusebenzisa indlela yeselfie akusemthethweni: ungakwazi ukuphakamisa isithombe esivela egalilini yakho, noma uchaze umuntu ngamagama ungenakwazi ukuphakamisa isithombe."
+		"you_have_the_rights_to_know_access": "Unamalungelo okwazi, ukufinyelela, ukulungisa, ukususa, nokudlulisa ulwazi lwakho lomuntu siqu, futhi unelungelo lokungabandlululwa ngokusebenzisa wona. Wasebenzise nge-<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Isigaba 6). Siqinisekisa izicelo sisebenzisa iseshini yakho engenile, i-imeyili ye-akhawunti yakho, noma umyalezo osayinwe isikhwama sakho. Ummeleli ogunyaziwe angakwenzela lokho ngemvume ebhaliwe."
 	},
 	"legal_risk": {
 		"10_contact": "10. Xhumana",

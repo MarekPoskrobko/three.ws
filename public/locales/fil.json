@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · ang Commons · three.ws",
 		"the_commons": "ang Commons"
 	},
+	"airdrops": {
+		"address_label": "Wallet address",
+		"address_placeholder": "Wallet address (Solana o 0x…)",
+		"also_tracked": "Naka-track din",
+		"check_btn": "Suriin ang eligibility",
+		"copy_aria": "Kopyahin ang address",
+		"copy_btn": "Kopyahin",
+		"count_not": "Hindi eligible",
+		"count_progress": "On-going",
+		"count_qualified": "Qualified",
+		"count_tracked": "Naka-track",
+		"dir_fineprint": "Ang mga status ay nakabase sa pampublikong ulat simula sa petsa sa itaas at madalas nagbabago; wala dito ang nagsisilbing endorsement o financial advice. Ang mga estimated range ay pampublikong spekulasyon lamang, hindi pangako. Suriin ang isang wallet upang makita ang mga score laban sa mga kriteryong ito.",
+		"error_title": "Hindi ma-scan ang wallet na ito",
+		"est_label": "Inaasahan kung babayaran ang lahat ng qualified drops",
+		"filter_all": "Lahat",
+		"filter_aria": "I-filter ayon sa eligibility",
+		"filter_not": "Hindi eligible",
+		"filter_progress": "On-going",
+		"filter_qualified": "Qualified",
+		"form_aria": "Suriin ang isang wallet",
+		"form_hint": "Pindutin ang <kbd>/</kbd> para i-focus. Ang chain ay nadedetekta mula sa address. Tingnan din ang <a href=\"/portfolio\">wallet portfolio</a>.",
+		"kicker": "Tunay na on-chain activity · live na na-score",
+		"loading_note": "Nagsa-scan ng on-chain history. Ang busy wallet ay kumuha ng ilang segundo.",
+		"meta_desc": "Suriin ang anumang Solana o Ethereum wallet laban sa live na airdrop criteria: tunay na on-chain activity scan, 0-100 eligibility score bawat program, eksaktong kulang mo, at mga manual na hakbang na hindi nakikita ng scan. Libre, walang key, walang account.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Mga Program",
+		"recent_label": "Kamakailan:",
+		"retry_btn": "Subukan muli",
+		"scan_measured": "Ang nasukat ng scan",
+		"share_aria": "Kopyahin ang link patungo sa report na ito",
+		"share_btn": "I-share",
+		"sub": "I-paste ang anumang <strong>Solana</strong> o <strong>Ethereum</strong> wallet at alamin kung aling airdrop ang qualified nito. Ang score ay galing sa tunay na scan ng on-chain history ng wallet; ang checklist ay nagsasabi sa iyo ng eksaktong kulang at ano ang hindi nakikita ng scan.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Naka-track na mga program"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Kumilos sa pagbasa na ito",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Kumilos sa loob ng mahigpit na limitasyon ng gastusin",
@@ -2936,6 +2972,10 @@
 		"starting": "Nagsisimula…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Konstelasyon</span>"
+	},
+	"contributors": {
+		"meta_description": "Kilalanin ang mga developer, issue reporter, at community member na gumagawa ng three.ws na mas maganda.",
+		"meta_title": "Mga Contributor · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Mag-browse ng lahat ng barya →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Mga Crypto Derivative · three.ws",
 		"meta_title": "Mga Crypto Derivative · three.ws",
 		"meta_twitter_description": "Live perpetual futures markets — presyo, 24h na paggalaw, funding rate, open interest, at 24h volume.",
-		"meta_twitter_title": "Mga Crypto Derivative · three.ws"
+		"meta_twitter_title": "Mga Crypto Derivative · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Buksan ang anumang contract para sa buong detail page nito: basis laban sa sariling index, ano ang bayad ng funding rate sa position na iyong sinize, at ang parehong underlying na naka-price sa bawat ibang venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Mga Pagbabago sa Patakarang Ito",
 		"12_contact": "12. Kontak",
 		"1_information_we_collect": "1. Impormasyong Kinokolekta Namin",
+		"1a_photos_you_capture_or_upload": "1a. Mga Larawang Hinuli o In-upload Mo",
 		"2_how_we_use_your_information": "2. Paano Namin Ginagamit ang Iyong Impormasyon",
 		"3_on_chain_data": "3. On-Chain na Data",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Mga 3D model (GLB/glTF), mga thumbnail, metadata ng ahente",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Mga tawag sa API, mga event ng pag-load ng widget (walang IP, walang fingerprint)",
 		"authentication_account_management": "Awtentikasyon at pamamahala ng account",
 		"authentication_security": "Awtentikasyon, seguridad",
+		"building_your_3d_avatar_and_reproducing_re_r": "Pagbuo ng iyong 3D avatar, at pagreproduce, re-rig, o re-score ng resulta",
 		"business_transfers_in_connection_with_a_merg": "<strong>Mga paglilipat ng negosyo:</strong> kaugnay ng pagsasanib, pagkuha, o pagbebenta ng mga asset, na may abiso sa mga apektadong user.",
 		"category": "Kategorya",
 		"connected_home_data": "Data ng nauugnay na bahay",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Pagpapatunay ng pagkakakilanlan, status ng subscription",
 		"if_you_are_a_california_resident_the": "Kung ikaw ay residente ng California: ang mga kategorya ng personal na impormasyon na aming kinokolekta ay nakalista sa Seksyon 1, ang mga layunin sa Seksyon 2, at ang mga tatanggap sa Seksyon 4. Kami ay <strong>hindi</strong> nagbebenta ng personal na impormasyon at <strong>hindi</strong> ito ibinabahagi para sa cross-context behavioral advertising, kaya walang dapat i-opt out; ang mga signal ng browser opt-out tulad ng Global Privacy Control ay iginagalang bilang default dahil walang pagbebenta o pagbabahagi na dapat pigilan. Hindi namin ginagamit o ibinubunyag ang sensitibong personal na impormasyon para sa mga layuning nangangailangan ng karapatang limitahan.",
 		"if_you_connect_a_home_assistant_instance": "Kapag nakakonekta ka ng isang Home Assistant instance, ang access token na ibinibigay mo ay isang credencial sa isang pisikal na building. Ipinapapangitid namin ito sa pahinga gamit ang parehong primitive na ginagamit namin para sa mga key ng custodial wallet, hindi ito muling ipapakita, at inaalis ito agad kapag putol mo ang koneksyon sa bahay. Ang mga aksyon na nagbubukas sa isang building (pagbubukas ng lock, pagbubukas, pagpapalayas) ay lagi na nangangailangan ng eksplisit na konfirmasyon ng tao, na hindi maaaring likha ng AI model, hanggang sa naibigay mo ang standing allowance para sa isang espesipikong entity.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Kung gagamitin mo ang selfie flow, ang mga larawang hinuli mo (isang frontal na imahe at hanggang dalawang opsiyonal na side angle) ay i-upload sa aming reconstruction service at gagamitin upang bumuo ng iyong 3D avatar. Ito ay naka-store kasama ang generation record para ma-reproduce, ma-re-rig, at ma-re-score ang resulta para sa kalidad, at nakikita lamang ng iyong account. Ito ay dine-delete kapag dinedelete mo ang generation o ang iyong account, subject sa mga retention windows sa Section 5. Hindi <strong>gagamitin</strong> ito para sa pagte-train ng mga model, hindi <strong>ibabahagi</strong> sa mga advertiser, at hindi <strong>huhugan o i-store</strong> ang anumang face template o biometric identifier mula dito. Opsyonal ang paggamit ng selfie flow: maaari kang mag-upload ng larawan mula sa iyong gallery, o ilarawan ang isang character sa salita at hindi kailanman magbigay ng larawan.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Mga provider ng imprastraktura:</strong> Google Cloud Platform (hosting at compute), Neon (database), Cloudflare (storage at CDN), Resend (transactional email), at Privy (opsyonal na pag-sign-in). Bawat isa ay nagpoproseso ng data sa aming ngalan sa ilalim ng sarili nitong patakaran sa privacy at mga tuntunin sa pagproseso ng data.",
 		"legal_acceptance_records": "Mga talaan ng legal na pagtanggap",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Mga talaan ng legal na pagtanggap</strong> (ang iyong pagtanggap sa Mga Tuntunin ng Serbisyo at Pagbubunyag ng Panganib) ay pinananatili sa buong buhay ng iyong account at pagkatapos ay hangga't kinakailangan upang magtatag o ipagtanggol ang mga legal na claim. Ang pagpapanatiling ito ay isang legal na obligasyon at nananatili kahit may kahilingan sa pagtanggal ng account.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Patakaran sa Privacy · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-scoped access:</strong> Kapag kumonekta ka via OAuth, ang connector ay makakabasa at makakasulat lang ng three.ws account data na sakop ng mga scope na ibinigay mo (avatars, agents, memory, profile). Hindi nito maa-access ang chat history, memory, o local files ng iyong AI client.",
 		"on_chain_data": "On-chain na data",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Isang frontal na larawan at hanggang dalawang opsiyonal na side angle, kung gagamitin mo ang selfie flow",
 		"operating_the_three_ws_home_features_you": "Pag-operate ng three.ws Home na mga feature na iyong inenable, at pagbibigay sa iyo ng audit trail nila",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Payment data (x402):</strong> Ang mga bayad na tool ay nagse-settle sa USDC via x402 payment protocol. Kapag nagbayad ka per call, natatanggap namin ang iyong public wallet address at ang payment/settlement transaction signature, na na-verify sa pamamagitan ng payment facilitator (Coinbase CDP at/o ang public x402.org facilitator). Hindi namin kailanman natatanggap, hinihingi, o iniimbak ang iyong private keys o seed phrase. Ang tanging token na nire-reference ng three.ws mismo ay <code>$THREE</code>; ang USDC ay ginagamit lang para sa settlement.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Payment facilitators:</strong> Para sa mga bayad na feature na na-settle on-chain (x402), ang payment verification ay dumadaan sa isang facilitator tulad ng Coinbase Developer Platform o ang public x402.org facilitator. Nakikita nila ang iyong public wallet address at transaction signatures, hindi kailanman ang private keys.",
+		"photos_you_capture_or_upload": "Mga larawang hinuli o in-upload mo",
 		"privacy_policy": "Patakaran sa Privacy",
 		"privacy_questions_privacy_three_ws": "Mga tanong tungkol sa privacy: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Patunay ng kasunduan, pagsunod sa batas",
@@ -11279,12 +11325,7 @@
 		"why": "Bakit",
 		"you_can_see_export_and_delete_everything": "Maaari mong makita, i-export, at i-delete ang lahat na nakakaloob sa feature na ito kahit kailan, at magsagawa ng iyong sariling retention window para sa action log. Tingnan ang <a href=\"/docs/home-privacy\">Home privacy and retention</a> para sa buong inventory at API.",
 		"you_have_the_right_to_lodge_a": "May karapatan kang maghain ng reklamo sa iyong lokal na awtoridad sa pangangasiwa. Maaari mo rin kaming kontakin muna sa <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; malugod naming tatanggapin ang pagkakataong direktang ayusin ang iyong alalahanin.",
-		"you_have_the_rights_to_know_access": "May karapatan kang malaman, i-access, itama, burahin, at ilipat ang iyong personal na impormasyon, at hindi diskriminahin dahil sa paggamit ng mga ito. Gamitin ang mga ito sa pamamagitan ng <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksyon 6). Bine-verify namin ang mga kahilingan gamit ang iyong signed-in session, iyong account email, o isang mensaheng nilagdaan ng iyong wallet. Maaaring kumilos para sa iyo ang isang awtorisadong ahente na may nakasulat na pahintulot.",
-		"photos_you_capture_or_upload": "Mga larawang hinuli o in-upload mo",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Isang frontal na larawan at hanggang dalawang opsiyonal na side angle, kung gagamitin mo ang selfie flow",
-		"building_your_3d_avatar_and_reproducing_re_r": "Pagbuo ng iyong 3D avatar, at pagreproduce, re-rig, o re-score ng resulta",
-		"1a_photos_you_capture_or_upload": "1a. Mga Larawang Hinuli o In-upload Mo",
-		"if_you_use_the_selfie_flow_the_photos_you": "Kung gagamitin mo ang selfie flow, ang mga larawang hinuli mo (isang frontal na imahe at hanggang dalawang opsiyonal na side angle) ay i-upload sa aming reconstruction service at gagamitin upang bumuo ng iyong 3D avatar. Ito ay naka-store kasama ang generation record para ma-reproduce, ma-re-rig, at ma-re-score ang resulta para sa kalidad, at nakikita lamang ng iyong account. Ito ay dine-delete kapag dinedelete mo ang generation o ang iyong account, subject sa mga retention windows sa Section 5. Hindi <strong>gagamitin</strong> ito para sa pagte-train ng mga model, hindi <strong>ibabahagi</strong> sa mga advertiser, at hindi <strong>huhugan o i-store</strong> ang anumang face template o biometric identifier mula dito. Opsyonal ang paggamit ng selfie flow: maaari kang mag-upload ng larawan mula sa iyong gallery, o ilarawan ang isang character sa salita at hindi kailanman magbigay ng larawan."
+		"you_have_the_rights_to_know_access": "May karapatan kang malaman, i-access, itama, burahin, at ilipat ang iyong personal na impormasyon, at hindi diskriminahin dahil sa paggamit ng mga ito. Gamitin ang mga ito sa pamamagitan ng <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksyon 6). Bine-verify namin ang mga kahilingan gamit ang iyong signed-in session, iyong account email, o isang mensaheng nilagdaan ng iyong wallet. Maaaring kumilos para sa iyo ang isang awtorisadong ahente na may nakasulat na pahintulot."
 	},
 	"legal_risk": {
 		"10_contact": "10. Makipag-ugnayan",

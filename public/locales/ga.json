@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · an Comhchoiteann · three.ws",
 		"the_commons": "an Comhchoiteann"
 	},
+	"airdrops": {
+		"address_label": "Seoladh builéir",
+		"address_placeholder": "Seoladh builéir (Solana nó 0x…)",
+		"also_tracked": "Breithnithe freisin",
+		"check_btn": "Seiceáil cáiliú",
+		"copy_aria": "Cóipeáil an seoladh",
+		"copy_btn": "Cóipeáil",
+		"count_not": "Ní cáilithe",
+		"count_progress": "Ar siúl",
+		"count_qualified": "Cáilithe",
+		"count_tracked": "Breithnithe",
+		"dir_fineprint": "Is léiriú ar thuairiscí poiblí na stádais mar atá siad an lá thuas agus athraíonn siad go minic; ní bhaineann aon rud anseo le deimhniú nó comhairle airgeadais. Is speileáil phoiblí na rainn mheastacha, ní phromais. Seiceáil builéir chun scoir a fheiceáil i gcoinne na critéir seo.",
+		"error_title": "Níorbh fhéidir an builéir seo a scannadh",
+		"est_label": "Meastach má íocann gach drop cáilithe",
+		"filter_all": "Gach rud",
+		"filter_aria": "Scagair de réir cáiliú",
+		"filter_not": "Ní cáilithe",
+		"filter_progress": "Ar siúl",
+		"filter_qualified": "Cáilithe",
+		"form_aria": "Seiceáil builéir",
+		"form_hint": "Brúigh <kbd>/</kbd> chun aird a chur. Faightear an sliocht ón seoladh. Féach freisin ar <a href=\"/portfolio\">folio builéir</a>.",
+		"kicker": "Gníomhaíocht on-chain fíor · rátaithe beo",
+		"loading_note": "Stair on-chain á scannadh. Glacann builéir gnóthach cúpla soicind.",
+		"meta_desc": "Seiceáil aon builéir Solana nó Ethereum i gcoinne critéir airdrop beo: scannadh fíor ar gníomhaíocht on-chain, scór cáilithe 0-100 in aghaidh gach clár, an t-aon rud atá uait, agus na céimeanna láimhe nach féidir le scan a fheiceáil. Saor in aisce, gan eochair, gan cuntas.",
+		"page_title": "Seiceálaí Airdrop · three.ws",
+		"portfolio_chip": "Folio",
+		"programs": "Cláir",
+		"recent_label": "Le déanaí:",
+		"retry_btn": "Athdéan",
+		"scan_measured": "Cad a mheas an scan",
+		"share_aria": "Cóipeáil nasc chuig an tuarascáil seo",
+		"share_btn": "Roinn",
+		"sub": "Greamaigh aon <strong>Solana</strong> nó <strong>Ethereum</strong> builéir agus feic cén airdrops a cáilíonn sé dó. Tagann an scór ó scan fíor ar stair on-chain an builéir; inisann an seiceáil liosta cén rud atá de dhíth go soiléir agus cén rud nach féidir le scan a fheiceáil.",
+		"title": "<em>Seiceálaí</em> Airdrop",
+		"tracked_programs": "Cláir breithnithe"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Gníomhaigh ar an léamh seo",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Gníomhaíonn sé laistigh de theorainneacha caiteachais dochta",
@@ -2936,6 +2972,10 @@
 		"starting": "Ag tosú…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Buail le forbairtóirí, tuairiscitheoirí fadhbanna, agus baill an phobail a dhéanann three.ws níos fearr.",
+		"meta_title": "Comhoibrithe · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Brabhsáil na boinn go léir →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Díorthaigh Cripte · three.ws",
 		"meta_title": "Díorthaigh Cripte · three.ws",
 		"meta_twitter_description": "Margaí todhchaíochtaí suthaineacha beo — praghas, gluaiseacht 24 uair an chloig, ráta maoinithe, ús oscailte, agus toirt 24 uair an chloig.",
-		"meta_twitter_title": "Díorthaigh Cripte · three.ws"
+		"meta_twitter_title": "Díorthaigh Cripte · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Oscail aon chonradh don leathanach sonrachais iomlán: bunús i gcoinne a fhéin-inneach, an costas a ghearrtar ag an ráta maoinithe ar shuíomh a shocrúigh tú féin, agus an bunluach céanna príosúnaithe ar gach áit eile."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Athruithe ar an mBeartas Seo",
 		"12_contact": "12. Teagmháil",
 		"1_information_we_collect": "1. Faisnéis a Bhailímid",
+		"1a_photos_you_capture_or_upload": "1a. Grianghrafanna a Ghlacann Tú nó a Uaslódálann Tú",
 		"2_how_we_use_your_information": "2. Conas a Úsáidimid d'Fhaisnéis",
 		"3_on_chain_data": "3. Sonraí ar an Slabhra",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Múnlaí 3D (GLB/glTF), mionsamhlacha, meiteashonraí gníomhaire",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Glaonna API, imeachtaí luchtú giuirléidí (gan seoltaí IP, gan méarloirg)",
 		"authentication_account_management": "Fíordheimhniú agus bainistíocht cuntais",
 		"authentication_security": "Fíordheimhniú, slándáil",
+		"building_your_3d_avatar_and_reproducing_re_r": "Do 3D avatar a thógáil, agus é a athfhiosrú, a athrig nó a athscórú",
 		"business_transfers_in_connection_with_a_merg": "<strong>Aistrithe gnó:</strong> i dtaca le cumasc, éadáil, nó díol sócmhainní, le fógra d'úsáideoirí lena mbaineann.",
 		"category": "Catagóir",
 		"connected_home_data": "Sonraí tithe nasctha",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Fíorú aitheantais, stádas síntiúis",
 		"if_you_are_a_california_resident_the": "Má tá tú i do chónaí i gCalifornia: tá na catagóirí faisnéise pearsanta a bhailímid liostaithe i Roinn 1, na críocha i Roinn 2, agus na faighteoirí i Roinn 4. Ní dhíolaimid <strong>ná</strong> faisnéis phearsanta agus ní roinnimid <strong>ná</strong> í le haghaidh fógraíochta iompraíochta tras-chomhthéacs, mar sin níl aon rud le roghnú as; tugtar ómós do chomharthaí roghnaithe amach brabhsálaí ar nós Rialú Príobháideachta Domhanda de réir réamhshocraithe toisc nach bhfuil aon díol nó roinnt le stopadh. Ní úsáidimid ná ní nochtann muid faisnéis phearsanta íogair chun críocha a éilíonn ceart teorannaithe.",
 		"if_you_connect_a_home_assistant_instance": "Má dhíolann tú ceangal le heiseampl Home Assistant, is é an rochtain a thugann tú cuntas d'fhoirgneamh fisiciúil. Criptálfaidh muid é ag sos leis an bpríomhúil chéanna a úsáideann muid do chláraithe phóca custódaithe, ní léirímid é arís dá bharr, agus scriosfaidh muid é an t-am ar bhris tú an teach. Gheobhaidh gnímh a oscailt foirgneamh (díochas, oscailt, díochas arm) i gcónaí deimhníú daonna soiléir, a nemheagraítear le modh AI, go dtí go dtabharfaidh tú cead leanúnach do chéad eintíté áirithe.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Má úsáideann tú an sruth selfie, uaslódálann na grianghrafanna a ghlacann tú (íomhá aonair frontail agus suas go dtí dhá ghuaiseach roghnach) go dtíár seirbhís athfhiosrúcháin agus úsáidtear iad chun do 3D avatar a thógáil. Stóráiltear iad leis an taifead ginearach chun go bhféadfar an toradh a athfhiosrú, a athrig agus a athscórú don chaighdeán, agus is léir iad dó do chuntas amháin. Scriosfar iad nuair a scriosann tú an gineadh nó do chuntas, faoi réimshealbhuithe a luaitear sa Rannóg 5. Ní <strong>úsáideann</strong> muid iad chun múnlaí a oiliúint, ní <strong>roinn</strong> muid iad le haisteoirí, agus ní <strong>dhéantar</strong> múnla aghaidh nó aon aithneoire bioméadrach eile a bhunú nó a stóráil as acu. Is roghnach an sruth selfie a úsáid: is féidir leat grianghraf a uaslódáil ó do ghalraí in ionad sin, nó caractar a chur síos i bhriathra agus a bheith gan aon grianghraf a thabhairt ar chor ar bith.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Soláthraithe bonneagair:</strong> Google Cloud Platform (óstáil agus ríomhaireacht), Neon (bunachar sonraí), Cloudflare (stóráil agus CDN), Resend (ríomhphost idirbheartach), agus Privy (sínigh isteach roghnach). Próiseálann gach ceann acu sonraí ar ár son faoina bpolasaí príobháideachta féin agus faoi théarmaí próiseála sonraí.",
 		"legal_acceptance_records": "Taifid ghlactha dlíthiúla",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Taifid ghlactha dlíthiúla</strong> (do ghlacadh le Téarmaí Seirbhíse agus Nochtadh Riosca) coimeádtar iad ar feadh shaolré do chuntais agus ina dhiaidh sin chomh fada agus is gá chun éilimh dhlíthiúla a bhunú nó a chosaint. Is oibleagáid dhlíthiúil é an coinneáil seo agus maireann sé i ndiaidh iarratas scriosta cuntais.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Polasaí Príobháideachais · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "Rochtain scóipithe OAuth <strong>:</strong> nuair a nascann tú trí OAuth, ní féidir leis an nascóir ach sonraí cuntais three.ws a léamh agus a scríobh atá clúdaithe ag na scóipeanna a dheonaíonn tú (avatars, gníomhairí, cuimhne, próifíl). Ní féidir leis rochtain a fháil ar stair comhrá, cuimhne, ná comhaid áitiúla do chliaint AI.",
 		"on_chain_data": "Sonraí ar an slabhra",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Grianghraf aonair frontail agus suas go dtí dhá ghuaiseach roghnach, má úsáideann tú an sruth selfie",
 		"operating_the_three_ws_home_features_you": "Ag feidhmiú na n-eochras three.ws Home a chumasáil tú, agus ag tabhairt duit trail cainte faoi",
 		"payment_data_x402_paid_tools_settle_in": "Sonraí íocaíochta <strong> (x402):</strong> socraíonn uirlisí íoctha i USDC trí phrótacal íocaíochta x402. Nuair a íocann tú in aghaidh an ghlao, faighimid do sheoladh sparán poiblí agus síniú idirbhirt na híocaíochta/socraíochta, fíoraithe trí éascaitheoir íocaíochta (Coinbase CDP agus/nó an t-éascaitheoir poiblí x402.org). Ní fhaighimid, ní iarraimid, ná ní stórálaimid do phríomhacha príobháideacha ná do fhrása síl riamh. Is é an t-aon chomhartha a dtagraíonn three.ws dó féin ná <code>$THREE</code>; úsáidtear USDC go hiomlán le haghaidh socraíochta.",
 		"payment_facilitators_for_paid_features_settl": "Éascaitheoirí íocaíochta <strong>:</strong> le haghaidh gnéithe íoctha a socraíodh ar an slabhra (x402), ritheann fíorú íocaíochta trí éascaitheoir ar nós Coinbase Developer Platform nó an t-éascaitheoir poiblí x402.org. Feiceann siad do sheoladh sparán poiblí agus sínithe idirbhirt, ní príomhacha príobháideacha riamh.",
+		"photos_you_capture_or_upload": "Grianghrafanna a ghlacann tú nó a uaslódálann tú",
 		"privacy_policy": "Polasaí Príobháideachais",
 		"privacy_questions_privacy_three_ws": "Ceisteanna príobháideachais: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Cruthúnas comhaontaithe, comhlíonadh dlíthiúil",
@@ -11279,12 +11325,7 @@
 		"why": "Cén Fáth",
 		"you_can_see_export_and_delete_everything": "Feicfidh tú, easpórtálfaidh tú agus scriosfaidh tú gach rud a bhaineann leis an n-eochras seo ar bith am ar bith, agus socraíonn tú do bhuaic feabhais feabhais don log gnímh. Féach <a href=\"/docs/home-privacy\">Sainoirseáil phríobháideach an tí agus a choinneáil</a> don liosta iomlán agus an API.",
 		"you_have_the_right_to_lodge_a": "Tá an ceart agat gearán a dhéanamh leis an údarás maoirseachta áitiúil. Féadfaidh tú teagmháil a dhéanamh linn ar dtús ag <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; chuirfimis fáilte roimh an deis do imní a réiteach go díreach.",
-		"you_have_the_rights_to_know_access": "Tá na cearta agat chun do chuid faisnéise pearsanta a bheith ar eolas agat, rochtain a fháil uirthi, í a cheartú, í a scriosadh, agus í a aistriú, agus gan idirdhealú a dhéanamh ort as iad a fheidhmiú. Feidhmigh iad trí <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Alt 6). Fíoraímid iarratais ag baint úsáide as do sheisiún sínithe isteach, do ríomhphost cuntais, nó teachtaireacht sínithe ag do sparán. Féadfaidh gníomhaire údaraithe gníomhú ar do shon le cead scríofa.",
-		"photos_you_capture_or_upload": "Grianghrafanna a ghlacann tú nó a uaslódálann tú",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Grianghraf aonair frontail agus suas go dtí dhá ghuaiseach roghnach, má úsáideann tú an sruth selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Do 3D avatar a thógáil, agus é a athfhiosrú, a athrig nó a athscórú",
-		"1a_photos_you_capture_or_upload": "1a. Grianghrafanna a Ghlacann Tú nó a Uaslódálann Tú",
-		"if_you_use_the_selfie_flow_the_photos_you": "Má úsáideann tú an sruth selfie, uaslódálann na grianghrafanna a ghlacann tú (íomhá aonair frontail agus suas go dtí dhá ghuaiseach roghnach) go dtíár seirbhís athfhiosrúcháin agus úsáidtear iad chun do 3D avatar a thógáil. Stóráiltear iad leis an taifead ginearach chun go bhféadfar an toradh a athfhiosrú, a athrig agus a athscórú don chaighdeán, agus is léir iad dó do chuntas amháin. Scriosfar iad nuair a scriosann tú an gineadh nó do chuntas, faoi réimshealbhuithe a luaitear sa Rannóg 5. Ní <strong>úsáideann</strong> muid iad chun múnlaí a oiliúint, ní <strong>roinn</strong> muid iad le haisteoirí, agus ní <strong>dhéantar</strong> múnla aghaidh nó aon aithneoire bioméadrach eile a bhunú nó a stóráil as acu. Is roghnach an sruth selfie a úsáid: is féidir leat grianghraf a uaslódáil ó do ghalraí in ionad sin, nó caractar a chur síos i bhriathra agus a bheith gan aon grianghraf a thabhairt ar chor ar bith."
+		"you_have_the_rights_to_know_access": "Tá na cearta agat chun do chuid faisnéise pearsanta a bheith ar eolas agat, rochtain a fháil uirthi, í a cheartú, í a scriosadh, agus í a aistriú, agus gan idirdhealú a dhéanamh ort as iad a fheidhmiú. Feidhmigh iad trí <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Alt 6). Fíoraímid iarratais ag baint úsáide as do sheisiún sínithe isteach, do ríomhphost cuntais, nó teachtaireacht sínithe ag do sparán. Féadfaidh gníomhaire údaraithe gníomhú ar do shon le cead scríofa."
 	},
 	"legal_risk": {
 		"10_contact": "10. Teagmháil",

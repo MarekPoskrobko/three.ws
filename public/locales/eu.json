@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Komunak · three.ws",
 		"the_commons": "Komunak"
 	},
+	"airdrops": {
+		"address_label": "Billetearen helbidea",
+		"address_placeholder": "Billetearen helbidea (Solana edo 0x…)",
+		"also_tracked": "Hainbat jarraitu",
+		"check_btn": "Elegibilitatea egiaztatu",
+		"copy_aria": "Kopiatu helbidea",
+		"copy_btn": "Kopiatu",
+		"count_not": "Ez da elegibile",
+		"count_progress": "Prozesuan",
+		"count_qualified": "Elegibilea",
+		"count_tracked": "Jarraitua",
+		"dir_fineprint": "Egoerak gainontzeko ariketa-datako informazio publikoa islatzen dute eta asko aldatzen dira; hemen ez dago inolako indarazpena edo finantza-gomendiorik. Estimazio-tarteak spekulazio publikoa dira, ez promesak. Egiaztatu billetea puntuazioak ikusteko baldintza horren aurka.",
+		"error_title": "Ezinezkoa billetea eskaneratu",
+		"est_label": "Estimazioa baldin eta drop elegibile guztiak ordaintzen badute",
+		"filter_all": "Guztiak",
+		"filter_aria": "Filtratu elegibilitatearen arabera",
+		"filter_not": "Ez elegibile",
+		"filter_progress": "Prozesuan",
+		"filter_qualified": "Elegibilea",
+		"form_aria": "Egiaztatu billetea",
+		"form_hint": "Sakatu <kbd>/</kbd> fokusa lortzeko. Katea helbidetik detektatzen da. Ikusi ere <a href=\"/portfolio\">billete portfolioa</a>.",
+		"kicker": "Benetako on-chain ekintza · puntuatu egunean",
+		"loading_note": "On-chain historia eskaneratzen. Billete okupatuak segundu batzuk behar ditu.",
+		"meta_desc": "Egiaztatu edozein Solana edo Ethereum billetea eguneroko airdrop baldintzen aurka: benetako on-chain ekintza-eskanerra, 0-100 elegibilitate-puntuazioa programa bakoitzerako, zer falta duzu zehazki, eta eskanerrak ezin dituen urrats manuikoak. Doina, gakoik gabe, konturik gabe.",
+		"page_title": "Airdrop Egiaztzailea · three.ws",
+		"portfolio_chip": "Portfolioa",
+		"programs": "Programak",
+		"recent_label": "Azkenak:",
+		"retry_btn": "Berriro saiatu",
+		"scan_measured": "Zer neurtu du eskanerrak",
+		"share_aria": "Kopiatu lotura hauko arazorira",
+		"share_btn": "Partekatu",
+		"sub": "Itsatsi edozein <strong>Solana</strong> edo <strong>Ethereum</strong> billetea eta ikusi zein airdropentzat dago elegibilea. Puntuazioa billetearen on-chain historian duen benetako eskaneatik dator; checklista zehazten du zer falta duzu eta zer ezin du eskanerrak ikusi.",
+		"title": "Airdrop <em>Egiaztzailea</em>",
+		"tracked_programs": "Jarraitu diren programak"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Irakurketa honetan oinarrituta jokatu",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Gastu-muga zorrotzen barruan jarduten du",
@@ -2936,6 +2972,10 @@
 		"starting": "Abiatzen…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Jarri gogora garatzaileak, arazo-bertsulari eta kide komunitarioak three.ws hobetzen laguntzen dutenak.",
+		"meta_title": "Laguntzaileak · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Arakatu txanpon guztiak →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto Deribatuak · three.ws",
 		"meta_title": "Kripto Deribatuak · three.ws",
 		"meta_twitter_description": "Etengabeko etorkizuneko merkatu biziak — prezioa, 24 orduko mugimendua, finantzaketa-tasa, interes irekia eta 24 orduko bolumena.",
-		"meta_twitter_title": "Kripto Deribatuak · three.ws"
+		"meta_twitter_title": "Kripto Deribatuak · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Ireki kontratu edozein bere xehetasun-orrira: bere buruaren indekaren aurka oinarria, zure tamainako posizioan funding-rateak duena, eta besteko lekuetan baloratzen den berbera oinarrizko produktua."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Politika honen aldaketak",
 		"12_contact": "12. Harremanetarako",
 		"1_information_we_collect": "1. Biltzen dugun informazioa",
+		"1a_photos_you_capture_or_upload": "1a. Zure Argazkiak Hartzeko edo Igotzeko",
 		"2_how_we_use_your_information": "2. Zure informazioa nola erabiltzen dugun",
 		"3_on_chain_data": "3. Kateko Datuak",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modeloak (GLB/glTF), miniatura, agentearen metadatuak",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API deiak, widget karga-gertaerak (IPrik gabe, hatz-markarik gabe)",
 		"authentication_account_management": "Autentifikazioa eta kontu-kudeaketa",
 		"authentication_security": "Autentifikazioa, segurtasuna",
+		"building_your_3d_avatar_and_reproducing_re_r": "Zure 3D avatarra eraikitzea, eta emaitza errepikatu, birrigatu edo birpuntuatu",
 		"business_transfers_in_connection_with_a_merg": "<strong>Negozio-transferentziak:</strong> fusio, erosketa edo aktiboen salmenta baten harira, kaltetutako erabiltzaileei jakinaraziz.",
 		"category": "Kategoria",
 		"connected_home_data": "Etxe konektatuen datuak",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Nortasun-egiaztapena, harpidetza-egoera",
 		"if_you_are_a_california_resident_the": "Kaliforniako bizilaguna bazara: biltzen ditugun informazio pertsonalaren kategoriak 1. atalean zerrendatzen dira, helburuak 2. atalean, eta hartzaileak 4. atalean. Ez dugu <strong>saltzen</strong> informazio pertsonalik eta ez dugu <strong>partekatzen</strong> testuinguru arteko portaera-publizitaterako, beraz, ez dago ezer baztertzeko; nabigatzailearen baztertze-seinaleak, hala nola Global Privacy Control, lehenetsita errespetatzen dira, ez baitago salmenta edo partekatzerik gelditzeko. Ez dugu informazio pertsonal sentikorrik erabiltzen edo ezagutarazten mugatzeko eskubidea eskatzen duten helburuetarako.",
 		"if_you_connect_a_home_assistant_instance": "Home Assistant instantzia bat konektatzen baduzu, zurek emandako sarbide-tokenra fisiko baten kredentzial bat da. Utzita dagoenean zure wallet-eko gakoetarako erabiltzen dugun berdina den primitive batez kriptatzen dugu, inoiz ez dugu berriro erakusten, eta etxea deskonektatzen duzun unean ezabatzen dugu. Eraikin bat irekitzen duten ekintzek (piztea, irekitzea, desaktibatzea) beti beharrezkoa da giza baieztapen esplizitu bat, AI modelo batek ezin duena sortu, zure baimen iraunkorra ematen duen entitate jakin bat arte.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Selfie-fluxua erabiltzen baduzu, zure argazkiak (frontala eta, aukeran, bi alderdi-angelu) gure errekonstrukzio-zerbitzura igoko dira eta zure 3D avatarra eraikiko dute. Generazio-erregistroan gordetzen dira, emaitza errepikatu, birrigatu eta birpuntuatu dezan kalitateagatik, eta zure kontuari bakarrik ikusgarriak dira. Generazioa edo zure kontua ezabatzen duzunean ezabatzen dira, 5. ataleko mantentze-aldiengatik. <strong>Ez</strong> ditugu modeluak entrenatzeko erabiltzen, <strong>ez</strong> partekatzen publicitarekin, eta <strong>ez</strong> sortzen edo gordetzen aurpegi-plantilarik edo beste biometriko identifikadoreik.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Azpiegitura-hornitzaileak:</strong> Google Cloud Platform (ostatua eta konputazioa), Neon (datu-basea), Cloudflare (biltegiratzea eta CDN), Resend (transakzio-posta elektronikoa), eta Privy (aukerako saioa hasteko). Bakoitzak datuak prozesatzen ditu gure izenean, bere pribatutasun-politikaren eta datu-prozesamenduaren baldintzen arabera.",
 		"legal_acceptance_records": "Legezko onarpen-erregistroak",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Legezko onarpen-erregistroak</strong> (Zerbitzu-baldintzak eta Arrisku-adierazpena onartu izana) zure kontuaren bizitza osoan zehar gordetzen dira eta ondoren, legezko erreklamazioak ezartzeko edo defendatzeko behar den bitartean. Atxikipen hau legezko betebeharra da eta kontua ezabatzeko eskaera baten ondoren ere irauten du.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Pribatutasun-politika · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-aren esparruko sarbidea:</strong> OAuth bidez konektatzen zarenean, konektoreak zuk emandako esparruek estaltzen dituzten three.ws kontuko datuak soilik irakurri eta idatzi ditzake (avatarrak, agenteak, memoria, profila). Ezin du zure AI bezeroaren txat-historia, memoria edo tokiko fitxategiak atzitu.",
 		"on_chain_data": "Kateko datuak",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Frontal argazki bat eta, aukeran, bi alderdi-angelu gehienez, selfie-fluxua erabiltzen baduzu",
 		"operating_the_three_ws_home_features_you": "three.ws Home funtzioak eragitea zure gaitasunez, eta zuretzako audit bide bat ematea",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Ordainketa-datuak (x402):</strong> ordainpeko tresnak USDC-n finkatzen dira x402 ordainketa-protokoloaren bidez. Dei bakoitzeko ordaintzen duzunean, zure zorro publikoaren helbidea eta ordainketa/finkapen transakzioaren sinadura jasotzen ditugu, ordainketa-erraztaile baten bidez egiaztatuta (Coinbase CDP eta/edo x402.org erraztaile publikoa). Ez dugu inoiz zure gako pribaturik edo hasi-esaldirik jasotzen, eskatzen edo gordetzen. three.ws-k berak aipatzen duen token bakarra <code>$THREE</code> da; USDC finkapenerako soilik erabiltzen da.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Ordainketa-erraztaileak:</strong> katean finkatutako ordainpeko funtzioetarako (x402), ordainketa-egiaztapena erraztaile baten bidez egiten da, hala nola Coinbase Developer Platform edo x402.org erraztaile publikoa. Zure zorro publikoaren helbidea eta transakzio-sinadurak ikusten dituzte, inoiz ez gako pribatuak.",
+		"photos_you_capture_or_upload": "Zure argazkiak hartzeko edo igotzeko",
 		"privacy_policy": "Pribatutasun-politika",
 		"privacy_questions_privacy_three_ws": "Pribatutasun-galderak: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Akordioaren froga, lege-betetzea",
@@ -11279,12 +11325,7 @@
 		"why": "Zergatik",
 		"you_can_see_export_and_delete_everything": "Funtsio honek duen guztia ikusi, esportatu eta ezin dezakezu edozein unetan ezabatu, eta ekintza-logarako zure propioa zehaztu dezakezu zure kontserbazio leihoa. Ikusi <a href=\"/docs/home-privacy\">Home privacy and retention</a> inbentario osoa eta APIrako.",
 		"you_have_the_right_to_lodge_a": "Zure tokiko gainbegiratze-agintaritzan kexa bat aurkezteko eskubidea duzu. Gurekin harremanetan jar zaitezke lehenik <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> helbidean; pozik hartuko genuke zure kezka zuzenean konpontzeko aukera.",
-		"you_have_the_rights_to_know_access": "Zure informazio pertsonala ezagutzeko, atzitzeko, zuzentzeko, ezabatzeko eta eramateko eskubideak dituzu, eta horiek erabiltzeagatik ez diskriminatzeko eskubidea. Erabili itzazu <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> bidez (6. atala). Eskaerak egiaztatzen ditugu zure saio hasi bidez, zure kontuaren helbide elektronikoaren bidez edo zure zorroak sinatutako mezu baten bidez. Baimendutako agente batek zure izenean jardun dezake idatzizko baimenarekin.",
-		"photos_you_capture_or_upload": "Zure argazkiak hartzeko edo igotzeko",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Frontal argazki bat eta, aukeran, bi alderdi-angelu gehienez, selfie-fluxua erabiltzen baduzu",
-		"building_your_3d_avatar_and_reproducing_re_r": "Zure 3D avatarra eraikitzea, eta emaitza errepikatu, birrigatu edo birpuntuatu",
-		"1a_photos_you_capture_or_upload": "1a. Zure Argazkiak Hartzeko edo Igotzeko",
-		"if_you_use_the_selfie_flow_the_photos_you": "Selfie-fluxua erabiltzen baduzu, zure argazkiak (frontala eta, aukeran, bi alderdi-angelu) gure errekonstrukzio-zerbitzura igoko dira eta zure 3D avatarra eraikiko dute. Generazio-erregistroan gordetzen dira, emaitza errepikatu, birrigatu eta birpuntuatu dezan kalitateagatik, eta zure kontuari bakarrik ikusgarriak dira. Generazioa edo zure kontua ezabatzen duzunean ezabatzen dira, 5. ataleko mantentze-aldiengatik. <strong>Ez</strong> ditugu modeluak entrenatzeko erabiltzen, <strong>ez</strong> partekatzen publicitarekin, eta <strong>ez</strong> sortzen edo gordetzen aurpegi-plantilarik edo beste biometriko identifikadoreik."
+		"you_have_the_rights_to_know_access": "Zure informazio pertsonala ezagutzeko, atzitzeko, zuzentzeko, ezabatzeko eta eramateko eskubideak dituzu, eta horiek erabiltzeagatik ez diskriminatzeko eskubidea. Erabili itzazu <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> bidez (6. atala). Eskaerak egiaztatzen ditugu zure saio hasi bidez, zure kontuaren helbide elektronikoaren bidez edo zure zorroak sinatutako mezu baten bidez. Baimendutako agente batek zure izenean jardun dezake idatzizko baimenarekin."
 	},
 	"legal_risk": {
 		"10_contact": "10. Harremanetarako",

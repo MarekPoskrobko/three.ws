@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Kopiena · three.ws",
 		"the_commons": "Kopiena"
 	},
+	"airdrops": {
+		"address_label": "Maksājumu adreses",
+		"address_placeholder": "Maksājumu adrese (Solana vai 0x…)",
+		"also_tracked": "Vēl seko",
+		"check_btn": "Pārbaudīt piemērotību",
+		"copy_aria": "Kopēt adresi",
+		"copy_btn": "Kopēt",
+		"count_not": "Nav piemērots",
+		"count_progress": "Procesā",
+		"count_qualified": "Piemērots",
+		"count_tracked": "Seko",
+		"dir_fineprint": "Statusi atspoguļo publisko ziņošanu kā šajā datumā un mainās bieži; šeit nav nekādas atbalsta vai finanšu padomu. Aprēķinātie diapazoni ir publiska spekulācija, ne apsolījumi. Pārbaudiet maku, lai redzētu vērtējumus pret šiem kritērijiem.",
+		"error_title": "Neizdevās skenēt šo maku",
+		"est_label": "Aprēķināts, ja visi piemēroti airdropi izmaksā",
+		"filter_all": "Visi",
+		"filter_aria": "Filtrēt pēc piemērotības",
+		"filter_not": "Nav piemērots",
+		"filter_progress": "Procesā",
+		"filter_qualified": "Piemērots",
+		"form_aria": "Pārbaudīt maku",
+		"form_hint": "Nospiediet <kbd>/</kbd>, lai fokussētos. Ķēde tiek noteikta no adreses. Skatiet arī <a href=\"/portfolio\">maku portfelī</a>.",
+		"kicker": "Reāla on-chain aktivitāte · vērtēta reālā laikā",
+		"loading_note": "Skenē on-chain vēsturi. Aizsēdēta maku prasa dažas sekundes.",
+		"meta_desc": "Pārbaudiet jebkuru Solana vai Ethereum maku pret dzīviem airdrop kritērijiem: reāls on-chain aktivitātes skenēšana, 0-100 piemērotības vērtējums katrai programmā, tieši tas, kas trūkst, un manuālie soļi, ko skenēšana nevar redzēt. Bezmaksas, bez atslēgas, bez konta.",
+		"page_title": "Airdrop Pārbaude · three.ws",
+		"portfolio_chip": "Portfelis",
+		"programs": "Programmas",
+		"recent_label": "Pēdējie:",
+		"retry_btn": "Mēģināt vēlreiz",
+		"scan_measured": "Ko skenēšana izmērīja",
+		"share_aria": "Kopēt saiti uz šo atskaiti",
+		"share_btn": "Dalīties",
+		"sub": "Ielīmējiet jebkuru <strong>Solana</strong> vai <strong>Ethereum</strong> maku un redziet, kuriem airdropiem tā atbilst. Vērtējums nāk no reāla maku on-chain vēstures skenēšanas; pārbaudes saraksts paskaidro tieši, kas trūkst, un ko skenēšana nevar redzēt.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Seko programmas"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Rīkojieties pēc šī nolasījuma",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Darbojas stingru tēriņu limitu ietvaros",
@@ -2936,6 +2972,10 @@
 		"starting": "Sākas…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Iepazīstieties ar izstrādātājiem, kļūdu ziņotājiem un kopienas locekļiem, kas padara three.ws labāku.",
+		"meta_title": "Izdodotāji · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Pārlūkot visas monētas →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto atvasinājumi · three.ws",
 		"meta_title": "Kripto atvasinājumi · three.ws",
 		"meta_twitter_description": "Tiešraides mūžīgo fjūčeru tirgi — cena, 24 stundu izmaiņas, finansējuma likme, atvērtās pozīcijas un 24 stundu apjoms.",
-		"meta_twitter_title": "Kripto atvasinājumi · three.ws"
+		"meta_twitter_title": "Kripto atvasinājumi · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Atveriet jebkuru līgumu, lai iegūtu tā pilno informācijas lapu: bāzi pret tā pašu indeksu, ko maksa finansēšanas rāte uz pozīciju, ko izmēģinājāt paši, un to pašu pamata aktīvu, kas cenots uz katras otras tirdzniecības platformas."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Izmaiņas šajā politikā",
 		"12_contact": "12. Kontakti",
 		"1_information_we_collect": "1. Informācija, ko mēs vācam",
+		"1a_photos_you_capture_or_upload": "1a. Fotogrāfijas, ko jūs uzņemat vai augšupielādējat",
 		"2_how_we_use_your_information": "2. Kā mēs izmantojam jūsu informāciju",
 		"3_on_chain_data": "3. Ķēdes dati",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modeļi (GLB/glTF), sīktēli, aģenta metadati",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API izsaukumi, logrīku ielādes notikumi (bez IP adresēm, bez digitālajiem nospiedumiem)",
 		"authentication_account_management": "Autentifikācija un kontu pārvaldība",
 		"authentication_security": "Autentifikācija, drošība",
+		"building_your_3d_avatar_and_reproducing_re_r": "Jūsu 3D avatara izveide, kā arī tā atkārtošana, pārrigošana un atkārtota novērtēšana",
 		"business_transfers_in_connection_with_a_merg": "<strong>Uzņēmuma pārejas:</strong> saistībā ar apvienošanos, iegādi vai aktīvu pārdošanu, ar paziņojumu ietekmētajiem lietotājiem.",
 		"category": "Kategorija",
 		"connected_home_data": "Savienotās mājas dati",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identitātes pārbaude, abonementa statuss",
 		"if_you_are_a_california_resident_the": "Ja esat Kalifornijas iedzīvotājs: personiskās informācijas kategorijas, ko mēs vācam, ir uzskaitītas 1. sadaļā, mērķi — 2. sadaļā un saņēmēji — 4. sadaļā. Mēs <strong>nepārdodam</strong> personas datus un <strong>nedalāmies</strong> ar tiem starpkonteksta uzvedības reklāmai, tāpēc nav no kā atteikties; pārlūkprogrammas atteikšanās signāli, piemēram, Global Privacy Control, tiek ievēroti pēc noklusējuma, jo nav pārdošanas vai koplietošanas, ko apturēt. Mēs neizmantojam un neizpaužam sensitīvu personas informāciju mērķiem, kas prasa ierobežošanas tiesības.",
 		"if_you_connect_a_home_assistant_instance": "Ja jūs pieslēdzat Home Assistant instanci, piekļuves žetons, ko sniedzat, ir akreditācija fiziskajam būvei. Mēs to šifrējam atpūtai ar to pašu primitīvu, ko lietojam uzglabāšanas walta atslēgām, nekad to neparādījam vēlreiz un to izdzēšam brīdī, kad jūs atvienojat māju. Darbības, kas atver būvi (atblvēšana, atvēršana, neaktivizēšana), visām prasa eksplicitas cilvēka apstiprinājumu, ko nevar ģenerēt AI modeļi, līdz jūs nodrošināt pastāvīgu atļauju vienam konkrētam entītijam.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ja izmantojat selfie plūsmu, jūsu uzņemtās fotogrāfijas (viena frontālā un divas opcionālās sānu fotogrāfijas) tiek augšupielādētas mūsu atjaunošanas servisā un izmantotas, lai izveidotu jūsu 3D avataru. Tās tiek glabātas kopā ar ģenerācijas ierakstu, lai rezultātu varētu atkārtot, pārrigot un atkārtoti novērtēt kvalitātei, un tās ir redzamas tikai jūsu kontam. Tās tiek dzēstas, kad dzēšat ģenerāciju vai savu kontu, ievērojot uzturēšanas logus 5. nodaļā. Mēs <strong>neizmantojam</strong> tās modeļu apmācībai, mēs <strong>neizdalām</strong> tās reklāmdēvajiem, un mēs <strong>neizveidojam</strong> no tām sejas veidni vai citu biometrisko identifikatoru. Selfie plūsmas izmantošana ir opcionāla: varat augšupielādēt fotogrāfiju no savas galerijas vai aprakstīt personību vārdos, neko neaugšupielādējot.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastruktūras nodrošinātāji:</strong> Google Cloud Platform (mitināšana un aprēķini), Neon (datubāze), Cloudflare (krātuve un CDN), Resend (darījumu e-pasts) un Privy (izvēles pieteikšanās). Katrs apstrādā datus mūsu vārdā saskaņā ar savu privātuma politiku un datu apstrādes noteikumiem.",
 		"legal_acceptance_records": "Juridiskās piekrišanas ieraksti",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Juridiskās piekrišanas ieraksti</strong> (jūsu piekrišana Pakalpojumu sniegšanas noteikumiem un Riska atklāšanai) tiek saglabāti visu jūsu konta darbības laiku un pēc tam tik ilgi, cik nepieciešams, lai pamatotu vai aizstāvētu juridiskas prasības. Šī saglabāšana ir juridisks pienākums un paliek spēkā arī pēc konta dzēšanas pieprasījuma.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privātuma politika · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth piekļuve ar ierobežotu darbības jomu:</strong> pieslēdzoties, izmantojot OAuth, savienotājs var lasīt un rakstīt tikai tos three.ws konta datus, uz kuriem attiecas jūsu piešķirtās darbības jomas (avatāri, aģenti, atmiņa, profils). Tas nevar piekļūt jūsu AI klienta tērzēšanas vēsturei, atmiņai vai lokālajiem failiem.",
 		"on_chain_data": "Dati blokķēdē",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Viena frontālā fotogrāfija un divas opcionālās sānu fotogrāfijas, ja izmantojat selfie plūsmu",
 		"operating_the_three_ws_home_features_you": "three.ws Mājas funkciju eksploatēšana, ko jūs iespējojāt, un to auditācijas marshruta sniedzēšana.",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Maksājumu dati (x402):</strong> maksas rīki tiek norēķināti USDC, izmantojot x402 maksājumu protokolu. Kad maksājat par izsaukumu, mēs saņemam jūsu publisko maka adresi un maksājuma/norēķinu darījuma parakstu, kas tiek pārbaudīts, izmantojot maksājumu starpnieku (Coinbase CDP un/vai publisko x402.org starpnieku). Mēs nekad nesaņemam, nepieprasām un neuzglabājam jūsu privātās atslēgas vai sēklas frāzi. Vienīgais marķieris, uz kuru atsaucas pats three.ws, ir <code>$THREE</code>; USDC tiek izmantots tikai norēķiniem.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Maksājumu starpnieki:</strong> par maksas funkcijām, kas norēķinātas blokķēdē (x402), maksājumu pārbaude notiek, izmantojot starpnieku, piemēram, Coinbase Developer Platform vai publisko x402.org starpnieku. Viņi redz jūsu publisko maka adresi un darījumu parakstus, nekad privātās atslēgas.",
+		"photos_you_capture_or_upload": "Fotogrāfijas, ko jūs uzņemat vai augšupielādējat",
 		"privacy_policy": "Privātuma politika",
 		"privacy_questions_privacy_three_ws": "Jautājumi par privātumu: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Vienošanās apliecinājums, juridiskā atbilstība",
@@ -11279,12 +11325,7 @@
 		"why": "Kāpēc",
 		"you_can_see_export_and_delete_everything": "Varat jebkurā brīdī skatīt, eksportēt un dzēst visu, ko šī funkcija saglabā, un iestatīt savu datu saglabāšanas periodu darbību žurnālam. Skatiet <a href=\"/docs/home-privacy\">Home privacy and retention</a> pilnai inventārā un API.",
 		"you_have_the_right_to_lodge_a": "Jums ir tiesības iesniegt sūdzību jūsu vietējā uzraudzības iestādē. Jūs varat arī vispirms sazināties ar mums pa e-pastu <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; mēs labprāt izmantotu iespēju atrisināt jūsu problēmu tieši.",
-		"you_have_the_rights_to_know_access": "Jums ir tiesības zināt, piekļūt, labot, dzēst un pārsūtīt savu personisko informāciju, kā arī netikt diskriminētam par šo tiesību izmantošanu. Izmantojiet tās, sazinoties ar <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (6. sadaļa). Mēs pārbaudām pieprasījumus, izmantojot jūsu pieteikšanās sesiju, jūsu konta e-pastu vai ar jūsu maku parakstītu ziņojumu. Pilnvarots aģents var rīkoties jūsu vārdā ar rakstisku atļauju.",
-		"photos_you_capture_or_upload": "Fotogrāfijas, ko jūs uzņemat vai augšupielādējat",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Viena frontālā fotogrāfija un divas opcionālās sānu fotogrāfijas, ja izmantojat selfie plūsmu",
-		"building_your_3d_avatar_and_reproducing_re_r": "Jūsu 3D avatara izveide, kā arī tā atkārtošana, pārrigošana un atkārtota novērtēšana",
-		"1a_photos_you_capture_or_upload": "1a. Fotogrāfijas, ko jūs uzņemat vai augšupielādējat",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ja izmantojat selfie plūsmu, jūsu uzņemtās fotogrāfijas (viena frontālā un divas opcionālās sānu fotogrāfijas) tiek augšupielādētas mūsu atjaunošanas servisā un izmantotas, lai izveidotu jūsu 3D avataru. Tās tiek glabātas kopā ar ģenerācijas ierakstu, lai rezultātu varētu atkārtot, pārrigot un atkārtoti novērtēt kvalitātei, un tās ir redzamas tikai jūsu kontam. Tās tiek dzēstas, kad dzēšat ģenerāciju vai savu kontu, ievērojot uzturēšanas logus 5. nodaļā. Mēs <strong>neizmantojam</strong> tās modeļu apmācībai, mēs <strong>neizdalām</strong> tās reklāmdēvajiem, un mēs <strong>neizveidojam</strong> no tām sejas veidni vai citu biometrisko identifikatoru. Selfie plūsmas izmantošana ir opcionāla: varat augšupielādēt fotogrāfiju no savas galerijas vai aprakstīt personību vārdos, neko neaugšupielādējot."
+		"you_have_the_rights_to_know_access": "Jums ir tiesības zināt, piekļūt, labot, dzēst un pārsūtīt savu personisko informāciju, kā arī netikt diskriminētam par šo tiesību izmantošanu. Izmantojiet tās, sazinoties ar <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (6. sadaļa). Mēs pārbaudām pieprasījumus, izmantojot jūsu pieteikšanās sesiju, jūsu konta e-pastu vai ar jūsu maku parakstītu ziņojumu. Pilnvarots aģents var rīkoties jūsu vārdā ar rakstisku atļauju."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakti",

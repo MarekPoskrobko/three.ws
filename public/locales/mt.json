@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · il-Commons · three.ws",
 		"the_commons": "il-Commons"
 	},
+	"airdrops": {
+		"address_label": "Indirizz tal-portafell",
+		"address_placeholder": "Indirizz tal-portafell (Solana jew 0x…)",
+		"also_tracked": "Anki msejjaħ",
+		"check_btn": "Verifika l-eleggibilita",
+		"copy_aria": "Kopja l-indirizz",
+		"copy_btn": "Kopja",
+		"count_not": "Mhux eleggibbli",
+		"count_progress": "F'progess",
+		"count_qualified": "Eleggibbli",
+		"count_tracked": "Msejjaħ",
+		"dir_fineprint": "L-istati riflettu r-rapport pubbliku kif inħatret fuq id-data miegħek u jibdlu spiss; xejn hawn mhuwiex endossament jew għeluq finanzi. Ir-rangijiet stimati huma spekulazzjoni pubblika, mhux promesse. Verifika portafell għala tista' tara s-scores kontra dawn il-kriterji.",
+		"error_title": "Ma nistax niskanna dan il-portafell",
+		"est_label": "Stimati jekk l-airdrops kollha eleggibbli jippruvidu",
+		"filter_all": "Kollha",
+		"filter_aria": "Filtra skond l-eleggibilita",
+		"filter_not": "Mhux eleggibbli",
+		"filter_progress": "F'progess",
+		"filter_qualified": "Eleggibbli",
+		"form_aria": "Verifika portafell",
+		"form_hint": "Aqtagħ <kbd>/</kbd> biex tiffoka. Il-chain tigi detettata mill-indirizz. Ara anki <a href=\"/portfolio\">portfolio tal-portafell</a>.",
+		"kicker": "Attività veru on-chain · skorat live",
+		"loading_note": "Qed niskanna l-istorja on-chain. Portafell imbluħ jieħu ftit sekondi.",
+		"meta_desc": "Verifika kwalunkwe Solana jew portafell Ethereum kontra l-kriterji live tal-airdrop: skan veru tal-attività on-chain, skur 0-100 tal-eleggibilita għal kull programm, x'qed tmiss bl-preċiż, u l-passi manwali li skan ma jista' jara. Gratwi, bla keys, bla account.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Programmi",
+		"recent_label": "Riċenti:",
+		"retry_btn": "Torċi",
+		"scan_measured": "X'kien l-iskan qas",
+		"share_aria": "Kopja link għal dan ir-rappurt",
+		"share_btn": "Ippartixxi",
+		"sub": "Ippasteja kwalunkwe <strong>Solana</strong> jew <strong>Ethereum</strong> portafell u ara għaliex airdrops jikkwalifika. Iskur jiġi minn skan veru tal-istorja on-chain tal-portafell; l-checklist tgħidlek bl-preċiż x'qed tmiss u x'skan ma jista' jara.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Programmi msejjaħ"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Aġixxi fuq din il-qari",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Jaġixxi fi ħdan limiti stretti ta' nfiq",
@@ -2936,6 +2972,10 @@
 		"starting": "Qed jibda…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Iltaqa' mad-dveloppers, r-reporteri ta' issues, u l-membri tal-komunità li jagħmlu three.ws aħjar.",
+		"meta_title": "Kontributuri · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Fittex il-muniti kollha →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivattivi Kripto · three.ws",
 		"meta_title": "Derivattivi Kripto · three.ws",
 		"meta_twitter_description": "Swieq tal-futures perpetwi ħajjin — prezz, bidla ta' 24 siegħa, rata ta' finanzjament, interess miftuħ, u volum ta' 24 siegħa.",
-		"meta_twitter_title": "Derivattivi Kripto · three.ws"
+		"meta_twitter_title": "Derivattivi Kripto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Iftaħ kwalunkwe kontratt għall-paġna dettaljata sħiħa tiegħu: bażi kontra l-indiċi tiegħu stess, x'ikollok il-funding rate fuq pozizzjoni li tqis stess, u l-istess underlying prezzjat fuq kull venue oħra."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Bidliet f'Din il-Politika",
 		"12_contact": "12. Kuntatt",
 		"1_information_we_collect": "1. Informazzjoni li Niġbru",
+		"1a_photos_you_capture_or_upload": "1a. Foti li Tqabbad jew Tgħammel Upload",
 		"2_how_we_use_your_information": "2. Kif Nużaw l-Informazzjoni Tiegħek",
 		"3_on_chain_data": "3. Data On-Chain",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Mudelli 3D (GLB/glTF), thumbnails, metadata tal-aġent",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Sejħiet API, avvenimenti tat-tagħbija tal-widget (bla IPs, bla marki tas-swaba')",
 		"authentication_account_management": "Awtentikazzjoni u ġestjoni tal-kont",
 		"authentication_security": "Awtentikazzjoni, sigurtà",
+		"building_your_3d_avatar_and_reproducing_re_r": "Ibbni l-avatar 3D tiegħek, u rriprodutċi, rri-rig jew rri-iskorja dan ir-riżultat",
 		"business_transfers_in_connection_with_a_merg": "<strong>Trasferimenti kummerċjali:</strong> b'konnessjoni ma' fużjoni, akkwist, jew bejgħ ta' assi, b'avviż lill-utenti affettwati.",
 		"category": "Kategorija",
 		"connected_home_data": "Data tad-dar kkonektata",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verifika tal-identità, status tal-abbonament",
 		"if_you_are_a_california_resident_the": "Jekk inti resident ta' Kalifornja: il-kategoriji ta' informazzjoni personali li niġbru huma elenkati fit-Taqsima 1, l-iskopijiet fit-Taqsima 2, u r-riċevituri fit-Taqsima 4. Aħna <strong>ma</strong> nbiegħux informazzjoni personali u <strong>ma</strong> naqsmuhiex għal reklamar komportamentali bejn il-kuntesti, għalhekk m'hemm xejn minn fejn tagħżel li ma tipparteċipax; sinjali ta' opt-out tal-browser bħall-Kontroll Globali tal-Privatezza huma rrispettati awtomatikament minħabba li m'hemm l-ebda bejgħ jew qsim li jrid jitwaqqaf. Aħna ma nużawx jew niżvelawx informazzjoni personali sensittiva għal skopijiet li jeħtieġu dritt ta' limitazzjoni.",
 		"if_you_connect_a_home_assistant_instance": "Jekk tikkonekti instanza ta' Home Assistant, l-access token li tprovdi huwa kredenzjal għal bini fiziku. Aħna nkriptaw rest b'primitive isem li nużaw għal custodial wallet keys, qatt ma nirrewriha, u nneħħuha moment li tiddiskkonekti d-dar. Azzjonijiet li jiftħu bini (unlocking, opening, disarming) għandhom bżonn konfirma esplicita umana, li mhux tista' tigi prodotta minn mudell AI, sa li tħalli standing allowance għal entità speċifika.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Jekk tuża l-fluss tas-selfie, l-foti li tqabbad (wħda l-immaġini frontali u sa żewġ angoli laterali opzjonali) tinġħamlu upload għas-servizz ta' rikostruzzjoni u jintużaw għall-ibni tal-avatar 3D tiegħek. Jistgħu mmagħmulin mal-rekordin tal-ġenerazzjoni b'dan jista' jitriprodotti, jirrigġa u jiskorja għall-kwalita, u huma viżibbli biss għall-kont tiegħek. Jitħassru meta tħassar ġenerazzjoni jew l-kont tiegħek, subġett għall-finestri ta' ritenzjoni fis-Sessjoni 5. Ma <strong>nużax</strong>homx għall-ittrajnar modelli, ma <strong>npartix</strong>homx ma' advertiser, u ma <strong>nderivax</strong> jew mmagħmlux store ta' template tal-wiċċ jew identifikatur biometriku oħra minnhom. L-użu tal-fluss tas-selfie huwa opzjonali: tista' tagħmel upload ta' fota mill-ġallerija tiegħek, jew deskrivi personagg b'kelmiet u qatt ma tagħti fota.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Fornituri tal-infrastruttura:</strong> Google Cloud Platform (hosting u komputazzjoni), Neon (database), Cloudflare (ħażna u CDN), Resend (email transazzjonali), u Privy (login fakultattiv). Kull wieħed jipproċessa data f'isimna skont il-politika tal-privatezza u t-termini tal-ipproċessar tad-data tiegħu stess.",
 		"legal_acceptance_records": "Rekords ta' aċċettazzjoni legali",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Rekords ta' aċċettazzjoni legali</strong> (l-aċċettazzjoni tiegħek tat-Termini tas-Servizz u d-Dikjarazzjoni tar-Riskju) jinżammu għall-ħajja tal-kont tiegħek u wara għal kemm ikun meħtieġ biex jiġu stabbiliti jew difiżi talbiet legali. Din iż-żamma hija obbligu legali u tibqa' valida wara talba għat-tħassir tal-kont.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politika ta' Privatezza · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Aċċess skont l-iskop tal-OAuth:</strong> meta tikkonnettja permezz tal-OAuth, il-konnettur jista' jaqra u jikteb biss id-data tal-kont ta' three.ws koperta mill-iskopijiet li tagħti (avatars, aġenti, memorja, profil). Ma jistax jaċċessa l-istorja taċ-chat, il-memorja, jew il-fajls lokali tal-klijent AI tiegħek.",
 		"on_chain_data": "Data on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Waħda fota frontali u sa żewġ angoli laterali opzjonali, jekk tuża l-fluss tas-selfie",
 		"operating_the_three_ws_home_features_you": "Operazzjoni tal-features three.ws Home li llejjiet, u tagħtik audit trail tagħhom",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Data tal-ħlas (x402):</strong> għodod imħallsa jiġu ssettiljati fi USDC permezz tal-protokoll tal-ħlas x402. Meta tħallas għal kull sejħa, nirċievu l-indirizz pubbliku tal-kartiera tiegħek u l-firma tat-tranżazzjoni tal-ħlas/settlement, verifikata permezz ta' faċilitatur tal-ħlas (Coinbase CDP u/jew il-faċilitatur pubbliku x402.org). Qatt ma nirċievu, nitolbu, jew naħżnu ċ-ċwievet privati jew il-frażi taż-żerriegħa tiegħek. L-uniku token li three.ws innifsu jirreferi għalih huwa <code>$THREE</code>; USDC jintuża purament għas-settlement.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Faċilitaturi tal-ħlas:</strong> għal karatteristiċi mħallsa ssettiljati on-chain (x402), il-verifika tal-ħlas tgħaddi minn faċilitatur bħall-Coinbase Developer Platform jew il-faċilitatur pubbliku x402.org. Huma jaraw l-indirizz pubbliku tal-kartiera tiegħek u l-firem tat-tranżazzjonijiet, qatt ċwievet privati.",
+		"photos_you_capture_or_upload": "Foti li tqabbad jew tgħammel upload",
 		"privacy_policy": "Politika ta' Privatezza",
 		"privacy_questions_privacy_three_ws": "Mistoqsijiet dwar il-privatezza: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Prova ta' ftehim, konformità legali",
@@ -11279,12 +11325,7 @@
 		"why": "Għaliex",
 		"you_can_see_export_and_delete_everything": "Tista' tara, texporti u tiddeliti kull ħaja li dan il-feature għandu f'kwalunkwe ħin, u tsetta r-retention window tiegħek għall-action log. Ara <a href=\"/docs/home-privacy\">Home privacy and retention</a> għall-inventarju sħiħ u l-API.",
 		"you_have_the_right_to_lodge_a": "Għandek id-dritt li tippreżenta ilment mal-awtorità superviżorja lokali tiegħek. Tista' wkoll tikkuntattjana l-ewwel fuq <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; nilqgħu l-opportunità li nsolvu t-tħassib tiegħek direttament.",
-		"you_have_the_rights_to_know_access": "Għandek id-drittijiet li tkun taf, taċċessa, tikkoreġi, tħassar, u tittrasferixxi l-informazzjoni personali tiegħek, u li ma tiġix diskriminat talli teżerċitahom. Eżerċitahom permezz ta' <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sezzjoni 6). Aħna nivverifikaw it-talbiet billi nużaw is-sessjoni illoggjata tiegħek, l-email tal-kont tiegħek, jew messaġġ iffirmat mill-wallet tiegħek. Aġent awtorizzat jista' jaġixxi għalik b'permess bil-miktub.",
-		"photos_you_capture_or_upload": "Foti li tqabbad jew tgħammel upload",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Waħda fota frontali u sa żewġ angoli laterali opzjonali, jekk tuża l-fluss tas-selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Ibbni l-avatar 3D tiegħek, u rriprodutċi, rri-rig jew rri-iskorja dan ir-riżultat",
-		"1a_photos_you_capture_or_upload": "1a. Foti li Tqabbad jew Tgħammel Upload",
-		"if_you_use_the_selfie_flow_the_photos_you": "Jekk tuża l-fluss tas-selfie, l-foti li tqabbad (wħda l-immaġini frontali u sa żewġ angoli laterali opzjonali) tinġħamlu upload għas-servizz ta' rikostruzzjoni u jintużaw għall-ibni tal-avatar 3D tiegħek. Jistgħu mmagħmulin mal-rekordin tal-ġenerazzjoni b'dan jista' jitriprodotti, jirrigġa u jiskorja għall-kwalita, u huma viżibbli biss għall-kont tiegħek. Jitħassru meta tħassar ġenerazzjoni jew l-kont tiegħek, subġett għall-finestri ta' ritenzjoni fis-Sessjoni 5. Ma <strong>nużax</strong>homx għall-ittrajnar modelli, ma <strong>npartix</strong>homx ma' advertiser, u ma <strong>nderivax</strong> jew mmagħmlux store ta' template tal-wiċċ jew identifikatur biometriku oħra minnhom. L-użu tal-fluss tas-selfie huwa opzjonali: tista' tagħmel upload ta' fota mill-ġallerija tiegħek, jew deskrivi personagg b'kelmiet u qatt ma tagħti fota."
+		"you_have_the_rights_to_know_access": "Għandek id-drittijiet li tkun taf, taċċessa, tikkoreġi, tħassar, u tittrasferixxi l-informazzjoni personali tiegħek, u li ma tiġix diskriminat talli teżerċitahom. Eżerċitahom permezz ta' <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sezzjoni 6). Aħna nivverifikaw it-talbiet billi nużaw is-sessjoni illoggjata tiegħek, l-email tal-kont tiegħek, jew messaġġ iffirmat mill-wallet tiegħek. Aġent awtorizzat jista' jaġixxi għalik b'permess bil-miktub."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kuntatt",

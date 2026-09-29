@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · de Commons · three.ws",
 		"the_commons": "de Commons"
 	},
+	"airdrops": {
+		"address_label": "Walletadres",
+		"address_placeholder": "Walletadres (Solana of 0x…)",
+		"also_tracked": "Ook getrackt",
+		"check_btn": "Geschiktheid controleren",
+		"copy_aria": "Adres kopiëren",
+		"copy_btn": "Kopiëren",
+		"count_not": "Niet in aanmerking",
+		"count_progress": "Bezig",
+		"count_qualified": "In aanmerking",
+		"count_tracked": "Getrackt",
+		"dir_fineprint": "Statussen weerspiegelen publieke rapportage per de bovenstaande datum en veranderen vaak; niets hier is een aanbeveling of financieel advies. Geschatte ranges zijn publieke speculatie, geen beloftes. Controleer een wallet om scores te zien tegen deze criteria.",
+		"error_title": "Kon deze wallet niet scannen",
+		"est_label": "Geschat als alle gekwalificeerde drops uitkeren",
+		"filter_all": "Alles",
+		"filter_aria": "Filteren op geschiktheid",
+		"filter_not": "Niet in aanmerking",
+		"filter_progress": "Bezig",
+		"filter_qualified": "In aanmerking",
+		"form_aria": "Een wallet controleren",
+		"form_hint": "Druk <kbd>/</kbd> om te focuseren. De chain wordt gedetecteerd vanuit het adres. Zie ook het <a href=\"/portfolio\">walletportfolio</a>.",
+		"kicker": "Echte on-chain activiteit · live gescoord",
+		"loading_note": "On-chain geschiedenis scannen. Een drukke wallet duurt enkele seconden.",
+		"meta_desc": "Controleer elke Solana of Ethereum wallet tegen live airdrop criteria: een echte on-chain activiteitsscan, een 0-100 geschiktheidsscore per programma, precies wat je mist, en de handmatige stappen die een scan niet ziet. Gratis, keyless, geen account.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Programma's",
+		"recent_label": "Recente:",
+		"retry_btn": "Opnieuw proberen",
+		"scan_measured": "Wat de scan meet",
+		"share_aria": "Koppeling naar dit rapport kopiëren",
+		"share_btn": "Delen",
+		"sub": "Plak elk <strong>Solana</strong> of <strong>Ethereum</strong> wallet en zie voor welke airdrops het in aanmerking komt. De score komt van een echte scan van de on-chain geschiedenis van de wallet; de checklist vertelt je precies wat er ontbreekt en wat een scan niet kan zien.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Getrackte programma's"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Acteer op deze lezing",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Handelt binnen strikte bestedingslimieten",
@@ -2936,6 +2972,10 @@
 		"starting": "Starten…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Ontmoet de ontwikkelaars, issue-reporters en communityleden die three.ws beter maken.",
+		"meta_title": "Contributors · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Bekijk alle munten →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Crypto Derivaten · three.ws",
 		"meta_title": "Crypto Derivaten · three.ws",
 		"meta_twitter_description": "Live perpetual futures markten — prijs, 24u beweging, financieringspercentage, open interest en 24u volume.",
-		"meta_twitter_title": "Crypto Derivaten · three.ws"
+		"meta_twitter_title": "Crypto Derivaten · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Open elk contract voor de volledige detailpagina: basis tegen de eigen index, wat de funding rate kost op een positie die je zelf sizeert, en dezelfde underlying geprijsd op elke andere venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Wijzigingen in dit Beleid",
 		"12_contact": "12. Contact",
 		"1_information_we_collect": "1. Informatie die we verzamelen",
+		"1a_photos_you_capture_or_upload": "1a. Foto's die je maakt of uploadt",
 		"2_how_we_use_your_information": "2. Hoe we uw informatie gebruiken",
 		"3_on_chain_data": "3. On-Chain Gegevens",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D-modellen (GLB/glTF), miniaturen, agent metadata",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API-aanroepen, widgetlaadgebeurtenissen (geen IP's, geen vingerafdrukken)",
 		"authentication_account_management": "Authenticatie & accountbeheer",
 		"authentication_security": "Authenticatie, beveiliging",
+		"building_your_3d_avatar_and_reproducing_re_r": "Je 3D-avatar bouwen, en het resultaat reproduceren, opnieuw riggen of opnieuw scoren",
 		"business_transfers_in_connection_with_a_merg": "<strong>Bedrijfsoverdrachten:</strong> in verband met een fusie, overname of verkoop van activa, met kennisgeving aan getroffen gebruikers.",
 		"category": "Categorie",
 		"connected_home_data": "Gegevens van aangesloten huis",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Identiteitsverificatie, abonnementsstatus",
 		"if_you_are_a_california_resident_the": "Als u een inwoner van Californië bent: de categorieën persoonsgegevens die wij verzamelen staan vermeld in Sectie 1, de doeleinden in Sectie 2 en de ontvangers in Sectie 4. Wij verkopen <strong>geen</strong> persoonsgegevens en delen deze <strong>niet</strong> voor gedragsgerichte advertenties over verschillende contexten heen, dus er is niets om u voor af te melden; browser-afmeldsignalen zoals Global Privacy Control worden standaard gerespecteerd omdat er geen verkoop of delen is om te stoppen. Wij gebruiken of openbaren geen gevoelige persoonsgegevens voor doeleinden die een recht op beperking vereisen.",
 		"if_you_connect_a_home_assistant_instance": "Als u een Home Assistant-instantie verbindt, is het toegangs-token dat u verstrekt een referentie voor een fysiek gebouw. We versleutelen het in rust met hetzelfde primitief dat we gebruiken voor custodiale wallet-sleutels, tonen het nooit meer weer, en wissen het het moment dat u de verbinding met het huis verbreekt. Acties die een gebouw openen (ontgrendelen, openen, ontschakelen) vereisen altijd een expliciete menselijke bevestiging, die niet door een AI-model kan worden gegenereerd, totdat u een permanente toestemming verleent voor één specifieke entiteit.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Als je de selfie-flow gebruikt, worden de foto's die je maakt (één frontale afbeelding en maximaal twee optionele zijhoeken) geüpload naar onze reconstructieservice en gebruikt om je 3D-avatar te bouwen. Ze worden opgeslagen met het generatierecord zodat het resultaat gereproduceerd, opnieuw gerigged en opnieuw gescoord kan worden op kwaliteit, en ze zijn alleen zichtbaar voor jouw account. Ze worden verwijderd wanneer je de generatie of je account verwijdert, met inachtneming van de bewaartermijnen in Sectie 5. We gebruiken ze <strong>niet</strong> om modellen te trainen, we <strong>delen</strong> ze niet met advertisers, en we <strong>leiden</strong> geen gezichtssjabloon of andere biometrische identifier eraf af en bewaren die ook niet. Het gebruik van de selfie-flow is optioneel: je kunt ook een foto uit je galerij uploaden, of een personage in woorden beschrijven en nooit een foto opgeven.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Infrastructuurproviders:</strong> Google Cloud Platform (hosting en compute), Neon (database), Cloudflare (opslag en CDN), Resend (transactionele e-mail) en Privy (optionele aanmelding). Elk verwerkt gegevens namens ons onder zijn eigen privacybeleid en gegevensverwerkingsovereenkomst.",
 		"legal_acceptance_records": "Vastlegging van juridische acceptatie",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Vastlegging van juridische acceptatie</strong> (uw acceptatie van de Servicevoorwaarden en Risicoverklaring) wordt bewaard gedurende de levensduur van uw account en daarna zolang als nodig is om juridische claims vast te stellen of te verdedigen. Deze bewaring is een wettelijke verplichting en blijft bestaan na een verzoek tot accountverwijdering.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Privacybeleid · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Toegang via OAuth-scopes:</strong> wanneer je verbinding maakt via OAuth, kan de connector alleen de three.ws accountgegevens lezen en schrijven die vallen onder de scopes die je toekent (avatars, agents, geheugen, profiel). Het heeft geen toegang tot de chatgeschiedenis, het geheugen of lokale bestanden van je AI-client.",
 		"on_chain_data": "On-chain gegevens",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Eén frontale foto en maximaal twee optionele zijhoeken, als je de selfie-flow gebruikt",
 		"operating_the_three_ws_home_features_you": "Het bedienen van de three.ws Home-functies die u hebt ingeschakeld, en het verstrekken van een audit-trail daarvan",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Betaalgegevens (x402):</strong> betaalde tools worden afgerekend in USDC via het x402 betaalprotocol. Wanneer je per oproep betaalt, ontvangen we je openbare walletadres en de transactiehandtekening voor betaling/afrekening, geverifieerd via een betalingsfacilitator (Coinbase CDP en/of de openbare x402.org facilitator). We ontvangen, vragen of bewaren nooit je privésleutels of seed phrase. Het enige token waarnaar three.ws zelf verwijst, is <code>$THREE</code>; USDC wordt puur gebruikt voor afrekening.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Betalingsfacilitators:</strong> voor betaalde functies die on-chain worden afgerekend (x402), verloopt de betalingsverificatie via een facilitator zoals Coinbase Developer Platform of de openbare x402.org facilitator. Zij zien je openbare walletadres en transactiehandtekeningen, nooit privésleutels.",
+		"photos_you_capture_or_upload": "Foto's die je maakt of uploadt",
 		"privacy_policy": "Privacybeleid",
 		"privacy_questions_privacy_three_ws": "Privacyvragen: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bewijs van overeenkomst, wettelijke naleving",
@@ -11279,12 +11325,7 @@
 		"why": "Waarom",
 		"you_can_see_export_and_delete_everything": "U kunt alles wat deze functie bevat op elk moment bekijken, exporteren en verwijderen, en uw eigen bewaartermijn voor het actielog instellen. Zie <a href=\"/docs/home-privacy\">Home privacy and retention</a> voor de volledige inventaris en de API.",
 		"you_have_the_right_to_lodge_a": "U heeft het recht om een klacht in te dienen bij uw lokale toezichthoudende autoriteit. U kunt ook eerst contact met ons opnemen via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; we lossen uw zorg graag direct op.",
-		"you_have_the_rights_to_know_access": "U heeft het recht om uw persoonlijke informatie te kennen, in te zien, te corrigeren, te verwijderen en over te dragen, en om niet gediscrimineerd te worden voor het uitoefenen van deze rechten. Oefen deze uit via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sectie 6). We verifiëren verzoeken met behulp van uw ingelogde sessie, uw account-e-mailadres of een bericht ondertekend door uw wallet. Een geautoriseerde vertegenwoordiger mag namens u handelen met schriftelijke toestemming.",
-		"photos_you_capture_or_upload": "Foto's die je maakt of uploadt",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Eén frontale foto en maximaal twee optionele zijhoeken, als je de selfie-flow gebruikt",
-		"building_your_3d_avatar_and_reproducing_re_r": "Je 3D-avatar bouwen, en het resultaat reproduceren, opnieuw riggen of opnieuw scoren",
-		"1a_photos_you_capture_or_upload": "1a. Foto's die je maakt of uploadt",
-		"if_you_use_the_selfie_flow_the_photos_you": "Als je de selfie-flow gebruikt, worden de foto's die je maakt (één frontale afbeelding en maximaal twee optionele zijhoeken) geüpload naar onze reconstructieservice en gebruikt om je 3D-avatar te bouwen. Ze worden opgeslagen met het generatierecord zodat het resultaat gereproduceerd, opnieuw gerigged en opnieuw gescoord kan worden op kwaliteit, en ze zijn alleen zichtbaar voor jouw account. Ze worden verwijderd wanneer je de generatie of je account verwijdert, met inachtneming van de bewaartermijnen in Sectie 5. We gebruiken ze <strong>niet</strong> om modellen te trainen, we <strong>delen</strong> ze niet met advertisers, en we <strong>leiden</strong> geen gezichtssjabloon of andere biometrische identifier eraf af en bewaren die ook niet. Het gebruik van de selfie-flow is optioneel: je kunt ook een foto uit je galerij uploaden, of een personage in woorden beschrijven en nooit een foto opgeven."
+		"you_have_the_rights_to_know_access": "U heeft het recht om uw persoonlijke informatie te kennen, in te zien, te corrigeren, te verwijderen en over te dragen, en om niet gediscrimineerd te worden voor het uitoefenen van deze rechten. Oefen deze uit via <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sectie 6). We verifiëren verzoeken met behulp van uw ingelogde sessie, uw account-e-mailadres of een bericht ondertekend door uw wallet. Een geautoriseerde vertegenwoordiger mag namens u handelen met schriftelijke toestemming."
 	},
 	"legal_risk": {
 		"10_contact": "10. Contact",

@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Alamat dompet",
+		"address_placeholder": "Alamat dompet (Solana atau 0x…)",
+		"also_tracked": "Juga dipantau",
+		"check_btn": "Semak kelayakan",
+		"copy_aria": "Salin alamat",
+		"copy_btn": "Salin",
+		"count_not": "Tidak layak",
+		"count_progress": "Sedang berlangsung",
+		"count_qualified": "Layak",
+		"count_tracked": "Dipantau",
+		"dir_fineprint": "Status mencerminkan laporan awam pada tarikh di atas dan berubah kerap; tiada di sini merupakan pengesahan atau nasihat kewangan. Anggaran julat adalah spekulasi awam, bukan janji. Semak dompet untuk melihat skor terhadap kriteria ini.",
+		"error_title": "Tidak dapat mengimbas dompet ini",
+		"est_label": "Dianggarkan jika semua airdrop layak dibayar",
+		"filter_all": "Semua",
+		"filter_aria": "Tapis mengikut kelayakan",
+		"filter_not": "Tidak layak",
+		"filter_progress": "Sedang berlangsung",
+		"filter_qualified": "Layak",
+		"form_aria": "Semak dompet",
+		"form_hint": "Tekan <kbd>/</kbd> untuk fokus. Rantaian dikesan dari alamat. Lihat juga <a href=\"/portfolio\">portfolio dompet</a>.",
+		"kicker": "Aktiviti on-chain sebenar · dikira secara langsung",
+		"loading_note": "Mengimbas sejarah on-chain. Dompet sibuk memerlukan beberapa saat.",
+		"meta_desc": "Semak mana-mana dompet Solana atau Ethereum terhadap kriteria airdrop langsung: imbasan aktiviti on-chain sebenar, skor kelayakan 0-100 per program, tepat apa yang anda terlepas, dan langkah manual yang imbasan tidak nampak. Percuma, tanpa kunci, tiada akaun.",
+		"page_title": "Pemeriksa Airdrop · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Program",
+		"recent_label": "Terbaru:",
+		"retry_btn": "Cuba semula",
+		"scan_measured": "Apa yang diukur imbasan",
+		"share_aria": "Salin pautan ke laporan ini",
+		"share_btn": "Kongsi",
+		"sub": "Tampal mana-mana <strong>Solana</strong> atau <strong>Ethereum</strong> dompet dan lihat airdrop mana yang ia layak. Skor datang dari imbasan sebenar sejarah on-chain dompet; senarai semak memberitahu tepat apa yang hilang dan apa yang imbasan tidak nampak.",
+		"title": "<em>Pemeriksa</em> Airdrop",
+		"tracked_programs": "Program dipantau"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Tindak pada bacaan ini",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Bertindak dalam had perbelanjaan yang ketat",
@@ -2936,6 +2972,10 @@
 		"starting": "Memulakan…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Konstelasi</span>"
+	},
+	"contributors": {
+		"meta_description": "Kenali pembangun, pelapor isu, dan ahli komuniti yang membuat three.ws lebih baik.",
+		"meta_title": "Penyumbang · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Lihat semua syiling →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivatif Kripto · three.ws",
 		"meta_title": "Derivatif Kripto · three.ws",
 		"meta_twitter_description": "Pasaran niaga hadapan kekal langsung — harga, pergerakan 24 jam, kadar pembiayaan, minat terbuka, dan volum 24 jam.",
-		"meta_twitter_title": "Derivatif Kripto · three.ws"
+		"meta_twitter_title": "Derivatif Kripto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Buka mana-mana kontrak untuk halaman butiran penuhnya: basis terhadap indeksnya sendiri, kos kadar pembiayaan pada saiz posisi anda, dan aset asas yang sama diharga di setiap tempat lain."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Perubahan kepada Dasar Ini",
 		"12_contact": "12. Hubungi Kami",
 		"1_information_we_collect": "1. Maklumat yang Kami Kumpul",
+		"1a_photos_you_capture_or_upload": "1a. Foto yang Anda Ambil atau Muat Naik",
 		"2_how_we_use_your_information": "2. Cara Kami Menggunakan Maklumat Anda",
 		"3_on_chain_data": "3. Data Rantaian",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Model 3D (GLB/glTF), lakaran kecil, metadata ejen",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Panggilan API, peristiwa muat widget (tiada IP, tiada cap jari)",
 		"authentication_account_management": "Pengesahan & pengurusan akaun",
 		"authentication_security": "Pengesahan, keselamatan",
+		"building_your_3d_avatar_and_reproducing_re_r": "Membina avatar 3D anda, serta mereproduksi, me-rig semula atau menilai semula hasil tersebut",
 		"business_transfers_in_connection_with_a_merg": "<strong>Pemindahan perniagaan:</strong> berkaitan dengan penggabungan, pemerolehan, atau penjualan aset, dengan notis kepada pengguna yang terjejas.",
 		"category": "Kategori",
 		"connected_home_data": "Data rumah yang disambungkan",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Pengesahan identiti, status langganan",
 		"if_you_are_a_california_resident_the": "Jika anda seorang penduduk California: kategori maklumat peribadi yang kami kumpul disenaraikan dalam Seksyen 1, tujuan dalam Seksyen 2, dan penerima dalam Seksyen 4. Kami <strong>tidak</strong> menjual maklumat peribadi dan <strong>tidak</strong> berkongsinya untuk pengiklanan tingkah laku merentas konteks, jadi tiada apa-apa untuk menarik diri; isyarat menarik diri pelayar seperti Global Privacy Control dihormati secara lalai kerana tiada penjualan atau perkongsian untuk dihentikan. Kami tidak menggunakan atau mendedahkan maklumat peribadi sensitif untuk tujuan yang memerlukan hak untuk mengehadkan.",
 		"if_you_connect_a_home_assistant_instance": "Jika anda menyambung contoh Home Assistant, token akses yang anda beri adalah credenial kepada bangunan fizikal. Kami mengenkripsinya saat diam dengan sama primitif yang kami gunakan untuk kunci dompet penjaga, tidak pernah dipaparkan lagi, dan dipadam segera anda memutuskan sambungan rumah. Tindakan yang membuka bangunan (membuka kunci, membuka, menyalakan sistem alarm) selalu memerlukan pengesahan manusia yang jelas — yang tidak boleh dihasilkan oleh model AI — sehingga anda memberi elaun tetap bagi satu entiti tertentu.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Jika anda menggunakan aliran selfie, foto yang anda ambil (satu imej frontal dan sehingga dua sudut sisi pilihan) akan dimuat naik ke perkhidmatan pembinaan semula kami dan digunakan untuk membina avatar 3D anda. Ia disimpan bersama rekod penjanaan supaya hasil boleh direproduksi, di-rig semula dan dinilai semula untuk kualiti, dan hanya nampak kepada akaun anda. Ia akan dipadam apabila anda memadam penjanaan atau akaun anda, tertakluk kepada tempoh pengekalan dalam Seksyen 5. Kami <strong>tidak</strong> menggunakannya untuk melatih model, kami <strong>tidak</strong> kongsikannya dengan pengiklan, dan kami <strong>tidak</strong> menghasilkan atau menyimpan templat wajah atau pengenal pasti biometrik lain daripadanya. Menggunakan aliran selfie adalah pilihan: anda boleh memuat naik foto dari galeri, atau menggambarkan watak dalam perkataan dan tidak pernah menyediakan foto langsung.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Penyedia infrastruktur:</strong> Google Cloud Platform (pengehosan dan pengkomputeran), Neon (pangkalan data), Cloudflare (storan dan CDN), Resend (e-mel transaksi), dan Privy (log masuk pilihan). Setiap satu memproses data bagi pihak kami di bawah dasar privasi dan terma pemprosesan data masing-masing.",
 		"legal_acceptance_records": "Rekod penerimaan undang-undang",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Rekod penerimaan undang-undang</strong> (penerimaan anda terhadap Syarat Perkhidmatan dan Pendedahan Risiko) disimpan sepanjang hayat akaun anda dan selepas itu selagi diperlukan untuk menubuhkan atau mempertahankan tuntutan undang-undang. Penyimpanan ini adalah kewajipan undang-undang dan kekal walaupun permintaan penghapusan akaun.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Dasar Privasi · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Akses skop OAuth:</strong> apabila anda menyambung melalui OAuth, penyambung hanya boleh membaca dan menulis data akaun three.ws yang dilindungi oleh skop yang anda berikan (avatar, ejen, memori, profil). Ia tidak boleh mengakses sejarah sembang, memori, atau fail tempatan klien AI anda.",
 		"on_chain_data": "Data on-chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Satu foto frontal dan sehingga dua sudut sisi pilihan, jika anda menggunakan aliran selfie",
 		"operating_the_three_ws_home_features_you": "Mengendalikan ciri-ciri three.ws Home yang anda aktifkan, dan memberinya anda rekod audit.",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Data pembayaran (x402):</strong> alat berbayar diselesaikan dalam USDC melalui protokol pembayaran x402. Apabila anda membayar setiap panggilan, kami menerima alamat dompet awam anda dan tandatangan transaksi pembayaran/penyelesaian, yang disahkan melalui fasilitator pembayaran (Coinbase CDP dan/atau fasilitator awam x402.org). Kami tidak pernah menerima, meminta, atau menyimpan kunci peribadi atau frasa benih anda. Satu-satunya token yang dirujuk oleh three.ws sendiri ialah <code>$THREE</code>; USDC digunakan semata-mata untuk penyelesaian.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Fasilitator pembayaran:</strong> untuk ciri berbayar yang diselesaikan on-chain (x402), pengesahan pembayaran dijalankan melalui fasilitator seperti Coinbase Developer Platform atau fasilitator awam x402.org. Mereka melihat alamat dompet awam anda dan tandatangan transaksi, bukan kunci peribadi.",
+		"photos_you_capture_or_upload": "Foto yang anda ambil atau muat naik",
 		"privacy_policy": "Dasar Privasi",
 		"privacy_questions_privacy_three_ws": "Soalan privasi: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bukti persetujuan, pematuhan undang-undang",
@@ -11279,12 +11325,7 @@
 		"why": "Mengapa",
 		"you_can_see_export_and_delete_everything": "Anda boleh melihat, mengekspor dan memadam segala yang disimpan oleh ciri ini pada bila-bila masa, dan menetapkan tetingkap penahanan anda sendiri untuk log tindakan. Lihat <a href=\"/docs/home-privacy\">Privasi dan penahanan rumah</a> untuk inventori lengkap dan API.",
 		"you_have_the_right_to_lodge_a": "Anda berhak untuk membuat aduan kepada pihak berkuasa penyeliaan tempatan anda. Anda juga boleh menghubungi kami terlebih dahulu di <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; kami mengalu-alukan peluang untuk menyelesaikan kebimbangan anda secara langsung.",
-		"you_have_the_rights_to_know_access": "Anda mempunyai hak untuk mengetahui, mengakses, membetulkan, memadam, dan memindahkan maklumat peribadi anda, serta tidak didiskriminasi kerana menggunakannya. Gunakan hak ini melalui <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksyen 6). Kami mengesahkan permintaan menggunakan sesi log masuk anda, e-mel akaun anda, atau mesej yang ditandatangani oleh dompet anda. Ejen yang diberi kuasa boleh bertindak bagi pihak anda dengan kebenaran bertulis.",
-		"photos_you_capture_or_upload": "Foto yang anda ambil atau muat naik",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Satu foto frontal dan sehingga dua sudut sisi pilihan, jika anda menggunakan aliran selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Membina avatar 3D anda, serta mereproduksi, me-rig semula atau menilai semula hasil tersebut",
-		"1a_photos_you_capture_or_upload": "1a. Foto yang Anda Ambil atau Muat Naik",
-		"if_you_use_the_selfie_flow_the_photos_you": "Jika anda menggunakan aliran selfie, foto yang anda ambil (satu imej frontal dan sehingga dua sudut sisi pilihan) akan dimuat naik ke perkhidmatan pembinaan semula kami dan digunakan untuk membina avatar 3D anda. Ia disimpan bersama rekod penjanaan supaya hasil boleh direproduksi, di-rig semula dan dinilai semula untuk kualiti, dan hanya nampak kepada akaun anda. Ia akan dipadam apabila anda memadam penjanaan atau akaun anda, tertakluk kepada tempoh pengekalan dalam Seksyen 5. Kami <strong>tidak</strong> menggunakannya untuk melatih model, kami <strong>tidak</strong> kongsikannya dengan pengiklan, dan kami <strong>tidak</strong> menghasilkan atau menyimpan templat wajah atau pengenal pasti biometrik lain daripadanya. Menggunakan aliran selfie adalah pilihan: anda boleh memuat naik foto dari galeri, atau menggambarkan watak dalam perkataan dan tidak pernah menyediakan foto langsung."
+		"you_have_the_rights_to_know_access": "Anda mempunyai hak untuk mengetahui, mengakses, membetulkan, memadam, dan memindahkan maklumat peribadi anda, serta tidak didiskriminasi kerana menggunakannya. Gunakan hak ini melalui <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Seksyen 6). Kami mengesahkan permintaan menggunakan sesi log masuk anda, e-mel akaun anda, atau mesej yang ditandatangani oleh dompet anda. Ejen yang diberi kuasa boleh bertindak bagi pihak anda dengan kebenaran bertulis."
 	},
 	"legal_risk": {
 		"10_contact": "10. Hubungi Kami",

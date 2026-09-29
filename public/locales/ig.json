@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Ebe Ọha · three.ws",
 		"the_commons": "Ebe Ọha"
 	},
+	"airdrops": {
+		"address_label": "Adreesị Walet",
+		"address_placeholder": "Adreesị Walet (Solana ma ọ bụ 0x…)",
+		"also_tracked": "Nwereike ịhụ",
+		"check_btn": "Nweta ike",
+		"copy_aria": "Kopịa adreesị",
+		"copy_btn": "Kopịa",
+		"count_not": "Enweghị ike",
+		"count_progress": "Na-arụ ọrụ",
+		"count_qualified": "Nwere ike",
+		"count_tracked": "Nwereike ịhụ",
+		"dir_fineprint": "Steetụsi na-akwụsị aka na akụkọ ọhụrụ nke onye ọbụla dịka dị n'ọnwa a na ọkwa a na-emegharị ọsọ; ihe ọ bụla ebe a enweghị ihe ndị na-akwado aka ma ọ bụ arụmụrụ ahịa. Nkewere nkewere dịka na-akwụsị ndị mmadụ, enweghị nkwenye. Lelee walet iji ịhụ score n'ime ndị mmasị a.",
+		"error_title": "Enwere ike inweta walet a",
+		"est_label": "Nkewere nkewere ma ọ bụ na ndị ọrụ ọhụrụ niile na-akwụ ụgwọ",
+		"filter_all": "Niile",
+		"filter_aria": "Mechakọta n'ime ike",
+		"filter_not": "Enweghị ike",
+		"filter_progress": "Na-arụ ọrụ",
+		"filter_qualified": "Nwere ike",
+		"form_aria": "Lelee walet",
+		"form_hint": "Mechiri <kbd>/</kbd> iji nwee ntinye. Chain na-achọpụta site na adreesị. Ma ọ bụgha, lelee <a href=\"/portfolio\">walet portfolio</a>.",
+		"kicker": "Arụ ọrụ on-chain nke ezigbo · na-agbakwunye nke mgbe a",
+		"loading_note": "Na-achọpụta akwụkwọ ọrụ on-chain. Walet na-arụ ọrụ nke ọma achọrọ nkeji mgbe.",
+		"meta_desc": "Lelee ọ bụla Solana ma ọ bụ walet Ethereum n'ihi mmasị airdrop ndị dị nke mgbe a: achọpụta arụ ọrụ on-chain nke ezigbo, score ike 0-100 maka ọrụ nke ọ bụla, ihe ị na-achọpụta dịka ị na-achọ, na nsogbu ọrụ manual a achọpụta enweghị ike ịhụ. Nke nwereghị ego, enweghị key, enweghị akaụntọ.",
+		"page_title": "Nchọpụta Airdrop · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Ọrụ",
+		"recent_label": "Mgbe a gara aga:",
+		"retry_btn": "Weta ọzọ",
+		"scan_measured": "Ihe achọpụta mechiri",
+		"share_aria": "Kopịa link n'ihi akụkọ a",
+		"share_btn": "Dozie",
+		"sub": "Tinye ọ bụla <strong>Solana</strong> ma ọ bụ <strong>Ethereum</strong> walet na ịhụ gị airdrop ọ bụla e nwere ike. Score na-akwụsị site na achọpụta nke ezigbo nke akwụkwọ ọrụ on-chain nke walet; checklist akwụsị gị ihe ị na-achọpụta dịka ị na-achọ na ihe achọpụta enweghị ike ịhụ.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Ọrụ nwereike ịhụ"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Mezuo ọgụgụ a",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Na-eme ihe n'ime oke mmefu siri ike",
@@ -2936,6 +2972,10 @@
 		"starting": "Na-amalite…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Nwata ndị na-akwado, ndị na-akwụkwọ nsogbu, na ndị obodo na-akwado three.ws ịma ọma.",
+		"meta_title": "Ndị na-akwado · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Chọgharịa mkpụrụ ego niile →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Derivatives Crypto · three.ws",
 		"meta_title": "Derivatives Crypto · three.ws",
 		"meta_twitter_description": "Ahịa futures na-adịgide adịgide na-aga n'ihu — ọnụahịa, mgbanwe awa 24, ọnụego ego, mmasị mepere emepe, na olu awa 24.",
-		"meta_twitter_title": "Derivatives Crypto · three.ws"
+		"meta_twitter_title": "Derivatives Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Gbaa ọrụ nke ọ bụla maka akụkọ ọrụ ya nke nkewa: isi n'ime ya nke onwe ya, ihe funding rate na-eme ka ọ bụghị nke ọma n'ime ịsiokwu gị nke onwe gị, na nke onwe ya dị n'ime ọ bụla venue."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Mgbanwe na Iwu a",
 		"12_contact": "12. Kpọtụrụ",
 		"1_information_we_collect": "1. Ozi Anyị Na-anakọta",
+		"1a_photos_you_capture_or_upload": "1a. Foto Gị Na-akpọ Ọrụ Ma ọ Bụ Na-akpụlụ",
 		"2_how_we_use_your_information": "2. Otu Anyị Si Eji Ozi Gị",
 		"3_on_chain_data": "3. Data N'agbụ",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Ihe nlereanya 3D (GLB/glTF), obere foto, metadata onye ọrụ",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Oku API, ihe omume nbudata wijetị (enweghị IP, enweghị akara mkpịsị aka)",
 		"authentication_account_management": "Nkwenye njirimara & njikwa akaụntụ",
 		"authentication_security": "Nkwenye njirimara, nchekwa",
+		"building_your_3d_avatar_and_reproducing_re_r": "Ịzụta 3D avatar gị, ma ọ bụ ịzụta ọzọ, ịmepụta ọzọ ma ọ bụ ịnye nkọwa ọzọ ihe mere eme",
 		"business_transfers_in_connection_with_a_merg": "<strong>Nnyefe azụmahịa:</strong> na njikọta, nnweta, ma ọ bụ ire ihe onwunwe, site na ọkwa nye ndị ọrụ emetụtara.",
 		"category": "Ụdị",
 		"connected_home_data": "Connected home data",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Nkwenye njirimara, ọnọdụ ndebanye aha",
 		"if_you_are_a_california_resident_the": "Ọ bụrụ na ị bụ onye bi na California: ụdị ozi nkeonwe anyị na-anakọta ka edepụtara na Nkeji 1, ebumnuche dị na Nkeji 2, na ndị nnata dị na Nkeji 4. Anyị anaghị <strong>ere</strong> ozi nkeonwe ma anyị anaghị <strong>ekesa</strong> ya maka mgbasa ozi omume n'ofe ọnọdụ, ya mere enweghị ihe ọ bụla ị ga-ahọrọ ịhapụ; a na-asọpụrụ akara ngosi ịhapụ ihe nchọgharị dị ka Global Privacy Control na ndabara n'ihi na enweghị ire ma ọ bụ ikesa iji kwụsị. Anyị anaghị eji ma ọ bụ kpughee ozi nkeonwe dị nro maka ebumnuche chọrọ ikike ịmachibido.",
 		"if_you_connect_a_home_assistant_instance": "If you connect a Home Assistant instance, the access token you provide is a credential to a physical building. We encrypt it at rest with the same primitive we use for custodial wallet keys, never display it again, and erase it the moment you disconnect the home. Actions that open a building (unlocking, opening, disarming) always require an explicit human confirmation, which cannot be produced by an AI model, until you grant a standing allowance for one specific entity.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ma ọ bụ na ị na-eji usoro selfie, foto gị na-akpọ (foto frontal nke nke abụọ ma ọ bụ nke atọ n'ọnụdụ) dị na-akpụlụ n'ọrụ ụzọ nke anyị na-eji zụta 3D avatar gị. Ha dị na-chezọ n'akwụkwọ ụzọ emepụta ma ọ bụ ka ihe mere eme ga-eme ka ịzụta ọzọ, ịmepụta ọzọ ma ọ bụ ịnye nkọwa ọzọ nke ụzọ, ha dị na-ahụ maka gị n'aka. Ha ga-ewupụta mgbe ị ewupụta ụzọ emepụta ma ọ bụ akaụntọ gị, nke dị mkpa n'ọnụdụ ichekwa n'Section 5. Anyị <strong>aghị</strong> na-eji ha ịzụta model, anyị <strong>aghị</strong> na-enye ha ndị na-akwado, ma anyị <strong>aghị</strong> na-eme ka ha ga-eme ihe ọnụdụ ma ọ bụ ichekwa nke biometrik nke onye ọ bụla. Iji usoro selfie bụ nke ọnụdụ: ị ga-enwe ike ịkpụlụ foto n'galeri gị, ma ọ bụ ịkọwa ihe ọ bụla n'okwu ma ị ga-achọghị ịnye foto nke ọ bụla.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Ndị na-enye akụrụngwa:</strong> Google Cloud Platform (ịnabata na mgbakọ), Neon (ọdụ data), Cloudflare (nchekwa na CDN), Resend (ozi-e azụmahịa), na Privy (nbanye nhọrọ). Onye ọ bụla na-ahazi data n'aha anyị n'okpuru amụma nzuzo ya na usoro nhazi data.",
 		"legal_acceptance_records": "Ndekọ nnabata iwu",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Ndekọ nnabata iwu</strong> (nnabata gị nke Usoro Ọrụ na Nkwupụta Ihe Ọghọm) a na-ejigide ya maka oge ndụ akaụntụ gị na mgbe nke ahụ gasịrị ruo mgbe ọ dị mkpa iji guzobe ma ọ bụ chebe ebubo iwu. Nchekwa a bụ ọrụ iwu ma na-adịgide mgbe arịrịọ ihichapụ akaụntụ gasịrị.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Iwu Nzuzo · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Ohere OAuth akọwapụtara:</strong> mgbe ị jikọrọ site na OAuth, njikọ ahụ nwere ike ịgụ na ide naanị data akaụntụ three.ws nke oke ị nyere ikike kpuchiri (avatars, agents, memory, profile). Ọ nweghị ike ịnweta akụkọ mkparịta ụka onye ahịa AI gị, ebe nchekwa, ma ọ bụ faịlụ mpaghara.",
 		"on_chain_data": "Data dị na chain",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Foto frontal nke nke abụọ ma ọ bụ nke atọ n'ọnụdụ, ma ọ bụ na ị na-eji usoro selfie",
 		"operating_the_three_ws_home_features_you": "Operating the three.ws Home features you enabled, and giving you an audit trail of them",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Data ịkwụ ụgwọ (x402):</strong> ngwa akwụ ụgwọ na-edozi na USDC site na usoro ịkwụ ụgwọ x402. Mgbe ị kwụrụ ụgwọ kwa oku, anyị na-enweta adreesị obere akpa ọha gị na mbinye aka azụmahịa ịkwụ ụgwọ/ndozigharị, nke a na-enyocha site na onye na-eme ka ịkwụ ụgwọ dị mfe (Coinbase CDP na/ma ọ bụ onye na-eme ka x402.org dị mfe). Anyị anaghị anata, rịọ, ma ọ bụ chekwaa igodo nzuzo gị ma ọ bụ ahịrịokwu mkpụrụ gị. Naanị token three.ws n'onwe ya na-ezo aka bụ <code>$THREE</code>; a na-eji USDC naanị maka ndozigharị.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Ndị na-eme ka ịkwụ ụgwọ dị mfe:</strong> maka atụmatụ akwụ ụgwọ edoziri na chain (x402), nkwenye ịkwụ ụgwọ na-agafe onye na-eme ka ọ dị mfe dị ka Coinbase Developer Platform ma ọ bụ onye na-eme ka x402.org dị mfe. Ha na-ahụ adreesị obere akpa ọha gị na mbinye aka azụmahịa, ọ bụghị igodo nzuzo.",
+		"photos_you_capture_or_upload": "Foto gị na-akpọ ọrụ ma ọ bụ na-akpụlụ",
 		"privacy_policy": "Iwu Nzuzo",
 		"privacy_questions_privacy_three_ws": "Ajụjụ gbasara nzuzo: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Ihe akaebe nkwekọrịta, nnabata iwu",
@@ -11279,12 +11325,7 @@
 		"why": "Gịnị mere",
 		"you_can_see_export_and_delete_everything": "You can see, export and delete everything this feature holds at any time, and set your own retention window for the action log. See <a href=\"/docs/home-privacy\">Home privacy and retention</a> for the complete inventory and the API.",
 		"you_have_the_right_to_lodge_a": "Ị nwere ikike ịgba akwụkwọ mkpesa n'aka ndị nlekọta mpaghara gị. Ị nwekwara ike ịkpọtụrụ anyị mbụ na <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; anyị ga-anabata ohere idozi nsogbu gị ozugbo.",
-		"you_have_the_rights_to_know_access": "Ị nwere ikike ịmara, ịnweta, idozi, ihichapụ, na ibugharị ozi nkeonwe gị, na ịghara ịkpa ókè megide gị maka iji ha. Jiri ha site na <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Nkeji 6). Anyị na-enyocha arịrịọ site na iji nnọkọ ị banyere, email akaụntụ gị, ma ọ bụ ozi obere akpa gị bịanyere aka. Onye nnọchi anya ikike nwere ike ime ihe maka gị site na ikike edere ede.",
-		"photos_you_capture_or_upload": "Foto gị na-akpọ ọrụ ma ọ bụ na-akpụlụ",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Foto frontal nke nke abụọ ma ọ bụ nke atọ n'ọnụdụ, ma ọ bụ na ị na-eji usoro selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Ịzụta 3D avatar gị, ma ọ bụ ịzụta ọzọ, ịmepụta ọzọ ma ọ bụ ịnye nkọwa ọzọ ihe mere eme",
-		"1a_photos_you_capture_or_upload": "1a. Foto Gị Na-akpọ Ọrụ Ma ọ Bụ Na-akpụlụ",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ma ọ bụ na ị na-eji usoro selfie, foto gị na-akpọ (foto frontal nke nke abụọ ma ọ bụ nke atọ n'ọnụdụ) dị na-akpụlụ n'ọrụ ụzọ nke anyị na-eji zụta 3D avatar gị. Ha dị na-chezọ n'akwụkwọ ụzọ emepụta ma ọ bụ ka ihe mere eme ga-eme ka ịzụta ọzọ, ịmepụta ọzọ ma ọ bụ ịnye nkọwa ọzọ nke ụzọ, ha dị na-ahụ maka gị n'aka. Ha ga-ewupụta mgbe ị ewupụta ụzọ emepụta ma ọ bụ akaụntọ gị, nke dị mkpa n'ọnụdụ ichekwa n'Section 5. Anyị <strong>aghị</strong> na-eji ha ịzụta model, anyị <strong>aghị</strong> na-enye ha ndị na-akwado, ma anyị <strong>aghị</strong> na-eme ka ha ga-eme ihe ọnụdụ ma ọ bụ ichekwa nke biometrik nke onye ọ bụla. Iji usoro selfie bụ nke ọnụdụ: ị ga-enwe ike ịkpụlụ foto n'galeri gị, ma ọ bụ ịkọwa ihe ọ bụla n'okwu ma ị ga-achọghị ịnye foto nke ọ bụla."
+		"you_have_the_rights_to_know_access": "Ị nwere ikike ịmara, ịnweta, idozi, ihichapụ, na ibugharị ozi nkeonwe gị, na ịghara ịkpa ókè megide gị maka iji ha. Jiri ha site na <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Nkeji 6). Anyị na-enyocha arịrịọ site na iji nnọkọ ị banyere, email akaụntụ gị, ma ọ bụ ozi obere akpa gị bịanyere aka. Onye nnọchi anya ikike nwere ike ime ihe maka gị site na ikike edere ede."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kpọtụrụ",

@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Almenningurinn · three.ws",
 		"the_commons": "Almenningurinn"
 	},
+	"airdrops": {
+		"address_label": "Greiðslupókahleðsla",
+		"address_placeholder": "Greiðslupókahleðsla (Solana eða 0x…)",
+		"also_tracked": "Aðrar fylgdar",
+		"check_btn": "Athuga hæfni",
+		"copy_aria": "Afrita heðslu",
+		"copy_btn": "Afrita",
+		"count_not": "Óhæfur",
+		"count_progress": "Í vinnslu",
+		"count_qualified": "Hæfur",
+		"count_tracked": "Fylgt",
+		"dir_fineprint": "Stöður endurspegla almennar upplýsingar frá dagsetningu hér að ofan og breytast oft; ekkert hér er samþykki eða fjármála ráðgjöf. Áætlað bil eru almennar spegilmyndir, ekki löftun. Athugaðu greiðslupóki til að sjá stig gegn þessum skilyrðum.",
+		"error_title": "Tókst ekki að skanna þennan greiðslupók",
+		"est_label": "Áætlað ef allir hæfir airdrops greiða út",
+		"filter_all": "Allir",
+		"filter_aria": "Sía eftir hæfni",
+		"filter_not": "Óhæfur",
+		"filter_progress": "Í vinnslu",
+		"filter_qualified": "Hæfir",
+		"form_aria": "Athuga greiðslupók",
+		"form_hint": "Ýttu á <kbd>/</kbd> til að fókusa. Ketti er greindur úr heðslunni. Sjá einnig <a href=\"/portfolio\">greiðslupókasafn</a>.",
+		"kicker": "Raunveruleg on-chain virkni · skönduð beint",
+		"loading_note": "Skanna on-chain sögu. Erfiður greiðslupóki tekur nokkrar sekúndur.",
+		"meta_desc": "Athugaðu hvaða Solana eða Ethereum greiðslupók sem er gegn lifandi airdrop skilyrðum: raunveruleg on-chain skönnun, 0-100 hæfni stig fyrir hvern forrit, nákvæmlega það sem þú vantar, og handvirku skref sem skönnun getur ekki séð. Ókeypis, ekki lykill, enginn reikningur.",
+		"page_title": "Airdrop Athugari · three.ws",
+		"portfolio_chip": "Safn",
+		"programs": "Forrit",
+		"recent_label": "Nýjustu:",
+		"retry_btn": "Reyna aftur",
+		"scan_measured": "Það sem skönnunin mældi",
+		"share_aria": "Afrita tengil á þessa skýrslu",
+		"share_btn": "Deila",
+		"sub": "Límaðu hvaða <strong>Solana</strong> eða <strong>Ethereum</strong> greiðslupók sem er og sjáðu hvaða airdrops hann uppfyllir skilyrði fyrir. Stigið kemur af raunverulegu skanni á sögu greiðslupókans; skráningin segir þér nákvæmlega hvað vantar og hvað skönnun getur ekki séð.",
+		"title": "Airdrop <em>Athugari</em>",
+		"tracked_programs": "Fylgð forrit"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Bregaðu við þessum lestri",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Hagar sér innan strangra útgjaldatakmarkana",
@@ -2936,6 +2972,10 @@
 		"starting": "Ræsi…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Mættu þróunara, villa skýrsluaðila, og samfélagsmeðlimir sem gera three.ws betra.",
+		"meta_title": "Framlagðir · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Skoða allar myntir →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kryptóafleiður · three.ws",
 		"meta_title": "Kryptóafleiður · three.ws",
 		"meta_twitter_description": "Lifandi framtíðarmarkaðir án fyrningardags — verð, 24 klst. breyting, fjármögnunarhlutfall, opnir samningar og 24 klst. velta.",
-		"meta_twitter_title": "Kryptóafleiður · three.ws"
+		"meta_twitter_title": "Kryptóafleiður · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Opnaðu hvaða samning sem er fyrir fulla upplýsingasíðu hans: grunnur gegn eigin vísitölu, hvað vextigjaldin kosta á stöðu sem þú stærðarfræðir sjálfur, og sama undirliggjandi verðsett á hverju öðru stað."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Breytingar á þessari stefnu",
 		"12_contact": "12. Hafðu samband",
 		"1_information_we_collect": "1. Upplýsingar sem við söfnum",
+		"1a_photos_you_capture_or_upload": "1a. Myndir sem þú tekur eða hleður upp",
 		"2_how_we_use_your_information": "2. Hvernig við notum upplýsingarnar þínar",
 		"3_on_chain_data": "3. Gögn á keðju",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D módel (GLB/glTF), smámyndir, lýsigögn um umboðsmann",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API símtöl, hleðsluatburðir búnaðar (engar IP-tölur, engin fingraför)",
 		"authentication_account_management": "Auðkenning og reikningsstjórnun",
 		"authentication_security": "Auðkenning, öryggi",
+		"building_your_3d_avatar_and_reproducing_re_r": "Bygging þínar 3D-fylgimyndar, og endurtekning, endurrigging eða endurstigun þess",
 		"business_transfers_in_connection_with_a_merg": "<strong>Fyrirtækjaflutningar:</strong> í tengslum við samruna, yfirtöku eða sölu eigna, með tilkynningu til notenda sem verða fyrir áhrifum.",
 		"category": "Flokkur",
 		"connected_home_data": "Gögn um tengdar heimila",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Auðkennisstaðfesting, áskriftarstaða",
 		"if_you_are_a_california_resident_the": "Ef þú ert íbúi í Kaliforníu: flokkar persónuupplýsinga sem við söfnum eru taldir upp í kafla 1, tilgangurinn í kafla 2, og viðtakendur í kafla 4. Við <strong>seljum ekki</strong> persónuupplýsingar og <strong>deilum þeim ekki</strong> fyrir hegðunartengdar auglýsingar yfir samhengi, svo það er ekkert til að afþakka; afþökkunarmerki vafra eins og Global Privacy Control eru virt sjálfgefið þar sem engin sala eða miðlun er til að stöðva. Við notum eða birtum ekki viðkvæmar persónuupplýsingar í tilgangi sem krefst takmörkunarréttar.",
 		"if_you_connect_a_home_assistant_instance": "Ef þú tengdir Home Assistant tilvik, þá er aðgangstakni þinn sem þú veitir skilríki til líkamlega bygðar. Við krypterum það í hvíl með sömu grundvölli sem við notum fyrir varðveytisvíðisklykur, sýnum það ekki aftur og eyðum það þegar þú skilur heimilið. Aðgerðir opna bygð (lása upp, opna, slökkva á) kreifa alltid eftir uttryktri mannlegri staðfestingu, sem ekki getur AI-modull bún til, þar til þú veitir fastan leyfi til einkaðar einingar.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ef þú notar selfie-ferlið eru myndir sem þú tekur (einn framanmynd og upp að tvær valfrjálsar hliðarmyndir) hlaðnar upp í endurbyggingarþjónustu okkar og notuð til að byggja 3D-fylgimynd þína. Þær eru geymdar ásamt upprunaskráni svo niðurstöðin geti verið endurtekin, endurriggð og endurstöðuð gæðavísar, og þær eru sjánlegar aðeins fyrir reikninginn þinn. Þær eru eytt þegar þú eyðir uppruninni eða reikninginum þínum, með tilliti til geymsluvinda í kafla 5. Við notum <strong>ekki</strong> þær til að þjálfa mudel, við deilum <strong>ekki</strong> þeim með auglýsendum, og við búa <strong>ekki</strong> til né geymum andlits sniðmát né neina aðra líffræðilega auðkenni úr þeim. Notkun selfie-ferlisins er valfrjáls: þú getur hlaðið upp mynd úr myndasafni þínu í staðinn, eða lýst persónu með orðum og aldrei gefið upp mynd.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Innviðaveitendur:</strong> Google Cloud Platform (hýsing og útreikningar), Neon (gagnagrunnur), Cloudflare (geymsla og CDN), Resend (viðskiptatölvupóstur), og Privy (valfrjáls innskráning). Hver um sig vinnur gögn fyrir okkar hönd samkvæmt eigin persónuverndarstefnu og vinnsluskilmálum gagna.",
 		"legal_acceptance_records": "Skrár um lagalega samþykki",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Skrár um lagalega samþykki</strong> (samþykki þitt á þjónustuskilmálum og áhættuskýrslu) eru varðveittar meðan reikningurinn þinn er virkur og eftir það eins lengi og þörf er á til að stofna eða verja lagalegar kröfur. Þessi varðveisla er lagaleg skylda og stendur eftir beiðni um eyðingu reiknings.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Persónuverndarstefna · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-takmarkaður aðgangur:</strong> Þegar þú tengist í gegnum OAuth getur tengillinn aðeins lesið og skrifað three.ws reikningsgögn sem falla undir þau heimildarsvið sem þú veitir (myndir, umboðsmenn, minni, prófíll). Hann hefur ekki aðgang að spjallferli, minni eða staðbundnum skrám gervigreindarklientsins þíns.",
 		"on_chain_data": "Gögn á keðju",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Einn framanmynd og upp að tvær valfrjálsar hliðarmyndir, ef þú notar selfie-ferlið",
 		"operating_the_three_ws_home_features_you": "Keyrsla three.ws Heimila eiginleika sem þú hefur virkjað, og að gefa þér endurskoðunarferil um þá",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Greiðslugögn (x402):</strong> Greidd verkfæri gera upp í USDC í gegnum x402 greiðslustaðalinn. Þegar þú greiðir fyrir hverja köllun fáum við opinbera veskisnetfangið þitt og undirskrift greiðslu-/uppgjörsfærslunnar, staðfest í gegnum greiðslumiðlara (Coinbase CDP og/eða opinbera x402.org miðlarann). Við fáum, biðjum um eða geymum aldrei einkalykla eða fræsetningu þína. Eina táknið sem three.ws sjálft vísar í er <code>$THREE</code>; USDC er eingöngu notað til uppgjörs.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Greiðslumiðlarar:</strong> Fyrir greidda eiginleika sem gerðir eru upp á keðju (x402), fer greiðslustaðfesting í gegnum miðlara eins og Coinbase Developer Platform eða opinbera x402.org miðlarann. Þeir sjá opinbera veskisnetfangið þitt og undirskriftir færslna, aldrei einkalykla.",
+		"photos_you_capture_or_upload": "Myndir sem þú tekur eða hleður upp",
 		"privacy_policy": "Persónuverndarstefna",
 		"privacy_questions_privacy_three_ws": "Spurningar um persónuvernd: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Sönnun samnings, fylgni við lög",
@@ -11279,12 +11325,7 @@
 		"why": "Hvers vegna",
 		"you_can_see_export_and_delete_everything": "Þú getur séð, flutt út og eytt öllu sem þessi eiginleiki heldur utan tímamarka, og getur sett eigin beholdunarglugga fyrir aðgerðarlög. Sjá <a href=\"/docs/home-privacy\">Heimili persónuvernd og beholdan</a> fyrir fullkomna yfirlit og API.",
 		"you_have_the_right_to_lodge_a": "Þú hefur rétt til að leggja fram kvörtun hjá staðbundinni eftirlitsstofnun. Þú getur einnig haft samband við okkur fyrst á <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; við myndum fagna tækifæri til að leysa áhyggjur þínar beint.",
-		"you_have_the_rights_to_know_access": "Þú hefur rétt til að vita, fá aðgang að, leiðrétta, eyða og flytja persónuupplýsingar þínar, og að vera ekki mismunað fyrir að nýta þau. Nýttu þau í gegnum <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (kafla 6). Við staðfestum beiðnir með því að nota innskráða lotu þína, tölvupóst reikningsins þíns eða skilaboð undirrituð af veskinu þínu. Viðurkenndur umboðsmaður getur starfað fyrir þig með skriflegu leyfi.",
-		"photos_you_capture_or_upload": "Myndir sem þú tekur eða hleður upp",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Einn framanmynd og upp að tvær valfrjálsar hliðarmyndir, ef þú notar selfie-ferlið",
-		"building_your_3d_avatar_and_reproducing_re_r": "Bygging þínar 3D-fylgimyndar, og endurtekning, endurrigging eða endurstigun þess",
-		"1a_photos_you_capture_or_upload": "1a. Myndir sem þú tekur eða hleður upp",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ef þú notar selfie-ferlið eru myndir sem þú tekur (einn framanmynd og upp að tvær valfrjálsar hliðarmyndir) hlaðnar upp í endurbyggingarþjónustu okkar og notuð til að byggja 3D-fylgimynd þína. Þær eru geymdar ásamt upprunaskráni svo niðurstöðin geti verið endurtekin, endurriggð og endurstöðuð gæðavísar, og þær eru sjánlegar aðeins fyrir reikninginn þinn. Þær eru eytt þegar þú eyðir uppruninni eða reikninginum þínum, með tilliti til geymsluvinda í kafla 5. Við notum <strong>ekki</strong> þær til að þjálfa mudel, við deilum <strong>ekki</strong> þeim með auglýsendum, og við búa <strong>ekki</strong> til né geymum andlits sniðmát né neina aðra líffræðilega auðkenni úr þeim. Notkun selfie-ferlisins er valfrjáls: þú getur hlaðið upp mynd úr myndasafni þínu í staðinn, eða lýst persónu með orðum og aldrei gefið upp mynd."
+		"you_have_the_rights_to_know_access": "Þú hefur rétt til að vita, fá aðgang að, leiðrétta, eyða og flytja persónuupplýsingar þínar, og að vera ekki mismunað fyrir að nýta þau. Nýttu þau í gegnum <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (kafla 6). Við staðfestum beiðnir með því að nota innskráða lotu þína, tölvupóst reikningsins þíns eða skilaboð undirrituð af veskinu þínu. Viðurkenndur umboðsmaður getur starfað fyrir þig með skriflegu leyfi."
 	},
 	"legal_risk": {
 		"10_contact": "10. Samskipti",

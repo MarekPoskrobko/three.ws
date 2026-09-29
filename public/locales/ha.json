@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Adireshin Wallet",
+		"address_placeholder": "Adireshin Wallet (Solana ko 0x…)",
+		"also_tracked": "Kuma an Bincika",
+		"check_btn": "Duba Dacewa",
+		"copy_aria": "Raba Adireshi",
+		"copy_btn": "Raba",
+		"count_not": "Ba ya Dace",
+		"count_progress": "A Cikin Aiki",
+		"count_qualified": "Ya Dace",
+		"count_tracked": "An Bincika",
+		"dir_fineprint": "Matsayi suna nuna rahoton jam'iyyar kowane ranar da ke sama da su, kuma suna canza da yawa; ba wani abu a nan ba ne tabbatarwa ko shaidar kudi. Matsayin tsawon hadaddun suna zaton jam'iyyar, ba alkawari ba. Duba wallet don gano score din shi game da wannan sharudda.",
+		"error_title": "Ba a iya Skena Wannan Wallet Ba",
+		"est_label": "Tsawon Idan Duk Drops Masu Dacewa Su Biyar",
+		"filter_all": "Duk",
+		"filter_aria": "Saita Game da Dacewa",
+		"filter_not": "Ba ya Dace",
+		"filter_progress": "A Cikin Aiki",
+		"filter_qualified": "Ya Dace",
+		"form_aria": "Duba Wallet",
+		"form_hint": "Danna <kbd>/</kbd> don fokasa. Chain an gano ta daga adireshi. Kuma duba <a href=\"/portfolio\">wallet portfolio</a>.",
+		"kicker": "Aiki a Kan Chain na Gaskiya · An Score Shi Live",
+		"loading_note": "An Skena Tarihin On-Chain. Wallet Mai Yawa Yana Karawa Kwanakin.",
+		"meta_desc": "Duba Kowa Solana ko Ethereum Wallet Game Da Sharuddar Airdrop Na Live: Skena Na Gaskiya Na Tarihin On-Chain, Score Na Dacewa 0-100 A Kowane Program, Yadda Yake Kacewa A Cikakken Bayani, Kuma Matakin Lamba Da Skena Ba Za Ta Gano Ba. Kyauta, Ba Allura Ba, Ba Asusu Ba.",
+		"page_title": "Duba Airdrop · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Shiruka",
+		"recent_label": "Sabuwar:",
+		"retry_btn": "Sake Gwadawa",
+		"scan_measured": "Abinda Skena Ta Auna",
+		"share_aria": "Raba Link Din Wannan Report",
+		"share_btn": "Raba",
+		"sub": "Saka Kowa <strong>Solana</strong> Ko <strong>Ethereum</strong> Wallet Kuma Gano Wane Airdrop Ya Dace Shi. Score Din Ya Fito Daga Skena Na Gaskiya Na Tarihin On-Chain Na Wallet; Checklist Tana Ba Da Bayani Game Da Abinda Ya Raba Da Abinda Skena Ba Za Ta Gano Ba.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Shirukan Da Ake Bincika"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Yi aiki a kan wannan karatu",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Yana aiki a cikin iyakokin kashe kuɗi masu tsauri",
@@ -2936,6 +2972,10 @@
 		"starting": "Farawa…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Tuna Masu Girka, Masu Rahto Matsala, Da Masu Hadin Kai Da Ke Sa three.ws Yafi Kyau.",
+		"meta_title": "Masu Talla · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Duba duk tsabar kuɗi →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Crypto Derivatives · three.ws",
 		"meta_title": "Crypto Derivatives · three.ws",
 		"meta_twitter_description": "Kasuwannin futures na dindindin kai tsaye — farashi, motsi na 24h, ƙimar kuɗi, buɗaɗɗen sha'awa, da ƙarar 24h.",
-		"meta_twitter_title": "Crypto Derivatives · three.ws"
+		"meta_twitter_title": "Crypto Derivatives · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Fita Kowa Contract Don Bayaninsu Na Dammu: Asali Game Da Index Din Kansa, Yadda Funding Rate Yake Kasancewa A Position Da Kai Ka Tsara, Da Kuma Asali Na Asali Da Ake Nuna A Kowane Makaranta."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Canje-canje ga Wannan Manufar",
 		"12_contact": "12. Tuntuɓa",
 		"1_information_we_collect": "1. Bayanan da Muke Tattarawa",
+		"1a_photos_you_capture_or_upload": "1a. Hotunan da ka Kama ko ka Upload",
 		"2_how_we_use_your_information": "2. Yadda Muke Amfani da Bayanan Ka",
 		"3_on_chain_data": "3. Bayanan Kan-Sarkar",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Samfuran 3D (GLB/glTF), ƙananan hotuna, bayanan wakili",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Kiran API, abubuwan loda widget (babu IP, babu sawun yatsa)",
 		"authentication_account_management": "Tabbatarwa & sarrafa asusu",
 		"authentication_security": "Tabbatarwa, tsaro",
+		"building_your_3d_avatar_and_reproducing_re_r": "Gina 3D avatar ɗinka, kuma sake gina, sake rigging ko sake scoring wannan sakamako",
 		"business_transfers_in_connection_with_a_merg": "<strong>Canja wurin kasuwanci:</strong> dangane da haɗaka, saye, ko siyar da kadarori, tare da sanarwa ga masu amfani da abin ya shafa.",
 		"category": "Rukuni",
 		"connected_home_data": "Bayanan gida mai hadin kai",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Tabbatar da asali, matsayin biyan kuɗi",
 		"if_you_are_a_california_resident_the": "Idan kai mazaunin California ne: rukunan bayanan sirri da muke tattarawa an jera su a Sashe na 1, manufofin a Sashe na 2, da kuma masu karɓa a Sashe na 4. Ba ma <strong>siyar</strong> da bayanan sirri kuma ba ma <strong>rabawa</strong> don tallace-tallacen halayya na mahallin-giciye, don haka babu abin da za a fita daga ciki; ana girmama siginar fita daga burauzar kamar Global Privacy Control ta tsoho saboda babu siyarwa ko rabawa da za a dakatar. Ba ma amfani ko bayyana bayanan sirri masu mahimmanci don manufofin da ke buƙatar haƙƙin iyakancewa.",
 		"if_you_connect_a_home_assistant_instance": "Idan ka hada sabbin Gida Mai Taimako, kalmar bincike da ka ba shi tana da muhimmanci ga ƙofar ƙasa. Muke kallon shi a cikin riga da hanyar muke amfani da ita ga alluran ƙudade na amfani, ba mu bincika baya, kuma muke share shi lokacin da ka rage hadin gida. Ayyukan da ke furta ƙofar ƙasa (furta, furta, rage) suna buƙatar tabbatar da mutum, wanda ba AI zai iya samar da shi, har sai ka ba damar ga wani abu na musamman.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Idan ka yi amfani da selfie flow, hotunan da ka kama (hoto ɗaya daga gabanta da kuma biyu da za a iya samu daga hannu) za a upload su zuwa sabis na sake gina mu, kuma za a yi amfani da su don gina 3D avatar ɗinka. An adana su da rekodin sake gina domin a iya sake gina, sake rigging kuma sake scoring don kyau, kuma suke nuna kawai ga asusunka. Za a share su lokacin da ka share sake gina ko asusunka, tare da takaitaccen adana a Section 5. Ba mu <strong>ba</strong> amfani da su don horar da models, ba mu <strong>ba</strong> bada wa advertisers, kuma ba mu <strong>ba</strong> samu ko adana face template ko wani biometric identifier daga cikinsu. Amfani da selfie flow bai waajib ba: za ka iya upload hoto daga galatinka, ko ka bayyana character a cikin kalmomi kuma ka kasa ba hoto ba.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Masu samar da kayan aiki:</strong> Google Cloud Platform (masauki da lissafi), Neon (database), Cloudflare (ajiya da CDN), Resend (imel na ma'amala), da Privy (shiga na zaɓi). Kowanne yana sarrafa bayanai a madadinmu a ƙarƙashin manufofin sirrinsa da sharuɗɗan sarrafa bayanai.",
 		"legal_acceptance_records": "Bayanan karɓar doka",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Bayanan karɓar doka</strong> (karɓar da ka yi na Sharuddan Sabis da Bayanin Haɗari) ana adana su tsawon rayuwar asusunka kuma bayan haka muddin ana buƙata don tabbatarwa ko kare da'awar shari'a. Wannan adanawa wajibi ne na doka kuma yana ci gaba ko da an nemi share asusu.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Manufar Sirri · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Samun dama mai iyaka ta OAuth:</strong> idan ka haɗa ta hanyar OAuth, mai haɗawa zai iya karantawa da rubuta bayanan asusun three.ws kawai waɗanda ke ƙarƙashin iyakokin da ka ba da izini (avatars, agents, memory, profile). Ba zai iya samun damar tarihin taɗi na AI client ɗinka, ƙwaƙwalwa, ko fayilolin gida ba.",
 		"on_chain_data": "Bayanan kan-sarkar",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Hoto ɗaya daga gabanta da kuma biyu da za a iya samu daga hannu, idan ka yi amfani da selfie flow",
 		"operating_the_three_ws_home_features_you": "Yin aiki da wasu three.ws ƙwallon gida ka ba shi damar, kuma ba ka bayar da bayanan aiki na su",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Bayanan biyan kuɗi (x402):</strong> kayan aikin da aka biya suna daidaitawa a cikin USDC ta hanyar yarjejeniyar biyan kuɗi ta x402. Idan ka biya kowane kira, muna karɓar adireshin walat ɗinka na jama'a da sa hannun ma'amalar biyan kuɗi/daidaitawa, wanda aka tabbatar ta hanyar mai ba da sabis na biyan kuɗi (Coinbase CDP da/ko mai ba da sabis na jama'a x402.org). Ba ma taɓa karɓa, buƙata, ko adana maɓallan sirrinka ko kalmar sirri. Alamar guda ɗaya da three.ws kanta ke nufi ita ce <code>$THREE</code>; USDC ana amfani da ita ne kawai don daidaitawa.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Masu ba da sabis na biyan kuɗi:</strong> don fasalulluka masu biyan kuɗi waɗanda aka daidaita kan-sarkar (x402), tabbatar da biyan kuɗi yana gudana ta hanyar mai ba da sabis kamar Coinbase Developer Platform ko mai ba da sabis na jama'a x402.org. Suna ganin adireshin walat ɗinka na jama'a da sa hannun ma'amala, ba maɓallan sirri ba.",
+		"photos_you_capture_or_upload": "Hotunan da ka kama ko ka upload",
 		"privacy_policy": "Manufar Sirri",
 		"privacy_questions_privacy_three_ws": "Tambayoyin sirri: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Shaidar yarjejeniya, bin doka",
@@ -11279,12 +11325,7 @@
 		"why": "Dalili",
 		"you_can_see_export_and_delete_everything": "Ka iya ganin, saita da share duk abinda wannan ƙwallo tana da shi a kowane lokaci, kuma ka saita lokacin da ka ke so ga lambar aiki. Duba <a href=\"/docs/home-privacy\">Tsarin kulawa da ajiyar gida</a> ga dukkan lambar da API.",
 		"you_have_the_right_to_lodge_a": "Kana da haƙƙin shigar da ƙara ga hukumar sa ido ta yankinka. Hakanan zaka iya tuntuɓar mu da farko a <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; za mu yi maraba da damar warware matsalar ka kai tsaye.",
-		"you_have_the_rights_to_know_access": "Kana da haƙƙin sani, shiga, gyarawa, gogewa, da kuma canja bayanan sirrinka, kuma kada a nuna maka bambanci saboda amfani da su. Yi amfani da su ta hanyar <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sashe na 6). Muna tabbatar da buƙatun ta amfani da zaman shiga naka, imel ɗin asusunka, ko saƙon da walat ɗinka ya sanya hannu. Wakili mai izini na iya yin aiki a madadin ka da izinin rubutu.",
-		"photos_you_capture_or_upload": "Hotunan da ka kama ko ka upload",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Hoto ɗaya daga gabanta da kuma biyu da za a iya samu daga hannu, idan ka yi amfani da selfie flow",
-		"building_your_3d_avatar_and_reproducing_re_r": "Gina 3D avatar ɗinka, kuma sake gina, sake rigging ko sake scoring wannan sakamako",
-		"1a_photos_you_capture_or_upload": "1a. Hotunan da ka Kama ko ka Upload",
-		"if_you_use_the_selfie_flow_the_photos_you": "Idan ka yi amfani da selfie flow, hotunan da ka kama (hoto ɗaya daga gabanta da kuma biyu da za a iya samu daga hannu) za a upload su zuwa sabis na sake gina mu, kuma za a yi amfani da su don gina 3D avatar ɗinka. An adana su da rekodin sake gina domin a iya sake gina, sake rigging kuma sake scoring don kyau, kuma suke nuna kawai ga asusunka. Za a share su lokacin da ka share sake gina ko asusunka, tare da takaitaccen adana a Section 5. Ba mu <strong>ba</strong> amfani da su don horar da models, ba mu <strong>ba</strong> bada wa advertisers, kuma ba mu <strong>ba</strong> samu ko adana face template ko wani biometric identifier daga cikinsu. Amfani da selfie flow bai waajib ba: za ka iya upload hoto daga galatinka, ko ka bayyana character a cikin kalmomi kuma ka kasa ba hoto ba."
+		"you_have_the_rights_to_know_access": "Kana da haƙƙin sani, shiga, gyarawa, gogewa, da kuma canja bayanan sirrinka, kuma kada a nuna maka bambanci saboda amfani da su. Yi amfani da su ta hanyar <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Sashe na 6). Muna tabbatar da buƙatun ta amfani da zaman shiga naka, imel ɗin asusunka, ko saƙon da walat ɗinka ya sanya hannu. Wakili mai izini na iya yin aiki a madadin ka da izinin rubutu."
 	},
 	"legal_risk": {
 		"10_contact": "10. Tuntuɓa",

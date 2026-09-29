@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "አጎራ · ኮመንስ · three.ws",
 		"the_commons": "ኮመንስ"
 	},
+	"airdrops": {
+		"address_label": "የባንክ አድራሻ",
+		"address_placeholder": "የባንክ አድራሻ (Solana ወይም 0x…)",
+		"also_tracked": "ደግሞ ተከትሏል",
+		"check_btn": "መተግበሪያ ይፈትሹ",
+		"copy_aria": "አድራሻውን ይህዱ",
+		"copy_btn": "ይህዱ",
+		"count_not": "የማይተገበር",
+		"count_progress": "በሂደት ላይ",
+		"count_qualified": "ተገቢ",
+		"count_tracked": "ተከትሏል",
+		"dir_fineprint": "ሁኔታዎች የስህተት ቀን ድረስ የተሰጡትን ውስጥ ሪፖርት ያሳያሉ እና ብዙ ጊዜ ይቀይራሉ፤ ይህም ምንም የድጋፍ ማረጋገጫ ወይም የፋይናንስ ምክር አይደለም። የተገለጹ የገንዘብ ክልሎች የህዝብ ምክር ናቸው፣ ምስክርነት አይደሉም። ባንክን ያስተዳድሩ ወደ ዚህ መድረኮች ያለውን ውጤት ይመልከቱ።",
+		"error_title": "ይህን ባንክ ማሰብ አልተሳካም",
+		"est_label": "ሁሉም ተገቢ ድርጅቶች ከከፈሉ የሚገባ ገንዘብ",
+		"filter_all": "ሁሉም",
+		"filter_aria": "በመተግበሪያ ላይ ያስጠብቁ",
+		"filter_not": "የማይተገበር",
+		"filter_progress": "በሂደት ላይ",
+		"filter_qualified": "ተገቢ",
+		"form_aria": "ባንክ ይፈትሹ",
+		"form_hint": "<kbd>/</kbd> ይጫኑ ለማሳየት። የሲን ሲስተም ከአድራሻ ይገኛል። ደግሞ <a href=\"/portfolio\">የባንክ ፖርትፎሊዮ</a> ይመልከቱ።",
+		"kicker": "አስተሳሰብ የሚደርስ የቻይን አካባቢ · በቀጥታ የተጠበቀ",
+		"loading_note": "የቻይን ታሪክ በማሰብ ላይ። የተሞላ ባንክ ሁለት ሰከንዶች ይወስዳል።",
+		"meta_desc": "የሚኖሩትን Solana ወይም Ethereum ባንክ በዕድገት የሚተገበር የኤርድሮፕ መድረኮች ያስተዳድሩ፡ አስተሳሰብ የሚደርስ የቻይን አካባቢ ምርመራ፣ ለዕድል ፕሮግራም 0-100 የመተግበሪያ ውጤት፣ ምን ያልተገባ እና ምርመራ ያልቻለችው የእጅ ደረጃዎች። ነፃ፣ ቁልፍ የለም፣ መለያ የለም።",
+		"page_title": "የኤርድሮፕ ያስተዳድር · three.ws",
+		"portfolio_chip": "ፖርትፎሊዮ",
+		"programs": "ፕሮግራሞች",
+		"recent_label": "ቅዱሚ፡",
+		"retry_btn": "እዚህ ይሞክሩ",
+		"scan_measured": "ምርመራው የሚስተዋል",
+		"share_aria": "ወደ ዚህ ሪፖርት አገናኝ ይህዱ",
+		"share_btn": "አጋራ",
+		"sub": "የሚፈለጉትን <strong>Solana</strong> ወይም <strong>Ethereum</strong> ባንክ ያስገቡ እና የትኞቹን ኤርድሮፕ ያስተገባ ይመልከቱ። ውጤቱ ከባንኩ የቻይን ታሪክ የተነሳ ነው፤ የምርመራ ዝርዝርም ምን ያልተገባ እና ምርመራ ያልቻለችውን ያሳያል።",
+		"title": "ኤርድሮፕ <em>ያስተዳድር</em>",
+		"tracked_programs": "ተከትሏል ፕሮግራሞች"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "በዚህ ንባብ ላይ እርምጃ ይውሰዱ",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span>በጠንካራ የወጪ ገደቦች ውስጥ ይሰራል።",
@@ -2936,6 +2972,10 @@
 		"starting": "በመጀመር ላይ…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "three.wsን የሚሻግሩ የአቅም አደራሻዎች፣ የተገለጹ ሽልማቶች እና የማህበረሰብ አባላትን ይወዳጁ።",
+		"meta_title": "አስተሳሰቦች · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "ሁሉንም ሳንቲሞች ይመልከቱ →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "ክሪፕቶ ተዋጽኦዎች · three.ws",
 		"meta_title": "ክሪፕቶ ተዋጽኦዎች · three.ws",
 		"meta_twitter_description": "የቀጥታ ዘላለማዊ የወደፊት ገበያዎች — ዋጋ፣ የ24 ሰዓት እንቅስቃሴ፣ የገንዘብ ድጋፍ ምጣኔ፣ ክፍት ፍላጎት እና የ24 ሰዓት መጠን።",
-		"meta_twitter_title": "ክሪፕቶ ተዋጽኦዎች · three.ws"
+		"meta_twitter_title": "ክሪፕቶ ተዋጽኦዎች · three.ws",
+		"open_any_contract_for_its_full_detail_page": "ለሙሉ የዝርዝር ገጽ ማንኛውንም ኮንትራክት ይክፈቱ፡ የራሱን ኢንዴክስ በመመርመር በራስዎ የሚሰይሙትን ፖስሽን ላይ የፋይንድንግ ርዕት ማወቅ፣ እና የሚከተለው የታች ነገር በሌሎች ሁሉ መድረኮች የተገለጠው።"
 	},
 	"dex_volumes": {
 		"defi": "ዲፋይ",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. የዚህ ፖሊሲ ለውጦች",
 		"12_contact": "12. ያግኙን",
 		"1_information_we_collect": "1. የምንሰበስበው መረጃ",
+		"1a_photos_you_capture_or_upload": "1a. የሚያዙ ወይም የሚያስገቡ ፎቶዎች",
 		"2_how_we_use_your_information": "2. መረጃዎን እንዴት እንደምንጠቀምበት",
 		"3_on_chain_data": "3. በብሎክቼይን ላይ ያለ መረጃ",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D ሞዴሎች (GLB/glTF)፣ ጥፍር አክል ምስሎች፣ የወኪል ሜታዳታ",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "የኤፒአይ ጥሪዎች፣ ዊጅት የመጫን ክስተቶች (አይፒ የሌለበት፣ የጣት አሻራ የሌለበት)",
 		"authentication_account_management": "ማረጋገጫ እና የመለያ አስተዳደር",
 		"authentication_security": "ማረጋገጫ፣ ደህንነት",
+		"building_your_3d_avatar_and_reproducing_re_r": "የ3D አቫታርዎን መገንባት፣ እና ውጤቱን መድገም፣ መተዳደር ወይም መግምት",
 		"business_transfers_in_connection_with_a_merg": "<strong>የንግድ ዝውውሮች:</strong> ውህደት፣ ግዥ ወይም የንብረት ሽያጭ ጋር በተያያዘ፣ ለተጎዱ ተጠቃሚዎች ማሳወቂያ በማድረግ።",
 		"category": "ምድብ",
 		"connected_home_data": "የተገናነበት ቤት ውሂብ",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "የማንነት ማረጋገጫ፣ የደንበኝነት ምዝገባ ሁኔታ",
 		"if_you_are_a_california_resident_the": "የካሊፎርኒያ ነዋሪ ከሆኑ: የምንሰበስባቸው የግል መረጃዎች ምድቦች በክፍል 1፣ ዓላማዎቹ በክፍል 2፣ እና ተቀባዮቹ በክፍል 4 ተዘርዝረዋል። የግል መረጃን <strong>አንሸጥም</strong> እና ለተሻጋሪ-አውድ ባህሪ ማስታወቂያ <strong>አናጋራም</strong>፣ ስለዚህ ለመውጣት ምንም ነገር የለም፤ እንደ ግሎባል ግላዊነት ቁጥጥር ያሉ የአሳሽ መውጫ ምልክቶች በነባሪነት ይከበራሉ ምክንያቱም የሚቆም ሽያጭ ወይም መጋራት የለም። የመገደብ መብት በሚጠይቁ ዓላማዎች ስሜታዊ የግል መረጃን አንጠቀምም ወይም አንገልጽም።",
 		"if_you_connect_a_home_assistant_instance": "Home Assistant ኢንስታንስ ከሚገናኙበት ጊዜ ጀምሮ የሚሰጡት የዕቅድ ቁልፍ ወደ አካባቢያዊ ህንፃ የሚያስገባ መለያ ነው። ይህን በመቆየት ጊዜ በአንደኛ ደረጃ እና በአስተሳሰብ ለውጭ የሚያስተዳድሩትን የተጠቃሚ የባንክ ቁልፎች ለማስወገድ የሚጠቀሙትን መሳሪያ እንዲሁ እንክብካቤ እናድርጋለን፣ እንዲሁም ከቤቱ በማስወገድ ጊዜ ወደሚያስቀረው ያስቀረዋለን። ህንፃን የሚከፍቱ ሥራዎች (መክፈት፣ መክፈት፣ መቀላቀል) የሰው የተረጋገጠ ፈተና ያስፈልጋሉ፣ ይህንም AI ሞዴል አይሰጥም፣ ለአንድ ተወላጅ ብቻ የቆየች ፈቃድ እስከሚሰጡት ድረስ።",
+		"if_you_use_the_selfie_flow_the_photos_you": "የራስ ፎቶ አድርገርድን በመጠቀም ላይ፣ የሚያዙ ፎቶዎች (አንድ የፊት ምስል እና እስከ ሁለት ያልተባበሩ የወደቀ አንግሎች) ወደ የማድጋት አገልግሎታችን ይወስዳሉ እና ለ3D አቫታርዎ መገንባት ይጠቀማሉ። ውጤቱ ሊድገም፣ ሊተዳደር ወይም ለጥራት ሊገምት የሚችል አይነት በመሆኑ ከፍተኛ መዝገብ ጋር ይቆያሉ። ይህም ብቁ ለመለያዎ ይታያል። ፍተኛውን ወይም መለያዎን በማጥፋት ጊዜ ይሰርዳሉ፣ ይህም በክፍል 5 ውስጥ ያሉትን የጊዜ ወቅታዊነት ያንቀሳቃሽ ነው። ለሞዴሎች ለመስራት <strong>አይነትም</strong> እንጠቀማለን፣ ለማስተላለያ አለቃዎች <strong>አይነትም</strong> እንገለጥማለን፣ እና የፊት ቅጽ ወይም ሌላ የባዮሜትሪክ መለያ ከእነዚህ <strong>አይነትም</strong> እንወስዳለን። የራስ ፎቶ አድርገርድን መጠቀም ማስፈላጊነት የለውም፡፡ ከጋላሪዎ ፎቶ ማስገባት ወይም በቃላት አቫታር መግለጽ የሚችሉት ነው።",
 		"infrastructure_providers_google_cloud_platfo": "<strong>የመሠረተ ልማት አቅራቢዎች:</strong> Google Cloud Platform (ማስተናገጃ እና ስሌት)፣ ኒዮን (ዳታቤዝ)፣ ክላውድፍሌር (ማከማቻ እና ሲዲኤን)፣ ሪሰንድ (ግብይት ኢሜይል)፣ እና ፕሪቪ (አማራጭ መግቢያ)። እያንዳንዳቸው የራሳቸውን የግላዊነት ፖሊሲ እና የመረጃ ማቀነባበሪያ ውሎች በመጠቀም መረጃን በእኛ ምትክ ያካሂዳሉ።",
 		"legal_acceptance_records": "የህጋዊ ተቀባይነት መዝገቦች",
 		"legal_acceptance_records_your_acceptance_of": "<strong>የህጋዊ ተቀባይነት መዝገቦች</strong> (የአገልግሎት ውሎችን እና የአደጋ ይፋ ማድረጊያን መቀበልዎ) ለመለያዎ ህይወት ዘመን ይቀመጣሉ፣ እና ከዚያ በኋላ ህጋዊ የይገባኛል ጥያቄዎችን ለማቋቋም ወይም ለመከላከል እስከሚያስፈልግ ድረስ። ይህ ማቆየት ህጋዊ ግዴታ ሲሆን የመለያ መሰረዝ ጥያቄን ተከትሎም ይቀጥላል።",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "የግላዊነት ፖሊሲ · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-የተገደበ መዳረሻ:</strong> በOAuth ሲገናኙ፣ አገናኙ እርስዎ በሚሰጡት ስኮፕ የተሸፈነውን የthree.ws መለያ ውሂብ (አቫታሮች፣ ወኪሎች፣ ማህደረ ትውስታ፣ መገለጫ) ብቻ ማንበብ እና መጻፍ ይችላል። የእርስዎን AI ደንበኛ የውይይት ታሪክ፣ ማህደረ ትውስታ ወይም የአካባቢ ፋይሎች መድረስ አይችልም።",
 		"on_chain_data": "በሰንሰለት ላይ ያለ መረጃ",
+		"one_frontal_photo_and_up_to_two_optional_sid": "አንድ የፊት ፎቶ እና እስከ ሁለት ያልተባበሩ የወደቀ አንግሎች, የራስ ፎቶ አድርገርድን በመጠቀም ላይ",
 		"operating_the_three_ws_home_features_you": "ያስቻላቸውን three.ws የቤት ባህሪያት በማስከበር እና የእነሱን የመዝገብ መንገድ ለማድረግ",
 		"payment_data_x402_paid_tools_settle_in": "<strong>የክፍያ መረጃ (x402):</strong> የሚከፈልባቸው መሳሪያዎች በx402 የክፍያ ፕሮቶኮል በኩል በUSDC ይፈጸማሉ። በጥሪ ሲከፍሉ፣ የእርስዎን የህዝብ የኪስ ቦርሳ አድራሻ እና የክፍያ/የመቋቋሚያ ግብይት ፊርማ እንቀበላለን፣ ይህም በክፍያ አስታራቂ (Coinbase CDP እና/ወይም የህዝብ x402.org አስታራቂ) በኩል የተረጋገጠ ነው። የእርስዎን የግል ቁልፎች ወይም የዘር ሐረግ በጭራሽ አንቀበልም፣ አንጠይቅም ወይም አናከማችም። three.ws ራሱ የሚያመለክተው ብቸኛው ቶከን <code>$THREE</code> ነው፤ USDC ለመቋቋሚያ ብቻ ጥቅም ላይ ይውላል።",
 		"payment_facilitators_for_paid_features_settl": "<strong>የክፍያ አስታራቂዎች:</strong> በሰንሰለት ላይ ለተፈጸሙ የሚከፈልባቸው ባህሪያት (x402)፣ የክፍያ ማረጋገጫ እንደ Coinbase Developer Platform ወይም የህዝብ x402.org አስታራቂ ባሉ አስታራቂዎች በኩል ይከናወናል። የእርስዎን የህዝብ የኪስ ቦርሳ አድራሻ እና የግብይት ፊርማዎችን ያያሉ፣ የግል ቁልፎችን በጭራሽ አያዩም።",
+		"photos_you_capture_or_upload": "የሚያዙ ወይም የሚያስገቡ ፎቶዎች",
 		"privacy_policy": "የግላዊነት ፖሊሲ",
 		"privacy_questions_privacy_three_ws": "የግላዊነት ጥያቄዎች: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "የስምምነት ማረጋገጫ፣ የህግ ተገዢነት",
@@ -11279,12 +11325,7 @@
 		"why": "ለምን",
 		"you_can_see_export_and_delete_everything": "ይህንን ባህሪ ያለውን ሁሉንም ማየት፣ ማውጣት እና ማጥፋት በማይቀርበው ጊዜ ይችላሉ፣ እና ለሥራ መዝገብ የራሳችሁን የጠበቃ መጠን ማድረግ ይችላሉ። ለሙሉ ዝርዝር እና ለAPI <a href=\"/docs/home-privacy\">የቤት ግላዊነት እና ጠበቃ</a> ይመልከቱ።",
 		"you_have_the_right_to_lodge_a": "በአካባቢዎ ባለው የቁጥጥር አካል ቅሬታ የማቅረብ መብት አለዎት። መጀመሪያ በ<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> ሊያገኙን ይችላሉ፤ ስጋትዎን በቀጥታ ለመፍታት እድሉን በደስታ እንቀበላለን።",
-		"you_have_the_rights_to_know_access": "የግል መረጃዎን የማወቅ፣ የመድረስ፣ የማረም፣ የመሰረዝ እና የማስተላለፍ መብቶች አሉዎት፣ እንዲሁም እነዚህን በመጠቀምዎ ምክንያት እንዳይዳሉ የመብትዎ ባለቤት ነዎት። በ<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (ክፍል 6) ይጠቀሙባቸው። ጥያቄዎችን በተመዘገቡበት ክፍለ ጊዜዎ፣ በመለያ ኢሜይልዎ ወይም በኪስ ቦርሳዎ በተፈረመ መልእክት እናረጋግጣለን። የተፈቀደ ወኪል በጽሑፍ ፈቃድ ለእርስዎ ሊሰራ ይችላል።",
-		"photos_you_capture_or_upload": "የሚያዙ ወይም የሚያስገቡ ፎቶዎች",
-		"one_frontal_photo_and_up_to_two_optional_sid": "አንድ የፊት ፎቶ እና እስከ ሁለት ያልተባበሩ የወደቀ አንግሎች, የራስ ፎቶ አድርገርድን በመጠቀም ላይ",
-		"building_your_3d_avatar_and_reproducing_re_r": "የ3D አቫታርዎን መገንባት፣ እና ውጤቱን መድገም፣ መተዳደር ወይም መግምት",
-		"1a_photos_you_capture_or_upload": "1a. የሚያዙ ወይም የሚያስገቡ ፎቶዎች",
-		"if_you_use_the_selfie_flow_the_photos_you": "የራስ ፎቶ አድርገርድን በመጠቀም ላይ፣ የሚያዙ ፎቶዎች (አንድ የፊት ምስል እና እስከ ሁለት ያልተባበሩ የወደቀ አንግሎች) ወደ የማድጋት አገልግሎታችን ይወስዳሉ እና ለ3D አቫታርዎ መገንባት ይጠቀማሉ። ውጤቱ ሊድገም፣ ሊተዳደር ወይም ለጥራት ሊገምት የሚችል አይነት በመሆኑ ከፍተኛ መዝገብ ጋር ይቆያሉ። ይህም ብቁ ለመለያዎ ይታያል። ፍተኛውን ወይም መለያዎን በማጥፋት ጊዜ ይሰርዳሉ፣ ይህም በክፍል 5 ውስጥ ያሉትን የጊዜ ወቅታዊነት ያንቀሳቃሽ ነው። ለሞዴሎች ለመስራት <strong>አይነትም</strong> እንጠቀማለን፣ ለማስተላለያ አለቃዎች <strong>አይነትም</strong> እንገለጥማለን፣ እና የፊት ቅጽ ወይም ሌላ የባዮሜትሪክ መለያ ከእነዚህ <strong>አይነትም</strong> እንወስዳለን። የራስ ፎቶ አድርገርድን መጠቀም ማስፈላጊነት የለውም፡፡ ከጋላሪዎ ፎቶ ማስገባት ወይም በቃላት አቫታር መግለጽ የሚችሉት ነው።"
+		"you_have_the_rights_to_know_access": "የግል መረጃዎን የማወቅ፣ የመድረስ፣ የማረም፣ የመሰረዝ እና የማስተላለፍ መብቶች አሉዎት፣ እንዲሁም እነዚህን በመጠቀምዎ ምክንያት እንዳይዳሉ የመብትዎ ባለቤት ነዎት። በ<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (ክፍል 6) ይጠቀሙባቸው። ጥያቄዎችን በተመዘገቡበት ክፍለ ጊዜዎ፣ በመለያ ኢሜይልዎ ወይም በኪስ ቦርሳዎ በተፈረመ መልእክት እናረጋግጣለን። የተፈቀደ ወኪል በጽሑፍ ፈቃድ ለእርስዎ ሊሰራ ይችላል።"
 	},
 	"legal_risk": {
 		"10_contact": "10. ያግኙን",

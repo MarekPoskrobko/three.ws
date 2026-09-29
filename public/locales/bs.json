@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Zajednica · three.ws",
 		"the_commons": "Zajednica"
 	},
+	"airdrops": {
+		"address_label": "Adresa novčanika",
+		"address_placeholder": "Adresa novčanika (Solana ili 0x…)",
+		"also_tracked": "Takođe praćeno",
+		"check_btn": "Provjeri pravilo",
+		"copy_aria": "Kopiraj adresu",
+		"copy_btn": "Kopiraj",
+		"count_not": "Nije ispunjen uslov",
+		"count_progress": "U toku",
+		"count_qualified": "Ispunjen uslov",
+		"count_tracked": "Praćeno",
+		"dir_fineprint": "Statusi odražavaju javno izvještavanje na datum iznad i često se mijenjaju; ovdje nema nikakvog podrške ili financijskog savjeta. Procijenjeni opsezi su javne spekulacije, ne obećanja. Provjeri novčanik da vidiš rezultate prema ovim kriterijima.",
+		"error_title": "Nije moguće skenirati ovaj novčanik",
+		"est_label": "Procijenjeno ako svi ispunjeni airdropovi isplate",
+		"filter_all": "Svi",
+		"filter_aria": "Filtriraj po pravilu",
+		"filter_not": "Nije ispunjen uslov",
+		"filter_progress": "U toku",
+		"filter_qualified": "Ispunjen uslov",
+		"form_aria": "Provjeri novčanik",
+		"form_hint": "Pritisni <kbd>/</kbd> za fokus. Lanac se prepoznaje iz adrese. Također vidi <a href=\"/portfolio\">portfolio novčanika</a>.",
+		"kicker": "Prava on-chain aktivnost · ocjenjivo uživo",
+		"loading_note": "Skeniranje on-chain povijesti. Zauzeti novčanik traje nekoliko sekundi.",
+		"meta_desc": "Provjeri bilo koji Solana ili Ethereum novčanik prema uživim kriterijima airdropa: pravo skeniranje on-chain aktivnosti, rezultat 0-100 po programu, točno što fali, i ručni korake koje skeniranje ne vidi. Besplatno, bez ključeva, bez računa.",
+		"page_title": "Provjerivač Airdropa · three.ws",
+		"portfolio_chip": "Portfolio",
+		"programs": "Programi",
+		"recent_label": "Nedavno:",
+		"retry_btn": "Pokušaj ponovo",
+		"scan_measured": "Što je skeniranje izmjerilo",
+		"share_aria": "Kopiraj link na ovaj izvještaj",
+		"share_btn": "Dijeli",
+		"sub": "Nalijepi bilo koji <strong>Solana</strong> ili <strong>Ethereum</strong> novčanik i vidi za koje airdrope ispunjava uslove. Rezultat dolazi od pravog skeniranja on-chain povijesti novčanika; checklist ti kaže točno što fali i što skeniranje ne vidi.",
+		"title": "Airdrop <em>Checker</em>",
+		"tracked_programs": "Praćeni programi"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Reagujte na ovo čitanje",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Djeluje unutar strogih ograničenja potrošnje",
@@ -2936,6 +2972,10 @@
 		"starting": "Pokretanje…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "Upoznaј разработчике, репортере проблема и чланове заједнице који чине three.ws бољим.",
+		"meta_title": "Контрибутори · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Pregledaj sve valute →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto derivati · three.ws",
 		"meta_title": "Kripto derivati · three.ws",
 		"meta_twitter_description": "Tržišta vječnih fjučersa uživo — cijena, 24-satna promjena, stopa finansiranja, otvoreni interes i 24-satni volumen.",
-		"meta_twitter_title": "Kripto derivati · three.ws"
+		"meta_twitter_title": "Kripto derivati · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Отвори сваки уговор за његову пуну детаљну страну: база против свог индекса, шта стопа финансирања кошта на позицији коју величине сам, и исти основни актив цijenjen на сваком другом тржишту."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Izmjene ove politike",
 		"12_contact": "12. Kontakt",
 		"1_information_we_collect": "1. Informacije koje prikupljamo",
+		"1a_photos_you_capture_or_upload": "1a. Fotografije koje snimite ili učitate",
 		"2_how_we_use_your_information": "2. Kako koristimo vaše informacije",
 		"3_on_chain_data": "3. Podaci na lancu",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D modeli (GLB/glTF), sličice, metapodaci agenta",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API pozivi, događaji učitavanja widgeta (bez IP adresa, bez otisaka prstiju)",
 		"authentication_account_management": "Autentifikacija i upravljanje računom",
 		"authentication_security": "Autentifikacija, sigurnost",
+		"building_your_3d_avatar_and_reproducing_re_r": "Izgradnja vašeg 3D avatara, te reprodukcija, ponovno rigovanje ili ponovno ocjenjivanje tog rezultata",
 		"business_transfers_in_connection_with_a_merg": "<strong>Poslovni transferi:</strong> u vezi sa spajanjem, akvizicijom ili prodajom imovine, uz obavještenje pogođenim korisnicima.",
 		"category": "Kategorija",
 		"connected_home_data": "Podaci o spojenom domu",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Verifikacija identiteta, status pretplate",
 		"if_you_are_a_california_resident_the": "Ako ste stanovnik Kalifornije: kategorije ličnih podataka koje prikupljamo navedene su u Odjeljku 1, svrhe u Odjeljku 2, a primaoci u Odjeljku 4. Mi <strong>ne</strong> prodajemo lične podatke i <strong>ne</strong> dijelimo ih za bihevioralno oglašavanje u više konteksta, tako da nema ničega za odjavu; signali za odjavu iz preglednika, kao što je Global Privacy Control, poštuju se po defaultu jer nema prodaje ili dijeljenja koje bi se zaustavilo. Ne koristimo niti otkrivamo osjetljive lične podatke u svrhe koje zahtijevaju pravo na ograničenje.",
 		"if_you_connect_a_home_assistant_instance": "Ako se povežete sa Home Assistant instancom, pristupni token koji pružate predstavlja vjerodajnica za fizičku zgradu. Šifrirajmo ga u mirovanju istom primitivom koji koristimo za ključeve depozitarnog novčanika, nikad ga više ne prikazujemo i brišemo ga u trenutku kada se odspojite od doma. Akcije koje otvaraju zgradu (otključavanje, otvaranje, onemogućavanje) uvijek zahtijevaju eksplicitnu ljudsku potvrdu koju ne može proizvesti AI model, dok ne odobrite stalnu dozvolu za jednu specific entitet.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Ako koristite selfie tok, fotografije koje snimite (jedna frontalna slika i do dvije opcionalne bočne perspektive) se učitavaju na naš servis za rekonstrukciju i koriste za izgradnju vašeg 3D avatara. One se pohranjuju uz zapis generacije kako bi se rezultat mogao reproducirati, ponovno rigovati i ponovno ocijeniti za kvalitetu, i one su vidljive samo vašem nalogu. One se brišu kada obrišete generaciju ili svoj nalog, s obzirom na zadržavanja vremenskih okvira u Odjeljku 5. <strong>Ne</strong> koristimo ih za trening modela, <strong>ne</strong> dijelimo ih s oglašivačima, i <strong>ne</strong> izvodimo niti pohranjujemo predložak lica niti bilo koji drugi biometrijski identifikator iz njih. Korištenje selfie toka je opcionalno: možete učitati fotografiju iz svoje galerije, ili opisati lik riječima i nikada ne dostaviti fotografiju.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Provajderi infrastrukture:</strong> Google Cloud Platform (hosting i obrada), Neon (baza podataka), Cloudflare (pohrana i CDN), Resend (transakcijski e-mail) i Privy (opcionalna prijava). Svaki obrađuje podatke u naše ime prema vlastitoj politici privatnosti i uslovima obrade podataka.",
 		"legal_acceptance_records": "Zapisi o pravnom prihvatanju",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Zapisi o pravnom prihvatanju</strong> (vaše prihvatanje Uslova korištenja i Obavještenja o riziku) čuvaju se tokom cijelog životnog vijeka vašeg računa i nakon toga onoliko dugo koliko je potrebno za uspostavljanje ili odbranu pravnih zahtjeva. Ovo zadržavanje je zakonska obaveza i opstaje nakon zahtjeva za brisanje računa.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Politika privatnosti · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth-ograničen pristup:</strong> kada se povežete putem OAuth-a, konektor može čitati i pisati samo podatke three.ws računa pokrivene opsezima koje dodijelite (avatari, agenti, memorija, profil). Ne može pristupiti historiji četa, memoriji ili lokalnim datotekama vašeg AI klijenta.",
 		"on_chain_data": "Podaci na lancu",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Jedna frontalna fotografija i do dvije opcionalne bočne perspektive, ako koristite selfie tok",
 		"operating_the_three_ws_home_features_you": "Pokretanje funkcija three.ws Home koje ste omogućili, i pružanje audit putanje za njih",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Podaci o plaćanju (x402):</strong> plaćeni alati se poravnavaju u USDC putem x402 protokola plaćanja. Kada plaćate po pozivu, primamo vašu javnu adresu novčanika i potpis transakcije plaćanja/poravnanja, provjeren putem posrednika za plaćanje (Coinbase CDP i/ili javni x402.org posrednik). Nikada ne primamo, ne tražimo niti pohranjujemo vaše privatne ključeve ili seed frazu. Jedini token na koji se three.ws sam odnosi je <code>$THREE</code>; USDC se koristi isključivo za poravnanje.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Posrednici za plaćanje:</strong> za plaćene funkcije poravnate na lancu (x402), provjera plaćanja se vrši putem posrednika kao što je Coinbase Developer Platform ili javni x402.org posrednik. Oni vide vašu javnu adresu novčanika i potpise transakcija, nikada privatne ključeve.",
+		"photos_you_capture_or_upload": "Fotografije koje snimite ili učitate",
 		"privacy_policy": "Politika privatnosti",
 		"privacy_questions_privacy_three_ws": "Pitanja o privatnosti: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Dokaz o saglasnosti, pravna usklađenost",
@@ -11279,12 +11325,7 @@
 		"why": "Zašto",
 		"you_can_see_export_and_delete_everything": "Možete videti, izvoziti i obrisati sve što ova funkcija čuva u bilo kojem trenutku, i postaviti vlastiti prozor retenzije za dnevnik akcija. Pogledajte <a href=\"/docs/home-privacy\">Home privacy and retention</a> za kompletan spisak i API.",
 		"you_have_the_right_to_lodge_a": "Imate pravo podnijeti žalbu vašem lokalnom nadzornom tijelu. Također nas možete prvo kontaktirati na <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; rado bismo riješili vašu brigu direktno.",
-		"you_have_the_rights_to_know_access": "Imate pravo znati, pristupiti, ispraviti, izbrisati i prenijeti svoje lične podatke, te da ne budete diskriminirani zbog ostvarivanja tih prava. Ostvarite ih putem <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Odjeljak 6). Zahtjeve provjeravamo koristeći vašu prijavljenu sesiju, e-mail vašeg računa ili poruku potpisanu vašim novčanikom. Ovlašteni agent može djelovati u vaše ime uz pismenu dozvolu.",
-		"photos_you_capture_or_upload": "Fotografije koje snimite ili učitate",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Jedna frontalna fotografija i do dvije opcionalne bočne perspektive, ako koristite selfie tok",
-		"building_your_3d_avatar_and_reproducing_re_r": "Izgradnja vašeg 3D avatara, te reprodukcija, ponovno rigovanje ili ponovno ocjenjivanje tog rezultata",
-		"1a_photos_you_capture_or_upload": "1a. Fotografije koje snimite ili učitate",
-		"if_you_use_the_selfie_flow_the_photos_you": "Ako koristite selfie tok, fotografije koje snimite (jedna frontalna slika i do dvije opcionalne bočne perspektive) se učitavaju na naš servis za rekonstrukciju i koriste za izgradnju vašeg 3D avatara. One se pohranjuju uz zapis generacije kako bi se rezultat mogao reproducirati, ponovno rigovati i ponovno ocijeniti za kvalitetu, i one su vidljive samo vašem nalogu. One se brišu kada obrišete generaciju ili svoj nalog, s obzirom na zadržavanja vremenskih okvira u Odjeljku 5. <strong>Ne</strong> koristimo ih za trening modela, <strong>ne</strong> dijelimo ih s oglašivačima, i <strong>ne</strong> izvodimo niti pohranjujemo predložak lica niti bilo koji drugi biometrijski identifikator iz njih. Korištenje selfie toka je opcionalno: možete učitati fotografiju iz svoje galerije, ili opisati lik riječima i nikada ne dostaviti fotografiju."
+		"you_have_the_rights_to_know_access": "Imate pravo znati, pristupiti, ispraviti, izbrisati i prenijeti svoje lične podatke, te da ne budete diskriminirani zbog ostvarivanja tih prava. Ostvarite ih putem <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Odjeljak 6). Zahtjeve provjeravamo koristeći vašu prijavljenu sesiju, e-mail vašeg računa ili poruku potpisanu vašim novčanikom. Ovlašteni agent može djelovati u vaše ime uz pismenu dozvolu."
 	},
 	"legal_risk": {
 		"10_contact": "10. Kontakt",
