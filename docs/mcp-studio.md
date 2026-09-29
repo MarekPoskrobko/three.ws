@@ -201,10 +201,44 @@ collect the result:
   `etaRemainingSeconds`. Call again after the suggested wait.
 - **failed**: returns a clean, actionable error.
 
-`check_job` is read-only and idempotent, and it does not consume generation
-quota, so collecting a model can never be rate-limited by the generation that
-created it. The inline widget renders the pending state as a designed
-"still rendering" panel with the live countdown, not an empty state.
+A check that fails while the job itself is fine (the status check timed out, or
+its rate bucket is busy) comes back with `retryable: true`. The first check of a
+finished job saves the model and scores it, which can take 20 to 30 seconds, so
+checking again usually returns the model at once. Only an unrecognized `job_id`
+is final.
+
+A pending `refine_model` result also carries a `refine` object: the version
+history the new model joins. Pass it back to `check_job` unchanged
+(`{"job_id": "…", "refine": {…}}`) and the finished model comes back as a
+refinement with its `lineage`, exactly as if `refine_model` had finished inline,
+so the version strip survives the wait. A pending `forge_avatar` mesh carries
+`"next": "rig"`: once it lands, run `rig_mesh` on it to finish the avatar.
+
+`check_job` never modifies an existing model, but its first check of a finished
+job writes one (it saves the GLB and records the creation), so it is annotated
+`readOnlyHint: false`. It does not consume generation quota, so collecting a
+model can never be rate-limited by the generation that created it.
+
+**The inline widget collects pending jobs itself.** When the host exposes
+`window.openai.callTool` (ChatGPT does), the model viewer polls `check_job`,
+shows a live elapsed timer, runs `rig_mesh` when the envelope says
+`"next": "rig"`, passes `refine` back so the version strip survives, and saves
+the finished model to widget state so reopening the conversation shows it
+instead of waiting again. A host without widget tool calls gets a designed
+"still rendering" panel instead.
+
+#### The ChatGPT call budget
+
+ChatGPT ends any tool call still open at 60 seconds, and that limit is not
+configurable. A generation takes one to four minutes, so on
+`/api/mcp-chatgpt` every call runs under `CHATGPT_CALL_BUDGET_MS` (40 seconds,
+[`api/_mcp-studio/dispatch.js`](../api/_mcp-studio/dispatch.js)): the prompt
+director, the submit and the inline wait all shrink to fit it, and a model
+still rendering at the deadline comes back as the pending envelope above for
+the widget to finish. A submit always gets an 8-second floor, since there is
+nothing to hand back without an accepted job, and the budget leaves room for it
+under the host's limit. `/api/mcp-studio` keeps the long inline wait (up to
+three minutes), because other MCP hosts wait for it.
 
 Any HTTP client can poll `pollUrl` directly instead; it is the same public,
 auth-free job handle the [3D API](/docs/3d-api) hands anonymous callers.
@@ -328,6 +362,11 @@ The endpoint still enforces real per-IP abuse protection (`api/_lib/rate-limit.j
 
 - **Burst:** 4 generations / minute / IP
 - **Hourly:** 30 generations / hour / IP
+- **ChatGPT users:** every ChatGPT user reaches `/api/mcp-chatgpt` from OpenAI's
+  shared egress IPs, so there the burst and hourly caps key on the anonymized
+  per-user `openai/subject` ChatGPT sends with each tool call, and one IP is
+  held to 300 generations / hour in total. Without the subject the caps key on
+  the IP as above.
 - **Persona writes:** 20 / minute / IP (`create_agent_persona`, `persona_say`;
   `get_agent_persona` is a read and rides the transport cap)
 - **Transport:** 300 requests / minute / IP (discovery, never throttled by the

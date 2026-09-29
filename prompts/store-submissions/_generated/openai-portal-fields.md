@@ -156,12 +156,12 @@ Make a 3D model of a friendly round robot mascot, glossy white plastic.
 
 **Tool triggered**
 ```
-forge_free, then check_job if the first response returns status "pending"
+forge_free; if it returns status "pending", the viewer widget collects the model with check_job
 ```
 
-**Expected output**  (268/300)
+**Expected output**  (282/300)
 ```
-An inline interactive 3D viewer with the textured model, plus Download, Spin, Recenter and Open in three.ws. It auto-rotates until dragged. Free, no account. Takes one to four minutes; past the inline wait it returns a job_id and check_job collects the finished model.
+An inline 3D viewer showing the textured robot, auto-rotating until dragged, with Download GLB, Open viewer and View in your space. Free, no account. The call answers within about 40s; if still rendering, the viewer shows a live timer and fills in by itself, usually in 1-4 minutes.
 ```
 
 ### Test Case 2
@@ -178,12 +178,12 @@ Make a rigged, animation-ready knight character I can pose.
 
 **Tool triggered**
 ```
-forge_avatar, then check_job if it returns status "pending", then rig_mesh if the finished job was only the mesh
+forge_avatar; if it returns status "pending", the viewer widget collects the mesh with check_job and rigs it with rig_mesh
 ```
 
-**Expected output**  (257/300)
+**Expected output**  (250/300)
 ```
-A GLB in the inline viewer with a humanoid skeleton and skin weights applied, so it can be posed. One call normally does mesh and rig; if it times out at the mesh stage the pending result says to finish with rig_mesh. A humanoid rig also plays an idle clip.
+The knight in the inline viewer, labeled rigged model, carrying a humanoid skeleton and skin weights so it can be posed. If the call answers before the mesh is done, the viewer finishes the mesh, runs the rig step itself, then shows the rigged model.
 ```
 
 ### Test Case 3
@@ -200,12 +200,12 @@ Now make that robot's shell matte instead of glossy.
 
 **Tool triggered**
 ```
-refine_model, then check_job if it returns status "pending"
+refine_model; if it returns status "pending", the viewer widget collects it with check_job
 ```
 
-**Expected output**  (256/300)
+**Expected output**  (266/300)
 ```
-Run immediately after test case 1, in the same conversation. Returns a new version anchored to the previous model rather than an unrelated regeneration, and replaces the GLB in the viewer. The earlier version stays reachable, so the change can be reverted.
+Run right after test case 1 in the same conversation. A new version anchored to the robot, not an unrelated model, appears in the viewer with a Versions strip (Original, then the change) so either version can be shown again. A still-rendering one fills in by itself.
 ```
 
 ### Test Case 4
@@ -225,9 +225,9 @@ Look at this 3D model and tell me what it is and whether it has any obvious defe
 look_at_model
 ```
 
-**Expected output**  (272/300)
+**Expected output**  (243/300)
 ```
-Frames from several angles returned as MCP image content blocks, which the client renders into the conversation, plus geometry stats. The assistant describes the armchair from images it can actually see. Free, seconds not minutes. The URL is ours and needs no credentials.
+Frames from four angles returned as image content, plus geometry stats, and the armchair in the inline viewer. The assistant describes the chair from images it can actually see. Free, about 30 seconds. The URL is ours and needs no credentials.
 ```
 
 ### Test Case 5
@@ -244,12 +244,12 @@ Use the art-directed generator to make a detailed vintage brass telescope on a w
 
 **Tool triggered**
 ```
-mesh_forge, then check_job if it returns status "pending"
+mesh_forge; if it returns status "pending", the viewer widget collects the model with check_job
 ```
 
-**Expected output**  (241/300)
+**Expected output**  (265/300)
 ```
-A textured GLB in the same inline viewer, with Download and Open in three.ws. An art-direction pass may first tighten the prompt into a single-subject spec. Free, no account. One to four minutes; a pending result is collected with check_job.
+A textured telescope in the same inline viewer, with Download GLB and Open viewer. An art-direction pass may first tighten the prompt into a single-subject spec. Free, no account. If still rendering after about 40s, the viewer shows progress and fills in by itself.
 ```
 
 ## Testing tab: negative cases

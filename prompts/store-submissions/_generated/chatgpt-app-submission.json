@@ -110,24 +110,24 @@
       "description": "Generate a 3D prop from a text description",
       "user_prompt": "Make a 3D model of a friendly round robot mascot, glossy white plastic.",
       "file_attachment_urls": null,
-      "tools_triggered": "forge_free, then check_job if the first response returns status \"pending\"",
-      "expected_output": "An inline interactive 3D viewer with the textured model, plus Download, Spin, Recenter and Open in three.ws. It auto-rotates until dragged. Free, no account. Takes one to four minutes; past the inline wait it returns a job_id and check_job collects the finished model.",
+      "tools_triggered": "forge_free; if it returns status \"pending\", the viewer widget collects the model with check_job",
+      "expected_output": "An inline 3D viewer showing the textured robot, auto-rotating until dragged, with Download GLB, Open viewer and View in your space. Free, no account. The call answers within about 40s; if still rendering, the viewer shows a live timer and fills in by itself, usually in 1-4 minutes.",
       "expected_output_url": null
     },
     {
       "description": "Generate a rigged, animation-ready character",
       "user_prompt": "Make a rigged, animation-ready knight character I can pose.",
       "file_attachment_urls": null,
-      "tools_triggered": "forge_avatar, then check_job if it returns status \"pending\", then rig_mesh if the finished job was only the mesh",
-      "expected_output": "A GLB in the inline viewer with a humanoid skeleton and skin weights applied, so it can be posed. One call normally does mesh and rig; if it times out at the mesh stage the pending result says to finish with rig_mesh. A humanoid rig also plays an idle clip.",
+      "tools_triggered": "forge_avatar; if it returns status \"pending\", the viewer widget collects the mesh with check_job and rigs it with rig_mesh",
+      "expected_output": "The knight in the inline viewer, labeled rigged model, carrying a humanoid skeleton and skin weights so it can be posed. If the call answers before the mesh is done, the viewer finishes the mesh, runs the rig step itself, then shows the rigged model.",
       "expected_output_url": null
     },
     {
       "description": "Iterate on a model by describing the change in words",
       "user_prompt": "Now make that robot's shell matte instead of glossy.",
       "file_attachment_urls": null,
-      "tools_triggered": "refine_model, then check_job if it returns status \"pending\"",
-      "expected_output": "Run immediately after test case 1, in the same conversation. Returns a new version anchored to the previous model rather than an unrelated regeneration, and replaces the GLB in the viewer. The earlier version stays reachable, so the change can be reverted.",
+      "tools_triggered": "refine_model; if it returns status \"pending\", the viewer widget collects it with check_job",
+      "expected_output": "Run right after test case 1 in the same conversation. A new version anchored to the robot, not an unrelated model, appears in the viewer with a Versions strip (Original, then the change) so either version can be shown again. A still-rendering one fills in by itself.",
       "expected_output_url": null
     },
     {
@@ -135,15 +135,15 @@
       "user_prompt": "Look at this 3D model and tell me what it is and whether it has any obvious defects: https://three.ws/cdn/objects/polyhaven/glb/ArmChair_01.glb",
       "file_attachment_urls": null,
       "tools_triggered": "look_at_model",
-      "expected_output": "Frames from several angles returned as MCP image content blocks, which the client renders into the conversation, plus geometry stats. The assistant describes the armchair from images it can actually see. Free, seconds not minutes. The URL is ours and needs no credentials.",
+      "expected_output": "Frames from four angles returned as image content, plus geometry stats, and the armchair in the inline viewer. The assistant describes the chair from images it can actually see. Free, about 30 seconds. The URL is ours and needs no credentials.",
       "expected_output_url": null
     },
     {
       "description": "Generate a model through the art-directed lane",
       "user_prompt": "Use the art-directed generator to make a detailed vintage brass telescope on a wooden tripod.",
       "file_attachment_urls": null,
-      "tools_triggered": "mesh_forge, then check_job if it returns status \"pending\"",
-      "expected_output": "A textured GLB in the same inline viewer, with Download and Open in three.ws. An art-direction pass may first tighten the prompt into a single-subject spec. Free, no account. One to four minutes; a pending result is collected with check_job.",
+      "tools_triggered": "mesh_forge; if it returns status \"pending\", the viewer widget collects the model with check_job",
+      "expected_output": "A textured telescope in the same inline viewer, with Download GLB and Open viewer. An art-direction pass may first tighten the prompt into a single-subject spec. Free, no account. If still rendering after about 40s, the viewer shows progress and fills in by itself.",
       "expected_output_url": null
     }
   ],

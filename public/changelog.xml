@@ -79,6 +79,14 @@
 			<description>Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.</description>
 		</item>
 		<item>
+			<title>3D Studio in ChatGPT finishes every model, however long it takes</title>
+			<link>https://three.ws/docs/mcp-studio</link>
+			<guid isPermaLink="false">2026-09-29:3D Studio in ChatGPT finishes every model, however long it takes</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>improvement</category>
+			<description>ChatGPT stops waiting on a tool after one minute, and a detailed 3D model takes one to four. The 3D Studio plugin now answers inside that minute and the inline viewer finishes the job itself: it shows a live timer, drops the model in the moment it is ready, rigs an avatar's skeleton on its own when that step is still to come, and keeps a refined model's version history so you can flip back to the original. Inspecting an existing model now shows it in the viewer too, avatars always come out as a full body ready to pose even when the prompt helper is unavailable, and busy periods no longer let one ChatGPT user's generations use up everyone else's.</description>
+		</item>
+		<item>
 			<title>Copy Coach: your first copy trade, the careful way</title>
 			<link>https://three.ws/copy-coach</link>
 			<guid isPermaLink="false">2026-09-29:Copy Coach: your first copy trade, the careful way</guid>

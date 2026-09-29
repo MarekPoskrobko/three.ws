@@ -28807,6 +28807,13 @@
 				"infra"
 			],
 			"link": "/status"
+		},
+		{
+			"date": "2026-09-29",
+			"title": "3D Studio in ChatGPT finishes every model, however long it takes",
+			"summary": "ChatGPT stops waiting on a tool after one minute, and a detailed 3D model takes one to four. The 3D Studio plugin now answers inside that minute and the inline viewer finishes the job itself: it shows a live timer, drops the model in the moment it is ready, rigs an avatar's skeleton on its own when that step is still to come, and keeps a refined model's version history so you can flip back to the original. Inspecting an existing model now shows it in the viewer too, avatars always come out as a full body ready to pose even when the prompt helper is unavailable, and busy periods no longer let one ChatGPT user's generations use up everyone else's.",
+			"tags": ["improvement", "fix"],
+			"link": "/docs/mcp-studio"
 		}
 	]
 }

@@ -12,7 +12,50 @@ from this file.
 
 ---
 
-## 0. Submission verdict: RESUBMITTING on the ChatGPT surface
+## 0. Submission verdict: RESUBMITTING with every call inside ChatGPT's 60-second limit
+
+**The resubmission on `/api/mcp-chatgpt` was rejected too (third rejection, reported 2026-09-29).**
+The five fixes below were real, but none of them was the blocker. Measured on 2026-09-29 against
+live revision `three-ws-api-00460-4j6`:
+
+1. **Four of the five positive test cases could not complete inside ChatGPT.** ChatGPT ends any
+   tool call still open at 60 seconds; an OpenAI staff member confirmed on the developer forum that
+   "the hard limit on any tool call is 1 minute" and that it is not configurable. `forge_free`,
+   `forge_avatar`, `refine_model` and `mesh_forge` each held the call open for up to 180 seconds
+   of polling after a submit of up to 90. A live `forge_free` call to the submitted endpoint took
+   **200 seconds** and returned a pending job. In ChatGPT the reviewer saw a failed tool call on
+   test cases 1, 2, 3 and 5; only `look_at_model` (28 seconds) passed. That is the "stable,
+   responsive, and complete" requirement, failed on the reviewer's own test plan.
+   **Fixed:** every call on the ChatGPT surface now answers within a 40-second budget
+   (`CHATGPT_CALL_BUDGET_MS`), measured at 40.0 seconds on real `forge_free`, `forge_avatar` and
+   `refine_model` calls against the production generator.
+2. **A pending result was a dead end.** The widget said "Ask to check the job to collect the
+   finished model." **Fixed:** the viewer polls `check_job` itself through
+   `window.openai.callTool`, shows a live elapsed timer, rigs a pending avatar mesh with
+   `rig_mesh`, keeps a pending refinement's version strip, and retries a status check that timed
+   out. Driven end to end in Chromium against real production jobs: the telescope and the rigged
+   knight (one skin, 52 joints) both landed in the viewer with no user action.
+3. **Test case 4 rendered "No model yet" under a working answer.** `look_at_model` returns
+   `model_url`, the widget read only `glbUrl`, and fell through to its empty state. **Fixed:** the
+   viewer shows the inspected model.
+4. **The test cases promised controls that do not exist.** Case 1 listed "Spin" and "Recenter"
+   buttons and case 2 an idle clip; the widget has Download GLB, Open viewer and View in your
+   space, and does not autoplay. **Fixed:** every expectation now describes what the reviewer
+   actually sees.
+5. **A failed prompt director turned the knight into a bust.** With the LLM chain exhausted, the
+   raw prompt reached a portrait-leaning lane and came back as head and shoulders. **Fixed:**
+   the fallback brief still asks for a full-body figure.
+6. **Every ChatGPT user shared one rate-limit bucket.** ChatGPT calls arrive from OpenAI's egress
+   IPs, and the caps were 4 per minute and 30 per hour per IP. **Fixed:** on the ChatGPT surface
+   they key on the per-user `openai/subject`, with a 300-per-hour ceiling per IP.
+
+**Before resubmitting:** deploy, re-run the five test cases in ChatGPT developer mode against
+`https://three.ws/api/mcp-chatgpt`, then **re-record the demo video** from that session. The
+current video predates the fix, and the reviewer validates test cases against it. Upload the
+regenerated `chatgpt-app-submission.json` (`node scripts/build-openai-portal-fields.mjs --json`)
+and bump the version to 1.0.1.
+
+### The first two rejections (2026-09-12)
 
 **Version 1.0.0 was submitted on 2026-09-12 at 00:10Z and rejected twice that day.** The portal
 never displayed a reason, so every cause below was found by measuring the submission against the
