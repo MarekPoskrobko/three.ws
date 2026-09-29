@@ -20,13 +20,20 @@
 // than written into the queue: this module never decides that something is good
 // enough.
 
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { callModelChain } from '../x-content/llm.js';
-import { copyProblems, copySimilarity, weightedLength } from '../x-content/quality.js';
+import { copyProblems, copySimilarity, maxLengthOf } from '../x-content/quality.js';
 import { claimProblems, languageProblems } from '../x-content/editorial.js';
 import { loadHistory } from '../x-content/queue.js';
 import { TIERS } from './plan.js';
 
-export const TARGET_BAND = [100, 179];
+// The floor a head post must clear, and the length of the part a reader sees
+// before "Show more". There is no target ceiling: the account's head posts over
+// 280 characters measured about twice the likes of shorter ones, and the old
+// 100 to 179 target came from a scrape that had lost its largest posts.
+export const MINIMUM_HEAD = 100;
+export const VISIBLE_HEAD = 280;
 
 const PATTERN_GUIDE = {
 	mechanism: 'Lead with how the thing actually works. The reader should finish the first sentence knowing what happens when they use it.',
@@ -48,7 +55,7 @@ export const SYSTEM = `You write posts for @trythreews, the X account of three.w
 The brief is the only source of facts you have. Do not add anything that is not in it, do not guess at numbers, and do not describe behaviour it does not record.
 
 Hard rules, each enforced by a machine after you answer:
-- 100 to 179 weighted characters is the target band, 280 is the hard wall. A URL always counts as 23 characters however long it is.
+- The head post is at least 100 weighted characters and at most {MAX}. A URL always counts as 23 characters however long it is. Only the first 280 characters show before "Show more", so open with the strongest true statement and make those 280 stand on their own. Go past 280 when there is more that is true and worth saying; never pad.
 - Exactly one link, to the surface itself, and it must appear in the head post.
 - No hashtags, no emoji, no em-dashes or en-dashes, no stacked exclamation marks, no more than one all-caps word.
 - No launch-deck openers (Introducing, We are excited, Say hello to, Meet the new, Big news, Today we are launching), no rhetorical question as the first sentence, no one-word-sentence drumbeat, no teaser that withholds the point, no thread counter.
@@ -67,7 +74,7 @@ The same announcement also goes to the community Telegram channel, which has no 
 Respond with a single JSON object and nothing else:
 {"post":"...","thread":["optional reply","optional reply"],"telegram":"...","alt":"...","probes":[{"type":"api","name":"...","url":"..."}],"claims":[{"says":"exact words from your post","evidence":[{...one of the brief's evidenceCandidates, copied exactly...}]}],"mentions":{"@handle":"why the tag is true"},"why":"two sentences for the approver: what the post leads on and why that is the strongest true thing about this surface","headline":"a five to nine word title for the announcement pack"}`;
 
-export function buildDraftRequest(brief, { voice = null, findings = [], previous = null } = {}) {
+export function buildDraftRequest(brief, { voice = null, findings = [], previous = null, maximum = VISIBLE_HEAD } = {}) {
 	const guidance = [
 		`Pattern for this post: ${brief.pattern}. ${PATTERN_GUIDE[brief.pattern] || PATTERN_GUIDE.mechanism}`,
 		`Lane: ${brief.lane}. ${LANE_GUIDE[brief.lane] || LANE_GUIDE.community}`,
@@ -92,7 +99,7 @@ export function buildDraftRequest(brief, { voice = null, findings = [], previous
 	]
 		.filter(Boolean)
 		.join('\n\n');
-	return { system: SYSTEM, parts: [{ type: 'text', text }] };
+	return { system: SYSTEM.replace('{MAX}', String(maximum)), parts: [{ type: 'text', text }] };
 }
 
 export function parseDraft(raw) {
@@ -140,18 +147,27 @@ export function itemFor(brief, draft, { mediaPath, probe = null, status = 'draft
 	};
 }
 
+// The wall is the queue's, so a draft is held to the length the queue will
+// accept and not to a number of this module's own.
+function queueQuality(root) {
+	if (!root) return {};
+	try {
+		return JSON.parse(readFileSync(resolve(root, 'data/x-content/queue.json'), 'utf8')).quality || {};
+	} catch {
+		return {};
+	}
+}
+
 const candidateKey = (evidence) => JSON.stringify([evidence.type, evidence.url || evidence.path || '', evidence.contains || evidence.matches || '']);
 
 // Everything wrong with a draft, in the words the model will be shown. Offline:
 // no network, so a retry costs one model call and nothing else.
-export function draftFindings(brief, draft, { root = null, otherHeads = [] } = {}) {
+export function draftFindings(brief, draft, { root = null, otherHeads = [], maximum = maxLengthOf(queueQuality(root)) } = {}) {
 	const findings = [];
 	const head = String(draft.post || '').trim();
-	const weight = weightedLength(head);
 
-	for (const problem of copyProblems(head, { minimum: TARGET_BAND[0] })) findings.push(`head: ${problem}`);
-	if (weight > TARGET_BAND[1] && weight <= 280) findings.push(`head is ${weight} weighted characters; the measured band is ${TARGET_BAND[0]} to ${TARGET_BAND[1]}, so tighten it unless the mechanism needs the room`);
-	for (const reply of draft.thread) for (const problem of copyProblems(reply, { minimum: 40, requireUrl: false })) findings.push(`reply: ${problem}`);
+	for (const problem of copyProblems(head, { minimum: MINIMUM_HEAD, maximum })) findings.push(`head: ${problem}`);
+	for (const reply of draft.thread) for (const problem of copyProblems(reply, { minimum: 40, maximum, requireUrl: false })) findings.push(`reply: ${problem}`);
 
 	const texts = [head, ...draft.thread];
 	for (const text of texts) {
@@ -206,7 +222,7 @@ export async function draftPost(brief, { root, env = process.env, voice = null, 
 	let previous = null;
 	let findings = [];
 	for (let attempt = 1; attempt <= attempts; attempt++) {
-		const request = buildDraftRequest(brief, { voice, findings, previous });
+		const request = buildDraftRequest(brief, { voice, findings, previous, maximum: maxLengthOf(queueQuality(root)) });
 		const { value, model, fallbacks } = await callModelChain(request, { env, parse: parseDraft });
 		findings = draftFindings(brief, value, { root, otherHeads });
 		tries.push({ attempt, model, fallbacks, findings, draft: value });

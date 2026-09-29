@@ -40,9 +40,12 @@ import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { resolve, dirname, join, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { hasUrl } from '../api/_lib/x-content/quality.js';
+import { hasUrl, maxLengthOf } from '../api/_lib/x-content/quality.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+// The longest a post may be is the queue's setting, so a pack is never held to
+// a wall the queue itself has lifted.
+const MAX_POST = maxLengthOf(JSON.parse(readFileSync(join(root, 'data/x-content/queue.json'), 'utf8')).quality);
 const PACK_DIR = join(root, 'docs/announcements');
 const MEDIA_SPEC = join(root, 'data/announce-media.json');
 const MANIFEST = join(root, 'public/announce/media-manifest.json');
@@ -182,9 +185,8 @@ for (const file of packs) {
 	if (!post.includes(post.trim())) fail(name, 'post file is empty');
 
 	const weight = weightedLength(post);
-	if (weight > 280) fail(name, `post is ${weight} weighted chars, over X's 280 limit`);
-	else if (weight < 100) fail(name, `post is ${weight} weighted chars; under 100 measured 0.83x`);
-	else if (weight > 179) notes.push(`${name}: ${weight} chars is the 1.67x band, not the 3.0x band`);
+	if (weight > MAX_POST) fail(name, `post is ${weight} weighted chars, over the queue's limit of ${MAX_POST}`);
+	else if (weight < 100) fail(name, `post is ${weight} weighted chars; under 100 it says a thing exists and not how it works`);
 
 	if (!post.includes(post.trim())) fail(name, 'post file is empty');
 	if (/#\w/.test(post)) fail(name, 'post contains a hashtag (0 of our 214 posts use one)');
