@@ -1,14 +1,17 @@
 // GET /api/cron/x402-seed-cron
 //
-// Per-minute cron that seeds the x402 activity feed with 60 real Solana
-// micropayments per tick — one per second equivalent, fired in parallel.
+// Economy-tick cron that seeds the x402 activity feed with up to 60 real Solana
+// micropayments per tick, fired in parallel. The sponsor pays each payment's
+// SOL fee, so the batch is capped at what the wallet fee governor will admit
+// after leaving X402_SEED_FEE_RESERVE_LAMPORTS for the paid pipelines.
 //
 // Each invocation:
 //   1. Loads the seeder keypair (X402_SEED_SOLANA_SECRET_BASE58 or fallback).
 //   2. Probes /api/x402/dance-tip once to get live payment requirements.
-//   3. Fetches a single blockhash + mint info shared across all 60 transactions.
-//   4. Builds 60 signed USDC TransferChecked transactions (synchronous).
-//   5. Fires all 60 in parallel against dance-tip with X-PAYMENT headers.
+//   3. Fetches a single blockhash + mint info shared across the batch.
+//   4. Sizes the batch to the payer's balance and the sponsor's fee budget.
+//   5. Builds that many signed TransferChecked transactions (synchronous).
+//   6. Fires them in parallel against dance-tip with X-PAYMENT headers.
 //
 // The payments are real on-chain USDC transfers from the seeder wallet.
 // The Solana x402 facilitator co-signs (feePayer) and broadcasts each tx.
@@ -18,6 +21,8 @@
 //   X402_SEED_SOLANA_SECRET_BASE58   base58 64-byte ed25519 seeder keypair
 //   X402_SEED_ENABLED                set to 'false' to pause (default: enabled)
 //   X402_SEED_BATCH_SIZE             calls per tick (default: 60)
+//   X402_SEED_FEE_RESERVE_LAMPORTS   fee-wallet budget the seeder leaves for
+//                                    paid pipelines (default: 200000)
 
 // The transactions come from the ONE shared ring payment builder
 // (api/_lib/x402/pay.js), whose nonce-based (priority price, CU limit) spread
@@ -38,7 +43,9 @@ import { logger } from '../_lib/usage.js';
 import { SPONSOR_SOL_FLOOR_LAMPORTS } from '../_lib/x402/self-facilitator.js';
 import {
 	loadSeedKeypair, fetchWithTimeout, parseSolanaAccept, buildPaymentTx,
+	ringFeeConfig, expectedFeeLamports,
 } from '../_lib/x402/pay.js';
+import { reserveFeeAdmissions } from '../_lib/x402/wallet-fee-meter.js';
 import { readPayerUsdcAtomic } from './x402-autonomous-loop.js';
 import { requireCron } from '../_lib/cron-auth.js';
 
@@ -102,6 +109,30 @@ export function planSeedBatch({ sponsorSolLamports, payerUsdcAtomic, priceAtomic
 	// Right-size rather than overshoot: a float that funds 12 of 60 tips should
 	// send 12 real payments, not 60 of which 48 fail at verify.
 	return { skip: null, batch: Math.min(batchSize, affordable) };
+}
+
+// The seeder's fee headroom: how much of the sponsor's daily fee budget it must
+// leave untouched for the pipelines that pay for real data. Default 200,000
+// lamports, twenty sponsor-mode settles, the same size as the governor's
+// top-of-day pacing slice. 0 lets the seeder compete for every lamport.
+export function seedFeeReserveLamports(e = process.env) {
+	const raw = String(e.X402_SEED_FEE_RESERVE_LAMPORTS ?? '').trim();
+	const n = Number(raw);
+	return raw && Number.isFinite(n) && n >= 0 ? Math.floor(n) : 200_000;
+}
+
+// Worst-case SOL fee of one seed payment. The batch uses nonces 0..batch-1 in
+// sponsor mode, so the ceiling over that range is what every admission is priced
+// at: the same expectedFeeLamports() math payX402 prices its own admissions with.
+export function seedFeeEstimateLamports(batch) {
+	let worst = 0;
+	for (let i = 0; i < Math.max(1, batch); i += 1) {
+		const { microLamports, cuLimit } = ringFeeConfig(i, { selfPay: false });
+		worst = Math.max(worst, expectedFeeLamports({
+			selfPay: false, priorityMicrolamports: microLamports, cuLimit,
+		}));
+	}
+	return worst;
 }
 
 // Push an entry to the shared x402 activity feed in Redis.
@@ -242,10 +273,41 @@ export default wrapCron(async (req, res) => {
 		});
 	}
 
+	// ── Pre-flight: fit the batch inside the sponsor's fee budget ─────────────
+	// The balance gate above only proves the sponsor is over its hard floor. The
+	// wallet fee governor refuses anything past today's paced budget, and this
+	// cron built, signed and verified 60 payments a tick regardless: measured on
+	// production 2026-09-29, 3,600 of 3,660 seed payments in two hours were
+	// refused at the facilitator with `fee_runway_exhausted`, about 95% of every
+	// settle attempt the platform made, each after a simulated verify. The seeder
+	// sends only what the governor will admit, and leaves the reserve for the
+	// pipelines that buy real data from the same wallet.
+	const feeEstimate = seedFeeEstimateLamports(plan.batch);
+	const admission = await reserveFeeAdmissions({
+		feeWalletB58: accept.extra.feePayer,
+		estFeeLamports: feeEstimate,
+		count: plan.batch,
+		keepLamports: seedFeeReserveLamports(),
+		connection: conn,
+	});
+	if (admission.admitted < 1) {
+		return json(res, 200, {
+			ok: false,
+			skipped: true,
+			reason: 'fee_budget',
+			detail: admission.reason,
+			feePayer: accept.extra.feePayer,
+			budget_lamports: admission.budgetLamports ?? null,
+			spent_today_lamports: admission.spentTodayLamports ?? null,
+			reserve_lamports: admission.keepLamports ?? null,
+			fee_estimate_lamports: feeEstimate,
+		});
+	}
+
 	// ── Step 3: build the signed transactions (synchronous) ───────────────────
 	// The nonce spread is what makes each batch member a distinct transaction;
 	// see ringFeeConfig in api/_lib/x402/pay.js for why it costs ~nothing.
-	const affordable = plan.batch;
+	const affordable = Math.min(plan.batch, admission.admitted);
 	const txBases = Array.from({ length: affordable }, (_, index) =>
 		buildPaymentTx({ accept, buyer, blockhash, mintInfo, receiverAtaExists, nonce: index }),
 	);
@@ -304,6 +366,7 @@ export default wrapCron(async (req, res) => {
 	log.info('x402_seed_tick', {
 		batch: affordable,
 		configured_batch: BATCH_SIZE,
+		fee_admitted: admission.admitted,
 		succeeded: succeeded.length,
 		failed,
 		payer: payerAddress,

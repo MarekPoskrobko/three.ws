@@ -20,12 +20,14 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 
 let planSeedBatch;
+let seedFeeReserveLamports;
+let seedFeeEstimateLamports;
 let FLOOR;
 
 beforeAll(async () => {
 	process.env.X402_ASSET_MINT_SOLANA = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 	process.env.CRON_SECRET = 'test-secret';
-	({ planSeedBatch } = await import('../api/cron/x402-seed-cron.js'));
+	({ planSeedBatch, seedFeeReserveLamports, seedFeeEstimateLamports } = await import('../api/cron/x402-seed-cron.js'));
 	({ SPONSOR_SOL_FLOOR_LAMPORTS: FLOOR } = await import('../api/_lib/x402/self-facilitator.js'));
 });
 
@@ -98,6 +100,33 @@ describe('planSeedBatch — the seeder preflight', () => {
 		// A zero/NaN price would make the affordability division meaningless.
 		for (const priceAtomic of [0, Number.NaN]) {
 			expect(plan({ priceAtomic })).toEqual({ skip: null, batch: BATCH });
+		}
+	});
+});
+
+// The fee-budget half of the preflight. The balance gate above proves the sponsor
+// is over its hard floor; it says nothing about the wallet fee governor's daily
+// budget, and on 2026-09-29 that gap was 3,600 of 3,660 seed payments in two
+// hours refused at the facilitator. The cron now sizes the batch with
+// reserveFeeAdmissions(), priced and reserved by these two helpers.
+describe('seed fee pricing and reserve', () => {
+	it('prices every batch member at the sponsor-mode worst case the facilitator meters', () => {
+		// Two signatures, and sponsor-mode price slots that floor to zero priority
+		// lamports: exactly the `+10000` in the production refusal string.
+		expect(seedFeeEstimateLamports(60)).toBe(10_000);
+		expect(seedFeeEstimateLamports(120)).toBe(10_000);
+		expect(seedFeeEstimateLamports(0)).toBe(10_000);
+	});
+
+	it('leaves twenty sponsor settles of budget for paid pipelines by default', () => {
+		expect(seedFeeReserveLamports({})).toBe(200_000);
+		expect(seedFeeReserveLamports({ X402_SEED_FEE_RESERVE_LAMPORTS: '0' })).toBe(0);
+		expect(seedFeeReserveLamports({ X402_SEED_FEE_RESERVE_LAMPORTS: '50000' })).toBe(50_000);
+	});
+
+	it('ignores an unusable or blank reserve instead of zeroing it', () => {
+		for (const v of ['-1', 'abc', '', '  ']) {
+			expect(seedFeeReserveLamports({ X402_SEED_FEE_RESERVE_LAMPORTS: v })).toBe(200_000);
 		}
 	});
 });

@@ -46,6 +46,7 @@ vi.mock('../api/_lib/x402/self-facilitator.js', () => ({
 
 const {
 	assessFeeAdmission,
+	reserveFeeAdmissions,
 	facilitatorFeeMeter,
 	resetWalletFeeMeterCaches,
 } = await import('../api/_lib/x402/wallet-fee-meter.js');
@@ -303,4 +304,88 @@ describe('parity with the settle-path meter', () => {
 			expect(admissionVerdict.reason ?? null).toBe(meterVerdict.reason ?? null);
 		});
 	}
+});
+
+// The batch gate the x402 seed cron sizes its tick with. Production 2026-09-29:
+// 60 sponsor-mode tips every two minutes against a budget that funded about one,
+// 43,662 governor refusals a day at the facilitator, and the paid pipelines on
+// the same wallet skipped about 7,400 times a day because the seeder got there
+// first. reserveFeeAdmissions admits only what fits after the kept headroom.
+describe('reserveFeeAdmissions: batch sizing against the shared snapshot', () => {
+	const reserve = (overrides = {}) => reserveFeeAdmissions({
+		feeWalletB58: GOV, estFeeLamports: 10_000, count: 60, config: CFG, ...overrides,
+	});
+
+	it('admits only the settles the budget can fund', async () => {
+		h.sql.mockResolvedValue([{ spent: '970000' }]);
+		const r = await reserve();
+		expect(r).toMatchObject({ admitted: 3, governed: true, reason: null, budgetLamports: 1_000_000 });
+	});
+
+	it('leaves the kept headroom, without refusing anyone else', async () => {
+		h.sql.mockResolvedValue([{ spent: '900000' }]);
+		const r = await reserve({ keepLamports: 200_000 });
+		expect(r.admitted).toBe(0);
+		expect(r.reason).toMatch(/^fee_budget_kept_for_paid_calls:/);
+		// The budget still has 100,000 lamports; a paid call must still get in.
+		const paid = await admit({ estFeeLamports: 10_000 });
+		expect(paid.ok).toBe(true);
+	});
+
+	it('debits admitted fees from the snapshot other callers read', async () => {
+		h.sql.mockResolvedValue([{ spent: '950000' }]);
+		expect((await reserve()).admitted).toBe(5);
+		// The seeder took every settle the budget funds; the next caller is refused
+		// from the same snapshot without another ledger read.
+		const next = await admit({ estFeeLamports: 10_000 });
+		expect(next.ok).toBe(false);
+		expect(next.reason).toMatch(/^fee_runway_exhausted:/);
+		expect(h.sql).toHaveBeenCalledTimes(1);
+	});
+
+	it('an exhausted budget becomes the same cached refusal every caller sees', async () => {
+		h.sql.mockResolvedValue([{ spent: '1000000' }]);
+		const r = await reserve({ keepLamports: 200_000 });
+		expect(r.admitted).toBe(0);
+		expect(r.reason).toMatch(/^fee_runway_exhausted:/);
+		const next = await admit({ estFeeLamports: 5_000 });
+		expect(next).toMatchObject({ ok: false, cached: true });
+	});
+
+	it('fails open: ungoverned wallet, unreadable balance, disabled governor', async () => {
+		expect((await reserve({ feeWalletB58: ORGANIC })).admitted).toBe(60);
+		expect((await reserve({ config: { ...CFG, enabled: false } })).admitted).toBe(60);
+		resetWalletFeeMeterCaches();
+		h.sponsorSolLamports.mockRejectedValue(new Error('rpc down'));
+		expect((await reserve()).admitted).toBe(60);
+	});
+});
+
+// Pipelines that hand-build a sponsor-mode payment (the MCP canary, the
+// builder-code and payment-proof audits) ask through admitSponsorSettle(). It
+// must price at the sponsor-mode worst case, two signatures, because that is
+// what the settle-path meter will charge against the same budget.
+describe('admitSponsorSettle: hand-built sponsor payments ask the same gate', () => {
+	it('prices at the two-signature sponsor fee and gates the accept\'s fee payer', async () => {
+		const { admitSponsorSettle } = await import('../api/_lib/x402/pay.js');
+		// 995,000 spent of a 1,000,000 budget: a self-pay fee (5,000) would fit,
+		// the sponsor-mode fee (10,000) does not.
+		h.sql.mockResolvedValue([{ spent: '995000' }]);
+		vi.stubEnv('X402_WALLET_FEE_RUNWAY_DAYS', '1');
+		vi.stubEnv('X402_WALLET_FEE_MIN_BUDGET_LAMPORTS', '0');
+		vi.stubEnv('X402_WALLET_FEE_PACE_DAY', 'false');
+		try {
+			const v = await admitSponsorSettle({ accept: { extra: { feePayer: GOV } } });
+			expect(v.ok).toBe(false);
+			expect(v.reason).toBe('fee_runway_exhausted:995000+10000>1000000');
+		} finally {
+			vi.unstubAllEnvs();
+		}
+	});
+
+	it('admits when the accept names no fee payer to price', async () => {
+		const { admitSponsorSettle } = await import('../api/_lib/x402/pay.js');
+		expect((await admitSponsorSettle({ accept: { extra: {} } })).ok).toBe(true);
+		expect(h.sponsorSolLamports).not.toHaveBeenCalled();
+	});
 });

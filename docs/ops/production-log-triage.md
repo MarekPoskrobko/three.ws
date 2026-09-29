@@ -320,7 +320,15 @@ HTTP 502/503 GET|POST /api/x402/*, /api/mcp   ua: threews-x402-autonomous/1.0 or
   | `accept_withdrawn` | `sponsorKnownBelowFloor()` dropped the Solana accept, so no payment is ever attempted | the 402 challenge (`/api/x402/three-intel`), NOT the facilitator: it never saw these calls |
   | `settle_refused` | the accept is on every challenge, buyers sign real payments, our facilitator turns each away at the floor gate | the facilitator's reject book: `fee_wallet_below_floor:<held><<floor>` names the wallet and both numbers |
   | `paced` | the wallet fee governor spent today's budget on purpose | `GET /api/x402/runway-lab` |
+  | `gate_bypass` | a caller outside the ring signs and verifies payments the governor then refuses at settle, without asking the admission gate first (`metrics.gateBypass` counts them) | `x402_self_facilitator_log`: group the window's `verify` rows by `payer` and `amount_atomic`, then match the request logs by user agent |
   | `rail` | genuine payment-rail faults | the settle logs, per the greps above |
+
+  `gate_bypass` was production on 2026-09-29, invisible under `x402_settle: ok, 97%`:
+  43,848 of 46,375 facilitator settle attempts in 24h were `fee_runway_exhausted`,
+  and 95% of them were the x402 seed cron (`threews-x402-seed/1.0`, 60 sponsor-mode
+  $0.001 tips every two minutes against a budget that funded about one). The fix is
+  in the caller, not the budget: funding the fee wallet only moves the line such a
+  caller runs into.
 
   On 2026-09-09 production was `settle_refused` verbatim: **0** `no_solana_accept`,
   164 `fee_wallet_below_floor:1167627<2000000`, and 126 `http_402` recorded by the

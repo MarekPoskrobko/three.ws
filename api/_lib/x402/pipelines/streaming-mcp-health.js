@@ -60,6 +60,7 @@ import {
 	parseSolanaAccept,
 	buildPaymentTx,
 	fetchWithTimeout,
+	admitSponsorSettle,
 	USDC_MINT,
 	SOLANA_RPC,
 } from '../pay.js';
@@ -295,6 +296,8 @@ export async function runStreamingMcpHealth(ctx = {}) {
 	const amountAtomic = Number(accept.amount || 0);
 	if (!(amountAtomic > 0)) return fail('zero_price');
 	if (amountAtomic > remainingCap) return fail('cap_would_exceed', { skipped: true });
+	const admission = await admitSponsorSettle({ accept, connection: conn });
+	if (!admission.ok) return fail(admission.reason || 'fee_runway_exhausted', { skipped: true });
 
 	// ── Step 2: build the signed payment tx + X-PAYMENT envelope ───────────────
 	let xPayment;

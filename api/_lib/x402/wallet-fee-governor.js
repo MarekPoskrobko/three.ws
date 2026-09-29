@@ -133,3 +133,33 @@ export function assessWalletFeeBudget({ spentTodayLamports, budgetLamports, next
 	}
 	return { ok: true, reason: null };
 }
+
+// ── Batch sizing ────────────────────────────────────────────────────────────────
+// How many settles of `feeLamports` each still fit in today's budget, after
+// leaving `keepLamports` of headroom untouched for other tenants of the wallet.
+//
+// assessWalletFeeBudget() answers yes/no for ONE settle. A batch caller (the x402
+// seed cron fires up to 120 sponsor-mode payments in parallel) needs the count,
+// and asking one at a time is how it used to fire 60 when the budget funded one:
+// measured on production 2026-09-29, 3,600 of 3,660 seed payments in two hours
+// were refused at the facilitator with `fee_runway_exhausted` after each had
+// paid for a signed transfer and a simulated verify. Same arithmetic as the
+// single-settle verdict, so the two can never disagree about the boundary:
+// `n` settles are admitted exactly when spent + n*fee <= budget - keep.
+//
+// Unknown spend (ledger unreadable) returns `max`, the same fail-open contract as
+// assessWalletFeeBudget: the settle path's SOL floor stays the hard protection.
+export function admissibleSettleCount({
+	spentTodayLamports, budgetLamports, feeLamports, keepLamports = 0, max = Infinity,
+}) {
+	const cap = Math.max(0, Math.floor(Number(max)));
+	const ceiling = Number.isFinite(cap) ? cap : Infinity;
+	if (!Number.isFinite(spentTodayLamports)) return ceiling;
+	const fee = Math.max(0, Number(feeLamports) || 0);
+	const keep = Math.max(0, Number(keepLamports) || 0);
+	const headroom = Number(budgetLamports) - spentTodayLamports - keep;
+	if (!(headroom >= 0)) return 0;
+	// A zero fee cannot exhaust anything; the caller's own cap is the only limit.
+	if (fee === 0) return ceiling;
+	return Math.min(ceiling, Math.floor(headroom / fee));
+}

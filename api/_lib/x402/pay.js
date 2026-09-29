@@ -154,6 +154,25 @@ export function expectedFeeLamports({ selfPay, priorityMicrolamports = 0, cuLimi
 	return SIGNATURE_FEE_LAMPORTS * signatures + priorityLamports;
 }
 
+// Caller-side fee admission for a hand-built SPONSOR-mode payment, for the
+// pipelines that build their own transaction instead of calling payX402() (an
+// audit that must replay one exact proof, a builder-code echo, an MCP canary).
+// The ring payer and the autonomous loop already ask the governor before signing;
+// these did not, so each call past a spent budget paid for an ATA read, a
+// signature and a simulated verify and was then refused at settle. Priced at the
+// same worst case as payX402's own admission for this nonce, and fails open the
+// same way (see assessFeeAdmission).
+export async function admitSponsorSettle({ accept, connection = null, nonce = 0 }) {
+	const { microLamports, cuLimit } = ringFeeConfig(nonce, { selfPay: false });
+	return assessFeeAdmission({
+		feeWalletB58: accept?.extra?.feePayer || null,
+		estFeeLamports: expectedFeeLamports({
+			selfPay: false, priorityMicrolamports: microLamports, cuLimit,
+		}),
+		connection,
+	});
+}
+
 // Load the autonomous payer keypair. Seed wallet preferred; agent wallet is the
 // documented fallback. In non-prod a local test wallet file is honored so the
 // loop and manual tests can run without env wiring.

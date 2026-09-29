@@ -130,6 +130,23 @@ decision logic in
   every call in the window, and under intraday pacing (where the unlocked budget
   sits at the spent line all day) that let about 1,700 doomed handshakes an hour
   reach the settle path to be refused there, beside about 230 that settled.
+- **Every caller that builds its own payment asks too.** Code that signs a
+  transaction itself instead of calling `payX402()` must still ask the governor
+  first. One sponsor-mode payment: `admitSponsorSettle({ accept, connection })`
+  from `api/_lib/x402/pay.js` (the streaming MCP canary, the builder-code and the
+  payment-proof idempotency pipelines use it). A batch:
+  `reserveFeeAdmissions({ feeWalletB58, estFeeLamports, count, keepLamports })`
+  from `api/_lib/x402/wallet-fee-meter.js`, which returns how many settles fit
+  after leaving `keepLamports` of the budget for everyone else. The x402 seed
+  cron (`api/cron/x402-seed-cron.js`) sizes its batch with it and leaves
+  `X402_SEED_FEE_RESERVE_LAMPORTS` (default 200,000, about twenty sponsor-mode
+  settles) for the pipelines that buy real data, so seeding the activity feed
+  never starves them. Before 2026-09-29 the seeder fired 60 tips every two minutes
+  whatever the budget: 43,662 of the day's 43,848 facilitator governor refusals
+  were its $0.001 tips, while the health, oracle, volume and feed pipelines were
+  skipped about 7,400 times a day on the same wallet. `/api/healthz` now reports
+  that shape as `x402_settle` `degraded` with `metrics.mechanism: gate_bypass`
+  (governor refusals at the facilitator with no ring row behind them).
 - **Platform wallets only.** The meter governs only wallets in
   `ringAllowedAddresses()`. An external organic buyer self-paying through this
   facilitator spends its own SOL and is always admitted.

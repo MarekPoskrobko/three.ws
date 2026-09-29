@@ -249,6 +249,41 @@ export function diagnoseSettleDrop({ noSolanaAccept, floorSignals, governorSkips
 	};
 }
 
+// The admission gate exists so a spent fee budget costs one skipped call, not a
+// signed transfer plus a simulated verify refused at the end. A caller that goes
+// around it leaves no trace in the ring log (it is not the ring), so the rate
+// this sensor reports stays green while the facilitator refuses thousands of
+// settles an hour. Measured on production 2026-09-29: x402_settle read `ok, 97%`
+// while 43,848 of 46,375 facilitator settle attempts in 24h were governor
+// refusals, about 95% of them the x402 seed cron firing 60 sponsor-mode tips
+// every two minutes against a budget that funded one.
+//
+// Degraded, not down: the calls that asked the gate still settle. It fires only
+// when the bypass is both material (MIN_ATTEMPTS) and larger than everything the
+// ring settled, so the residue of a cross-instance admission race (a handful an
+// hour, each still recorded) never trips it.
+function gateBypassVerdict(verdict, { gateBypass, settled, minAttempts }) {
+	if (!(gateBypass >= minAttempts && gateBypass > settled)) return null;
+	return {
+		...verdict,
+		status: /** @type {const} */ ('degraded'),
+		cause: /** @type {const} */ ('fee_governor'),
+		mechanism: /** @type {const} */ ('gate_bypass'),
+		detail:
+			`${verdict.detail}; ${gateBypass} settle(s) refused by the fee governor at the facilitator ` +
+			'from a caller that skipped the admission gate',
+		hint:
+			'A caller is building, signing and verifying payments the wallet fee governor then refuses at ' +
+			'settle (`fee_runway_exhausted` in x402_self_facilitator_log with no matching ring row). Each one ' +
+			'costs a simulated verify and a 503 for nothing. Find it: group the same window of ' +
+			'x402_self_facilitator_log by payer and amount_atomic (verify rows always carry the payer), then ' +
+			'match the request logs by user agent. Fix the caller, not the budget: size the batch with ' +
+			'reserveFeeAdmissions() or gate each call with assessFeeAdmission() / admitSponsorSettle() ' +
+			'(api/_lib/x402/wallet-fee-meter.js, api/_lib/x402/pay.js). Funding the fee wallet only moves ' +
+			'the line such a caller runs into. See docs/x402-ring-economy.md "The wallet fee governor".',
+	};
+}
+
 /**
  * Classify pre-aggregated settle buckets into a subsystem verdict. Pure — no DB,
  * no clock — so the thresholds and the rail-fault split are unit-testable
@@ -270,7 +305,8 @@ export function diagnoseSettleDrop({ noSolanaAccept, floorSignals, governorSkips
  * @returns {{ status: 'ok'|'degraded'|'down'|'unknown', settled: number,
  *   faults: number, attempts: number, rate: number|null,
  *   faultClasses: Array<{ reason: string, n: number }>, detail: string,
- *   mechanism?: 'accept_withdrawn'|'settle_refused'|'paced'|'rail', hint?: string }}
+ *   mechanism?: 'accept_withdrawn'|'settle_refused'|'paced'|'gate_bypass'|'rail', hint?: string,
+ *   gateBypass?: number }}
  */
 export function classifySettleBuckets(buckets, { minAttempts = MIN_ATTEMPTS, facilitatorRejects } = {}) {
 	let settled = 0;
@@ -333,8 +369,15 @@ export function classifySettleBuckets(buckets, { minAttempts = MIN_ATTEMPTS, fac
 		}
 		return drained;
 	};
-	governorSkips += drainStatusFaults(facilitatorRejects?.governor);
+	const facilitatorGovernor = Math.max(0, Math.floor(Number(facilitatorRejects?.governor) || 0));
+	const drainedGovernor = drainStatusFaults(facilitatorGovernor);
+	governorSkips += drainedGovernor;
 	floorSignals += drainStatusFaults(facilitatorRejects?.floor);
+	// Governor refusals the facilitator booked that NO ring row accounts for: a
+	// caller that signed, verified and submitted a settle the budget could not
+	// fund, without asking the caller-side admission gate first and without
+	// writing to x402_autonomous_log. See gateBypassVerdict().
+	const gateBypass = facilitatorGovernor - drainedGovernor;
 
 	const attempts = settled + faults;
 	const faultClasses = Object.entries(faultBy)
@@ -385,11 +428,12 @@ export function classifySettleBuckets(buckets, { minAttempts = MIN_ATTEMPTS, fac
 				hint,
 			};
 		}
-		return {
-			status: 'unknown',
-			settled, faults, attempts, rate: null, faultClasses, governorSkips,
+		const quiet = {
+			status: /** @type {const} */ ('unknown'),
+			settled, faults, attempts, rate: null, faultClasses, governorSkips, gateBypass,
 			detail: `only ${attempts} settle attempts in ${WINDOW_INTERVAL}, too few to judge`,
 		};
+		return gateBypassVerdict(quiet, { gateBypass, settled, minAttempts }) || quiet;
 	}
 
 	const rate = settled / attempts;
@@ -404,11 +448,12 @@ export function classifySettleBuckets(buckets, { minAttempts = MIN_ATTEMPTS, fac
 		// A healthy rate with the governor pacing behind it is still healthy: the
 		// settles that ran, ran. Carry the skip count so a wallet quietly sliding
 		// toward its budget shows up before the rate does.
-		return {
-			status: 'ok', settled, faults, attempts, rate, faultClasses,
-			noSolanaAccept, floorSignals, governorSkips,
+		const healthy = {
+			status: /** @type {const} */ ('ok'), settled, faults, attempts, rate, faultClasses,
+			noSolanaAccept, floorSignals, governorSkips, gateBypass,
 			detail: governorSkips > 0 ? `${base}; ${governorSkips} paced by the fee governor` : base,
 		};
+		return gateBypassVerdict(healthy, { gateBypass, settled, minAttempts }) || healthy;
 	}
 	const status = rate < DOWN_RATE ? 'down' : 'degraded';
 	const { cause, mechanism, hint } = diagnoseSettleDrop({
@@ -435,6 +480,7 @@ export function classifySettleBuckets(buckets, { minAttempts = MIN_ATTEMPTS, fac
 		noSolanaAccept,
 		floorSignals,
 		governorSkips,
+		gateBypass,
 		detail: `${base}; ${faults} rail faults${topFaults ? ` (${topFaults})` : ''}${causeNote}`,
 		hint,
 	};
@@ -511,6 +557,9 @@ export async function gatherX402SettleHealth() {
 				// Deliberate spend-pacing, not failure. Read it next to `rate`: the two
 				// together separate "the rail broke" from "the rail is out of budget".
 				governorSkips: v.governorSkips ?? 0,
+				// Governor refusals at the facilitator with no ring row behind them:
+				// callers that skipped the admission gate (see gateBypassVerdict).
+				gateBypass: v.gateBypass ?? 0,
 			},
 		};
 	} catch (err) {

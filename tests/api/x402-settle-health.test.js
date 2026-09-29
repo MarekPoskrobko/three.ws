@@ -601,3 +601,59 @@ describe('readSettleHealth surfaces the mechanism the runbook tells operators to
 		expect(metricsBlock).toMatch(/cause: v\.cause/);
 	});
 });
+
+describe('classifySettleBuckets: a caller that skips the admission gate is not a healthy rail', () => {
+	// Production 2026-09-29, scaled to 3h: the ring's own rows read 97% while the
+	// facilitator refused about 5,500 governor-paced settles from the x402 seed
+	// cron, which never asks the admission gate and never writes a ring row.
+	const ringRows = [
+		{ success: true, paid: true, reason: 'none', n: 262 },
+		{ success: false, paid: true, reason: 'This operation was aborted', n: 7 },
+		{ success: false, paid: false, reason: 'fee_runway_exhausted', n: 924 },
+	];
+
+	it('degrades with mechanism gate_bypass when unattributed refusals outnumber settles', () => {
+		const v = classifySettleBuckets(ringRows, { facilitatorRejects: { governor: 5_480 } });
+		expect(v.rate).toBeGreaterThan(0.9);
+		expect(v.gateBypass).toBe(5_480);
+		expect(v.status).toBe('degraded');
+		expect(v.cause).toBe('fee_governor');
+		expect(v.mechanism).toBe('gate_bypass');
+		expect(v.detail).toMatch(/5480 settle\(s\) refused by the fee governor at the facilitator/);
+		expect(v.hint).toMatch(/reserveFeeAdmissions/);
+	});
+
+	it('counts only refusals no ring row accounts for', () => {
+		const rows = [...ringRows, { success: false, paid: true, reason: 'http_503', n: 300 }];
+		const v = classifySettleBuckets(rows, { facilitatorRejects: { governor: 320 } });
+		// 300 of the 320 are the ring's own http_503 replays; 20 remain unattributed,
+		// fewer than the 262 the ring settled, so a healthy rail stays ok.
+		expect(v.gateBypass).toBe(20);
+		expect(v.status).toBe('ok');
+		expect(v.mechanism).toBeUndefined();
+	});
+
+	it('the cross-instance race residue never trips it', () => {
+		// About 8 an hour of $0.01 governor refusals survived the caller-side gate
+		// in the same 24h, the residue of per-instance admission snapshots.
+		const v = classifySettleBuckets(ringRows, { facilitatorRejects: { governor: 24 } });
+		expect(v.status).toBe('ok');
+	});
+
+	it('an idle ring with a bypassing caller is degraded, not unknown', () => {
+		const v = classifySettleBuckets([], { facilitatorRejects: { governor: 1_800 } });
+		expect(v.status).toBe('degraded');
+		expect(v.mechanism).toBe('gate_bypass');
+	});
+
+	it('a rail that is already failing keeps its own diagnosis and carries the count', () => {
+		const failing = [
+			{ success: true, paid: true, reason: 'none', n: 100 },
+			{ success: false, paid: true, reason: 'broadcast_failed', n: 200 },
+		];
+		const v = classifySettleBuckets(failing, { facilitatorRejects: { governor: 5_000 } });
+		expect(v.status).toBe('down');
+		expect(v.mechanism).toBe('rail');
+		expect(v.gateBypass).toBe(5_000);
+	});
+});

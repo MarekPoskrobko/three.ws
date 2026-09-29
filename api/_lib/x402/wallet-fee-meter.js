@@ -34,6 +34,7 @@ import {
 	walletFeeGovernorConfig,
 	walletDailyFeeBudgetLamports,
 	assessWalletFeeBudget,
+	admissibleSettleCount,
 	pacedFeeBudgetLamports,
 	utcDayElapsedFraction,
 } from './wallet-fee-governor.js';
@@ -192,20 +193,16 @@ async function readAdmissionSnapshot({ feeWalletB58, connection, cfg, now, day }
 	return entry;
 }
 
-export async function assessFeeAdmission({
-	feeWalletB58, estFeeLamports = 0, connection = null, config, now = Date.now(),
-} = {}) {
-	const cfg = config || walletFeeGovernorConfig();
-	if (!cfg.enabled || !feeWalletB58) return ADMIT;
-
+// The snapshot every admission decision is made against: the cached one while it
+// is fresh and from today, otherwise one shared balance + ledger read. Resolves
+// `{ entry: null }` for every fail-open case (ungoverned wallet, unreadable
+// allowlist, unreadable balance), so callers admit without pricing anything.
+async function admissionSnapshot({ feeWalletB58, connection, cfg, now }) {
 	// Never serve a verdict across a UTC day boundary: the budget resets at
 	// midnight and a stale refusal would hold the rail shut into the new day.
 	const day = utcDay(now);
 	const hit = _admissionCache.get(feeWalletB58);
-	if (hit && hit.day === day && now - hit.at < hit.ttl) {
-		const verdict = snapshotVerdict(hit, estFeeLamports, now);
-		return { ok: verdict.ok, reason: verdict.reason, cached: true };
-	}
+	if (hit && hit.day === day && now - hit.at < hit.ttl) return { entry: hit, cached: true, hit: true };
 
 	// Only platform-controlled wallets are governed. An external buyer self-paying
 	// through our facilitator spends its own SOL; refusing it would refuse revenue.
@@ -213,9 +210,9 @@ export async function assessFeeAdmission({
 	try {
 		allowed = await governedWallets(now);
 	} catch {
-		return ADMIT;
+		return { entry: null };
 	}
-	if (!allowed || !allowed.has(feeWalletB58)) return ADMIT;
+	if (!allowed || !allowed.has(feeWalletB58)) return { entry: null };
 
 	let pending = _admissionInflight.get(feeWalletB58);
 	const leader = !pending;
@@ -224,18 +221,98 @@ export async function assessFeeAdmission({
 			.finally(() => _admissionInflight.delete(feeWalletB58));
 		_admissionInflight.set(feeWalletB58, pending);
 	}
-	const entry = await pending;
-	// Unreadable balance: fail open, exactly like the settle-path meter.
+	// A null entry is an unreadable balance: fail open, like the settle-path meter.
+	return { entry: await pending, cached: !leader, hit: false };
+}
+
+export async function assessFeeAdmission({
+	feeWalletB58, estFeeLamports = 0, connection = null, config, now = Date.now(),
+} = {}) {
+	const cfg = config || walletFeeGovernorConfig();
+	if (!cfg.enabled || !feeWalletB58) return ADMIT;
+
+	const { entry, cached, hit } = await admissionSnapshot({ feeWalletB58, connection, cfg, now });
 	if (!entry) return ADMIT;
 
 	const verdict = snapshotVerdict(entry, estFeeLamports, now);
+	if (hit) return { ok: verdict.ok, reason: verdict.reason, cached: true };
 	return {
 		ok: verdict.ok,
 		reason: verdict.reason,
 		budgetLamports: entry.budget,
 		spentTodayLamports: entry.spent,
-		cached: !leader,
+		cached,
 	};
+}
+
+// Batch twin of assessFeeAdmission(): how many of `count` settles, each costing
+// up to `estFeeLamports`, may this caller start right now?
+//
+// Why a batch caller cannot just loop over assessFeeAdmission(): it has no way to
+// say "only spend what is left over". The x402 seed cron exists to keep the
+// activity feed moving, not to buy anything, so it must YIELD the fee wallet's
+// budget to the pipelines that pay for real data. Measured on production
+// 2026-09-29: the seeder fired 60 sponsor-mode tips every two minutes, landed
+// about 720 settles a day, and in doing so spent the sponsor's paced budget out
+// from under the health, oracle, volume, sniper and feed pipelines, which the
+// caller-side gate then skipped about 7,400 times a day. `keepLamports` is the
+// headroom this caller leaves untouched for everyone else.
+//
+// Admitted fees are debited from the shared snapshot exactly like single
+// admissions, so other callers on this instance see the budget shrink at once.
+// When the budget cannot fund even one settle regardless of `keepLamports`, the
+// snapshot turns into the same cached refusal assessFeeAdmission() would record.
+// Fails OPEN on every unreadable input (returns `count`), same contract as the
+// single gate: the settle path's meter and SOL floor stay the real protection.
+export async function reserveFeeAdmissions({
+	feeWalletB58, estFeeLamports = 0, count = 1, keepLamports = 0,
+	connection = null, config, now = Date.now(),
+} = {}) {
+	const want = Math.max(0, Math.floor(Number(count) || 0));
+	const cfg = config || walletFeeGovernorConfig();
+	if (!cfg.enabled || !feeWalletB58 || want === 0) {
+		return { admitted: want, governed: false, reason: null };
+	}
+
+	const { entry } = await admissionSnapshot({ feeWalletB58, connection, cfg, now });
+	if (!entry) return { admitted: want, governed: false, reason: null };
+
+	const fee = Math.max(0, Number(estFeeLamports) || 0);
+	const spent = entry.spent + entry.admitted;
+	const base = {
+		governed: true,
+		budgetLamports: entry.budget,
+		spentTodayLamports: spent,
+		keepLamports: Math.max(0, Number(keepLamports) || 0),
+	};
+	if (!entry.ok) return { ...base, admitted: 0, reason: entry.reason };
+
+	const admitted = admissibleSettleCount({
+		spentTodayLamports: spent,
+		budgetLamports: entry.budget,
+		feeLamports: fee,
+		keepLamports,
+		max: want,
+	});
+	if (admitted > 0) {
+		entry.admitted += admitted * fee;
+		return { ...base, admitted, reason: null };
+	}
+	// Nothing fits. Distinguish "the budget is spent" (the same refusal every
+	// caller should now see, so it is cached as one) from "the budget has room,
+	// but only inside the headroom kept for other tenants" (not a refusal for
+	// anyone else, so the snapshot stays admitting).
+	const single = snapshotVerdict(entry, fee, now);
+	if (single.ok) {
+		// snapshotVerdict debited one fee for a settle this caller is not starting.
+		entry.admitted -= fee;
+		return {
+			...base,
+			admitted: 0,
+			reason: `fee_budget_kept_for_paid_calls:${spent}+${fee}>${entry.budget}-${base.keepLamports}`,
+		};
+	}
+	return { ...base, admitted: 0, reason: single.reason };
 }
 
 // Single source of truth for "what fee budget applies to this wallet right now".

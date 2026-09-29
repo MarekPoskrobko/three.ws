@@ -67,6 +67,7 @@ import {
 	parseSolanaAccept,
 	buildPaymentTx,
 	bootstrapSolanaContext,
+	admitSponsorSettle,
 	USDC_MINT,
 } from '../pay.js';
 
@@ -269,6 +270,8 @@ async function settleAttributed({ row, buyer, conn, blockhash, mintInfo, remaini
 
 	const amountAtomic = Number(accept.amount || 0);
 	if (amountAtomic > (remainingCap ?? Infinity)) { out.error = 'cap_would_exceed'; return out; }
+	const admission = await admitSponsorSettle({ accept, connection: conn });
+	if (!admission.ok) { out.error = admission.reason || 'fee_runway_exhausted'; return out; }
 
 	// Echo the declared app code (anti-tamper: the server rejects a mismatch) and
 	// self-attribute the wallet + service so the settlement CBOR records who

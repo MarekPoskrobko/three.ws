@@ -834,6 +834,7 @@ export async function settleRingPayment({
 			reason: `fee_wallet_below_floor:${solLamports}<${floorFor}`,
 			sponsorSolLamports: solLamports,
 			feePayer: decoded.feePayer,
+			payer,
 			selfPay,
 		};
 	}
@@ -859,6 +860,7 @@ export async function settleRingPayment({
 			sponsorSolLamports: solLamports,
 			estFeeLamports,
 			feePayer: decoded.feePayer,
+			payer,
 			selfPay,
 		};
 	}
@@ -884,6 +886,10 @@ export async function settleRingPayment({
 				reason: meterVerdict.reason || 'fee_runway_exhausted',
 				sponsorSolLamports: solLamports,
 				feePayer: decoded.feePayer,
+				// Recorded so the facilitator's reject book names WHO was refused.
+				// Without it, 43,848 governor refusals in a day logged payer NULL and
+				// the flood could only be traced through the matching verify rows.
+				payer,
 				selfPay,
 			};
 		}

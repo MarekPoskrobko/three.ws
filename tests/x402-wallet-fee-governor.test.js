@@ -12,6 +12,7 @@ import {
 	walletFeeGovernorConfig,
 	walletDailyFeeBudgetLamports,
 	assessWalletFeeBudget,
+	admissibleSettleCount,
 	pacedFeeBudgetLamports,
 	utcDayElapsedFraction,
 } from '../api/_lib/x402/wallet-fee-governor.js';
@@ -221,5 +222,62 @@ describe('recurrence guard: default config sustains a full day at measured burn'
 			minBudgetLamports: 0,
 		});
 		expect(prod).toBeGreaterThanOrEqual(base * 3);
+	});
+});
+
+// A batch caller (the x402 seed cron) needs HOW MANY settles fit, not a yes/no
+// for one. Production on 2026-09-29 is the reason: the seeder fired 60 per tick
+// against a paced budget that funded about one, and 3,600 of 3,660 were refused
+// at the facilitator. The count must agree with assessWalletFeeBudget exactly at
+// the boundary, or the batch and the settle path disagree about the last settle.
+describe('admissibleSettleCount', () => {
+	it('counts the settles that fit, boundary inclusive', () => {
+		expect(admissibleSettleCount({
+			spentTodayLamports: 2_000_000, budgetLamports: 2_050_000, feeLamports: 10_000,
+		})).toBe(5);
+		expect(admissibleSettleCount({
+			spentTodayLamports: 2_000_000, budgetLamports: 2_049_999, feeLamports: 10_000,
+		})).toBe(4);
+	});
+
+	it('agrees with the single-settle verdict at every step up to the boundary', () => {
+		const budget = 1_000_000;
+		const fee = 10_000;
+		for (const spent of [0, 500_000, 989_999, 990_000, 990_001, 1_000_000, 1_200_000]) {
+			const n = admissibleSettleCount({ spentTodayLamports: spent, budgetLamports: budget, feeLamports: fee });
+			// n settles fit, and the (n+1)th is exactly the one the settle path refuses.
+			if (n > 0) {
+				expect(assessWalletFeeBudget({
+					spentTodayLamports: spent + (n - 1) * fee, budgetLamports: budget, nextFeeLamports: fee,
+				}).ok).toBe(true);
+			}
+			expect(assessWalletFeeBudget({
+				spentTodayLamports: spent + n * fee, budgetLamports: budget, nextFeeLamports: fee,
+			}).ok).toBe(false);
+		}
+	});
+
+	it('leaves the kept headroom for other tenants', () => {
+		expect(admissibleSettleCount({
+			spentTodayLamports: 0, budgetLamports: 300_000, feeLamports: 10_000, keepLamports: 200_000,
+		})).toBe(10);
+		expect(admissibleSettleCount({
+			spentTodayLamports: 150_000, budgetLamports: 300_000, feeLamports: 10_000, keepLamports: 200_000,
+		})).toBe(0);
+	});
+
+	it('never exceeds the caller cap, and returns 0 once spend passes the budget', () => {
+		expect(admissibleSettleCount({
+			spentTodayLamports: 0, budgetLamports: 10_000_000, feeLamports: 10_000, max: 60,
+		})).toBe(60);
+		expect(admissibleSettleCount({
+			spentTodayLamports: 2_780_275, budgetLamports: 2_661_971, feeLamports: 10_000, max: 60,
+		})).toBe(0);
+	});
+
+	it('fails OPEN on unknown spend, like the single verdict', () => {
+		expect(admissibleSettleCount({
+			spentTodayLamports: NaN, budgetLamports: 0, feeLamports: 10_000, max: 60,
+		})).toBe(60);
 	});
 });
