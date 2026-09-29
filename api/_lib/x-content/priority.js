@@ -10,10 +10,19 @@
 //               data/x-content/volume-model.json. Pool volume is what pays the
 //               platform, so it outranks attention: it replaces the engagement
 //               part whenever the model file is present
-//   engagement  the fallback when there is no volume model: predicted lift from
-//               how @trythreews posts with the same signals actually performed
+//   learned     how posts shaped like this one did on the live account, read
+//               back through the X API (outcomes.js): likes, bookmarks, and
+//               reposts of posts with the same media, length, link, thread,
+//               mentions, cashtag, lane, and pattern, against posts without.
+//               Added beside volume once LEARNED_MIN_SAMPLE posts have matured,
+//               and held between -15 and +15 so it informs the order without
+//               overruling the owner's boost
+//   engagement  the fallback when there is neither a volume model nor a learned
+//               sample: predicted lift from the scraped archive
 //               (data/x-archive/analysis), using the same format, length, and
-//               topic classifiers that produced the report
+//               topic classifiers that produced the report. The scrape lost the
+//               like counts of the account's biggest posts, so it is never used
+//               once the measured outcomes are there
 //   timely      a post with `expiresAt` rises as its window closes, and is
 //               dropped once it has passed (stale news is worse than none)
 //   boost       the owner's explicit `priority` on the item, -50 to +50
@@ -30,6 +39,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { FORMAT_DIMENSIONS, LENGTH_BUCKETS, TOPICS } from '../../../scripts/x-archive-lib.mjs';
 import { weightedLength } from './quality.js';
+import { LEARNED_MIN_SAMPLE, learnedScore } from './outcomes.js';
 
 const DAY = 24 * 60 * 60_000;
 // Prior strength for shrinkage: a signal measured on n posts keeps n / (n + K)
@@ -82,6 +92,8 @@ export function volumeScore(item, model) {
 	return { chance: 1 / (1 + Math.exp(-z)), found };
 }
 
+// Synchronous and file based. The learned lifts come from the database, so the
+// caller attaches them afterwards as `lifts.learned` (see runTick).
 export function loadLifts(root) {
 	const path = resolve(root, ENGAGEMENT_REPORT);
 	// The volume model rides along on the lifts map so every caller that already
@@ -161,10 +173,12 @@ export function scoreItem(item, { lifts, published = [], quality = {}, review = 
 	const signals = engagementSignals(item, lifts);
 	const predicted = Math.exp(combinedLog(signals));
 	const volume = volumeScore(item, lifts?.volumeModel);
+	const learned = lifts?.learned?.sample >= LEARNED_MIN_SAMPLE ? learnedScore(item, lifts.learned) : null;
 	// Same scale as the engagement part it replaces: 10 points per doubling against
 	// the average post, so the other parts keep their relative weight.
 	if (volume) parts.volume = Math.round(10 * Math.log2(volume.chance / lifts.volumeModel.baseRate) * 10) / 10;
-	else parts.engagement = Math.round(10 * Math.log2(predicted) * 10) / 10;
+	else if (!learned) parts.engagement = Math.round(10 * Math.log2(predicted) * 10) / 10;
+	if (learned) parts.learned = learned.points;
 
 	if (item.expiresAt) {
 		const left = Date.parse(item.expiresAt) - now;
@@ -192,7 +206,15 @@ export function scoreItem(item, { lifts, published = [], quality = {}, review = 
 	}
 
 	const score = Math.round(Object.values(parts).reduce((sum, value) => sum + value, 0) * 10) / 10;
-	return { score, parts, signals, predictedLift: Math.round(predicted * 100) / 100, volumeChance: volume ? Math.round(volume.chance * 1000) / 1000 : null, volumeSignals: volume?.found || [] };
+	return {
+		score,
+		parts,
+		signals,
+		predictedLift: Math.round(predicted * 100) / 100,
+		volumeChance: volume ? Math.round(volume.chance * 1000) / 1000 : null,
+		volumeSignals: volume?.found || [],
+		learnedSignals: learned?.found || [],
+	};
 }
 
 // Every ready candidate, best first. Ties go to the item that has been ready
