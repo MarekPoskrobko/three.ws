@@ -1,6 +1,6 @@
 # The Pump.fun Trading Arena — Master Plan
 
-**Status:** Strategy / roadmap. Owner-facing. Last updated 2026-09-24.
+**Status:** Strategy / roadmap. Owner-facing. Last updated 2026-09-29.
 **Scope:** ONLY pump.fun trading, deploying, agent monetization, and copy-trading. Nothing else.
 
 > **Build status (verified 2026-09-03).** Phases 0 to 6 are shipped, on surfaces that
@@ -17,10 +17,10 @@
 > Section 4's anti-gaming layer was the last real gap and closed on 2026-09-03
 > (`api/_lib/copy-eligibility.js`): the copyable-status sybil bar (4.4), the follower
 > drawdown circuit breaker (4.5), and self-copy / self-follow exclusion (4.6).
-> Section 9's named blocker, AMM exits on graduated positions, is written and
-> committed (`workers/agent-sniper/amm-exit.js`, imported at HEAD by
-> `executor.js`, `positions.js` and `graduation-ride.js`). It is not yet running:
-> see the deploy paragraph below.
+> Section 9's named blocker, AMM exits on graduated positions, is written,
+> committed and running in production (`workers/agent-sniper/amm-exit.js`,
+> imported by `executor.js`, `positions.js` and `graduation-ride.js`; the fleet
+> rolled onto HEAD on 2026-09-29, see the owner paragraph below).
 >
 > **Prompt D, the adversarial Risk Officer (section 6), is now BUILT**
 > (`workers/agent-sniper/risk-officer.js`, migration
@@ -40,63 +40,73 @@
 > positions that actually opened, so their realized P&L is the evidence for or
 > against arming it (the query is in `workers/agent-sniper/README.md`).
 >
-> **Owner: two owner-gated steps remain, both by design, and the first one is
-> larger than the Risk Officer.** (1) Deploy the agent-sniper worker. Its running
-> image was built 2026-08-11, while 48 files under `workers/agent-sniper/` have
-> been committed since, so the fleet trading live right now has neither
-> `amm-exit.js` (section 9's blocker) nor `risk-officer.js`. Re-measured
-> 2026-09-09 19:34 UTC against the production database: the worker is alive and
-> buying (41 positions opened in the previous 24 hours, the last at 19:02 UTC),
-> all 27 strategy rows (13 enabled) read `risk_officer_level = shadow`, and
-> `sniper_risk_reviews` still holds only the 7 rows from the 2026-09-04 local
-> verification, none of them from the fleet.
-> The deploy is one command, `npm run deploy:sniper`, and on an existing service
-> it rolls `gcloud run services update --image`, which preserves the running env
-> and does not demote the fleet to simulate (gate 2). (2) Once shadow evidence
-> exists, arm enforcement with `SNIPER_RISK_OFFICER=enforce` fleet-wide (via
-> `--update-env-vars`, never `--set-env-vars`) or per strategy via
-> `risk_officer_level` (gate 1: it changes what real SOL buys). Both are tracked
-> as row 19 of
-> [production-100-OWNER-ACTIONS.md](_context/production-100-OWNER-ACTIONS.md).
-> Everything else in this plan is written, tested and applied to the production
-> schema.
+> **Owner: one owner-gated step remains, plus a capital top-up. Step (1), the
+> agent-sniper deploy, is DONE (2026-09-29, owner approval "finish them all").**
+> Measured, not assumed:
 >
-> **Re-verified 2026-09-24.** Still exactly two owner-gated steps, nothing else.
-> Against the production database at 06:50 UTC: 23 fleet buys in the previous 24
-> hours (last at 06:46 UTC), `sniper_risk_reviews` still at the same 7 rows from
-> 2026-09-04 with none from the fleet, and all 28 strategy rows (13 enabled) at
-> `risk_officer_level = shadow`. So the agent-sniper image still predates
-> `risk-officer.js` and `amm-exit.js`; `npm run deploy:sniper` remains step (1).
-> One product gap in section 3.2 closed the same day: "why it traded" was only
+> - **What the old image lacked.** Revision `agent-sniper-00033-rg6` ran image
+>   `sha256:9946506e…`, Cloud Build `1deea978` from a working-tree upload of
+>   2026-08-09 09:47 UTC (the revision itself was rolled 2026-08-11). Since that
+>   upload, 15 commits touched `workers/agent-sniper/` (9 files, +996/-66):
+>   `risk-officer.js` is new, and the executor, config, journal, intel learner,
+>   reconcile and radar changed. `amm-exit.js` was NOT missing, contrary to the
+>   earlier wording here: it has been in the image since June, and only its SDK-2
+>   pool fields (`quoteMint`, `isMayhemMode`, `creatorFeeBps`) were behind.
+> - **The first attempt was refused, and that exposed a real bug.** Revision
+>   `agent-sniper-00034-7zp` crashed on boot with `ENOENT /app/data/plans.json`:
+>   since 2026-09-25 `api/payments/_config.js` reads that file at load, the sniper
+>   reaches it through the trade-fee module, and the Dockerfile never copied
+>   `data/`. Cloud Run kept 100% on 00033, so the fleet never stopped. Fixed in
+>   `b17456355` (the Dockerfile copies `data/plans.json`, and `npm run
+>   deploy:sniper` now boots `index.js` from exactly the Dockerfile COPY set
+>   before it spends a Cloud Build, which reproduces that crash in 10 seconds).
+> - **What runs now.** `agent-sniper-00035-krc`, image `sha256:5b115be9…` built
+>   from commit `b17456355`, serving 100%, worker booted 07:07:13 UTC. The env is
+>   byte-identical to the old revision (26 keys, `SNIPER_MODE=live`,
+>   `SNIPER_RISK_OFFICER` unset so the default is `shadow`), and the old instance
+>   drained cleanly ("bye" at 07:07:21). All 31 sniper-related test files
+>   (504 tests) passed at that commit first. No new ERROR-severity logs on 00035;
+>   the only error-level line is the pre-existing "funding master cannot cover
+>   refills".
+> - **Shadow rows exist from the fleet.** In the 32 minutes watched after the
+>   boot the fleet opened one live position (07:14:35 UTC, `oracle_crossing`,
+>   0.002 SOL), and `sniper_risk_reviews` recorded its shadow review 1.6 seconds
+>   later (severity `none`, 1,079 ms, answered by the platform chain's
+>   `nvidia/nemotron-3-super-120b-a12b` rung), joined by `position_id`. That
+>   position then exited through the new image at 07:30:01 UTC
+>   (`liquidity_decay`, realized -0.000355 SOL). The table now holds 8 rows: the
+>   7 from the 2026-09-04 local verification plus the first fleet row.
+>
+> **What remains, with owners.** (2) Arm the Risk Officer to `enforce` (gate 1:
+> it changes what real SOL buys), fleet-wide with `SNIPER_RISK_OFFICER=enforce`
+> via `--update-env-vars` (never `--set-env-vars`) or per strategy via
+> `risk_officer_level`, and only once the shadow-P&L query in
+> `workers/agent-sniper/README.md` has enough closed, joined rows to show the
+> `block` (and `caution`) severities losing more than `none`. One row is not evidence; at
+> the current rate that takes weeks. (3) An owner spend, not a code task: the
+> fleet is capital-starved. `/api/healthz` reads "7/11 armed wallets can still
+> trade (4 starved, 1 shrunk). Refilling them needs 0.2397 SOL. The funding
+> master holds only 0.0250 SOL", and the buy rate (26 opens in the 24 hours
+> before the deploy) and therefore the shadow-evidence rate scale with that
+> refill. Both are row 19 of
+> [production-100-OWNER-ACTIONS.md](_context/production-100-OWNER-ACTIONS.md).
+> Everything else in this plan is written, tested, deployed and applied to the
+> production schema.
+>
+> One product gap in section 3.2 closed on 2026-09-24: "why it traded" was only
 > visible to the owner (the private `/api/sniper/journal`). Every public trade
 > now carries a receipt of the evidence its gates recorded before the entry
 > (`api/_lib/trade-receipt.js`, `GET /api/sniper/receipt`, the "why" drawer on
 > `/trader/:id`, the "Why it traded" section on `/trade/:id`, the `trade_receipt`
 > MCP tool; doc `docs/trade-receipts.md`).
 >
-> **Re-verified 2026-09-25, unchanged.** Production database at 05:14 UTC: 23
-> fleet buys in the previous 24 hours (last at 05:12 UTC), zero
-> `sniper_risk_reviews` rows in that window (still the same 7 from 2026-09-04),
-> and all 28 strategy rows (11 enabled) at `risk_officer_level = shadow`. gcloud
-> was logged in this time and confirms it directly: the service still serves
-> `agent-sniper-00033-rg6`, built 2026-08-11, with 14 commits to
-> `workers/agent-sniper/` since. `node scripts/deploy-sniper.mjs --dry-run` is
-> clean (runtime SA, registry and all required secrets present; it rolls
-> `services update --image` and preserves the live env), and the 28 sniper test
-> files (468 tests, including `agent-sniper-amm-exit`, `sniper-risk-officer` and
-> `copy-eligibility`) pass at HEAD. Step (1) is still one command waiting on the
-> owner's yes.
->
-> **Prove the deploy state from the database, not from `gcloud`.** The Codespace
-> loses its gcloud login on every recycle, so `gcloud run services describe
-> agent-sniper` (the image-date check) is usually unavailable, and its failure
-> says nothing about the fleet. The database answers the same question and is
-> always reachable: a shadow review is recorded fire-and-forget on EVERY buy
-> (`reviewBuy` in `executor.js`, `insert into sniper_risk_reviews` in
-> `risk-officer.js`), so fleet buys with no matching review rows can only mean
-> the running image predates `risk-officer.js`. 41 buys against 0 fleet review
-> rows is that proof. After the deploy, the same counts turning non-zero are how
-> you know it took.
+> **Prove the deploy state from the database, not only from `gcloud`.** A shadow
+> review is recorded fire-and-forget on EVERY buy (`reviewBuy` in `executor.js`,
+> `insert into sniper_risk_reviews` in `risk-officer.js`), so fleet buys with no
+> matching review rows mean the running image predates `risk-officer.js`. Before
+> 2026-09-29 that was 41 buys against 0 fleet rows; after it, every new
+> position carries a review row, which is how a future regression to an old
+> image shows up.
 **The only coin this platform promotes is `$THREE` (`FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump`).** Pump.fun coins traded/launched through the platform are user runtime data, never endorsements.
 
 ---
