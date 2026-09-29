@@ -59,6 +59,7 @@ const state = {
 	snapshotTimer: 0,
 	scene: null,
 	sceneMode: 'off',
+	stageMsg: '',
 	receipts: new Map(),
 	latestWhyId: '',
 };
