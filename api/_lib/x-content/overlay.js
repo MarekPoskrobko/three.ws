@@ -133,18 +133,29 @@ function checkBundle(bundle) {
 // ── Storage ─────────────────────────────────────────────────────────────────
 // The real store. Loaded on first use, so the cron module stays importable and
 // cheap while the overlay is switched off.
-export function r2Storage() {
+// Where a key really lives in the bucket. The bucket is served on a public
+// domain, and a bundle holds the copy of posts that have not gone out yet, some
+// of them embargoed, so the bundles sit under a folder named from the secret:
+// the index cannot be fetched by anyone who could not also have signed it.
+export const BUNDLE_ROOT = 'x-content/bundles/';
+export function sealedKey(key, env = process.env) {
+	if (!key.startsWith(BUNDLE_ROOT)) throw new OverlayError('bad_path', `${key} is not a bundle key`);
+	const folder = createHmac('sha256', secretFrom(env)).update('x-content bundle location').digest('hex').slice(0, 40);
+	return `${BUNDLE_ROOT}${folder}/${key.slice(BUNDLE_ROOT.length)}`;
+}
+
+export function r2Storage(env = process.env) {
 	const r2 = () => import('../r2.js');
 	return {
 		label: 'object storage',
 		async put(key, buffer, contentType) {
 			const { putObject } = await r2();
-			await putObject({ key, body: buffer, contentType });
+			await putObject({ key: sealedKey(key, env), body: buffer, contentType });
 		},
 		async get(key) {
 			const { getObjectBuffer } = await r2();
 			try {
-				return await getObjectBuffer(key);
+				return await getObjectBuffer(sealedKey(key, env));
 			} catch (err) {
 				if (err?.name === 'NoSuchKey' || err?.$metadata?.httpStatusCode === 404) return null;
 				throw err;
@@ -152,11 +163,11 @@ export function r2Storage() {
 		},
 		async has(key) {
 			const { headObject } = await r2();
-			return Boolean(await headObject(key));
+			return Boolean(await headObject(sealedKey(key, env)));
 		},
 		async remove(key) {
 			const { deleteObject } = await r2();
-			await deleteObject(key);
+			await deleteObject(sealedKey(key, env));
 		},
 	};
 }
@@ -232,7 +243,8 @@ async function removeFiles(storage, id, files, keep = new Set()) {
 
 // `replaceIndex` starts a new index when the stored one cannot be verified,
 // which is what an operator needs after rotating the secret.
-export async function publishBundles({ root, ids, storage = r2Storage(), env = process.env, now = Date.now(), replaceIndex = false }) {
+export async function publishBundles({ root, ids, storage = null, env = process.env, now = Date.now(), replaceIndex = false }) {
+	storage ||= r2Storage(env);
 	secretFrom(env);
 	const built = [];
 	const failures = [];
@@ -281,7 +293,8 @@ export async function publishBundles({ root, ids, storage = r2Storage(), env = p
 
 // Drops a bundle and its files. The last bundle takes the index with it, so an
 // empty bucket reads as "no index" rather than as an index of nothing.
-export async function removeBundle({ id, storage = r2Storage(), env = process.env, now = Date.now() }) {
+export async function removeBundle({ id, storage = null, env = process.env, now = Date.now() }) {
+	storage ||= r2Storage(env);
 	const index = await readIndex({ storage, env });
 	const bundle = index?.bundles.find((row) => row.id === id);
 	if (!bundle) return { removed: false, remaining: index?.bundles.length || 0 };
@@ -292,7 +305,8 @@ export async function removeBundle({ id, storage = r2Storage(), env = process.en
 	return { removed: true, remaining: bundles.length };
 }
 
-export async function readIndex({ storage = r2Storage(), env = process.env }) {
+export async function readIndex({ storage = null, env = process.env }) {
+	storage ||= r2Storage(env);
 	secretFrom(env);
 	const bytes = await storage.get(INDEX_KEY);
 	if (!bytes) return null;
@@ -310,7 +324,8 @@ export async function readIndex({ storage = r2Storage(), env = process.env }) {
 }
 
 // Downloads every file the index names and checks it against its recorded hash.
-export async function verifyBundles({ storage = r2Storage(), env = process.env }) {
+export async function verifyBundles({ storage = null, env = process.env }) {
+	storage ||= r2Storage(env);
 	const index = await readIndex({ storage, env });
 	if (!index) return { index: null, bundles: 0, files: 0, problems: [] };
 	const problems = fileConflicts(index.bundles);
@@ -441,7 +456,8 @@ export function mergeQueue(imageQueue, bundles) {
 // Builds the overlay directory and returns its root. `files` counts the bundle
 // files in the overlay, `reused` how many of them an earlier tick had already
 // downloaded.
-export async function materialize({ imageRoot, storage = r2Storage(), env = process.env, dir = DEFAULT_OVERLAY_DIR, now = Date.now(), index = null }) {
+export async function materialize({ imageRoot, storage = null, env = process.env, dir = DEFAULT_OVERLAY_DIR, now = Date.now(), index = null }) {
+	storage ||= r2Storage(env);
 	const image = resolve(imageRoot);
 	const root = resolve(dir);
 	const verified = index ? verifyIndex(index, env) : await readIndex({ storage, env });
@@ -493,7 +509,7 @@ export async function resolveRoot({ imageRoot, env = process.env, storage = null
 	try {
 		secretFrom(env);
 		if (!storage && !(await import('../r2.js')).objectStorageConfigured()) return unavailable('object storage is not configured');
-		const store = storage || r2Storage();
+		const store = storage || r2Storage(env);
 		const index = await readIndex({ storage: store, env });
 		if (!index) return image('there is no bundle index in storage');
 		const { root, ...overlay } = await materialize({ imageRoot, storage: store, env, dir, now, index });

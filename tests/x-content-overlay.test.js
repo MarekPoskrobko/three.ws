@@ -589,3 +589,23 @@ describe('a tick against the overlay', () => {
 		expect(result.blocked[0].problems.join('\n')).toMatch(/days old/);
 	});
 });
+
+describe('where bundles live in the bucket', () => {
+	const env = { X_CONTENT_BUNDLE_SECRET: 'a'.repeat(64) };
+
+	it('puts every bundle key under a folder only the secret can name', async () => {
+		const { sealedKey, BUNDLE_ROOT } = await import('../api/_lib/x-content/overlay.js');
+		const sealed = sealedKey(INDEX_KEY, env);
+		expect(sealed).toMatch(/^x-content\/bundles\/[0-9a-f]{40}\/index\.json$/);
+		expect(sealed).not.toContain(env.X_CONTENT_BUNDLE_SECRET);
+		expect(sealedKey(fileKey('fresh', 'abc'), env)).toBe(sealed.replace('index.json', 'fresh/abc'));
+		expect(sealedKey(INDEX_KEY, { X_CONTENT_BUNDLE_SECRET: 'b'.repeat(64) })).not.toBe(sealed);
+		expect(BUNDLE_ROOT).toBe('x-content/bundles/');
+	});
+
+	it('refuses a key outside the bundles and a missing secret', async () => {
+		const { sealedKey } = await import('../api/_lib/x-content/overlay.js');
+		expect(() => sealedKey('avatars/someone.glb', env)).toThrow(/not a bundle key/);
+		expect(() => sealedKey(INDEX_KEY, {})).toThrow(/X_CONTENT_BUNDLE_SECRET is not set/);
+	});
+});
