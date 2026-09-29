@@ -265,8 +265,11 @@ try {
 				findings = attempt.ok ? [] : attempt.findings;
 				process.stderr.write(` (${attempt.attempts.length} attempt(s) on ${attempt.model})`);
 			} catch (error) {
-				results.push({ id: slot.id, state: 'no model', detail: error.message.split('\n')[0] });
-				process.stderr.write(` failed: ${error.message.split('\n')[0]}`);
+				// The chain's first line is only "no model was reachable:"; the reason
+				// each rung failed is on the lines after it, so keep them.
+				const reason = error.message.replace(/\s*\n\s*/g, ' | ');
+				results.push({ id: slot.id, state: 'no model', detail: reason });
+				process.stderr.write(` failed: ${reason}`);
 				continue;
 			}
 		}
