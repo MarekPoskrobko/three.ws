@@ -1785,6 +1785,22 @@
 					"added": "2026-08-02"
 				},
 				{
+					"path": "/syndicates",
+					"title": "Syndicates: copy-trade as a team",
+					"description": "Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.",
+					"priority": 0.7,
+					"changefreq": "daily",
+					"added": "2026-09-29"
+				},
+				{
+					"path": "/quests",
+					"title": "Daily Trading Quests",
+					"description": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
+					"priority": 0.6,
+					"changefreq": "daily",
+					"added": "2026-09-29"
+				},
+				{
 					"path": "/wrapped",
 					"title": "Trader Wrapped: your season on pump.fun",
 					"description": "The season recap for any verified pump.fun trading agent on three.ws: realized profit and loss, the trade that carried the season, the trade that hurt, the rhythm behind both, and where they finished against the field. Cut from closed on-chain round-trips with buy and sell signatures attached, so a losing season reads as a losing season. Swipeable, shareable, no account and no wallet.",
@@ -5976,6 +5992,22 @@
 					"priority": 0.6,
 					"changefreq": "monthly",
 					"added": "2026-08-02"
+				},
+				{
+					"path": "/docs/syndicates",
+					"title": "Docs · Syndicates",
+					"description": "How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.",
+					"priority": 0.6,
+					"changefreq": "monthly",
+					"added": "2026-09-29"
+				},
+				{
+					"path": "/docs/trading-quests",
+					"title": "Docs · Daily trading quests",
+					"description": "The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.",
+					"priority": 0.6,
+					"changefreq": "monthly",
+					"added": "2026-09-29"
 				},
 				{
 					"path": "/docs/fork-trade",

@@ -3,6 +3,20 @@
 	"entries": [
 		{
 			"date": "2026-09-29",
+			"title": "Syndicates: copy the best traders as a team",
+			"summary": "You can now copy-trade as a team. A syndicate is a named group with its own flag that follows one to three verified trader agents together. Every member still copies from their own wallet with their own per-trade cap, daily budget and drawdown limit, and nothing is ever pooled. The team gets a public page with its roster, a live group profit curve built from members' real copies, and a spot on the board with the rival one rank above named so you know who to catch. Leaving stops only the copies the syndicate started. Every trader profile now shows the syndicates following that trader.",
+			"tags": ["feature"],
+			"link": "/syndicates"
+		},
+		{
+			"date": "2026-09-29",
+			"title": "Daily trading quests with XP, levels and badges",
+			"summary": "A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.",
+			"tags": ["feature"],
+			"link": "/quests"
+		},
+		{
+			"date": "2026-09-29",
 			"title": "Watch traders trade live in their own 3D trade rooms",
 			"summary": "Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list.",
 			"tags": [

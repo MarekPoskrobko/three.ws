@@ -209,7 +209,7 @@ function orderClause(sort) {
  * its group performance from real copy_executions, and its leaders' live record
  * since founding. Ranked by realized group profit unless sorted otherwise.
  */
-export async function loadBoard({ network = 'mainnet', sort = 'profit', limit = 24, offset = 0, onlyId = null, rankFrom = null, rankTo = null } = {}) {
+export async function loadBoard({ network = 'mainnet', sort = 'profit', limit = 24, offset = 0, onlyId = null, rankFrom = null, rankTo = null, leaderId = null } = {}) {
 	const lim = Math.min(100, Math.max(1, Math.floor(n(limit)) || 24));
 	const off = Math.max(0, Math.floor(n(offset)));
 	const rows = await sql`
@@ -280,16 +280,21 @@ export async function loadBoard({ network = 'mainnet', sort = 'profit', limit = 
 			left join lead on lead.syndicate_id = s.id
 			left join since on since.syndicate_id = s.id
 		)
-		select * from ranked s
+		select s.*, count(*) over () as matched from ranked s
 		where (${onlyId}::uuid is null or s.id = ${onlyId}::uuid)
 		  and (${rankFrom}::int is null or s.rank >= ${rankFrom}::int)
 		  and (${rankTo}::int is null or s.rank <= ${rankTo}::int)
+		  and (${leaderId}::uuid is null or exists (
+		      select 1 from copy_syndicate_leaders fl
+		      where fl.syndicate_id = s.id and fl.leader_agent_id = ${leaderId}::uuid))
 		${orderClause(sort)}
 		limit ${lim} offset ${off}
 	`;
-	// total counts the whole board (the window runs before the filters above).
+	// total counts the whole board (its window runs before the filters above);
+	// matched counts the rows those filters let through, for pagination.
 	const total = rows.length ? n(rows[0].total) : 0;
-	return { network, sort, limit: lim, offset: off, total, syndicates: rows.map(shapeBoardRow) };
+	const matched = rows.length ? n(rows[0].matched) : 0;
+	return { network, sort, limit: lim, offset: off, total, matched, syndicates: rows.map(shapeBoardRow) };
 }
 
 /**

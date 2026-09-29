@@ -1223,6 +1223,18 @@
 			"dest": "/ghost-copy.html"
 		},
 		{
+			"src": "/syndicates/?",
+			"dest": "/syndicates.html"
+		},
+		{
+			"src": "/syndicates/([^/.]+)/?",
+			"dest": "/syndicate.html"
+		},
+		{
+			"src": "/quests/?",
+			"dest": "/quests.html"
+		},
+		{
 			"src": "/fade/?",
 			"dest": "/fade.html"
 		},

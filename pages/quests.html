@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+		<meta charset="utf-8" />
+		<script src="/referral-capture.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Daily Trading Quests · three.ws</title>
+		<meta name="description" content="Five small trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Every quest is scored from on-chain proof. Earn XP, levels, and badges." />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="three.ws" />
+		<meta property="og:url" content="https://three.ws/quests" />
+		<meta property="og:title" content="Daily Trading Quests · three.ws" />
+		<meta property="og:description" content="Five trading quests a day, scored from on-chain proof. Clear three to keep your streak alive." />
+		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Daily+Trading+Quests&amp;d=Five+trading+quests+a+day%2C+scored+from+on-chain+proof.+Clear+three+to+keep+your+streak+alive.&amp;p=%2Fquests" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Daily Trading Quests on three.ws" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@trythreews" />
+		<meta name="twitter:title" content="Daily Trading Quests · three.ws" />
+		<meta name="twitter:description" content="Five trading quests a day, scored from on-chain proof. Clear three to keep your streak alive." />
+		<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Daily+Trading+Quests&amp;d=Five+trading+quests+a+day%2C+scored+from+on-chain+proof.+Clear+three+to+keep+your+streak+alive.&amp;p=%2Fquests" />
+		<meta name="theme-color" content="#0a0a0a" />
+		<link rel="canonical" href="https://three.ws/quests" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<link rel="stylesheet" href="/fonts/fonts.css" />
+		<link rel="stylesheet" href="/nav.css" />
+		<link rel="stylesheet" href="/src/syndicates.css" />
+		<link rel="stylesheet" href="/footer.css" />
+		<script defer src="/footer-newsletter.js"></script>
+	</head>
+	<body>
+		<header><div id="nav-container"></div></header>
+		<script src="/nav.js"></script>
+
+		<main class="sy" aria-labelledby="qx-title">
+			<p class="sy-kicker">Daily trading quests · reset <span id="qxReset">at 00:00 UTC</span></p>
+			<h1 id="qx-title" class="sy-title">Today's quests</h1>
+			<p class="sy-sub">
+				Five small goals a day, each scored from proof rather than a click: trades verified on-chain,
+				forks you signed, leaders you ghost-copied for the first time, copy intents you acted on, and
+				your own agent's live wins. Clear three in a UTC day to keep your streak alive.
+			</p>
+			<div id="qxRoot" aria-live="polite" aria-busy="true">
+				<div style="display:grid;gap:12px">
+					<div class="sy-skel" style="height:110px"></div>
+					<div class="sy-skel" style="height:74px"></div>
+					<div class="sy-skel" style="height:74px"></div>
+					<div class="sy-skel" style="height:74px"></div>
+				</div>
+			</div>
+		</main>
+
+		<div id="syToast" class="sy-toast" role="status" aria-live="polite"></div>
+
+		<script type="module" src="/src/quests.js"></script>
+		<script src="/brand.js" defer></script>
+		<div id="footer-container"></div>
+		<script src="/footer.js"></script>
+		<!-- Runtime i18n: detects locale, swaps annotated copy, mounts <lang-switcher>. -->
+		<script type="module" src="/i18n.js"></script>
+	</body>
+</html>

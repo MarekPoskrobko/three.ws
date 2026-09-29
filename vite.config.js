@@ -850,6 +850,9 @@ const appConfig = {
 				'claim-wallet': resolve(__dirname, 'pages/claim-wallet.html'),
 				'meta-allocator': resolve(__dirname, 'pages/meta-allocator.html'),
 				'ghost-copy': resolve(__dirname, 'pages/ghost-copy.html'),
+				syndicates: resolve(__dirname, 'pages/syndicates.html'),
+				syndicate: resolve(__dirname, 'pages/syndicate.html'),
+				quests: resolve(__dirname, 'pages/quests.html'),
 				fade: resolve(__dirname, 'pages/fade.html'),
 				wrapped: resolve(__dirname, 'pages/wrapped.html'),
 				'clip-director': resolve(__dirname, 'pages/clip-director.html'),
@@ -2287,6 +2290,10 @@ const appConfig = {
 					// route in prod, so keep it out of the HTML shell here too.
 					else if (!filePath && /^\/trader\/[^/.]+\/?$/.test(path))
 						filePath = resolve(root, 'pages/trader.html');
+					// /syndicates/:slug → one syndicate's page. Mirrors vercel.json's
+					// `/syndicates/([^/.]+)/?`; the board itself is /syndicates.
+					else if (!filePath && /^\/syndicates\/[^/.]+\/?$/.test(path))
+						filePath = resolve(root, 'pages/syndicate.html');
 					// /trade-rooms/:agentId → one leader's live trade room. Mirrors
 					// vercel.json's `/trade-rooms/([^/.]+)/?`.
 					else if (!filePath && /^\/trade-rooms\/[^/.]+\/?$/.test(path))

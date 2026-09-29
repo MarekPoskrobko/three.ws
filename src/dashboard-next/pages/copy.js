@@ -438,6 +438,7 @@ async function loadAndRender(host) {
 
 			<section class="cp-sec">
 				<div class="cp-sec-h"><h2>Your copies</h2><span class="cp-count">${subs.filter((s) => s.status !== 'stopped').length}</span></div>
+				<p class="cp-note">Copy as a team in a <a href="/syndicates" style="color:var(--nxt-accent)">syndicate</a>, and clear today's <a href="/quests" style="color:var(--nxt-accent)">trading quests</a> for XP.</p>
 				<div id="cp-subs">${subs.filter((s) => s.status !== 'stopped').length ? subs.filter((s) => s.status !== 'stopped').map(subRow).join('') : `<div class="cp-empty">You're not copying anyone yet. <a href="/leaderboard" style="color:var(--nxt-accent)">Find a trader →</a></div>`}</div>
 			</section>
 
