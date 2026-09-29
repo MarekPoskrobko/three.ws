@@ -701,6 +701,10 @@ export const limits = {
 	// draining `authIp`, which gates the actual publish. 20 per 10 min is many
 	// more rerolls than composing a tweet needs and still caps the fan-out.
 	xDraftIp: (ip) => getLimiter('x:draft:ip', { limit: 20, window: '10 m' }).limit(ip),
+	// Copy Coach questions (api/copy/coach.js POST): anonymous, one LLM
+	// completion each. A first-timer asks a handful; 30 per 10 min is generous
+	// for a person and still bounds a script.
+	copyCoachIp: (ip) => getLimiter('copy:coach:ip', { limit: 30, window: '10 m' }).limit(ip),
 	// Per-agent X posting (api/x/agents.js, the post_to_x tool and run tool):
 	// every request runs the policy and may reach X, so bound it per account.
 	xAgentPost: (userId) => getLimiter('x:agent-post', { limit: 30, window: '10 m' }).limit(userId),

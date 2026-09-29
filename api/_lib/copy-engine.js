@@ -17,6 +17,39 @@ const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 const n = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0);
 
 /**
+ * Starter caps: the hard ceiling on a first copy set up through the Copy Coach
+ * (/copy-coach). A request carrying `starter: true` is refused unless every
+ * limit sits inside these, so a first-timer's first real copy can never be
+ * talked (or clicked) past them. The ceiling is enforced here, server side,
+ * not only by the page's sliders.
+ */
+export const STARTER_CAPS = Object.freeze({
+	per_trade_cap_sol: 0.05,
+	daily_budget_sol: 0.2,
+	max_open_copies: 2,
+	max_drawdown_pct: 25,
+});
+
+/**
+ * Why a normalized subscription breaks the starter caps, or null. Pure.
+ * @param {object} v    normalized value (normalizeSubscriptionInput().value)
+ * @param {object} raw  the raw request (for the explicit risk acknowledgement)
+ */
+export function starterCapViolation(v, raw = {}) {
+	if (raw.risk_ack !== true) return 'a starter copy needs risk_ack: true (the copier confirmed they can lose what they put in)';
+	if (v.sizing_rule !== 'fixed') return 'a starter copy uses a fixed size per trade';
+	if (v.per_trade_cap_sol > STARTER_CAPS.per_trade_cap_sol) return `a starter copy caps each trade at ${STARTER_CAPS.per_trade_cap_sol} SOL`;
+	if (v.fixed_sol > v.per_trade_cap_sol) return 'fixed_sol cannot exceed per_trade_cap_sol';
+	if (v.daily_budget_sol > STARTER_CAPS.daily_budget_sol) return `a starter copy caps the day at ${STARTER_CAPS.daily_budget_sol} SOL`;
+	if (v.max_open_copies > STARTER_CAPS.max_open_copies) return `a starter copy holds at most ${STARTER_CAPS.max_open_copies} open copies`;
+	if (v.max_drawdown_pct == null || v.max_drawdown_pct > STARTER_CAPS.max_drawdown_pct) {
+		return `a starter copy pauses itself if the leader draws down more than ${STARTER_CAPS.max_drawdown_pct}%`;
+	}
+	if (v.require_safety_pass !== true) return 'a starter copy only copies coins that pass the safety check';
+	return null;
+}
+
+/**
  * Validate + normalize a subscription's tunables coming from user input.
  * Returns { ok, value, error }. Never throws.
  */
@@ -66,27 +99,29 @@ export function normalizeSubscriptionInput(raw = {}) {
 		return { ok: false, error: 'telegram_chat_id must be a numeric Telegram chat ID' };
 	}
 
-	return {
-		ok: true,
-		value: {
-			sizing_rule: sizing,
-			fixed_sol: fixed,
-			multiplier: mult,
-			pct_balance: pct,
-			per_trade_cap_sol: cap,
-			min_order_sol: minOrder,
-			daily_budget_sol: daily,
-			max_open_copies: clamp(maxOpen || 5, 1, 100),
-			mcap_floor_usd: mcapFloor,
-			mcap_ceiling_usd: mcapCeil,
-			copy_sells: raw.copy_sells !== false,
-			require_safety_pass: raw.require_safety_pass === true,
-			min_oracle_score: minOracleScore,
-			max_drawdown_pct: maxDrawdownPct,
-			perf_fee_bps: perfBps,
-			telegram_chat_id: telegramChatId,
-		},
+	const value = {
+		sizing_rule: sizing,
+		fixed_sol: fixed,
+		multiplier: mult,
+		pct_balance: pct,
+		per_trade_cap_sol: cap,
+		min_order_sol: minOrder,
+		daily_budget_sol: daily,
+		max_open_copies: clamp(maxOpen || 5, 1, 100),
+		mcap_floor_usd: mcapFloor,
+		mcap_ceiling_usd: mcapCeil,
+		copy_sells: raw.copy_sells !== false,
+		require_safety_pass: raw.require_safety_pass === true,
+		min_oracle_score: minOracleScore,
+		max_drawdown_pct: maxDrawdownPct,
+		perf_fee_bps: perfBps,
+		telegram_chat_id: telegramChatId,
 	};
+	if (raw.starter === true) {
+		const violation = starterCapViolation(value, raw);
+		if (violation) return { ok: false, error: violation };
+	}
+	return { ok: true, value };
 }
 
 /** Raw order size from the sizing rule, before any clamping. */

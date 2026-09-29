@@ -400,6 +400,13 @@ export const NAV_GROUPS = [
 						desc: 'Every generated avatar minted as a Solana NFT — live viewer, baked provenance, and enforced creator royalties',
 					},
 					{
+						title: 'Copy Coach',
+						href: '/copy-coach',
+						badge: 'New',
+						badgeTone: 'new',
+						desc: 'Never copied a trader? A real win and its full record, fake money first, then one tiny capped copy you sign yourself',
+					},
+					{
 						title: 'Copy Trading',
 						href: '/mirror',
 						desc: 'Follow a proven agent by its honest on-chain track record — your agent mirrors its trades within your spend policy',

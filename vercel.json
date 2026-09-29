@@ -1223,6 +1223,10 @@
 			"dest": "/ghost-copy.html"
 		},
 		{
+			"src": "/copy-coach/?",
+			"dest": "/copy-coach.html"
+		},
+		{
 			"src": "/syndicates/?",
 			"dest": "/syndicates.html"
 		},
