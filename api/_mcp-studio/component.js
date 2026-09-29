@@ -385,9 +385,11 @@ export const COMPONENT_HTML = `<!doctype html>
       if (out && out.status === 'pending') { paintPending(); schedule(); return; }
       if (out && out.glbUrl) {
         if (p.next === 'rig' && !out.rigged) { rigThenFinish(out); return; }
-        // A rig job knows only its input mesh, so its result carries the
-        // rigger's own label; keep the words the user asked for.
-        finish(p.stage === 'rig' ? Object.assign({}, out, { rigged: true, prompt: p.prompt || out.prompt }) : out);
+        // A collected job reports the prompt the generator ran, which is the
+        // director's long spec (or, for a rig, the rigger's own label). The
+        // caption keeps the words the user asked for.
+        var caption = { prompt: p.prompt || out.prompt };
+        finish(Object.assign({}, out, caption, p.stage === 'rig' ? { rigged: true } : {}));
         return;
       }
       stopPolling();
