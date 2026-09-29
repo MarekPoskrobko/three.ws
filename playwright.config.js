@@ -63,5 +63,11 @@ export default defineConfig({
 		reuseExistingServer: !process.env.CI,
 		stdout: 'pipe',
 		stderr: 'pipe',
+		// A server this run starts itself serves a test browser, which wants the
+		// build it loaded rather than a reload on every peer's save in this shared
+		// worktree. It also skips the file watcher (vite.config.js), which is what
+		// kept this server from booting with ENOSPC while the editor's watcher held
+		// most of the inotify budget. A reused dev server keeps its own settings.
+		env: { VITE_NO_HMR: '1' },
 	},
 });

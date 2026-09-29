@@ -287,7 +287,14 @@ const appConfig = {
 		// whole inotify budget, and died at boot with "ENOSPC: System limit for
 		// number of file watchers reached". This list is merged with Vite's own
 		// defaults, not a replacement for them.
-		watch: { ignored: ['**/.claude/worktrees/**'] },
+		//
+		// With hot reload off (VITE_NO_HMR, an e2e run) there is no client to tell
+		// about a change, and the whole reason it is off is that a test browser
+		// wants the build it loaded, not a peer's mid-run save. So that server
+		// does not watch at all: the editor's own watcher and a couple of peer dev
+		// servers already sit near the inotify ceiling on this box, and an e2e
+		// stack that needs none of it was the one dying on ENOSPC at boot.
+		watch: HMR === false ? null : { ignored: ['**/.claude/worktrees/**'] },
 		proxy: {
 			'/r2-proxy': {
 				target: 'https://pub-2534e921bf9c4314addcd4d8a6e98b7b.r2.dev',
