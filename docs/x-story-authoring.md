@@ -211,6 +211,16 @@ A count that can change (agents, entries, downloads) will change. When it does, 
 fails and says the reel is stale, and the fix is to film it again. Prefer facts that hold: a price
 set by a tier, a limit in the code, what a tool does.
 
+When a post does state a count, give it a probe that runs seconds before the post goes out, so a
+count that moved after the review holds the post instead of publishing it wrong. An `api` probe is
+the only kind that runs then. The wardrobe post says "59 pieces", and its catalog is a JSON array:
+
+```json
+{ "type": "api", "name": "the catalog still holds the 59 pieces the post counts",
+  "url": "https://storage.googleapis.com/three-ws-garments/garments/catalog.json",
+  "expect": { "json": { "path": "length", "equals": 59 } } }
+```
+
 ## What not to write
 
 - **Anything that names a crypto project other than $THREE.** That includes a token, a launchpad,

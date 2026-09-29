@@ -1,7 +1,7 @@
 {
 	"id": "wardrobe",
-	"contentHash": "1de70e1e6a44050a57211c97bdecfbba958e47f0b592749133a3747cec60185c",
-	"reviewedAt": "2026-09-29T07:39:14.834Z",
+	"contentHash": "af85eddd5c806acc9d07f91dbfbbe6c526cd887187e5f0b094f72de7ea2b6be5",
+	"reviewedAt": "2026-09-29T07:49:21.095Z",
 	"passed": true,
 	"blockers": [],
 	"texts": [
@@ -62,7 +62,7 @@
 			},
 			{
 				"kind": "probe:api",
-				"target": "the wardrobe page is up",
+				"target": "the catalog still holds the 59 pieces the post counts",
 				"ok": true,
 				"detail": "HTTP 200, expectations met"
 			},
@@ -84,17 +84,25 @@
 			"professionalism": 5,
 			"visual": 5
 		},
-		"issues": [],
+		"issues": [
+			{
+				"severity": "minor",
+				"area": "visual",
+				"quote": "altText",
+				"problem": "No alt text is supplied on the reel, and it is required by the house standard.",
+				"fix": "Attach the alt text provided in the rewrite field."
+			}
+		],
 		"rewrite": {
 			"posts": [
 				"Your avatar has a wardrobe now.\n\n59 pieces so far: jackets, jeans, hair, glasses. Each one is a rigged 3D garment, not a texture painted on a body, and it binds to any humanoid avatar at the moment you put it on. No fixed skeleton to match.\n\nOpen a piece in 3D and turn it around before you wear it.",
 				"When nothing in the catalog fits, describe the garment in a sentence. The forge builds the mesh, rigs it, validates it, and publishes it to the catalog in about seven minutes, where anyone can wear it.\n\nthree.ws/wardrobe"
 			],
 			"altText": [
-				"Screen recording of the three.ws wardrobe catalog showing 59 of 59 pieces across categories including tops, outerwear, hair and glasses, a leather jacket opened in the 3D viewer, and the jacket mesh being rotated."
+				"Screen recording of the three.ws wardrobe page. A garment catalog shows 59 pieces with category filters for Tops, Bottoms, Footwear, Outerwear, Hair, Headwear, Glasses, and Accessories. The user filters to Outerwear and opens a black leather jacket in a 3D viewer, turning the mesh around to inspect it. Captions read: An open catalog of clothes for 3D avatars. Every piece is a rigged 3D garment, not a texture. Open one before you wear it. It is a real mesh. Turn it around."
 			]
 		},
-		"summary": "Every claim is verified against the live page and the filmed run, and the reel frames match the copy including the 59-piece count. Voice, structure, and link placement all conform to the contract, so it ships as written.",
+		"summary": "Every claim, including the 59-piece count, the runtime binding, and the seven-minute forge pipeline, is verified against the live page and the filmed end-to-end run, and the reel frames match the copy and captions exactly. Voice and structure pass all gate rules; the only gap is the missing alt text, which is supplied, so this is ready to ship.",
 		"model": "nvidia:moonshotai/kimi-k3",
 		"fallbacks": [
 			"Vertex 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Request had insufficient authentication scopes.\",\n    \"status\": \"PERMISSION_DENIED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/goog",
