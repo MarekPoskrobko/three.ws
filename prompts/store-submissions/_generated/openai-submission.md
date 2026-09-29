@@ -55,6 +55,23 @@ current video predates the fix, and the reviewer validates test cases against it
 regenerated `chatgpt-app-submission.json` (`node scripts/build-openai-portal-fields.mjs --json`)
 and bump the version to 1.0.1.
 
+**Two production faults found while verifying, both of which a reviewer would hit:**
+
+- **The TRELLIS lane was dead from 2026-09-18 to 2026-09-29.** Revision `model-trellis-00028-r7b`
+  was built from `c87bd4119`, which predates the libusb fix in `35d798585`, so open3d failed to
+  import on every boot while the service kept accepting jobs that then sat `queued` forever. A
+  refinement queued there for over twelve minutes during this verification. Traffic was moved back
+  to `model-trellis-00027-tr5` (same config, loaded daily from 09-09 to 09-17) at 20:05Z on
+  2026-09-29, and it reported `ready: true` at 20:11Z. The fixed image still needs a build and
+  deploy from `workers/model-trellis/cloudbuild.yaml`; after that, send traffic to latest.
+- **Vision QA is failing open again (B3).** A refinement came back as a small telescope on a
+  large flat slab. The geometry scorer flagged it (`planar: true`, flatness 0.16), but every
+  vision rung failed: Vertex is billing-denied ("Lightning dunning decision is deny" on project
+  93741856042), the OpenAI account answers `billing_not_active`, the free OpenRouter model was
+  rate-limited, and NVIDIA answered in prose rather than JSON. The slab shipped. Clearing either
+  billing hold restores the gate; until then, run the test cases a few times before recording
+  and keep a clean take.
+
 ### The first two rejections (2026-09-12)
 
 **Version 1.0.0 was submitted on 2026-09-12 at 00:10Z and rejected twice that day.** The portal
