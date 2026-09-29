@@ -331,7 +331,7 @@ export const COMPONENT_HTML = `<!doctype html>
       stopPolling();
       fail('This model is taking much longer than usual. It is still running, and you can keep waiting for it.', {
         title: 'Still rendering',
-        retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, Date.now()); },
+        retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, Date.now(), resume.refine, resume.prompt); },
       });
       return;
     }
@@ -341,52 +341,65 @@ export const COMPONENT_HTML = `<!doctype html>
 
   function rigThenFinish(mesh) {
     var p = poll;
+    p.prompt = p.prompt || mesh.prompt;
     p.stage = 'rig';
     p.next = null;
+    p.refine = null;
     paintPending();
     window.openai.callTool('rig_mesh', { glb_url: mesh.glbUrl }).then(function (r) {
       if (poll !== p) return;
       var out = structuredOf(r);
       if (out && out.status === 'pending' && out.jobId) { p.jobId = out.jobId; p.delay = POLL_FIRST_MS; schedule(); return; }
-      if (out && out.glbUrl) { finish(out); return; }
+      if (out && out.glbUrl) { finish(Object.assign({}, out, { prompt: p.prompt || out.prompt })); return; }
       // The mesh is real and saved; a failed rig must not throw it away.
       finish(mesh);
     }, function () { if (poll === p) finish(mesh); });
   }
 
+  // A check that failed while the job itself is fine (timeout, busy) is retried
+  // on the normal cadence; only repeated failures surface, and even then the
+  // user can resume.
+  function retryLater(p) {
+    if (++p.failures >= MAX_POLL_FAILURES) {
+      var resume = p;
+      stopPolling();
+      fail('Lost contact with the job while it was rendering. It keeps running, so checking again usually finds it.', {
+        title: 'Connection interrupted',
+        retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, resume.since, resume.refine, resume.prompt); },
+      });
+      return;
+    }
+    schedule();
+  }
+
   function tick() {
     var p = poll;
     if (!p) return;
-    window.openai.callTool('check_job', { job_id: p.jobId }).then(function (r) {
+    var args = { job_id: p.jobId };
+    if (p.refine) args.refine = p.refine;
+    window.openai.callTool('check_job', args).then(function (r) {
       if (poll !== p) return;
-      p.failures = 0;
       var out = structuredOf(r);
+      if (out && out.error && out.retryable) { retryLater(p); return; }
+      p.failures = 0;
       if (out && out.status === 'pending') { paintPending(); schedule(); return; }
       if (out && out.glbUrl) {
         if (p.next === 'rig' && !out.rigged) { rigThenFinish(out); return; }
-        finish(p.stage === 'rig' ? Object.assign({}, out, { rigged: true }) : out);
+        // A rig job knows only its input mesh, so its result carries the
+        // rigger's own label; keep the words the user asked for.
+        finish(p.stage === 'rig' ? Object.assign({}, out, { rigged: true, prompt: p.prompt || out.prompt }) : out);
         return;
       }
       stopPolling();
       fail((out && out.message) || 'Generation did not return a model. Try generating it again.');
     }, function () {
-      if (poll !== p) return;
-      if (++p.failures >= MAX_POLL_FAILURES) {
-        var resume = p;
-        stopPolling();
-        fail('Lost contact with the job while it was rendering. It keeps running, so checking again usually finds it.', {
-          title: 'Connection interrupted',
-          retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, resume.since); },
-        });
-        return;
-      }
-      schedule();
+      if (poll === p) retryLater(p);
     });
   }
 
-  function beginPolling(jobId, stage, next, origin, since) {
+  function beginPolling(jobId, stage, next, origin, since, refine, prompt) {
     stopPolling();
-    poll = { jobId: jobId, origin: origin || jobId, stage: stage, next: next, since: since, delay: POLL_FIRST_MS, failures: 0, timer: null, ticker: null };
+    poll = { jobId: jobId, origin: origin || jobId, stage: stage, next: next, refine: refine || null, prompt: prompt || null, since: since, delay: POLL_FIRST_MS, failures: 0, timer: null, ticker: null };
     mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden');
     paintPending();
     show(loading);
@@ -399,7 +412,7 @@ export const COMPONENT_HTML = `<!doctype html>
     if (poll && poll.origin === out.jobId) return;
     var elapsed = Number(out.elapsedSeconds);
     var since = Date.now() - (isFinite(elapsed) && elapsed > 0 ? elapsed * 1000 : 0);
-    if (canCallTools()) { beginPolling(out.jobId, out.stage, out.next, out.jobId, since); return; }
+    if (canCallTools()) { beginPolling(out.jobId, out.stage, out.next, out.jobId, since, out.refine, out.prompt); return; }
     // A host without widget tool calls: say what is happening and how to collect it.
     mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden');
     loadingTitle.textContent = 'Still rendering your 3D model…';

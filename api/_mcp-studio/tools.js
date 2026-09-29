@@ -139,10 +139,12 @@ function ok({ glbUrl, base, kind, prompt, rigged, referenceImageUrl }) {
 	};
 }
 
-function toolError(message) {
+// `extra` carries machine-readable facts about the failure, such as
+// `retryable: true` when the job is fine and only the check itself failed.
+function toolError(message, extra = {}) {
 	return {
 		content: [{ type: 'text', text: message }],
-		structuredContent: { error: true, message },
+		structuredContent: { error: true, message, ...extra },
 		isError: true,
 	};
 }
@@ -172,7 +174,12 @@ function pendingTiming(job) {
 // ran out of budget before the rig stage). The viewer widget reads it and runs
 // rig_mesh itself once the mesh lands, so the user still ends with the rigged
 // avatar they asked for rather than a bare mesh.
-function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage = 'mesh', cold = null, next = null }) {
+//
+// `refine` rides along on a pending refinement: the version history the new
+// model joins. A client hands it back to check_job, which appends the finished
+// version the same way refine_model would have, so the version strip survives
+// the wait.
+function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage = 'mesh', cold = null, next = null, refine = null }) {
 	// The ChatGPT pipeline's own endpoint, not /api/forge: the whole point of
 	// the clone is that this surface can evolve independently.
 	const pollUrl = `${base}/api/gpt-forge?job=${encodeURIComponent(jobId)}`;
@@ -234,6 +241,7 @@ function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage =
 				: {}),
 			...(elapsed != null ? { elapsedSeconds: elapsed } : {}),
 			...(prompt ? { prompt } : {}),
+			...(refine ? { refine } : {}),
 		},
 	};
 }
@@ -355,6 +363,17 @@ function looksNonHumanoid(prompt) {
 // and a coffee cup gains nothing from the portrait lane.
 const AVATAR_TIER = 'high';
 
+// The avatar director is fail-soft, and when it fails the raw words ("a knight
+// in silver plate armor") go to a portrait-leaning lane that answers with a
+// head-and-shoulders bust: a model that cannot be rigged into anything posable.
+// The fallback therefore still states the framing the director would have, so
+// an outage on the LLM chain costs polish, never the body.
+export function avatarFallbackBrief(prompt, subject) {
+	return subject === 'animal'
+		? `${prompt}, full body, the whole animal in frame from head to tail and feet, standing, centered on a plain neutral background`
+		: `${prompt}, full-body character standing in a neutral A-pose, arms slightly away from the body, legs slightly apart, the entire figure in frame head to toe, centered on a plain neutral background`;
+}
+
 // ── handlers ────────────────────────────────────────────────────────────────
 
 async function handleForgeFree(args, _auth, req, ctx = {}) {
@@ -428,7 +447,7 @@ async function handleTextToAvatar(args, _auth, req, ctx = {}) {
 	if (prompt && !imageUrl) {
 		const subject = classifySubject(prompt) === 'animal' ? 'animal' : 'person';
 		const directed = await directPrompt(avatarDirectorFor(subject), prompt);
-		if (directed) effective = directed;
+		effective = directed || avatarFallbackBrief(prompt, subject);
 	}
 	let job;
 	try {
@@ -541,7 +560,7 @@ async function handleForgeAvatar(args, _auth, req, ctx = {}) {
 	if (prompt && !imageUrl) {
 		const subject = classifySubject(prompt) === 'animal' ? 'animal' : 'person';
 		const directed = await directPrompt(avatarDirectorFor(subject), prompt);
-		if (directed) effective = directed;
+		effective = directed || avatarFallbackBrief(prompt, subject);
 	}
 	let gen;
 	try {
@@ -587,6 +606,25 @@ async function handleForgeAvatar(args, _auth, req, ctx = {}) {
 	return ok({ glbUrl: rigged.glb_url, base, kind: 'avatar', prompt: prompt || undefined, rigged: true, referenceImageUrl: gen.preview_image_url });
 }
 
+// Rebuild a client-supplied lineage (refine_model's parent_lineage, or the
+// `refine.lineage` a pending refinement handed out) into the internal shape. It
+// is UNTRUSTED: buildLineageChain checks contiguous indices, a single root and no
+// cycles, and a malformed array returns null so the caller starts fresh rather
+// than corrupting history.
+function rehydrateLineage(clientLineage) {
+	if (!Array.isArray(clientLineage) || clientLineage.length === 0) return null;
+	const rehydrated = clientLineage.map((v, i) => ({
+		index: Number.isInteger(v?.index) ? v.index : i,
+		parentIndex: v?.parentIndex ?? (i > 0 ? i - 1 : null),
+		glbUrl: v?.glbUrl,
+		viewerUrl: v?.viewerUrl || null,
+		prompt: v?.prompt || null,
+		instruction: v?.instruction || null,
+		refKind: v?.refKind || (i === 0 ? 'origin' : 'text'),
+	}));
+	return buildLineageChain(rehydrated).ok ? rehydrated : null;
+}
+
 // Conversational refinement — carry a prior model forward with a natural-language
 // change ("make it metallic", "bigger helmet"). REAL anchored re-generation: the
 // parent prompt is folded into the new prompt so form/subject/materials carry
@@ -624,23 +662,9 @@ async function handleRefineModel(args, _auth, req, ctx = {}) {
 	// root, no cycles) with buildLineageChain before extending it. A malformed
 	// array (buggy client, tampering) falls back to a fresh lineage rooted at the
 	// parent model rather than corrupting history.
-	const freshLineage = () => seedLineage({ glbUrl, viewerUrl: viewerUrl(base, glbUrl), prompt: parentPrompt || null });
-	const clientLineage = Array.isArray(args.parent_lineage) ? args.parent_lineage : null;
-	let baseLineage;
-	if (clientLineage && clientLineage.length > 0) {
-		const rehydrated = clientLineage.map((v, i) => ({
-			index: Number.isInteger(v.index) ? v.index : i,
-			parentIndex: v.parentIndex ?? (i > 0 ? i - 1 : null),
-			glbUrl: v.glbUrl,
-			viewerUrl: v.viewerUrl || null,
-			prompt: v.prompt || null,
-			instruction: v.instruction || null,
-			refKind: v.refKind || (i === 0 ? 'origin' : 'text'),
-		}));
-		baseLineage = buildLineageChain(rehydrated).ok ? rehydrated : freshLineage();
-	} else {
-		baseLineage = freshLineage();
-	}
+	const baseLineage =
+		rehydrateLineage(args.parent_lineage) ||
+		seedLineage({ glbUrl, viewerUrl: viewerUrl(base, glbUrl), prompt: parentPrompt || null });
 
 	// Branch point: refine off an earlier version instead of the leaf. branchFrom
 	// validates the index against the lineage; an out-of-range index falls back to
@@ -673,6 +697,12 @@ async function handleRefineModel(args, _auth, req, ctx = {}) {
 			what: 'refined model',
 			prompt: composed || undefined,
 			...pendingTiming(job),
+			refine: {
+				lineage: baseLineage,
+				instruction,
+				refKind: refImageUrl ? 'image' : 'text',
+				...(parentIndex !== undefined ? { parentIndex } : {}),
+			},
 		});
 	if (job._timedOut || !job.glb_url) return toolError('Refinement is taking longer than expected. Please try again.');
 
@@ -685,6 +715,33 @@ async function handleRefineModel(args, _auth, req, ctx = {}) {
 		...(parentIndex !== undefined ? { parentIndex } : {}),
 	});
 	return refineOk({ glbUrl: job.glb_url, base, prompt: composed, instruction, lineage, activeIndex: lineage.length - 1 });
+}
+
+// A refinement collected by check_job joins the version history its pending
+// result carried, exactly as refine_model appends it inline. Anything malformed
+// falls back to the plain model envelope; the model itself is never lost.
+function finishRefinement(base, data, refine) {
+	const instruction = typeof refine?.instruction === 'string' ? refine.instruction.trim() : '';
+	const lineage = instruction ? rehydrateLineage(refine.lineage) : null;
+	if (!lineage) return null;
+	let parentIndex;
+	if (Number.isInteger(refine.parentIndex)) {
+		try {
+			parentIndex = branchFrom(lineage, refine.parentIndex);
+		} catch {
+			parentIndex = undefined;
+		}
+	}
+	const prompt = typeof data.prompt === 'string' && data.prompt ? data.prompt : null;
+	const next = appendVersion(lineage, {
+		glbUrl: data.glb_url,
+		viewerUrl: viewerUrl(base, data.glb_url),
+		prompt,
+		instruction,
+		refKind: refine.refKind === 'image' ? 'image' : 'text',
+		...(parentIndex !== undefined ? { parentIndex } : {}),
+	});
+	return refineOk({ glbUrl: data.glb_url, base, prompt: prompt || undefined, instruction, lineage: next, activeIndex: next.length - 1 });
 }
 
 // Collect a generation that outlived a tool call's inline wait. One status
@@ -700,9 +757,15 @@ async function handleCheckJob(args, _auth, req) {
 	try {
 		data = await pollOnce(base, jobId);
 	} catch (err) {
-		return toolError(failureMessage(err));
+		// Only an unrecognized handle is final. A timeout, a busy status bucket or
+		// an upstream blip leaves the job running, and the first check of a
+		// finished job does the slow save-and-score work, so checking again
+		// usually returns the model at once.
+		return toolError(failureMessage(err), err?.code === 'unknown_job' ? {} : { retryable: true });
 	}
 	if (data.status === 'done' && data.glb_url) {
+		const refined = finishRefinement(base, data, args.refine);
+		if (refined) return refined;
 		return ok({
 			glbUrl: data.glb_url,
 			base,
@@ -982,6 +1045,19 @@ const DEFS = [
 					minLength: 8,
 					maxLength: 4096,
 					description: 'The job_id (or jobId) a pending generation returned.',
+				},
+				refine: {
+					type: 'object',
+					additionalProperties: true,
+					description:
+						'Optional: the refine object a pending refine_model result carried. Pass it back unchanged so the ' +
+						'finished model joins that version history.',
+					properties: {
+						lineage: { type: 'array', items: { type: 'object', additionalProperties: true } },
+						instruction: { type: 'string', maxLength: 500 },
+						parentIndex: { type: 'integer', minimum: 0 },
+						refKind: { type: 'string', enum: ['text', 'image'] },
+					},
 				},
 			},
 		},

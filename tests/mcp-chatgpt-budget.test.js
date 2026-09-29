@@ -132,3 +132,91 @@ describe('viewer widget collects pending jobs', () => {
 		expect(COMPONENT_HTML).toContain('canCallTools()');
 	});
 });
+
+describe('check_job keeps a pending job collectable', () => {
+	function jsonFetch(status, body) {
+		return vi.fn(async () => ({ ok: status < 400, status, json: async () => body }));
+	}
+
+	it('flags a failed check as retryable while the job itself is fine', async () => {
+		const timeout = Object.assign(new Error('timed out'), { name: 'TimeoutError' });
+		globalThis.fetch = vi.fn(async () => {
+			throw timeout;
+		});
+		const r = await dispatch(callMsg('check_job', { job_id: 'job-slow-first-done' }), auth, req, { surface: 'chatgpt' });
+		expect(r.result.isError).toBe(true);
+		expect(r.result.structuredContent.retryable).toBe(true);
+	});
+
+	it('does not ask for a retry on a handle that will never resolve', async () => {
+		globalThis.fetch = jsonFetch(404, { message: 'unknown job' });
+		const r = await dispatch(callMsg('check_job', { job_id: 'job-expired-1' }), auth, req, { surface: 'chatgpt' });
+		expect(r.result.isError).toBe(true);
+		expect(r.result.structuredContent.retryable).toBeUndefined();
+	});
+
+	it('hands a pending refinement its version history', async () => {
+		vi.mocked(generate).mockResolvedValue({ _timedOut: true, job_id: 'job-refine-1', status: 'running' });
+		const r = await dispatch(
+			callMsg('refine_model', { glb_url: 'https://three.ws/cdn/a.glb', parent_prompt: 'a brass telescope', instruction: 'make it tarnished' }),
+			auth,
+			req,
+			{ surface: 'chatgpt' },
+		);
+		const sc = r.result.structuredContent;
+		expect(sc.status).toBe('pending');
+		expect(sc.refine.instruction).toBe('make it tarnished');
+		expect(sc.refine.lineage).toHaveLength(1);
+		expect(sc.refine.lineage[0].glbUrl).toBe('https://three.ws/cdn/a.glb');
+	});
+
+	it('appends the collected model to that history, as refine_model would inline', async () => {
+		vi.mocked(generate).mockResolvedValue({ _timedOut: true, job_id: 'job-refine-2', status: 'running' });
+		const pending = await dispatch(
+			callMsg('refine_model', { glb_url: 'https://three.ws/cdn/a.glb', parent_prompt: 'a brass telescope', instruction: 'make it tarnished' }),
+			auth,
+			req,
+			{ surface: 'chatgpt' },
+		);
+		globalThis.fetch = jsonFetch(200, { status: 'done', glb_url: 'https://three.ws/cdn/b.glb', prompt: 'a brass telescope, tarnished' });
+		const done = await dispatch(
+			callMsg('check_job', { job_id: 'job-refine-2', refine: pending.result.structuredContent.refine }),
+			auth,
+			req,
+			{ surface: 'chatgpt' },
+		);
+		const sc = done.result.structuredContent;
+		expect(sc.kind).toBe('refined model');
+		expect(sc.glbUrl).toBe('https://three.ws/cdn/b.glb');
+		expect(sc.lineage.map((v) => v.label)).toEqual(['Original', 'make it tarnished']);
+		expect(sc.activeIndex).toBe(1);
+	});
+
+	it('falls back to the plain model when the refine context is malformed', async () => {
+		globalThis.fetch = jsonFetch(200, { status: 'done', glb_url: 'https://three.ws/cdn/c.glb' });
+		const done = await dispatch(
+			callMsg('check_job', { job_id: 'job-refine-3', refine: { instruction: 'x', lineage: [{ index: 5, parentIndex: 9 }] } }),
+			auth,
+			req,
+			{ surface: 'chatgpt' },
+		);
+		expect(done.result.structuredContent.glbUrl).toBe('https://three.ws/cdn/c.glb');
+		expect(done.result.structuredContent.lineage).toBeUndefined();
+	});
+});
+
+describe('avatar prompt when the director is down', () => {
+	it('still asks for a full body, so the rigger gets a figure and not a bust', async () => {
+		vi.mocked(generate).mockResolvedValue({ status: 'done', glb_url: 'https://three.ws/cdn/k.glb' });
+		vi.mocked(generate).mockResolvedValueOnce({ _timedOut: true, job_id: 'job-knight', status: 'running' });
+		await dispatch(callMsg('forge_avatar', { prompt: 'a knight in silver plate armor' }), auth, req, { surface: 'chatgpt' });
+		const sent = vi.mocked(generate).mock.calls[0][1].prompt;
+		expect(sent).toMatch(/^a knight in silver plate armor, full-body character/);
+		expect(sent).toMatch(/head to toe/);
+	});
+
+	it('frames an animal as a whole animal', async () => {
+		const { avatarFallbackBrief } = await import('../api/_mcp-studio/tools.js');
+		expect(avatarFallbackBrief('a red fox', 'animal')).toMatch(/whole animal in frame from head to tail/);
+	});
+});
