@@ -39,6 +39,19 @@ const BASE_INSTRUCTIONS = [
 	'rendering: call check_job(job_id) after the suggested wait to collect it.',
 ];
 
+// ChatGPT drops a tool call still open at 60 s, and a generation takes one to
+// four minutes, so on that surface every call answers inside CHATGPT_CALL_BUDGET_MS
+// with either the model or a pending job the viewer widget keeps polling.
+const CHATGPT_INSTRUCTIONS = [
+	'In ChatGPT the inline viewer collects a pending job by itself and shows the model when it lands, so tell the',
+	'user it is rendering and do not loop on check_job; call check_job only when the user asks about the job.',
+];
+
+// 40 s of work, leaving headroom under the host's 60 s limit for a submit that
+// needs its guaranteed floor (gpt-forge-client.js SUBMIT_FLOOR_MS) and the
+// response's own trip back through ChatGPT.
+export const CHATGPT_CALL_BUDGET_MS = 40_000;
+
 const PERSONA_INSTRUCTIONS = [
 	'To give the assistant a LIVING body: create_agent_persona(glb_url, name) saves a rigged model as a named,',
 	'persistent persona and returns a persona_id; persona_say(persona_id, text) makes that body lip-sync the reply and',
@@ -74,7 +87,8 @@ const SURFACES = {
 		catalog: [...TOOL_CATALOG],
 		tools: { ...TOOLS },
 		personas: false,
-		instructions: BASE_INSTRUCTIONS.join(' '),
+		instructions: [...BASE_INSTRUCTIONS, ...CHATGPT_INSTRUCTIONS].join(' '),
+		callBudgetMs: CHATGPT_CALL_BUDGET_MS,
 	},
 };
 
@@ -163,7 +177,8 @@ async function onToolCall(params, auth, started, req, surface) {
 		throw rpcError(-32602, `invalid params for ${name}: ${detail}`);
 	}
 	try {
-		const result = await tool.handler(args, auth, req);
+		const ctx = surface.callBudgetMs ? { deadline: started + surface.callBudgetMs } : {};
+		const result = await tool.handler(args, auth, req, ctx);
 		recordEvent({ kind: 'tool_call', tool: name, latencyMs: Date.now() - started, meta: { args_summary: summarize(args), server: surface.server } });
 		return await finishCall(POLICY_SERVER, name, sentArgs, auth, result, gate.preview);
 	} catch (err) {

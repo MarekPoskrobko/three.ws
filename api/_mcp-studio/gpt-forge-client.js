@@ -21,6 +21,20 @@ import { llmComplete } from '../_lib/llm.js';
 
 const DEFAULT_TIMEOUT_MS = 180_000;
 const DEFAULT_POLL_MS = 3_000;
+const SUBMIT_TIMEOUT_MS = 90_000;
+const RIG_SUBMIT_TIMEOUT_MS = 30_000;
+
+// A caller may bound a whole tool call with an absolute `deadline` (epoch ms).
+// ChatGPT drops any tool call still open at 60 s, so its surface passes one and
+// every wait below shrinks to fit it. A submit still gets this floor even past
+// the deadline: without an accepted job there is nothing to hand back, and the
+// surface's budget leaves room for it under the host's limit.
+const SUBMIT_FLOOR_MS = 8_000;
+
+function submitWindow(deadline, capMs) {
+	if (!deadline) return capMs;
+	return Math.min(capMs, Math.max(SUBMIT_FLOOR_MS, deadline - Date.now()));
+}
 
 function envNum(key, def) {
 	const v = Number(process.env[key]);
@@ -100,7 +114,7 @@ function internalHeaders() {
 // and silently received standard has been overcharged, and the seller side
 // settles on success, so refusing here is what keeps their money in their
 // wallet.
-export async function startForge(base, { prompt, imageUrls, aspect, backend, path, tier, internal, strictTier = false }) {
+export async function startForge(base, { prompt, imageUrls, aspect, backend, path, tier, internal, strictTier = false }, { deadline } = {}) {
 	const attempt = async (tierId, withInternal) => {
 		const payload = {
 			...(prompt ? { prompt } : {}),
@@ -116,7 +130,7 @@ export async function startForge(base, { prompt, imageUrls, aspect, backend, pat
 				method: 'POST',
 				headers: { 'content-type': 'application/json', ...(withInternal ? internalHeaders() : {}) },
 				body: JSON.stringify(payload),
-				signal: AbortSignal.timeout(90_000),
+				signal: AbortSignal.timeout(submitWindow(deadline, SUBMIT_TIMEOUT_MS)),
 			});
 		} catch (err) {
 			if (err?.name === 'TimeoutError' || err?.name === 'AbortError')
@@ -133,6 +147,9 @@ export async function startForge(base, { prompt, imageUrls, aspect, backend, pat
 		({ res, data } = await attempt(tier, !!internal));
 	} catch (err) {
 		if (err?.code !== 'timeout') throw err;
+		// A bounded call that spent its budget on the first submit has no time
+		// left for a second one; the caller reports the timeout instead.
+		if (deadline && deadline - Date.now() < SUBMIT_FLOOR_MS) throw err;
 		// One more shot at the accept path before giving up: the async lanes 202
 		// in milliseconds, so a submit that blocked to the deadline almost always
 		// hit a cold start or a blocking fallback lane. High tier degrades to the
@@ -152,14 +169,14 @@ export async function startForge(base, { prompt, imageUrls, aspect, backend, pat
 	return data;
 }
 
-export async function startRig(base, glbUrl) {
+export async function startRig(base, glbUrl, { deadline } = {}) {
 	let res;
 	try {
 		res = await fetch(`${base}/api/gpt-forge?action=rig`, {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify({ glb_url: glbUrl }),
-			signal: AbortSignal.timeout(30_000),
+			signal: AbortSignal.timeout(submitWindow(deadline, RIG_SUBMIT_TIMEOUT_MS)),
 		});
 	} catch (err) {
 		if (err?.name === 'TimeoutError' || err?.name === 'AbortError')
@@ -175,9 +192,12 @@ export async function startRig(base, glbUrl) {
 
 // Poll a /api/gpt-forge job to a terminal state. Returns the done payload, throws a
 // coded failure on a failed job, or returns { _timedOut: true } at the deadline.
-export async function pollJob(base, jobId, { timeoutMs, intervalMs } = {}) {
+// `deadline` (epoch ms) caps the wait below timeoutMs when the caller's own call
+// budget ends sooner; no probe or sleep is allowed to run past it.
+export async function pollJob(base, jobId, { timeoutMs, intervalMs, deadline: callDeadline } = {}) {
 	const tMs = timeoutMs || DEFAULT_TIMEOUT_MS;
-	const deadline = Date.now() + tMs;
+	const deadline = Math.min(Date.now() + tMs, callDeadline || Infinity);
+	const left = () => deadline - Date.now();
 	// Gentle backoff: start at the configured cadence and stretch toward a cap,
 	// so a minutes-long self-host job costs ~a third of the self-calls a fixed
 	// 3s cadence would fire at the shared mcp3dStatus rate bucket.
@@ -191,7 +211,7 @@ export async function pollJob(base, jobId, { timeoutMs, intervalMs } = {}) {
 		try {
 			res = await fetch(`${base}/api/gpt-forge?job=${encodeURIComponent(jobId)}`, {
 				headers: { accept: 'application/json' },
-				signal: AbortSignal.timeout(Math.max(iMs * 3, 15_000)),
+				signal: AbortSignal.timeout(Math.max(1_000, Math.min(Math.max(iMs * 3, 15_000), left()))),
 			});
 			data = await res.json().catch(() => ({}));
 		} catch {
@@ -207,7 +227,7 @@ export async function pollJob(base, jobId, { timeoutMs, intervalMs } = {}) {
 				// caller returns a pollable handle, never a dead error.
 				return { ...(last || {}), _timedOut: true };
 			}
-			await sleep(iMs);
+			await sleep(Math.max(0, Math.min(iMs, left())));
 			iMs = Math.min(maxIMs, Math.round(iMs * 1.35));
 			continue;
 		}
@@ -220,7 +240,7 @@ export async function pollJob(base, jobId, { timeoutMs, intervalMs } = {}) {
 				retryBackends: Array.isArray(data.retry_backends) ? data.retry_backends : undefined,
 			});
 		}
-		await sleep(iMs);
+		await sleep(Math.max(0, Math.min(iMs, left())));
 		iMs = Math.min(maxIMs, Math.round(iMs * 1.35));
 	}
 	return { ...(last || {}), _timedOut: true };
@@ -261,21 +281,23 @@ export async function pollOnce(base, jobId) {
 // Run a submit→poll cycle end to end, returning the terminal job payload.
 // A timed-out payload keeps `job_id` so the caller can hand the (still
 // running) job back to the client as a pollable handle instead of an error.
-export async function generate(base, submitArgs, { timeoutEnv } = {}) {
-	const job = await startForge(base, submitArgs);
+export async function generate(base, submitArgs, { timeoutEnv, deadline } = {}) {
+	const job = await startForge(base, submitArgs, { deadline });
 	if (job.status === 'done' && job.glb_url) return job;
 	const out = await pollJob(base, job.job_id, {
 		timeoutMs: timeoutEnv ? envNum(timeoutEnv, DEFAULT_TIMEOUT_MS) : DEFAULT_TIMEOUT_MS,
 		intervalMs: envNum('STUDIO_POLL_MS', DEFAULT_POLL_MS),
+		deadline,
 	});
 	return out._timedOut ? { ...out, job_id: job.job_id } : out;
 }
 
-export async function rig(base, glbUrl, { timeoutEnv } = {}) {
-	const job = await startRig(base, glbUrl);
+export async function rig(base, glbUrl, { timeoutEnv, deadline } = {}) {
+	const job = await startRig(base, glbUrl, { deadline });
 	const out = await pollJob(base, job.job_id, {
 		timeoutMs: timeoutEnv ? envNum(timeoutEnv, DEFAULT_TIMEOUT_MS) : DEFAULT_TIMEOUT_MS,
 		intervalMs: envNum('STUDIO_POLL_MS', DEFAULT_POLL_MS),
+		deadline,
 	});
 	return out._timedOut ? { ...out, job_id: job.job_id } : out;
 }

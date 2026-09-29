@@ -167,7 +167,12 @@ function pendingTiming(job) {
 // quietly finished minutes later and the caller never learned. The job handle
 // is public (the free /api/forge poll endpoint takes it with no auth), so hand
 // it over and let the caller collect the result.
-function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage = 'mesh', cold = null }) {
+//
+// `next: 'rig'` marks a mesh that the caller asked to have rigged (forge_avatar
+// ran out of budget before the rig stage). The viewer widget reads it and runs
+// rig_mesh itself once the mesh lands, so the user still ends with the rigged
+// avatar they asked for rather than a bare mesh.
+function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage = 'mesh', cold = null, next = null }) {
 	// The ChatGPT pipeline's own endpoint, not /api/forge: the whole point of
 	// the clone is that this surface can evolve independently.
 	const pollUrl = `${base}/api/gpt-forge?job=${encodeURIComponent(jobId)}`;
@@ -216,6 +221,7 @@ function pendingResult({ base, jobId, what, prompt, etaRemainingSeconds, stage =
 			// mesh (rig it) or the finished rig (use it). Identifier-free, so it
 			// costs the data-minimization rule nothing.
 			stage,
+			...(next ? { next } : {}),
 			...(eta ? { etaRemainingSeconds: eta } : {}),
 			// Machine-readable twin of the sentence above, so a client can render
 			// its own "waking up" state instead of parsing prose.
@@ -351,7 +357,7 @@ const AVATAR_TIER = 'high';
 
 // ── handlers ────────────────────────────────────────────────────────────────
 
-async function handleForgeFree(args, _auth, req) {
+async function handleForgeFree(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const prompt = String(args.prompt || '').trim();
 	if (prompt.length < 3) return toolError('Provide a text prompt of at least 3 characters.');
@@ -391,7 +397,7 @@ async function handleForgeFree(args, _auth, req) {
 			markImageUrls
 				? { prompt: effective, imageUrls: markImageUrls, tier, internal: true }
 				: { prompt: effective, path: 'image', tier, internal: true },
-			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS' },
+			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS', deadline: ctx.deadline },
 		);
 	} catch (err) {
 		return toolError(failureMessage(err));
@@ -401,7 +407,7 @@ async function handleForgeFree(args, _auth, req) {
 	return ok({ glbUrl: job.glb_url, base, kind: 'model', prompt, referenceImageUrl: job.preview_image_url });
 }
 
-async function handleTextToAvatar(args, _auth, req) {
+async function handleTextToAvatar(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const prompt = String(args.prompt || '').trim();
 	const imageUrl = args.image_url ? String(args.image_url).trim() : '';
@@ -429,7 +435,7 @@ async function handleTextToAvatar(args, _auth, req) {
 		job = await generate(
 			base,
 			{ prompt: effective || undefined, imageUrls: imageUrl ? [imageUrl] : undefined, aspect: '1:1', tier: AVATAR_TIER, internal: true },
-			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS' },
+			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS', deadline: ctx.deadline },
 		);
 	} catch (err) {
 		return toolError(failureMessage(err));
@@ -439,7 +445,7 @@ async function handleTextToAvatar(args, _auth, req) {
 	return ok({ glbUrl: job.glb_url, base, kind: 'avatar', prompt: prompt || undefined, referenceImageUrl: job.preview_image_url });
 }
 
-async function handleMeshForge(args, _auth, req) {
+async function handleMeshForge(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const prompt = String(args.prompt || '').trim();
 	const imageUrl = args.image_url ? String(args.image_url).trim() : '';
@@ -481,7 +487,7 @@ async function handleMeshForge(args, _auth, req) {
 				tier: 'standard',
 				internal: true,
 			},
-			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS' },
+			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS', deadline: ctx.deadline },
 		);
 	} catch (err) {
 		return toolError(failureMessage(err));
@@ -491,7 +497,7 @@ async function handleMeshForge(args, _auth, req) {
 	return ok({ glbUrl: job.glb_url, base, kind: 'mesh', prompt: prompt || undefined, referenceImageUrl: job.preview_image_url });
 }
 
-async function handleRigMesh(args, _auth, req) {
+async function handleRigMesh(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const glbUrl = String(args.glb_url || '').trim();
 	if (!/^https?:\/\//i.test(glbUrl)) return toolError('Provide an http(s) URL to a GLB mesh to rig.');
@@ -502,7 +508,7 @@ async function handleRigMesh(args, _auth, req) {
 	}
 	let job;
 	try {
-		job = await rig(base, glbUrl, { timeoutEnv: 'STUDIO_RIG_TIMEOUT_MS' });
+		job = await rig(base, glbUrl, { timeoutEnv: 'STUDIO_RIG_TIMEOUT_MS', deadline: ctx.deadline });
 	} catch (err) {
 		return toolError(failureMessage(err));
 	}
@@ -511,7 +517,7 @@ async function handleRigMesh(args, _auth, req) {
 	return ok({ glbUrl: job.glb_url, base, kind: 'rigged model', rigged: true });
 }
 
-async function handleForgeAvatar(args, _auth, req) {
+async function handleForgeAvatar(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const prompt = String(args.prompt || '').trim();
 	const imageUrl = args.image_url ? String(args.image_url).trim() : '';
@@ -542,18 +548,18 @@ async function handleForgeAvatar(args, _auth, req) {
 		gen = await generate(
 			base,
 			{ prompt: effective || undefined, imageUrls: imageUrl ? [imageUrl] : undefined, aspect: '1:1', tier: AVATAR_TIER, internal: true },
-			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS' },
+			{ timeoutEnv: 'STUDIO_FORGE_TIMEOUT_MS', deadline: ctx.deadline },
 		);
 	} catch (err) {
 		return toolError(failureMessage(err));
 	}
-	if (gen._timedOut && gen.job_id) return pendingResult({ base, jobId: gen.job_id, what: 'avatar mesh (rig it with rig_mesh once done)', prompt: prompt || undefined, ...pendingTiming(gen), stage: 'mesh' });
+	if (gen._timedOut && gen.job_id) return pendingResult({ base, jobId: gen.job_id, what: 'avatar mesh (rig it with rig_mesh once done)', prompt: prompt || undefined, ...pendingTiming(gen), stage: 'mesh', next: 'rig' });
 	if (gen._timedOut || !gen.glb_url) return toolError('Generation is taking longer than expected. Please try again.');
 
 	// Stage 2 — auto-rig the generated mesh.
 	let rigged;
 	try {
-		rigged = await rig(base, gen.glb_url, { timeoutEnv: 'STUDIO_RIG_TIMEOUT_MS' });
+		rigged = await rig(base, gen.glb_url, { timeoutEnv: 'STUDIO_RIG_TIMEOUT_MS', deadline: ctx.deadline });
 	} catch (err) {
 		// Generation succeeded but rigging failed: hand back the (unrigged) mesh so
 		// the work isn't lost, and say so plainly.
@@ -588,7 +594,7 @@ async function handleForgeAvatar(args, _auth, req) {
 // generation as image→3D. No faked diffing — the composed prompt is what the
 // generator actually runs. Every version is recorded in an immutable lineage the
 // client passes back to branch/revert. Free, stateless, zero payment surface.
-async function handleRefineModel(args, _auth, req) {
+async function handleRefineModel(args, _auth, req, ctx = {}) {
 	const base = originFromReq(req);
 	const glbUrl = String(args.glb_url || '').trim();
 	if (!/^https?:\/\//i.test(glbUrl)) return toolError('Provide the http(s) glb_url of the model to refine.');
@@ -655,7 +661,7 @@ async function handleRefineModel(args, _auth, req) {
 			refImageUrl
 				? { prompt: composed, imageUrls: [refImageUrl], aspect: '1:1', tier: 'standard', internal: true }
 				: { prompt: composed, tier: 'standard', internal: true },
-			{ timeoutEnv: 'STUDIO_REFINE_TIMEOUT_MS' },
+			{ timeoutEnv: 'STUDIO_REFINE_TIMEOUT_MS', deadline: ctx.deadline },
 		);
 	} catch (err) {
 		return toolError(failureMessage(err));

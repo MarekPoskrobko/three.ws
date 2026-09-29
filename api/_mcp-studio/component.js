@@ -9,7 +9,12 @@
 //
 // Reads structuredContent shape: { glbUrl, viewerUrl, kind, prompt, rigged?,
 //   lineage?: [{ index, parentIndex, glbUrl, viewerUrl, label, instruction, active }],
-//   activeIndex? }. When a lineage is present (a conversational refinement) the
+//   activeIndex? }, look_at_model's { model_url, viewer_url, ar_url }, and the
+// pending envelope { status: 'pending', jobId, stage, next? }. A pending job is
+// collected by the widget itself: it polls check_job through
+// window.openai.callTool (every tool here is widgetAccessible) until the model
+// lands, runs rig_mesh when the envelope says next: 'rig', and saves the result
+// to widget state so a re-render shows the model instead of polling again. When a lineage is present (a conversational refinement) the
 // widget shows a version strip: click any version to swap it in with a cross-fade
 // (a client-side revert view — every version's GLB is already in the lineage).
 // No identifiers, no payment, no crypto — only what is needed to show the model.
@@ -133,8 +138,9 @@ export const COMPONENT_HTML = `<!doctype html>
     </div>
 
     <div id="error" class="overlay hidden">
-      <div class="title">Couldn't load the model</div>
+      <div id="errtitle" class="title">Couldn't load the model</div>
       <div id="errmsg" class="muted">Something went wrong generating or displaying this model.</div>
+      <button id="retry" class="btn hidden" type="button">Keep waiting</button>
     </div>
   </div>
 
@@ -158,6 +164,8 @@ export const COMPONENT_HTML = `<!doctype html>
   var empty = document.getElementById('empty');
   var errEl = document.getElementById('error');
   var errMsg = document.getElementById('errmsg');
+  var errTitle = document.getElementById('errtitle');
+  var retryEl = document.getElementById('retry');
   var bar = document.getElementById('bar');
   var promptEl = document.getElementById('prompt');
   var kindEl = document.getElementById('kind');
@@ -182,12 +190,15 @@ export const COMPONENT_HTML = `<!doctype html>
 
   function show(el) { [loading, empty, errEl].forEach(function (n) { n.classList.add('hidden'); }); if (el) el.classList.remove('hidden'); }
 
-  function fail(msg) {
+  function fail(msg, opts) {
     clearTimeout(loadWatchdog);
     mv.classList.add('veiled');
     bar.classList.add('hidden');
     versionsEl.classList.add('hidden');
+    errTitle.textContent = (opts && opts.title) || "Couldn't load the model";
     errMsg.textContent = msg || 'Something went wrong displaying this model.';
+    retryEl.classList.toggle('hidden', !(opts && opts.retry));
+    retryEl.onclick = (opts && opts.retry) || null;
     show(errEl);
   }
 
@@ -261,22 +272,161 @@ export const COMPONENT_HTML = `<!doctype html>
   var defaultLoadingTitle = loadingTitle.textContent;
   var defaultLoadingMuted = loadingMuted.textContent;
 
-  function render(out) {
-    if (!out) { mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden'); show(empty); return; }
-    // A pending envelope means the job is real and still running server-side.
-    // Rendering it as "No model yet" (the old fallthrough) read as a failure;
-    // show the designed in-progress state with the live timing instead.
-    if (out.status === 'pending') {
-      clearTimeout(loadWatchdog);
-      mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden');
-      loadingTitle.textContent = 'Still rendering your 3D model…';
-      var eta = Number(out.etaRemainingSeconds);
-      loadingMuted.textContent =
-        (isFinite(eta) && eta > 0 ? 'Roughly ' + Math.round(eta) + 's to go. ' : '') +
-        'It keeps running in the background. Ask to check the job to collect the finished model.';
-      show(loading);
+  // ── pending jobs: the widget collects them itself ──────────────────────────
+  // ChatGPT ends a tool call at 60 s and a model takes one to four minutes, so
+  // the tool hands back a pending job and this widget finishes the job in place.
+  // Every wait below is a real check_job round trip; the clock shows real time.
+  var POLL_FIRST_MS = 5000;
+  var POLL_MAX_MS = 12000;
+  var POLL_GIVE_UP_MS = 12 * 60 * 1000;
+  var MAX_POLL_FAILURES = 6;
+  var poll = null;
+
+  function canCallTools() {
+    try { return !!(window.openai && typeof window.openai.callTool === 'function'); } catch (e) { return false; }
+  }
+
+  function structuredOf(r) {
+    if (!r) return null;
+    if (r.structuredContent) return r.structuredContent;
+    if (r.result && r.result.structuredContent) return r.result.structuredContent;
+    return null;
+  }
+
+  function clock(sec) {
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function stopPolling() {
+    if (!poll) return;
+    clearTimeout(poll.timer);
+    clearInterval(poll.ticker);
+    poll = null;
+  }
+
+  function paintPending() {
+    if (!poll) return;
+    var secs = Math.max(0, Math.round((Date.now() - poll.since) / 1000));
+    loadingTitle.textContent = poll.stage === 'rig' ? 'Rigging your avatar…' : 'Generating your 3D model…';
+    loadingMuted.textContent =
+      (poll.stage === 'rig' ? 'Adding a skeleton so it can be posed and animated. ' : 'Most models take one to four minutes. ') +
+      'It will appear here when it is ready. ' + clock(secs) + ' elapsed.';
+  }
+
+  function persist(result) {
+    try { if (window.openai && window.openai.setWidgetState) window.openai.setWidgetState({ jobId: poll && poll.origin, result: result }); } catch (e) {}
+  }
+
+  function finish(result) {
+    persist(result);
+    stopPolling();
+    render(result, true);
+  }
+
+  function schedule() {
+    if (!poll) return;
+    if (Date.now() - poll.since > POLL_GIVE_UP_MS) {
+      var resume = poll;
+      stopPolling();
+      fail('This model is taking much longer than usual. It is still running, and you can keep waiting for it.', {
+        title: 'Still rendering',
+        retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, Date.now()); },
+      });
       return;
     }
+    poll.timer = setTimeout(tick, poll.delay);
+    poll.delay = Math.min(POLL_MAX_MS, Math.round(poll.delay * 1.3));
+  }
+
+  function rigThenFinish(mesh) {
+    var p = poll;
+    p.stage = 'rig';
+    p.next = null;
+    paintPending();
+    window.openai.callTool('rig_mesh', { glb_url: mesh.glbUrl }).then(function (r) {
+      if (poll !== p) return;
+      var out = structuredOf(r);
+      if (out && out.status === 'pending' && out.jobId) { p.jobId = out.jobId; p.delay = POLL_FIRST_MS; schedule(); return; }
+      if (out && out.glbUrl) { finish(out); return; }
+      // The mesh is real and saved; a failed rig must not throw it away.
+      finish(mesh);
+    }, function () { if (poll === p) finish(mesh); });
+  }
+
+  function tick() {
+    var p = poll;
+    if (!p) return;
+    window.openai.callTool('check_job', { job_id: p.jobId }).then(function (r) {
+      if (poll !== p) return;
+      p.failures = 0;
+      var out = structuredOf(r);
+      if (out && out.status === 'pending') { paintPending(); schedule(); return; }
+      if (out && out.glbUrl) {
+        if (p.next === 'rig' && !out.rigged) { rigThenFinish(out); return; }
+        finish(p.stage === 'rig' ? Object.assign({}, out, { rigged: true }) : out);
+        return;
+      }
+      stopPolling();
+      fail((out && out.message) || 'Generation did not return a model. Try generating it again.');
+    }, function () {
+      if (poll !== p) return;
+      if (++p.failures >= MAX_POLL_FAILURES) {
+        var resume = p;
+        stopPolling();
+        fail('Lost contact with the job while it was rendering. It keeps running, so checking again usually finds it.', {
+          title: 'Connection interrupted',
+          retry: function () { beginPolling(resume.jobId, resume.stage, resume.next, resume.origin, resume.since); },
+        });
+        return;
+      }
+      schedule();
+    });
+  }
+
+  function beginPolling(jobId, stage, next, origin, since) {
+    stopPolling();
+    poll = { jobId: jobId, origin: origin || jobId, stage: stage, next: next, since: since, delay: POLL_FIRST_MS, failures: 0, timer: null, ticker: null };
+    mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden');
+    paintPending();
+    show(loading);
+    poll.ticker = setInterval(paintPending, 1000);
+    schedule();
+  }
+
+  function renderPending(out) {
+    clearTimeout(loadWatchdog);
+    if (poll && poll.origin === out.jobId) return;
+    var elapsed = Number(out.elapsedSeconds);
+    var since = Date.now() - (isFinite(elapsed) && elapsed > 0 ? elapsed * 1000 : 0);
+    if (canCallTools()) { beginPolling(out.jobId, out.stage, out.next, out.jobId, since); return; }
+    // A host without widget tool calls: say what is happening and how to collect it.
+    mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden');
+    loadingTitle.textContent = 'Still rendering your 3D model…';
+    var eta = Number(out.etaRemainingSeconds);
+    loadingMuted.textContent =
+      (isFinite(eta) && eta > 0 ? 'Roughly ' + Math.round(eta) + 's to go. ' : '') +
+      'It keeps running in the background. Ask to check the job to collect the finished model.';
+    show(loading);
+  }
+
+  // look_at_model reports the model it inspected under snake_case keys.
+  function normalize(out) {
+    if (!out || out.glbUrl || !isHttps(out.model_url)) return out;
+    return Object.assign({}, out, { glbUrl: out.model_url, viewerUrl: out.viewer_url, arUrl: out.ar_url, kind: 'inspected model' });
+  }
+
+  var lastKey = null;
+  function render(out, force) {
+    out = normalize(out);
+    // The host re-sends globals for unrelated reasons (theme, layout, widget
+    // state). Re-rendering the same output would re-veil a loaded model.
+    var key = out ? JSON.stringify(out) : '';
+    if (!force && key === lastKey) return;
+    lastKey = key;
+    if (!out) { stopPolling(); mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden'); show(empty); return; }
+    if (out.status === 'pending' && out.jobId) { renderPending(out); return; }
+    stopPolling();
     if (out.error || out.message && !out.glbUrl) { fail(out.message || 'Generation did not return a model.'); return; }
     var glb = out.glbUrl;
     if (!isHttps(glb)) { mv.classList.add('veiled'); bar.classList.add('hidden'); versionsEl.classList.add('hidden'); show(empty); return; }
@@ -324,8 +474,14 @@ export const COMPONENT_HTML = `<!doctype html>
   });
   mv.addEventListener('error', function () { fail('The 3D model could not be displayed. You can still download the GLB file.'); });
 
+  // A pending tool output whose job this widget already finished shows the saved
+  // model, so reopening the conversation never starts the wait over.
   function current() {
-    try { return (window.openai && window.openai.toolOutput) || null; } catch (e) { return null; }
+    var out = null, saved = null;
+    try { out = (window.openai && window.openai.toolOutput) || null; } catch (e) { out = null; }
+    try { saved = (window.openai && window.openai.widgetState) || null; } catch (e) { saved = null; }
+    if (out && out.status === 'pending' && saved && saved.result && saved.jobId === out.jobId) return saved.result;
+    return out;
   }
 
   // Initial paint (toolOutput may already be present) + live updates from the host.

@@ -48,6 +48,20 @@ function callsGenerationTool(body) {
 	return batch.some((m) => m && m.method === 'tools/call' && isGenerationTool(m?.params?.name));
 }
 
+// ChatGPT sends an anonymized, per-user `openai/subject` on every tool call and
+// documents it for rate limiting. All ChatGPT traffic shares OpenAI's egress
+// IPs, so on that surface the per-caller caps key on it. Bounded to a sane
+// token shape; anything else falls back to the IP.
+const SUBJECT_RE = /^[A-Za-z0-9_.:/+=-]{8,256}$/;
+export function chatgptSubject(body) {
+	const batch = Array.isArray(body) ? body : [body];
+	for (const m of batch) {
+		const sub = m?.params?._meta?.['openai/subject'];
+		if (typeof sub === 'string' && SUBJECT_RE.test(sub)) return sub;
+	}
+	return null;
+}
+
 export function studioHandler({ surface = 'full' } = {}) {
 	return wrap(async (req, res) => {
 		if (cors(req, res, { methods: 'GET,HEAD,POST,OPTIONS', origins: '*', payments: false })) return;
@@ -81,9 +95,15 @@ export function studioHandler({ surface = 'full' } = {}) {
 		// Generation quota, burst then hourly, per IP. Applied only when the request
 		// actually calls a generation tool, so discovery is never throttled by it.
 		if (callsGenerationTool(body)) {
-			const burst = await limits.studioGenBurst(ip);
+			const subject = surface === 'chatgpt' ? chatgptSubject(body) : null;
+			if (subject) {
+				const pool = await limits.studioGenPoolHourly(ip);
+				if (!pool.success) return rateLimited(res, pool, 'the free 3D studio is at capacity right now, please try again later');
+			}
+			const caller = subject ? `oai:${subject}` : ip;
+			const burst = await limits.studioGenBurst(caller);
 			if (!burst.success) return rateLimited(res, burst, 'generation rate limit, slow down and try again shortly');
-			const hourly = await limits.studioGenHourly(ip);
+			const hourly = await limits.studioGenHourly(caller);
 			if (!hourly.success) return rateLimited(res, hourly, 'hourly generation limit reached, try again later');
 			// Platform-wide circuit breaker across ALL free-studio callers, backstops
 			// the shared GPU/provider budget when many distinct IPs, each under their

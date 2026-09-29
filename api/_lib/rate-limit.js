@@ -865,6 +865,13 @@ export const limits = {
 		getLimiter('studio:gen:burst', { limit: 4, window: '1 m' }).limit(ip),
 	studioGenHourly: (ip) =>
 		getLimiter('studio:gen:hourly', { limit: 30, window: '1 h' }).limit(ip),
+	// Ceiling on one source IP when the burst/hourly caps above are keyed per
+	// ChatGPT user (openai/subject) instead of per IP. Every ChatGPT user reaches
+	// us from OpenAI's shared egress pool, so a per-IP 30/h would ration the whole
+	// directory as one caller; the subject is client-supplied, so this pool cap is
+	// what stops a forged subject per call from escaping the limits entirely.
+	studioGenPoolHourly: (ip) =>
+		getLimiter('studio:gen:pool:hourly', { limit: 300, window: '1 h' }).limit(ip),
 	// Cheap per-IP cap on studio transport/discovery (initialize, tools/list,
 	// ping, resources). Bounds discovery floods without touching the generation
 	// budget. Non-critical: a missing-Redis misconfig degrades gracefully.
