@@ -70,6 +70,7 @@ export default async function globalSetup(config) {
 
 	const origin = config?.projects?.[0]?.use?.baseURL || 'http://localhost:3020';
 
+	await assertWriteKeyBound();
 	const home = await acquireHomeInstance({ timeout: 900_000 });
 	console.log(`[home-e2e] Home Assistant ${home.version || 'unknown'} at ${home.baseUrl}`);
 
@@ -80,6 +81,33 @@ export default async function globalSetup(config) {
 		`${JSON.stringify({ home, accounts, origin, lane: LANE, startedAt: new Date().toISOString() }, null, '\t')}\n`,
 	);
 	console.log(`[home-e2e] accounts ready: ${ROLES.map((role) => accounts[role]?.username).filter(Boolean).join(', ')}`);
+}
+
+/**
+ * Refuse to start when the run's encryption key is not the database's.
+ *
+ * api/_lib/secret-box.js binds a database to the key that writes into it and
+ * refuses every other writer (docs/ops/stranded-wallets.md has why). A lane on
+ * the wrong key does not fail here on its own: it signs in fine, then every
+ * connect answers 500 with `secret_box_key_mismatch` in the API log, and the
+ * whole suite reads as a broken connect flow. Comparing the one-way
+ * fingerprints up front turns that into a single sentence naming the fix.
+ * Read only: an unbound database is left for the first real write to bind.
+ */
+async function assertWriteKeyBound() {
+	const [{ sql }, { secretBoxKeyFingerprint, WRITE_KEY_SETTING }] = await Promise.all([
+		import('../../api/_lib/db.js'),
+		import('../../api/_lib/secret-box.js'),
+	]);
+	const [row] = await sql`select value from app_settings where key = ${WRITE_KEY_SETTING}`;
+	const bound = row?.value?.fingerprint;
+	if (!bound) return;
+	if (bound === (await secretBoxKeyFingerprint(process.env.HOME_E2E_ENC_KEY || ''))) return;
+	throw new Error(
+		'this run\'s encryption key is not the one bound to the database in DATABASE_URL, so every connect would be refused with secret_box_key_mismatch. ' +
+			'Run with the bound key: HOME_E2E_ENC_KEY="$(node scripts/read-service-env.mjs \'^WALLET_ENCRYPTION_KEY$\' --raw)" npm run test:home:e2e, ' +
+			'or point DATABASE_URL at a database of the run\'s own.',
+	);
 }
 
 /**

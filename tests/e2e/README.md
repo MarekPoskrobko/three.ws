@@ -90,6 +90,19 @@ Dedicated ports and `reuseExistingServer: false` are deliberate. Other agents ru
 stack: its `/api` proxy points at **production**, so the run silently tests the wrong API and
 reports `No API route matches /api/home` as though the handler were missing.
 
+**The encryption key has to be the database's.** The API seals each connected house's access
+token with `WALLET_ENCRYPTION_KEY`, and `api/_lib/secret-box.js` binds a database to the one key
+allowed to write into it (see [`docs/ops/stranded-wallets.md`](../../docs/ops/stranded-wallets.md)
+for why). The database in `.env.local` is bound, so a per-run random key is refused at the first
+connect with `secret_box_key_mismatch`. Pass the bound key for the run; the global setup checks
+the fingerprint before anything boots and names this command when it does not match:
+
+```bash
+HOME_E2E_ENC_KEY="$(node scripts/read-service-env.mjs '^WALLET_ENCRYPTION_KEY$' --raw)" \
+  HOME_LIVE_NAME=mylane HOME_E2E_API_PORT=8141 HOME_E2E_WEB_PORT=3071 \
+  npm run test:home:e2e -- tests/e2e/home-a11y.spec.js
+```
+
 The house lives on `127.0.0.1`, which both the browser and the server accept because
 `normalizeBaseUrl` exempts loopback from the private-host refusal, so a developer running Home
 Assistant on this machine still works. Journey 10 proves the refusal still fires for every other

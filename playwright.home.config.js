@@ -14,10 +14,9 @@ import { fileURLToPath } from 'node:url';
  *
  *   npm run test:home:e2e
  *
- * Secrets below are generated per run and are LOCAL ONLY. They encrypt rows
- * this run creates in the database it is pointed at and are thrown away with
- * the process, so nothing here can decrypt a production credential and nothing
- * production wrote can be read by this run.
+ * The session secret below is generated per run and is LOCAL ONLY. The at-rest
+ * encryption key is not: it has to be the key bound to the database the run
+ * writes to, which the comment above ENC_KEY explains.
  */
 // The database, in THIS process and not only in the API child process.
 //
@@ -53,9 +52,22 @@ const API_PORT = Number(process.env.HOME_E2E_API_PORT) || 8099;
 const WEB_PORT = Number(process.env.HOME_E2E_WEB_PORT) || 3020;
 const APP_ORIGIN = `http://localhost:${WEB_PORT}`;
 
+// The at-rest key is the one secret below that cannot be thrown away freely.
+// Since 2026-09-16 api/_lib/secret-box.js binds a database to the key that
+// writes into it and refuses any other writer, because a writer with its own
+// key is exactly how custodial wallets got stranded (docs/ops/stranded-wallets.md).
+// The database in .env.local is bound, so a per-run random key now dies at the
+// first connect with `secret_box_key_mismatch`. The run must carry the key bound
+// to the database it writes to: HOME_E2E_ENC_KEY, else an exported
+// WALLET_ENCRYPTION_KEY. A random key remains only for a database of the run's
+// own. Published back to the environment so the global setup can check the
+// binding before the first browser opens, instead of fifteen tests failing on it.
+const ENC_KEY = process.env.HOME_E2E_ENC_KEY || process.env.WALLET_ENCRYPTION_KEY || randomBytes(32).toString('hex');
+process.env.HOME_E2E_ENC_KEY = ENC_KEY;
+
 const localSecrets = {
 	JWT_SECRET: process.env.HOME_E2E_JWT_SECRET || randomBytes(32).toString('hex'),
-	WALLET_ENCRYPTION_KEY: process.env.HOME_E2E_ENC_KEY || randomBytes(32).toString('hex'),
+	WALLET_ENCRYPTION_KEY: ENC_KEY,
 	APP_ORIGIN,
 	ISSUER: APP_ORIGIN,
 	MCP_RESOURCE: `${APP_ORIGIN}/api/mcp`,
