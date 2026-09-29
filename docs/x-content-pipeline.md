@@ -225,6 +225,10 @@ says which one stopped it:
 | It tags no one | A tag puts a partner's name next to ours. A person decides that. |
 | The review passed on the editor's own verdict | An `editorOverride` is a person's judgment, so it needs a person. |
 
+`npm run x:content -- advance --ship` is the whole line in one command: it films what needs
+filming, reviews it, releases what the policy allows, and publishes every approved post as a
+bundle.
+
 A release by policy is embargoed for `vetoHours` and written to the ops alerts (and pushed to
 Telegram when `TELEGRAM_ALERTS_CHAT_ID` is set), so there is always a window to take it back:
 

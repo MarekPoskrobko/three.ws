@@ -15,6 +15,8 @@
 //   npm run x:content -- adopt [<slug>...]                   move finished stories from data/x-content/stories/ into the queue
 //   npm run x:content -- advance [<slug>] [--dry-run]        take every draft and review item as far as it can go:
 //                                                            film, review, and release by policy where the queue allows it
+//   npm run x:content -- advance --ship                      and publish what is approved as bundles, so it goes out
+//                                                            without waiting for a deploy (needs X_CONTENT_BUNDLE_SECRET)
 //   npm run x:content -- pause <slug>                        take a post back before it goes out
 //   npm run x:content -- review <slug> [--no-editor]      the editorial bar: lint, live fact checks, AI editor
 //   npm run x:content -- review --status review            review every item awaiting review
@@ -582,6 +584,12 @@ async function advance() {
 		console.log(`\n${digest.title}\n${digest.detail}`);
 		const { sendOpsAlert } = await import('../api/_lib/alerts.js');
 		await sendOpsAlert(digest.title, digest.detail, { severity: 'info' }).catch((err) => console.log(`(the ops alert was not recorded: ${err.message})`));
+	}
+	if (has('ship') && !dryRun) {
+		// Everything approved and not yet sent, whoever approved it: the bundles
+		// are what production reads, so they should always say what the queue says.
+		const ship = spawnSync(process.execPath, [resolve(root, 'scripts/x-bundle.mjs'), 'publish', '--approved'], { cwd: root, stdio: 'inherit' });
+		if (ship.status !== 0) process.exitCode = 1;
 	}
 }
 
