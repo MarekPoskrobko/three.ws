@@ -21,12 +21,9 @@ import { limits, clientIp } from '../_lib/rate-limit.js';
 import { getSessionUser, authenticateBearer, extractBearer } from '../_lib/auth.js';
 import { requireCsrf } from '../_lib/csrf.js';
 import { sql } from '../_lib/db.js';
-import { normalizeSubscriptionInput } from '../_lib/copy-engine.js';
-import { BREAKER_REASON, LEADER_ELIGIBILITY, evaluateDrawdownBreaker, evaluateLeaderEligibility, leaderCopyProfile } from '../_lib/copy-eligibility.js';
+import { BREAKER_REASON, evaluateDrawdownBreaker, leaderCopyProfile } from '../_lib/copy-eligibility.js';
+import { subscribeCopier } from '../_lib/copy-subscribe.js';
 import { isUuid } from '../_lib/validate.js';
-
-const NETWORKS = new Set(['mainnet', 'devnet']);
-const BASE58_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
 // Returns { userId, viaSession } or null (after writing a 401). Cookie-session
 // writes additionally require a CSRF token; bearer clients are not CSRF-vulnerable.
@@ -131,95 +128,9 @@ export default wrap(async (req, res) => {
 		return json(res, 200, { subscription: row });
 	}
 
-	// Create / update.
-	const leaderId = String(body.leader_agent_id || '').trim();
-	const wallet = String(body.copier_wallet || '').trim();
-	const network = NETWORKS.has(body.network) ? body.network : 'mainnet';
-	if (!isUuid(leaderId)) return error(res, 400, 'invalid_leader', 'leader_agent_id must be an agent UUID');
-	if (!BASE58_RE.test(wallet)) return error(res, 400, 'invalid_wallet', 'copier_wallet must be a valid Solana address');
-
-	const [leader] = await sql`
-		select id, user_id, name, is_public from agent_identities
-		where id = ${leaderId} and deleted_at is null limit 1
-	`;
-	if (!leader || leader.is_public === false) return error(res, 404, 'leader_not_found', 'No such public trader.');
-
-	// Wash-trade guard: copying your own agent routes the performance fee back to
-	// you while inflating that leader's copier count, copied volume, and the public
-	// "earned X for being copied" figure. Refused outright: there is no legitimate
-	// version of it, since the owner already controls the agent's own trading.
-	if (leader.user_id === userId) {
-		return error(res, 403, 'self_copy', 'You cannot copy an agent you own; you already control its trading.');
-	}
-
-	// Sybil bar: a leader needs a real, closed, on-chain track record before a
-	// copier can attach money to it. The unmet criteria go back in the body so the
-	// UI can say exactly what is missing instead of "not eligible".
-	const profile = await leaderCopyProfile(leaderId, network);
-	const eligibility = evaluateLeaderEligibility(profile);
-	if (!eligibility.eligible) {
-		return error(
-			res,
-			409,
-			'leader_not_copyable',
-			`${leader.name || 'This trader'} does not have enough verified history to be copied yet: ${eligibility.unmet.map((u) => u.label).join(', ')}.`,
-			{ eligibility: { ...eligibility, requirements: LEADER_ELIGIBILITY, network } },
-		);
-	}
-
-	const norm = normalizeSubscriptionInput(body);
-	if (!norm.ok) return error(res, 400, 'invalid_config', norm.error);
-	const v = norm.value;
-
-	// Denormalize the leader's trading wallet from their most recent sniper position.
-	const [pos] = await sql`
-		select wallet from agent_sniper_positions
-		where agent_id = ${leaderId} and network = ${network}
-		order by opened_at desc limit 1
-	`;
-	const leaderWallet = pos?.wallet || null;
-
-	const [row] = await sql`
-		insert into copy_subscriptions (
-			copier_user_id, copier_wallet, leader_agent_id, leader_wallet, network, status,
-			sizing_rule, fixed_sol, multiplier, pct_balance,
-			per_trade_cap_sol, min_order_sol, daily_budget_sol, max_open_copies,
-			mcap_floor_usd, mcap_ceiling_usd, copy_sells, require_safety_pass, min_oracle_score, perf_fee_bps,
-			max_drawdown_pct, telegram_chat_id
-		) values (
-			${userId}, ${wallet}, ${leaderId}, ${leaderWallet}, ${network}, 'active',
-			${v.sizing_rule}, ${v.fixed_sol}, ${v.multiplier}, ${v.pct_balance},
-			${v.per_trade_cap_sol}, ${v.min_order_sol}, ${v.daily_budget_sol}, ${v.max_open_copies},
-			${v.mcap_floor_usd}, ${v.mcap_ceiling_usd}, ${v.copy_sells}, ${v.require_safety_pass}, ${v.min_oracle_score}, ${v.perf_fee_bps},
-			${v.max_drawdown_pct}, ${v.telegram_chat_id || null}
-		)
-		on conflict (copier_user_id, leader_agent_id, network) do update set
-			copier_wallet = excluded.copier_wallet,
-			leader_wallet = excluded.leader_wallet,
-			status = 'active',
-			sizing_rule = excluded.sizing_rule,
-			fixed_sol = excluded.fixed_sol,
-			multiplier = excluded.multiplier,
-			pct_balance = excluded.pct_balance,
-			per_trade_cap_sol = excluded.per_trade_cap_sol,
-			min_order_sol = excluded.min_order_sol,
-			daily_budget_sol = excluded.daily_budget_sol,
-			max_open_copies = excluded.max_open_copies,
-			mcap_floor_usd = excluded.mcap_floor_usd,
-			mcap_ceiling_usd = excluded.mcap_ceiling_usd,
-			copy_sells = excluded.copy_sells,
-			require_safety_pass = excluded.require_safety_pass,
-			min_oracle_score = excluded.min_oracle_score,
-			perf_fee_bps = excluded.perf_fee_bps,
-			max_drawdown_pct = excluded.max_drawdown_pct,
-			telegram_chat_id = excluded.telegram_chat_id,
-			-- Re-subscribing is a deliberate act, so it clears an auto-pause. A
-			-- breaker that stayed latched here would silently re-arm a subscription
-			-- the copier just reconfigured to a wider limit.
-			paused_reason = null,
-			paused_at = null,
-			updated_at = now()
-		returning *
-	`;
-	return json(res, 200, { subscription: row, leader: { id: leaderId, name: leader.name || null }, leader_profile: profile });
+	// Create / update, through the one guarded follow path (self-copy refusal,
+	// the copyable bar, the copier's own caps) that a syndicate join also uses.
+	const result = await subscribeCopier({ userId, body });
+	if (!result.ok) return error(res, result.status, result.code, result.message, result.extra);
+	return json(res, 200, { subscription: result.subscription, leader: result.leader, leader_profile: result.profile });
 });

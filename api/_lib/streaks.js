@@ -27,6 +27,11 @@ export const BADGES = Object.freeze({
 	FIRST_REMIX_RECEIVED: 'first_remix_received',
 	STREAK_7: 'streak_7',
 	COPY_PATH_COMPLETE: 'copy_path_complete',
+	SYNDICATE_FOUNDER: 'syndicate_founder',
+	SYNDICATE_MEMBER: 'syndicate_member',
+	QUEST_FIRST: 'quest_first',
+	QUEST_CLEAR: 'quest_clear',
+	QUEST_STREAK_7: 'quest_streak_7',
 	TOP10: (metric) => `top10_${metric}`,
 });
 
@@ -50,6 +55,31 @@ export const BADGE_META = {
 		label: 'First Copy',
 		description: 'Watched a verified trade, ghost-copied a leader, placed a real trade, and started a guarded copy.',
 		icon: '🧭',
+	},
+	syndicate_founder: {
+		label: 'Syndicate Founder',
+		description: 'Raised a flag: founded a copy-trading syndicate around a verified leader.',
+		icon: '🚩',
+	},
+	syndicate_member: {
+		label: 'Syndicate Member',
+		description: 'Joined a copy-trading syndicate and rode with the team under your own caps.',
+		icon: '🛡️',
+	},
+	quest_first: {
+		label: 'First Quest',
+		description: 'Completed a daily trading quest.',
+		icon: '🎯',
+	},
+	quest_clear: {
+		label: 'Daily Clear',
+		description: 'Cleared the daily trading quests in a single UTC day.',
+		icon: '⚡',
+	},
+	quest_streak_7: {
+		label: 'Quest Streak 7',
+		description: 'Cleared the daily trading quests seven days running.',
+		icon: '🏅',
 	},
 };
 
