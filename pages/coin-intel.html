@@ -408,6 +408,7 @@
 
 		<nav class="ci-tabs" id="ci-tabs" role="tablist" aria-label="Coin intelligence views">
 			<button class="ci-tab is-active" data-tab="radar" role="tab" data-i18n-html="coin_intel.radar">Radar<span class="count" id="cnt-radar"></span></button>
+			<button class="ci-tab" data-tab="scout" role="tab" title="Sourced momentum: every claim with its receipt">Scout<span class="count" id="cnt-scout"></span></button>
 			<button class="ci-tab" data-tab="leaderboard" role="tab" data-i18n="coin_intel.leaderboard">Leaderboard</button>
 			<button class="ci-tab" data-tab="traders" role="tab" data-i18n-html="coin_intel.smart_money">Smart Money<span class="count" id="cnt-traders"></span></button>
 			<button class="ci-tab" data-tab="learning" role="tab" data-i18n="coin_intel.what_it_learned">What it learned</button>
@@ -437,6 +438,9 @@
 			</div>
 			<div class="ci-grid" id="ci-grid"></div>
 		</section>
+
+		<!-- SCOUT (src/coin-intel-scout.js) -->
+		<section id="view-scout" data-view class="hide" aria-label="Sentiment Scout"></section>
 
 		<!-- LEADERBOARD -->
 		<section id="view-leaderboard" data-view class="hide">
@@ -484,6 +488,7 @@
 	</aside>
 
 	<script type="module">
+		import { mountScoutBoard, scoutDrawerSection, SCOUT_CSS } from '/src/coin-intel-scout.js';
 		const API = '/api/pump/intel';
 		const REFRESH_MS = 15_000;
 
@@ -854,6 +859,7 @@
 		document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
 
 		async function openDrawer(mint) {
+			drawerBody.dataset.mint = mint;
 			drawer.classList.add('is-open'); scrim.classList.add('is-open'); drawer.setAttribute('aria-hidden','false');
 			drawer.scrollTop = 0;
 			drawerBody.innerHTML = `<div class="sh" style="height:60px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.04),rgba(255,255,255,.09),rgba(255,255,255,.04));background-size:200% 100%;animation:ciShimmer 1.4s infinite"></div>`;
@@ -862,6 +868,16 @@
 				if (!data.found) { drawerBody.innerHTML = `<div class="ci-empty" style="border:none"><div class="icon">🔎</div><h3>Not observed yet</h3><p>This coin isn't in the intelligence index.</p></div>`; return; }
 				drawerBody.innerHTML = renderDetail(data);
 				const svg = $('#bm-svg'); if (svg) drawBubbleMap(svg, data.wallets || [], data.clusters || []);
+
+				// Sentiment Scout read for this coin: sourced evidence, injected when ready.
+				scoutDrawerSection(mint).then((sec) => {
+					if (!sec || drawerBody.dataset.mint !== mint || drawer.getAttribute('aria-hidden') === 'true') return;
+					const sigSection = [...drawerBody.querySelectorAll('.d-section')].find(
+						s => s.querySelector('h4')?.textContent?.includes('Launch signals')
+					);
+					if (sigSection) sigSection.insertAdjacentElement('beforebegin', sec);
+					else drawerBody.appendChild(sec);
+				});
 
 				// inject Oracle link + watchlist button into d-links
 				const dlinks = drawerBody.querySelector('.d-links');
@@ -1073,9 +1089,27 @@
 			}
 		}
 
+		// ── Sentiment Scout tab ────────────────────────────────────
+		{
+			const st = document.createElement('style');
+			st.textContent = SCOUT_CSS;
+			document.head.appendChild(st);
+		}
+		const scoutBoard = mountScoutBoard($('#view-scout'), {
+			onOpenCoin: (mint) => openDrawer(mint),
+			onCount: (n) => { $('#cnt-scout').textContent = n ? String(n) : ''; },
+		});
+
 		// ── tabs ───────────────────────────────────────────────────
 		function switchTab(tab) {
+			if (!document.getElementById('view-' + tab)) tab = 'radar';
 			state.tab = tab;
+			scoutBoard.setActive(tab === 'scout');
+			try {
+				const u = new URL(location.href);
+				if (tab === 'radar') u.searchParams.delete('tab'); else u.searchParams.set('tab', tab);
+				history.replaceState(null, '', u);
+			} catch { /* URL sync is a convenience */ }
 			document.querySelectorAll('.ci-tab').forEach(t => t.classList.toggle('is-active', t.dataset.tab === tab));
 			document.querySelectorAll('[data-view]').forEach(s => s.classList.add('hide'));
 			$('#view-' + tab).classList.remove('hide');
@@ -1120,6 +1154,14 @@
 		renderStats([]);
 		loadStats();
 		loadRadar();
+		// Deep links: ?tab=scout|leaderboard|traders|learning and ?mint=<mint>.
+		{
+			const q = new URLSearchParams(location.search);
+			const tab = q.get('tab');
+			if (tab && tab !== 'radar') switchTab(tab);
+			const deepMint = q.get('mint');
+			if (deepMint && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(deepMint)) openDrawer(deepMint);
+		}
 		setInterval(() => { if (state.tab === 'radar' && !document.hidden) loadRadar(); }, REFRESH_MS);
 		document.addEventListener('visibilitychange', () => { if (!document.hidden && state.tab === 'radar') loadRadar(); });
 	</script>

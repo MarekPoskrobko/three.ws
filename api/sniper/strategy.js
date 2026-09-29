@@ -125,6 +125,8 @@ export const STRATEGY_SCHEMA = z.object({
 	llm_min_confidence: z.union([z.string(), z.number()]).nullable().optional(),
 	llm_max_confidence: z.union([z.string(), z.number()]).nullable().optional(),
 	llm_strict_model: z.boolean().optional(),
+	// Hand this LLM arm's judge the Sentiment Scout's sourced read of the coin.
+	llm_scout_context: z.boolean().optional(),
 	moonbag_always: z.boolean().optional(),
 	// Laddered take-initials exit. An explicit null on initials_out_multiple opts
 	// back into the classic single-shot exit; moonbag_min_pct is NOT NULL in the
@@ -294,6 +296,7 @@ async function listStrategies(req, res, userId) {
 			llm_min_confidence: s.llm_min_confidence != null ? Number(s.llm_min_confidence) : null,
 			llm_max_confidence: s.llm_max_confidence != null ? Number(s.llm_max_confidence) : null,
 			llm_strict_model: s.llm_strict_model === true,
+			llm_scout_context: s.llm_scout_context === true,
 			moonbag_always: s.moonbag_always !== false,
 			label: s.label || null,
 			experiment_group: s.experiment_group || null,
@@ -360,7 +363,7 @@ async function upsertStrategy(req, res, userId) {
 		alpha_min_smart_money: null, alpha_min_organic_score: null, alpha_max_mcap_usd: null,
 		alpha_narrative_keywords: null, alpha_min_quality_score: null,
 		decision_mode: 'rules', llm_model: null, llm_min_confidence: null,
-		llm_max_confidence: null, llm_strict_model: false, moonbag_always: true,
+		llm_max_confidence: null, llm_strict_model: false, llm_scout_context: false, moonbag_always: true,
 		initials_out_multiple: 2,
 		label: null, experiment_group: null,
 	};
@@ -430,6 +433,8 @@ async function upsertStrategy(req, res, userId) {
 		// Named-model integrity: a strict arm refuses to trade on a fallback
 		// model's verdict, pausing rather than polluting its own experiment.
 		llm_strict_model: 'llm_strict_model' in p ? Boolean(p.llm_strict_model) : (cur.llm_strict_model === true),
+		// Scout context: the Sentiment Scout's evidence lines join the judge's brief.
+		llm_scout_context: 'llm_scout_context' in p ? Boolean(p.llm_scout_context) : (cur.llm_scout_context === true),
 		// Fleet-wide never-sell-100%-of-a-winner rule; opt-out per strategy.
 		moonbag_always: 'moonbag_always' in p ? Boolean(p.moonbag_always) : (cur.moonbag_always !== false),
 		label: 'label' in p ? (p.label || null) : (cur.label || null),
@@ -482,7 +487,7 @@ async function upsertStrategy(req, res, userId) {
 			 alpha_min_smart_money, alpha_min_organic_score, alpha_max_mcap_usd,
 			 alpha_narrative_keywords, alpha_min_quality_score, auto_fund_enabled,
 			 initials_out_multiple, moonbag_min_pct,
-			 decision_mode, llm_model, llm_min_confidence, llm_max_confidence, llm_strict_model, moonbag_always, label, experiment_group, updated_at)
+			 decision_mode, llm_model, llm_min_confidence, llm_max_confidence, llm_strict_model, llm_scout_context, moonbag_always, label, experiment_group, updated_at)
 		values
 			(${p.agent_id}, ${userId}, ${p.network}, ${next.enabled}, ${next.kill_switch},
 			 ${next.trigger}, ${next.buy_delay_ms}, ${next.min_claim_lamports}, ${next.max_claim_lamports}, ${next.first_claim_max_age_seconds},
@@ -499,7 +504,7 @@ async function upsertStrategy(req, res, userId) {
 			 ${next.alpha_min_smart_money}, ${next.alpha_min_organic_score}, ${next.alpha_max_mcap_usd},
 			 ${next.alpha_narrative_keywords}, ${next.alpha_min_quality_score}, ${next.auto_fund_enabled},
 			 ${next.initials_out_multiple}, ${next.moonbag_min_pct},
-			 ${next.decision_mode}, ${next.llm_model}, ${next.llm_min_confidence}, ${next.llm_max_confidence}, ${next.llm_strict_model}, ${next.moonbag_always}, ${next.label}, ${next.experiment_group}, now())
+			 ${next.decision_mode}, ${next.llm_model}, ${next.llm_min_confidence}, ${next.llm_max_confidence}, ${next.llm_strict_model}, ${next.llm_scout_context}, ${next.moonbag_always}, ${next.label}, ${next.experiment_group}, now())
 		on conflict (agent_id, network) do update set
 			enabled                  = excluded.enabled,
 			kill_switch              = excluded.kill_switch,
@@ -550,6 +555,7 @@ async function upsertStrategy(req, res, userId) {
 			llm_min_confidence       = excluded.llm_min_confidence,
 			llm_max_confidence       = excluded.llm_max_confidence,
 			llm_strict_model         = excluded.llm_strict_model,
+			llm_scout_context        = excluded.llm_scout_context,
 			moonbag_always           = excluded.moonbag_always,
 			label                    = excluded.label,
 			experiment_group         = excluded.experiment_group,
@@ -611,6 +617,7 @@ async function upsertStrategy(req, res, userId) {
 			llm_min_confidence: row.llm_min_confidence != null ? Number(row.llm_min_confidence) : null,
 			llm_max_confidence: row.llm_max_confidence != null ? Number(row.llm_max_confidence) : null,
 			llm_strict_model: row.llm_strict_model === true,
+			llm_scout_context: row.llm_scout_context === true,
 			moonbag_always: row.moonbag_always !== false,
 			label: row.label || null,
 			experiment_group: row.experiment_group || null,

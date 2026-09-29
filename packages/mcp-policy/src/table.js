@@ -129,6 +129,7 @@ export const POLICY = {
 		update_custom_skill: w('skills'),
 		delete_custom_skill: f('skills', 'confirm_delete', 'get_custom_skill', ['agent_id', 'skill_id']),
 		trade_receipt: r('trading'),
+		sentiment_scout: r('intelligence'),
 		// Agent cards (api/_mcp/tools/cards.js). The service verifies its own
 		// quote and reveal ids, so the policy enforces enablement and the flag.
 		agent_card_search_merchants: r('cards'),

@@ -67,7 +67,8 @@ function lamportsToSol(v) {
 function conditionSummary(s) {
 	if ((s.decision_mode || 'rules') === 'llm') {
 		const conf = s.llm_min_confidence != null ? ` ≥${Math.round(Number(s.llm_min_confidence) * 100)}%` : '';
-		return `LLM judge (${s.llm_model || 'openrouter/auto'}${conf}), no rule shields`;
+		const scout = s.llm_scout_context === true ? ', reads the Sentiment Scout' : '';
+		return `LLM judge (${s.llm_model || 'openrouter/auto'}${conf}${scout}), no rule shields`;
 	}
 	const parts = [`trigger ${s.trigger || 'new_mint'}`];
 	if (s.min_market_cap_usd != null || s.max_market_cap_usd != null) {
@@ -97,7 +98,7 @@ export default wrap(async (req, res) => {
 		select
 			s.id as strategy_id,
 			s.label, s.experiment_group, s.decision_mode, s.llm_model, s.llm_min_confidence,
-			s.llm_strict_model, s.kill_switch,
+			s.llm_strict_model, s.llm_scout_context, s.kill_switch,
 			s.trigger, s.enabled,
 			s.per_trade_lamports, s.daily_budget_lamports, s.max_concurrent_positions,
 			s.min_market_cap_usd, s.max_market_cap_usd, s.require_socials,
@@ -161,6 +162,7 @@ export default wrap(async (req, res) => {
 			ledger_url: `/reasoning-ledger?agent=${encodeURIComponent(r.agent_id)}&kind=snipe`,
 			decision_mode: r.decision_mode || 'rules',
 			llm_model: r.llm_model || null,
+			llm_scout_context: r.llm_scout_context === true,
 			trigger: r.trigger || 'new_mint',
 			enabled: r.enabled === true,
 			conditions: conditionSummary(r),

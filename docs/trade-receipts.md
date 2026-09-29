@@ -37,6 +37,7 @@ missing gate is left out, never guessed at.
 | Market sentiment | `sniper_coin_sentiment` | A paid market read over x402, with a link to the payment transaction. |
 | Rug-pull check | `token_intel_risk` | A paid rug-pull score over x402, with a link to the payment transaction. |
 | Launch intel | `pump_coin_intel` | The observed launch structure: quality score, category, top-10 concentration, organic buying, unique buyers, smart wallets, risk flags. |
+| Sentiment Scout | `sentiment_scout_reads` | The [Sentiment Scout](./sentiment-scout.md)'s first flag of the coin: its momentum score and every evidence line with its source, time and on-chain check, plus its caution. Shown only when the flag came before the exit. |
 | Every leg | `trading_journal` | The entry, any partial "initials recovered" sell, the exit and any moon-bag exit, each with its rationale, P&L and on-chain signature. |
 
 The receipt opens with a one-line summary built only from the evidence it

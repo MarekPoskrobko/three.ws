@@ -15,6 +15,12 @@
 // calibration). See judge-knowledge.js. An arm that has not earned it sees
 // exactly the prompt this file has always sent.
 //
+// Scout context (opt-in, strategy.llm_scout_context): the Sentiment Scout's
+// sourced read of the coin (evidence lines with their sources, momentum score,
+// caution; api/_lib/sentiment-scout.js scoutJudgeBlock) is appended to the
+// brief. It only exists once the coin has been observed, so in practice it
+// feeds intel_confirmed arms; a fresh new_mint launch gets an empty block.
+//
 // Cost + latency control:
 //   • One verdict per (mint, model, knowledge depth). Arms at base depth still
 //     share a single call across a same-model fleet exactly as before; an arm
@@ -31,6 +37,7 @@ import { sql } from '../../api/_lib/db.js';
 import { llmComplete } from '../../api/_lib/llm.js';
 import { assessMarketRealness } from '../../api/_lib/market-realness.js';
 import { buildKnowledgePack } from './judge-knowledge.js';
+import { scoutJudgeBlock } from '../../api/_lib/sentiment-scout.js';
 
 const OPENROUTER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 
@@ -197,9 +204,10 @@ export async function judgeLaunch(mint, strat) {
 		});
 
 	// Arms at base depth share one call per (mint, model) exactly as before. An arm
-	// with earned context is asking a materially different question, so it keys on
-	// its own strategy and pays for its own call.
-	const scope = pack.block ? `${pack.depth}:${strat.id}` : 'base';
+	// with earned context (or Scout context) is asking a materially different
+	// question, so it keys on its own strategy and pays for its own call.
+	const scoutOn = strat.llm_scout_context === true;
+	const scope = pack.block || scoutOn ? `${pack.depth}${scoutOn ? '+scout' : ''}:${strat.id}` : 'base';
 	const key = `${mint.mint}:${model}:${scope}`;
 	const cached = _verdicts.get(key);
 	if (cached && Date.now() - cached.ts < VERDICT_TTL_MS) return cached.promise;
@@ -209,7 +217,14 @@ export async function judgeLaunch(mint, strat) {
 		return null;
 	}
 	_active++;
-	const promise = judge(mint, model, pack.block)
+	const scoutRead = scoutOn
+		? scoutJudgeBlock(mint.mint, network).catch((err) => {
+			log.warn('scout context unavailable, judging without it', { mint: mint.mint, model, err: err?.message });
+			return '';
+		})
+		: Promise.resolve('');
+	const promise = scoutRead
+		.then((scoutBlock) => judge(mint, model, pack.block + scoutBlock))
 		.then((verdict) => {
 			if (verdict) {
 				recordVerdict({ mint: mint.mint, network, requestedModel: model, verdict });

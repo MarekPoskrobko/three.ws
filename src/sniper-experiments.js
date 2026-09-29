@@ -134,7 +134,10 @@ function walletLine(x) {
 
 function modeBadge(x) {
 	if (x.decision_mode === 'llm') {
-		return `<span class="xp-badge xp-badge-llm" title="No rule shields: an LLM judges each launch">LLM · ${esc(shortModel(x.llm_model))}</span>`;
+		const scout = x.llm_scout_context
+			? ' <span class="xp-badge xp-badge-llm" title="This judge also reads the Sentiment Scout\'s sourced evidence for each coin">+ Scout</span>'
+			: '';
+		return `<span class="xp-badge xp-badge-llm" title="No rule shields: an LLM judges each launch">LLM · ${esc(shortModel(x.llm_model))}</span>${scout}`;
 	}
 	return `<span class="xp-badge xp-badge-rules">rules</span>`;
 }

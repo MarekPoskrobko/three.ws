@@ -157,6 +157,9 @@ const TIME_SERIES_TABLES = [
 	{ table: 'sniper_coin_sentiment', tsColumn: 'checked_at', windowKind: 'firehose' },
 	{ table: 'token_intel_risk', tsColumn: 'checked_at', windowKind: 'firehose' },
 	{ table: 'x402_spent_payments', tsColumn: 'created_at', windowKind: 'spent' },
+	// One row per coin the Sentiment Scout ever put on its board. Trade receipts
+	// cite the first sighting, so it keeps the audit window, not the firehose one.
+	{ table: 'sentiment_scout_reads', tsColumn: 'first_scouted_at', windowKind: 'audit' },
 ];
 
 // ── Autopilot run logs ────────────────────────────────────────────────────────

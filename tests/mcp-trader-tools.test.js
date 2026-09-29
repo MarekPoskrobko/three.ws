@@ -1,7 +1,7 @@
 /**
  * Trader MCP tools (api/_mcp/tools/trader.js), the tools that close the
  * autonomous copy-trading loop: trader_leaderboard, trader_profile,
- * trade_receipt, copy_subscribe, copy_status.
+ * trade_receipt, sentiment_scout, copy_subscribe, copy_status.
  *
  * The handlers themselves are the real shipped code. Only their leaf boundaries
  * are stubbed: the Neon client, the trader-stats aggregators, and the rate
@@ -89,6 +89,13 @@ vi.mock('../api/_lib/trade-receipt.js', () => ({
 	loadTradeReceipt: (...a) => loadTradeReceipt(...a),
 }));
 
+const runSentimentScout = vi.fn();
+const scoutTrackRecord = vi.fn();
+vi.mock('../api/_lib/sentiment-scout.js', () => ({
+	runSentimentScout: (...a) => runSentimentScout(...a),
+	scoutTrackRecord: (...a) => scoutTrackRecord(...a),
+}));
+
 const mcpIp = vi.fn(async () => ({ success: true, limit: 600, remaining: 599, reset: 0 }));
 vi.mock('../api/_lib/rate-limit.js', () => ({
 	clientIp: () => '203.0.113.7',
@@ -159,7 +166,7 @@ beforeEach(() => {
 describe('tool surface', () => {
 	it('exports the trader tools with handlers and input schemas', () => {
 		expect(Object.keys(TOOLS).sort()).toEqual(
-			['copy_status', 'copy_subscribe', 'trade_receipt', 'trader_leaderboard', 'trader_profile'],
+			['copy_status', 'copy_subscribe', 'sentiment_scout', 'trade_receipt', 'trader_leaderboard', 'trader_profile'],
 		);
 		for (const t of toolDefs) {
 			expect(typeof t.handler).toBe('function');
@@ -176,6 +183,8 @@ describe('tool surface', () => {
 		expect(TOOLS.trader_profile.scope).toBeUndefined();
 		expect(TOOLS.trade_receipt.scope).toBeUndefined();
 		expect(TOOLS.trade_receipt.annotations.readOnlyHint).toBe(true);
+		expect(TOOLS.sentiment_scout.scope).toBeUndefined();
+		expect(TOOLS.sentiment_scout.annotations.readOnlyHint).toBe(true);
 		expect(TOOLS.copy_subscribe.annotations.readOnlyHint).toBe(false);
 		expect(TOOLS.copy_status.annotations.readOnlyHint).toBe(true);
 	});
@@ -367,6 +376,56 @@ describe('trade_receipt', () => {
 
 		loadTradeReceipt.mockRejectedValueOnce(new Error('Error connecting to database: fetch failed'));
 		const down = await TOOLS.trade_receipt.handler({ trade_id: TRADE_ID }, ANON);
+		expect(down.isError).toBe(true);
+		expect(textOf(down)).toMatch(/temporarily unavailable/i);
+	});
+});
+
+describe('sentiment_scout', () => {
+	const board = {
+		network: 'mainnet',
+		window_minutes: 60,
+		observed: 1200,
+		generated_at: '2026-09-29T06:00:00.000Z',
+		candidates: [{
+			mint: THREE_MINT,
+			ticker: '$THREE',
+			momentum_score: 64,
+			evidence: [{ type: 'volume_spike', detail: '12.0 SOL bought in its first 90s', source: 'https://three.ws/api/pump/coin-intel?mint=x', at: '2026-09-29T05:40:00.000Z' }],
+			caution: 'These signals cover only the first 90s of trading; most early momentum on pump.fun fades.',
+		}],
+	};
+
+	beforeEach(() => {
+		runSentimentScout.mockReset();
+		scoutTrackRecord.mockReset();
+	});
+
+	it('returns the board with its evidence and a link to the page', async () => {
+		runSentimentScout.mockResolvedValueOnce(board);
+		const out = payloadOf(await TOOLS.sentiment_scout.handler({ limit: 3 }, ANON));
+		expect(runSentimentScout).toHaveBeenCalledWith({ network: 'mainnet', mint: null, windowMinutes: undefined, limit: 3 });
+		expect(out.candidates[0].evidence[0].source).toMatch(/^https:/);
+		expect(out.board_url).toBe('https://three.ws/coin-intel?tab=scout');
+		expect(out.track_record).toBeUndefined();
+		expect(scoutTrackRecord).not.toHaveBeenCalled();
+	});
+
+	it('reads one coin and attaches the track record on request', async () => {
+		runSentimentScout.mockResolvedValueOnce({ ...board, found: true });
+		scoutTrackRecord.mockResolvedValueOnce({ days: 14, scouted: 40, labeled: 30, good_rate: 0.1, base_rate: 0.02 });
+		const out = payloadOf(await TOOLS.sentiment_scout.handler({ mint: THREE_MINT, track_record: true }, ANON));
+		expect(runSentimentScout.mock.calls[0][0].mint).toBe(THREE_MINT);
+		expect(out.track_record.scouted).toBe(40);
+	});
+
+	it('rejects a malformed mint and reports an outage as unavailable', async () => {
+		const bad = await TOOLS.sentiment_scout.handler({ mint: 'not-a-mint' }, ANON);
+		expect(bad.isError).toBe(true);
+		expect(runSentimentScout).not.toHaveBeenCalled();
+
+		runSentimentScout.mockRejectedValueOnce(new Error('Error connecting to database: fetch failed'));
+		const down = await TOOLS.sentiment_scout.handler({}, ANON);
 		expect(down.isError).toBe(true);
 		expect(textOf(down)).toMatch(/temporarily unavailable/i);
 	});

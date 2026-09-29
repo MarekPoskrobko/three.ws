@@ -726,6 +726,35 @@ Returns `{ mint, sources: [...], dexscreener?, jupiter?, solana?, skipped: [...]
 
 ---
 
+### `sentiment_scout`
+
+Sourced pump.fun momentum candidates from the [Sentiment Scout](./sentiment-scout.md). Each candidate carries a 0-100 `momentum_score` with its parts, evidence lines (`volume_spike`, `fresh_buyers`, `smart_money`, `graduation_approach`, `social_mention`, `paid_signal`, `news_match`) and one `caution` line. Every evidence line has a `source` URL, an `at` timestamp, and, for social or paid claims, `checked_against`: the on-chain facts read in the same run. Unreadable sources are listed in `unavailable`, never estimated. Read-only; never trades.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "mint": { "type": "string", "description": "Optional pump.fun mint (base58). Omit for the board." },
+    "network": { "type": "string", "enum": ["mainnet", "devnet"], "default": "mainnet" },
+    "window_minutes": { "type": "integer", "minimum": 15, "maximum": 240, "default": 60 },
+    "limit": { "type": "integer", "minimum": 1, "maximum": 10, "default": 5 },
+    "track_record": { "type": "boolean", "default": false }
+  },
+  "additionalProperties": false
+}
+```
+
+```bash
+curl -s https://three.ws/api/mcp -H 'content-type: application/json' -H 'authorization: Bearer <token>' -d '{
+  "jsonrpc": "2.0", "id": 1, "method": "tools/call",
+  "params": { "name": "sentiment_scout", "arguments": { "limit": 3, "track_record": true } }
+}'
+```
+
+Returns `{ network, window_minutes, observed, generated_at, candidates: [...], board_url, disclaimer, track_record? }`. `track_record` grades the coins the Scout flagged over the last 14 days against the base rate of every labeled launch.
+
+---
+
 ### `text_to_animation`
 
 Generate a brand-new motion from a natural-language prompt ("waving confidently", "a slow tai-chi sweep") with a text-to-motion diffusion model (MDM, MIT), then retarget it onto a caller-supplied rigged humanoid GLB — the same retarget engine `apply_animation` uses. Unlike the curated animation library, the motion does not pre-exist: it's synthesized for the prompt, on the self-host `model-text2motion` GPU worker (`workers/model-text2motion/`).

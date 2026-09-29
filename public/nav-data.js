@@ -648,6 +648,13 @@ export const NAV_GROUPS = [
 						desc: 'Every launch classified — organic vs bundle, the wallets, a learning score',
 					},
 					{
+						title: 'Sentiment Scout',
+						href: '/coin-intel?tab=scout',
+						badge: 'New',
+						badgeTone: 'new',
+						desc: 'Momentum with receipts: every claim linked to its post or read, timestamped, and checked on-chain',
+					},
+					{
 						title: 'Coin Radar',
 						href: '/radar',
 						badge: 'Live',

@@ -176,6 +176,31 @@ function intelCard(i, openedAt) {
 	return card('Launch intel', timingChip(i.timing, i.observed_at, openedAt), body);
 }
 
+const SCOUT_TYPE_LABEL = {
+	volume_spike: 'Volume',
+	fresh_buyers: 'Buyers',
+	smart_money: 'Smart money',
+	graduation_approach: 'Curve',
+	social_mention: 'Social',
+	paid_signal: 'Paid read',
+	news_match: 'News',
+};
+
+function scoutCard(sc, openedAt) {
+	const lines = sc.evidence.map((e) => {
+		const label = SCOUT_TYPE_LABEL[e.type] || e.type.replace(/_/g, ' ');
+		const src = e.source ? ` ${link(e.source, e.platform === 'x' ? 'Post' : 'Source')}` : '';
+		const check = e.checked_against ? `<span class="rc-dim rc-check-line">${esc(e.checked_against)}</span>` : '';
+		return `<li><span class="rc-pill rc-muted">${esc(label)}${e.platform ? ` · ${esc(e.platform)}` : ''}</span><span>${esc(e.detail)}${src}${check}</span></li>`;
+	}).join('');
+	const peak = sc.peak_score != null && sc.score != null && sc.peak_score > sc.score ? ` <span class="rc-dim">peaked at ${sc.peak_score}</span>` : '';
+	const body = `${sc.score != null ? `<p class="rc-big">${sc.score}<small>/100 momentum</small>${peak}</p>` : ''}
+		${lines ? `<ul class="rc-list rc-scout">${lines}</ul>` : ''}
+		${sc.caution ? `<p class="rc-text rc-caution"><strong>Caution:</strong> ${esc(sc.caution)}</p>` : ''}
+		<p class="rc-foot">The Scout's first flag of this coin, with every line's source. ${link('/coin-intel?tab=scout', 'Scout board')}</p>`;
+	return card('Sentiment Scout', timingChip(sc.timing, sc.at, openedAt), body);
+}
+
 function legsHTML(legs, openedAt) {
 	if (!legs.length) return '';
 	return `<ol class="rc-legs">${legs.map((l) => {
@@ -207,6 +232,7 @@ export function receiptHTML(r, { showLinks = true } = {}) {
 		e.sentiment && sentimentCard(e.sentiment, opened),
 		e.token_risk && tokenRiskCard(e.token_risk, opened),
 		e.intel && intelCard(e.intel, opened),
+		e.scout && scoutCard(e.scout, opened),
 	].filter(Boolean);
 	const evidence = cards.length
 		? `<div class="rc-grid">${cards.join('')}</div>`
@@ -294,6 +320,11 @@ export const RECEIPT_CSS = `
 .rc-link:hover,.rc-link:focus-visible{color:var(--rc-ink)}
 .rc-link:focus-visible{outline:2px solid var(--accent,#34d399);outline-offset:2px;border-radius:2px}
 .rc-note{font-size:11px;color:var(--rc-faint);margin-top:12px!important}
+.rc-scout li{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start}
+.rc-scout .rc-pill{font-size:10px;white-space:nowrap}
+.rc-check-line{display:block;margin-top:2px}
+.rc-caution{margin-top:8px!important}
+.rc-caution strong{color:var(--rc-warn);font-weight:700}
 .rc-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px!important}
 .rc-empty{border:1px dashed var(--rc-line);border-radius:12px;padding:12px 14px}
 .rc-sk{display:block;height:14px;border-radius:6px;margin-bottom:10px;

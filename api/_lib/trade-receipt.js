@@ -17,6 +17,8 @@
  *   sentiment    sniper_coin_sentiment (paid x402 market read, with its tx)
  *   token risk   token_intel_risk (paid x402 rug-pull score, with its tx)
  *   intel        pump_coin_intel (observed launch structure)
+ *   scout        sentiment_scout_reads (the Sentiment Scout's first flag of the
+ *                coin: its score, sourced evidence lines and caution then)
  *   legs         trading_journal (every entry / partial / exit leg + its tx)
  *
  * Honesty rules, enforced here so no renderer can break them:
@@ -242,6 +244,31 @@ function shapeIntel(row, position) {
 	};
 }
 
+/** At most this many Scout evidence lines on a receipt: the ones it led with. */
+const MAX_SCOUT_LINES = 6;
+
+function shapeScout(row, position) {
+	if (!row) return null;
+	const timing = evidenceTiming(row.first_scouted_at, position.opened_at, position.closed_at);
+	if (!timing || timing === 'after_exit') return null;
+	const lines = Array.isArray(row.first_evidence) ? row.first_evidence : [];
+	return {
+		score: num(row.first_score),
+		peak_score: num(row.peak_score),
+		caution: row.first_caution || null,
+		evidence: lines.slice(0, MAX_SCOUT_LINES).map((e) => ({
+			type: String(e?.type || ''),
+			platform: e?.platform || null,
+			detail: String(e?.detail || ''),
+			source: typeof e?.source === 'string' && /^https?:\/\//.test(e.source) ? e.source : null,
+			at: e?.at || null,
+			checked_against: e?.checked_against || null,
+		})).filter((e) => e.type && e.detail),
+		at: iso(row.first_scouted_at),
+		timing,
+	};
+}
+
 function shapeLeg(row, network) {
 	return {
 		event: row.event,
@@ -283,6 +310,7 @@ export function summarizeReceipt(r) {
 		drivers.push(`LLM judge voted ${e.judge.buy ? 'buy' : 'skip'}${conf}`);
 	}
 	if (e.risk_review && e.risk_review.severity) drivers.push(`risk officer ${e.risk_review.severity}`);
+	if (e.scout && e.scout.timing === 'before_entry' && e.scout.score != null) drivers.push(`Sentiment Scout flagged it at ${e.scout.score}`);
 	let line = `${who} ${p.paper ? 'paper-bought' : 'bought'} ${coin}. Trigger: ${r.trigger.label}.`;
 	if (drivers.length) line += ` ${drivers.join(', ').replace(/^./, (c) => c.toUpperCase())}.`;
 	if (p.status === 'closed') {
@@ -300,7 +328,7 @@ export function summarizeReceipt(r) {
  * @param {object} parts
  *   position   agent_sniper_positions row joined with agent_name / agent_image / is_public
  *   journal    trading_journal rows for the position (any order)
- *   oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel
+ *   oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel, scout
  * @returns {object} the receipt the API returns and both renderers read
  */
 export function shapeTradeReceipt(parts) {
@@ -352,6 +380,7 @@ export function shapeTradeReceipt(parts) {
 			rugpull_score: 'num', risk_level: 'text', signal: 'text', confidence: 'num', rejected: 'bool',
 		}),
 		intel: shapeIntel(parts.intel, position),
+		scout: shapeScout(parts.scout, position),
 	};
 	const receipt = {
 		position,
@@ -411,7 +440,7 @@ export async function loadTradeReceipt(id) {
 	const entryCutoff = new Date(opened.getTime() + ENTRY_SKEW_MS);
 	const judgeModel = position.entry_trigger === 'llm_intel' ? position.trigger_ref : null;
 
-	const [journal, oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel] = await Promise.all([
+	const [journal, oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel, scout] = await Promise.all([
 		all(sql`
 			select event, reason, rationale, sold_fraction, leg_pnl_lamports, market_cap_usd, venue, mode, ts, sig
 			from trading_journal where position_id = ${id}
@@ -464,9 +493,13 @@ export async function loadTradeReceipt(id) {
 			       first_seen_at, observation_ended_at, updated_at
 			from pump_coin_intel where mint = ${mint} limit 1
 		`),
+		first(sql`
+			select first_scouted_at, first_score, first_evidence, first_caution, peak_score
+			from sentiment_scout_reads where mint = ${mint} and network = ${network} limit 1
+		`),
 	]);
 
 	return shapeTradeReceipt({
-		position, journal, oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel,
+		position, journal, oracleHistory, oracleCurrent, firewall, judge, riskReview, sentiment, tokenRisk, intel, scout,
 	});
 }

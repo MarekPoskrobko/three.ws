@@ -14,6 +14,11 @@
 //                       reasons, trade firewall, LLM judge, Risk Officer, paid
 //                       x402 reads) plus each journal leg and its tx.
 //
+//   sentiment_scout     unscoped. Sourced pump.fun momentum candidates: every
+//                       claim carries its source link, the time it was true,
+//                       and (for social claims) the on-chain facts it was
+//                       checked against. Never trades.
+//
 //   copy_subscribe      auth-gated (agents:write). Set up copy-trading: mirror
 //                       a leader's future entries to your own wallet with your
 //                       own sizing and risk caps. Non-custodial: we never
@@ -31,6 +36,7 @@ import { limits } from '../../_lib/rate-limit.js';
 import { getLeaderboard, getTraderStats, WINDOWS, LEADERBOARD_SORTS } from '../../_lib/trader-stats.js';
 import { normalizeSubscriptionInput } from '../../_lib/copy-engine.js';
 import { loadTradeReceipt } from '../../_lib/trade-receipt.js';
+import { runSentimentScout, scoutTrackRecord } from '../../_lib/sentiment-scout.js';
 import { isUuid } from '../../_lib/validate.js';
 
 const NETWORKS  = new Set(['mainnet', 'devnet']);
@@ -325,6 +331,52 @@ export const toolDefs = [
 				receipt_url: `https://three.ws/trader/${receipt.position.agent_id}?trade=${tradeId}`,
 				generated_at: new Date().toISOString(),
 			});
+		},
+	},
+
+	// ── sentiment_scout ─────────────────────────────────────────────────────
+	{
+		name: 'sentiment_scout',
+		title: 'Sourced momentum candidates (Sentiment Scout)',
+		annotations: LIVE,
+		description:
+			"Surface pump.fun momentum candidates with evidence you can cite. Each candidate returns a 0-100 momentum_score (with the parts that add up to it), evidence lines of type volume_spike, fresh_buyers, smart_money, graduation_approach, social_mention (X posts quoting the coin's exact contract address, or pump.fun callouts), paid_signal (x402 market reads with their payment transaction) and news_match, and one caution line naming the main risk. Every evidence line carries source (a URL that returns the fact), at (when it was true) and, for social or paid claims, checked_against (the on-chain facts read in the same run). Sources that could not be read are listed in unavailable, never estimated. Pass mint to read one coin even if it would not make the board. Pass track_record=true to include how the coins the Scout flagged over the last 14 days actually did against the base rate. This tool never trades and is not advice; cite the evidence, not the score.",
+		inputSchema: {
+			type: 'object',
+			properties: {
+				mint:           { type: 'string', description: 'Optional pump.fun mint (base58). Omit for the board.' },
+				network:        { type: 'string', enum: ['mainnet', 'devnet'], default: 'mainnet' },
+				window_minutes: { type: 'integer', minimum: 15, maximum: 240, default: 60, description: 'Minutes of launches to rank against.' },
+				limit:          { type: 'integer', minimum: 1, maximum: 10, default: 5 },
+				track_record:   { type: 'boolean', default: false, description: 'Include the Scout\'s graded track record.' },
+			},
+			additionalProperties: false,
+		},
+		async handler(args, auth) {
+			const network = NETWORKS.has(args?.network) ? args.network : 'mainnet';
+			const mint = typeof args?.mint === 'string' && args.mint.trim() ? args.mint.trim() : null;
+			if (mint && !BASE58_RE.test(mint)) return mcpErr('Invalid mint: must be a base58 Solana address.');
+
+			const rl = await limits.mcpIp(rateKeyFor(auth));
+			if (!rl.success) return mcpErr('Rate limit exceeded, try again in a moment.');
+
+			let scout;
+			let track = null;
+			try {
+				[scout, track] = await Promise.all([
+					runSentimentScout({ network, mint, windowMinutes: args?.window_minutes, limit: args?.limit }),
+					args?.track_record === true ? scoutTrackRecord(network).catch(() => null) : null,
+				]);
+			} catch (err) {
+				return unavailable(err, 'The Sentiment Scout');
+			}
+			const payload = {
+				...scout,
+				board_url: 'https://three.ws/coin-intel?tab=scout',
+				disclaimer: 'Evidence, not advice. Most early pump.fun momentum fades; the caution line names the main risk for each coin.',
+			};
+			if (args?.track_record === true) payload.track_record = track;
+			return mcpOk(payload);
 		},
 	},
 

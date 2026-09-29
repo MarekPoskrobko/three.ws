@@ -137,6 +137,28 @@ describe('shapeTradeReceipt', () => {
 		expect(r.evidence.sentiment.receipt_url).toContain(SOL_SIG);
 	});
 
+	it('shows what the Sentiment Scout flagged before the entry, with sources, and nothing it said after the exit', () => {
+		const scout = {
+			first_scouted_at: at(-600), first_score: 64, peak_score: 71,
+			first_caution: 'Most early momentum on pump.fun fades.',
+			first_evidence: [
+				{ type: 'volume_spike', detail: '30.0 SOL bought in its first 90s', source: 'https://three.ws/api/pump/coin-intel?mint=x', at: at(-700) },
+				{ type: 'social_mention', platform: 'x', detail: '3 X posts quoted this exact contract address', source: 'https://x.com/a/status/1', at: at(-650), checked_against: 'On-chain at 05:40 UTC: 30.0 SOL bought' },
+				{ type: 'paid_signal', detail: 'no link', source: 'javascript:alert(1)' },
+				{ type: '', detail: 'dropped' },
+			],
+		};
+		const r = shapeTradeReceipt({ position: position(), journal: [], scout });
+		expect(r.evidence.scout).toMatchObject({ score: 64, peak_score: 71, timing: 'before_entry' });
+		expect(r.evidence.scout.evidence).toHaveLength(3);
+		expect(r.evidence.scout.evidence[1]).toMatchObject({ platform: 'x', source: 'https://x.com/a/status/1' });
+		expect(r.evidence.scout.evidence[2].source).toBeNull();
+		expect(r.summary).toContain('Sentiment Scout flagged it at 64');
+
+		const late = shapeTradeReceipt({ position: position(), journal: [], scout: { ...scout, first_scouted_at: '2026-09-24T09:00:00.000Z' } });
+		expect(late.evidence.scout).toBeNull();
+	});
+
 	it('only admits an LLM verdict that existed before the entry', () => {
 		const before = shapeTradeReceipt({
 			position: position(), journal: [],
