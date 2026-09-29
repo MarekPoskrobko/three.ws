@@ -4345,3 +4345,84 @@ not readable; the last reading is still 2026-09-09's `Listing rejected`.
    (`npm run okx:gauntlet -- --yes`), which settles 1.07 USD₮0 on X Layer to seller
    `0x4022de2D36C334E73C7a108805Cea11C0564f402` (cases 2, 2b, 3, 3i, 3r, 5a) and 0.01 USDC on
    Solana to the Solana payTo `wwwwwDxFWRn7grgr3Esrsg5C6NvDoDHSA4gaCffccrU` (case 7).
+
+## 2026-09-29 | backlog order 08 (907) | bot redeployed onto the lease and the free gateway lane; healthz ok; no inbound message yet
+
+Owner instruction "finish them all" was the approval for `npm run okx:bot:deploy`. No `okx:bot`,
+no local daemon, no `onchainos wallet login` in any phase, no API deploy, no push, no spend.
+
+**Blocker found and fixed before the real run.** `--dry-run` was green through step [4] (gcloud ok,
+clean worktree of HEAD, lane `missing` as expected, live API `f2081d946` contains `d3074c1c8`), but
+the image itself could not have built: onchainos releases from v4.6.0 on ship no `install.sh` and no
+`installer-checksums.txt` (both 404 on v4.6.3), and the Dockerfile's installer step used them. It
+now downloads the release binary for the build platform and verifies it against the release's own
+`checksums.txt` (`0b1335882`). Verified locally first (`onchainos-x86_64-unknown-linux-gnu: OK`,
+`onchainos 4.6.3`), then in Cloud Build.
+
+**Deploy.** `npm run okx:bot:deploy` exit 0.
+- Step [3] provisioned the lane: user `106ec2ec-83a0-4f79-b350-a6b23fd986b4`
+  (`marketplace-chat@agents.three.ws`), metering agent `55479fa8-13c6-44b3-a245-3156f2c836e5`,
+  key `365d6994-...` minted into `okx-chat-bot-llm-gateway-token`, `three-ws@` granted
+  `secretAccessor`; proxy `200` on `nvidia/nemotron-3-super-120b-a12b`, bot probe ok.
+- Cloud Build `ea753445-ab27-4d1e-bcc9-659930a223f5` SUCCESS (onchainos 4.6.3 baked in, was 4.5.2),
+  revision **`okx-chat-bot-00002-s4s`** serving 100%.
+
+**Lease handoff, from the service logs (UTC):**
+- 06:40:50 new instance boots, chain `vertex > anthropic-gateway`, health server up, then
+  `waiting for the single-writer lease`: "`okx-chat-bot-00001-926` predates the single-writer lease
+  and beat 11s ago".
+- 06:41:13 `00001-926` gets SIGTERM, `daemon stopped` (0 restarts), `state snapshot saved`
+  (7,121,505 bytes, reason SIGTERM), `bye`.
+- 06:42:43 `single-writer lease acquired` (old beat 90 s quiet), 06:42:44 `state restored`
+  (the same 7,121,505 bytes), 06:42:45 `workspace built` (briefing 10,068 bytes, 12 skills),
+  06:42:46 `provider lane elected` vertex -> anthropic-gateway (`vertex=unauthorized
+  anthropic-gateway=ok`), 06:42:58 `health changed` online / ok.
+- No overlap: the new daemon started 90 s after the old one stopped. One `Uncaught signal: 6` at
+  06:42:47 is the first daemon child being killed for the lane restart; `daemonRestarts` stayed 0.
+- The restored session survived the onchainos 4.5.2 to 4.6.3 jump: `loggedIn: true`, no OTP.
+
+**Heartbeat, `bot_heartbeat` row `okx-chat-bot`, 06:48:25:** 13 s old, `reason: online`,
+`health: ok`, `ready: true`, `loggedIn: true`, `activeClients: 1`, `agentCount: 1`,
+`daemonRestarts: 0`, `providerLane: anthropic-gateway`, `providerTransport: gateway`,
+`providerChain: [vertex unauthorized, anthropic-gateway ok]`, `leaseHolder:
+cloudrun:okx-chat-bot (okx-chat-bot-00002-s4s)#283fb2ec-...`. Lease row `okx-chat-bot:lease`
+renewed 5 s earlier by the same holder.
+
+**`/api/healthz`:**
+`{"name":"okx_chat_bot","host":"cloudrun:okx-chat-bot (okx-chat-bot-00002-s4s)","hostDurable":true,"status":"ok","detail":"online (1 XMTP client(s), provider=claude, host=cloudrun:okx-chat-bot (okx-chat-bot-00002-s4s))"}`
+The subsystem does not surface `providerLane`/`leaseHolder`; they are in the beat above.
+
+**`npm run okx:bot:gateway -- --verify --cli`:** exit 0. Secret holds the active key; proxy `200`;
+probe ok; `claude -p through the lane: OK {"turns":2,"result":"gateway-proof-mumbc703","isError":false,"durationMs":6851}`.
+
+**`$OKX_BOT_URL/readyz`:** not readable from this workspace. Unauthenticated answers 403 (correct,
+`--no-allow-unauthenticated`); the gcloud user identity token here carries a non-default OAuth
+audience, which Cloud Run answers 401, and the account lacks `getOpenIdToken` to mint one for
+`three-ws@`. No IAM was changed to get around it. The heartbeat is written from the same verdict
+`/readyz` serves, and reads `ready: true`.
+
+**A platform question, answered with real three.ws context (off-host).** The bot's own
+`buildWorkspace()` staged into a throwaway HOME, the real `claude` CLI run in it with the exact
+gateway env overlay against production. Question: a buyer wants a rigged character and a cheap
+prop. Answer (19 s): Text to Rigged Avatar $0.50 at `/api/okx/3d/avatar`, Forge 3D Draft $0.01 at
+`/api/okx/3d/forge-draft`, Text to 3D Model $0.01 at `/api/okx/3d/text-to-3d`, status via the free
+Forge Job Status service. Every price and endpoint matches the briefing. Two flaws: it called the
+$0.01 text-to-3d "even cheaper" than the $0.01 draft, and it wrote en-dashes because the briefing
+only banned em-dashes. The briefing now bans both (`1f4f48313`); that ships on the next bot deploy.
+This proves the context and the lane, not a reply on the host.
+
+**No real inbound message has reached the bot since 2026-09-03.** The daemon's offline replay on
+both boots reports `newest=2026-09-03T10:28:06Z`, `scanned=1`, `replayed=0`. Inbound chat on this
+marketplace is job-scoped (`a2a-agent-chat` with a `jobId`, from a counterparty agent), and
+`okx-a2a` quarantines anything else into `invalid-xmtp-messages.sqlite`, so a raw XMTP DM from a
+fresh key would prove nothing. The honest way to produce one needs a counterparty agent in a
+**different** OKX account: any agent on `claude@three.ws` would be loaded by `get-my-agents` next to
+#2632, so a second daemon for it on that account is a second writer on #2632's identity. Two real
+sources, both owner-held: (a) OKX's own chat test during listing review, triggered by the 911
+resubmission once the owner's login completes; (b) a buyer agent registered under a second OKX
+account, publishing a task that names #2632 and sending one chat line.
+
+**Other agents' work observed, not touched.** A concurrent `deploy:sniper` run wrote into the same
+scratch log path and failed on its own (`agent-sniper-00034-7zp` did not listen on 8080).
+
+**907 stays open.** DoD lines 1 and 3 need a real inbound message and a reply on the host. When one lands, the daemon logs `queued ai-dispatch command=... job=...` then `ai-dispatch command completed`; read them with `gcloud logging read 'resource.labels.service_name="okx-chat-bot" jsonPayload.line:"ai-dispatch"' --freshness=1h`.

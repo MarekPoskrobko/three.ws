@@ -358,19 +358,21 @@ someone has to go find.
 
 ## Deploying
 
-**Status: deployed 2026-09-04.** Service `okx-chat-bot` in
-`aerial-vehicle-466722-p5`, revision `okx-chat-bot-00001-926`, `Ready=True` at
+**Status: redeployed 2026-09-29.** Service `okx-chat-bot` in
+`aerial-vehicle-466722-p5`, revision `okx-chat-bot-00002-s4s`, at
 `https://okx-chat-bot-lp642k3kpa-uc.a.run.app` (authenticated invocations only).
-The first boot restored the seeded snapshot byte for byte, came up
-`loggedIn: true` with no OTP, and serves one XMTP client for agent 2632. The
+It took over from the first revision, `okx-chat-bot-00001-926` (deployed
+2026-09-04), through the single-writer lease: it waited until the old host's
+heartbeat was 90 s quiet, restored the snapshot that host wrote on SIGTERM, and
+came up `loggedIn: true` with no OTP, one XMTP client serving agent 2632. The
 codespace stopgap is stopped and **must stay stopped**: the GCS state object has
 exactly one writer and Cloud Run owns it now.
 
-It reports `ai_provider_unauthorized` and answers `/readyz` 503, which is the
-design working rather than a fault: chat is delivered durably, the GCP billing
-hold denies Vertex, and the bot says so with the fix attached instead of going
-quiet. Clearing the hold needs no redeploy; the credential probe flips readiness
-on its own within 15 minutes.
+It reports `online` and `/api/healthz` reads `ok`. Vertex still answers the
+billing hold (`Lightning dunning decision is deny`), so the election skips it and
+replies run on the `anthropic-gateway` lane through three.ws's own proxy. Clearing
+the hold needs no redeploy: the next 15-minute election moves the bot back to
+Claude on Vertex by itself.
 
 Everything the deploy depends on:
 
@@ -380,8 +382,8 @@ Everything the deploy depends on:
 | `okx-chat-bot-database-url` secret | created 2026-09-02 from the project's own `DATABASE_URL`, `three-ws@` holds `secretAccessor` |
 | AI credential | **no secret needed.** `three-ws@` already holds `roles/aiplatform.user`, so `CLAUDE_CODE_USE_VERTEX=1` in the deploy authenticates through ADC |
 | Seeded session | seeded 2026-09-04 and proven: the first revision restored it and needed no OTP |
-| Payment-free AI lane | `npm run okx:bot:deploy` provisions it (metering agent, service-account key, `okx-chat-bot-llm-gateway-token` secret with `three-ws@` as `secretAccessor`) through `scripts/okx-bot-llm-gateway.mjs --apply`. Not yet run as of 2026-09-18: Secret Manager writes are the owner's |
-| API carrying the agent-scoped proxy path | commits `53687d994` and `d3074c1c8`. Not live as of 2026-09-18 (live API `4291900c7`); `npm run deploy:gcp:full` ships it |
+| Payment-free AI lane | `npm run okx:bot:deploy` provisions it (metering agent, service-account key, `okx-chat-bot-llm-gateway-token` secret with `three-ws@` as `secretAccessor`) through `scripts/okx-bot-llm-gateway.mjs --apply`. Provisioned 2026-09-29: service account `marketplace-chat@agents.three.ws`, metering agent `55479fa8-13c6-44b3-a245-3156f2c836e5`, one active key in the secret |
+| API carrying the agent-scoped proxy path | commits `53687d994` and `d3074c1c8`, live since API `c8f10f437` (2026-09-24) |
 
 The AI-provider secret used to be the one blocker, and the deploy was written to
 fail loudly without it on the reasoning that a bot receiving chat it can never
@@ -473,7 +475,7 @@ deploy and then vanishes without a single error line. A lane belongs in
   `CLAUDE_CODE_USE_VERTEX` only if you want the key to lead.
 - **A gateway**: set `OKX_BOT_ANTHROPIC_BASE_URL` and `OKX_BOT_ANTHROPIC_MODEL` in
   `--set-env-vars` and `OKX_BOT_ANTHROPIC_AUTH_TOKEN=<secret>:latest` in
-  `--set-secrets`. The deploy already carries the OpenRouter one.
+  `--set-secrets`. The deploy already carries one: three.ws's own proxy, above.
 
 Because the chain elects on a live probe rather than on presence, a lane with no
 funds behind it is inert (it probes `unauthorized` and is never elected) and

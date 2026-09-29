@@ -73,6 +73,32 @@ host. Build it:
    host detect an expired session and emit an actionable alert naming the exact
    command, rather than failing chat silently.
 
+## State on 2026-09-29, re-measured: deployed, online, `ok`; only a real inbound message is left
+
+Full measurements: [okx-ai-PROGRESS.md](_context/okx-ai-PROGRESS.md), entry 2026-09-29.
+
+- **Owner step 2 is done.** `npm run okx:bot:deploy` exit 0 after one fix it needed: onchainos
+  releases from v4.6.0 on ship no `install.sh`/`installer-checksums.txt`, so the Dockerfile now
+  installs the checksummed release binary (`0b1335882`). Lane provisioned (metering agent
+  `55479fa8-13c6-44b3-a245-3156f2c836e5`, key in `okx-chat-bot-llm-gateway-token`), Cloud Build
+  `ea753445` SUCCESS, revision **`okx-chat-bot-00002-s4s`**.
+- **Lease handoff clean.** The new instance waited on the pre-lease `00001-926` until its beat was
+  90 s quiet, the old one snapshotted on SIGTERM and exited, the new one acquired the lease at
+  06:42:43Z, restored that exact snapshot (7,121,505 bytes), elected `anthropic-gateway` over
+  `vertex=unauthorized`, and went `online` at 06:42:58Z with `loggedIn: true` and no OTP.
+- **Owner step 3 is done.** `/api/healthz` `okx_chat_bot` is **`ok`** on `okx-chat-bot-00002-s4s`;
+  the beat carries `providerLane: anthropic-gateway` and `leaseHolder`; `npm run okx:bot:gateway --
+  --verify --cli` exit 0 (`claude -p` through the lane, 2 turns, tool call, 6.9 s). `/readyz` is not
+  readable from this workspace's gcloud identity (401 on the token audience); the beat reports
+  `ready: true` from the same verdict.
+- **What remains:** DoD lines 1 and 3 need a real buyer message answered on the host. No inbound has
+  arrived since 2026-09-03 (daemon offline replay `newest=2026-09-03T10:28:06Z`). Inbound chat is
+  job-scoped and must come from a counterparty agent in a **different** OKX account (an agent on
+  `claude@three.ws` would be a second writer on #2632's identity). Owner-held sources: OKX's own chat
+  test when 911 resubmits, or a buyer agent on a second account opening a task naming #2632. When
+  one lands, read `gcloud logging read 'resource.labels.service_name="okx-chat-bot"
+  jsonPayload.line:"ai-dispatch"' --freshness=1h` and confirm the reply, then retire this order.
+
 ## State on 2026-09-25, re-measured: gcloud is back, the deploy is one approval away
 
 - **Bot host: unchanged.** `/api/healthz` still reports `okx_chat_bot` `degraded` on
@@ -160,18 +186,21 @@ Vertex leads the chain, so the next election moves the bot back to Claude on Ver
 
 ## Definition of done
 
-- [ ] **Chat delivery verified end to end with a real inbound message.** The inbound half
-      is proven (`activeClients: 1`, `agentCount: 1`, 0 daemon restarts since
-      2026-09-05). The reply lane is proven against production (2026-09-18: the real
-      `claude` agentic request, tool call included, answered through the free proxy
-      chain); a real buyer reply needs the two deploys above. The original wording
+- [ ] **Chat delivery verified end to end with a real inbound message.** Both deploys
+      have landed (2026-09-29: `okx-chat-bot-00002-s4s`, `online`, lane `anthropic-gateway`,
+      `activeClients: 1`, healthz `ok`) and the real `claude` CLI answers through the lane on
+      production. Still missing: an actual buyer message and the host's reply to it (owner-held,
+      see the 2026-09-29 state section). The original wording
       of this line, "`npm run okx:bot` exits 0", is retired: that command is the
       codespace stopgap and must not run while the deployed host is up.
 - [x] **The daemon runs on an always-on host, not this codespace.** Cloud Run
       `okx-chat-bot-00001-926`, 4.8 days of continuous 30s beats.
 - [ ] **Its workspace carries real three.ws context.** The mechanical half is done and
       tested: `buildChatBriefing()` renders 10,069 bytes from the live catalog module and
-      is rebuilt on every boot. Asking the bot a platform question needs the deploys above.
+      is rebuilt on every boot. On 2026-09-29 the real CLI, in a workspace staged by the bot's own
+      `buildWorkspace()` and run through the production lane, answered a buyer question with
+      the exact listed prices and endpoints. That was off-host; the same answer from the
+      deployed host needs the inbound message in line 1.
 - [x] **A health endpoint exists and an offline session raises an alert.** `/readyz` is
       strict, `/api/healthz` carries the `okx_chat_bot` subsystem (now naming its
       `host` and `hostDurable` as fields), and `sendOpsAlert` fires on every
