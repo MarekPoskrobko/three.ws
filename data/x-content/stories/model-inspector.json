@@ -1,0 +1,150 @@
+{
+	"id": "model-inspector",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "developer",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/inspect"
+	],
+	"scenario": {
+		"format": "square",
+		"steps": [
+			{
+				"goto": "https://three.ws/inspect",
+				"settle": 6000
+			},
+			{
+				"hold": 1500,
+				"caption": "The quality gate our own catalog has to pass, pointed at any GLB"
+			},
+			{
+				"click": "Mannequin",
+				"caption": "A real model from the library that does not pass"
+			},
+			{
+				"expect": "short of the catalog bar",
+				"within": 90000,
+				"film": true
+			},
+			{
+				"read": "failed",
+				"match": "(\\d+) checks? short of the catalog bar"
+			},
+			{
+				"read": "meshes",
+				"match": "(\\d+) meshes"
+			},
+			{
+				"read": "meshLimit",
+				"match": "at most (\\d+)"
+			},
+			{
+				"read": "vertices",
+				"match": "([\\d,]+) vertices"
+			},
+			{
+				"drag": [
+					[
+						0.012,
+						0.5
+					],
+					[
+						0.012,
+						0.5
+					]
+				],
+				"ms": 200
+			},
+			{
+				"scroll": 520,
+				"ms": 900,
+				"caption": "The file is read in the browser. Nothing is uploaded."
+			},
+			{
+				"drag": [
+					[
+						0.36,
+						0.55
+					],
+					[
+						0.66,
+						0.55
+					]
+				],
+				"ms": 2200
+			},
+			{
+				"hold": 600
+			},
+			{
+				"drag": [
+					[
+						0.012,
+						0.5
+					],
+					[
+						0.012,
+						0.5
+					]
+				],
+				"ms": 200
+			},
+			{
+				"scroll": 500,
+				"ms": 1000,
+				"caption": "Each rule shows what it measured against its bound"
+			},
+			{
+				"hold": 2600
+			},
+			{
+				"scroll": 330,
+				"ms": 1000,
+				"caption": "A failed rule comes with the fix"
+			},
+			{
+				"hold": 3600
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the inspector page is up",
+			"url": "https://three.ws/inspect",
+			"expect": {
+				"contains": "Model Inspector"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the model inspector story, to be replaced once the reel has been watched and the facts are read.",
+			"media": [
+				{
+					"path": "public/x-media/model-inspector/reel.mp4",
+					"probe": {
+						"durationSec": 16.3,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply for the model inspector story, to be replaced once the reel has been watched. three.ws/inspect"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

@@ -1,0 +1,118 @@
+{
+	"id": "prompt-library",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/prompts",
+		"/docs/prompts",
+		"/prompts.txt",
+		"/prompts.json"
+	],
+	"scenario": {
+		"format": "square",
+		"steps": [
+			{
+				"goto": "https://three.ws/prompts",
+				"settle": 6000,
+				"caption": "A library of prompts written to be pasted into Claude"
+			},
+			{
+				"hold": 1600
+			},
+			{
+				"read": "nosetup",
+				"match": "No setup\\s*(\\d+)"
+			},
+			{
+				"scroll": "Search prompts",
+				"ms": 1800,
+				"caption": "Filter by what you want to get done"
+			},
+			{
+				"read": "prompts",
+				"match": "(\\d+) of \\d+ prompts"
+			},
+			{
+				"click": "Make 3D things"
+			},
+			{
+				"read": "making",
+				"match": "(\\d+) of \\d+ prompts"
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"type": "rig",
+				"into": "Search prompts",
+				"caption": "Or search it: rigging, avatar, embed"
+			},
+			{
+				"hold": 1000
+			},
+			{
+				"scroll": "Generate a rigged avatar from a description",
+				"ms": 1500,
+				"caption": "Each prompt names the tools to call and what to check first"
+			},
+			{
+				"hold": 2200
+			},
+			{
+				"click": "Copy prompt",
+				"caption": "Copy it, paste it, swap the words in angle brackets"
+			},
+			{
+				"expect": "Copied",
+				"within": 5000
+			},
+			{
+				"hold": 2600
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the prompt library answers as JSON",
+			"url": "https://three.ws/prompts.json",
+			"expect": {
+				"json": {
+					"path": "prompts",
+					"min": 1
+				}
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the first run of the scenario, replaced once the reel has been watched and the facts are known to be true.",
+			"media": [
+				{
+					"path": "public/x-media/prompt-library/reel.mp4",
+					"probe": {
+						"durationSec": 14.03,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply: three.ws/prompts"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

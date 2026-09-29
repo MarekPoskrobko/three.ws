@@ -1,0 +1,26 @@
+{
+	"id": "glance",
+	"scenarioHash": "8bb4a375fc2d1cb6e45549d36f2194bf49ae52c2613e36416c1b57a11e9d4e79",
+	"ranAt": "2026-09-29T19:10:36.076Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": false,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/glance",
+			"ok": false,
+			"detail": "page.evaluate: Target page, context or browser has been closed",
+			"ms": 9823,
+			"frames": 0
+		}
+	],
+	"facts": {},
+	"saw": [],
+	"responses": [],
+	"cuts": [],
+	"video": null
+}

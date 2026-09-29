@@ -1,0 +1,314 @@
+{
+	"id": "herald-burst",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/herald",
+		"@three-ws/herald-mcp"
+	],
+	"scenario": {
+		"format": "square",
+		"show": [
+			".walk-companion"
+		],
+		"hide": [
+			".walk-companion-id",
+			".walk-companion-caption"
+		],
+		"steps": [
+			{
+				"goto": "https://three.ws/herald",
+				"settle": 24000
+			},
+			{
+				"scroll": "Compose",
+				"ms": 900,
+				"caption": "Herald decides what may interrupt you"
+			},
+			{
+				"hold": 700
+			},
+			{
+				"click": "Send a burst of five",
+				"caption": "Five messages land at the same moment"
+			},
+			{
+				"expect": "· delivering-another",
+				"within": 20000
+			},
+			{
+				"expect": "Mute 1 min",
+				"within": 45000
+			},
+			{
+				"read": "said",
+				"match": "(\\d+)\\s*delivered"
+			},
+			{
+				"read": "held",
+				"match": "(\\d+)\\s*held"
+			},
+			{
+				"hold": 1800,
+				"caption": "The 3D character in the corner says one"
+			},
+			{
+				"scroll": "Verdicts",
+				"ms": 900,
+				"caption": "Four wait, each with the reason"
+			},
+			{
+				"scroll": 70,
+				"ms": 300
+			},
+			{
+				"hold": 2200
+			},
+			{
+				"expect": "importance 92",
+				"within": 45000,
+				"caption": "Next comes the most important one"
+			},
+			{
+				"expect": "Mute 1 min",
+				"within": 45000
+			},
+			{
+				"hold": 2200
+			},
+			{
+				"expect": "2 more messages waiting",
+				"within": 90000,
+				"caption": "The last two collapse into one line"
+			},
+			{
+				"expect": "Mute 1 min",
+				"within": 45000
+			},
+			{
+				"read": "delivered",
+				"match": "(\\d+)\\s*delivered"
+			},
+			{
+				"read": "dropped",
+				"match": "(\\d+)\\s*dropped"
+			},
+			{
+				"hold": 4200
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the Herald playground is up",
+			"url": "https://three.ws/herald",
+			"expect": {
+				"contains": "Send a burst of five"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Send Herald five messages at once. It says one, holds four, then says the two that matter most and folds the last two into a single line: 2 more messages waiting.\n\nEach hold comes with its reason (delivering-another), and nothing is dropped.\n\nHerald is how a message gets delivered in person: a 3D character walks into the corner of your page and tells you, with a link to the thing it is about. An interruption only works while it is rare, so the budget ships with it: an importance floor, a rate limit, quiet hours, dedupe."
+		},
+		{
+			"text": "The reel is the real library running in a browser tab, on its default body: auto, the avatar first, then a card when the page has no GPU.\n\nChange the rules, send your own message, and watch what the engine decides: three.ws/herald"
+		},
+		{
+			"text": "A message can come from anything that can make an HTTPS request: a build script, a terminal, an agent over MCP.\n\nIt is always delivered to the caller's own sessions, so a key can never be used to interrupt somebody else."
+		}
+	],
+	"claims": [
+		{
+			"says": "five messages at once",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Send a burst of five"
+				}
+			]
+		},
+		{
+			"says": "It says one, holds four",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "said",
+					"equals": "1"
+				},
+				{
+					"type": "proof",
+					"fact": "held",
+					"equals": "4"
+				}
+			]
+		},
+		{
+			"says": "then says the two that matter most and folds the last two into a single line",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "importance 92"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Said per burst, before the rest collapse into one line"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "the most important few are said, and the rest become one"
+				}
+			]
+		},
+		{
+			"says": "2 more messages waiting",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "2 more messages waiting"
+				}
+			]
+		},
+		{
+			"says": "Each hold comes with its reason (delivering-another)",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "· delivering-another"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "Held (delivered once the thing blocking it clears): delivering-another"
+				}
+			]
+		},
+		{
+			"says": "nothing is dropped",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "dropped",
+					"equals": "0"
+				}
+			]
+		},
+		{
+			"says": "a 3D character walks into the corner of your page and tells you, with a link to the thing it is about",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "a 3D character walks into the corner of your page"
+				}
+			]
+		},
+		{
+			"says": "An interruption only works while it is rare",
+			"evidence": [
+				{
+					"type": "file",
+					"path": "packages/herald-mcp/README.md",
+					"contains": "an interruption only works while it is rare"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Scarcity is what keeps an interruption effective"
+				}
+			]
+		},
+		{
+			"says": "an importance floor, a rate limit, quiet hours, dedupe",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "An importance floor, a rate limit, quiet hours, dedupe with a TTL"
+				}
+			]
+		},
+		{
+			"says": "the real library running in a browser tab",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Everything below runs the real library in this tab"
+				}
+			]
+		},
+		{
+			"says": "Change the rules, send your own message, and watch what the engine decides",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Change the rules, send a message, and watch what the engine decides"
+				}
+			]
+		},
+		{
+			"says": "anything that can make an HTTPS request",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Anything that can make an HTTPS request can reach the browser tab you already have open"
+				}
+			]
+		},
+		{
+			"says": "an agent over MCP",
+			"evidence": [
+				{
+					"type": "file",
+					"path": "packages/herald-mcp/README.md",
+					"contains": "Let your agent tell you something in person"
+				}
+			]
+		},
+		{
+			"says": "It is always delivered to the caller's own sessions, so a key can never be used to interrupt somebody else",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "A message is always delivered to the caller's own sessions, so a key can never be used to interrupt somebody else"
+				}
+			]
+		},
+		{
+			"says": "on its default body: auto, the avatar first, then a card",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "auto (avatar, then card)"
+				}
+			]
+		},
+		{
+			"says": "a card when the page has no GPU",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "An accessible fallback when there is no GPU"
+				}
+			]
+		}
+	],
+	"mentions": {}
+}

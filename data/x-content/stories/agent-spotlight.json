@@ -1,0 +1,132 @@
+{
+	"id": "agent-spotlight",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/spotlight"
+	],
+	"scenario": {
+		"format": "square",
+		"steps": [
+			{
+				"goto": "https://three.ws/spotlight",
+				"settle": 7000
+			},
+			{
+				"read": "showcased",
+				"match": "(\\d+)\\s+agents showcased"
+			},
+			{
+				"scroll": 870,
+				"ms": 1000,
+				"caption": "A showcase of agents, each with a write-up of what it is for"
+			},
+			{
+				"hold": 900
+			},
+			{
+				"type": "translator",
+				"into": "Search agents, write-ups, builders",
+				"awaits": "/api/spotlight/list",
+				"caption": "The search reads the write-ups, not just the names"
+			},
+			{
+				"hold": 600
+			},
+			{
+				"scroll": 500,
+				"ms": 1100
+			},
+			{
+				"hold": 1100
+			},
+			{
+				"click": "The translator that refuses to flatten your voice",
+				"caption": "The entry opens on the agent itself, standing in 3D"
+			},
+			{
+				"expect": "Machine translation solved meaning years ago",
+				"within": 30000
+			},
+			{
+				"wait": 5000
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"drag": [
+					[
+						0.3,
+						0.55
+					],
+					[
+						0.62,
+						0.55
+					]
+				],
+				"ms": 2000
+			},
+			{
+				"hover": "Agent Spotlight"
+			},
+			{
+				"scroll": 560,
+				"ms": 1200,
+				"caption": "A write-up by three.ws is marked Curated until the builder writes their own"
+			},
+			{
+				"hold": 1400
+			},
+			{
+				"scroll": 480,
+				"ms": 1100,
+				"caption": "Conversations, upvotes and views are read live off the agent"
+			},
+			{
+				"hold": 2600
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the spotlight list answers",
+			"url": "https://three.ws/api/spotlight/list?limit=1",
+			"expect": {
+				"contains": "entries"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head",
+			"media": [
+				{
+					"path": "public/x-media/agent-spotlight/reel.mp4",
+					"probe": {
+						"durationSec": 17.3,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

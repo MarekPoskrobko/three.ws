@@ -1,0 +1,88 @@
+{
+	"id": "choreograph",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/choreograph"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/choreograph",
+				"settle": 6000
+			},
+			{
+				"scroll": "Start from a routine",
+				"ms": 900,
+				"caption": "A routine is a sequence of gestures on a timeline"
+			},
+			{
+				"click": "Shipped it",
+				"caption": "Start from a routine: sign, celebrate, dance"
+			},
+			{
+				"expect": "sign ·",
+				"within": 90000
+			},
+			{
+				"scroll": "Your routine",
+				"ms": 800,
+				"caption": "A live avatar performs each beat in order"
+			},
+			{
+				"hold": 3600
+			},
+			{
+				"scroll": "Add a gesture",
+				"ms": 800,
+				"caption": "Add a beat while it plays"
+			},
+			{
+				"click": "wave +"
+			},
+			{
+				"expect": "wave ·",
+				"within": 30000,
+				"film": true,
+				"caption": "The stage follows the edit"
+			},
+			{
+				"hold": 2500
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the choreographer story, to be replaced once the scenario has been filmed and watched.",
+			"media": [
+				{
+					"path": "public/x-media/choreograph/reel.mp4",
+					"probe": {
+						"durationSec": 10,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply: three.ws/choreograph"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

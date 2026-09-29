@@ -1,0 +1,151 @@
+{
+	"id": "avatar-engines",
+	"scenarioHash": "99f71a75364251cb73d4c0a2c3b7287d063a426738a488bb6e4ad2d0065153ce",
+	"ranAt": "2026-09-29T09:47:09.003Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": true,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/avatar-engines",
+			"detail": "loaded https://three.ws/avatar-engines",
+			"ok": true,
+			"ms": 6904,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "hold",
+			"target": "1500",
+			"detail": "1500 ms",
+			"ok": true,
+			"ms": 6223,
+			"frames": 45
+		},
+		{
+			"index": 3,
+			"kind": "read",
+			"target": "engines",
+			"detail": "engines = \"24\"",
+			"ok": true,
+			"ms": 4,
+			"frames": 0
+		},
+		{
+			"index": 4,
+			"kind": "read",
+			"target": "live",
+			"detail": "live = \"2\"",
+			"ok": true,
+			"ms": 29,
+			"frames": 0
+		},
+		{
+			"index": 5,
+			"kind": "scroll",
+			"target": "640",
+			"detail": "scrolled 640 px",
+			"ok": true,
+			"ms": 8393,
+			"frames": 48
+		},
+		{
+			"index": 6,
+			"kind": "hold",
+			"target": "1700",
+			"detail": "1700 ms",
+			"ok": true,
+			"ms": 7679,
+			"frames": 51
+		},
+		{
+			"index": 7,
+			"kind": "scroll",
+			"target": "-310",
+			"detail": "scrolled -310 px",
+			"ok": true,
+			"ms": 4179,
+			"frames": 27
+		},
+		{
+			"index": 8,
+			"kind": "click",
+			"target": "Commercial-use only",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 3092,
+			"frames": 21
+		},
+		{
+			"index": 9,
+			"kind": "expect",
+			"target": "5 of 24 engines",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 19,
+			"frames": 0
+		},
+		{
+			"index": 10,
+			"kind": "read",
+			"target": "commercial",
+			"detail": "commercial = \"5\"",
+			"ok": true,
+			"ms": 3,
+			"frames": 0
+		},
+		{
+			"index": 11,
+			"kind": "hold",
+			"target": "1600",
+			"detail": "1600 ms",
+			"ok": true,
+			"ms": 5948,
+			"frames": 48
+		},
+		{
+			"index": 12,
+			"kind": "scroll",
+			"target": "920",
+			"detail": "scrolled 920 px",
+			"ok": true,
+			"ms": 12549,
+			"frames": 72
+		},
+		{
+			"index": 13,
+			"kind": "hold",
+			"target": "2800",
+			"detail": "2800 ms",
+			"ok": true,
+			"ms": 11224,
+			"frames": 84
+		}
+	],
+	"facts": {
+		"engines": "24",
+		"live": "2",
+		"commercial": "5"
+	},
+	"saw": [
+		"5 of 24 engines"
+	],
+	"responses": [],
+	"cuts": [],
+	"video": {
+		"path": "public/x-media/avatar-engines/reel.mp4",
+		"sha256": "4c447ad207ea3608f7fd5759b08aa895ccaf5e995261b7912243da16de47147a",
+		"frames": 396,
+		"motion": 0.544,
+		"durationSec": 13.2,
+		"width": 1080,
+		"height": 1080,
+		"fps": 30,
+		"videoCodec": "h264",
+		"pixFmt": "yuv420p"
+	}
+}

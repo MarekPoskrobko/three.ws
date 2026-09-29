@@ -1,0 +1,129 @@
+{
+	"id": "avatar-cli",
+	"status": "draft",
+	"kind": "post",
+	"tier": 3,
+	"lane": "developer",
+	"pattern": "mechanism",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/avatar-cli",
+		"@three-ws/avatar-cli"
+	],
+	"scenario": {
+		"format": "square",
+		"steps": [
+			{
+				"goto": "https://three.ws/avatar-cli",
+				"settle": 5000
+			},
+			{
+				"hold": 1400,
+				"caption": "A command line tool that pins an avatar to the bytes of its model"
+			},
+			{
+				"scroll": 130,
+				"ms": 600
+			},
+			{
+				"read": "commands",
+				"match": "Commands\\s*(\\d+)"
+			},
+			{
+				"read": "networkCalls",
+				"match": "Network calls\\s*(\\d+)"
+			},
+			{
+				"read": "runtimeDeps",
+				"match": "Runtime deps\\s*(\\d+)"
+			},
+			{
+				"hold": 1600,
+				"caption": "It runs offline, so it is safe inside a release script"
+			},
+			{
+				"goto": "https://three.ws/avatar-cli#ci",
+				"settle": 400
+			},
+			{
+				"hold": 2600,
+				"caption": "A model swapped under the same filename fails the build"
+			},
+			{
+				"goto": "https://three.ws/avatar-cli#live",
+				"settle": 400
+			},
+			{
+				"read": "viewer",
+				"selector": "#live-stage[data-state=\"ready\"] + .cli-live-caption",
+				"match": "(michelle\\.glb)"
+			},
+			{
+				"hold": 2000,
+				"caption": "preview prints two lines of HTML for the manifest"
+			},
+			{
+				"scroll": 470,
+				"ms": 1000,
+				"caption": "Those two lines, pasted into this page unmodified"
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"drag": [
+					[
+						0.36,
+						0.5
+					],
+					[
+						0.66,
+						0.5
+					]
+				],
+				"ms": 2200,
+				"caption": "It is a live viewer, not a screenshot. Turn it."
+			},
+			{
+				"hold": 2600
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the avatar CLI page is up",
+			"url": "https://three.ws/avatar-cli",
+			"expect": {
+				"contains": "three-ws-avatar"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post that will be replaced once the scenario passes and the reel has been watched closely",
+			"media": [
+				{
+					"path": "public/x-media/avatar-cli/reel.mp4",
+					"probe": {
+						"durationSec": 15.8,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply: three.ws/avatar-cli"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

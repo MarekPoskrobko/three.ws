@@ -1,0 +1,133 @@
+{
+	"id": "docs-world",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "clip",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/docs/world"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/docs/world",
+				"settle": 8000
+			},
+			{
+				"read": "pages",
+				"match": "Search (\\d+) pages"
+			},
+			{
+				"click": "Next →",
+				"caption": "The three.ws docs, built as a place"
+			},
+			{
+				"read": "pavilions",
+				"match": "Each of the (\\d+) pavilions"
+			},
+			{
+				"click": "Skip"
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"drag": [
+					[
+						0.3,
+						0.6
+					],
+					[
+						0.72,
+						0.6
+					]
+				],
+				"ms": 3200,
+				"caption": "Every docs section is a pavilion on a ring"
+			},
+			{
+				"hold": 600
+			},
+			{
+				"click": "Search docs",
+				"caption": "Search every page from where you stand"
+			},
+			{
+				"type": "forge",
+				"into": "Search every page"
+			},
+			{
+				"hold": 900
+			},
+			{
+				"press": "Shift+Enter",
+				"caption": "Shift+Enter lays a trail to the pavilion that holds the page"
+			},
+			{
+				"expect": "Read now"
+			},
+			{
+				"hold": 1500
+			},
+			{
+				"drag": [
+					[
+						0.62,
+						0.7
+					],
+					[
+						0.45,
+						0.62
+					]
+				],
+				"ms": 1800
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"click": "Read now",
+				"awaits": "/docs/forge",
+				"caption": "The real page opens inside the scene"
+			},
+			{
+				"expect": "free-first engine grid"
+			},
+			{
+				"hold": 3200
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post, to be replaced once the reel is filmed and every claim is read from it",
+			"media": [
+				{
+					"path": "public/x-media/docs-world/reel.mp4",
+					"probe": {
+						"durationSec": 18.67,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

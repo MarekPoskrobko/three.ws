@@ -1,0 +1,217 @@
+{
+	"id": "herald-reasons",
+	"scenarioHash": "aaeb9dbf2065bbe0f9de33aa91a0292484bcf182210aff63670b35ea411e9740",
+	"ranAt": "2026-09-29T09:15:38.956Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": true,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/herald",
+			"detail": "loaded https://three.ws/herald",
+			"ok": true,
+			"ms": 6975,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "scroll",
+			"target": "Compose",
+			"detail": "scrolled 487 px",
+			"ok": true,
+			"ms": 3341,
+			"frames": 27
+		},
+		{
+			"index": 3,
+			"kind": "click",
+			"target": "#f-presenter",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 2453,
+			"frames": 21
+		},
+		{
+			"index": 4,
+			"kind": "press",
+			"target": "ArrowDown",
+			"detail": "pressed ArrowDown",
+			"ok": true,
+			"ms": 616,
+			"frames": 6
+		},
+		{
+			"index": 5,
+			"kind": "press",
+			"target": "ArrowDown",
+			"detail": "pressed ArrowDown",
+			"ok": true,
+			"ms": 615,
+			"frames": 6
+		},
+		{
+			"index": 6,
+			"kind": "press",
+			"target": "Enter",
+			"detail": "pressed Enter",
+			"ok": true,
+			"ms": 616,
+			"frames": 6
+		},
+		{
+			"index": 7,
+			"kind": "read",
+			"target": "floor",
+			"detail": "floor = \"50\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 8,
+			"kind": "click",
+			"target": "#f-send",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 2487,
+			"frames": 21
+		},
+		{
+			"index": 9,
+			"kind": "expect",
+			"target": "· importance 80",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 13,
+			"frames": 0
+		},
+		{
+			"index": 10,
+			"kind": "expect",
+			"target": "Mute 1 min",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 10,
+			"frames": 0
+		},
+		{
+			"index": 11,
+			"kind": "hold",
+			"target": "2000",
+			"detail": "2000 ms",
+			"ok": true,
+			"ms": 6073,
+			"frames": 60
+		},
+		{
+			"index": 12,
+			"kind": "press",
+			"target": "Escape",
+			"detail": "pressed Escape",
+			"ok": true,
+			"ms": 632,
+			"frames": 6
+		},
+		{
+			"index": 13,
+			"kind": "drag",
+			"target": "0.76,0.779,0.3225,0.779",
+			"detail": "dragged over 39 frames",
+			"ok": true,
+			"ms": 6617,
+			"frames": 57
+		},
+		{
+			"index": 14,
+			"kind": "read",
+			"target": "importance",
+			"detail": "importance = \"29\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 15,
+			"kind": "click",
+			"target": "#f-send",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 2367,
+			"frames": 21
+		},
+		{
+			"index": 16,
+			"kind": "expect",
+			"target": "below-importance-floor",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 14,
+			"frames": 0
+		},
+		{
+			"index": 17,
+			"kind": "scroll",
+			"target": "Verdicts",
+			"detail": "scrolled 640 px",
+			"ok": true,
+			"ms": 3252,
+			"frames": 27
+		},
+		{
+			"index": 18,
+			"kind": "read",
+			"target": "delivered",
+			"detail": "delivered = \"1\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 19,
+			"kind": "read",
+			"target": "dropped",
+			"detail": "dropped = \"1\"",
+			"ok": true,
+			"ms": 1,
+			"frames": 0
+		},
+		{
+			"index": 20,
+			"kind": "hold",
+			"target": "4200",
+			"detail": "4200 ms",
+			"ok": true,
+			"ms": 12932,
+			"frames": 126
+		}
+	],
+	"facts": {
+		"floor": "50",
+		"importance": "29",
+		"delivered": "1",
+		"dropped": "1"
+	},
+	"saw": [
+		"· importance 80",
+		"Mute 1 min",
+		"below-importance-floor"
+	],
+	"responses": [],
+	"cuts": [],
+	"video": {
+		"path": "public/x-media/herald-reasons/reel.mp4",
+		"sha256": "358a5dccba8a98d778fbf6bcef0b1db66482f9f61bd490a142eb5019fe7ab269",
+		"frames": 384,
+		"motion": 0.559,
+		"durationSec": 12.8,
+		"width": 1080,
+		"height": 1080,
+		"fps": 30,
+		"videoCodec": "h264",
+		"pixFmt": "yuv420p"
+	}
+}

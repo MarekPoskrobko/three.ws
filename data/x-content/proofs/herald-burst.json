@@ -1,0 +1,150 @@
+{
+	"id": "herald-burst",
+	"scenarioHash": "e9aa307cce8e4ea7b54d41155f22b9504fadd31bb381812d6549d0e35d39a349",
+	"ranAt": "2026-09-29T10:25:02.841Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": false,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/herald",
+			"detail": "loaded https://three.ws/herald",
+			"ok": true,
+			"ms": 6905,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "scroll",
+			"target": "Compose",
+			"detail": "scrolled 487 px",
+			"ok": true,
+			"ms": 1194,
+			"frames": 0
+		},
+		{
+			"index": 3,
+			"kind": "hold",
+			"target": "700",
+			"detail": "700 ms",
+			"ok": true,
+			"ms": 259,
+			"frames": 0
+		},
+		{
+			"index": 4,
+			"kind": "click",
+			"target": "Send a burst of five",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 558,
+			"frames": 0
+		},
+		{
+			"index": 5,
+			"kind": "expect",
+			"target": "delivering-another",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 16,
+			"frames": 0
+		},
+		{
+			"index": 6,
+			"kind": "expect",
+			"target": "Mute 1 min",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 38,
+			"frames": 0
+		},
+		{
+			"index": 7,
+			"kind": "read",
+			"target": "said",
+			"detail": "said = \"4\"",
+			"ok": true,
+			"ms": 3,
+			"frames": 0
+		},
+		{
+			"index": 8,
+			"kind": "read",
+			"target": "held",
+			"detail": "held = \"0\"",
+			"ok": true,
+			"ms": 9,
+			"frames": 0
+		},
+		{
+			"index": 9,
+			"kind": "hold",
+			"target": "1800",
+			"detail": "1800 ms",
+			"ok": true,
+			"ms": 727,
+			"frames": 0
+		},
+		{
+			"index": 10,
+			"kind": "scroll",
+			"target": "Verdicts",
+			"detail": "scrolled 640 px",
+			"ok": true,
+			"ms": 1118,
+			"frames": 0
+		},
+		{
+			"index": 11,
+			"kind": "scroll",
+			"target": "70",
+			"detail": "scrolled 70 px",
+			"ok": true,
+			"ms": 351,
+			"frames": 0
+		},
+		{
+			"index": 12,
+			"kind": "hold",
+			"target": "2200",
+			"detail": "2200 ms",
+			"ok": true,
+			"ms": 900,
+			"frames": 0
+		},
+		{
+			"index": 13,
+			"kind": "expect",
+			"target": "importance 92",
+			"detail": "appeared after 0.0 s",
+			"ok": true,
+			"ms": 74,
+			"frames": 0
+		},
+		{
+			"index": 14,
+			"kind": "expect",
+			"target": "Mute 1 min",
+			"ok": false,
+			"detail": "locator.waitFor: Timeout 45000ms exceeded.",
+			"ms": 45150,
+			"frames": 0
+		}
+	],
+	"facts": {
+		"said": "4",
+		"held": "0"
+	},
+	"saw": [
+		"delivering-another",
+		"Mute 1 min",
+		"importance 92"
+	],
+	"responses": [],
+	"cuts": [],
+	"video": null
+}

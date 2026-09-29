@@ -1,0 +1,141 @@
+{
+	"id": "glb-diff",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "developer",
+	"pattern": "correction",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/diff",
+		"@three-ws/glb-diff"
+	],
+	"scenario": {
+		"format": "square",
+		"steps": [
+			{
+				"goto": "https://three.ws/diff",
+				"settle": 6000
+			},
+			{
+				"scroll": "No files handy?",
+				"ms": 900,
+				"caption": "Two 3D models. A checksum only says the files differ."
+			},
+			{
+				"hold": 1400
+			},
+			{
+				"click": "Two different characters",
+				"caption": "Both files are parsed and compared in this tab"
+			},
+			{
+				"expect": "Clips that target them will not play",
+				"within": 90000,
+				"film": true
+			},
+			{
+				"read": "severity",
+				"match": "(none|cosmetic|minor|major|breaking)\\s*\\n\\s*\\+\\d+ / -\\d+"
+			},
+			{
+				"read": "jointsLost",
+				"match": "lost (\\d+) joint"
+			},
+			{
+				"read": "clipsRemoved",
+				"match": "(\\d+) animations were removed"
+			},
+			{
+				"read": "renamed",
+				"match": "renamed (\\d+)"
+			},
+			{
+				"drag": [
+					[
+						0.012,
+						0.5
+					],
+					[
+						0.012,
+						0.5
+					]
+				],
+				"ms": 200
+			},
+			{
+				"scroll": 270,
+				"ms": 900,
+				"caption": "Before and after, overlaid in one scene"
+			},
+			{
+				"hold": 1500
+			},
+			{
+				"drag": [
+					[
+						0.36,
+						0.42
+					],
+					[
+						0.62,
+						0.42
+					]
+				],
+				"ms": 1800
+			},
+			{
+				"click": "Side by side",
+				"caption": "Or set them side by side"
+			},
+			{
+				"hold": 2000
+			},
+			{
+				"scroll": "Something a consumer references by name is gone",
+				"ms": 1100,
+				"caption": "The verdict names what broke: joints lost, clips removed"
+			},
+			{
+				"hold": 3600
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the diff page is up",
+			"url": "https://three.ws/diff",
+			"expect": {
+				"contains": "Model Diff"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the model diff story, to be replaced once the reel has been watched. three.ws/diff",
+			"media": [
+				{
+					"path": "public/x-media/glb-diff/reel.mp4",
+					"probe": {
+						"durationSec": 16,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply for the model diff story, to be replaced once the reel has been watched and the facts are read."
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

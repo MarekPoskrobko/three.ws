@@ -1,0 +1,127 @@
+{
+	"id": "glance",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "developer",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/glance",
+		"@three-ws/agent-glance"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/glance",
+				"settle": 6000
+			},
+			{
+				"hold": 1500,
+				"caption": "Glance: an agent reduced to one card"
+			},
+			{
+				"scroll": 150,
+				"ms": 700
+			},
+			{
+				"type": "78c5f138-e7ee-4f32-9e00-6165f008f0a4",
+				"into": "00000000-0000-0000-0000-000000000000",
+				"awaits": "/api/glance/card",
+				"caption": "Paste the id of any public agent"
+			},
+			{
+				"expect": "Showing the agent you pasted"
+			},
+			{
+				"scroll": 300,
+				"ms": 900,
+				"caption": "Its card, as a live element and as a plain image URL"
+			},
+			{
+				"read": "name",
+				"selector": "agent-glance .name",
+				"match": "(.+)"
+			},
+			{
+				"read": "metric",
+				"selector": "agent-glance .metric",
+				"match": "(moves today)"
+			},
+			{
+				"hold": 2200
+			},
+			{
+				"hover": {
+					"selector": "#theme-select"
+				},
+				"caption": "Light, dark, or follow the reader's system"
+			},
+			{
+				"press": "Tab"
+			},
+			{
+				"press": "Tab"
+			},
+			{
+				"press": "ArrowDown",
+				"awaits": "/api/glance/card"
+			},
+			{
+				"press": "ArrowDown",
+				"awaits": "/api/glance/card"
+			},
+			{
+				"read": "theme",
+				"selector": "#snippet-html",
+				"match": "theme=\"(\\w+)\""
+			},
+			{
+				"hold": 2200
+			},
+			{
+				"scroll": "Take it with you",
+				"ms": 1000,
+				"caption": "One line each for a page, a README, a terminal, and the API"
+			},
+			{
+				"read": "cli",
+				"selector": "#snippet-cli",
+				"match": "(npx @three-ws/agent-glance)"
+			},
+			{
+				"hold": 3200
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post that is long enough to pass the floor of one hundred characters while the scenario is being worked out",
+			"media": [
+				{
+					"path": "public/x-media/glance/reel.mp4",
+					"probe": {
+						"durationSec": 15.43,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

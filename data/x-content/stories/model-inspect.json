@@ -1,0 +1,144 @@
+{
+	"id": "model-inspect",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "developer",
+	"pattern": "number",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/3d"
+	],
+	"scenario": {
+		"format": "square",
+		"hide": [
+			".brand-mark-chip"
+		],
+		"steps": [
+			{
+				"goto": "https://three.ws/3d#quickstart",
+				"settle": 6000,
+				"caption": "A free 3D API that AI agents call over plain HTTP"
+			},
+			{
+				"scroll": -64,
+				"ms": 300
+			},
+			{
+				"hold": 1500
+			},
+			{
+				"click": "Run it live ▶",
+				"awaits": "/api/3d/inspect",
+				"caption": "One GET with a model's address. No key, no account."
+			},
+			{
+				"expect": "\"valid\": true"
+			},
+			{
+				"read": "vertices",
+				"match": "\"vertices\": (\\d+)"
+			},
+			{
+				"read": "triangles",
+				"match": "\"triangles\": (\\d+)"
+			},
+			{
+				"read": "joints",
+				"match": "\"joints\": (\\d+)"
+			},
+			{
+				"read": "animations",
+				"match": "\"animations\": (\\d+)"
+			},
+			{
+				"read": "errors",
+				"match": "\"numErrors\": (\\d+)"
+			},
+			{
+				"read": "warnings",
+				"match": "\"numWarnings\": (\\d+)"
+			},
+			{
+				"hold": 2200,
+				"caption": "The answer: whether the file is valid, and what is inside it"
+			},
+			{
+				"hover": {
+					"selector": ".out pre"
+				}
+			},
+			{
+				"scroll": 330,
+				"ms": 1800,
+				"caption": "Then what to fix, most severe first"
+			},
+			{
+				"hold": 1800
+			},
+			{
+				"scroll": 156,
+				"ms": 1200,
+				"caption": "And each validator finding, with its code and where it sits"
+			},
+			{
+				"hold": 1600
+			},
+			{
+				"hover": "Run it live ▶"
+			},
+			{
+				"scroll": "Drag to orbit",
+				"ms": 2000,
+				"caption": "This is the model it just described"
+			},
+			{
+				"scroll": 70,
+				"ms": 500
+			},
+			{
+				"hold": 3000
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "inspect answers for the sample model",
+			"url": "https://three.ws/api/3d/inspect?url=https://three.ws/avatars/cesium-man.glb",
+			"expect": {
+				"json": {
+					"path": "valid",
+					"equals": true
+				}
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the first run of the scenario, replaced once the reel has been watched and the facts are known to be true.",
+			"media": [
+				{
+					"path": "public/x-media/model-inspect/reel.mp4",
+					"probe": {
+						"durationSec": 17.8,
+						"width": 1080,
+						"height": 1080,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply: three.ws/3d"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

@@ -1,0 +1,188 @@
+{
+	"id": "glb-diff",
+	"scenarioHash": "37ef64aec5c5244ee72b7a6b4c5d3793cc004c8fa852832c837aa6f897abf1b0",
+	"ranAt": "2026-09-29T09:33:24.530Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": true,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/diff",
+			"detail": "loaded https://three.ws/diff",
+			"ok": true,
+			"ms": 6888,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "scroll",
+			"target": "No files handy?",
+			"detail": "scrolled 707 px",
+			"ok": true,
+			"ms": 3396,
+			"frames": 27
+		},
+		{
+			"index": 3,
+			"kind": "hold",
+			"target": "1400",
+			"detail": "1400 ms",
+			"ok": true,
+			"ms": 5301,
+			"frames": 42
+		},
+		{
+			"index": 4,
+			"kind": "click",
+			"target": "Two different characters",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 9395,
+			"frames": 21
+		},
+		{
+			"index": 5,
+			"kind": "expect",
+			"target": "Clips that target them will not play",
+			"detail": "appeared after 0 filmed frames",
+			"ok": true,
+			"ms": 10,
+			"frames": 0
+		},
+		{
+			"index": 6,
+			"kind": "read",
+			"target": "severity",
+			"detail": "severity = \"BREAKING\"",
+			"ok": true,
+			"ms": 3,
+			"frames": 0
+		},
+		{
+			"index": 7,
+			"kind": "read",
+			"target": "jointsLost",
+			"detail": "jointsLost = \"2\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 8,
+			"kind": "read",
+			"target": "clipsRemoved",
+			"detail": "clipsRemoved = \"5\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 9,
+			"kind": "read",
+			"target": "renamed",
+			"detail": "renamed = \"4\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 10,
+			"kind": "drag",
+			"target": "0.012,0.5,0.012,0.5",
+			"detail": "dragged over 6 frames",
+			"ok": true,
+			"ms": 9863,
+			"frames": 24
+		},
+		{
+			"index": 11,
+			"kind": "scroll",
+			"target": "270",
+			"detail": "scrolled 270 px",
+			"ok": true,
+			"ms": 11052,
+			"frames": 27
+		},
+		{
+			"index": 12,
+			"kind": "hold",
+			"target": "1500",
+			"detail": "1500 ms",
+			"ok": true,
+			"ms": 19088,
+			"frames": 45
+		},
+		{
+			"index": 13,
+			"kind": "drag",
+			"target": "0.36,0.42,0.62,0.42",
+			"detail": "dragged over 54 frames",
+			"ok": true,
+			"ms": 29502,
+			"frames": 72
+		},
+		{
+			"index": 14,
+			"kind": "click",
+			"target": "Side by side",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 9313,
+			"frames": 21
+		},
+		{
+			"index": 15,
+			"kind": "hold",
+			"target": "2000",
+			"detail": "2000 ms",
+			"ok": true,
+			"ms": 26377,
+			"frames": 60
+		},
+		{
+			"index": 16,
+			"kind": "scroll",
+			"target": "Something a consumer references by name is gone",
+			"detail": "scrolled 491 px",
+			"ok": true,
+			"ms": 16844,
+			"frames": 33
+		},
+		{
+			"index": 17,
+			"kind": "hold",
+			"target": "3600",
+			"detail": "3600 ms",
+			"ok": true,
+			"ms": 57455,
+			"frames": 108
+		}
+	],
+	"facts": {
+		"severity": "BREAKING",
+		"jointsLost": "2",
+		"clipsRemoved": "5",
+		"renamed": "4"
+	},
+	"saw": [
+		"Clips that target them will not play"
+	],
+	"responses": [],
+	"cuts": [],
+	"video": {
+		"path": "public/x-media/glb-diff/reel.mp4",
+		"sha256": "16d9f291442f65b45a910ef029492a0e85dca74081d0f2eaa08c94e23e8611e3",
+		"frames": 480,
+		"motion": 0.562,
+		"durationSec": 16,
+		"width": 1080,
+		"height": 1080,
+		"fps": 30,
+		"videoCodec": "h264",
+		"pixFmt": "yuv420p"
+	}
+}

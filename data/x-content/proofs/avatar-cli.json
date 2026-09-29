@@ -1,0 +1,177 @@
+{
+	"id": "avatar-cli",
+	"scenarioHash": "32d76632748b9514a5e8b6e1c1df51b852c3cd7c085b5373cd85223b648261a1",
+	"ranAt": "2026-09-29T09:19:53.183Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": true,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/avatar-cli",
+			"detail": "loaded https://three.ws/avatar-cli",
+			"ok": true,
+			"ms": 7243,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "hold",
+			"target": "1400",
+			"detail": "1400 ms",
+			"ok": true,
+			"ms": 8052,
+			"frames": 42
+		},
+		{
+			"index": 3,
+			"kind": "scroll",
+			"target": "130",
+			"detail": "scrolled 130 px",
+			"ok": true,
+			"ms": 3154,
+			"frames": 18
+		},
+		{
+			"index": 4,
+			"kind": "read",
+			"target": "commands",
+			"detail": "commands = \"4\"",
+			"ok": true,
+			"ms": 3,
+			"frames": 0
+		},
+		{
+			"index": 5,
+			"kind": "read",
+			"target": "networkCalls",
+			"detail": "networkCalls = \"0\"",
+			"ok": true,
+			"ms": 1,
+			"frames": 0
+		},
+		{
+			"index": 6,
+			"kind": "read",
+			"target": "runtimeDeps",
+			"detail": "runtimeDeps = \"1\"",
+			"ok": true,
+			"ms": 1,
+			"frames": 0
+		},
+		{
+			"index": 7,
+			"kind": "hold",
+			"target": "1600",
+			"detail": "1600 ms",
+			"ok": true,
+			"ms": 9619,
+			"frames": 48
+		},
+		{
+			"index": 8,
+			"kind": "goto",
+			"target": "https://three.ws/avatar-cli#ci",
+			"detail": "loaded https://three.ws/avatar-cli#ci",
+			"ok": true,
+			"ms": 410,
+			"frames": 0
+		},
+		{
+			"index": 9,
+			"kind": "hold",
+			"target": "2600",
+			"detail": "2600 ms",
+			"ok": true,
+			"ms": 9067,
+			"frames": 78
+		},
+		{
+			"index": 10,
+			"kind": "goto",
+			"target": "https://three.ws/avatar-cli#live",
+			"detail": "loaded https://three.ws/avatar-cli#live",
+			"ok": true,
+			"ms": 664,
+			"frames": 0
+		},
+		{
+			"index": 11,
+			"kind": "read",
+			"target": "viewer",
+			"detail": "viewer = \"michelle.glb\"",
+			"ok": true,
+			"ms": 114,
+			"frames": 0
+		},
+		{
+			"index": 12,
+			"kind": "hold",
+			"target": "2000",
+			"detail": "2000 ms",
+			"ok": true,
+			"ms": 17956,
+			"frames": 60
+		},
+		{
+			"index": 13,
+			"kind": "scroll",
+			"target": "470",
+			"detail": "scrolled 470 px",
+			"ok": true,
+			"ms": 9527,
+			"frames": 30
+		},
+		{
+			"index": 14,
+			"kind": "hold",
+			"target": "1200",
+			"detail": "1200 ms",
+			"ok": true,
+			"ms": 10632,
+			"frames": 36
+		},
+		{
+			"index": 15,
+			"kind": "drag",
+			"target": "0.36,0.5,0.66,0.5",
+			"detail": "dragged over 66 frames",
+			"ok": true,
+			"ms": 25534,
+			"frames": 84
+		},
+		{
+			"index": 16,
+			"kind": "hold",
+			"target": "2600",
+			"detail": "2600 ms",
+			"ok": true,
+			"ms": 24847,
+			"frames": 78
+		}
+	],
+	"facts": {
+		"commands": "4",
+		"networkCalls": "0",
+		"runtimeDeps": "1",
+		"viewer": "michelle.glb"
+	},
+	"saw": [],
+	"responses": [],
+	"cuts": [],
+	"video": {
+		"path": "public/x-media/avatar-cli/reel.mp4",
+		"sha256": "346dc8bb39307018eb3969088f115ed018762194ea8becc49dcadbdf82a5748c",
+		"frames": 474,
+		"motion": 0.524,
+		"durationSec": 15.8,
+		"width": 1080,
+		"height": 1080,
+		"fps": 30,
+		"videoCodec": "h264",
+		"pixFmt": "yuv420p"
+	}
+}

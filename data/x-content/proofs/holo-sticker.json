@@ -1,0 +1,196 @@
+{
+	"id": "holo-sticker",
+	"scenarioHash": "ac0b0c7d04686dea1cb7fd33e0e449325bcfa375fa9c2c33daddbe4cd5c018db",
+	"ranAt": "2026-09-29T09:41:44.593Z",
+	"target": {
+		"commit": "f2081d946",
+		"revision": "three-ws-api-00460-4j6"
+	},
+	"passed": true,
+	"steps": [
+		{
+			"index": 1,
+			"kind": "goto",
+			"target": "https://three.ws/holo",
+			"detail": "loaded https://three.ws/holo",
+			"ok": true,
+			"ms": 15466,
+			"frames": 0
+		},
+		{
+			"index": 2,
+			"kind": "scroll",
+			"target": "250",
+			"detail": "scrolled 250 px",
+			"ok": true,
+			"ms": 25969,
+			"frames": 18
+		},
+		{
+			"index": 3,
+			"kind": "read",
+			"target": "peel",
+			"detail": "peel = \"30\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 4,
+			"kind": "read",
+			"target": "stage",
+			"detail": "stage = \"DRAG TO TILT\"",
+			"ok": true,
+			"ms": 22,
+			"frames": 0
+		},
+		{
+			"index": 5,
+			"kind": "read",
+			"target": "foils",
+			"detail": "foils = \"Rainbow holo\nChrome\nGold foil\nNeon\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 6,
+			"kind": "hold",
+			"target": "1400",
+			"detail": "1400 ms",
+			"ok": true,
+			"ms": 47558,
+			"frames": 42
+		},
+		{
+			"index": 7,
+			"kind": "drag",
+			"target": "0.2,0.55,0.44,0.3",
+			"detail": "dragged over 72 frames",
+			"ok": true,
+			"ms": 85827,
+			"frames": 90
+		},
+		{
+			"index": 8,
+			"kind": "click",
+			"target": "Gold foil",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 26353,
+			"frames": 21
+		},
+		{
+			"index": 9,
+			"kind": "drag",
+			"target": "0.44,0.3,0.22,0.5",
+			"detail": "dragged over 60 frames",
+			"ok": true,
+			"ms": 80799,
+			"frames": 78
+		},
+		{
+			"index": 10,
+			"kind": "click",
+			"target": "Your text",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 25377,
+			"frames": 21
+		},
+		{
+			"index": 11,
+			"kind": "type",
+			"target": "gm agents",
+			"detail": "typed 9 characters",
+			"ok": true,
+			"ms": 47183,
+			"frames": 34
+		},
+		{
+			"index": 12,
+			"kind": "click",
+			"target": "Cut it",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 20548,
+			"frames": 21
+		},
+		{
+			"index": 13,
+			"kind": "hold",
+			"target": "1200",
+			"detail": "1200 ms",
+			"ok": true,
+			"ms": 18088,
+			"frames": 36
+		},
+		{
+			"index": 14,
+			"kind": "click",
+			"target": "Neon",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 10939,
+			"frames": 21
+		},
+		{
+			"index": 15,
+			"kind": "read",
+			"target": "foilAfter",
+			"detail": "foilAfter = \"Neon\"",
+			"ok": true,
+			"ms": 5,
+			"frames": 0
+		},
+		{
+			"index": 16,
+			"kind": "read",
+			"target": "markAfter",
+			"detail": "markAfter = \"Your text\"",
+			"ok": true,
+			"ms": 2,
+			"frames": 0
+		},
+		{
+			"index": 17,
+			"kind": "drag",
+			"target": "0.22,0.5,0.45,0.32",
+			"detail": "dragged over 72 frames",
+			"ok": true,
+			"ms": 39121,
+			"frames": 90
+		},
+		{
+			"index": 18,
+			"kind": "hold",
+			"target": "3000",
+			"detail": "3000 ms",
+			"ok": true,
+			"ms": 32570,
+			"frames": 90
+		}
+	],
+	"facts": {
+		"peel": "30",
+		"stage": "DRAG TO TILT",
+		"foils": "Rainbow holo\nChrome\nGold foil\nNeon",
+		"foilAfter": "Neon",
+		"markAfter": "Your text"
+	},
+	"saw": [],
+	"responses": [],
+	"cuts": [],
+	"video": {
+		"path": "public/x-media/holo-sticker/reel.mp4",
+		"sha256": "da0a1241365419258878e5491d245cf7b5ebb0fe5c0f09ec338c91c0119d173a",
+		"frames": 562,
+		"motion": 1,
+		"durationSec": 18.73,
+		"width": 1280,
+		"height": 720,
+		"fps": 30,
+		"videoCodec": "h264",
+		"pixFmt": "yuv420p"
+	}
+}

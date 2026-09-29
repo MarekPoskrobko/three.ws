@@ -1,0 +1,106 @@
+{
+	"id": "gestures",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "clip",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/gestures"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/gestures",
+				"settle": 6000
+			},
+			{
+				"read": "slots",
+				"match": "Slots\\s*(\\d+)"
+			},
+			{
+				"scroll": "The slot vocabulary",
+				"ms": 900,
+				"caption": "Every gesture an agent can make has a name"
+			},
+			{
+				"click": {
+					"selector": "[data-role=\"grid\"] [data-slot=\"wave\"]"
+				},
+				"caption": "Pick a name and a live avatar plays it"
+			},
+			{
+				"expect": "Wave · wave",
+				"within": 60000
+			},
+			{
+				"hold": 2600
+			},
+			{
+				"scroll": 300,
+				"ms": 700
+			},
+			{
+				"click": {
+					"selector": "[data-role=\"grid\"] [data-slot=\"celebrate\"]"
+				},
+				"caption": "An agent asks for celebrate. The platform picks the clip."
+			},
+			{
+				"expect": "Celebrate · celebrate",
+				"within": 60000
+			},
+			{
+				"hold": 2600
+			},
+			{
+				"scroll": 610,
+				"ms": 900
+			},
+			{
+				"click": {
+					"selector": "[data-role=\"grid\"] [data-slot=\"dance\"]"
+				},
+				"caption": "Point any name at a different clip and the agent changes its move"
+			},
+			{
+				"expect": "Rumba · rumba",
+				"within": 60000
+			},
+			{
+				"hold": 4000
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		}
+	],
+	"posts": [
+		{
+			"text": "Placeholder head post for the gestures story, to be replaced once the scenario has been filmed and watched.",
+			"media": [
+				{
+					"path": "public/x-media/gestures/reel.mp4",
+					"probe": {
+						"durationSec": 13.8,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "Placeholder reply: three.ws/gestures"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

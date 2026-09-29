@@ -1,0 +1,90 @@
+{
+	"id": "drive-copilot",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "walkthrough",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/drive"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/drive?avatar=13f259c7-7024-4d68-b1f0-dbbf52c06209",
+				"settle": 8000
+			},
+			{
+				"expect": "Ready"
+			},
+			{
+				"hold": 1800,
+				"caption": "three.ws Drive: your agent on a car screen"
+			},
+			{
+				"hover": "Driving",
+				"caption": "While the car moves the keyboard stays locked"
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"click": "Driving",
+				"caption": "Parked, you can type. Moving, it is voice only."
+			},
+			{
+				"expect": "Parked"
+			},
+			{
+				"click": "Type"
+			},
+			{
+				"type": "What should I listen to on a long drive?",
+				"into": "Ask your agent something"
+			},
+			{
+				"press": "Enter",
+				"awaits": "/api/chat",
+				"caption": "The agent answers in a sentence or two, out loud"
+			},
+			{
+				"expect": "Speaking",
+				"within": 60000
+			},
+			{
+				"hold": 5000
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post, to be replaced once the reel is filmed and every claim is read from it",
+			"media": [
+				{
+					"path": "public/x-media/drive-copilot/reel.mp4",
+					"probe": {
+						"durationSec": 13.4,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

@@ -1,0 +1,152 @@
+{
+	"id": "holo-sticker",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "labs",
+	"pattern": "clip",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/holo"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/holo",
+				"settle": 7000
+			},
+			{
+				"scroll": 250,
+				"ms": 600
+			},
+			{
+				"read": "peel",
+				"match": "Corner peel\\s*(\\d+)%"
+			},
+			{
+				"read": "stage",
+				"selector": "#stage[data-state=\"ready\"]",
+				"match": "(drag to tilt)"
+			},
+			{
+				"read": "foils",
+				"selector": "#foilChips",
+				"match": "(Rainbow holo\\s+Chrome\\s+Gold foil\\s+Neon)"
+			},
+			{
+				"hold": 1400,
+				"caption": "A foil sticker drawn live in the browser. No image, no model file."
+			},
+			{
+				"drag": [
+					[
+						0.2,
+						0.55
+					],
+					[
+						0.44,
+						0.3
+					]
+				],
+				"ms": 2400,
+				"caption": "Tilt it and the foil answers the light, like the real thing"
+			},
+			{
+				"click": "Gold foil",
+				"caption": "The foil is a material with thin-film iridescence, so it can change"
+			},
+			{
+				"drag": [
+					[
+						0.44,
+						0.3
+					],
+					[
+						0.22,
+						0.5
+					]
+				],
+				"ms": 2000
+			},
+			{
+				"click": "Your text",
+				"caption": "Type a word and it is die-cut into a sticker of its own"
+			},
+			{
+				"type": "gm agents",
+				"into": "Text to die-cut"
+			},
+			{
+				"click": "Cut it"
+			},
+			{
+				"hold": 1200
+			},
+			{
+				"click": "Neon"
+			},
+			{
+				"read": "foilAfter",
+				"selector": "#foilChips .is-on",
+				"match": "(\\w+)"
+			},
+			{
+				"read": "markAfter",
+				"selector": "#markChips .is-on",
+				"match": "(Your text)"
+			},
+			{
+				"drag": [
+					[
+						0.22,
+						0.5
+					],
+					[
+						0.45,
+						0.32
+					]
+				],
+				"ms": 2400,
+				"caption": "The outline is traced from the letters, holes included"
+			},
+			{
+				"hold": 3000
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the holo sticker page is up",
+			"url": "https://three.ws/holo",
+			"expect": {
+				"contains": "Holo Sticker"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post for the holo sticker story, written after the reel is watched and checked against the page three.ws/holo",
+			"media": [
+				{
+					"path": "public/x-media/holo-sticker/reel.mp4",
+					"probe": {
+						"durationSec": 18.73,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}

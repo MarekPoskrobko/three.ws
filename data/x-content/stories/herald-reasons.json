@@ -1,0 +1,308 @@
+{
+	"id": "herald-reasons",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "community",
+	"pattern": "mechanism",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/herald",
+		"/docs/herald"
+	],
+	"scenario": {
+		"format": "square",
+		"show": [
+			".walk-companion"
+		],
+		"hide": [
+			".walk-companion-id",
+			".walk-companion-caption"
+		],
+		"steps": [
+			{
+				"goto": "https://three.ws/herald",
+				"settle": 24000
+			},
+			{
+				"scroll": "Compose",
+				"ms": 900,
+				"caption": "Every message carries an importance"
+			},
+			{
+				"scroll": 215,
+				"ms": 400
+			},
+			{
+				"read": "floor",
+				"match": "Interrupt floor:\\s*(\\d+)"
+			},
+			{
+				"click": {
+					"selector": "#f-send"
+				},
+				"caption": "At 80 it clears the floor of 50"
+			},
+			{
+				"expect": "· importance 80",
+				"within": 20000
+			},
+			{
+				"expect": "Mute 1 min",
+				"within": 45000
+			},
+			{
+				"hold": 2800,
+				"caption": "The 3D character in the corner says it"
+			},
+			{
+				"wait": 6000
+			},
+			{
+				"drag": [
+					[
+						0.759,
+						0.43
+					],
+					[
+						0.3225,
+						0.43
+					]
+				],
+				"ms": 1300,
+				"caption": "Now send one from under the floor"
+			},
+			{
+				"read": "importance",
+				"match": "Importance:\\s*(\\d+)"
+			},
+			{
+				"click": {
+					"selector": "#f-send"
+				}
+			},
+			{
+				"expect": "· below-importance-floor",
+				"within": 20000
+			},
+			{
+				"hold": 1500,
+				"caption": "This time the character says nothing"
+			},
+			{
+				"scroll": "Verdicts",
+				"ms": 900,
+				"caption": "And the reason comes back"
+			},
+			{
+				"scroll": 60,
+				"ms": 300
+			},
+			{
+				"read": "delivered",
+				"match": "(\\d+)\\s*delivered"
+			},
+			{
+				"read": "dropped",
+				"match": "(\\d+)\\s*dropped"
+			},
+			{
+				"hold": 4200
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the Herald playground is up",
+			"url": "https://three.ws/herald",
+			"expect": {
+				"contains": "below-importance-floor"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "Herald decides whether a message is worth interrupting you for before a word of it is said. Each message carries an importance, the page sets a floor, and the engine returns a verdict.\n\nWe sent one at 80 against a floor of 50 and it was delivered: the 3D character in the corner of the page said it. We sent the next at 29. The character said nothing, and the verdict came back as a drop with its reason: below-importance-floor.\n\nEvery message that is not delivered comes back with a reason, so why you were not told has an answer.\n\nthree.ws/herald"
+		},
+		{
+			"text": "A drop and a hold are different verdicts.\n\nA held message is delivered once the thing blocking it clears: another message on screen, a tab in the background, a full rate limit, quiet hours. A dropped one is reported with its reason and will not be delivered."
+		},
+		{
+			"text": "A verdict of deliver is what makes the 3D character speak, with the gesture the sender chose. On a page with no GPU the same verdict arrives as a card, in a live region, dismissible with Escape."
+		}
+	],
+	"claims": [
+		{
+			"says": "Herald decides whether a message is worth interrupting you for",
+			"evidence": [
+				{
+					"type": "file",
+					"path": "herald-sdk/src/rules.js",
+					"contains": "everything that decides WHETHER a message is worth"
+				}
+			]
+		},
+		{
+			"says": "Each message carries an importance, the page sets a floor, and the engine returns a verdict",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "announce() returns a verdict rather than a promise of delivery"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "The interrupt floor. Below it, nothing is shown"
+				}
+			]
+		},
+		{
+			"says": "We sent one at 80",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "importance 80"
+				}
+			]
+		},
+		{
+			"says": "a floor of 50",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "floor",
+					"equals": "50"
+				}
+			]
+		},
+		{
+			"says": "it was delivered",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "delivered",
+					"equals": "1"
+				}
+			]
+		},
+		{
+			"says": "We sent the next at 29",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "importance",
+					"equals": "29"
+				}
+			]
+		},
+		{
+			"says": "the verdict came back as a drop with its reason: below-importance-floor",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "· below-importance-floor"
+				},
+				{
+					"type": "proof",
+					"fact": "dropped",
+					"equals": "1"
+				}
+			]
+		},
+		{
+			"says": "Every message that is not delivered comes back with a reason",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Every message that is not delivered comes back with a reason"
+				}
+			]
+		},
+		{
+			"says": "A held message is delivered once the thing blocking it clears",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "Held (delivered once the thing blocking it clears): delivering-another, window-not-focused, rate-limited, quiet-hours"
+				}
+			]
+		},
+		{
+			"says": "A dropped one is reported with its reason and will not be delivered",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "Dropped (will never be delivered): empty, muted, duplicate, stale, below-importance-floor"
+				}
+			]
+		},
+		{
+			"says": "On a page with no GPU the same verdict arrives as a card, in a live region, dismissible with Escape",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "An accessible fallback when there is no GPU"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "the card presenter takes over, in a live region, dismissible with Escape"
+				}
+			]
+		},
+		{
+			"says": "the 3D character in the corner of the page said it",
+			"evidence": [
+				{
+					"type": "proof",
+					"saw": "Mute 1 min"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "a 3D character walks into the corner of your page"
+				}
+			]
+		},
+		{
+			"says": "The character said nothing",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "delivered",
+					"equals": "1"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "The interrupt floor. Below it, nothing is shown"
+				}
+			]
+		},
+		{
+			"says": "A verdict of deliver is what makes the 3D character speak, with the gesture the sender chose",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/docs/herald",
+					"contains": "announce() returns a verdict rather than a promise of delivery"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/herald",
+					"contains": "Gesture wave dance punch backflip"
+				}
+			]
+		}
+	],
+	"mentions": {}
+}

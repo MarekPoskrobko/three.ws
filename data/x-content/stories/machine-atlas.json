@@ -1,0 +1,138 @@
+{
+	"id": "machine-atlas",
+	"status": "draft",
+	"kind": "post",
+	"tier": 2,
+	"lane": "labs",
+	"pattern": "mechanism",
+	"notBefore": "2026-09-30T00:00:00Z",
+	"covers": [
+		"/assembly"
+	],
+	"scenario": {
+		"format": "landscape",
+		"steps": [
+			{
+				"goto": "https://three.ws/assembly",
+				"settle": 8000
+			},
+			{
+				"scroll": 72,
+				"ms": 500
+			},
+			{
+				"read": "machines",
+				"match": "(Two) machines"
+			},
+			{
+				"read": "cylinders",
+				"selector": "#ma-p-cylinders-out",
+				"match": "(\\d+)"
+			},
+			{
+				"read": "displacement",
+				"match": "Displacement\\s*([\\d.]+ L)"
+			},
+			{
+				"hold": 1600,
+				"caption": "No model file. This engine is computed when the page loads."
+			},
+			{
+				"drag": [
+					[
+						0.5,
+						0.8
+					],
+					[
+						0.6,
+						0.66
+					]
+				],
+				"ms": 2200,
+				"caption": "Every fin, pushrod and blade is a function of a few dimensions"
+			},
+			{
+				"drag": [
+					[
+						0.8806,
+						0.278
+					],
+					[
+						0.7,
+						0.278
+					]
+				],
+				"ms": 1500,
+				"caption": "Change a dimension and the geometry is rebuilt: nine cylinders to five"
+			},
+			{
+				"expect": "16.5 L"
+			},
+			{
+				"read": "cylindersAfter",
+				"selector": "#ma-p-cylinders-out",
+				"match": "(\\d+)"
+			},
+			{
+				"hold": 1800
+			},
+			{
+				"click": "Coupled Six",
+				"caption": "The second machine is a steam locomotive, built the same way"
+			},
+			{
+				"expect": "Outside-cylinder steam locomotive"
+			},
+			{
+				"expect": "Solved four-bar chain, not baked animation"
+			},
+			{
+				"hold": 2400
+			},
+			{
+				"press": "e",
+				"caption": "Pull it apart. Every part is its own geometry."
+			},
+			{
+				"hold": 3800
+			}
+		]
+	},
+	"probes": [
+		{
+			"type": "scenario"
+		},
+		{
+			"type": "api",
+			"name": "the machine atlas page is up",
+			"url": "https://three.ws/assembly",
+			"expect": {
+				"contains": "Machine Atlas"
+			}
+		}
+	],
+	"posts": [
+		{
+			"text": "placeholder head post for the machine atlas story, written after the reel is watched and checked against the page",
+			"media": [
+				{
+					"path": "public/x-media/machine-atlas/reel.mp4",
+					"probe": {
+						"durationSec": 15.9,
+						"width": 1280,
+						"height": 720,
+						"fps": 30,
+						"videoCodec": "h264",
+						"pixFmt": "yuv420p"
+					},
+					"reel": true
+				}
+			]
+		},
+		{
+			"text": "placeholder reply with the link: three.ws/assembly"
+		}
+	],
+	"claims": [],
+	"mentions": {}
+}
