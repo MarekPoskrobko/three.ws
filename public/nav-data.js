@@ -818,10 +818,16 @@ export const NAV_GROUPS = [
 						desc: 'npm · web component · React · GLB upload',
 					},
 					{
+						title: 'Connect to Claude & ChatGPT',
+						href: '/connect',
+						tier: 'advanced',
+						desc: 'One URL adds three.ws to Claude, ChatGPT, Cursor or VS Code',
+					},
+					{
 						title: 'MCP Tool Catalog',
 						href: '/mcp-tools',
 						tier: 'advanced',
-						desc: 'All 270 AI tools: price, host server, and what runs unattended',
+						desc: 'Every AI tool: price, host server, and what runs unattended',
 					},
 				],
 			},

@@ -955,6 +955,10 @@
 					"path": "mcp-tools"
 				},
 				{
+					"label": "CLI (npx three-ws)",
+					"path": "cli"
+				},
+				{
 					"label": "MCP tool safety",
 					"path": "mcp-safety"
 				},

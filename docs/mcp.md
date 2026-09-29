@@ -4,6 +4,8 @@ Model Context Protocol (MCP) lets Claude and other MCP-compatible AI systems int
 
 This document covers the MCP server's tools, authentication, client configuration, and how to test locally.
 
+**Just want it connected?** [three.ws/connect](/connect) adds three.ws to Claude, ChatGPT, Cursor, VS Code or Claude Code in two clicks, and [`npx three-ws setup`](/docs/cli) configures every client on your machine at once.
+
 ---
 
 ## What is MCP?

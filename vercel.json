@@ -5912,6 +5912,10 @@
 			"dest": "/mcp-tools.html"
 		},
 		{
+			"src": "/connect/?",
+			"dest": "/connect.html"
+		},
+		{
 			"src": "/render-lab",
 			"dest": "/render-lab.html"
 		},

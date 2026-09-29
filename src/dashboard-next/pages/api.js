@@ -410,6 +410,7 @@ function openConnectClaudeModal(state) {
 			<h2>Connect to Claude</h2>
 			<button type="button" class="dn-btn ghost" data-modal-close aria-label="Close">×</button>
 		</div>
+		<p class="dn-modal-body" style="margin-bottom:14px">No key needed for a connector: <a href="/connect">three.ws/connect</a> adds three.ws to Claude, ChatGPT, Cursor or VS Code with a browser sign-in. Use a key below for scripts, servers and clients without OAuth.</p>
 		${selected
 			? `<p class="dn-modal-body" style="margin-bottom:14px">Using key <strong>${esc(selected.name)}</strong> (<code>${esc(selected.prefix)}…</code>). Swap the prefix for your full secret — the one shown once at creation.</p>`
 			: `<div class="dn-warn-banner"><strong>No API key yet.</strong>These snippets use the <code>${esc(KEY_PLACEHOLDER)}</code> placeholder. Create a key first, then paste it in.</div>`}

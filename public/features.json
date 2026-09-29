@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T07:53:23.485Z",
+	"generated_at": "2026-09-29T23:28:43.307Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -4849,6 +4849,16 @@
 					"showcase": false
 				},
 				{
+					"path": "/docs/cli",
+					"title": "Docs · three-ws CLI",
+					"description": "Connect Claude Code, Claude Desktop, Cursor, Windsurf, VS Code, Codex, Gemini CLI or Hermes to three.ws in one command: npx three-ws setup signs you in, writes every client's MCP config and verifies each server with a live tools/list.",
+					"added": "2026-09-29",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
 					"path": "/docs/mcp",
 					"title": "Docs · MCP",
 					"description": "Expose your agent as an MCP server for Claude, ChatGPT, and other clients.",
@@ -7193,6 +7203,16 @@
 					"title": "Docs · MCP tool safety",
 					"description": "What an MCP tool's safety annotations mean on three.ws and why you can trust them: read-only tools never change what you asked about, anything that spends is labelled as spending, and a build check verifies every hint against the tool's own code before it can ship.",
 					"added": "2026-07-30",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/connect",
+					"title": "Connect three.ws to Claude, ChatGPT, Cursor & VS Code",
+					"description": "Add three.ws to your AI client in two clicks: one connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools for 3D generation, agents, wallets and x402 payments. Sign in once in your browser, with no API key to copy.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": true,
 					"tags": [],

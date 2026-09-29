@@ -1,11 +1,21 @@
 {
-	"generated_at": "2026-09-29T19:55:19.795Z",
+	"generated_at": "2026-09-29T23:28:43.323Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Connect three.ws to Claude, ChatGPT, Cursor & VS Code",
+			"summary": "Add three.ws to your AI client in two clicks: one connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools for 3D generation, agents, wallets and x402 payments. Sign in once in your browser, with no API key to copy.",
+			"link": "/connect",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "launch",
@@ -72,6 +82,16 @@
 			"title": "Docs · Syndicates",
 			"summary": "How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.",
 			"link": "/docs/syndicates",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · three-ws CLI",
+			"summary": "Connect Claude Code, Claude Desktop, Cursor, Windsurf, VS Code, Codex, Gemini CLI or Hermes to three.ws in one command: npx three-ws setup signs you in, writes every client's MCP config and verifies each server with a live tools/list.",
+			"link": "/docs/cli",
 			"tags": [
 				"launch"
 			]

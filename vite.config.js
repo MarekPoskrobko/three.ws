@@ -691,6 +691,7 @@ const appConfig = {
 				'tour-builder': resolve(__dirname, 'pages/tour-builder.html'),
 				'agent-identities': resolve(__dirname, 'pages/agent-identities.html'),
 				'mcp-tools': resolve(__dirname, 'pages/mcp-tools.html'),
+				connect: resolve(__dirname, 'pages/connect.html'),
 				awesome: resolve(__dirname, 'pages/awesome.html'),
 				prompts: resolve(__dirname, 'pages/prompts.html'),
 				'render-lab': resolve(__dirname, 'pages/render-lab.html'),

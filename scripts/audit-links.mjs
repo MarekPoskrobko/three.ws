@@ -212,7 +212,9 @@ function classifyTarget(value) {
 	const v = (value || '').trim();
 	if (STUB_VALUES.has(v.toLowerCase())) return { type: 'stub', value: v };
 	// javascript:void(0) is a stub; any other javascript: URL runs real code → scheme.
-	if (/^(mailto:|tel:|sms:|data:|blob:|javascript:)/i.test(v)) return { type: 'scheme', value: v };
+	// cursor:, vscode: and vscode-insiders: are the editors' MCP install deep links
+	// (/connect): they open a local app, so there is nothing to resolve or probe.
+	if (/^(mailto:|tel:|sms:|data:|blob:|javascript:|cursor:|vscode:|vscode-insiders:)/i.test(v)) return { type: 'scheme', value: v };
 	// Dynamic FIRST — a template-literal/concatenated URL is not a concrete target,
 	// even when it starts with https:// (e.g. `https://solscan.io/tx/${sig}`).
 	if (v.includes('${') || /["'`]\s*\+/.test(v) || v.includes('+ ')) return { type: 'dynamic', value: v };

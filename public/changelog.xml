@@ -7,6 +7,14 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</title>
+			<link>https://three.ws/connect</link>
+			<guid isPermaLink="false">2026-09-29:Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Add three.ws to your AI client in two clicks: one connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools for 3D generation, agents, wallets and x402 payments. Sign in once in your browser, with no API key to copy.</description>
+		</item>
+		<item>
 			<title>Copy Coach: your first copy trade, the careful way</title>
 			<link>https://three.ws/copy-coach</link>
 			<guid isPermaLink="false">2026-09-29:Copy Coach: your first copy trade, the careful way</guid>
@@ -61,6 +69,14 @@
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>launch</category>
 			<description>How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.</description>
+		</item>
+		<item>
+			<title>Docs · three-ws CLI</title>
+			<link>https://three.ws/docs/cli</link>
+			<guid isPermaLink="false">2026-09-29:Docs · three-ws CLI</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Connect Claude Code, Claude Desktop, Cursor, Windsurf, VS Code, Codex, Gemini CLI or Hermes to three.ws in one command: npx three-ws setup signs you in, writes every client's MCP config and verifies each server with a live tools/list.</description>
 		</item>
 		<item>
 			<title>Live Trade Rooms: watch pump.fun traders trade live in 3D</title>
