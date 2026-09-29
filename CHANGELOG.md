@@ -4,6 +4,10 @@
 
 Public history for [three.ws](https://three.ws), newest first. New pages come from `added` dates in data/pages.json; everything else is curated in data/changelog.json. Also available as [JSON](https://three.ws/changelog.json) and [RSS](https://three.ws/changelog.xml), live at [three.ws/changelog](https://three.ws/changelog).
 
+## 2026-09-29
+
+- **The platform's own payments stop crowding out the data it pays for**: Every two minutes a background job sends a batch of tiny tips to keep the payment feed moving, and three.ws pays the network fee on each one. It sent 60 at a time whether or not the day's fee budget could cover them, so about 95% were turned away after the work of preparing them, and the few that got through used up the budget the health, price and volume checks needed. The job now sends only what the budget can pay for and leaves room for those checks first. The status page also flags this pattern if it ever comes back, instead of reporting payments as healthy. (`/status`) `[fix, infra]`
+
 ## 2026-09-28
 
 - **The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room**: Walking into the Club used to land you in an empty room. Now a crowd stands around the three stages, and every tip turns into $0.001 bills. When you tip, a clump of bills flies from where you are standing and flutters down onto her stage. When someone else tips, bills drop from the lights above her pole. The bills stay where they land, so each stage keeps a pile for the night, sized from that dancer's real tips today. You can tip without leaving the scene: every dancer has a tag over her head, and clicking her or her pole opens a picker for her routine. A tip from another visitor now puts her through the routine they paid for on your screen too, and the people at her stage cheer. Tips paid by three.ws platform agents are labelled as agent tips in the feed, drop a single violet bill, and never start a routine, and each dancer's card now says how many of today's tips came from people and how many from agents. (`/club`) `[feature, improvement]`

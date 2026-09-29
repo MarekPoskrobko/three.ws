@@ -1,11 +1,22 @@
 {
-	"generated_at": "2026-09-28T03:03:43.010Z",
+	"generated_at": "2026-09-29T06:45:44.824Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "The platform's own payments stop crowding out the data it pays for",
+			"summary": "Every two minutes a background job sends a batch of tiny tips to keep the payment feed moving, and three.ws pays the network fee on each one. It sent 60 at a time whether or not the day's fee budget could cover them, so about 95% were turned away after the work of preparing them, and the few that got through used up the budget the health, price and volume checks needed. The job now sends only what the budget can pay for and leaves room for those checks first. The status page also flags this pattern if it ever comes back, instead of reporting payments as healthy.",
+			"link": "/status",
+			"tags": [
+				"fix",
+				"infra"
+			]
+		},
 		{
 			"date": "2026-09-28",
 			"type": "update",

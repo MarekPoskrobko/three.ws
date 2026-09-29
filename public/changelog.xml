@@ -7,6 +7,14 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>The platform's own payments stop crowding out the data it pays for</title>
+			<link>https://three.ws/status</link>
+			<guid isPermaLink="false">2026-09-29:The platform's own payments stop crowding out the data it pays for</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>fix</category>
+			<description>Every two minutes a background job sends a batch of tiny tips to keep the payment feed moving, and three.ws pays the network fee on each one. It sent 60 at a time whether or not the day's fee budget could cover them, so about 95% were turned away after the work of preparing them, and the few that got through used up the budget the health, price and volume checks needed. The job now sends only what the budget can pay for and leaves room for those checks first. The status page also flags this pattern if it ever comes back, instead of reporting payments as healthy.</description>
+		</item>
+		<item>
 			<title>The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room</title>
 			<link>https://three.ws/club</link>
 			<guid isPermaLink="false">2026-09-28:The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room</guid>
