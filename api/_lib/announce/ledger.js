@@ -51,9 +51,13 @@ export function cryptoPaths(root) {
 	return paths;
 }
 
-// Ids that are already spoken for: queued, or carrying a pack.
+// Ids that are already spoken for: queued, covered by a queued story, or
+// carrying a pack. A story is about what a person can do, which is often
+// several surfaces at once (a page, the package behind it, the worker behind
+// that), and its `covers` names each one so the backlog stops offering them.
 export function takenIds(root, queue) {
 	const taken = new Set((queue.items || []).map((item) => item.id));
+	for (const item of queue.items || []) for (const key of item.covers || []) taken.add(slugFor(key));
 	const dir = resolve(root, 'docs/announcements');
 	if (existsSync(dir)) {
 		for (const file of readdirSync(dir)) {

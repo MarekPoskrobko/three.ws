@@ -57,7 +57,16 @@
 			"reprojection",
 			"GPU",
 			"retopo"
-		]
+		],
+		"maximumLength": 1000
+	},
+	"approval": {
+		"mode": "auto",
+		"tiers": [
+			2,
+			3
+		],
+		"vetoHours": 24
 	},
 	"items": [
 		{

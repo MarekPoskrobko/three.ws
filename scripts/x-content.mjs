@@ -11,6 +11,11 @@
 //   npm run x:content -- scout <url> [--format square]      what a page offers a scenario: controls, fields, numbers
 //   npm run x:content -- prove <slug> [--no-film]            run the item's scenario against the live product and film it
 //   npm run x:content -- prove --status draft               film every item in a status that carries a scenario
+//   npm run x:content -- prove --file data/x-content/stories/<slug>.json   film a story that is not in the queue yet
+//   npm run x:content -- adopt [<slug>...]                   move finished stories from data/x-content/stories/ into the queue
+//   npm run x:content -- advance [<slug>] [--dry-run]        take every draft and review item as far as it can go:
+//                                                            film, review, and release by policy where the queue allows it
+//   npm run x:content -- pause <slug>                        take a post back before it goes out
 //   npm run x:content -- review <slug> [--no-editor]      the editorial bar: lint, live fact checks, AI editor
 //   npm run x:content -- review --status review            review every item awaiting review
 //   npm run x:content -- approve <slug>                    owner gate: release a reviewed item
@@ -20,12 +25,12 @@
 // publish ledger; X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_SECRET are
 // needed only to publish.
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, extname, relative, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-import { QUEUE_PATH, loadQueue, validateQueue } from '../api/_lib/x-content/queue.js';
+import { QUEUE_PATH, loadQueue, validateItem, validateQueue } from '../api/_lib/x-content/queue.js';
 import { DEFAULT_CADENCE, TIERS, currentSlot, pickDue, slotOpenings, tierOf } from '../api/_lib/x-content/schedule.js';
 import { loadLifts, rankItems } from '../api/_lib/x-content/priority.js';
 import { activeHolds, inventory } from '../api/_lib/x-content/runner.js';
@@ -34,7 +39,8 @@ import { dbStore, memoryStore } from '../api/_lib/x-content/state.js';
 import { MAX_SPEED, VIDEO_LIMITS, mediaType, parseFfmpegProbe, videoFilterChain } from '../api/_lib/x-content/media.js';
 import { weightedLength } from '../api/_lib/x-content/quality.js';
 import { approvalProblems, loadReview, reviewItem } from '../api/_lib/x-content/review.js';
-import { FORMATS, proofPath, proveItem, scoutPage } from '../api/_lib/x-content/reel.js';
+import { FORMATS, proofPath, proofProblems, proveItem, scoutPage } from '../api/_lib/x-content/reel.js';
+import { approvalPolicy, policyBlockers, releaseDigest, vetoUntil } from '../api/_lib/x-content/approval.js';
 import { learnLifts, outcomesStore } from '../api/_lib/x-content/outcomes.js';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
@@ -51,7 +57,7 @@ loadEnvFile(resolve(root, '.env.local'));
 loadEnvFile(resolve(root, '.env'));
 
 const args = process.argv.slice(2);
-const VALUE_FLAGS = new Set(['--id', '--as', '--lane', '--pattern', '--out', '--captions', '--item', '--now', '--status', '--speed', '--format', '--shot']);
+const VALUE_FLAGS = new Set(['--id', '--as', '--lane', '--pattern', '--out', '--captions', '--item', '--now', '--status', '--speed', '--format', '--shot', '--file']);
 const positional = args.filter((arg, index) => !arg.startsWith('--') && !VALUE_FLAGS.has(args[index - 1]));
 const has = (flag) => args.includes(`--${flag}`);
 const option = (name, fallback = null) => {
@@ -412,32 +418,171 @@ function printProof(id, proof) {
 	if (proof.video) console.log(`  reel: ${proof.video.path}  ${proof.video.durationSec} s, ${proof.video.width}x${proof.video.height}, ${proof.video.frames} frames, ${Math.round(proof.video.motion * 100)}% changing`);
 }
 
+// Films one item. Returns the proof; the reel is put on the item's head post.
+async function film(item, { filming = true } = {}) {
+	const failureShot = resolve(root, `node_modules/.cache/x-content/${item.id}-failure.png`);
+	mkdirSync(dirname(failureShot), { recursive: true });
+	const { proof, media } = await proveItem(item, { root, film: filming, failureShot });
+	printProof(item.id, proof);
+	if (!proof.passed) console.log(`  the page as it was when the step failed: ${relative(root, failureShot)}`);
+	// The reel replaces whatever led the post. Anything else the head carried
+	// goes with it, because X allows a video no company on its post.
+	if (media) {
+		item.posts[0].media = [media];
+		console.log(`  recorded in ${proofPath(item.id)}`);
+	}
+	return proof;
+}
+
+const saveJson = (path, value) => writeFileSync(path, `${JSON.stringify(value, null, '\t')}\n`);
+const saveQueue = (queue) => saveJson(resolve(root, QUEUE_PATH), queue);
+
+// Stories are queue items that live one to a file until they are finished, so
+// several can be written and filmed at once without every author rewriting
+// the same queue file.
+const STORY_DIR = 'data/x-content/stories';
+
 async function prove() {
+	const filming = !has('no-film');
+	const file = option('file');
+	if (file) {
+		const path = resolve(root, file);
+		if (!existsSync(path)) fail(`${file} does not exist`);
+		const item = JSON.parse(readFileSync(path, 'utf8'));
+		if (!item.scenario) fail(`${file} carries no scenario`);
+		const proof = await film(item, { filming });
+		if (filming && proof.passed) saveJson(path, item);
+		if (!proof.passed) process.exit(1);
+		return;
+	}
 	const queue = loadQueue(root);
 	const status = option('status');
 	const id = positional[1];
 	const items = queue.items.filter((item) => item.scenario && (id ? item.id === id : status ? item.status === status : false));
-	if (!items.length) fail(id ? `${id} is not in the queue, or carries no scenario` : 'Usage: prove <slug> | prove --status draft [--no-film]');
-	const film = !has('no-film');
+	if (!items.length) fail(id ? `${id} is not in the queue, or carries no scenario` : 'Usage: prove <slug> | prove --status draft | prove --file <story.json> [--no-film]');
 	let failed = 0;
 	for (const item of items) {
-		const failureShot = resolve(root, `node_modules/.cache/x-content/${item.id}-failure.png`);
-		mkdirSync(dirname(failureShot), { recursive: true });
-		const { proof, media } = await proveItem(item, { root, film, failureShot });
-		printProof(item.id, proof);
-		if (!proof.passed) {
-			failed++;
-			console.log(`  the page as it was when the step failed: ${relative(root, failureShot)}`);
+		const proof = await film(item, { filming });
+		if (!proof.passed) failed++;
+		else if (filming) saveQueue(queue);
+	}
+	if (failed) process.exit(1);
+}
+
+async function adopt() {
+	const dir = resolve(root, STORY_DIR);
+	const wanted = positional.slice(1);
+	const files = existsSync(dir) ? readdirSync(dir).filter((name) => name.endsWith('.json') && (!wanted.length || wanted.includes(name.replace(/\.json$/, '')))) : [];
+	if (!files.length) fail(`no stories to adopt in ${STORY_DIR}${wanted.length ? ` named ${wanted.join(', ')}` : ''}`);
+	const queue = loadQueue(root);
+	let refused = 0;
+	for (const name of files) {
+		const path = resolve(dir, name);
+		const story = JSON.parse(readFileSync(path, 'utf8'));
+		const existing = queue.items.findIndex((item) => item.id === story.id);
+		if (existing >= 0 && ['approved', 'posted'].includes(queue.items[existing].status)) {
+			refused++;
+			console.log(`skip  ${story.id}: the queue already holds it as ${queue.items[existing].status}`);
 			continue;
 		}
-		if (!media) continue;
-		// The reel replaces whatever led the post. Anything else the head carried
-		// goes with it, because X allows a video no company on its post.
-		item.posts[0].media = [media];
-		console.log(`  recorded in ${proofPath(item.id)}`);
+		// A story arrives as a draft whatever it called itself: review and
+		// approval are steps the queue takes, not claims a file makes.
+		const item = { ...story, status: 'draft' };
+		const problems = validateItem(item, root, { quality: queue.quality || {} });
+		if (existing >= 0) queue.items[existing] = item;
+		else queue.items.push(item);
+		rmSync(path);
+		console.log(`ok    ${story.id}: in the queue as a draft${problems.length ? `, with ${problems.length} problem(s) to fix: ${problems[0]}` : ''}`);
 	}
-	if (film) writeFileSync(resolve(root, QUEUE_PATH), `${JSON.stringify(queue, null, '\t')}\n`);
-	if (failed) process.exit(1);
+	saveQueue(queue);
+	if (refused) process.exit(1);
+}
+
+async function pause() {
+	const id = positional[1];
+	const queue = loadQueue(root);
+	const item = queue.items.find((row) => row.id === id);
+	if (!item) fail('Usage: pause <slug>');
+	if (item.status === 'posted') fail(`${id} has already gone out`);
+	item.status = 'paused';
+	saveQueue(queue);
+	console.log(`ok    ${id}: paused. It will not go out until it is approved again.`);
+}
+
+// One command for the whole line. Each item is taken as far as it can go and
+// stops at the first thing that needs a person, with the reason.
+async function advance() {
+	const queue = loadQueue(root);
+	const id = positional[1];
+	const dryRun = has('dry-run');
+	const policy = approvalPolicy(queue);
+	const quality = queue.quality || {};
+	const items = queue.items.filter((item) => (id ? item.id === id : ['draft', 'review'].includes(item.status)));
+	if (!items.length) fail(id ? `${id} is not in the queue` : 'nothing to advance: no draft or review items');
+	console.log(`approval: ${policy.mode === 'auto' ? `by policy for tier ${policy.tiers.join(', ')}, embargoed ${policy.vetoHours} h` : 'by the owner'}`);
+	if (!dryRun) hydrateReviewEnv();
+
+	const rows = [];
+	const released = [];
+	for (const item of items) {
+		const row = { id: item.id, from: item.status, reached: item.status, stopped: null };
+		rows.push(row);
+		try {
+			if (item.scenario && proofProblems(item, root).length) {
+				if (dryRun) {
+					row.stopped = 'would film its scenario';
+					continue;
+				}
+				const proof = await film(item);
+				if (!proof.passed) {
+					const failed = proof.steps.find((step) => !step.ok);
+					row.stopped = `the feature did not pass its scenario at step ${failed.index} (${failed.kind} ${failed.target}): ${failed.detail}`;
+					continue;
+				}
+				saveQueue(queue);
+			}
+			const problems = validateItem({ ...item, status: 'review' }, root, { quality });
+			if (problems.length) {
+				row.stopped = problems[0];
+				continue;
+			}
+			if (dryRun) {
+				row.stopped = 'would review it';
+				continue;
+			}
+			item.status = 'review';
+			row.reached = 'review';
+			saveQueue(queue);
+			const record = await reviewItem(item, { root, glossary: quality.glossary || [], quality });
+			printReview(record);
+			if (!record.passed) {
+				row.stopped = record.blockers[0];
+				continue;
+			}
+			const blockers = policyBlockers(item, record, policy, root);
+			if (blockers.length) {
+				row.stopped = `passed review; waits for the owner because ${blockers[0]}`;
+				continue;
+			}
+			item.status = 'approved';
+			item.notBefore = vetoUntil(item, policy);
+			item.approvedBy = 'policy';
+			row.reached = 'approved';
+			saveQueue(queue);
+			released.push({ id: item.id, tier: tierOf(item), notBefore: item.notBefore, head: item.posts?.[0]?.text || item.article?.title || '' });
+		} catch (err) {
+			row.stopped = String(err.message || err).split('\n')[0];
+		}
+	}
+
+	console.log('\nitem                         from     reached   stopped at');
+	for (const row of rows) console.log(`${row.id.padEnd(28)} ${row.from.padEnd(8)} ${row.reached.padEnd(9)} ${row.stopped || ''}`);
+	if (released.length) {
+		const digest = releaseDigest(released);
+		console.log(`\n${digest.title}\n${digest.detail}`);
+		const { sendOpsAlert } = await import('../api/_lib/alerts.js');
+		await sendOpsAlert(digest.title, digest.detail, { severity: 'info' }).catch((err) => console.log(`(the ops alert was not recorded: ${err.message})`));
+	}
 }
 
 // --- review ----------------------------------------------------------------
@@ -531,6 +676,6 @@ async function approve() {
 	if (blocked) process.exit(1);
 }
 
-const commands = { check, plan, run, review, approve, scout, prove, import: importSource, 'prepare-video': prepareVideo };
+const commands = { check, plan, run, review, approve, scout, prove, adopt, advance, pause, import: importSource, 'prepare-video': prepareVideo };
 if (!commands[command]) fail(`Unknown command ${command}. Commands: ${Object.keys(commands).join(', ')}`);
 await commands[command]();

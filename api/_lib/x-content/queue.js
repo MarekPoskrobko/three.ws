@@ -145,6 +145,10 @@ export function validateItem(item, root, { quality = qualityAt(root) } = {}) {
 		if (!/^[0-9]{5,25}$/.test(String(item.quotes))) problems.push('quotes must be a post id (digits only), not a URL');
 	}
 	if (item.priority !== undefined && !(Number(item.priority) >= -50 && Number(item.priority) <= 50)) problems.push('priority is an owner boost from -50 to 50');
+	// The backlog surfaces a story speaks for, by their ledger keys.
+	if (item.covers !== undefined && !(Array.isArray(item.covers) && item.covers.every((key) => typeof key === 'string' && /^(\/|@|workers\/|services\/|[a-z0-9])/.test(key)))) {
+		problems.push('covers must list backlog keys such as "/galaxy", "@three-ws/scene-mcp" or "workers/rig"');
+	}
 	for (const probe of item.probes || []) {
 		if (!['api', 'browser', 'command', 'scenario'].includes(probe.type)) problems.push(`probe type ${probe.type} must be api, browser, command, or scenario`);
 		if (probe.type === 'scenario' && !item.scenario) problems.push('a scenario probe needs the item to carry a `scenario`');
