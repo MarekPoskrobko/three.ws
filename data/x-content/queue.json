@@ -2100,6 +2100,170 @@
 			"editorOverride": {
 				"reason": "Owner directive of 2026-09-20: ship video and GIF on the account. The editor is right that the volume model measured an uploaded video at 0.71x lift against a still, and that finding stands, but proving the video and GIF lanes work end to end is the point of this post. Its second issue, a bare third post, is fixed rather than overridden."
 			}
+		},
+		{
+			"id": "wardrobe",
+			"status": "approved",
+			"kind": "post",
+			"tier": 2,
+			"lane": "community",
+			"pattern": "walkthrough",
+			"notBefore": "2026-09-30T07:39:14.842Z",
+			"covers": [
+				"/wardrobe",
+				"workers/garment-forge"
+			],
+			"scenario": {
+				"format": "square",
+				"steps": [
+					{
+						"goto": "https://three.ws/wardrobe",
+						"settle": 6000
+					},
+					{
+						"scroll": "Search pieces",
+						"ms": 900,
+						"caption": "An open catalog of clothes for 3D avatars"
+					},
+					{
+						"read": "pieces",
+						"match": "(\\d+) of \\d+ pieces"
+					},
+					{
+						"hold": 1600
+					},
+					{
+						"click": "Outerwear",
+						"caption": "Every piece is a rigged 3D garment, not a texture"
+					},
+					{
+						"hold": 1600
+					},
+					{
+						"click": "3D",
+						"caption": "Open one before you wear it"
+					},
+					{
+						"hold": 1500
+					},
+					{
+						"drag": [
+							[
+								0.16,
+								0.62
+							],
+							[
+								0.42,
+								0.62
+							]
+						],
+						"ms": 2600,
+						"caption": "It is a real mesh. Turn it around."
+					},
+					{
+						"hold": 2400
+					}
+				]
+			},
+			"probes": [
+				{
+					"type": "scenario"
+				},
+				{
+					"type": "api",
+					"name": "the wardrobe page is up",
+					"url": "https://three.ws/wardrobe",
+					"expect": {
+						"contains": "Wardrobe"
+					}
+				}
+			],
+			"posts": [
+				{
+					"text": "Your avatar has a wardrobe now.\n\n59 pieces so far: jackets, jeans, hair, glasses. Each one is a rigged 3D garment, not a texture painted on a body, and it binds to any humanoid avatar at the moment you put it on. No fixed skeleton to match.\n\nOpen a piece in 3D and turn it around before you wear it.",
+					"media": [
+						{
+							"path": "public/x-media/wardrobe/reel.mp4",
+							"probe": {
+								"durationSec": 12.4,
+								"width": 1080,
+								"height": 1080,
+								"fps": 30,
+								"videoCodec": "h264",
+								"pixFmt": "yuv420p"
+							},
+							"reel": true
+						}
+					]
+				},
+				{
+					"text": "When nothing in the catalog fits, describe the garment in a sentence. The forge builds the mesh, rigs it, validates it, and publishes it to the catalog in about seven minutes, where anyone can wear it.\n\nthree.ws/wardrobe"
+				}
+			],
+			"claims": [
+				{
+					"says": "59 pieces",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "pieces",
+							"equals": "59"
+						}
+					]
+				},
+				{
+					"says": "Each one is a rigged 3D garment",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/wardrobe",
+							"contains": "Every piece here is a real, rigged 3D garment"
+						}
+					]
+				},
+				{
+					"says": "binds to any humanoid avatar",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/wardrobe",
+							"contains": "humanoid avatar at runtime"
+						}
+					]
+				},
+				{
+					"says": "No fixed skeleton",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/wardrobe",
+							"contains": "no fixed skeleton"
+						}
+					]
+				},
+				{
+					"says": "The forge builds the mesh, rigs it, validates it, and publishes it to the catalog in about seven minutes",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/wardrobe",
+							"contains": "the forge will build, rig, validate, and publish it in about seven minutes"
+						}
+					]
+				},
+				{
+					"says": "where anyone can wear it",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/wardrobe",
+							"contains": "instantly wearable by anyone"
+						}
+					]
+				}
+			],
+			"mentions": {},
+			"approvedBy": "policy"
 		}
 	]
 }

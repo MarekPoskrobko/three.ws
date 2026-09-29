@@ -444,11 +444,12 @@ class Take {
 // Exact names are tried before partial ones. A partial match is how "Search"
 // once resolved to a "Clear search" button that sat earlier in the page, and
 // the reel filmed the query being wiped instead of run.
+// `field` is true for something to type into, false for something to click,
+// and 'any' for a place to scroll to, which may be either.
 function candidatesFor(page, text, field) {
-	const named = (exact) =>
-		field
-			? [page.getByPlaceholder(text, { exact }), page.getByLabel(text, { exact }), page.getByRole('textbox', { name: text, exact }), page.getByRole('searchbox', { name: text, exact }), page.getByRole('combobox', { name: text, exact })]
-			: [page.getByRole('button', { name: text, exact }), page.getByRole('link', { name: text, exact }), page.getByRole('tab', { name: text, exact }), page.getByRole('menuitem', { name: text, exact }), page.getByText(text, { exact })];
+	const fields = (exact) => [page.getByPlaceholder(text, { exact }), page.getByLabel(text, { exact }), page.getByRole('textbox', { name: text, exact }), page.getByRole('searchbox', { name: text, exact }), page.getByRole('combobox', { name: text, exact })];
+	const controls = (exact) => [page.getByRole('button', { name: text, exact }), page.getByRole('link', { name: text, exact }), page.getByRole('tab', { name: text, exact }), page.getByRole('menuitem', { name: text, exact }), page.getByText(text, { exact })];
+	const named = (exact) => (field === 'any' ? [...controls(exact), ...fields(exact)] : field ? fields(exact) : controls(exact));
 	return [...named(true), ...named(false)];
 }
 
@@ -607,13 +608,15 @@ const STEPS = {
 		}
 		await take.page.mouse.up();
 		take.cursor = { x: x2, y: y2 };
+		await take.frames(6);
+		await take.pointer('rest');
 		return `dragged over ${count} frames`;
 	},
 	async scroll(take, step) {
 		const count = Math.max(6, Math.round(((step.ms ?? 1000) / 1000) * take.fps));
 		let distance = step.scroll;
 		if (typeof distance !== 'number') {
-			const box = await (await locate(take, step.scroll)).boundingBox();
+			const box = await (await locate(take, step.scroll, { field: 'any' })).boundingBox();
 			if (!box) throw new Error('the scroll target has no box on screen');
 			distance = box.y - take.page.viewportSize().height * 0.3;
 		}
