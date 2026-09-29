@@ -9,6 +9,8 @@
 //   module         a repo module's export has the stated length or value
 //   github-issue   an issue has the stated state and label
 //   github-issues  a repository has at least N issues matching state and label
+//   proof          the item's filmed scenario read the fact off the screen,
+//                  waited for the text, or got the answer from the server
 //
 // It also resolves every link in the copy, confirms every @mention is a real,
 // public account, and spellchecks the prose. The CLI runs it before the editor
@@ -20,6 +22,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { mentionsIn } from './editorial.js';
 import { urlRe, urlsIn } from './quality.js';
+import { factCheck, loadProof, runScenario } from './reel.js';
 
 const UA = 'three.ws editorial verifier (+https://three.ws)';
 const normalize = (text) => String(text || '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -133,8 +136,8 @@ async function github(path) {
 
 const hasLabel = (issue, label) => !label || issue.labels.some((row) => row.name.toLowerCase() === label.toLowerCase());
 
-async function evidenceCheck(evidence, { root, pages }) {
-	const target = evidence.url || evidence.path || (evidence.repo ? `${evidence.repo}${evidence.number ? `#${evidence.number}` : ''}` : '');
+async function evidenceCheck(evidence, { root, pages, item }) {
+	const target = evidence.url || evidence.path || evidence.fact || evidence.saw || evidence.responded || (evidence.repo ? `${evidence.repo}${evidence.number ? `#${evidence.number}` : ''}` : '');
 	const base = { kind: `evidence:${evidence.type}`, target };
 	switch (evidence.type) {
 		case 'page': {
@@ -167,6 +170,8 @@ async function evidenceCheck(evidence, { root, pages }) {
 			const labelOk = hasLabel(issue, evidence.label);
 			return { ...base, ok: stateOk && labelOk, detail: `#${evidence.number} is ${issue.state}${evidence.label ? `, ${labelOk ? 'has' : 'lacks'} label "${evidence.label}"` : ''}` };
 		}
+		case 'proof':
+			return { ...base, ...factCheck(evidence, loadProof(root, item.id)) };
 		case 'github-issues': {
 			const params = new URLSearchParams({ state: evidence.state || 'open', per_page: '100' });
 			if (evidence.label) params.set('labels', evidence.label);
@@ -231,8 +236,10 @@ async function spellingChecks(item, texts, glossary) {
 //   browser  drive the live page in a real browser: goto, click, expect text.
 //   command  run a repo test that exercises the exact behavior the post claims
 //            (e.g. `node --test packages/three-token-mcp/test/burn-policy.test.mjs`).
-// Browser and command probes need a browser and a checkout, so they run at
-// review time only; the production pre-flight runs the api probes.
+//   scenario run the item's filmed scenario again, without filming, and hold
+//            what it reads today against what the reel shows (reel.js).
+// Browser, command and scenario probes need a browser and a checkout, so they
+// run at review time only; the production pre-flight runs the api probes.
 
 const jsonPath = (value, path) => String(path).split('.').reduce((node, key) => (node == null ? node : node[key]), value);
 
@@ -290,17 +297,35 @@ async function commandProbe(probe, root) {
 	return { ok: false, detail: `exit ${run.status ?? run.signal}: ${tail}` };
 }
 
+// The feature still works, and the reel still tells the truth about it: every
+// fact the run reads today has to be the fact the reel was filmed showing. A
+// count that has moved since is a stale reel, and the fix is to film it again.
+async function scenarioProbe(item, root) {
+	const proof = loadProof(root, item.id);
+	const run = await runScenario(item.scenario, { film: false });
+	if (!run.passed) {
+		const failed = run.steps.find((step) => !step.ok);
+		return { ok: false, detail: `step ${failed.index} (${failed.kind} ${failed.target}): ${failed.detail}` };
+	}
+	const drifted = Object.entries(proof?.facts || {}).filter(([name, value]) => run.facts[name] !== value);
+	if (drifted.length) {
+		return { ok: false, detail: `${drifted.map(([name, value]) => `${name} is now "${run.facts[name]}", the reel shows "${value}"`).join('; ')}; prove it again` };
+	}
+	return { ok: true, detail: `${run.steps.length} steps passed against the live product${Object.keys(run.facts).length ? `, facts unchanged (${Object.entries(run.facts).map(([name, value]) => `${name} ${value}`).join(', ')})` : ''}` };
+}
+
 // `where` is 'review' (every probe) or 'publish' (api probes only).
 export async function probeChecks(item, { root, where = 'review' }) {
 	const checks = [];
 	for (const probe of item.probes || []) {
 		if (where === 'publish' && probe.type !== 'api') continue;
-		const label = probe.name || probe.url || (probe.argv || []).join(' ');
+		const label = probe.name || probe.url || (probe.argv || []).join(' ') || (probe.type === 'scenario' ? 'the filmed scenario' : '');
 		try {
 			let result;
 			if (probe.type === 'api') result = await apiProbe(probe);
 			else if (probe.type === 'browser') result = await browserProbe(probe);
 			else if (probe.type === 'command') result = await commandProbe(probe, root);
+			else if (probe.type === 'scenario') result = await scenarioProbe(item, root);
 			else result = { ok: false, detail: `unknown probe type ${probe.type}` };
 			checks.push({ kind: `probe:${probe.type}`, target: label, ...result });
 		} catch (err) {
@@ -318,7 +343,7 @@ export async function verifyItem(item, { root, glossary = [], env = process.env 
 		for (const claim of item.claims || []) {
 			for (const evidence of claim.evidence || []) {
 				try {
-					checks.push({ claim: claim.says, ...(await evidenceCheck(evidence, { root, pages })) });
+					checks.push({ claim: claim.says, ...(await evidenceCheck(evidence, { root, pages, item })) });
 				} catch (err) {
 					checks.push({ claim: claim.says, kind: `evidence:${evidence.type}`, target: evidence.url || evidence.path || evidence.repo, ok: false, detail: err.message });
 				}

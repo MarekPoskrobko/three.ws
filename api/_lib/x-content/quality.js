@@ -83,13 +83,26 @@ export const BANNED_PHRASES = [
 	/\bstay tuned\b/i,
 ];
 
+// X cuts a post off at 280 weighted characters for a standard account and lets
+// a Premium account write up to 25,000. @trythreews is Premium, and its head
+// posts over 280 measured about twice the likes of the ones under it (140
+// against 76, head posts since August 2026), so the wall is a queue setting
+// (`quality.maximumLength`) and not a constant. Anything below 280 is ignored:
+// a queue cannot make the limit stricter than X does.
+export const STANDARD_MAX_LENGTH = 280;
+export const PREMIUM_MAX_LENGTH = 25_000;
+export function maxLengthOf(quality) {
+	const wanted = Number(quality?.maximumLength);
+	return Number.isFinite(wanted) && wanted > STANDARD_MAX_LENGTH ? Math.min(Math.floor(wanted), PREMIUM_MAX_LENGTH) : STANDARD_MAX_LENGTH;
+}
+
 // Acronyms and tickers that are legitimately written in capitals.
 const ALLCAPS_TERMS = new Set(['THREE', 'HTTP', 'HTTPS', 'JSON', 'GLTF', 'HTML', 'WEBP', 'NVIDIA', 'OAUTH', 'MCP', 'GPU', 'GPUS']);
 
 // `minimum` applies to the head of a post; replies may be short. `requireUrl`
 // is false for parts whose item carries its link somewhere else (a reply, or a
 // quoted Article).
-export function copyProblems(text, { minimum = 100, maximum = 280, requireUrl = true } = {}) {
+export function copyProblems(text, { minimum = 100, maximum = STANDARD_MAX_LENGTH, requireUrl = true } = {}) {
 	const problems = [];
 	const copy = String(text || '').trim();
 	const weight = weightedLength(copy);

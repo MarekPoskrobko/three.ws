@@ -7,11 +7,12 @@
 
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { copyProblems, copySimilarity, hasUrl, weightedLength } from './quality.js';
+import { copyProblems, copySimilarity, hasUrl, maxLengthOf, weightedLength } from './quality.js';
 import { attachmentProblems, mediaProblems, mediaType } from './media.js';
 import { MARKDOWN_ENTITY_BUDGET, markdownToContentState } from './articles.js';
 import { claimProblems, languageProblems } from './editorial.js';
 import { approvalProblems } from './review.js';
+import { proofProblems, scenarioProblems } from './reel.js';
 
 export const QUEUE_PATH = 'data/x-content/queue.json';
 export const STATUSES = ['draft', 'review', 'approved', 'paused', 'posted'];
@@ -62,7 +63,7 @@ function textFromProblems(post, root) {
 	return readFileSync(path, 'utf8').trim() === String(post.text || '').trim() ? [] : [`text differs from ${post.textFrom}; copy the reviewed pack text into the queue`];
 }
 
-function postProblems(item, root, { headMinimum, headNeedsUrl }) {
+function postProblems(item, root, { headMinimum, headNeedsUrl, maximum }) {
 	const problems = [];
 	const posts = item.posts || [];
 	const itemLinks = posts.some((post) => hasUrl(post.text));
@@ -71,7 +72,7 @@ function postProblems(item, root, { headMinimum, headNeedsUrl }) {
 	posts.forEach((post, index) => {
 		const label = index === 0 ? 'head' : `reply ${index}`;
 		problems.push(...textFromProblems(post, root).map((problem) => `${label}: ${problem}`));
-		for (const problem of copyProblems(post.text, { minimum: index === 0 ? headMinimum : 1, requireUrl: false })) {
+		for (const problem of copyProblems(post.text, { minimum: index === 0 ? headMinimum : 1, maximum, requireUrl: false })) {
 			problems.push(`${label}: ${problem}`);
 		}
 		for (const problem of attachmentProblems(post.media)) problems.push(`${label}: ${problem}`);
@@ -117,8 +118,19 @@ function articleProblems(item, root) {
 	return problems;
 }
 
-export function validateItem(item, root) {
+// The queue's own quality settings, for a caller that holds one item and not
+// the queue it came from.
+function qualityAt(root) {
+	try {
+		return loadQueue(root).quality || {};
+	} catch {
+		return {};
+	}
+}
+
+export function validateItem(item, root, { quality = qualityAt(root) } = {}) {
 	const problems = [];
+	const maximum = maxLengthOf(quality);
 	if (!/^[a-z0-9][a-z0-9-]{1,80}$/.test(String(item.id || ''))) problems.push('id must be a lowercase slug');
 	if (!STATUSES.includes(item.status)) problems.push(`status must be one of ${STATUSES.join(', ')}`);
 	if (!KINDS.includes(item.kind)) problems.push(`kind must be one of ${KINDS.join(', ')}`);
@@ -134,7 +146,8 @@ export function validateItem(item, root) {
 	}
 	if (item.priority !== undefined && !(Number(item.priority) >= -50 && Number(item.priority) <= 50)) problems.push('priority is an owner boost from -50 to 50');
 	for (const probe of item.probes || []) {
-		if (!['api', 'browser', 'command'].includes(probe.type)) problems.push(`probe type ${probe.type} must be api, browser, or command`);
+		if (!['api', 'browser', 'command', 'scenario'].includes(probe.type)) problems.push(`probe type ${probe.type} must be api, browser, command, or scenario`);
+		if (probe.type === 'scenario' && !item.scenario) problems.push('a scenario probe needs the item to carry a `scenario`');
 		if (probe.type === 'api' && !/^https:\/\//.test(String(probe.url || ''))) problems.push('api probes need an https url');
 		if (probe.type === 'command' && !Array.isArray(probe.argv)) problems.push('command probes need an argv array');
 	}
@@ -145,14 +158,14 @@ export function validateItem(item, root) {
 			if (!item.textOnly && !item.posts[0].media?.length) {
 				problems.push('head post has no media; attach an image, GIF, or video, or set "textOnly": true on purpose');
 			}
-			problems.push(...postProblems(item, root, { headMinimum: 100, headNeedsUrl: true }));
+			problems.push(...postProblems(item, root, { headMinimum: 100, headNeedsUrl: true, maximum }));
 		}
 	}
 	if (item.kind === 'article') {
 		problems.push(...articleProblems(item, root));
 		// Follow-up posts quote the published Article, so the Article itself is
 		// the link and the head may be short.
-		if (item.posts?.length) problems.push(...postProblems(item, root, { headMinimum: 40, headNeedsUrl: false }));
+		if (item.posts?.length) problems.push(...postProblems(item, root, { headMinimum: 40, headNeedsUrl: false, maximum }));
 	}
 
 	// Editorial standards that can be judged offline block at every stage.
@@ -161,6 +174,15 @@ export function validateItem(item, root) {
 		for (const finding of languageProblems(text)) if (finding.severity === 'blocking') problems.push(`${finding.rule}: ${finding.message}`);
 	}
 	for (const finding of claimProblems(item)) if (finding.severity === 'blocking') problems.push(`${finding.rule}: ${finding.message}`);
+
+	// A scenario is the item's claim that the feature works. It has to be
+	// runnable as written, it has to be the item's probe, and the reel on the
+	// head post has to be the one a passing run of it filmed.
+	if (item.scenario !== undefined) {
+		problems.push(...scenarioProblems(item.scenario).map((problem) => `scenario: ${problem}`));
+		if (!(item.probes || []).some((probe) => probe.type === 'scenario')) problems.push('scenario: declare { "type": "scenario" } in probes so every review runs it again');
+		if (['review', 'approved'].includes(item.status)) problems.push(...proofProblems(item, root).map((problem) => `proof: ${problem}`));
+	}
 
 	// Approval is only real while a passing review covers these exact bytes.
 	if (item.status === 'approved') problems.push(...approvalProblems(item, root).map((problem) => `review: ${problem}`));
@@ -176,7 +198,7 @@ export function validateQueue(queue, root, { state = null } = {}) {
 	const notes = [];
 	const ids = new Set();
 	for (const item of queue.items || []) {
-		const list = validateItem(item, root);
+		const list = validateItem(item, root, { quality: queue.quality || {} });
 		if (ids.has(item.id)) list.push('id is duplicated');
 		ids.add(item.id);
 		problems[item.id] = list;

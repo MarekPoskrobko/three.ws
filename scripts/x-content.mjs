@@ -8,6 +8,9 @@
 //   npm run x:content -- run --id slug              publish one item now (owner-approved posts only)
 //   npm run x:content -- import <blog-slug|url> --as post|article --id slug [--lane l] [--pattern p]
 //   npm run x:content -- prepare-video <input> --out public/x-media/<id>/clip.mp4 [--captions file.srt] [--speed 3] [--item slug]
+//   npm run x:content -- scout <url> [--format square]      what a page offers a scenario: controls, fields, numbers
+//   npm run x:content -- prove <slug> [--no-film]            run the item's scenario against the live product and film it
+//   npm run x:content -- prove --status draft               film every item in a status that carries a scenario
 //   npm run x:content -- review <slug> [--no-editor]      the editorial bar: lint, live fact checks, AI editor
 //   npm run x:content -- review --status review            review every item awaiting review
 //   npm run x:content -- approve <slug>                    owner gate: release a reviewed item
@@ -31,6 +34,8 @@ import { dbStore, memoryStore } from '../api/_lib/x-content/state.js';
 import { MAX_SPEED, VIDEO_LIMITS, mediaType, parseFfmpegProbe, videoFilterChain } from '../api/_lib/x-content/media.js';
 import { weightedLength } from '../api/_lib/x-content/quality.js';
 import { approvalProblems, loadReview, reviewItem } from '../api/_lib/x-content/review.js';
+import { FORMATS, proofPath, proveItem, scoutPage } from '../api/_lib/x-content/reel.js';
+import { learnLifts, outcomesStore } from '../api/_lib/x-content/outcomes.js';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const DAY = 24 * 60 * 60_000;
@@ -46,7 +51,7 @@ loadEnvFile(resolve(root, '.env.local'));
 loadEnvFile(resolve(root, '.env'));
 
 const args = process.argv.slice(2);
-const VALUE_FLAGS = new Set(['--id', '--as', '--lane', '--pattern', '--out', '--captions', '--item', '--now', '--status', '--speed']);
+const VALUE_FLAGS = new Set(['--id', '--as', '--lane', '--pattern', '--out', '--captions', '--item', '--now', '--status', '--speed', '--format', '--shot']);
 const positional = args.filter((arg, index) => !arg.startsWith('--') && !VALUE_FLAGS.has(args[index - 1]));
 const has = (flag) => args.includes(`--${flag}`);
 const option = (name, fallback = null) => {
@@ -91,7 +96,9 @@ async function plan() {
 	const cadence = { ...DEFAULT_CADENCE, ...queue.cadence };
 	const seed = process.env.X_CONTENT_SCHEDULE_SEED || null;
 	const published = new Map((state.published || []).map((row) => [row.id, row]));
-	const lifts = loadLifts(root);
+	// Rank the way a tick does: with what the account's own posts measured.
+	const learned = process.env.DATABASE_URL ? learnLifts((await outcomesStore().load().catch(() => ({ posts: [] }))).posts, { now }) : null;
+	const lifts = learned ? Object.assign(loadLifts(root) || new Map(), { learned }) : loadLifts(root);
 	const reviews = new Map(queue.items.map((item) => [item.id, loadReview(root, item.id)]));
 	const holds = activeHolds(state, queue.items, root, now);
 	console.log(`ledger: ${s.label}${seed ? '' : '   (slot minutes are placeholders here: X_CONTENT_SCHEDULE_SEED only exists in production)'}\n`);
@@ -377,6 +384,62 @@ function prepareVideo() {
 	console.log(`\nAttached to ${itemId} as the head post's only media.`);
 }
 
+// --- proof reels -----------------------------------------------------------
+
+async function scout() {
+	const url = positional[1];
+	if (!/^https:\/\//.test(String(url))) fail('Usage: scout <https url> [--format landscape|square|portrait] [--shot file.png]');
+	const format = option('format', 'landscape');
+	if (!FORMATS[format]) fail(`--format must be one of ${Object.keys(FORMATS).join(', ')}`);
+	const page = await scoutPage(url, { format, shot: option('shot') });
+	console.log(`${page.url}  HTTP ${page.status}  "${page.title}"  (${format}, ${FORMATS[format].width}x${FORMATS[format].height - FORMATS[format].bar} logical)`);
+	const section = (title, rows) => rows.length && console.log(`\n${title}\n${rows.map((row) => `  ${row}`).join('\n')}`);
+	section('Headings', page.headings);
+	section('Controls (click by this text)', page.buttons);
+	section('Fields (type "into" the placeholder or label)', page.fields);
+	section('Links', page.links);
+	section('Canvases', page.canvases);
+	section('Lines that carry a number (candidates for read)', page.numbers);
+	section('First lines of the page', page.text.slice(0, 25));
+}
+
+function printProof(id, proof) {
+	console.log(`\n=== ${id}: ${proof.passed ? 'PROVED' : 'FAILED'} ===`);
+	for (const step of proof.steps) console.log(`  ${step.ok ? 'pass' : 'FAIL'}  ${String(step.index).padStart(2)}  ${step.kind.padEnd(7)} ${String(step.target).slice(0, 44).padEnd(44)} ${String(step.frames).padStart(4)} frames  ${step.detail}`);
+	if (Object.keys(proof.facts).length) console.log(`  read: ${Object.entries(proof.facts).map(([name, value]) => `${name} = "${value}"`).join(', ')}`);
+	for (const hit of proof.responses) console.log(`  answered: ${hit.method} ${hit.path} ${hit.status} in ${hit.seconds} s`);
+	for (const cut of proof.cuts) console.log(`  cut: ${cut.seconds} s after step ${cut.afterStep}, labelled in the reel`);
+	if (proof.video) console.log(`  reel: ${proof.video.path}  ${proof.video.durationSec} s, ${proof.video.width}x${proof.video.height}, ${proof.video.frames} frames, ${Math.round(proof.video.motion * 100)}% changing`);
+}
+
+async function prove() {
+	const queue = loadQueue(root);
+	const status = option('status');
+	const id = positional[1];
+	const items = queue.items.filter((item) => item.scenario && (id ? item.id === id : status ? item.status === status : false));
+	if (!items.length) fail(id ? `${id} is not in the queue, or carries no scenario` : 'Usage: prove <slug> | prove --status draft [--no-film]');
+	const film = !has('no-film');
+	let failed = 0;
+	for (const item of items) {
+		const failureShot = resolve(root, `node_modules/.cache/x-content/${item.id}-failure.png`);
+		mkdirSync(dirname(failureShot), { recursive: true });
+		const { proof, media } = await proveItem(item, { root, film, failureShot });
+		printProof(item.id, proof);
+		if (!proof.passed) {
+			failed++;
+			console.log(`  the page as it was when the step failed: ${relative(root, failureShot)}`);
+			continue;
+		}
+		if (!media) continue;
+		// The reel replaces whatever led the post. Anything else the head carried
+		// goes with it, because X allows a video no company on its post.
+		item.posts[0].media = [media];
+		console.log(`  recorded in ${proofPath(item.id)}`);
+	}
+	if (film) writeFileSync(resolve(root, QUEUE_PATH), `${JSON.stringify(queue, null, '\t')}\n`);
+	if (failed) process.exit(1);
+}
+
 // --- review ----------------------------------------------------------------
 
 // Credentials the review needs, taken from the Cloud Run service when they are
@@ -435,7 +498,7 @@ async function review() {
 	hydrateReviewEnv();
 	let failed = 0;
 	for (const item of items) {
-		const record = await reviewItem(item, { root, glossary: queue.quality?.glossary || [], skipEditor: has('no-editor') });
+		const record = await reviewItem(item, { root, glossary: queue.quality?.glossary || [], quality: queue.quality || {}, skipEditor: has('no-editor') });
 		printReview(record);
 		if (!record.passed) failed++;
 	}
@@ -468,6 +531,6 @@ async function approve() {
 	if (blocked) process.exit(1);
 }
 
-const commands = { check, plan, run, review, approve, import: importSource, 'prepare-video': prepareVideo };
+const commands = { check, plan, run, review, approve, scout, prove, import: importSource, 'prepare-video': prepareVideo };
 if (!commands[command]) fail(`Unknown command ${command}. Commands: ${Object.keys(commands).join(', ')}`);
 await commands[command]();

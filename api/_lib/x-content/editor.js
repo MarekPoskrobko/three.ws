@@ -20,6 +20,8 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { mediaType } from './media.js';
 import { EDITOR_MODEL, callModelChain } from './llm.js';
+import { STANDARD_MAX_LENGTH } from './quality.js';
+import { loadProof, reelFrames } from './reel.js';
 
 export { EDITOR_MODEL };
 const MAX_SOURCE_CHARS = 24_000;
@@ -35,7 +37,7 @@ Judge the post on:
 - specificity: it states a mechanism or a checkable fact, not an adjective. The first line carries the strongest true statement.
 - voice: matches the house voice contract exactly (no hashtags, no emoji, no hype openers, no dashes, no rhetorical questions, no teaser threads).
 - professionalism: grammar, punctuation, capitalization of names, and tone a partner's comms team would be comfortable being tagged in. Nothing that reads as investment advice or a price promise about $THREE. Tags are only for accounts the feature genuinely runs on.
-- visual: the image is sharp, shows the real product, supports the claim, and would not be cropped badly in the timeline; alt text describes what is in the image for someone who cannot see it.
+- visual: the image is sharp, shows the real product, supports the claim, and would not be cropped badly in the timeline; alt text describes what is in the image for someone who cannot see it. When the attachment is a reel you cannot watch it, so you are given still frames from it, the captions it shows in order, and the record of the run it filmed (what the run read off the screen, what the server answered, and how long any wait was cut). Judge whether those frames show the feature doing what the post says, whether each caption is true of the frame it sits under, and whether anything a frame shows contradicts the copy.
 
 Score each 1 to 5, where 5 means you would ship it unchanged at a top-tier company and 3 means a competent draft that needs work.
 
@@ -43,7 +45,7 @@ Rules for your output:
 - Quote the exact words each issue is about.
 - severity "blocking" means it must not be published as is; "major" should be fixed; "minor" is polish.
 - Every fix is concrete: the replacement text, or exactly what to recapture.
-- The rewrite must obey every rule above, stay within 280 weighted characters per post (URLs count as 23), keep the same link, and contain only facts that appear word for word in a passing verification result or in the live page text quoted by a passing check. Do not import facts from the announcement pack that no check verified. If nothing needs to change, return the original text.
+- The rewrite must obey every rule above, stay within {MAX} weighted characters per post (URLs count as 23), keep the same link, and contain only facts that appear word for word in a passing verification result or in the live page text quoted by a passing check. Do not import facts from the announcement pack that no check verified. If nothing needs to change, return the original text.
 - verdict is "publish" only when there are no blocking issues and every score is at least 4; "revise" when fixable; "reject" when the post should not exist (wrong premise, unverifiable core claim, or reputational risk).
 
 Respond with a single JSON object and nothing else:
@@ -67,8 +69,21 @@ function topPosts(root, count = 6) {
 		.map((row) => ({ text: String(row.text || '').replace(/\s+/g, ' ').trim(), likes: row.likes, reposts: row.retweets, views: row.views }));
 }
 
-// Images go to the model at a readable size. Video is described by its probe,
-// since the editor cannot watch it.
+// What a reel is, in words: the editor judges the frames against this.
+function reelRecord(item, row, proof) {
+	const captions = (item.scenario?.steps || []).map((step) => step.caption).filter(Boolean);
+	return [
+		`${row.role}: a ${row.probe?.durationSec ?? '?'} second reel, ${row.probe?.width}x${row.probe?.height}, filmed from the live product by running the item's scenario end to end.`,
+		`Filmed ${proof?.ranAt || 'at an unknown time'} against ${proof?.target?.commit ? `production commit ${proof.target.commit}` : 'production'}; ${Math.round((proof?.video?.motion || 0) * 100)}% of its frames change.`,
+		`Captions, in order: ${JSON.stringify(captions)}.`,
+		`The run read off the screen: ${JSON.stringify(proof?.facts || {})}. It waited for and saw: ${JSON.stringify(proof?.saw || [])}. The server answered: ${JSON.stringify(proof?.responses || [])}.`,
+		`Waits cut from the film, each labelled in the reel: ${JSON.stringify(proof?.cuts || [])}.`,
+	].join('\n');
+}
+
+// Images go to the model at a readable size. A reel goes as still frames and
+// the record of its run; any other video is described by its probe, since the
+// editor cannot watch it.
 async function imageParts(item, root) {
 	const { default: sharp } = await import('sharp');
 	const parts = [];
@@ -79,6 +94,15 @@ async function imageParts(item, root) {
 	for (const row of media) {
 		const type = mediaType(row.path);
 		if (!type || !existsSync(resolve(root, row.path))) continue;
+		if (type.kind === 'video' && row.reel) {
+			parts.push({ type: 'text', text: reelRecord(item, row, loadProof(root, item.id)) });
+			for (const frame of reelFrames({ root, path: row.path })) {
+				const buffer = await sharp(frame.buffer).resize({ width: 1280, withoutEnlargement: true }).jpeg({ quality: 85 }).toBuffer();
+				parts.push({ type: 'text', text: `Reel frame at ${frame.atSec} s` });
+				parts.push({ type: 'image', data: buffer.toString('base64'), mime: 'image/jpeg' });
+			}
+			continue;
+		}
 		if (type.kind === 'video') {
 			parts.push({ type: 'text', text: `${row.role}: video ${row.path}, probe ${JSON.stringify(row.probe || {})}. Captions burned in: ${row.captions ? 'yes' : 'unknown'}.` });
 			continue;
@@ -90,7 +114,10 @@ async function imageParts(item, root) {
 	return parts;
 }
 
-export async function buildReviewRequest(item, { root, verification, lint }) {
+// `calibration` is the account's best posts as the X API measured them
+// (outcomes.js). Without it the editor falls back to the archive report, which
+// was scraped before X had loaded the like counts of the largest posts.
+export async function buildReviewRequest(item, { root, verification, lint, maximum = STANDARD_MAX_LENGTH, calibration = null }) {
 	const voice = readIfExists(root, 'docs/announce-voice.md', MAX_SOURCE_CHARS);
 	const source = readIfExists(root, item.source?.path, MAX_SOURCE_CHARS);
 	const article = item.kind === 'article' ? readIfExists(root, item.article?.body, MAX_ARTICLE_CHARS) : null;
@@ -111,12 +138,12 @@ export async function buildReviewRequest(item, { root, verification, lint }) {
 		article ? `## Article body (Markdown)\n${article}` : null,
 		source ? `## Announcement pack this post came from\n${source}` : null,
 		voice ? `## House voice contract\n${voice}` : null,
-		`## The account's best-performing posts, for calibration\n${JSON.stringify(topPosts(root), null, 2)}`,
+		`## The account's best-performing posts, for calibration\n${JSON.stringify(calibration?.length ? calibration : topPosts(root), null, 2)}`,
 		'Review the post now. Respond with the JSON object only.',
 	]
 		.filter(Boolean)
 		.join('\n\n');
-	return { system: SYSTEM, parts: [{ type: 'text', text }, ...(await imageParts(item, root))] };
+	return { system: SYSTEM.replace('{MAX}', String(maximum)), parts: [{ type: 'text', text }, ...(await imageParts(item, root))] };
 }
 
 export function parseReview(raw) {

@@ -13,9 +13,10 @@ import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { claimProblems, languageProblems, mediaQualityProblems } from './editorial.js';
-import { copyProblems } from './quality.js';
+import { copyProblems, maxLengthOf } from './quality.js';
 import { buildReviewRequest, reviewWithEditor } from './editor.js';
 import { itemTexts, verifyItem } from './verify.js';
+import { bestPosts, outcomesStore } from './outcomes.js';
 
 export const REVIEW_MAX_AGE_DAYS = 14;
 export const reviewPath = (id) => `data/x-content/reviews/${id}.json`;
@@ -36,6 +37,9 @@ export function contentHash(item, root) {
 		claims: item.claims || [],
 		mentions: item.mentions || {},
 		probes: item.probes || [],
+		// Absent on an item with no scenario, so the hash of every item reviewed
+		// before scenarios existed is unchanged.
+		scenario: item.scenario,
 	};
 	return createHash('sha256').update(JSON.stringify(subject)).digest('hex');
 }
@@ -46,12 +50,12 @@ export function loadReview(root, id) {
 }
 
 // Offline lint for every post in an item, as structured findings.
-export function lintItem(item) {
+export function lintItem(item, { maximum } = {}) {
 	const findings = [];
 	(item.posts || []).forEach((post, index) => {
 		const where = index === 0 ? 'head' : `reply ${index}`;
 		for (const problem of languageProblems(post.text)) findings.push({ where, ...problem });
-		for (const message of copyProblems(post.text, { minimum: 1, requireUrl: false })) findings.push({ where, rule: 'voice', severity: 'blocking', message });
+		for (const message of copyProblems(post.text, { minimum: 1, maximum, requireUrl: false })) findings.push({ where, rule: 'voice', severity: 'blocking', message });
 	});
 	if (item.kind === 'article' && item.article?.title) {
 		for (const problem of languageProblems(item.article.title)) findings.push({ where: 'article title', ...problem });
@@ -72,8 +76,19 @@ export function approvalProblems(item, root, now = Date.now()) {
 	return problems;
 }
 
-export async function reviewItem(item, { root, glossary = [], env = process.env, skipEditor = false }) {
-	const lint = lintItem(item);
+// A review runs fine without the measured posts; it is only calibrated worse.
+async function calibrationPosts(env) {
+	if (!env.DATABASE_URL) return null;
+	try {
+		return bestPosts((await outcomesStore().load()).posts);
+	} catch {
+		return null;
+	}
+}
+
+export async function reviewItem(item, { root, glossary = [], quality = {}, env = process.env, skipEditor = false }) {
+	const maximum = maxLengthOf(quality);
+	const lint = lintItem(item, { maximum });
 	for (const [index, post] of (item.posts || []).entries()) {
 		for (const problem of await mediaQualityProblems(post, root)) lint.push({ where: index === 0 ? 'head' : `reply ${index}`, ...problem });
 	}
@@ -91,7 +106,7 @@ export async function reviewItem(item, { root, glossary = [], env = process.env,
 	let editor = null;
 	if (!skipEditor) {
 		try {
-			editor = await reviewWithEditor(await buildReviewRequest(item, { root, verification, lint }), env);
+			editor = await reviewWithEditor(await buildReviewRequest(item, { root, verification, lint, maximum, calibration: await calibrationPosts(env) }), env);
 		} catch (err) {
 			editorError = err.message;
 		}
@@ -114,7 +129,7 @@ export async function reviewItem(item, { root, glossary = [], env = process.env,
 	if (editor?.rewrite?.posts?.length) {
 		const draft = { ...item, posts: editor.rewrite.posts.map((text) => ({ text })) };
 		editor.rewriteFindings = [
-			...lintItem(draft).filter((row) => row.severity === 'blocking').map((row) => `${row.where}: ${row.message}`),
+			...lintItem(draft, { maximum }).filter((row) => row.severity === 'blocking').map((row) => `${row.where}: ${row.message}`),
 		];
 	}
 
