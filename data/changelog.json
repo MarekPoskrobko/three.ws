@@ -3,6 +3,13 @@
 	"entries": [
 		{
 			"date": "2026-09-29",
+			"title": "One link teaches any AI agent to use three.ws",
+			"summary": "three.ws/skill.md is a single Agent Skill an assistant can load to learn the platform: how to connect, the rules it follows before spending money, and links to the focused skills for making 3D models, rigging avatars, creating agents and hiring them. It updates itself whenever a skill is added.",
+			"tags": ["feature", "docs"],
+			"link": "/connect"
+		},
+		{
+			"date": "2026-09-29",
 			"title": "Know the real three.ws and the real $THREE at a glance",
 			"summary": "Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.",
 			"tags": ["security", "improvement"],

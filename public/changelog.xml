@@ -87,6 +87,14 @@
 			<description>Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&amp;L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.</description>
 		</item>
 		<item>
+			<title>skill.md</title>
+			<link>https://three.ws/skill.md</link>
+			<guid isPermaLink="false">2026-09-29:skill.md</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>The three.ws Agent Skill: how an AI agent connects to three.ws, the rules it follows around money and official addresses, and an index of the focused skills for 3D generation, avatars and agents. Load it like any SKILL.md.</description>
+		</item>
+		<item>
 			<title>Syndicates: copy-trade as a team</title>
 			<link>https://three.ws/syndicates</link>
 			<guid isPermaLink="false">2026-09-29:Syndicates: copy-trade as a team</guid>
@@ -125,6 +133,14 @@
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>security</category>
 			<description>Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.</description>
+		</item>
+		<item>
+			<title>One link teaches any AI agent to use three.ws</title>
+			<link>https://three.ws/connect</link>
+			<guid isPermaLink="false">2026-09-29:One link teaches any AI agent to use three.ws</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>three.ws/skill.md is a single Agent Skill an assistant can load to learn the platform: how to connect, the rules it follows before spending money, and links to the focused skills for making 3D models, rigging avatars, creating agents and hiring them. It updates itself whenever a skill is added.</description>
 		</item>
 		<item>
 			<title>Sentiment Scout: momentum with receipts</title>

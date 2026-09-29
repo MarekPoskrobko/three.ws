@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T23:32:52.101Z",
+	"generated_at": "2026-09-29T23:36:04.569Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -8582,6 +8582,16 @@
 					"title": "llms-full.txt",
 					"description": "Expanded llms.txt with full descriptions and content hints.",
 					"added": "2026-05-13",
+					"auth": null,
+					"indexable": false,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/skill.md",
+					"title": "skill.md",
+					"description": "The three.ws Agent Skill: how an AI agent connects to three.ws, the rules it follows around money and official addresses, and an index of the focused skills for 3D generation, avatars and agents. Load it like any SKILL.md.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": false,
 					"tags": [],

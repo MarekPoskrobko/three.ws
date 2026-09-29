@@ -242,6 +242,38 @@ function renderMarkdown(skills) {
 	return `${lines.join('\n').trimEnd()}\n`;
 }
 
+// public/skill.md: the one skill an agent loads first (served at
+// https://three.ws/skill.md, the URL skill directories list). Its prose lives in
+// data/skill-md.template.md; the index of focused skills is generated here from
+// the same collectSkills() pass, so a skill added, renamed or removed shows up
+// in the entry point on the next build and --check fails until it does. Only
+// three.ws's own product skills are listed: vendored partner skills and the
+// maintainer-only ops skill are not how an outside agent uses the platform.
+const ROOT_SKILL_CATEGORIES = [
+	['3d/creative', '3D models and avatars'],
+	['platform/agents', 'Agents on three.ws'],
+];
+const RAW_BASE = 'https://raw.githubusercontent.com/nirholas/three.ws/main/.agents/skills';
+
+// The opening sentence of a skill's description says what it does; the rest is
+// trigger phrasing for the loader, which an index reader does not need.
+function firstSentence(text) {
+	const flat = String(text).replace(/\s+/g, ' ').trim();
+	const end = flat.search(/[.!?](\s|$)/);
+	return end === -1 ? flat : flat.slice(0, end + 1);
+}
+
+function renderRootSkill(skills, template) {
+	const sections = ROOT_SKILL_CATEGORIES.map(([category, heading]) => {
+		const rows = skills
+			.filter((s) => s.category === category && s.origin === 'three.ws')
+			.map((s) => `- [\`${s.name}\`](${RAW_BASE}/${s.name}/SKILL.md): ${firstSentence(s.description)}`);
+		return [`### ${heading}`, '', ...rows].join('\n');
+	});
+	if (!template.includes('{{SKILL_INDEX}}')) throw new Error('data/skill-md.template.md is missing its {{SKILL_INDEX}} marker');
+	return `${template.replace('{{SKILL_INDEX}}', sections.join('\n\n')).trimEnd()}\n`;
+}
+
 // Only run the generator when this file is the entry point: other scripts import
 // collectSkills() so a second copy of the frontmatter parser never has to exist.
 const invokedDirectly =
@@ -258,22 +290,27 @@ const jsonOut = renderJson(skills);
 const mdOut = renderMarkdown(skills);
 const jsonPath = path.join(SKILLS_DIR, 'skills-pack.json');
 const mdPath = path.join(SKILLS_DIR, 'SKILLS.md');
+const rootSkillPath = path.join(ROOT, 'public', 'skill.md');
+const rootSkillOut = renderRootSkill(skills, fs.readFileSync(path.join(ROOT, 'data', 'skill-md.template.md'), 'utf8'));
 
 if (process.argv.includes('--check')) {
 	const same =
 		fs.existsSync(jsonPath) &&
 		fs.existsSync(mdPath) &&
+		fs.existsSync(rootSkillPath) &&
 		fs.readFileSync(jsonPath, 'utf8') === jsonOut &&
-		fs.readFileSync(mdPath, 'utf8') === mdOut;
+		fs.readFileSync(mdPath, 'utf8') === mdOut &&
+		fs.readFileSync(rootSkillPath, 'utf8') === rootSkillOut;
 	if (!same) {
-		console.error('skills-pack manifest is stale — run: node scripts/build-skills-pack.mjs');
+		console.error('skills-pack manifest or public/skill.md is stale: run node scripts/build-skills-pack.mjs');
 		process.exit(1);
 	}
-	console.log(`skills-pack manifest up to date (${skills.length} skills).`);
+	console.log(`skills-pack manifest and public/skill.md up to date (${skills.length} skills).`);
 	process.exit(0);
 }
 
 fs.writeFileSync(jsonPath, jsonOut);
 fs.writeFileSync(mdPath, mdOut);
-console.log(`Wrote ${path.relative(ROOT, jsonPath)} and ${path.relative(ROOT, mdPath)} (${skills.length} skills).`);
+fs.writeFileSync(rootSkillPath, rootSkillOut);
+console.log(`Wrote ${path.relative(ROOT, jsonPath)}, ${path.relative(ROOT, mdPath)} and ${path.relative(ROOT, rootSkillPath)} (${skills.length} skills).`);
 }

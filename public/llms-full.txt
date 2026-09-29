@@ -5163,6 +5163,13 @@ Indexable: no (excluded from sitemap)
 
 Expanded llms.txt with full descriptions and content hints.
 
+### skill.md
+
+URL: https://three.ws/skill.md
+Indexable: no (excluded from sitemap)
+
+The three.ws Agent Skill: how an AI agent connects to three.ws, the rules it follows around money and official addresses, and an index of the focused skills for 3D generation, avatars and agents. Load it like any SKILL.md.
+
 ### robots.txt
 
 URL: https://three.ws/robots.txt

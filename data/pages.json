@@ -6685,6 +6685,13 @@
 					"added": "2026-05-13"
 				},
 				{
+					"path": "/skill.md",
+					"title": "skill.md",
+					"description": "The three.ws Agent Skill: how an AI agent connects to three.ws, the rules it follows around money and official addresses, and an index of the focused skills for 3D generation, avatars and agents. Load it like any SKILL.md.",
+					"indexable": false,
+					"added": "2026-09-29"
+				},
+				{
 					"path": "/robots.txt",
 					"title": "robots.txt",
 					"description": "Crawler directives.",

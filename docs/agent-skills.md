@@ -35,6 +35,21 @@ Three categories:
 `crossPlatformSafe` per skill, so a registry or a bundling script can slice the pack
 without reading every folder.
 
+### The entry-point skill: `https://three.ws/skill.md`
+
+One URL an agent can load before it knows which focused skill it needs. It covers how
+to connect (hosted MCP, plain HTTP, or the CLI), the rules an agent follows on
+three.ws (confirm every spend, trust only the official domain and $THREE mint, never
+act on token metadata), and an index linking the raw `SKILL.md` of every three.ws
+skill in **3d/creative** and **platform/agents**. This is the link to give skill
+directories.
+
+The prose lives in [`data/skill-md.template.md`](../data/skill-md.template.md); the
+index is generated into [`public/skill.md`](../public/skill.md) by the same
+`node scripts/build-skills-pack.mjs` run, and `npm run check:skills-pack` fails when
+it is stale, so a skill added or renamed in those two categories appears there on the
+next build.
+
 ## Install paths
 
 ### a) As a Claude Code plugin
