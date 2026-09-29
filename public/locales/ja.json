@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "アゴラ・コモンズ・three.ws",
 		"the_commons": "コモンズ"
 	},
+	"airdrops": {
+		"address_label": "ウォレットアドレス",
+		"address_placeholder": "ウォレットアドレス (Solana または 0x…)",
+		"also_tracked": "追跡中のプログラム",
+		"check_btn": "受取資格をチェック",
+		"copy_aria": "アドレスをコピー",
+		"copy_btn": "コピー",
+		"count_not": "非対象",
+		"count_progress": "進行中",
+		"count_qualified": "対象",
+		"count_tracked": "追跡中",
+		"dir_fineprint": "ステータスは上記日付時点の公開情報を反映しており、頻繁に変更されます。ここに記載の内容は推奨や金融アドバイスではありません。想定レンジは公開されている憶測であり、約束ではありません。ウォレットをチェックして、各基準に対するスコアを確認してください。",
+		"error_title": "このウォレットをスキャンできませんでした",
+		"est_label": "すべての対象エアドロップが支払われた場合の推定額",
+		"filter_all": "すべて",
+		"filter_aria": "受取資格で絞り込み",
+		"filter_not": "非対象",
+		"filter_progress": "進行中",
+		"filter_qualified": "対象",
+		"form_aria": "ウォレットをチェック",
+		"form_hint": "<kbd>/</kbd> でフォーカス。チェーンはアドレスから自動検出されます。<a href=\"/portfolio\">ウォレットポートフォリオ</a> もご覧ください。",
+		"kicker": "実際のオンチェーン活動 · リアルタイムスコアリング",
+		"loading_note": "オンチェーン履歴をスキャン中。取引の多いウォレットは数秒かかります。",
+		"meta_desc": "任意の Solana または Ethereum ウォレットを、ライブなエアドロップ基準でチェック: 実際のオンチェーン活動スキャン、プログラムごとの 0-100 受取資格スコア、不足項目の特定、スキャンでは見えない手動手順まで。無料、キーレス、アカウント不要。",
+		"page_title": "エアドロップチェッカー · three.ws",
+		"portfolio_chip": "ポートフォリオ",
+		"programs": "プログラム",
+		"recent_label": "最近:",
+		"retry_btn": "再試行",
+		"scan_measured": "スキャンで測定した項目",
+		"share_aria": "このレポートへのリンクをコピー",
+		"share_btn": "共有",
+		"sub": "任意の <strong>Solana</strong> または <strong>Ethereum</strong> ウォレットを貼り付けて、どのエアドロップの対象になるか確認しましょう。スコアはウォレットのオンチェーン履歴の実スキャンから算出され、チェックリストで不足項目とスキャンでは見えない項目がわかります。",
+		"title": "エアドロップ <em>Checker</em>",
+		"tracked_programs": "追跡中のプログラム"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "この分析に基づいて行動する",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> 厳格な支出制限内で行動",
@@ -2936,6 +2972,10 @@
 		"starting": "起動中…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Constellation</span>"
+	},
+	"contributors": {
+		"meta_description": "three.ws を支える開発者、イシュー報告者、コミュニティメンバーを紹介します。",
+		"meta_title": "コントリビューター · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "全てのコインを見る →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "暗号デリバティブ · three.ws",
 		"meta_title": "暗号デリバティブ · three.ws",
 		"meta_twitter_description": "ライブ無期限先物市場 — 価格、24時間変動、ファンディングレート、建玉、24時間取引量。",
-		"meta_twitter_title": "暗号デリバティブ · three.ws"
+		"meta_twitter_title": "暗号デリバティブ · three.ws",
+		"open_any_contract_for_its_full_detail_page": "任意のコントラクトを開いて詳細ページを表示: 独自インデックスに対するベーシス、自分でサイズを決めたポジションでのファンディングレートコスト、他すべての会場での同一アンダーリングの価格。"
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. 本ポリシーの変更",
 		"12_contact": "12. お問い合わせ",
 		"1_information_we_collect": "1. 収集する情報",
+		"1a_photos_you_capture_or_upload": "1a. 撮影またはアップロードした写真",
 		"2_how_we_use_your_information": "2. お客様情報の利用方法",
 		"3_on_chain_data": "3. オンチェーンデータ",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3Dモデル (GLB/glTF)、サムネイル、エージェントメタデータ",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "APIコール、ウィジェット読み込みイベント (IPなし、フィンガープリントなし)",
 		"authentication_account_management": "認証とアカウント管理",
 		"authentication_security": "認証、セキュリティ",
+		"building_your_3d_avatar_and_reproducing_re_r": "3Dアバターの構築、およびその結果の再現、再リギング、再スコアリング",
 		"business_transfers_in_connection_with_a_merg": "<strong>事業譲渡:</strong> 合併、買収、または資産売却に関連して、影響を受けるユーザーへの通知をもって行われます。",
 		"category": "カテゴリ",
 		"connected_home_data": "接続されたホームデータ",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "本人確認、サブスクリプションステータス",
 		"if_you_are_a_california_resident_the": "カリフォルニア州にお住まいの場合: 当社が収集する個人情報のカテゴリはセクション1に、目的はセクション2に、受領者はセクション4に記載されています。当社は個人情報を<strong>販売せず</strong>、クロスコンテキスト行動広告のために<strong>共有しません</strong>。そのため、オプトアウトするものはありません。販売や共有を停止する必要がないため、Global Privacy Controlなどのブラウザのオプトアウト信号はデフォルトで尊重されます。当社は、制限する権利を必要とする目的で、機密性の高い個人情報を使用または開示することはありません。",
 		"if_you_connect_a_home_assistant_instance": "Home Assistantインスタンスを接続すると、提供するアクセストークンは物理的な建物への認証情報となります。私たちはカストディアルウォレットキーと同じプリミティブでこれを保存時に暗号化し、もう一度表示することはなく、ホームを切断した瞬間に消去します。建物を開ける操作（ロック解除、開放、解除）は常に明示的な人間の確認を必要とし、AIモデルでは生成できません。ただし、特定のエンティティに対して継続的な許可を付与した場合はこの限りではありません。",
+		"if_you_use_the_selfie_flow_the_photos_you": "セルフィーフローを使用する場合、撮影した写真（正面1枚と任意の側面最大2枚）は再構築サービスにアップロードされ、3Dアバターの構築に使用されます。これらは生成記録とともに保存され、結果の再現、再リギング、品質のための再スコアリングを可能にし、お客様のアカウントのみから閲覧可能です。生成またはアカウントを削除すると削除されます（第5節の保持期間に従います）。これらをモデル訓練に<strong>使用すること</strong>はなく、広告主と<strong>共有すること</strong>はなく、顔テンプレートやその他の生体認証識別子を<strong>導出または保存すること</strong>もありません。セルフィーフローの使用は任意です。ギャラリーから写真をアップロードするか、言葉でキャラクターを説明して写真を一切提供しないこともできます。",
 		"infrastructure_providers_google_cloud_platfo": "<strong>インフラストラクチャプロバイダー:</strong> Google Cloud Platform (ホスティングとコンピューティング)、Neon (データベース)、Cloudflare (ストレージとCDN)、Resend (トランザクションメール)、およびPrivy (オプションのサインイン)。各社は、独自のプライバシーポリシーとデータ処理条件に基づき、当社に代わってデータを処理します。",
 		"legal_acceptance_records": "法的同意記録",
 		"legal_acceptance_records_your_acceptance_of": "<strong>法的同意記録</strong> (利用規約およびリスク開示への同意) は、アカウントの存続期間中保持され、その後も、法的請求を確立または防御するために必要な期間保持されます。この保持は法的義務であり、アカウント削除の要求後も存続します。",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "プライバシーポリシー · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuthスコープアクセス:</strong> OAuth経由で接続する場合、コネクタは、付与されたスコープ（アバター、エージェント、メモリ、プロフィール）でカバーされるthree.wsアカウントデータのみを読み書きできます。AIクライアントのチャット履歴、メモリ、ローカルファイルにはアクセスできません。",
 		"on_chain_data": "オンチェーンデータ",
+		"one_frontal_photo_and_up_to_two_optional_sid": "正面写真1枚と、セルフィーフロー使用時の任意の側面写真最大2枚",
 		"operating_the_three_ws_home_features_you": "three.wsホームで有効にした機能の操作、およびその監査証跡の提供",
 		"payment_data_x402_paid_tools_settle_in": "<strong>決済データ (x402):</strong> 有料ツールはx402決済プロトコルを介してUSDCで決済されます。コールごとに支払う場合、当社はあなたの公開ウォレットアドレスと決済/清算トランザクション署名を受け取ります。これらは決済ファシリテーター（Coinbase CDPおよび/または公開x402.orgファシリテーター）を通じて検証されます。当社はあなたの秘密鍵やシードフレーズを受け取ったり、要求したり、保存したりすることはありません。three.ws自体が参照する唯一のトークンは<code>$THREE</code>です。USDCは純粋に決済のために使用されます。",
 		"payment_facilitators_for_paid_features_settl": "<strong>決済ファシリテーター:</strong> オンチェーンで決済される有料機能（x402）の場合、決済検証はCoinbase Developer Platformや公開x402.orgファシリテーターなどのファシリテーターを通じて行われます。彼らはあなたの公開ウォレットアドレスとトランザクション署名を確認しますが、秘密鍵は決して確認しません。",
+		"photos_you_capture_or_upload": "撮影またはアップロードした写真",
 		"privacy_policy": "プライバシーポリシー",
 		"privacy_questions_privacy_three_ws": "プライバシーに関するお問い合わせ: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "同意の証明、法的遵守",
@@ -11279,12 +11325,7 @@
 		"why": "理由",
 		"you_can_see_export_and_delete_everything": "この機能が保持するすべてのデータをいつでも閲覧、エクスポート、削除でき、アクションログの保存期間を自分で設定できます。完全なインベントリとAPIについては<a href=\"/docs/home-privacy\">ホームのプライバシーと保持</a>を参照してください。",
 		"you_have_the_right_to_lodge_a": "お客様は、現地の監督機関に苦情を申し立てる権利を有します。また、まずは<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>までご連絡いただくことも可能です。お客様の懸念を直接解決する機会を歓迎いたします。",
-		"you_have_the_rights_to_know_access": "お客様は、ご自身の個人情報を知る、アクセスする、訂正する、削除する、およびポータビリティの権利を有し、これらの権利を行使したことに対して差別されない権利を有します。これらの権利は、<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>（セクション6）を通じて行使してください。当社は、お客様のサインイン済みセッション、アカウントメール、またはウォレットで署名されたメッセージを使用して要求を検証します。許可された代理人は、書面による許可を得てお客様のために行動することができます。",
-		"photos_you_capture_or_upload": "撮影またはアップロードした写真",
-		"one_frontal_photo_and_up_to_two_optional_sid": "正面写真1枚と、セルフィーフロー使用時の任意の側面写真最大2枚",
-		"building_your_3d_avatar_and_reproducing_re_r": "3Dアバターの構築、およびその結果の再現、再リギング、再スコアリング",
-		"1a_photos_you_capture_or_upload": "1a. 撮影またはアップロードした写真",
-		"if_you_use_the_selfie_flow_the_photos_you": "セルフィーフローを使用する場合、撮影した写真（正面1枚と任意の側面最大2枚）は再構築サービスにアップロードされ、3Dアバターの構築に使用されます。これらは生成記録とともに保存され、結果の再現、再リギング、品質のための再スコアリングを可能にし、お客様のアカウントのみから閲覧可能です。生成またはアカウントを削除すると削除されます（第5節の保持期間に従います）。これらをモデル訓練に<strong>使用すること</strong>はなく、広告主と<strong>共有すること</strong>はなく、顔テンプレートやその他の生体認証識別子を<strong>導出または保存すること</strong>もありません。セルフィーフローの使用は任意です。ギャラリーから写真をアップロードするか、言葉でキャラクターを説明して写真を一切提供しないこともできます。"
+		"you_have_the_rights_to_know_access": "お客様は、ご自身の個人情報を知る、アクセスする、訂正する、削除する、およびポータビリティの権利を有し、これらの権利を行使したことに対して差別されない権利を有します。これらの権利は、<a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>（セクション6）を通じて行使してください。当社は、お客様のサインイン済みセッション、アカウントメール、またはウォレットで署名されたメッセージを使用して要求を検証します。許可された代理人は、書面による許可を得てお客様のために行動することができます。"
 	},
 	"legal_risk": {
 		"10_contact": "10. お問い合わせ",

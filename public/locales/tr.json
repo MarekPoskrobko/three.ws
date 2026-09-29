@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Ortak Alan · three.ws",
 		"the_commons": "Ortak Alan"
 	},
+	"airdrops": {
+		"address_label": "Cüzdan adresi",
+		"address_placeholder": "Cüzdan adresi (Solana veya 0x…)",
+		"also_tracked": "Ayrıca takip edilenler",
+		"check_btn": "Uygunluğu kontrol et",
+		"copy_aria": "Adresi kopyala",
+		"copy_btn": "Kopyala",
+		"count_not": "Uygun değil",
+		"count_progress": "Devam ediyor",
+		"count_qualified": "Uygun",
+		"count_tracked": "Takip edilen",
+		"dir_fineprint": "Durumlar yukarıdaki tarihteki kamu raporlamasını yansıtır ve sık değişir; buradaki hiçbir şey onay veya mali tavsiye değildir. Tahmini aralıklar kamu spekülasyonudur, vaat değil. Bir cüzdanı kontrol edip bu kriterlere göre skorlarını görün.",
+		"error_title": "Bu cüzdan taranamadı",
+		"est_label": "Tüm uygun airdrop'lar ödeme yaparsa tahmini değer",
+		"filter_all": "Hepsi",
+		"filter_aria": "Uygunluğa göre filtrele",
+		"filter_not": "Uygun değil",
+		"filter_progress": "Devam ediyor",
+		"filter_qualified": "Uygun",
+		"form_aria": "Bir cüzdan kontrol et",
+		"form_hint": "Odaklanmak için <kbd>/</kbd> tuşlarına basın. Zincir adresinden algılanır. Ayrıca bkz. <a href=\"/portfolio\">cüzdan portföyü</a>.",
+		"kicker": "Gerçek on-chain aktivite · canlı skorlanıyor",
+		"loading_note": "On-chain geçmiş taranıyor. Yoğun bir cüzdan birkaç saniye sürer.",
+		"meta_desc": "Herhangi bir Solana veya Ethereum cüzdanını canlı airdrop kriterlerine göre kontrol edin: gerçek on-chain aktivite taraması, program başına 0-100 uygunluk skoru, tam olarak neyin eksik olduğu ve tarama göremeyen manuel adımlar. Ücretsiz, anahtarsız, hesap gerekmez.",
+		"page_title": "Airdrop Kontrolcüsü · three.ws",
+		"portfolio_chip": "Portföy",
+		"programs": "Programlar",
+		"recent_label": "Son aktiviteler:",
+		"retry_btn": "Tekrar dene",
+		"scan_measured": "Tarama neyi ölçtü",
+		"share_aria": "Bu raporun linkini kopyala",
+		"share_btn": "Paylaş",
+		"sub": "Herhangi bir <strong>Solana</strong> veya <strong>Ethereum</strong> cüzdanını yapıştırın ve hangi airdrop'lar için uygun olduğunu görün. Skor, cüzdanın on-chain geçmişinin gerçek bir taramasından gelir; kontrol listesi tam olarak neyin eksik olduğunu ve taramanın göremediği şeyleri söyler.",
+		"title": "Airdrop <em>Kontrolcüsü</em>",
+		"tracked_programs": "Takip edilen programlar"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Bu okuma üzerine harekete geç",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Sert harcama limitleri içinde hareket eder",
@@ -2936,6 +2972,10 @@
 		"starting": "Başlatılıyor…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Küresi</span>"
+	},
+	"contributors": {
+		"meta_description": "three.ws'ı daha iyi yapan geliştiricileri, hata bildirenleri ve topluluk üyelerini tanıyın.",
+		"meta_title": "Katkıda Bulunanlar · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Tüm coinleri gözden geçir →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Kripto Türevleri · three.ws",
 		"meta_title": "Kripto Türevleri · three.ws",
 		"meta_twitter_description": "Canlı sürekli vadeli işlem piyasaları — fiyat, 24 saatlik hareket, finansman oranı, açık pozisyon ve 24 saatlik hacim.",
-		"meta_twitter_title": "Kripto Türevleri · three.ws"
+		"meta_twitter_title": "Kripto Türevleri · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Herhangi bir kontratı açın ve tam detay sayfasını görün: kendi endeksine göre baz, kendi boyutlandırdığınız bir pozisyonda fonlama oranının maliyeti, ve aynı temel varlığın diğer her platformdaki fiyatlandırması."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Bu Politikadaki Değişiklikler",
 		"12_contact": "12. İletişim",
 		"1_information_we_collect": "1. Topladığımız Bilgiler",
+		"1a_photos_you_capture_or_upload": "1a. Çektiğiniz veya Yüklediğiniz Fotoğraflar",
 		"2_how_we_use_your_information": "2. Bilgilerinizi Nasıl Kullanırız",
 		"3_on_chain_data": "3. Zincir Üstü Veriler",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3B modeller (GLB/glTF), küçük resimler, ajan meta verileri",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API çağrıları, widget yükleme olayları (IP yok, parmak izi yok)",
 		"authentication_account_management": "Kimlik doğrulama ve hesap yönetimi",
 		"authentication_security": "Kimlik doğrulama, güvenlik",
+		"building_your_3d_avatar_and_reproducing_re_r": "3D avatarınızı oluşturma ve sonucu yeniden üretme, yeniden rigleme veya yeniden skorlama",
 		"business_transfers_in_connection_with_a_merg": "<strong>İşletme devirleri:</strong> bir birleşme, satın alma veya varlık satışı ile bağlantılı olarak, etkilenen kullanıcılara bildirimde bulunularak.",
 		"category": "Kategori",
 		"connected_home_data": "Bağlantılı ev verisi",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Kimlik doğrulama, abonelik durumu",
 		"if_you_are_a_california_resident_the": "Kaliforniya'da ikamet ediyorsanız: topladığımız kişisel bilgi kategorileri Bölüm 1'de, amaçlar Bölüm 2'de ve alıcılar Bölüm 4'te listelenmiştir. Kişisel bilgileri <strong>satmıyoruz</strong> ve bağlamlar arası davranışsal reklamcılık için <strong>paylaşmıyoruz</strong>, bu nedenle vazgeçilecek bir şey yoktur; Global Gizlilik Kontrolü gibi tarayıcı vazgeçme sinyalleri, durdurulacak bir satış veya paylaşım olmadığı için varsayılan olarak kabul edilir. Hassas kişisel bilgileri, sınırlama hakkı gerektiren amaçlar için kullanmıyor veya ifşa etmiyoruz.",
 		"if_you_connect_a_home_assistant_instance": "Bir Home Assistant örneği bağladığınızda, sağladığınız erişim jetonu fiziksel bir bina için bir kimlik bilgisidir. Bu jetonu, custodial cüzdan anahtarlarıyla aynı primitifle dinlenmede şifreleriz, daha sonra göstermeyiz ve evinizi bağlantıyı kesdiğiniz an sileriz. Bir bina açan eylemler (kilit açma, açma, silahlı kaldırma) her zaman açık bir insan onayı gerektirir; bu onay bir AI modeli tarafından üretilemez, tek bir varlık için sürekli izin verene kadar.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Selfie akışını kullanırsanız, çektiğiniz fotoğraflar (bir ön yüz görüntüsü ve en fazla iki isteğe bağlı yan açı) yeniden yapılandırma servisimize yüklenir ve 3D avatarınızı oluşturmak için kullanılır. Sonucun yeniden üretilmesi, yeniden riglenmesi ve kalite için yeniden skorlanması amacıyla üretim kaydıyla birlikte saklanırlar ve yalnızca hesabınıza görünürler. Üretimi veya hesabınızı sildiğinizde, Bölüm 5'teki saklama pencereleri kapsamında silinirler. Onları modelleri eğitmek için <strong>kullanmayız</strong>, reklamcılarla <strong>paylaşmayız</strong> ve onlardan yüz şablonu veya herhangi bir biyometrik tanımlayıcı <strong>türetilmez veya saklanmaz</strong>. Selfie akışını kullanmak isteğe bağlıdır: galerinizden bir fotoğraf yükleyebilir veya hiç fotoğraf vermeden bir karakteri kelimelerle tanımlayabilirsiniz.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Altyapı sağlayıcıları:</strong> Google Cloud Platform (barındırma ve hesaplama), Neon (veritabanı), Cloudflare (depolama ve CDN), Resend (işlemsel e-posta) ve Privy (isteğe bağlı oturum açma). Her biri, kendi gizlilik politikası ve veri işleme şartları uyarınca adımıza veri işler.",
 		"legal_acceptance_records": "Yasal kabul kayıtları",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Yasal kabul kayıtları</strong> (Hizmet Şartları ve Risk Açıklaması'nı kabul etmeniz) hesabınızın ömrü boyunca ve sonrasında yasal iddiaları oluşturmak veya savunmak için gerektiği sürece saklanır. Bu saklama yasal bir yükümlülüktür ve hesap silme talebinden sonra da devam eder.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Gizlilik Politikası · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth kapsamlı erişim:</strong> OAuth aracılığıyla bağlandığınızda, bağlayıcı yalnızca verdiğiniz kapsamlar (avatarlar, ajanlar, bellek, profil) tarafından kapsanan three.ws hesap verilerini okuyabilir ve yazabilir. AI istemcinizin sohbet geçmişine, belleğine veya yerel dosyalarına erişemez.",
 		"on_chain_data": "Zincir üstü veriler",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Bir ön yüz fotoğrafı ve en fazla iki isteğe bağlı yan açı, selfie akışını kullanıyorsanız",
 		"operating_the_three_ws_home_features_you": "three.ws Ev özelliklerini etkinleştirdiğiniz şekilde çalıştırmak ve bunların denetim kaydını size sunmak",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Ödeme verileri (x402):</strong> Ücretli araçlar, x402 ödeme protokolü aracılığıyla USDC cinsinden ödenir. Çağrı başına ödeme yaptığınızda, genel cüzdan adresinizi ve bir ödeme kolaylaştırıcısı (Coinbase CDP ve/veya genel x402.org kolaylaştırıcısı) aracılığıyla doğrulanan ödeme/mutabakat işlem imzasını alırız. Özel anahtarlarınızı veya tohum cümlenizi asla almayız, istemeyiz veya saklamayız. three.ws'ün kendisinin referans verdiği tek token <code>$THREE</code>'tür; USDC yalnızca mutabakat için kullanılır.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Ödeme kolaylaştırıcıları:</strong> Zincir üstünde ödenen ücretli özellikler (x402) için ödeme doğrulaması, Coinbase Developer Platform veya genel x402.org kolaylaştırıcısı gibi bir kolaylaştırıcı aracılığıyla yapılır. Genel cüzdan adresinizi ve işlem imzalarınızı görürler, özel anahtarlarınızı asla görmezler.",
+		"photos_you_capture_or_upload": "Çektiğiniz veya yüklediğiniz fotoğraflar",
 		"privacy_policy": "Gizlilik Politikası",
 		"privacy_questions_privacy_three_ws": "Gizlilik soruları: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Anlaşma kanıtı, yasal uyumluluk",
@@ -11279,12 +11325,7 @@
 		"why": "Neden",
 		"you_can_see_export_and_delete_everything": "Bu özelliğin tuttuğu her şeyi her zaman görüntüleyebilir, dışa aktarabilir ve silebilirsiniz; ayrıca eylem günlüğü için kendi bekletme pencerenizi belirleyebilirsiniz. Tam envanter ve API için <a href=\"/docs/home-privacy\">Ev gizliliği ve bekletme</a> bölümüne bakın.",
 		"you_have_the_right_to_lodge_a": "Yerel denetleyici makamınıza şikayette bulunma hakkınız vardır. Öncelikle <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> adresinden de bizimle iletişime geçebilirsiniz; endişenizi doğrudan çözme fırsatını memnuniyetle karşılarız.",
-		"you_have_the_rights_to_know_access": "Kişisel bilgilerinizi bilme, erişme, düzeltme, silme ve taşıma haklarına ve bunları kullandığınız için ayrımcılığa uğramama hakkına sahipsiniz. Bu hakları <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Bölüm 6) aracılığıyla kullanın. İstekleri oturum açmış oturumunuz, hesap e-postanız veya cüzdanınız tarafından imzalanmış bir mesaj kullanarak doğrularız. Yetkili bir temsilci yazılı izinle sizin adınıza hareket edebilir.",
-		"photos_you_capture_or_upload": "Çektiğiniz veya yüklediğiniz fotoğraflar",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Bir ön yüz fotoğrafı ve en fazla iki isteğe bağlı yan açı, selfie akışını kullanıyorsanız",
-		"building_your_3d_avatar_and_reproducing_re_r": "3D avatarınızı oluşturma ve sonucu yeniden üretme, yeniden rigleme veya yeniden skorlama",
-		"1a_photos_you_capture_or_upload": "1a. Çektiğiniz veya Yüklediğiniz Fotoğraflar",
-		"if_you_use_the_selfie_flow_the_photos_you": "Selfie akışını kullanırsanız, çektiğiniz fotoğraflar (bir ön yüz görüntüsü ve en fazla iki isteğe bağlı yan açı) yeniden yapılandırma servisimize yüklenir ve 3D avatarınızı oluşturmak için kullanılır. Sonucun yeniden üretilmesi, yeniden riglenmesi ve kalite için yeniden skorlanması amacıyla üretim kaydıyla birlikte saklanırlar ve yalnızca hesabınıza görünürler. Üretimi veya hesabınızı sildiğinizde, Bölüm 5'teki saklama pencereleri kapsamında silinirler. Onları modelleri eğitmek için <strong>kullanmayız</strong>, reklamcılarla <strong>paylaşmayız</strong> ve onlardan yüz şablonu veya herhangi bir biyometrik tanımlayıcı <strong>türetilmez veya saklanmaz</strong>. Selfie akışını kullanmak isteğe bağlıdır: galerinizden bir fotoğraf yükleyebilir veya hiç fotoğraf vermeden bir karakteri kelimelerle tanımlayabilirsiniz."
+		"you_have_the_rights_to_know_access": "Kişisel bilgilerinizi bilme, erişme, düzeltme, silme ve taşıma haklarına ve bunları kullandığınız için ayrımcılığa uğramama hakkına sahipsiniz. Bu hakları <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Bölüm 6) aracılığıyla kullanın. İstekleri oturum açmış oturumunuz, hesap e-postanız veya cüzdanınız tarafından imzalanmış bir mesaj kullanarak doğrularız. Yetkili bir temsilci yazılı izinle sizin adınıza hareket edebilir."
 	},
 	"legal_risk": {
 		"10_contact": "10. İletişim",

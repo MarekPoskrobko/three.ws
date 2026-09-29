@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "아고라 · 커먼즈 · three.ws",
 		"the_commons": "커먼즈"
 	},
+	"airdrops": {
+		"address_label": "지갑 주소",
+		"address_placeholder": "지갑 주소 (Solana 또는 0x…)",
+		"also_tracked": "함께 추적 중",
+		"check_btn": "자격 확인",
+		"copy_aria": "주소 복사",
+		"copy_btn": "복사",
+		"count_not": "자격 없음",
+		"count_progress": "진행 중",
+		"count_qualified": "자격 충족",
+		"count_tracked": "추적 중",
+		"dir_fineprint": "상태는 위 날짜 기준 공개 정보를 반영하며 수시로 변경됩니다. 이는 보증이나 투자 조언이 아닙니다. 예상 범위는 공개된 추측일 뿐 약속이 아닙니다. 지갑을 확인하여 각 기준별 점수를 확인하세요.",
+		"error_title": "이 지갑을 스캔할 수 없습니다",
+		"est_label": "모든 자격 충족 드롭 지급 시 예상액",
+		"filter_all": "전체",
+		"filter_aria": "자격별 필터",
+		"filter_not": "자격 없음",
+		"filter_progress": "진행 중",
+		"filter_qualified": "자격 충족",
+		"form_aria": "지갑 확인",
+		"form_hint": "<kbd>/</kbd> 키로 포커스. 체인은 주소에서 자동 감지. <a href=\"/portfolio\">지갑 포트폴리오</a>도 확인하세요.",
+		"kicker": "실제 온체인 활동 · 실시간 스코어링",
+		"loading_note": "온체인 기록 스캔 중. 활동이 많은 지갑은 몇 초 소요됩니다.",
+		"meta_desc": "Solana 또는 이더리움 지갑을 실시간 에어드랍 기준과 대조: 실제 온체인 활동 스캔, 프로그램별 0-100 자격 점수, 부족한 항목과 스캔으로 알 수 없는 수동 단계까지. 무료, 키 불필요, 계정 불필요.",
+		"page_title": "에어드랍 체커 · three.ws",
+		"portfolio_chip": "포트폴리오",
+		"programs": "프로그램",
+		"recent_label": "최근:",
+		"retry_btn": "다시 시도",
+		"scan_measured": "스캔이 측정한 항목",
+		"share_aria": "이 리포트 링크 복사",
+		"share_btn": "공유",
+		"sub": "<strong>Solana</strong> 또는 <strong>이더리움</strong> 지갑을 붙여넣고 어떤 에어드랍 자격이 있는지 확인하세요. 점수는 지갑의 온체인 기록을 실제 스캔하여 산출하며, 체크리스트는 정확히 무엇이 부족한지와 스캔으로 확인 불가능한 사항을 보여줍니다.",
+		"title": "에어드랍 <em>체커</em>",
+		"tracked_programs": "추적 중인 프로그램"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "이 분석에 따라 행동하기",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> 엄격한 지출 한도 내에서 행동합니다",
@@ -2936,6 +2972,10 @@
 		"starting": "시작 중…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">컨스텔레이션</span>"
+	},
+	"contributors": {
+		"meta_description": "three.ws를 더 나은 곳으로 만드는 개발자, 이슈 리포터, 커뮤니티 멤버들을 만나보세요.",
+		"meta_title": "기여자 · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "모든 코인 찾아보기 →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "암호화폐 파생상품 · three.ws",
 		"meta_title": "암호화폐 파생상품 · three.ws",
 		"meta_twitter_description": "라이브 무기한 선물 시장 — 가격, 24시간 변동, 펀딩 비율, 미결제 약정, 24시간 거래량.",
-		"meta_twitter_title": "암호화폐 파생상품 · three.ws"
+		"meta_twitter_title": "암호화폐 파생상품 · three.ws",
+		"open_any_contract_for_its_full_detail_page": "계약을 열어 전체 상세 페이지 확인: 자체 인덱스 대비 베이시스, 직접 포지션 크기를 정했을 때 펀딩 비율 비용, 모든 다른 거래소에서의 동일 기초자산 가격."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. 본 정책의 변경",
 		"12_contact": "12. 문의",
 		"1_information_we_collect": "1. 수집하는 정보",
+		"1a_photos_you_capture_or_upload": "1a. 직접 촬영하거나 업로드한 사진",
 		"2_how_we_use_your_information": "2. 정보 사용 방법",
 		"3_on_chain_data": "3. 온체인 데이터",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "3D 모델 (GLB/glTF), 썸네일, 에이전트 메타데이터",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "API 호출, 위젯 로드 이벤트 (IP 없음, 지문 없음)",
 		"authentication_account_management": "인증 및 계정 관리",
 		"authentication_security": "인증, 보안",
+		"building_your_3d_avatar_and_reproducing_re_r": "3D 아바타 생성 및 해당 결과물의 재생성, 리깅, 재평가",
 		"business_transfers_in_connection_with_a_merg": "<strong>사업 양도:</strong> 합병, 인수 또는 자산 매각과 관련하여 영향을 받는 사용자에게 통지 후.",
 		"category": "카테고리",
 		"connected_home_data": "연결된 홈 데이터",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "신원 확인, 구독 상태",
 		"if_you_are_a_california_resident_the": "캘리포니아 거주자인 경우: 당사가 수집하는 개인 정보의 범주는 1조에, 목적은 2조에, 수신자는 4조에 명시되어 있습니다. 당사는 개인 정보를 <strong>판매하지 않으며</strong> 교차 컨텍스트 행동 광고를 위해 <strong>공유하지도</strong> 않으므로, 옵트아웃할 것이 없습니다. 판매 또는 공유가 없으므로 Global Privacy Control과 같은 브라우저 옵트아웃 신호는 기본적으로 존중됩니다. 당사는 제한 권리가 필요한 목적으로 민감한 개인 정보를 사용하거나 공개하지 않습니다.",
 		"if_you_connect_a_home_assistant_instance": "홈 어시스턴트 인스턴스를 연결하면 제공하는 액세스 토큰은 물리적 건물에 대한 자격 증명입니다. 당사는 커스터디얼 지갑 키에 사용하는 동일한 원시 방식으로 휴식 시 암호화하며, 다시 표시하지 않고 홈 연결을 해제하는 순간 즉시 삭제합니다. 건물 열기(잠금 해제, 개방, 비활성화) 작업은 항상 명시적인 인간 확인이 필요하며, 이는 AI 모델이 생성할 수 없습니다. 특정 엔티티에 대한 상시 허용을 부여하기 전까지는 그러합니다.",
+		"if_you_use_the_selfie_flow_the_photos_you": "셀피 플로우를 이용하면 촬영한 사진(정면 1장, 선택 사항인 측면 최대 2장)이 재구성 서비스로 업로드되어 3D 아바타 생성에 사용됩니다. 이 사진들은 생성 기록과 함께 저장되어 결과물을 재생성하거나 리깅, 품질 재평가가 가능하도록 하며, 본인 계정에서만 확인할 수 있습니다. 생성 기록이나 계정을 삭제하면 제5조의 보관 기간에 따라 사진도 삭제됩니다. 당사는 이 사진들을 <strong>모델 학습</strong>에 사용하지 않으며, <strong>광고주와 공유</strong>하지 않고, <strong>얼굴 템플릿이나 기타 생체 식별 정보를 추출하거나 저장</strong>하지 않습니다. 셀피 플로우 사용은 선택 사항입니다. 갤러리에서 사진을 업로드하거나, 텍스트로 캐릭터를 묘사하여 사진을 전혀 제공하지 않고도 이용할 수 있습니다.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>인프라 제공업체:</strong> Google Cloud Platform (호스팅 및 컴퓨팅), Neon (데이터베이스), Cloudflare (스토리지 및 CDN), Resend (거래 이메일), Privy (선택적 로그인). 각 제공업체는 자체 개인정보처리방침 및 데이터 처리 약관에 따라 당사를 대신하여 데이터를 처리합니다.",
 		"legal_acceptance_records": "법적 동의 기록",
 		"legal_acceptance_records_your_acceptance_of": "<strong>법적 동의 기록</strong> (서비스 약관 및 위험 공개에 대한 귀하의 동의)은 귀하의 계정 수명 동안 보관되며, 그 이후에는 법적 청구를 설정하거나 방어하는 데 필요한 기간 동안 보관됩니다. 이러한 보관은 법적 의무이며 계정 삭제 요청 후에도 유지됩니다.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "개인정보처리방침 · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>OAuth 범위 지정 액세스:</strong> OAuth를 통해 연결할 때, 커넥터는 부여한 범위(아바타, 에이전트, 메모리, 프로필)에 포함된 three.ws 계정 데이터만 읽고 쓸 수 있습니다. AI 클라이언트의 채팅 기록, 메모리 또는 로컬 파일에는 액세스할 수 없습니다.",
 		"on_chain_data": "온체인 데이터",
+		"one_frontal_photo_and_up_to_two_optional_sid": "정면 사진 1장과 선택 사항인 측면 사진 최대 2장(셀피 플로우 이용 시)",
 		"operating_the_three_ws_home_features_you": "three.ws 홈에서 활성화한 기능을 운영하고, 이에 대한 감사 추적을 제공합니다",
 		"payment_data_x402_paid_tools_settle_in": "<strong>결제 데이터 (x402):</strong> 유료 도구는 x402 결제 프로토콜을 통해 USDC로 정산됩니다. 호출당 결제 시, 당사는 귀하의 공개 지갑 주소와 결제/정산 거래 서명을 수신하며, 이는 결제 중개자(Coinbase CDP 및/또는 공개 x402.org 중개자)를 통해 확인됩니다. 당사는 귀하의 개인 키나 시드 문구를 절대 수신, 요청 또는 저장하지 않습니다. three.ws 자체에서 참조하는 유일한 토큰은 <code>$THREE</code>이며, USDC은 순전히 정산을 위해 사용됩니다.",
 		"payment_facilitators_for_paid_features_settl": "<strong>결제 중개자:</strong> 온체인으로 정산되는 유료 기능(x402)의 경우, 결제 확인은 Coinbase Developer Platform 또는 공개 x402.org 중개자와 같은 중개자를 통해 이루어집니다. 이들은 귀하의 공개 지갑 주소와 거래 서명을 볼 수 있지만, 개인 키는 볼 수 없습니다.",
+		"photos_you_capture_or_upload": "직접 촬영하거나 업로드한 사진",
 		"privacy_policy": "개인정보처리방침",
 		"privacy_questions_privacy_three_ws": "개인정보 문의: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "동의 증명, 법률 준수",
@@ -11279,12 +11325,7 @@
 		"why": "이유",
 		"you_can_see_export_and_delete_everything": "이 기능이 보유한 모든 데이터를 언제든지 확인, 내보내기 및 삭제할 수 있으며, 액션 로그의 보관 기간을 직접 설정할 수 있습니다. 전체 목록 및 API는 <a href=\"/docs/home-privacy\">홈 개인정보 및 보관</a>을 참조하세요.",
 		"you_have_the_right_to_lodge_a": "귀하는 지역 감독 당국에 불만을 제기할 권리가 있습니다. 또한 <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>으로 먼저 당사에 연락할 수 있습니다. 귀하의 우려 사항을 직접 해결할 기회를 환영합니다.",
-		"you_have_the_rights_to_know_access": "귀하는 자신의 개인 정보를 알 권리, 접근할 권리, 수정할 권리, 삭제할 권리, 이전할 권리가 있으며, 이러한 권리 행사를 이유로 차별받지 않을 권리가 있습니다. <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (섹션 6)을 통해 권리를 행사하십시오. 당사는 귀하의 로그인 세션, 계정 이메일 또는 지갑으로 서명된 메시지를 사용하여 요청을 확인합니다. 공인 대리인은 서면 허가를 받아 귀하를 대리할 수 있습니다.",
-		"photos_you_capture_or_upload": "직접 촬영하거나 업로드한 사진",
-		"one_frontal_photo_and_up_to_two_optional_sid": "정면 사진 1장과 선택 사항인 측면 사진 최대 2장(셀피 플로우 이용 시)",
-		"building_your_3d_avatar_and_reproducing_re_r": "3D 아바타 생성 및 해당 결과물의 재생성, 리깅, 재평가",
-		"1a_photos_you_capture_or_upload": "1a. 직접 촬영하거나 업로드한 사진",
-		"if_you_use_the_selfie_flow_the_photos_you": "셀피 플로우를 이용하면 촬영한 사진(정면 1장, 선택 사항인 측면 최대 2장)이 재구성 서비스로 업로드되어 3D 아바타 생성에 사용됩니다. 이 사진들은 생성 기록과 함께 저장되어 결과물을 재생성하거나 리깅, 품질 재평가가 가능하도록 하며, 본인 계정에서만 확인할 수 있습니다. 생성 기록이나 계정을 삭제하면 제5조의 보관 기간에 따라 사진도 삭제됩니다. 당사는 이 사진들을 <strong>모델 학습</strong>에 사용하지 않으며, <strong>광고주와 공유</strong>하지 않고, <strong>얼굴 템플릿이나 기타 생체 식별 정보를 추출하거나 저장</strong>하지 않습니다. 셀피 플로우 사용은 선택 사항입니다. 갤러리에서 사진을 업로드하거나, 텍스트로 캐릭터를 묘사하여 사진을 전혀 제공하지 않고도 이용할 수 있습니다."
+		"you_have_the_rights_to_know_access": "귀하는 자신의 개인 정보를 알 권리, 접근할 권리, 수정할 권리, 삭제할 권리, 이전할 권리가 있으며, 이러한 권리 행사를 이유로 차별받지 않을 권리가 있습니다. <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (섹션 6)을 통해 권리를 행사하십시오. 당사는 귀하의 로그인 세션, 계정 이메일 또는 지갑으로 서명된 메시지를 사용하여 요청을 확인합니다. 공인 대리인은 서면 허가를 받아 귀하를 대리할 수 있습니다."
 	},
 	"legal_risk": {
 		"10_contact": "10. 문의",

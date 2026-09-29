@@ -1053,6 +1053,42 @@
 		"meta_twitter_title": "Agora · Commons · three.ws",
 		"the_commons": "Commons"
 	},
+	"airdrops": {
+		"address_label": "Địa chỉ ví",
+		"address_placeholder": "Địa chỉ ví (Solana hoặc 0x…)",
+		"also_tracked": "Cũng được theo dõi",
+		"check_btn": "Kiểm tra điều kiện",
+		"copy_aria": "Sao chép địa chỉ",
+		"copy_btn": "Sao chép",
+		"count_not": "Không đủ điều kiện",
+		"count_progress": "Đang tiến hành",
+		"count_qualified": "Đủ điều kiện",
+		"count_tracked": "Đã theo dõi",
+		"dir_fineprint": "Trạng thái phản ánh báo cáo công khai tính đến ngày trên và thay đổi thường xuyên; không có gì ở đây là sự chứng thực hay lời khuyên tài chính. Khoảng ước tính là suy đoán công khai, không phải cam kết. Kiểm tra ví để xem điểm số dựa trên các tiêu chí này.",
+		"error_title": "Không thể quét ví này",
+		"est_label": "Ước tính nếu tất cả airdrop đủ điều kiện đều trả thưởng",
+		"filter_all": "Tất cả",
+		"filter_aria": "Lọc theo điều kiện đủ",
+		"filter_not": "Không đủ điều kiện",
+		"filter_progress": "Đang tiến hành",
+		"filter_qualified": "Đủ điều kiện",
+		"form_aria": "Kiểm tra một ví",
+		"form_hint": "Nhấn <kbd>/</kbd> để tập trung. Chuỗi được phát hiện từ địa chỉ. Cũng xem <a href=\"/portfolio\">danh mục ví</a>.",
+		"kicker": "Hoạt động on-chain thực tế · chấm điểm trực tiếp",
+		"loading_note": "Đang quét lịch sử on-chain. Ví bận rộn mất vài giây.",
+		"meta_desc": "Kiểm tra bất kỳ ví Solana hoặc Ethereum nào dựa trên tiêu chí airdrop trực tiếp: quét hoạt động on-chain thực tế, điểm đủ điều kiện 0-100 cho mỗi chương trình, chính xác những gì bạn đang thiếu, và các bước thủ công mà quét không thấy được. Miễn phí, không cần khóa, không cần tài khoản.",
+		"page_title": "Airdrop Checker · three.ws",
+		"portfolio_chip": "Danh mục",
+		"programs": "Chương trình",
+		"recent_label": "Gần đây:",
+		"retry_btn": "Thử lại",
+		"scan_measured": "Những gì quét đã đo lường",
+		"share_aria": "Sao chép liên kết đến báo cáo này",
+		"share_btn": "Chia sẻ",
+		"sub": "Dán bất kỳ ví <strong>Solana</strong> hoặc <strong>Ethereum</strong> nào và xem nó đủ điều kiện airdrop nào. Điểm số đến từ quét thực tế lịch sử on-chain của ví; danh sách kiểm tra cho bạn biết chính xác thiếu gì và những gì quét không thấy được.",
+		"title": "<em>Airdrop</em> Checker",
+		"tracked_programs": "Chương trình được theo dõi"
+	},
 	"alpha_copilot": {
 		"act_on_this_read": "Hành động theo đọc này",
 		"acts_within_hard_spend_limits": "<span class=\"ac-hero-dot\"></span> Hành động trong giới hạn chi tiêu cứng",
@@ -2936,6 +2972,10 @@
 		"starting": "Đang khởi động…",
 		"three_ws_ibm_watsonx": "<span class=\"dot\"></span><strong>three.ws</strong> × IBM watsonx",
 		"watsonx_constellation": "watsonx <span class=\"g\">Chòm sao</span>"
+	},
+	"contributors": {
+		"meta_description": "Gặp gỡ các nhà phát triển, người báo cáo sự cố và thành viên cộng đồng làm cho three.ws tốt hơn.",
+		"meta_title": "Người đóng góp · three.ws"
 	},
 	"converter": {
 		"browse_all_coins": "Duyệt tất cả các đồng tiền →",
@@ -5517,7 +5557,8 @@
 		"meta_og_title": "Tài sản phái sinh Crypto · three.ws",
 		"meta_title": "Tài sản phái sinh Crypto · three.ws",
 		"meta_twitter_description": "Thị trường hợp đồng tương lai vĩnh viễn trực tiếp — giá, biến động 24h, tỷ lệ tài trợ, lãi mở, và khối lượng 24h.",
-		"meta_twitter_title": "Tài sản phái sinh Crypto · three.ws"
+		"meta_twitter_title": "Tài sản phái sinh Crypto · three.ws",
+		"open_any_contract_for_its_full_detail_page": "Mở bất kỳ hợp đồng nào để xem trang chi tiết đầy đủ: basis so với chỉ số của chính nó, chi phí funding rate trên vị trí bạn tự xác định kích thước, và cùng tài sản cơ sở được định giá trên mọi sàn giao dịch khác."
 	},
 	"dex_volumes": {
 		"defi": "DeFi",
@@ -11181,6 +11222,7 @@
 		"11_changes_to_this_policy": "11. Thay đổi đối với Chính sách này",
 		"12_contact": "12. Liên hệ",
 		"1_information_we_collect": "1. Thông tin chúng tôi thu thập",
+		"1a_photos_you_capture_or_upload": "1a. Ảnh Bạn Chụp hoặc Tải Lên",
 		"2_how_we_use_your_information": "2. Cách chúng tôi sử dụng thông tin của bạn",
 		"3_on_chain_data": "3. Dữ liệu trên chuỗi",
 		"3d_models_glb_gltf_thumbnails_agent_metadata": "Mô hình 3D (GLB/glTF), hình thu nhỏ, siêu dữ liệu tác nhân",
@@ -11199,6 +11241,7 @@
 		"api_calls_widget_load_events_no_ips": "Cuộc gọi API, sự kiện tải widget (không IP, không dấu vân tay)",
 		"authentication_account_management": "Xác thực & quản lý tài khoản",
 		"authentication_security": "Xác thực, bảo mật",
+		"building_your_3d_avatar_and_reproducing_re_r": "Xây dựng avatar 3D của bạn, và tái tạo, tái rig hoặc tái chấm điểm kết quả đó",
 		"business_transfers_in_connection_with_a_merg": "<strong>Chuyển giao kinh doanh:</strong> liên quan đến việc sáp nhập, mua lại hoặc bán tài sản, có thông báo cho người dùng bị ảnh hưởng.",
 		"category": "Danh mục",
 		"connected_home_data": "Dữ liệu nhà kết nối",
@@ -11218,6 +11261,7 @@
 		"identity_verification_subscription_status": "Xác minh danh tính, trạng thái đăng ký",
 		"if_you_are_a_california_resident_the": "Nếu bạn là cư dân California: các danh mục thông tin cá nhân chúng tôi thu thập được liệt kê trong Mục 1, mục đích trong Mục 2 và người nhận trong Mục 4. Chúng tôi <strong>không</strong> bán thông tin cá nhân và <strong>không</strong> chia sẻ thông tin đó cho quảng cáo hành vi đa ngữ cảnh, vì vậy không có gì để từ chối; các tín hiệu từ chối của trình duyệt như Global Privacy Control được tôn trọng theo mặc định vì không có hoạt động bán hoặc chia sẻ nào cần dừng lại. Chúng tôi không sử dụng hoặc tiết lộ thông tin cá nhân nhạy cảm cho các mục đích yêu cầu quyền hạn chế.",
 		"if_you_connect_a_home_assistant_instance": "Nếu bạn kết nối một phiên bản Home Assistant, mã truy cập bạn cung cấp là một chứng thực cho một tòa nhà vật lý. Chúng tôi mã hóa nó khi lưu trữ bằng cùng một nguyên thủy mà chúng tôi sử dụng cho khóa ví deposited, không bao giờ hiển thị lại và xóa nó ngay khi bạn ngắt kết nối nhà. Các hành động mở một tòa nhà (mở khóa, mở, vô hiệu hóa) luôn cần một xác nhận rõ ràng từ con người, mà không thể được tạo ra bởi một mô hình AI, cho đến khi bạn cấp một phép tạm thời cố định cho một thực thể cụ thể.",
+		"if_you_use_the_selfie_flow_the_photos_you": "Nếu bạn dùng luồng selfie, các ảnh bạn chụp (một ảnh mặt chính và tối đa hai ảnh góc nghiêng tùy chọn) sẽ được tải lên dịch vụ tái tạo của chúng tôi và dùng để xây dựng avatar 3D của bạn. Chúng được lưu cùng bản ghi tạo để kết quả có thể được tái tạo, tái rig và tái chấm điểm chất lượng, và chỉ hiển thị với tài khoản của bạn. Chúng sẽ bị xóa khi bạn xóa bản tạo hoặc tài khoản, tuân theo các cửa sổ lưu giữ tại Mục 5. Chúng tôi <strong>không</strong> dùng chúng để huấn luyện mô hình, <strong>không</strong> chia sẻ chúng với nhà quảng cáo, và <strong>không</strong> trích xuất hoặc lưu mẫu khuôn mặt hay bất kỳ định danh sinh trắc học nào từ chúng. Việc dùng luồng selfie là tùy chọn: bạn có thể tải ảnh từ thư viện, hoặc mô tả nhân vật bằng lời và hoàn toàn không cung cấp ảnh.",
 		"infrastructure_providers_google_cloud_platfo": "<strong>Nhà cung cấp hạ tầng:</strong> Google Cloud Platform (lưu trữ và tính toán), Neon (cơ sở dữ liệu), Cloudflare (lưu trữ và CDN), Resend (email giao dịch) và Privy (đăng nhập tùy chọn). Mỗi nhà cung cấp xử lý dữ liệu thay mặt chúng tôi theo chính sách quyền riêng tư và điều khoản xử lý dữ liệu riêng của họ.",
 		"legal_acceptance_records": "Hồ sơ chấp thuận pháp lý",
 		"legal_acceptance_records_your_acceptance_of": "<strong>Hồ sơ chấp thuận pháp lý</strong> (việc bạn chấp nhận Điều khoản dịch vụ và Tiết lộ rủi ro) được lưu giữ trong suốt thời gian tài khoản của bạn tồn tại và sau đó trong thời gian cần thiết để thiết lập hoặc bảo vệ các yêu cầu pháp lý. Việc lưu giữ này là một nghĩa vụ pháp lý và vẫn tồn tại sau yêu cầu xóa tài khoản.",
@@ -11232,9 +11276,11 @@
 		"meta_twitter_title": "Chính sách quyền riêng tư · three.ws",
 		"oauth_scoped_access_when_you_connect_via": "<strong>Truy cập giới hạn theo OAuth:</strong> khi bạn kết nối qua OAuth, trình kết nối chỉ có thể đọc và ghi dữ liệu tài khoản three.ws trong phạm vi quyền bạn cấp (ảnh đại diện, tác nhân, bộ nhớ, hồ sơ). Nó không thể truy cập lịch sử trò chuyện, bộ nhớ hoặc tệp cục bộ của ứng dụng AI của bạn.",
 		"on_chain_data": "Dữ liệu trên chuỗi",
+		"one_frontal_photo_and_up_to_two_optional_sid": "Một ảnh mặt chính và tối đa hai ảnh góc nghiêng tùy chọn, nếu bạn dùng luồng selfie",
 		"operating_the_three_ws_home_features_you": "Vận hành các tính năng three.ws Home mà bạn đã bật, và cung cấp cho bạn một nhật ký kiểm tra của chúng",
 		"payment_data_x402_paid_tools_settle_in": "<strong>Dữ liệu thanh toán (x402):</strong> các công cụ trả phí được thanh toán bằng USDC qua giao thức thanh toán x402. Khi bạn thanh toán theo lượt gọi, chúng tôi nhận địa chỉ ví công khai của bạn và chữ ký giao dịch thanh toán/quyết toán, được xác minh thông qua một bên trung gian thanh toán (Coinbase CDP và/hoặc bên trung gian x402.org công khai). Chúng tôi không bao giờ nhận, yêu cầu hoặc lưu trữ khóa riêng tư hay cụm từ hạt giống của bạn. Mã thông báo duy nhất mà bản thân three.ws tham chiếu là <code>$THREE</code>; USDC chỉ được sử dụng cho mục đích thanh toán.",
 		"payment_facilitators_for_paid_features_settl": "<strong>Bên trung gian thanh toán:</strong> đối với các tính năng trả phí được thanh toán trên chuỗi (x402), việc xác minh thanh toán được thực hiện thông qua một bên trung gian như Coinbase Developer Platform hoặc bên trung gian x402.org công khai. Họ thấy địa chỉ ví công khai và chữ ký giao dịch của bạn, không bao giờ là khóa riêng tư.",
+		"photos_you_capture_or_upload": "Ảnh bạn chụp hoặc tải lên",
 		"privacy_policy": "Chính sách quyền riêng tư",
 		"privacy_questions_privacy_three_ws": "Câu hỏi về quyền riêng tư: <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>",
 		"proof_of_agreement_legal_compliance": "Bằng chứng thỏa thuận, tuân thủ pháp luật",
@@ -11279,12 +11325,7 @@
 		"why": "Tại sao",
 		"you_can_see_export_and_delete_everything": "Bạn có thể xem, xuất và xóa mọi thứ mà tính năng này giữ ở bất kỳ thời điểm nào, và đặt cửa sổ giữ lại riêng cho nhật ký hành động của bạn. Xem <a href=\"/docs/home-privacy\">Home privacy and retention</a> để biết danh sách đầy đủ và API.",
 		"you_have_the_right_to_lodge_a": "Bạn có quyền gửi khiếu nại đến cơ quan giám sát địa phương của mình. Bạn cũng có thể liên hệ với chúng tôi trước tại <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a>; chúng tôi rất sẵn lòng giải quyết trực tiếp mối lo ngại của bạn.",
-		"you_have_the_rights_to_know_access": "Bạn có quyền được biết, truy cập, chỉnh sửa, xóa và chuyển dữ liệu cá nhân của mình, và không bị phân biệt đối xử khi thực hiện các quyền này. Thực hiện chúng qua <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Mục 6). Chúng tôi xác minh các yêu cầu bằng phiên đăng nhập của bạn, email tài khoản của bạn hoặc một tin nhắn được ký bởi ví của bạn. Một đại lý được ủy quyền có thể hành động thay mặt bạn với sự cho phép bằng văn bản.",
-		"photos_you_capture_or_upload": "Ảnh bạn chụp hoặc tải lên",
-		"one_frontal_photo_and_up_to_two_optional_sid": "Một ảnh mặt chính và tối đa hai ảnh góc nghiêng tùy chọn, nếu bạn dùng luồng selfie",
-		"building_your_3d_avatar_and_reproducing_re_r": "Xây dựng avatar 3D của bạn, và tái tạo, tái rig hoặc tái chấm điểm kết quả đó",
-		"1a_photos_you_capture_or_upload": "1a. Ảnh Bạn Chụp hoặc Tải Lên",
-		"if_you_use_the_selfie_flow_the_photos_you": "Nếu bạn dùng luồng selfie, các ảnh bạn chụp (một ảnh mặt chính và tối đa hai ảnh góc nghiêng tùy chọn) sẽ được tải lên dịch vụ tái tạo của chúng tôi và dùng để xây dựng avatar 3D của bạn. Chúng được lưu cùng bản ghi tạo để kết quả có thể được tái tạo, tái rig và tái chấm điểm chất lượng, và chỉ hiển thị với tài khoản của bạn. Chúng sẽ bị xóa khi bạn xóa bản tạo hoặc tài khoản, tuân theo các cửa sổ lưu giữ tại Mục 5. Chúng tôi <strong>không</strong> dùng chúng để huấn luyện mô hình, <strong>không</strong> chia sẻ chúng với nhà quảng cáo, và <strong>không</strong> trích xuất hoặc lưu mẫu khuôn mặt hay bất kỳ định danh sinh trắc học nào từ chúng. Việc dùng luồng selfie là tùy chọn: bạn có thể tải ảnh từ thư viện, hoặc mô tả nhân vật bằng lời và hoàn toàn không cung cấp ảnh."
+		"you_have_the_rights_to_know_access": "Bạn có quyền được biết, truy cập, chỉnh sửa, xóa và chuyển dữ liệu cá nhân của mình, và không bị phân biệt đối xử khi thực hiện các quyền này. Thực hiện chúng qua <a href=\"mailto:privacy@three.ws\">privacy@three.ws</a> (Mục 6). Chúng tôi xác minh các yêu cầu bằng phiên đăng nhập của bạn, email tài khoản của bạn hoặc một tin nhắn được ký bởi ví của bạn. Một đại lý được ủy quyền có thể hành động thay mặt bạn với sự cho phép bằng văn bản."
 	},
 	"legal_risk": {
 		"10_contact": "10. Liên hệ",
