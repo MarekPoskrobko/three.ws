@@ -46,7 +46,7 @@ One section per finished order, newest at the bottom:
 | 14 reliability and scale | done | 2026-09-09 |
 | 15 privacy and retention | done | 2026-09-03 |
 | 16 test program | done | 2026-09-09 |
-| 17 a11y, i18n, mobile | a11y and mobile done, 84 locales need a backend, see entry | 2026-09-09 |
+| 17 a11y, i18n, mobile | done, retired (screen-reader transcript not producible here, asserted mechanically) | 2026-09-29 |
 | 18 docs and SDK | docs done, npm publish owner-gated | 2026-09-03 |
 | 19 plans and entitlements | built and verified, browser journeys green, price owner-gated | 2026-09-09 |
 | 20 launch readiness | standing | |
@@ -3034,3 +3034,97 @@ recovery path missing: `onConnectSuccess` already stored `connected`.
 **Left open:** the campaign, still. This clears blocking finding 1 only. Findings 2 (order 17's
 translation) and 3 (orders 17 and 19 open) stand, and order 20 cannot be re-run until they are
 retired. The e2e spec has NOT been re-run against a live container from this session.
+
+## 17. Accessibility, 87 locales, mobile and PWA: retired (2026-09-29)
+
+**Shipped:** the last open line of order 17 is closed and the order file is deleted. `npm run
+i18n:lint` passes on all 84 catalogs, `public/locales/manifest.json` lists all 85 languages, and
+`tests/e2e/home-a11y.spec.js` passes 15/15 with the `publishLocale` manifest mock gone
+(`b81fa6d78`): the RTL and never-translate tests now reach Arabic through the real manifest and
+the committed `ar.json`, nothing routed. The lint had regressed after `afdf6ea12` made it clean:
+`c8f2cde3c` and `5abee605c` added 37 English keys (airdrop checker, contributors, derivatives) and
+brought only `es` up to date, so it failed with 3,071 missing keys and the completeness gate cut
+the switcher to English alone, which also broke the RTL test. The 37 keys were filled in the
+other 83 locales on the NVIDIA lane (`a96e7e591`, `2af205a16`; additive only, 2,590 keys added
+in the last commit, 0 changed, 0 removed). Vertex still answers `403` in this workspace; Groq and
+the OpenRouter free model were tried as extra lanes and both throttled, so NVIDIA alone did it,
+two processes, about 75 minutes.
+
+Three things stood between the order and a green run, each fixed at the root:
+
+1. **The lane could not boot.** Vite's watcher tried to watch the ~250,000 files in the nested
+   agent checkouts under `.claude/worktrees/` and died with `ENOSPC: System limit for number of
+   file watchers reached`, killing the API proxy mid global setup. It skips them now
+   (`577c786c0`), and a server with hot reload off (every e2e run) does not watch at all
+   (`f2c8ac2ff`), because the editor's own watcher holds about 430,000 of the 524,288 inotify
+   watches on this box. The main Playwright config sets `VITE_NO_HMR` for the server it starts.
+2. **Every connect was refused.** Since `433581f82` secret-box binds the database to the key that
+   writes into it, and the lane's per-run random `WALLET_ENCRYPTION_KEY` is not that key, so each
+   connect died on `SecretBoxKeyMismatchError`. The run now takes the bound key through
+   `HOME_E2E_ENC_KEY`, and the global setup compares the one-way fingerprints before anything
+   boots and names the command when they differ (`e179f36a7`, documented in
+   `tests/e2e/README.md`). The fingerprint of the Cloud Run service's key matches the binding
+   (`bound_at 2026-09-16T16:31:20Z`); a random key does not.
+3. **Two site-wide axe failures** on pages outside this lane: `/three-launchpad` fact labels at
+   4.32:1 (translucent tiles over the `--stroke` grid) and `/prompts` chip counts at 3.29:1
+   (`opacity: 0.7`). Both fixed to AA (`7df581bec`), measured with axe before and after.
+
+**Measured** (the recipe, so nobody re-derives it):
+
+    HOME_E2E_ENC_KEY="$(node scripts/read-service-env.mjs '^WALLET_ENCRYPTION_KEY$' --raw)" \
+      HOME_LIVE=1 HOME_LIVE_NAME=a11y17 HOME_E2E_API_PORT=8188 HOME_E2E_WEB_PORT=3088 \
+      HOME_E2E_SCREENSHOTS=1 npm run test:home:e2e -- tests/e2e/home-a11y.spec.js
+
+- `home-a11y.spec.js`: **15 passed** twice (59.0s, then 1.2m on the final catalog), against Home
+  Assistant 2026.9.4. Screenshots of every test, including the Arabic house read through the real
+  manifest, are in `test-results/home-a11y-*` on this machine and reproducible with the flag above.
+- The whole home lane (`npm run test:home:e2e`, 11 specs, 81 tests): **74 passed, 1 failed, 6
+  did not run** in one invocation. The failure is the product's connect limiter (`homeConnect`,
+  10 per 10 minutes per user): the page says "too many connection attempts, wait a moment" at the
+  first `home-scene` connect, after ten earlier specs had connected on the same account. Re-run on its own after the
+  window, `home-scene.spec.js` + `home-whose-fault.spec.js`: **11 passed**. So every one of the 81
+  passes; the lane just cannot run end to end in one invocation on one account.
+- `tests/e2e/a11y-top-pages.spec.js`: 46/48 before the contrast fix, **48 passed** after, all six
+  home routes green both times.
+- The rest of `tests/e2e/` under `playwright.config.js` (the 216 non-axe tests): **199 passed, 8
+  failed, 5 skipped, 3 did not run.** Baseline at `b81fa6d78^` in a throwaway worktree, same four
+  specs: 7 of the 8 fail identically there (`crews-hq` directory console 503, `launch-coin-page`
+  x3, `launch-token-flow` x2, `play-photo-mode` webkit with no webkit browser installed). The 8th,
+  `crews-hq` "service is unreachable", passed 3 of 3 re-runs at HEAD on its own; it failed only
+  under the full concurrent run's load. **No new failures.** It could not have been otherwise
+  for that config: `b81fa6d78` touched only `home-a11y.spec.js`, which `playwright.config.js`
+  ignores as a live home spec.
+- `npm run i18n:lint`: `✓` on all 84 locales at 19,968 keys each, `i18n lint passed.`
+- `npx vitest run tests/i18n-markup.test.js tests/i18n.test.js tests/i18n-missing-key.test.js`:
+  56/56. `npm run i18n:home`: 353 keys, 0 missing, 0 drifted.
+- `npm run check:rules -- --paths <each file>`: clean for every file above.
+
+**Definition of done, line by line:** axe on every home route (tests 1 and 2 plus the six routes
+in the site gate); keyboard-only walk (test 3); the 2D fallback operable and in control
+(`home-scene` "a browser with no WebGL gets a house it can read and operate"); reduced motion
+(test 13); stale contrast measured (test 7); lint clean; entity names untouched in two locales
+(test 12); Fahrenheit (test 10); RTL (test 11); four breakpoints (test 8); stray tap (test 14);
+e2e with no new failures; check:rules clean. **The one exception, unchanged from the entry above
+and never claimed:** no VoiceOver or NVDA exists in this environment, so there is no
+screen-reader transcript. What is proved instead, mechanically, is tests 4 and 5: the assertive
+region carries the whole confirmation question and clears once it is answered, the polite region
+narrates a light going on with the device named.
+
+**Deviations:** none from the order. Two references to the order file were rewritten to name the
+campaign and order (`home-00-CONTEXT.md`, `prompts/codex/02-i18n-lint-clean.md`). Two were left
+on purpose: `00-RETIRED-BY-OWNER.md` lists the filename as the argument to its own `git show`
+recovery command, and the order 20 entry above is history in an append-only file.
+
+**Left open, not this order's:**
+
+1. The home lane trips its own connect limiter when all 11 specs run in one invocation on one
+   account. The limiter is correct product behaviour; the fix belongs in the harness (fewer
+   reconnects in `home-scene.spec.js`, or a second owner account per lane). Owner: order 16's
+   test program.
+2. In the Arabic house, raw Home Assistant states such as `off`, `on`, `closed`, `cool` and
+   `heat` render in English next to translated ones (`مُشغَّل · 71%`). Visible in the RTL
+   screenshot; not asserted by any test yet.
+3. `/api/agents/me` still logs `Missing required env var: S3_PUBLIC_DOMAIN` on the local stack.
+
+**Commits:** `a96e7e591` and `2af205a16` (catalogs and manifest), `577c786c0` and `f2c8ac2ff`
+(watcher), `e179f36a7` (encryption-key preflight), `7df581bec` (contrast), plus this entry.

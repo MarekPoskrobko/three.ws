@@ -20,7 +20,7 @@ Do all work and commits inside `/workspaces/wt-codex-i18n` on the `codex/i18n-li
 
 three.ws ships 87 locales. `npm run i18n:lint` fails with about 15,700 problems, almost all
 `missing key` or `empty value`, so non-English visitors see English fallbacks or blanks. The last
-item blocking the Home accessibility order (`prompts/finish/311-home-17-a11y-i18n-mobile.md`) is
+item blocking the Home accessibility order (home campaign order 17, retired 2026-09-29) was
 this lint. Make it pass.
 
 Measured worst locales (count of missing keys): zu, ps, mt, ha, af (1,179 each), lt (1,133),

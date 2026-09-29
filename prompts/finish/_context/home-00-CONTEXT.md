@@ -182,7 +182,7 @@ Run in order within a lane; lanes 1 to 4 are mostly parallelizable once lane 1 l
 | 14 | [Reliability and the scale envelope](../309-home-14-reliability-scale.md) | enterprise |
 | 15 | [Privacy, retention, export and deletion](home-15-privacy-retention.md) | enterprise |
 | 16 | [The test program: e2e, HA version matrix, live harness](../310-home-16-test-program.md) | quality |
-| 17 | [Accessibility, 87 locales, mobile and PWA](../311-home-17-a11y-i18n-mobile.md) | quality |
+| 17 | Accessibility, 87 locales, mobile and PWA (home campaign order 17, retired 2026-09-29; the record is entry 17 in [home-PROGRESS.md](home-PROGRESS.md)) | quality |
 | 18 | [Docs, SDK publish, the home MCP server package](../312-home-18-docs-and-sdk.md) | quality |
 | 19 | [Plans, entitlements and quotas](../313-home-19-plans-entitlements.md) | commercial |
 | 20 | [Launch readiness: the go/no-go](../314-home-20-launch-readiness.md) | launch |
