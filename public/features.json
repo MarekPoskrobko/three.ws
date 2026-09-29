@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T23:28:43.307Z",
+	"generated_at": "2026-09-29T23:32:52.101Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -8,7 +8,95 @@
 		"description": "three.ws is the AI-agent layer for the open web: build, embed, monetize, and trade autonomous agents with real 3D avatars, on-chain identity (ERC-8004), pay-per-call (x402), and pump.fun token launches.",
 		"contact": "https://x.com/trythreews",
 		"github": "https://github.com/nirholas/three.ws",
-		"examples": "https://github.com/nirholas/three.ws/tree/main/examples"
+		"examples": "https://github.com/nirholas/three.ws/tree/main/examples",
+		"official": {
+			"notice": "The only official three.ws website is https://three.ws. A site on any other domain that presents itself as three.ws is not affiliated with us.",
+			"links": [
+				{
+					"label": "Website",
+					"url": "https://three.ws"
+				},
+				{
+					"label": "X",
+					"url": "https://x.com/trythreews"
+				},
+				{
+					"label": "Telegram",
+					"url": "https://t.me/three_ws"
+				},
+				{
+					"label": "GitHub",
+					"url": "https://github.com/nirholas/three.ws"
+				}
+			],
+			"token": {
+				"symbol": "$THREE",
+				"chain": "Solana",
+				"mint": "FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump",
+				"page": "/three-token",
+				"notice": "This is the only official $THREE mint. Check the full address before you buy: any other token using the name is an impersonation."
+			}
+		},
+		"llms": [
+			{
+				"title": "Start here",
+				"paths": [
+					"/",
+					"/what-is",
+					"/create",
+					"/forge",
+					"/image-to-3d",
+					"/create-agent",
+					"/agents",
+					"/marketplace",
+					"/spotlight"
+				]
+			},
+			{
+				"title": "Developers",
+				"paths": [
+					"/connect",
+					"/mcp-tools",
+					"/docs/start-here",
+					"/docs/mcp",
+					"/docs/cli",
+					"/docs/api-reference",
+					"/avatar-sdk",
+					"/3d",
+					"/crypto-api",
+					"/docs/x402",
+					"/x402",
+					"/docs/skills",
+					"/prompts"
+				]
+			},
+			{
+				"title": "Economy and $THREE",
+				"paths": [
+					"/three-token",
+					"/three",
+					"/three-launchpad",
+					"/launch",
+					"/launches",
+					"/pay",
+					"/credits",
+					"/pricing",
+					"/economy"
+				]
+			},
+			{
+				"title": "Learn",
+				"paths": [
+					"/docs",
+					"/tutorials",
+					"/examples",
+					"/awesome",
+					"/changelog",
+					"/blog",
+					"/status"
+				]
+			}
+		]
 	},
 	"sections": [
 		{
@@ -8482,7 +8570,7 @@
 				{
 					"path": "/llms.txt",
 					"title": "llms.txt",
-					"description": "AI-agent-friendly index of every public page (Howard convention).",
+					"description": "Curated AI-agent index (llmstxt.org convention): the official domain, accounts and $THREE mint, the machine-readable entry points, and the key pages, with llms-full.txt for the complete list.",
 					"added": "2026-05-13",
 					"auth": null,
 					"indexable": false,

@@ -153,6 +153,42 @@ const escapeHtml = (s) =>
 		'"': '&quot;',
 	})[c]);
 
+// The "official" block: which domain, accounts and $THREE mint are ours. An
+// agent reading llms.txt is exactly the reader a look-alike site or token
+// targets, so both indexes state it up front (site.official in data/pages.json).
+function officialLines() {
+	const official = site.official;
+	if (!official) return [];
+	const lines = ['## Official', ''];
+	if (official.notice) lines.push(official.notice, '');
+	for (const link of official.links || []) lines.push(`- ${link.label}: ${link.url}`);
+	const token = official.token;
+	if (token) {
+		const page = token.page ? ` (${baseUrl}${token.page})` : '';
+		lines.push(`- ${token.symbol} token mint on ${token.chain}: ${token.mint}${page}`);
+		if (token.notice) lines.push('', token.notice);
+	}
+	lines.push('');
+	return lines;
+}
+
+// llms.txt lists a curated set of pages (site.llms), not all of them: an agent
+// reads this file whole, and a directory of ~1,000 pages gets truncated before
+// it is useful. Every curated path must be a real, indexable page, so a rename
+// or removal fails the build instead of leaving a dead link in the index.
+function curatedLlmsSections() {
+	const byPath = new Map(allPages.map((p) => [p.path, p]));
+	return (site.llms || []).map((group) => ({
+		title: group.title,
+		pages: group.paths.map((path) => {
+			const page = byPath.get(path);
+			if (!page) throw new Error(`data/pages.json site.llms "${group.title}": ${path} is not a page in data/pages.json`);
+			if (!indexable(page)) throw new Error(`data/pages.json site.llms "${group.title}": ${path} is not indexable, so llms.txt cannot list it`);
+			return page;
+		}),
+	}));
+}
+
 // ────────────────────────────────────────────────────────────────────────
 // llms.txt — concise AI index per https://llmstxt.org/
 // ────────────────────────────────────────────────────────────────────────
@@ -168,6 +204,7 @@ function buildLlmsTxt() {
 	if (site.examples) lines.push(`Examples: ${site.examples}`);
 	if (site.contact) lines.push(`Contact: ${site.contact}`);
 	lines.push('');
+	lines.push(...officialLines());
 	// The machine-readable section leads, and skips the `indexable` filter its
 	// entries all carry (they are excluded from the crawler sitemap, not from
 	// agents): an AI reading this file should learn the MCP servers, the x402
@@ -183,19 +220,21 @@ function buildLlmsTxt() {
 		}
 		lines.push('');
 	}
-	for (const section of sections) {
-		if (section.id === 'machine') continue;
-		const pages = section.pages.filter(indexable);
-		if (!pages.length) continue;
+	for (const section of curatedLlmsSections()) {
 		lines.push(`## ${section.title}`);
-		if (section.description) lines.push('');
-		if (section.description) lines.push(section.description);
 		lines.push('');
-		for (const p of pages) {
+		for (const p of section.pages) {
 			lines.push(`- [${p.title}](${baseUrl}${p.path}): ${p.description}`);
 		}
 		lines.push('');
 	}
+	const listed = allPages.filter(indexable).length;
+	lines.push('## Optional');
+	lines.push('');
+	lines.push(`- [llms-full.txt](${baseUrl}/llms-full.txt): Every public page (${listed}), grouped by section, with full descriptions.`);
+	lines.push(`- [Sitemap](${baseUrl}/sitemap): The same index for people, with search.`);
+	lines.push(`- [sitemap.xml](${baseUrl}/sitemap.xml): XML sitemap for crawlers, including every agent and avatar page.`);
+	lines.push('');
 	return lines.join('\n');
 }
 
@@ -216,6 +255,7 @@ function buildLlmsFull() {
 	lines.push('');
 	lines.push('This file is generated from data/pages.json. It lists every public surface on the site, grouped by section, so AI agents and crawlers can navigate without scraping the home page.');
 	lines.push('');
+	lines.push(...officialLines());
 	for (const section of sections) {
 		lines.push(`## ${section.title}`);
 		lines.push('');

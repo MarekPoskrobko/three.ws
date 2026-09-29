@@ -10,6 +10,18 @@ Contact / social: https://x.com/trythreews
 
 This file is generated from data/pages.json. It lists every public surface on the site, grouped by section, so AI agents and crawlers can navigate without scraping the home page.
 
+## Official
+
+The only official three.ws website is https://three.ws. A site on any other domain that presents itself as three.ws is not affiliated with us.
+
+- Website: https://three.ws
+- X: https://x.com/trythreews
+- Telegram: https://t.me/three_ws
+- GitHub: https://github.com/nirholas/three.ws
+- $THREE token mint on Solana: FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump (https://three.ws/three-token)
+
+This is the only official $THREE mint. Check the full address before you buy: any other token using the name is an impersonation.
+
 ## Main
 
 Entry points into the product.
@@ -5142,7 +5154,7 @@ The prompt library as plain text, for piping straight into an assistant.
 URL: https://three.ws/llms.txt
 Indexable: no (excluded from sitemap)
 
-AI-agent-friendly index of every public page (Howard convention).
+Curated AI-agent index (llmstxt.org convention): the official domain, accounts and $THREE mint, the machine-readable entry points, and the key pages, with llms-full.txt for the complete list.
 
 ### llms-full.txt
 

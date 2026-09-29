@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-29T23:28:43.348Z",
+	"generated_at": "2026-09-29T23:32:52.129Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3776,
+	"total": 3777,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -148,6 +148,17 @@
 			"link": "/quests",
 			"tags": [
 				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Know the real three.ws and the real $THREE at a glance",
+			"summary": "Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.",
+			"link": "/three-token",
+			"tags": [
+				"security",
+				"improvement"
 			]
 		},
 		{
@@ -1581,17 +1592,6 @@
 			"tags": [
 				"fix",
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Sign Language Avatars is usable the moment the page opens",
-			"summary": "The signing avatar on /sign-language is a multi-megabyte model, and until it finished downloading the page had nothing to say: an empty box, an empty status line, and buttons that had not been wired yet, so an early click on Sign it did nothing at all. The stage now shows a breathing silhouette while the avatar loads, every control is wired before the download starts, and anything you type, click or open with a ?say= link in the meantime is queued and signed the moment the avatar lands. If the model fails to download, the stage says so and offers Retry the avatar plus a link to the sign API below, which runs on the server and works without the 3D preview; the vocabulary chips and the Sign it button now explain why they cannot sign instead of doing nothing. An avatar with no signing skeleton says so in the same words.",
-			"link": "/sign-language",
-			"tags": [
-				"improvement",
-				"fix"
 			]
 		}
 	]

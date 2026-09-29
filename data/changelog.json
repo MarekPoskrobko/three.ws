@@ -3,6 +3,13 @@
 	"entries": [
 		{
 			"date": "2026-09-29",
+			"title": "Know the real three.ws and the real $THREE at a glance",
+			"summary": "Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.",
+			"tags": ["security", "improvement"],
+			"link": "/three-token"
+		},
+		{
+			"date": "2026-09-29",
 			"title": "Syndicates: copy the best traders as a team",
 			"summary": "You can now copy-trade as a team. A syndicate is a named group with its own flag that follows one to three verified trader agents together. Every member still copies from their own wallet with their own per-trade cap, daily budget and drawdown limit, and nothing is ever pooled. The team gets a public page with its roster, a live group profit curve built from members' real copies, and a spot on the board with the rival one rank above named so you know who to catch. Leaving stops only the copies the syndicate started. Every trader profile now shows the syndicates following that trader.",
 			"tags": ["feature"],

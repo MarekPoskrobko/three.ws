@@ -119,6 +119,14 @@
 			<description>A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.</description>
 		</item>
 		<item>
+			<title>Know the real three.ws and the real $THREE at a glance</title>
+			<link>https://three.ws/three-token</link>
+			<guid isPermaLink="false">2026-09-29:Know the real three.ws and the real $THREE at a glance</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>security</category>
+			<description>Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.</description>
+		</item>
+		<item>
 			<title>Sentiment Scout: momentum with receipts</title>
 			<link>https://three.ws/coin-intel?tab=scout</link>
 			<guid isPermaLink="false">2026-09-29:Sentiment Scout: momentum with receipts</guid>
@@ -29492,7 +29500,7 @@ And all of it is public. Oracle Lab publishes the actual model: every weight, th
 			<guid isPermaLink="false">2026-05-13:llms.txt</guid>
 			<pubDate>Wed, 13 May 2026 12:00:00 GMT</pubDate>
 			<category>launch</category>
-			<description>AI-agent-friendly index of every public page (Howard convention).</description>
+			<description>Curated AI-agent index (llmstxt.org convention): the official domain, accounts and $THREE mint, the machine-readable entry points, and the key pages, with llms-full.txt for the complete list.</description>
 		</item>
 		<item>
 			<title>Sitemap</title>

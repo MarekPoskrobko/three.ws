@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T23:28:43.323Z",
+	"generated_at": "2026-09-29T23:32:52.110Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
@@ -145,6 +145,17 @@
 			"link": "/quests",
 			"tags": [
 				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Know the real three.ws and the real $THREE at a glance",
+			"summary": "Every page footer now states that three.ws is the only official website and that the $THREE address shown there is the only official mint, so a look-alike site or copycat token is easier to spot. The same notice leads the llms.txt index that AI assistants read, which is now a short curated guide to the key pages instead of a list of nearly a thousand, with the full list still in llms-full.txt.",
+			"link": "/three-token",
+			"tags": [
+				"security",
+				"improvement"
 			]
 		},
 		{
@@ -38692,7 +38703,7 @@
 			"date": "2026-05-13",
 			"type": "launch",
 			"title": "llms.txt",
-			"summary": "AI-agent-friendly index of every public page (Howard convention).",
+			"summary": "Curated AI-agent index (llmstxt.org convention): the official domain, accounts and $THREE mint, the machine-readable entry points, and the key pages, with llms-full.txt for the complete list.",
 			"link": "/llms.txt",
 			"tags": [
 				"launch"
