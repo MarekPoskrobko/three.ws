@@ -11,6 +11,9 @@
  *   2. enable the required GCP APIs (idempotent)
  *   3. ensure the runtime service account + the Artifact Registry repo exist
  *   4. preflight the secrets the service config mounts (warn if missing)
+ *   4b. boot the worker from exactly the files the Dockerfile COPYs, so a runtime
+ *      read outside that set fails here in seconds instead of as a revision
+ *      Cloud Run refuses to start after a full build
  *   5. build + push the image via Cloud Build (deploy/sniper/cloudbuild.yaml)
  *   6. deploy the service (deploy/sniper/cloudrun.yaml) — minScale=maxScale=1,
  *      no CPU throttling, default SNIPER_MODE=simulate
@@ -34,8 +37,9 @@
 import { spawnSync } from 'node:child_process';
 import './lib/gcloud-path.mjs';
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
-import { existsSync, readFileSync } from 'node:fs';
+import { dirname, resolve, basename, join } from 'node:path';
+import { tmpdir } from 'node:os';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync } from 'node:fs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, '..');
@@ -161,6 +165,79 @@ function checkSecrets() {
 	}
 }
 
+/**
+ * The source paths the sniper Dockerfile COPYs into /app, as
+ * [{ from, to }] pairs relative to the repo root and to /app. Only plain
+ * `COPY <src...> <dest>` lines (no --from/--chown flags) are read, and a
+ * trailing `*` glob (package-lock.json*) is kept only when the file exists.
+ */
+function dockerfileCopies(dockerfile) {
+	const pairs = [];
+	for (const raw of dockerfile.split('\n')) {
+		const line = raw.trim();
+		if (!/^COPY\s/i.test(line) || /\s--/.test(line)) continue;
+		const parts = line.split(/\s+/).slice(1);
+		const dest = parts.pop();
+		for (const srcRaw of parts) {
+			const src = srcRaw.replace(/\*$/, '');
+			const to = dest.endsWith('/') ? join(dest, basename(src)) : dest;
+			pairs.push({ from: src, to: to.replace(/^\.\//, ''), optional: srcRaw.endsWith('*') });
+		}
+	}
+	return pairs;
+}
+
+/**
+ * Boot workers/agent-sniper/index.js from a tree holding ONLY what the image
+ * holds (the Dockerfile's COPY set plus the installed node_modules), with the
+ * database env stripped. A healthy module graph loads completely and then stops
+ * at the config check with "missing required env var: DATABASE_URL"; anything
+ * else (ENOENT on a data file, ERR_MODULE_NOT_FOUND on a path the image lacks)
+ * is exactly what would crash the revision before its health port opens.
+ * On 2026-09-29 a read of data/plans.json did that, and Cloud Run refused the
+ * revision after a full 8-minute build.
+ */
+function verifyImageBoots() {
+	log('booting the worker from the image file set (Dockerfile COPYs only)…');
+	const stage = mkdtempSync(join(tmpdir(), 'sniper-image-'));
+	let failure;
+	try {
+		failure = bootFromStage(stage);
+	} finally {
+		rmSync(stage, { recursive: true, force: true });
+	}
+	if (failure) die(failure);
+	ok('worker module graph loads from the image file set');
+}
+
+/** Stage the image file set into `stage` and boot it. Returns an error message, or null. */
+function bootFromStage(stage) {
+	const pairs = dockerfileCopies(readFileSync(resolve(REPO_ROOT, 'workers/agent-sniper/Dockerfile'), 'utf8'));
+	for (const { from, to, optional } of pairs) {
+		const src = resolve(REPO_ROOT, from);
+		if (!existsSync(src)) {
+			if (optional) continue;
+			return `the Dockerfile COPYs ${from}, which does not exist in the build context`;
+		}
+		const dst = join(stage, to);
+		mkdirSync(dirname(dst), { recursive: true });
+		cpSync(src, dst, { recursive: true, filter: (p) => !p.split(/[\\/]/).includes('node_modules') });
+	}
+	const modules = resolve(REPO_ROOT, 'node_modules');
+	if (!existsSync(modules)) return 'node_modules is missing: run `npm install` so the boot check can load the worker';
+	symlinkSync(modules, join(stage, 'node_modules'), 'dir');
+
+	const env = { ...process.env, NODE_ENV: 'production', SNIPER_MODE: 'simulate' };
+	for (const k of ['DATABASE_URL', 'POSTGRES_URL', 'NEON_DATABASE_URL', 'PORT']) delete env[k];
+	const res = spawnSync(process.execPath, ['workers/agent-sniper/index.js'], {
+		cwd: stage, env, encoding: 'utf8', timeout: 60_000,
+	});
+	const out = `${res.stdout || ''}${res.stderr || ''}`;
+	if (/missing required env var: DATABASE_URL/.test(out)) return null;
+	const detail = out.split('\n').filter(Boolean).slice(0, 12).join('\n');
+	return 'the worker does not boot from the image file set. A module or data file it loads is not COPYd by workers/agent-sniper/Dockerfile:\n' + detail;
+}
+
 function build() {
 	if (SKIP_BUILD) { warn('--skip-build: reusing the current :latest image'); return; }
 	log('building + pushing image via Cloud Build (this can take several minutes)…');
@@ -248,6 +325,7 @@ async function main() {
 	ensureServiceAccount();
 	ensureRepo();
 	checkSecrets();
+	verifyImageBoots();
 	build();
 	deploy();
 	await verifyHeartbeat();

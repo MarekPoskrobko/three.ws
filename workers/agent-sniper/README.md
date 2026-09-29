@@ -374,10 +374,13 @@ with tiny caps to land one real trade. `Ctrl-C` drains in-flight buys and exits.
 
 The worker runs in production as **its own Cloud Run service, `agent-sniper`**
 (project `aerial-vehicle-466722-p5`, region `us-central1`), separate from
-`three-ws-api`. It has no HTTP port: it is a long-lived background process, so
-it runs with `--no-cpu-throttling` and `minScale=maxScale=1` (see the
-single-worker assumption above; a second instance would race the budget and
-concurrency caps).
+`three-ws-api`. It is a long-lived background process, so it runs with
+`--no-cpu-throttling` and `minScale=maxScale=1` (see the single-worker
+assumption above; a second instance would race the budget and concurrency
+caps). Its only HTTP surface is a tiny liveness endpoint on `$PORT`, opened
+because Cloud Run refuses a revision whose startup probe cannot connect: a
+worker that crashes while loading its modules never opens it, so the rollout
+fails and traffic stays on the previous revision.
 
 **It does not ride along with an API deploy.** A fix merged to `main` keeps
 running the old image until this service is explicitly rolled, which has more
@@ -390,8 +393,18 @@ gcloud run services describe agent-sniper --region us-central1 \
   --format="value(status.latestReadyRevisionName)"
 ```
 
-Build (from the REPO ROOT, because the Dockerfile copies `api/`, `src/`, `packages/`,
-and `agent-payments-sdk/`), then roll the service onto the new image:
+The deploy is one command, `npm run deploy:sniper` (`scripts/deploy-sniper.mjs`).
+On an existing service it rolls `gcloud run services update --image`, which keeps
+the running env (including `SNIPER_MODE=live`) instead of re-applying the
+checked-in manifest. Before it spends a Cloud Build it boots `index.js` from a
+tree holding only what the Dockerfile COPYs, so a module or data file the image
+lacks fails in seconds rather than as a refused revision after the build. That
+refusal happened on 2026-09-29 (revision `agent-sniper-00034`): the image lacked
+`data/plans.json`, which `api/payments/_config.js` reads at load.
+
+By hand: build (from the REPO ROOT, because the Dockerfile copies `api/`, `src/`,
+`data/plans.json`, `packages/agent-sniper/src` and `agent-payments-sdk/`), then
+roll the service onto the new image:
 
 ```bash
 gcloud builds submit --config workers/agent-sniper/cloudbuild.yaml \

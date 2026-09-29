@@ -31,8 +31,14 @@ RUN npm ci --ignore-scripts || npm install --ignore-scripts
 # createMayhemFilter from packages/agent-sniper/src/mayhem-filter.js (self-contained,
 # only depends on @solana/web3.js which is already a root dependency) — only src/ is
 # copied, not the whole package (its own node_modules/tests/bin are unused at runtime).
+# data/plans.json is read at module load by api/payments/_config.js, which the
+# sniper reaches through api/_lib/pump-platform-fee.js (the trade fee). Without
+# it the worker dies with ENOENT before it opens the health port, so Cloud Run
+# refuses the revision. `npm run deploy:sniper` boots this exact COPY set before
+# it builds (verifyImageBoots), so a new runtime read outside it fails there.
 COPY agent-payments-sdk ./agent-payments-sdk
 COPY api ./api
+COPY data/plans.json ./data/plans.json
 COPY src ./src
 COPY packages/agent-sniper/src ./packages/agent-sniper/src
 COPY workers/agent-sniper ./workers/agent-sniper
