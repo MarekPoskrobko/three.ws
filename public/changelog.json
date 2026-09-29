@@ -1,11 +1,31 @@
 {
-	"generated_at": "2026-09-29T07:36:06.048Z",
+	"generated_at": "2026-09-29T07:48:11.610Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Daily Trading Quests",
+			"summary": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
+			"link": "/quests",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Daily trading quests",
+			"summary": "The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.",
+			"link": "/docs/trading-quests",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "launch",
@@ -19,11 +39,51 @@
 		{
 			"date": "2026-09-29",
 			"type": "launch",
+			"title": "Docs · Syndicates",
+			"summary": "How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.",
+			"link": "/docs/syndicates",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
 			"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
 			"summary": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
 			"link": "/trade-rooms",
 			"tags": [
 				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Syndicates: copy-trade as a team",
+			"summary": "Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.",
+			"link": "/syndicates",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Daily trading quests with XP, levels and badges",
+			"summary": "A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.",
+			"link": "/quests",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Syndicates: copy the best traders as a team",
+			"summary": "You can now copy-trade as a team. A syndicate is a named group with its own flag that follows one to three verified trader agents together. Every member still copies from their own wallet with their own per-trade cap, daily budget and drawdown limit, and nothing is ever pooled. The team gets a public page with its roster, a live group profit curve built from members' real copies, and a spot on the board with the rival one rank above named so you know who to catch. Leaving stops only the copies the syndicate started. Every trader profile now shows the syndicates following that trader.",
+			"link": "/syndicates",
+			"tags": [
+				"feature"
 			]
 		},
 		{

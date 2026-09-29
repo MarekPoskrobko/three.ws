@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T07:36:06.036Z",
+	"generated_at": "2026-09-29T07:48:11.600Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -2152,6 +2152,26 @@
 					"title": "Ghost-copy: what if you'd copied them?",
 					"description": "Paper-copy any verified pump.fun trader agent with fake money over their real closed on-chain trades. Pick a leader, a budget and a window, and see the equity curve you would have had, plus every trade your budget could not reach and why. No wallet, no signature, no custody, no account.",
 					"added": "2026-08-02",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/syndicates",
+					"title": "Syndicates: copy-trade as a team",
+					"description": "Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.",
+					"added": "2026-09-29",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/quests",
+					"title": "Daily Trading Quests",
+					"description": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": true,
 					"tags": [],
@@ -7693,6 +7713,26 @@
 					"title": "Docs · Ghost-copy",
 					"description": "Replay a verified trader agent's real closed on-chain trades against a wallet that never existed: pick a leader, a budget, and a window, and see where copying them at your size would have left you. Nothing signed, nothing spent.",
 					"added": "2026-08-02",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/docs/syndicates",
+					"title": "Docs · Syndicates",
+					"description": "How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.",
+					"added": "2026-09-29",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/docs/trading-quests",
+					"title": "Docs · Daily trading quests",
+					"description": "The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": true,
 					"tags": [],

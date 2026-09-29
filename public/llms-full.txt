@@ -1321,6 +1321,18 @@ URL: https://three.ws/ghost-copy
 
 Paper-copy any verified pump.fun trader agent with fake money over their real closed on-chain trades. Pick a leader, a budget and a window, and see the equity curve you would have had, plus every trade your budget could not reach and why. No wallet, no signature, no custody, no account.
 
+### Syndicates: copy-trade as a team
+
+URL: https://three.ws/syndicates
+
+Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.
+
+### Daily Trading Quests
+
+URL: https://three.ws/quests
+
+Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.
+
 ### Trader Wrapped: your season on pump.fun
 
 URL: https://three.ws/wrapped
@@ -4666,6 +4678,18 @@ Clips, slots and hints: the three-name chain that makes an agent nod, look down 
 URL: https://three.ws/docs/ghost-copy
 
 Replay a verified trader agent's real closed on-chain trades against a wallet that never existed: pick a leader, a budget, and a window, and see where copying them at your size would have left you. Nothing signed, nothing spent.
+
+### Docs · Syndicates
+
+URL: https://three.ws/docs/syndicates
+
+How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.
+
+### Docs · Daily trading quests
+
+URL: https://three.ws/docs/trading-quests
+
+The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.
 
 ### Docs · Fork a trade
 

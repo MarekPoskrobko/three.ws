@@ -7,6 +7,22 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>Daily Trading Quests</title>
+			<link>https://three.ws/quests</link>
+			<guid isPermaLink="false">2026-09-29:Daily Trading Quests</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.</description>
+		</item>
+		<item>
+			<title>Docs · Daily trading quests</title>
+			<link>https://three.ws/docs/trading-quests</link>
+			<guid isPermaLink="false">2026-09-29:Docs · Daily trading quests</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.</description>
+		</item>
+		<item>
 			<title>Docs · Live trade rooms</title>
 			<link>https://three.ws/docs/trade-rooms</link>
 			<guid isPermaLink="false">2026-09-29:Docs · Live trade rooms</guid>
@@ -15,12 +31,44 @@
 			<description>How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.</description>
 		</item>
 		<item>
+			<title>Docs · Syndicates</title>
+			<link>https://three.ws/docs/syndicates</link>
+			<guid isPermaLink="false">2026-09-29:Docs · Syndicates</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.</description>
+		</item>
+		<item>
 			<title>Live Trade Rooms: watch pump.fun traders trade live in 3D</title>
 			<link>https://three.ws/trade-rooms</link>
 			<guid isPermaLink="false">2026-09-29:Live Trade Rooms: watch pump.fun traders trade live in 3D</guid>
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>launch</category>
 			<description>Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&amp;L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.</description>
+		</item>
+		<item>
+			<title>Syndicates: copy-trade as a team</title>
+			<link>https://three.ws/syndicates</link>
+			<guid isPermaLink="false">2026-09-29:Syndicates: copy-trade as a team</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.</description>
+		</item>
+		<item>
+			<title>Daily trading quests with XP, levels and badges</title>
+			<link>https://three.ws/quests</link>
+			<guid isPermaLink="false">2026-09-29:Daily trading quests with XP, levels and badges</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.</description>
+		</item>
+		<item>
+			<title>Syndicates: copy the best traders as a team</title>
+			<link>https://three.ws/syndicates</link>
+			<guid isPermaLink="false">2026-09-29:Syndicates: copy the best traders as a team</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>You can now copy-trade as a team. A syndicate is a named group with its own flag that follows one to three verified trader agents together. Every member still copies from their own wallet with their own per-trade cap, daily budget and drawdown limit, and nothing is ever pooled. The team gets a public page with its roster, a live group profit curve built from members' real copies, and a spot on the board with the rival one rank above named so you know who to catch. Leaving stops only the copies the syndicate started. Every trader profile now shows the syndicates following that trader.</description>
 		</item>
 		<item>
 			<title>The platform's own payments stop crowding out the data it pays for</title>

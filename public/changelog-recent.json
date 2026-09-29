@@ -1,14 +1,34 @@
 {
-	"generated_at": "2026-09-29T07:36:06.065Z",
+	"generated_at": "2026-09-29T07:48:11.634Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3762,
+	"total": 3768,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Daily Trading Quests",
+			"summary": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
+			"link": "/quests",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Daily trading quests",
+			"summary": "The five daily trading quests, what proof each one is scored from, XP levels and quest badges, the disarmed $THREE reward switch, and the quests API.",
+			"link": "/docs/trading-quests",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "launch",
@@ -22,11 +42,51 @@
 		{
 			"date": "2026-09-29",
 			"type": "launch",
+			"title": "Docs · Syndicates",
+			"summary": "How copy-trading syndicates work: founding around copyable leaders, joining with your own wallet and caps, how the group curve and rival standing are computed from real copies, and the full API.",
+			"link": "/docs/syndicates",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
 			"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
 			"summary": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
 			"link": "/trade-rooms",
 			"tags": [
 				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Syndicates: copy-trade as a team",
+			"summary": "Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.",
+			"link": "/syndicates",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Daily trading quests with XP, levels and badges",
+			"summary": "A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.",
+			"link": "/quests",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Syndicates: copy the best traders as a team",
+			"summary": "You can now copy-trade as a team. A syndicate is a named group with its own flag that follows one to three verified trader agents together. Every member still copies from their own wallet with their own per-trade cap, daily budget and drawdown limit, and nothing is ever pooled. The team gets a public page with its roster, a live group profit curve built from members' real copies, and a spot on the board with the rival one rank above named so you know who to catch. Leaving stops only the copies the syndicate started. Every trader profile now shows the syndicates following that trader.",
+			"link": "/syndicates",
+			"tags": [
+				"feature"
 			]
 		},
 		{
@@ -1535,72 +1595,6 @@
 			"title": "The agent-wallet demo pays again when an endpoint asks the buyer to cover its own network fee",
 			"summary": "On /play/agent-wallet a 3D avatar walks up to a paid x402 endpoint and buys a live market signal with real USDC on Solana. The page had gone quiet. three.ws's own paid endpoints switch to a self-pay payment challenge whenever the wallet that normally sponsors the Solana network fee cannot co-sign, and the bridge behind the page only knew how to build a sponsored payment, so every price quote came back as a server error and the demo never got past its connecting state. The bridge now signs both kinds: when no sponsor is offered, the agent wallet pays its own network fee, exactly as the platform's own payment ring already does. Four smaller things came with it. The page no longer offers a Pay button it knows will fail: when the agent wallet cannot cover the quoted price it says so and leaves the deposit address in front of you. Switching between BTC, ETH and SOL re-prices immediately instead of waiting for the next payment. The wallet balance and the Pay button stop reverting to placeholder text a few seconds after they load, which the translation pass had been overwriting. And the page carries a real page heading for screen readers and search engines, which it had been missing entirely.",
 			"link": "/play/agent-wallet",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The animation gallery now opens on one page of the catalog instead of all of it",
-			"summary": "Browsing /animations used to download every clip in the library before you had finished reading the first screen, and that download grows with every batch of clips we add. It now loads one page and fetches more only when you reach the end of the grid, while the clip total and the per-category counts stay exact from the first moment the page paints. Searching or filtering still reads the whole catalog, because those look at every clip, and the results stream in as they arrive. Avatar embeds and pose links that name a single clip now ask for that one clip rather than the whole library, which took the request from 1.1 MB to a few hundred bytes.",
-			"link": "/animations",
-			"tags": [
-				"improvement",
-				"infra"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The Animation Studio names itself for screen readers, and its empty timeline is legible on a phone",
-			"summary": "A full audit of /pose, where you pose an avatar and keyframe an animation. The page had no top-level heading at all: assistive technology jumped straight into \"Selection\" with nothing saying which studio you were in, so \"Animation Studio\" in the breadcrumb is now the page's real heading. The status pill above the canvas is the studio's only error surface (it is what tells you an import failed, an avatar could not be loaded, or that you need a keyframe before saving) and it never announced anything; it is now a live region, so those messages are spoken as they appear. On a 320px screen the empty-timeline hint (\"Pose the figure, then press K\") wrapped across the ruler's second markings and both became unreadable; the ruler now stays out of the way until you have keyframes to measure, and returns the moment you add one. Loading an avatar could also fail into a dead end: the picker said \"Failed to load: Failed to fetch\" with no way forward, and now explains whether the request reached three.ws and offers a Try again button. Behind that, a slow first CDN could make the 3D preview library load twice and throw an error into the console; a second load is now ignored.",
-			"link": "/pose",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The API container keeps the memory it was sized for, so a busy hour cannot take the whole site down",
-			"summary": "Every three.ws page and API call is served by one container, and in early September that container was given twice the memory so it could hold live connections to people’s connected homes without ever running short. The setting did not survive: the next full deploy quietly put it back to the smaller limit, and the site then ran for five days on half the memory it had been sized for while still being configured to hold up to 600 home connections. Measured over the last 24 hours, memory was already peaking at 86% of that smaller limit before a single home connection was counted, which is close enough to the edge that a busy hour could have killed the container mid-request and taken every page down with it, not just the connected-home part. The limit is restored, peak memory is back to 43%, and it is now written into the deploy configuration itself so no future deploy can undo it again.",
-			"link": null,
-			"tags": [
-				"fix",
-				"infra"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The avatar gallery passed 68,000 models, all generated on our own GPUs",
-			"summary": "The gallery keeps filling on its own: a scheduled job generates avatars from a growing prompt library on the GPU fleet we host ourselves, checks each finished model for a usable mesh and real textures, and quarantines the ones that fail instead of publishing them. That took the catalog past 68,000 avatars, with about 800 more arriving a day, and every one is browsable, previewable and free to use. The last 30 days rejected 94 models on mesh faults alone.",
-			"link": "/gallery",
-			"tags": [
-				"feature",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The changelog channel stops announcing the same update twice",
-			"summary": "Updates reach the community channel automatically, and each one is remembered by its date and headline so it only goes out once. That worked across separate posting rounds but not within one: if the same update was written into the changelog file twice, both copies were unsent when the round was built, and both were sent, so subscribers got the identical message back to back. Six repeated entries had accumulated in the file that way, one of them added today and still unsent. The sender now collapses repeats before it posts, so a duplicated line costs a wasted row in a data file instead of a repeated message to everyone following along. The three verbatim repeats were removed from the changelog, and the build that publishes the feed now refuses a repeated entry outright rather than shipping it.",
-			"link": "/changelog",
-			"tags": [
-				"fix",
-				"infra"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The Coin Wars arena reconnects to its battle server, and a link with no battle now shows you where the wars are",
-			"summary": "A full audit of /play/war, the arena where two coin communities fight to the kill cap. The page had lost the address of the multiplayer server it joins, so every player walking through a war portal landed on 'The arena server is unreachable' instead of a battlefield; the arena is wired back up. Beyond that, a link with no pairing (a shared URL, an expired ticket, a battle that already finished) used to be one sentence and a button back to the lobby, which told you nothing about where a war actually is. It is now the war room: the battles running right now with their live score and clock, the communities queued for an opponent, and the top of the Elo ladder, each one a link into that coin's world where its war portal stands. The same panel sits under every other dead end, so 'there is no battle here' always comes with 'here is where one is'. Also fixed: a failed holder check used to show an internal service error instead of telling you what to do, the Fire button announced itself as 'Firespace' to screen readers, pressing Space on the result card did nothing because the arena was eating the key, and the HUD's hover and focus animations were dead because the page never loaded the site's motion tokens. The arena now says it is playable with WASD, moves focus onto the way out when a card appears, and reads cleanly from 320px up.",
-			"link": "/play/war",
 			"tags": [
 				"fix",
 				"improvement"
