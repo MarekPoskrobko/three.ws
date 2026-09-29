@@ -7,12 +7,28 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>Copy Coach: your first copy trade, the careful way</title>
+			<link>https://three.ws/copy-coach</link>
+			<guid isPermaLink="false">2026-09-29:Copy Coach: your first copy trade, the careful way</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. The coach answers from the real numbers on the page and never promises returns.</description>
+		</item>
+		<item>
 			<title>Daily Trading Quests</title>
 			<link>https://three.ws/quests</link>
 			<guid isPermaLink="false">2026-09-29:Daily Trading Quests</guid>
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>launch</category>
 			<description>Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.</description>
+		</item>
+		<item>
+			<title>Docs · Copy Coach</title>
+			<link>https://three.ws/docs/copy-coach</link>
+			<guid isPermaLink="false">2026-09-29:Docs · Copy Coach</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>How the Copy Coach takes a first-timer from a real win and its full record, through a fake-money ghost copy, to one tiny server-capped copy they sign themselves: the starter caps, the confirmation card, the grounded coach answers, and the API.</description>
 		</item>
 		<item>
 			<title>Docs · Daily trading quests</title>
@@ -29,6 +45,14 @@
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>launch</category>
 			<description>How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.</description>
+		</item>
+		<item>
+			<title>Docs · Sentiment Scout</title>
+			<link>https://three.ws/docs/sentiment-scout</link>
+			<guid isPermaLink="false">2026-09-29:Docs · Sentiment Scout</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Momentum with receipts: how the Sentiment Scout ranks pump.fun launches, where every evidence line comes from (launch data, the live curve, X posts quoting the exact contract, paid x402 reads), the on-chain check beside each social claim, the graded track record, the API and the sentiment_scout MCP tool.</description>
 		</item>
 		<item>
 			<title>Docs · Syndicates</title>
@@ -55,12 +79,28 @@
 			<description>Named teams of copiers who follow the same verified pump.fun trader agents together. Each member copies from their own wallet under their own caps; the team shares a flag, a live equity curve from members' real copies, and a rival on the board. No pooled funds, no custody.</description>
 		</item>
 		<item>
+			<title>Copy Coach: your first copy trade, the careful way</title>
+			<link>https://three.ws/copy-coach</link>
+			<guid isPermaLink="false">2026-09-29:Copy Coach: your first copy trade, the careful way</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>Never copied a trader before? The new Copy Coach walks you through it in four small steps. First it shows a real verified win, right next to the full record of the agent that made it, so one lucky trade never passes for a track record. Then you ghost-copy a leader with fake money over their real trades. Only then can you set up one tiny real copy: capped at 0.05 SOL per trade and 0.2 SOL a day by the server, paused automatically if the leader starts losing, and spending nothing until you sign each trade from your own wallet. Ask the coach anything along the way; it answers from the real numbers on the page and never promises returns.</description>
+		</item>
+		<item>
 			<title>Daily trading quests with XP, levels and badges</title>
 			<link>https://three.ws/quests</link>
 			<guid isPermaLink="false">2026-09-29:Daily trading quests with XP, levels and badges</guid>
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>feature</category>
 			<description>A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.</description>
+		</item>
+		<item>
+			<title>Sentiment Scout: momentum with receipts</title>
+			<link>https://three.ws/coin-intel?tab=scout</link>
+			<guid isPermaLink="false">2026-09-29:Sentiment Scout: momentum with receipts</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>Coin Intelligence has a new Scout tab. It ranks the last hour of pump.fun launches by momentum and backs every claim with its receipt: the X post or paid read it came from, when it was true, and what the chain showed at that same moment. It counts distinct voices rather than posts, calls out coins where all the chatter is one account, names the main risk on every coin, and grades its own past calls against what actually happened. The same evidence now appears on trade receipts, in each coin's detail view, and through the sentiment_scout MCP tool.</description>
 		</item>
 		<item>
 			<title>Syndicates: copy the best traders as a team</title>

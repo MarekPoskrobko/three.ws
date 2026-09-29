@@ -1315,6 +1315,12 @@ URL: https://three.ws/trade-rooms
 
 Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.
 
+### Copy Coach: your first copy trade, the careful way
+
+URL: https://three.ws/copy-coach
+
+A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. The coach answers from the real numbers on the page and never promises returns.
+
 ### Ghost-copy: what if you'd copied them?
 
 URL: https://three.ws/ghost-copy
@@ -4702,6 +4708,18 @@ One tap on any coin across the Radar, the Live Trade Feed, the Smart Money Radar
 URL: https://three.ws/docs/trade-rooms
 
 How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.
+
+### Docs · Sentiment Scout
+
+URL: https://three.ws/docs/sentiment-scout
+
+Momentum with receipts: how the Sentiment Scout ranks pump.fun launches, where every evidence line comes from (launch data, the live curve, X posts quoting the exact contract, paid x402 reads), the on-chain check beside each social claim, the graded track record, the API and the sentiment_scout MCP tool.
+
+### Docs · Copy Coach
+
+URL: https://three.ws/docs/copy-coach
+
+How the Copy Coach takes a first-timer from a real win and its full record, through a fake-money ghost copy, to one tiny server-capped copy they sign themselves: the starter caps, the confirmation card, the grounded coach answers, and the API.
 
 ### Docs · Trade receipts
 

@@ -1,20 +1,40 @@
 {
-	"generated_at": "2026-09-29T07:48:11.634Z",
+	"generated_at": "2026-09-29T07:53:23.527Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3768,
+	"total": 3773,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
 		{
 			"date": "2026-09-29",
 			"type": "launch",
+			"title": "Copy Coach: your first copy trade, the careful way",
+			"summary": "A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. The coach answers from the real numbers on the page and never promises returns.",
+			"link": "/copy-coach",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
 			"title": "Daily Trading Quests",
 			"summary": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
 			"link": "/quests",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Copy Coach",
+			"summary": "How the Copy Coach takes a first-timer from a real win and its full record, through a fake-money ghost copy, to one tiny server-capped copy they sign themselves: the starter caps, the confirmation card, the grounded coach answers, and the API.",
+			"link": "/docs/copy-coach",
 			"tags": [
 				"launch"
 			]
@@ -35,6 +55,16 @@
 			"title": "Docs · Live trade rooms",
 			"summary": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
 			"link": "/docs/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Sentiment Scout",
+			"summary": "Momentum with receipts: how the Sentiment Scout ranks pump.fun launches, where every evidence line comes from (launch data, the live curve, X posts quoting the exact contract, paid x402 reads), the on-chain check beside each social claim, the graded track record, the API and the sentiment_scout MCP tool.",
+			"link": "/docs/sentiment-scout",
 			"tags": [
 				"launch"
 			]
@@ -72,9 +102,29 @@
 		{
 			"date": "2026-09-29",
 			"type": "update",
+			"title": "Copy Coach: your first copy trade, the careful way",
+			"summary": "Never copied a trader before? The new Copy Coach walks you through it in four small steps. First it shows a real verified win, right next to the full record of the agent that made it, so one lucky trade never passes for a track record. Then you ghost-copy a leader with fake money over their real trades. Only then can you set up one tiny real copy: capped at 0.05 SOL per trade and 0.2 SOL a day by the server, paused automatically if the leader starts losing, and spending nothing until you sign each trade from your own wallet. Ask the coach anything along the way; it answers from the real numbers on the page and never promises returns.",
+			"link": "/copy-coach",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
 			"title": "Daily trading quests with XP, levels and badges",
 			"summary": "A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.",
 			"link": "/quests",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Sentiment Scout: momentum with receipts",
+			"summary": "Coin Intelligence has a new Scout tab. It ranks the last hour of pump.fun launches by momentum and backs every claim with its receipt: the X post or paid read it came from, when it was true, and what the chain showed at that same moment. It counts distinct voices rather than posts, calls out coins where all the chatter is one account, names the main risk on every coin, and grades its own past calls against what actually happened. The same evidence now appears on trade receipts, in each coin's detail view, and through the sentiment_scout MCP tool.",
+			"link": "/coin-intel?tab=scout",
 			"tags": [
 				"feature"
 			]
@@ -1544,60 +1594,6 @@
 			"tags": [
 				"improvement",
 				"fix"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Smart Home: the connection pool now sizes itself to the server it is running on",
-			"summary": "The number of houses one server holds open at once was set by hand, in a different place from the memory that has to hold them, and the two drifted apart three times. Left alone, that ends with a server running out of memory and taking the whole API down with it, which every part of three.ws would feel, not just Smart Home. The pool now reads the memory its own container actually has and refuses to hold more houses than fit, saying so in the health endpoint when it does. When there is less room it connects fewer houses per server and keeps working, instead of risking an outage for everybody.",
-			"link": "/docs/smart-home",
-			"tags": [
-				"infra",
-				"fix"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The \"have you tried\" card no longer hangs off the side of the screen on a phone",
-			"summary": "The small suggestion card that appears in the bottom corner of the site was drawn 34 pixels wider than the space it asked for, because its padding and border were being added on top of its width instead of counted inside it. On a phone that pushed the card 22 pixels past the left edge of the screen, so its kicker, title and description were all cut off mid-word and the button inside it ran wider than the card itself. This only happened on the pages that do not load the main site stylesheet, which includes the whole markets family: the screener, coin pages, categories, the heatmap and about thirty others. The card now sits fully on screen with an even gutter on both sides at every width, and its button fits inside it.",
-			"link": "/screener",
-			"tags": [
-				"fix"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The 3D Playground recovers when a model will not load, and now works from the keyboard",
-			"summary": "Dropping a .glb into /playground had exactly one failure mode: a dimmed screen and a spinner that never stopped. If the file was corrupt, the download stalled, or the 3D viewer script itself was blocked, nothing on the page said so and there was no way back. That spinner is now a shimmer inside the viewer frame instead of a curtain over the whole page, so the controls stay usable while a model streams, and a failure lands in a designed error card that names what went wrong and offers Retry or a file picker. A load that never finishes gives up after 25 seconds rather than hanging forever. The lighting presets no longer strand the scene on the previous preset’s exposure. The page also gained the structure it was missing: a real heading that says what it is for, headings on every control group, an accessible name on each switch, slider and field, a focus ring on everything you can tab to, and an upload button the keyboard can actually reach (it was hidden with display:none, which drops it out of the tab order entirely). On a phone the top navigation scrolls instead of vanishing. Animation names read out of an uploaded file are rendered as text, never as markup.",
-			"link": "/playground",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The 3D studio stops promising \"5 seconds to go\" for eleven minutes",
-			"summary": "Every surface that waits on a generation, the ChatGPT widget and the custom GPT included, showed a countdown built from the lane's own time estimate. Once a model outran that estimate the countdown stopped at five seconds and stayed there for the rest of the job: on a generation measured this week that meant reading \"roughly 5s to go\" for the final eleven minutes. The countdown now runs only while there is genuinely time left on the estimate, and past it the wait says the job keeps running in the background and shows how long it has actually been going, which is a number that moves. The inline 3D viewer in ChatGPT also now loads its model through three.ws itself rather than straight from the asset store, so it renders from any host that embeds it instead of only from our own pages. Separately, the free 3D endpoints no longer announce payment-related headers to browsers: they never accepted a payment, but the shared header defaults named them anyway, which was misleading to anyone reading the network tab.",
-			"link": "/forge",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The agent-wallet demo pays again when an endpoint asks the buyer to cover its own network fee",
-			"summary": "On /play/agent-wallet a 3D avatar walks up to a paid x402 endpoint and buys a live market signal with real USDC on Solana. The page had gone quiet. three.ws's own paid endpoints switch to a self-pay payment challenge whenever the wallet that normally sponsors the Solana network fee cannot co-sign, and the bridge behind the page only knew how to build a sponsored payment, so every price quote came back as a server error and the demo never got past its connecting state. The bridge now signs both kinds: when no sponsor is offered, the agent wallet pays its own network fee, exactly as the platform's own payment ring already does. Four smaller things came with it. The page no longer offers a Pay button it knows will fail: when the agent wallet cannot cover the quoted price it says so and leaves the deposit address in front of you. Switching between BTC, ETH and SOL re-prices immediately instead of waiting for the next payment. The wallet balance and the Pay button stop reverting to placeholder text a few seconds after they load, which the translation pass had been overwriting. And the page carries a real page heading for screen readers and search engines, which it had been missing entirely.",
-			"link": "/play/agent-wallet",
-			"tags": [
-				"fix",
-				"improvement"
 			]
 		}
 	]

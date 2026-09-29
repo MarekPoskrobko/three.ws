@@ -8154,6 +8154,37 @@ Session cookie required; writes must be same-site. `POST` answers `201` with `{ 
 | `too_many_tokens` | 409 | 12 live tokens already |
 | `rate_limited` | 429 | over the per-account write limit |
 
+## Trading guidance API
+
+Two public reads for people deciding whether to act on pump.fun momentum or copy a trader. Neither moves funds.
+
+### Sentiment Scout
+
+```
+GET /api/pump/sentiment-scout?window=60&limit=5&track=1&notes=1&network=mainnet
+GET /api/pump/sentiment-scout?mint=<mint>
+```
+
+No auth, CORS-open, IP rate-limited. Returns `{ network, window_minutes, observed, qualified, generated_at, candidates[], reason?, track_record? }`. Each candidate: `{ mint, ticker, momentum_score, score_parts, evidence[{ type, platform?, detail, source, at, checked_against? }], caution, market_check, x, posts[], note, note_model, links, unavailable[] }`. `notes=0` skips the LLM-written read; `track=1` grades past flags against the base rate. Guide: [sentiment-scout.md](sentiment-scout.md).
+
+### Copy Coach
+
+```
+GET  /api/copy/coach?network=mainnet
+POST /api/copy/coach   { message, history?, step?, leader_id?, window?, budget_sol?, network? }
+```
+
+No auth. `GET` returns `{ network, win, leaders[], starter_caps, eligibility_bar, generated_at }`. `POST` returns `{ reply, source: 'llm'|'guide', model, facts_used }`, with its own limit of 30 questions per 10 minutes per IP. A starter copy is created through `POST /api/copy/subscriptions` with `starter: true` and `risk_ack: true`, where the starter caps are enforced. Guide: [copy-coach.md](copy-coach.md).
+
+| Error | Status | Meaning |
+| --- | --- | --- |
+| `invalid_mint` | 400 | `mint` is not a base58 address |
+| `invalid_message` | 400 | empty coach question |
+| `message_too_long` | 400 | question over 500 characters |
+| `invalid_leader` | 400 | `leader_id` is not an agent UUID |
+| `invalid_config` | 400 | a `starter: true` subscription past a starter cap (the reason is in `error_description`) |
+| `rate_limited` | 429 | over the IP limit |
+
 ## Home API
 
 Read and act on a Home Assistant house the account has connected. Session-authenticated from a

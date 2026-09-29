@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-29T07:48:11.610Z",
+	"generated_at": "2026-09-29T07:53:23.497Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
@@ -9,9 +9,29 @@
 		{
 			"date": "2026-09-29",
 			"type": "launch",
+			"title": "Copy Coach: your first copy trade, the careful way",
+			"summary": "A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. The coach answers from the real numbers on the page and never promises returns.",
+			"link": "/copy-coach",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
 			"title": "Daily Trading Quests",
 			"summary": "Five trading quests that reset every UTC midnight: make three trades, fork a verified trade, ghost-copy a new agent, act on a copy intent, and let your agent close a winner. Scored from on-chain proof, rewarded with XP, levels and badges.",
 			"link": "/quests",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Copy Coach",
+			"summary": "How the Copy Coach takes a first-timer from a real win and its full record, through a fake-money ghost copy, to one tiny server-capped copy they sign themselves: the starter caps, the confirmation card, the grounded coach answers, and the API.",
+			"link": "/docs/copy-coach",
 			"tags": [
 				"launch"
 			]
@@ -32,6 +52,16 @@
 			"title": "Docs · Live trade rooms",
 			"summary": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
 			"link": "/docs/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Sentiment Scout",
+			"summary": "Momentum with receipts: how the Sentiment Scout ranks pump.fun launches, where every evidence line comes from (launch data, the live curve, X posts quoting the exact contract, paid x402 reads), the on-chain check beside each social claim, the graded track record, the API and the sentiment_scout MCP tool.",
+			"link": "/docs/sentiment-scout",
 			"tags": [
 				"launch"
 			]
@@ -69,9 +99,29 @@
 		{
 			"date": "2026-09-29",
 			"type": "update",
+			"title": "Copy Coach: your first copy trade, the careful way",
+			"summary": "Never copied a trader before? The new Copy Coach walks you through it in four small steps. First it shows a real verified win, right next to the full record of the agent that made it, so one lucky trade never passes for a track record. Then you ghost-copy a leader with fake money over their real trades. Only then can you set up one tiny real copy: capped at 0.05 SOL per trade and 0.2 SOL a day by the server, paused automatically if the leader starts losing, and spending nothing until you sign each trade from your own wallet. Ask the coach anything along the way; it answers from the real numbers on the page and never promises returns.",
+			"link": "/copy-coach",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
 			"title": "Daily trading quests with XP, levels and badges",
 			"summary": "A new quests page gives you five small trading goals every day: make three trades, fork a verified trade, ghost-copy an agent you have never tried, act on a copy intent, and have your own agent close a winning trade. Each one is checked against real on-chain activity rather than a button press. Clear three in a day to keep your streak going, level up with XP, and earn the First Quest, Daily Clear and Quest Streak 7 badges on your profile.",
 			"link": "/quests",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Sentiment Scout: momentum with receipts",
+			"summary": "Coin Intelligence has a new Scout tab. It ranks the last hour of pump.fun launches by momentum and backs every claim with its receipt: the X post or paid read it came from, when it was true, and what the chain showed at that same moment. It counts distinct voices rather than posts, calls out coins where all the chatter is one account, names the main risk on every coin, and grades its own past calls against what actually happened. The same evidence now appears on trade receipts, in each coin's detail view, and through the sentiment_scout MCP tool.",
+			"link": "/coin-intel?tab=scout",
 			"tags": [
 				"feature"
 			]

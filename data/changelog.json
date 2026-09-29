@@ -17,6 +17,24 @@
 		},
 		{
 			"date": "2026-09-29",
+			"title": "Copy Coach: your first copy trade, the careful way",
+			"summary": "Never copied a trader before? The new Copy Coach walks you through it in four small steps. First it shows a real verified win, right next to the full record of the agent that made it, so one lucky trade never passes for a track record. Then you ghost-copy a leader with fake money over their real trades. Only then can you set up one tiny real copy: capped at 0.05 SOL per trade and 0.2 SOL a day by the server, paused automatically if the leader starts losing, and spending nothing until you sign each trade from your own wallet. Ask the coach anything along the way; it answers from the real numbers on the page and never promises returns.",
+			"tags": [
+				"feature"
+			],
+			"link": "/copy-coach"
+		},
+		{
+			"date": "2026-09-29",
+			"title": "Sentiment Scout: momentum with receipts",
+			"summary": "Coin Intelligence has a new Scout tab. It ranks the last hour of pump.fun launches by momentum and backs every claim with its receipt: the X post or paid read it came from, when it was true, and what the chain showed at that same moment. It counts distinct voices rather than posts, calls out coins where all the chatter is one account, names the main risk on every coin, and grades its own past calls against what actually happened. The same evidence now appears on trade receipts, in each coin's detail view, and through the sentiment_scout MCP tool.",
+			"tags": [
+				"feature"
+			],
+			"link": "/coin-intel?tab=scout"
+		},
+		{
+			"date": "2026-09-29",
 			"title": "Watch traders trade live in their own 3D trade rooms",
 			"summary": "Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list.",
 			"tags": [
