@@ -2540,3 +2540,104 @@ login`) and the service's Gemini key is billing-denied, so the old translations 
   from the 09-24 entry still holds: about 0.4 SOL buys 14 days at today's burn; about 1.4 SOL
   also fills the 0.3 SOL operating reserve and both topup targets, which is what makes the
   DoD 3 plan non-zero.
+
+## 2026-09-29 | 01 x402 settle runway | the refusal flood was our own feed seeder, not buyers
+
+Re-measured live against production `f2081d946` (revision `three-ws-api-00459-pxd`, which
+carries `22f1e08df` and `fb533a6ec`) at 06:22 to 06:45 UTC. Nothing carried forward.
+
+| Fact | Value | Source |
+|---|---|---|
+| `x402_settle` | **ok, 97.0%** (262/270 paid attempts, 3h), 924 paced by the fee governor | `/api/healthz` |
+| Facilitator settles, 24h | 46,375 attempts, 2,492 settled, **43,848 `fee_runway_exhausted`**, 34 other | `/api/x402/runway-lab`, `x402_self_facilitator_log` |
+| Who paid | **every** one of 45,483 verifies in 24h was the ring payer `X4o2...stML`; zero external buyers | verify rows grouped by payer |
+| Refusals by amount | 43,662 at 1,000 atomic (the seeder's tip), 186 at 10,000 atomic (the MCP canary) | settle rows, all sponsor fee payer, payer NULL |
+| Sponsor `Wwwu...T3WwW` | 0.007810 SOL, spendable 0.005810; 24h fees 7,720,766 lamports over 772 settles | runway-lab, facilitator log |
+| Ring payer `X4o2...stML` | 0.047933 SOL; 24h self-pay fees 8,667,553 lamports over 1,723 settles | same |
+| Governed demand skipped caller-side, 24h | 7,439, all sponsor-mode (+10000): health 2,774, oracle 2,431, volume 1,246, sniper 356, feed 236, canonicalize 220, observability 174 | `x402_autonomous_log` |
+
+### Demand by source
+
+- **x402 seed cron, ~1,830 attempts/hour (about 95%).** `api/cron/x402-seed-cron.js`, called
+  by `economy-tick` every two minutes, builds and fires 60 sponsor-mode $0.001 tips at
+  `/api/x402/dance-tip` per tick. Its only preflight was the sponsor's hard floor and the
+  payer's balance, never the fee governor. Logs: 61 ticks in 2h, 3,660 sent, **60 settled**,
+  3,600 refused (dance-tip answers 503). Request logs match: 580 `GET /api/x402/dance-tip 503`
+  from `threews-x402-seed/1.0` in 20 minutes. It also took about 720 of the sponsor's 772
+  daily settles, so the budget the paid pipelines needed went to seeding.
+- **Streaming MCP canary, ~8/hour.** `api/_lib/x402/pipelines/streaming-mcp-health.js`
+  hand-builds a $0.01 sponsor payment to `POST /api/mcp` without asking the gate; 183
+  `not_settled` rows a day, matching the 186 refusals.
+- **The ring and the autonomous loop: 0 facilitator refusals.** Both already gate; their
+  7,439 governed skips are recorded caller-side, as designed.
+- **External buyers: none in 24h.** For the record, an external buyer is never refused by the
+  governor (the settle meter admits a non-platform payer since `c5d701b68`); under the floor it
+  gets a 503 and its transfer is never broadcast, so it is not charged.
+
+Root cause: the admission gate works; two callers never called it. `runway-lab`'s
+`capacity_admission_rate` 0.054 and the green `x402_settle` were both true at once because
+the settle sensor reads `x402_autonomous_log`, which the seeder never writes.
+
+### Fixes (`c7befebdd`, `ce7365b40`; no funds moved, no config changed)
+
+1. `reserveFeeAdmissions()` (wallet-fee-meter) sizes a batch against the shared admission
+   snapshot and leaves `keepLamports` for other tenants; pure math in
+   `admissibleSettleCount()` (wallet-fee-governor), boundary-identical to the settle meter.
+   The seed cron sends only what it admits and keeps `X402_SEED_FEE_RESERVE_LAMPORTS`
+   (default 200,000) for the paid pipelines, so seeding yields to data.
+2. `admitSponsorSettle()` (pay.js) gates the three pipelines that hand-build sponsor payments:
+   streaming MCP canary, builder-code attribution, payment-proof idempotency audit.
+3. The facilitator records `payer` on floor and governor refusals (was NULL).
+4. Recurrence guard for this shape: `x402_settle` goes `degraded`, `mechanism: gate_bypass`,
+   `metrics.gateBypass`, when facilitator governor refusals with no ring row behind them are
+   at least 20 and exceed settles. Docs: `docs/x402-ring-economy.md`,
+   `docs/ops/production-log-triage.md` mechanism table.
+
+Tests: 20 new across `tests/x402-wallet-fee-governor.test.js`, `tests/x402-fee-admission.test.js`,
+`tests/x402-seed-batch-plan.test.js`, `tests/api/x402-settle-health.test.js`; 177 x402 /
+facilitator / economy / treasury / healthz files run, 2,033 passed, one suite failing on a
+peer's uncommitted import (`api/_lib/solana-transfer.js` now pulls `token-program.js` into
+`tests/api/x402-pay-routing.test.js`, whose `node:fs` mock throws), unrelated here.
+`check:rules` clean, `audit:docs` no findings in touched docs, `build:pages` green.
+
+### DoD after this pass
+
+1. `x402_settle` ok above 90%: **passes** (97.0%).
+2. `fee_runway_exhausted` not the top reject class: **pending deploy.** Both callers that
+   produced 100% of today's governor refusals are fixed in `c7befebdd`.
+3. Non-zero deficit AND non-zero reclaim plan: deficit passes (0.30221); reclaim moves are
+   empty (every source is `at_or_below_floor` or `below_min_sweep`). Reclaim only runs while
+   the deficit is positive, so funding cannot make the reclaim plan non-zero; only the
+   sweep-minimum lever below can. Funding makes the topup `plan` non-zero instead.
+4. Recurrence guard: the governor config test existed; this pass adds the healthz degraded
+   reason (`gate_bypass`). Done.
+5. Changelog: `ce7365b40`. 6. PROGRESS: this entry.
+
+### Owner actions
+
+- **Deploy** (gate 2). Then re-read `runway-lab` 3h later: expect governor refusals near 0.
+- **Fund `WwwuGbqHrwF5RG89KhUbmRWEvjnRH9k5kVM5p7T3WwW`** (gate 1), sized from today's numbers:
+
+  | Line | SOL | Basis |
+  |---|---|---|
+  | Operating reserve back to 0.3 | 0.3022 | `master_deficit_sol` 0.30221 |
+  | Ring payer to its 0.18 target | 0.1321 | 0.047902 now; 8.67M lamports/day self-pay, so about 20 days |
+  | 14 days of sponsor fees at measured paid demand | 1.049 | 7,490 sponsor settles/day (7,439 skipped + ~50 settled) x 10,000 lamports |
+  | **Recommended** | **1.48** | the three lines above |
+  | Minimum instead | 0.57 | reserve + ring payer + 14 x the 0.01 SOL/day heartbeat |
+  | Optional, not settle-related | 0.9875 | relayer bundle `wwwq...HGUn` 0.012453 to its 1.0 target |
+
+  Pair it with `X402_WALLET_FEE_RUNWAY_DAYS=14` (config-only, pre-approved). Today's value
+  is 1, which lets the governor spend the sponsor's whole spendable balance in a day; with
+  the seeder now filling any surplus above its reserve, that would burn a funding in about a
+  day. At today's balance the change is inert for the sponsor (the 0.01 SOL/day floor already
+  exceeds spendable) and tightens the ring payer from 0.046 to 0.01 SOL/day against its
+  0.0087 SOL/day burn, which is why it is left for the funding moment.
+- **Free lever, not applied (it moves SOL):** `ECONOMY_SWEEPBACK_MIN_SOL` 0.01 to 0.001 lets
+  the armed reclaim sweep 33 wallets (31 agent wallets 0.151203 + the x402 receiver 0.004995
+  + the a2a payer 0.002851) = **0.159 SOL** gross, about 0.000165 in fees. At 0.002: 29
+  wallets, 0.153 SOL; at 0.005: 17 agent wallets, 0.114 SOL. It makes the DoD 3 reclaim
+  plan non-zero at once but leaves the master (0.167) under its 0.3 reserve.
+
+Unrelated, seen in the same logs: an external `node-fetch/1.0` client drives over 1,800
+`GET /api/v1/pump/curve` a minute, 98.7% answered 429 by the rate limiter.
