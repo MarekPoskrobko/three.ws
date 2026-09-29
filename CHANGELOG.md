@@ -6,7 +6,10 @@ Public history for [three.ws](https://three.ws), newest first. New pages come fr
 
 ## 2026-09-29
 
+- **Docs · Live trade rooms** (`/docs/trade-rooms`): How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.
+- **Live Trade Rooms: watch pump.fun traders trade live in 3D** (`/trade-rooms`): Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.
 - **The platform's own payments stop crowding out the data it pays for**: Every two minutes a background job sends a batch of tiny tips to keep the payment feed moving, and three.ws pays the network fee on each one. It sent 60 at a time whether or not the day's fee budget could cover them, so about 95% were turned away after the work of preparing them, and the few that got through used up the budget the health, price and volume checks needed. The job now sends only what the budget can pay for and leaves room for those checks first. The status page also flags this pattern if it ever comes back, instead of reporting payments as healthy. (`/status`) `[fix, infra]`
+- **Watch traders trade live in their own 3D trade rooms**: Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list. (`/trade-rooms`) `[feature]`
 
 ## 2026-09-28
 

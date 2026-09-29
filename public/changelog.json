@@ -1,11 +1,31 @@
 {
-	"generated_at": "2026-09-29T06:45:44.824Z",
+	"generated_at": "2026-09-29T07:36:06.048Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Live trade rooms",
+			"summary": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
+			"link": "/docs/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
+			"summary": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
+			"link": "/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "update",
@@ -15,6 +35,16 @@
 			"tags": [
 				"fix",
 				"infra"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Watch traders trade live in their own 3D trade rooms",
+			"summary": "Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list.",
+			"link": "/trade-rooms",
+			"tags": [
+				"feature"
 			]
 		},
 		{

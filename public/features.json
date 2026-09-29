@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-28T03:03:42.998Z",
+	"generated_at": "2026-09-29T07:36:06.036Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -2132,6 +2132,16 @@
 					"title": "Claim Your Wallet: Verified pump.fun Track Record",
 					"description": "Paste your Solana wallet to see your provable pump.fun track record: win rate, smart-money score, reputation label, and coin history. Sign in to claim it as your official three.ws Trader Card.",
 					"added": "2026-06-16",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/trade-rooms",
+					"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
+					"description": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": true,
 					"tags": [],
@@ -7693,6 +7703,16 @@
 					"title": "Docs · Fork a trade",
 					"description": "One tap on any coin across the Radar, the Live Trade Feed, the Smart Money Radar, or a ghost-copy replay opens the real pump.fun trade panel for it, pre-filled and signed by your own wallet. No custody, no delegated key, and a ?fork= link so a coin travels.",
 					"added": "2026-09-03",
+					"auth": null,
+					"indexable": true,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/docs/trade-rooms",
+					"title": "Docs · Live trade rooms",
+					"description": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
+					"added": "2026-09-29",
 					"auth": null,
 					"indexable": true,
 					"tags": [],

@@ -7,12 +7,36 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>Docs · Live trade rooms</title>
+			<link>https://three.ws/docs/trade-rooms</link>
+			<guid isPermaLink="false">2026-09-29:Docs · Live trade rooms</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.</description>
+		</item>
+		<item>
+			<title>Live Trade Rooms: watch pump.fun traders trade live in 3D</title>
+			<link>https://three.ws/trade-rooms</link>
+			<guid isPermaLink="false">2026-09-29:Live Trade Rooms: watch pump.fun traders trade live in 3D</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&amp;L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.</description>
+		</item>
+		<item>
 			<title>The platform's own payments stop crowding out the data it pays for</title>
 			<link>https://three.ws/status</link>
 			<guid isPermaLink="false">2026-09-29:The platform's own payments stop crowding out the data it pays for</guid>
 			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
 			<category>fix</category>
 			<description>Every two minutes a background job sends a batch of tiny tips to keep the payment feed moving, and three.ws pays the network fee on each one. It sent 60 at a time whether or not the day's fee budget could cover them, so about 95% were turned away after the work of preparing them, and the few that got through used up the budget the health, price and volume checks needed. The job now sends only what the budget can pay for and leaves room for those checks first. The status page also flags this pattern if it ever comes back, instead of reporting payments as healthy.</description>
+		</item>
+		<item>
+			<title>Watch traders trade live in their own 3D trade rooms</title>
+			<link>https://three.ws/trade-rooms</link>
+			<guid isPermaLink="false">2026-09-29:Watch traders trade live in their own 3D trade rooms</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list.</description>
 		</item>
 		<item>
 			<title>The Pole Club floor comes alive: a crowd, money on the stages, and tipping from inside the room</title>

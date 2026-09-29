@@ -54,6 +54,7 @@
 	70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
 	100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
+.lb-hero-cta { margin: var(--space-sm) 0 0; display: flex; justify-content: center; }
 .lb-title {
 	font-family: var(--font-display);
 	font-weight: var(--weight-bold);

@@ -1769,6 +1769,14 @@
 					"added": "2026-06-16"
 				},
 				{
+					"path": "/trade-rooms",
+					"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
+					"description": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
+					"priority": 0.7,
+					"changefreq": "always",
+					"added": "2026-09-29"
+				},
+				{
 					"path": "/ghost-copy",
 					"title": "Ghost-copy: what if you'd copied them?",
 					"description": "Paper-copy any verified pump.fun trader agent with fake money over their real closed on-chain trades. Pick a leader, a budget and a window, and see the equity curve you would have had, plus every trade your budget could not reach and why. No wallet, no signature, no custody, no account.",
@@ -5976,6 +5984,14 @@
 					"priority": 0.6,
 					"changefreq": "monthly",
 					"added": "2026-09-03"
+				},
+				{
+					"path": "/docs/trade-rooms",
+					"title": "Docs · Live trade rooms",
+					"description": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
+					"priority": 0.6,
+					"changefreq": "monthly",
+					"added": "2026-09-29"
 				},
 				{
 					"path": "/docs/trade-receipts",

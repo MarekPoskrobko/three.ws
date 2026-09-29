@@ -1,14 +1,34 @@
 {
-	"generated_at": "2026-09-29T06:45:44.845Z",
+	"generated_at": "2026-09-29T07:36:06.065Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3759,
+	"total": 3762,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Docs · Live trade rooms",
+			"summary": "How live trade rooms work: the trader's 3D avatar reacting to each real fill, the board and ticker tape, spectator presence, the receipt, Fork, ghost-copy and copy on every trade, the list view and frame budget, and the rooms, room and SSE stream APIs.",
+			"link": "/docs/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "launch",
+			"title": "Live Trade Rooms: watch pump.fun traders trade live in 3D",
+			"summary": "Step into a trader's 3D room and watch their real pump.fun buys and sells land as they fill: the avatar reacts, every trade carries its receipt, P&L and Solscan tx, and one tap forks the trade or ghost-copies the trader. Quiet rooms show the latest real trades and which rooms are live now.",
+			"link": "/trade-rooms",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "update",
@@ -18,6 +38,16 @@
 			"tags": [
 				"fix",
 				"infra"
+			]
+		},
+		{
+			"date": "2026-09-29",
+			"type": "update",
+			"title": "Watch traders trade live in their own 3D trade rooms",
+			"summary": "Every public trader now has a live trade room. Their avatar stands on the floor and reacts as each real buy and sell fills, the board and ticker tape fill with their trades, and everyone watching shows up in the room. Tap any trade for the receipt of why it was made, fork it into your own wallet, or ghost-copy the trader. A quiet room still shows the latest real trades and which rooms are live right now, and the whole room also works as an accessible live list.",
+			"link": "/trade-rooms",
+			"tags": [
+				"feature"
 			]
 		},
 		{
@@ -1571,39 +1601,6 @@
 			"title": "The Coin Wars arena reconnects to its battle server, and a link with no battle now shows you where the wars are",
 			"summary": "A full audit of /play/war, the arena where two coin communities fight to the kill cap. The page had lost the address of the multiplayer server it joins, so every player walking through a war portal landed on 'The arena server is unreachable' instead of a battlefield; the arena is wired back up. Beyond that, a link with no pairing (a shared URL, an expired ticket, a battle that already finished) used to be one sentence and a button back to the lobby, which told you nothing about where a war actually is. It is now the war room: the battles running right now with their live score and clock, the communities queued for an opponent, and the top of the Elo ladder, each one a link into that coin's world where its war portal stands. The same panel sits under every other dead end, so 'there is no battle here' always comes with 'here is where one is'. Also fixed: a failed holder check used to show an internal service error instead of telling you what to do, the Fire button announced itself as 'Firespace' to screen readers, pressing Space on the result card did nothing because the arena was eating the key, and the HUD's hover and focus animations were dead because the page never loaded the site's motion tokens. The arena now says it is playable with WASD, moves focus onto the way out when a card appears, and reads cleanly from 320px up.",
 			"link": "/play/war",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The economy solver says which level its numbers belong to, and shares a link that lands on them",
-			"summary": "The solver at /play/solver reprices the whole /play world when you move the skill level, and it fetches the new level as you move. If that fetch failed, the page dimmed its tables slightly and said nothing else: the chart marker sat at level 60 while every table below it still held level 1 figures, with no visible explanation, no way to tell which level you were reading, and no retry. The explanation existed but was written only into a region screen readers can reach, so anyone looking at the page saw a silent mismatch. A failed level now raises a banner in the open that names the level that failed, says plainly that the figures below are still the old level, and offers both a retry and a way back. A level still loading shows the same banner as a busy state with the level it is solving, so a slow connection reads as slow rather than as broken. The page also writes the level into its own address bar now: it has always read a level from a shared link, but never wrote one, so sending someone the URL after dragging to level 60 sent them level 1. And a link asking for a level past the cap settles on the cap instead of leaving the page waiting on a level that will never arrive. Alongside it, a conclusion in the model that shouted one word in capitals now reads as a normal sentence.",
-			"link": "/play/solver",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The floorplan editor can make rooms, so a home with no areas is no longer a dead end",
-			"summary": "Most Home Assistant setups we see have devices everywhere and not a single area, which left the 3D home and the floorplan with nothing to draw and the only advice we could give was to go and create areas in Home Assistant's own settings first. That is a chore people leave to do and do not come back from. The floorplan editor now makes the room itself: name it, and the area is created in your own Home Assistant, placed on the plan, and the device that prompted it is filed into it in the same step. It reaches your dashboards, your voice assistant and your automations too, because it is a real area in your registry and not a picture of one here. The tray tells a home with no rooms where to start, and a device you file no longer leaves a stale entry behind in the list.",
-			"link": "/smart-home",
-			"tags": [
-				"feature",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "The generated motion clips were playing upside down, and we can now tell",
-			"summary": "Every one of the 133 motion clips three.ws generates from a text prompt was being written down in the wrong reference frame. The bone names all matched the rest of the library, so nothing looked wrong in the data, but a clip's rotations are measured against a rig's resting pose and the generator was measuring against a different one. The result was a half turn missing from the legs: play one of these clips on an avatar and the feet fold up over the body. Forward kinematics put the feet at 1.71 m and the head at 1.45 m, where a hand-authored clip puts them at 0.15 m and 1.68 m. Clips can now be converted into the library's own frame, which puts all 133 back on their feet, and the quality check has learned to spot the fault: it was invisible before because every other rule measures a clip against itself, and a clip in the wrong frame is perfectly consistent with itself. A second fault went with it. Every generated clip was drifting forward at about a quarter of a metre a second whatever it was asked for, so a clip of someone applauding walked a metre across the room while it clapped, and standing-still idles drifted faster than the walks did. That turned out to be an artifact of how the motion model's output is scaled back into real units, and it is now measured and removed while the real motion, a pirouette's sway or a walk's per-step surge, is kept. Removing it also repaired the foot-sliding check, which had been dividing by a stride that was never real, so the library's quality bar finally means something: 39 of the 133 clips meet it, and the rest are being held back rather than served.",
-			"link": "/animations",
 			"tags": [
 				"fix",
 				"improvement"

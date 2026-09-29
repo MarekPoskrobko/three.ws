@@ -674,6 +674,13 @@ export const NAV_GROUPS = [
 						desc: 'Every notable pump.fun exit — PnL, hold time, and one-click copy',
 					},
 					{
+						title: 'Live Trade Rooms',
+						href: '/trade-rooms',
+						badge: 'Live',
+						badgeTone: 'live',
+						desc: 'Watch a trader\'s real buys and sells land in a 3D room, then fork or copy in one tap',
+					},
+					{
 						title: 'Agent Activity',
 						href: '/activity',
 						desc: 'Every agent trade in real time — entries, outcomes, and who to copy',

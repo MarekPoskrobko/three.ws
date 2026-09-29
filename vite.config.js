@@ -841,6 +841,7 @@ const appConfig = {
 				'ui-juice': resolve(__dirname, 'pages/ui-juice.html'),
 				terminal: resolve(__dirname, 'pages/terminal.html'),
 				trader: resolve(__dirname, 'pages/trader.html'),
+				'trade-room': resolve(__dirname, 'pages/trade-room.html'),
 				signals: resolve(__dirname, 'pages/signals.html'),
 				'signal-detail': resolve(__dirname, 'pages/signal-detail.html'),
 				trades: resolve(__dirname, 'pages/trades.html'),
@@ -1694,6 +1695,8 @@ const appConfig = {
 					'/diorama/': resolve(root, 'pages/diorama.html'),
 					'/trader': resolve(root, 'pages/trader.html'),
 					'/trader/': resolve(root, 'pages/trader.html'),
+					'/trade-rooms': resolve(root, 'pages/trade-room.html'),
+					'/trade-rooms/': resolve(root, 'pages/trade-room.html'),
 					'/signals': resolve(root, 'pages/signals.html'),
 					'/signals/': resolve(root, 'pages/signals.html'),
 					'/trades': resolve(root, 'pages/trades.html'),
@@ -2284,6 +2287,10 @@ const appConfig = {
 					// route in prod, so keep it out of the HTML shell here too.
 					else if (!filePath && /^\/trader\/[^/.]+\/?$/.test(path))
 						filePath = resolve(root, 'pages/trader.html');
+					// /trade-rooms/:agentId → one leader's live trade room. Mirrors
+					// vercel.json's `/trade-rooms/([^/.]+)/?`.
+					else if (!filePath && /^\/trade-rooms\/[^/.]+\/?$/.test(path))
+						filePath = resolve(root, 'pages/trade-room.html');
 					// `[^/.]+` (no dot) mirrors vercel.json's `/agents/([^/.]+)` so
 					// static assets like /agents/boot.js fall through to public/
 					// instead of being served the agent-detail HTML shell.

@@ -361,7 +361,8 @@ function render(data) {
 
 		<div class="tp-actions">
 			<div class="lb-seg" role="tablist" aria-label="Time window" id="tp-window">${winSeg}</div>
-			<div style="display:flex;gap:var(--space-2xs)">
+			<div style="display:flex;flex-wrap:wrap;gap:var(--space-2xs)">
+				<a class="lb-btn" href="/trade-rooms/${encodeURIComponent(a.id)}${ctx.network === 'mainnet' ? '' : `?network=${ctx.network}`}">Watch live room</a>
 				<button class="lb-btn" id="tp-embed" aria-expanded="false" aria-controls="tp-embed-panel">Embed this trader</button>
 				<button class="lb-btn" id="tp-share">Share track record</button>
 				<button class="lb-btn lb-btn-primary" id="tp-card">Download PnL card</button>

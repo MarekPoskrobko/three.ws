@@ -40,7 +40,7 @@
 		"{api/agents/networth,api/avatars/from-forge,api/pay/execute,api/pay/simulate,api/cron/launcher-claimer,api/cron/fee-bridge,api/seed/synthesize,api/cron/x402-ring-tick}.js": {
 			"maxDuration": 60
 		},
-		"{api/club/tips-stream,api/feed-stream,api/pump/trades-stream,api/oracle/stream,api/oracle/action-stream,api/sniper/stream,api/sniper/radar-stream,api/agent-screen-stream}.js": {
+		"{api/club/tips-stream,api/feed-stream,api/pump/trades-stream,api/oracle/stream,api/oracle/action-stream,api/sniper/stream,api/sniper/room-stream,api/sniper/radar-stream,api/agent-screen-stream}.js": {
 			"includeFiles": "{examples/skills/**,data/pages.json,data/archives/**,data/rss/**,data/_generated/**,sdk/src/sas-config.json}",
 			"maxDuration": 300
 		},
@@ -1484,6 +1484,14 @@
 		{
 			"src": "/trader/?",
 			"dest": "/trader.html"
+		},
+		{
+			"src": "/trade-rooms/([^/.]+)/?",
+			"dest": "/trade-room.html"
+		},
+		{
+			"src": "/trade-rooms/?",
+			"dest": "/trade-room.html"
 		},
 		{
 			"src": "/signals/?",
@@ -3808,6 +3816,18 @@
 		{
 			"src": "/api/sniper/receipt",
 			"dest": "/api/sniper/receipt.js"
+		},
+		{
+			"src": "/api/sniper/rooms",
+			"dest": "/api/sniper/rooms.js"
+		},
+		{
+			"src": "/api/sniper/room",
+			"dest": "/api/sniper/room.js"
+		},
+		{
+			"src": "/api/sniper/room-stream",
+			"dest": "/api/sniper/room-stream.js"
 		},
 		{
 			"src": "/api/traders/preview",
