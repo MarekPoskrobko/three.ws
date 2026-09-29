@@ -78,6 +78,7 @@ function reelRecord(item, row, proof) {
 		`Captions, in order: ${JSON.stringify(captions)}.`,
 		`The run read off the screen: ${JSON.stringify(proof?.facts || {})}. It waited for and saw: ${JSON.stringify(proof?.saw || [])}. The server answered: ${JSON.stringify(proof?.responses || [])}.`,
 		`Waits cut from the film, each labelled in the reel: ${JSON.stringify(proof?.cuts || [])}.`,
+		'X accepts alt text on images and GIFs only, so a reel cannot carry one and its absence is not an issue. What a reader who cannot see the reel gets is the post: raise it as a clarity issue if the post alone does not say what the reel shows.',
 	].join('\n');
 }
 
