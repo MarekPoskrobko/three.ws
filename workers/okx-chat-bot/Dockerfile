@@ -10,11 +10,11 @@
 # at runtime is exactly how the codespace version kept breaking:
 #
 #   okx-a2a    the XMTP daemon. Node >= 22.14 or it refuses to start.
-#   onchainos  the OKX wallet CLI. Installed with the checksum-verified installer
-#              (.agents/skills/okx-agentic-wallet/_shared/preflight.md) under a
-#              THROWAWAY HOME, then relocated to /usr/local/bin: at runtime HOME
-#              is the restored state tree, so a binary living in $HOME/.local/bin
-#              would vanish the moment a snapshot was unpacked over it.
+#   onchainos  the OKX wallet CLI. The release binary itself, verified against
+#              the release's checksums.txt, installed straight into /usr/local/bin:
+#              at runtime HOME is the restored state tree, so a binary living in
+#              $HOME/.local/bin would vanish the moment a snapshot was unpacked
+#              over it.
 #   an AI CLI  the adapter spawns it to author replies and drive the task
 #              lifecycle. Both supported agentic CLIs ship so the provider can be
 #              switched by env alone (see workers/okx-chat-bot/config.js).
@@ -35,18 +35,24 @@ RUN npm install -g \
 	@anthropic-ai/claude-code@latest \
 	@openai/codex@latest
 
-# onchainos: verify the installer against the release checksum before running it,
-# then move the binary somewhere a state restore cannot overwrite.
+# onchainos: the release binary for this platform, verified against the
+# release's own checksums.txt before it is made executable. Releases from v4.6.0
+# on ship no install.sh and no installer-checksums.txt (both 404 on v4.6.3), so
+# the installer route the first build used now fails the image outright. The
+# binary route is the same artifact the installer downloaded, minus the script.
 RUN set -eux; \
-	TAG="$(curl -sSL https://api.github.com/repos/okx/onchainos-skills/releases/latest | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>process.stdout.write(JSON.parse(s).tag_name))')"; \
-	curl -sSL "https://raw.githubusercontent.com/okx/onchainos-skills/${TAG}/install.sh" -o /tmp/onchainos-install.sh; \
-	curl -sSL "https://github.com/okx/onchainos-skills/releases/download/${TAG}/installer-checksums.txt" -o /tmp/installer-checksums.txt; \
-	ACTUAL="$(sha256sum /tmp/onchainos-install.sh | cut -d' ' -f1)"; \
-	grep -q "$ACTUAL" /tmp/installer-checksums.txt || { echo "onchainos installer checksum mismatch"; exit 1; }; \
-	HOME=/opt/onchainos-install sh /tmp/onchainos-install.sh; \
-	mv /opt/onchainos-install/.local/bin/onchainos /usr/local/bin/onchainos; \
-	chmod +x /usr/local/bin/onchainos; \
-	rm -rf /opt/onchainos-install /tmp/onchainos-install.sh /tmp/installer-checksums.txt; \
+	TAG="$(curl -fsSL https://api.github.com/repos/okx/onchainos-skills/releases/latest | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>process.stdout.write(JSON.parse(s).tag_name))')"; \
+	case "$(uname -m)" in \
+		x86_64) TARGET=x86_64-unknown-linux-gnu ;; \
+		aarch64) TARGET=aarch64-unknown-linux-gnu ;; \
+		*) echo "no onchainos build for $(uname -m)"; exit 1 ;; \
+	esac; \
+	cd /tmp; \
+	curl -fsSL "https://github.com/okx/onchainos-skills/releases/download/${TAG}/onchainos-${TARGET}" -o "onchainos-${TARGET}"; \
+	curl -fsSL "https://github.com/okx/onchainos-skills/releases/download/${TAG}/checksums.txt" -o onchainos-checksums.txt; \
+	grep " onchainos-${TARGET}\$" onchainos-checksums.txt | sha256sum -c -; \
+	install -m 0755 "onchainos-${TARGET}" /usr/local/bin/onchainos; \
+	rm -f "onchainos-${TARGET}" onchainos-checksums.txt; \
 	onchainos --version
 
 # Repo deps first for layer caching. .npmrc carries legacy-peer-deps; --ignore-scripts
