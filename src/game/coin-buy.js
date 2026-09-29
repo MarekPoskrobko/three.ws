@@ -128,7 +128,7 @@ function friendlyTradeError(err, mode = 'buy') {
  * so a forked trade never leaves the user staring at the previous coin's panel.
  * Opens in Buy mode; the user can switch to Sell inside the modal.
  * @param {{mint:string, name?:string, symbol?:string, image?:string}} coin
- * @param {{mode?: 'buy'|'sell', amount?: number, elevate?: boolean}} [opts]
+ * @param {{mode?: 'buy'|'sell', amount?: number, elevate?: boolean, origin?: 'fork'}} [opts]
  *   `amount` pre-fills the buy input (SOL), which is how a forked trade carries
  *   its size across; `elevate` lifts the modal above a page's sticky site nav.
  */
@@ -163,6 +163,9 @@ class TradeModal {
 		// Pages with the site nav stack their chrome above this modal's default
 		// layer; they opt into a higher one. See .cc-buy-elevated.
 		this.elevate = !!opts.elevate;
+		// 'fork' when a Fork opened this panel. Sent with buy-confirm so the verified
+		// trade counts toward the daily fork quest; it changes nothing about the trade.
+		this.origin = opts.origin === 'fork' ? 'fork' : null;
 		this._sellMax = false;
 		this.slippageBps = DEFAULT_SLIPPAGE_BPS;
 		this.busy = false;
@@ -976,6 +979,7 @@ class TradeModal {
 			// failure here must never read as a failed purchase.
 			const confirmBody = { mint: this.coin.mint, network: NETWORK, tx_signature: sig, wallet_address: walletAddress, route: prep.route, slippage_bps: this.slippageBps };
 			if (isUsdc) confirmBody.usdc_amount = this.amount; else confirmBody.sol = this.amount;
+			if (this.origin) confirmBody.origin = this.origin;
 			this._fetchJson('/api/pump/buy-confirm', confirmBody).catch(() => {});
 
 			this.cta.textContent = `Bought ${this.sym} ✓`;

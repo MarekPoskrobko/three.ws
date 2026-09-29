@@ -143,7 +143,8 @@ export async function openFork(trade, { trigger } = {}) {
 			{ mint: trade.mint, symbol: trade.symbol, name: trade.name, image: trade.image },
 			// elevate: a fork always opens on a page carrying the site nav, which
 			// stacks above the modal's default /play layer.
-			{ mode: 'buy', amount: clampForkSize(trade.size) ?? undefined, elevate: true },
+			// origin: labels the verified buy as a fork for the daily fork quest.
+			{ mode: 'buy', amount: clampForkSize(trade.size) ?? undefined, elevate: true, origin: 'fork' },
 		);
 		return true;
 	} catch {

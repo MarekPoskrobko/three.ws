@@ -68,6 +68,8 @@ import { markPlanLaunched } from '../_lib/agent-token-plan.js';
 import { randomToken } from '../_lib/crypto.js';
 import { publishFeedEvent } from '../_lib/feed.js';
 import { recordDailyActivity } from '../_lib/streaks.js';
+import { recordQuestTrade } from '../_lib/trading-quests.js';
+import { recordCopyPathStep } from '../_lib/copy-path.js';
 import { normalizeGatewayURL } from '../../src/ipfs.js';
 import { buildTokenMetadata } from '../_lib/three-brand.js';
 import {
@@ -597,6 +599,9 @@ const buyConfirmSchema = z
 		usdc_amount: z.number().nonnegative().max(1_000_000).optional(),
 		route: z.enum(['bonding_curve', 'amm']),
 		slippage_bps: z.number().int().min(0).max(5000).optional(),
+		// 'fork' when the trade panel was opened by a Fork (src/fork-trade.js). Only
+		// labels the verified trade for the daily fork quest; it gates nothing.
+		origin: z.enum(['fork']).optional(),
 	})
 	.refine((v) => (v.sol ?? 0) > 0 || (v.usdc_amount ?? 0) > 0, {
 		message: 'sol or usdc_amount required',
@@ -671,7 +676,23 @@ async function handleBuyConfirm(req, res) {
 		// this. Fire-and-forget and idempotent per UTC day, exactly like every other
 		// call site: it can never delay or fail the buy that earned it.
 		recordDailyActivity(user.id).catch(() => {});
+	} else {
+		// A coin launched elsewhere has no pump_agent_trades row, so this verified
+		// buy is the proof of step 3 of the first-copy path (api/_lib/copy-path.js).
+		recordCopyPathStep(user.id, 'trade', { signature: body.tx_signature }).catch(() => {});
 	}
+
+	// Daily trading quests (api/_lib/trading-quests.js) count every verified trade,
+	// on any coin. Fire-and-forget: a quest record can never delay or fail the buy.
+	recordQuestTrade({
+		userId: user.id,
+		signature: body.tx_signature,
+		network: body.network,
+		wallet: body.wallet_address,
+		origin: body.origin ?? null,
+		direction: 'buy',
+		mint: body.mint,
+	}).catch(() => {});
 
 	// Surface the buy on the site-wide live activity ticker. The tx is already
 	// verified on-chain above, so this is a real, confirmed purchase. Fire-and-
@@ -978,6 +999,15 @@ async function handleSellConfirm(req, res) {
 		`;
 		recordDailyActivity(user.id).catch(() => {});
 	}
+
+	recordQuestTrade({
+		userId: user.id,
+		signature: body.tx_signature,
+		network: body.network,
+		wallet: body.wallet_address,
+		direction: 'sell',
+		mint: body.mint,
+	}).catch(() => {});
 
 	return json(res, 200, {
 		ok: true,

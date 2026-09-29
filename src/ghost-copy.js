@@ -13,6 +13,7 @@
 // /vaults.
 
 import { initFork, forkButton } from './fork-trade.js';
+import { apiFetch, noteSession } from './api.js';
 
 const leadersEl = document.getElementById('gcLeaders');
 const resultEl = document.getElementById('gcResult');
@@ -364,9 +365,58 @@ async function runGhost() {
 		if (seq !== runSeq) return;
 		if (!r.ok) return renderError(body?.message || `HTTP ${r.status}`);
 		renderResult(body);
+		recordGhostQuest(body);
 	} catch (err) {
 		if (seq !== runSeq) return;
 		renderError(err?.message);
+	}
+}
+
+// ── quest credit ─────────────────────────────────────────────────────────────
+// The replay endpoint is public and cached, so it never learns who ran it. For a
+// signed-in visitor the page reports the finished replay, which counts toward the
+// daily "ghost-copy a new agent" quest (/quests) and the first-copy path. Signed-
+// out visitors are checked once and never sent a request that could only 401.
+
+let signedIn = null;
+async function isSignedIn() {
+	if (signedIn !== null) return signedIn;
+	try {
+		const r = await fetch('/api/auth/me', { credentials: 'include', headers: { accept: 'application/json' } });
+		const d = r.ok ? await r.json() : null;
+		signedIn = !!d?.user;
+		noteSession(signedIn);
+	} catch {
+		signedIn = false;
+	}
+	return signedIn;
+}
+
+const reported = new Set();
+async function recordGhostQuest(body) {
+	const leaderId = body?.leader?.agent_id || state.leader;
+	if (!leaderId || reported.has(leaderId)) return;
+	reported.add(leaderId);
+	if (!(await isSignedIn())) return;
+	try {
+		await apiFetch('/api/quests/event', {
+			method: 'POST',
+			allowAnonymous: true,
+			headers: { 'content-type': 'application/json', accept: 'application/json' },
+			body: JSON.stringify({
+				kind: 'ghost_copy',
+				leader_agent_id: leaderId,
+				network: body?.network || 'mainnet',
+				context: {
+					budget_sol: state.budget,
+					window: state.window,
+					pnl_sol: body?.summary?.realized_pnl_sol ?? null,
+					leader_name: body?.leader?.name || null,
+				},
+			}),
+		});
+	} catch {
+		// Quest credit is a bonus on top of the replay; a failure here changes nothing on the page.
 	}
 }
 
