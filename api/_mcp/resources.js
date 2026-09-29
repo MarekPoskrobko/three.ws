@@ -695,13 +695,13 @@ async function readModels() {
 	// The full picker catalog (context, tool calling, per-model health from the
 	// last roster probe) and the daily free allowance, the same payload
 	// GET /api/v1/models carries.
-	const { publicModelCatalog, freeTierAllowance } = await import('../_lib/model-catalog.js');
-	const [catalog, freeTier] = await Promise.all([publicModelCatalog({ health: 'cached' }), freeTierAllowance()]);
+	const { listCatalogModels, freeTierAllowance } = await import('../_lib/model-catalog.js');
+	const [catalog, freeTier] = await Promise.all([listCatalogModels({ health: 'cached' }), freeTierAllowance()]);
 	return {
 		agent_models: agentModels,
 		chat_models: chatModels,
 		models: catalog.models,
-		health_checked_at: catalog.healthCheckedAt,
+		health_checked_at: catalog.health_checked_at,
 		free_tier: freeTier,
 		note: 'agent_models ids are what an agent brain accepts (create_agent model argument). Prices are USD per million tokens, [input, output]; free models are [0, 0], and null means the model is not metered by list price. `models` adds context, tool calling (a model without tools can chat but cannot drive a run) and live health; `free_tier` is the daily allowance free models draw on.',
 	};

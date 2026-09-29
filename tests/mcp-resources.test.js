@@ -76,6 +76,8 @@ vi.mock('../api/_lib/db.js', () => ({
 			return [];
 		}
 		if (q.startsWith("SELECT meta->>'solana_address' AS address")) return [{ address: ADDRESS }];
+		// No stored override: the free-tier allowance falls back to its defaults.
+		if (q.startsWith('SELECT value FROM app_settings WHERE key')) return [];
 		throw new Error(`unexpected query in test: ${q.slice(0, 120)}`);
 	}),
 	isDbUnavailableError: () => false,
@@ -217,7 +219,11 @@ describe('resources/read access', () => {
 
 	it('prices models through the model a key routes to, and free models at zero', async () => {
 		const out = await resources.handleResourceMethod('mcp', 'resources/read', { uri: 'three://models' }, anon, req);
-		const { agent_models, chat_models } = JSON.parse(out.contents[0].text);
+		const { agent_models, chat_models, models, free_tier } = JSON.parse(out.contents[0].text);
+		// The picker catalog and the free allowance ride along, the same payload GET /api/v1/models carries.
+		expect(Array.isArray(models)).toBe(true);
+		expect(models.length).toBeGreaterThan(0);
+		expect(free_tier.daily_messages).toBeGreaterThan(0);
 		const byId = new Map(agent_models.map((m) => [m.id, m]));
 		// ibm-granite names no priced model; its OpenRouter route does.
 		expect(byId.get('ibm-granite').price_usd_per_mtok).toEqual([0.05, 0.1]);
