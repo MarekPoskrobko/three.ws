@@ -280,6 +280,14 @@ const appConfig = {
 		// Bind to 0.0.0.0 so the Codespace port-forwarder can reach the server.
 		host: true,
 		...(HMR === undefined ? {} : { hmr: HMR }),
+		// Agent worktrees are full checkouts nested at .claude/worktrees/ (a
+		// dozen of them is ordinary here, roughly 250,000 files). None of them is
+		// part of this app's module graph, but Vite's default watcher only skips
+		// node_modules and .git, so it tried to watch every one, spent the user's
+		// whole inotify budget, and died at boot with "ENOSPC: System limit for
+		// number of file watchers reached". This list is merged with Vite's own
+		// defaults, not a replacement for them.
+		watch: { ignored: ['**/.claude/worktrees/**'] },
 		proxy: {
 			'/r2-proxy': {
 				target: 'https://pub-2534e921bf9c4314addcd4d8a6e98b7b.r2.dev',
