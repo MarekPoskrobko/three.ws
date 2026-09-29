@@ -6686,6 +6686,14 @@
 			"schedule": "*/20 * * * *"
 		},
 		{
+			"path": "/api/cron/big-win-x",
+			"schedule": "11,41 * * * *"
+		},
+		{
+			"path": "/api/cron/growth-payouts",
+			"schedule": "23 * * * *"
+		},
+		{
 			"path": "/api/cron/x-content",
 			"schedule": "*/15 * * * *"
 		},

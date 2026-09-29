@@ -28,8 +28,16 @@ const BASE58_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
  * Resolve the prize payout wallet as a Base58 64-byte secret, from the dedicated
  * THREE_PRIZE_PAYOUT_KEY (Base58 or base64) or the existing base64 club treasury
  * secret. Returns null when nothing is configured.
+ *
+ * `dedicatedOnly` skips the club treasury fallback. In production that secret
+ * resolves to the economy master (funding root) wallet, so a payout program
+ * that should only ever spend from a purpose-funded $THREE wallet (the growth
+ * programs, api/_lib/growth-programs/payouts.js) passes it and gets null
+ * rather than the funding root when THREE_PRIZE_PAYOUT_KEY is unset.
+ *
+ * @param {{ dedicatedOnly?: boolean }} [opts]
  */
-function resolvePrizeKeyBase58() {
+export function resolvePrizeKeyBase58({ dedicatedOnly = false } = {}) {
 	const dedicated = env.THREE_PRIZE_PAYOUT_KEY;
 	if (dedicated && dedicated.trim()) {
 		const s = dedicated.trim();
@@ -45,6 +53,7 @@ function resolvePrizeKeyBase58() {
 			/* ignore */
 		}
 	}
+	if (dedicatedOnly) return null;
 	const clubB64 = process.env.CLUB_SOLANA_TREASURY_SECRET_KEY_B64;
 	if (clubB64) {
 		try {

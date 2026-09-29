@@ -18,6 +18,7 @@ import { StudioAdapter } from '../studio-adapter.js';
 import { mountMoneyStudio } from '../../studio/money/money-studio.js';
 import { skeletonHTML, emptyStateHTML, errorStateHTML, ensureStateKitStyles, attachRetry } from '../../shared/state-kit.js';
 import { toast } from '../../shared/toast.js';
+import { mountRugSoftenerBanner } from '../rug-softener-banner.js';
 
 const SOL = 1_000_000_000n;
 const lamportsToSol = (l) => Number(BigInt(l || '0')) / 1e9;
@@ -51,6 +52,7 @@ function pumpUrl(mint) { return `https://pump.fun/coin/${encodeURIComponent(mint
 
 const STYLE = `<style>
 .sn-wrap { display: grid; gap: 20px; }
+#sn-softener-mount:empty { display: none; }
 
 /* overview strip */
 .sn-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
@@ -293,6 +295,7 @@ async function refresh(root) {
 	wireEvents(root);
 	startSse();
 	loadTradeHistory(root);
+	mountRugSoftenerBanner(root.querySelector('#sn-softener-mount'));
 
 	// Auto-open arm modal when arriving from Strategy Lab with a preset
 	const qp = new URLSearchParams(location.search);
@@ -306,6 +309,7 @@ function render() {
 	return `
 	<div class="sn-wrap">
 		${overviewStrip()}
+		<div id="sn-softener-mount"></div>
 		<div class="sn-cards" id="sn-cards">
 			${hasStrats ? _strategies.map(stratCard).join('') : ''}
 		</div>
