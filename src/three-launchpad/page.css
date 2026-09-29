@@ -141,7 +141,10 @@
 }
 .tl-fact {
 	padding: 18px 20px;
-	background: var(--surface-1, var(--bg));
+	/* Opaque on purpose. The grid behind the tiles is painted --stroke so the
+	   1px gaps read as dividers, and a translucent --surface-1 alone let that
+	   stroke tint the whole tile: #888 labels then measured 4.32:1, under AA. */
+	background: linear-gradient(var(--surface-1), var(--surface-1)), var(--bg-0);
 }
 .tl-fact dt {
 	font: 600 11px/1.2 var(--font-mono);
