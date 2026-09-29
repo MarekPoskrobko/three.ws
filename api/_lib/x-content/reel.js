@@ -42,7 +42,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { chromeStylesheet } from './site-chrome.js';
+import { SITE_CHROME, chromeStylesheet } from './site-chrome.js';
 import { parseFfmpegProbe } from './media.js';
 
 export const PROOF_DIR = 'data/x-content/proofs';
@@ -96,6 +96,12 @@ export function scenarioProblems(scenario) {
 	const problems = [];
 	if (scenario.format !== undefined && !FORMATS[scenario.format]) problems.push(`format must be one of ${Object.keys(FORMATS).join(', ')}`);
 	if (scenario.fps !== undefined && !between(scenario.fps, [12, 60])) problems.push('fps must be between 12 and 60');
+	for (const key of ['hide', 'show']) {
+		if (scenario[key] !== undefined && !(Array.isArray(scenario[key]) && scenario[key].every((selector) => typeof selector === 'string' && selector))) problems.push(`${key} must be a list of selectors`);
+	}
+	for (const selector of Array.isArray(scenario.show) ? scenario.show : []) {
+		if (!SITE_CHROME.includes(selector)) problems.push(`show "${selector}" is not site chrome; show only names chrome the camera would otherwise hide (${SITE_CHROME.join(', ')})`);
+	}
 	const steps = scenario.steps;
 	if (!Array.isArray(steps) || !steps.length) return [...problems, 'scenario has no steps'];
 	if (stepKind(steps[0]) !== 'goto') problems.push('the first step must be a goto, so the reel starts on a real page');
@@ -664,7 +670,7 @@ export async function runScenario(scenario, { film = true, stamp = '', framesDir
 		const bar = await Bar.open(context, format, stamp);
 		const page = await context.newPage();
 		await page.clock.install();
-		await page.addInitScript(installPointer, { stylesheet: chromeStylesheet(scenario.hide) });
+		await page.addInitScript(installPointer, { stylesheet: chromeStylesheet(scenario.hide, scenario.show) });
 		const take = new Take(page, { fps, film, framesDir, bar, size, compose: film ? await composer() : null });
 
 		for (const [offset, step] of scenario.steps.entries()) {
@@ -799,13 +805,13 @@ export async function proveItem(item, { root, film = true, now = Date.now(), fai
 
 // What a person would look for before writing a scenario: the controls, the
 // fields, the headings, and the lines of the page that carry a number.
-export async function scoutPage(url, { format = 'landscape', settle = 7000, shot = null, hide = [] } = {}) {
+export async function scoutPage(url, { format = 'landscape', settle = 7000, shot = null, hide = [], show = [] } = {}) {
 	const { chromium } = await import('playwright');
 	const size = FORMATS[format];
 	const browser = await chromium.launch({ args: BROWSER_ARGS });
 	try {
 		const page = await browser.newPage({ viewport: { width: size.width, height: size.height }, deviceScaleFactor: size.scale });
-		await page.addInitScript(installPointer, { stylesheet: chromeStylesheet(hide) });
+		await page.addInitScript(installPointer, { stylesheet: chromeStylesheet(hide, show) });
 		const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
 		await page.waitForLoadState('networkidle', { timeout: 15_000 }).catch(() => {});
 		await page.waitForTimeout(settle);

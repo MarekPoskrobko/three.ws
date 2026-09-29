@@ -312,6 +312,22 @@ describe('measured posts for calibration', () => {
 	});
 });
 
+describe('chrome that is the subject', () => {
+	it('stays in frame when the scenario names it', () => {
+		const sheet = chromeStylesheet([], ['.walk-companion']);
+		expect(sheet).not.toMatch(/(^|,)\.walk-companion(,|\{)/);
+		expect(sheet).toContain('.walk-trail-layer');
+		expect(sheet).toContain('#cookie-banner');
+	});
+
+	it('is only ever site chrome', () => {
+		const steps = SCENARIO.steps;
+		expect(scenarioProblems({ steps, show: ['.walk-companion'], hide: ['.promo'] })).toEqual([]);
+		expect(scenarioProblems({ steps, show: ['main'] }).join('\n')).toMatch(/show "main" is not site chrome/);
+		expect(scenarioProblems({ steps, show: '.walk-companion' }).join('\n')).toMatch(/show must be a list of selectors/);
+	});
+});
+
 describe('site chrome', () => {
 	it('hides every floating layer, and whatever a scenario adds', () => {
 		const sheet = chromeStylesheet(['.promo-banner']);

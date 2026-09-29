@@ -26,4 +26,7 @@ export const SITE_CHROME = [
 // A stylesheet installed before any page script runs holds regardless of when a
 // node appears. Removing nodes once after load is not enough: the discovery
 // card is injected on a timer and reappeared during the settle.
-export const chromeStylesheet = (extra = []) => `${[...SITE_CHROME, ...extra].join(',')}{display:none !important}`;
+//
+// `show` names chrome that is the subject of this capture and must stay: the
+// walk companion is chrome on every page except the ones about what it does.
+export const chromeStylesheet = (extra = [], show = []) => `${[...SITE_CHROME.filter((selector) => !show.includes(selector)), ...extra].join(',')}{display:none !important}`;

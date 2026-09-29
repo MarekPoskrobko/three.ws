@@ -148,6 +148,10 @@ the action has to cause. The run fails if no such request answers, or if it answ
   the page. The stamp says which production commit was filmed and when.
 - **Hide only what is not the subject.** Floating site chrome is hidden for you. `"hide":
   ["selector"]` on the scenario hides more. Never hide part of the feature to make it look better.
+- **Keep chrome that is the subject.** The walk companion is hidden on every page, because it is
+  chrome everywhere except on the pages about what it does. A story about Herald is a story about
+  the companion, so its scenario says `"show": [".walk-companion"]`. `show` only accepts selectors
+  the camera would otherwise hide.
 
 ## Filming it
 
