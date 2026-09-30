@@ -331,6 +331,12 @@ export const NAV_GROUPS = [
 						desc: 'Live price, bonding-curve chart, streaming trades & one-click buy',
 					},
 					{
+						title: 'Platform Analytics',
+						href: '/analytics',
+						tier: 'advanced',
+						desc: 'Every platform total on one page with a daily growth chart and a note on how each number is counted',
+					},
+					{
 						title: 'Agent Economy Volume',
 						href: '/agent-economy-volume',
 						badge: 'Live',
