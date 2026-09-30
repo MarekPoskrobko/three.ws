@@ -240,6 +240,13 @@ inline path still built with nonce 0, and its $0.001 health, volume and
 canonicalize entries collided 51 times in 20 minutes. `tests/x402-payment-nonce-guard.test.js`
 now fails any `buildPaymentTx` call under `api/` that does not name a nonce.
 
+The same tick-wide blockhash also expires: a loop tick runs its entries in
+sequence for up to about four minutes, and a hash is valid for about 60 seconds.
+The loop and its pipelines therefore sign with `currentBlockhash(conn, blockhash)`
+from `pay.js`, the freshness cache `payX402()` uses, which re-reads the hash once
+it is 20 seconds old. Before 2026-09-30 the later entries of a long tick died at
+broadcast with `BlockhashNotFound` (16 in 90 minutes).
+
 ### Fee floor, enforced — ceiling + continuous audit
 
 The floor is not just a default; it is guarded on both the write and the read
