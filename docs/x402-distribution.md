@@ -159,7 +159,17 @@ search results after 30 days without a settle**.
   free, endpoint auto-probed for a live 402 handshake, human-reviewed, then
   monitored (5–15 min uptime checks, "verified" badges). Updates via one-time
   domain proof.
-- **Ops required:** human submits the origin + flagship endpoints once.
+- **Submitted 2026-09-30** as "three.ws 3D Studio" (category AI, origin
+  `https://three.ws`, website `/docs/x402-endpoints`, contact `support@three.ws`).
+  The form is a plain `POST https://x402-list.com/api/v1/submit` with no sign-in,
+  and it answered `303 /submit?success=1&found=14`: every one of the 14 endpoints
+  sent was probed and returned a live 402. They are `embody`, the five
+  `pipeline-*` stages, `model-check`, `asset-download`, `animation-download`,
+  `remix-asset`, `print-order`, `knock`, `fact-check` and `llm-proxy`. `forge` and
+  `pipeline` were left out because a bare GET answers 200 with usage, not 402.
+  The listing is human-reviewed. Before submission the full catalog
+  (`GET /api/v1/services`, 857 services) had no three.ws entry. Updates to the
+  listing need the one-time domain proof.
 
 ### PR-based directories
 
