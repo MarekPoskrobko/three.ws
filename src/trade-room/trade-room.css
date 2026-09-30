@@ -71,6 +71,7 @@
 	margin-bottom: var(--space-sm);
 }
 .tr-lobby-head h2 { margin: 0; font-size: var(--text-lg); color: var(--ink-bright); }
+.tr-lobby-links { display: flex; flex-wrap: wrap; gap: var(--space-xs); justify-content: flex-end; }
 .tr-lobby-note {
 	grid-column: 1 / -1;
 	margin: 0 0 var(--space-2xs);

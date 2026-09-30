@@ -152,7 +152,7 @@ function renderLobbyShell() {
 		<section class="tr-lobby" aria-labelledby="tr-lobby-h">
 			<div class="tr-lobby-head">
 				<h2 id="tr-lobby-h">Rooms</h2>
-				<a class="lb-btn" href="/leaderboard">Trader leaderboard</a>
+				<span class="tr-lobby-links"><a class="lb-btn" href="/duels">Trader duels</a><a class="lb-btn" href="/leaderboard">Trader leaderboard</a></span>
 			</div>
 			<div id="tr-lobby-grid" class="tr-grid" aria-live="polite" aria-busy="true">${skeletonHTML(6, 'card')}</div>
 		</section>`;
@@ -287,6 +287,7 @@ function renderRoom(data) {
 						<a class="lb-btn lb-btn-primary" href="/ghost-copy?leader=${encodeURIComponent(L.id)}&window=30d">Ghost-copy</a>
 						<a class="lb-btn" href="${traderHref}#tp-copy-panel">Copy trades</a>
 						<button type="button" class="lb-btn" id="tr-share">Share room</button>
+						<a class="lb-btn" href="/duels?agent=${encodeURIComponent(L.id)}">Call a duel</a>
 					</div>
 					${L.copiers ? `<p class="tr-dim tr-copiers">${L.copiers} ${L.copiers === 1 ? 'person copies' : 'people copy'} this trader</p>` : ''}
 				</section>

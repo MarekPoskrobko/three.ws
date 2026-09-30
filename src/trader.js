@@ -14,6 +14,7 @@ import {
 } from './trader-format.js';
 import { mountCopyPanel } from './copy-panel.js';
 import { mountTraderSyndicates } from './trader-syndicates.js';
+import { mountTraderDuels } from './trader-duels.js';
 import { mountPassport, resetPassport } from './trader-passport.js';
 import { walletChipHTML, wireWalletChips } from './shared/agent-wallet-chip.js';
 import { embedSnippet } from './shared/trader-embed.js';
@@ -452,6 +453,7 @@ function render(data) {
 
 		<section class="tp-copy" id="tp-copy-panel"></section>
 		<section class="tp-copy" id="tp-syndicates" aria-label="Syndicates following this trader"></section>
+		<section class="tp-copy" id="tp-duels" aria-label="Trader duels featuring this trader"></section>
 	`;
 
 	wireTabs();
@@ -462,6 +464,7 @@ function render(data) {
 	const panel = document.getElementById('tp-copy-panel');
 	if (panel) mountCopyPanel(panel, { leaderAgentId: a.id, leaderName: a.name, network: ctx.network });
 	mountTraderSyndicates(document.getElementById('tp-syndicates'), { agentId: a.id, name: a.name, network: ctx.network });
+	mountTraderDuels(document.getElementById('tp-duels'), { agentId: a.id, name: a.name, network: ctx.network });
 
 	// Sweep the score ring to its real fill, and count the headline score + realized
 	// P&L from their previously-shown real values (so switching the window animates

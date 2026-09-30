@@ -206,6 +206,7 @@ function linksSection() {
 			<div class="sy-actions">
 				<a class="sy-btn" href="/syndicates">Join a syndicate</a>
 				<a class="sy-btn" href="/play/arena">Watch the Arena</a>
+				<a class="sy-btn" href="/duels">Call a trader duel</a>
 				<a class="sy-btn" href="/docs/trading-quests">How quests are scored</a>
 			</div>
 		</section>`;
