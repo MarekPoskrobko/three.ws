@@ -333,6 +333,24 @@ async function scoreViaPlatformVision({ imageBase64, mimeType, prompt, subject, 
 	return { json: out.json, provider: out.provider, model: out.model };
 }
 
+// The platform vision chain walks up to a dozen rungs and throws the LAST one's
+// error, carrying the whole walk on `err.lanes`. Reporting only the message said
+// "openai vision 429: billing_not_active" for every outage, which is the paid
+// tail answering after every free rung had already lost for its own reason. The
+// fail-open verdict is the one place an operator reads why the gate went blind,
+// so it names every rung that was tried and how it lost.
+export function describeVisionFailure(err) {
+	const lanes = Array.isArray(err?.lanes) ? err.lanes : [];
+	if (!lanes.length) return String(err?.message || err);
+	return lanes
+		.map((l) => {
+			const who = l.model ? `${l.provider}/${l.model}` : l.provider;
+			const detail = String(l.detail || '').replace(/\s+/g, ' ').trim().slice(0, 90);
+			return `${who} ${l.status ?? 'no-status'}${detail ? ` ${detail}` : ''}`;
+		})
+		.join('; ');
+}
+
 // The structural-failure floor: below this completeness the mesh is broken
 // (incomplete, duplicated, fragmented) regardless of a generous overall score, so
 // it fails the gate. Env-tunable alongside the pass score.
@@ -492,7 +510,7 @@ export async function runQualityGate({
 		try {
 			scored = await scoreViaPlatformVision({ ...image, prompt, subject: subj, timeoutMs: QUALITY_GATE_DEFAULTS.timeoutMs, track });
 		} catch (e) {
-			failures.push(`platform-vision: ${e?.message || e}`);
+			failures.push(`platform-vision: ${describeVisionFailure(e)}`);
 		}
 	}
 	if (!scored) {
