@@ -21,79 +21,14 @@ import { getSessionUser, authenticateBearer, extractBearer } from '../_lib/auth.
 import { cors, error, json, method, readJson, wrap, rateLimited } from '../_lib/http.js';
 import { limits, clientIp } from '../_lib/rate-limit.js';
 import { normalizeLegacyPolicy } from '../_lib/embed-policy.js';
-import { llmComplete, LlmUnavailableError } from '../_lib/llm.js';
-import { hasSkillAccess } from '../_lib/skill-access.js';
 import { isUuid } from '../_lib/validate.js';
-import { patronChatContext, patronStanding, listPerks, entitledPerks } from '../_lib/patronage.js';
-import { agentSkillsForPrompt } from '../_lib/agent-custom-skills.js';
-
-const ALLOWED_MODELS = new Set([
-	'claude-haiku-4-5-20251001',
-	'claude-sonnet-4-5',
-	'claude-sonnet-4-6',
-	'claude-sonnet-5',
-	'claude-opus-4-7',
-	'claude-opus-5',
-]);
+import { runAgentTurn, AgentTurnError } from '../_lib/agent-turn.js';
 
 const bodySchema = z.object({
 	agentId: z.string().min(1).max(120),
 	message: z.string().min(1).max(4000),
 	model: z.string().min(1).max(100).optional(),
 });
-
-// Build the agent's skill_ownership context for one requesting user. Every skill
-// the agent declares is classified as premium (priced + active in
-// agent_skill_prices) or free; for premium skills we resolve the caller's real
-// access via hasSkillAccess (purchase / subscription / trial). Anonymous callers
-// (userId === null) own no premium skill. Returns a compact, structured prompt
-// section, or null when the agent has no skills worth describing.
-async function buildSkillOwnershipBlock(agent, userId, patronSkills = new Set()) {
-	const skills = Array.isArray(agent.skills) ? agent.skills.filter(Boolean) : [];
-	if (skills.length === 0) return null;
-
-	// One query for all of this agent's active prices, then classify in memory —
-	// avoids a per-skill price lookup. hasSkillAccess re-checks the price row, but
-	// only for skills we already know are premium.
-	const priceRows = await sql`
-		SELECT skill FROM agent_skill_prices
-		WHERE agent_id = ${agent.id} AND is_active = true
-	`;
-	const pricedSkills = new Set(priceRows.map((r) => r.skill));
-
-	const ownership = {};
-	for (const skill of skills) {
-		if (!pricedSkills.has(skill)) {
-			ownership[skill] = { is_premium: false, is_owned: true };
-			continue;
-		}
-		// A patron whose verified on-chain support clears a skill-perk threshold uses
-		// that premium skill for free — the same gate the Support surface advertises.
-		if (patronSkills.has(skill)) {
-			ownership[skill] = { is_premium: true, is_owned: true, via_patron: true };
-			continue;
-		}
-		if (!userId) {
-			ownership[skill] = { is_premium: true, is_owned: false };
-			continue;
-		}
-		const access = await hasSkillAccess(userId, agent.id, skill);
-		ownership[skill] = { is_premium: true, is_owned: Boolean(access.owned) };
-	}
-
-	const hasPremium = Object.values(ownership).some((o) => o.is_premium);
-	if (!hasPremium) return null; // nothing to monetize — keep the prompt lean.
-
-	return [
-		'## Skill access (current user)',
-		'The JSON below maps each of your skills to whether it is premium (paid) and whether THIS user has already unlocked it:',
-		JSON.stringify(ownership),
-		'Behaviour rules:',
-		'- Use any skill where is_owned is true freely, without mentioning payment.',
-		'- If the user asks to use a skill where is_premium is true and is_owned is false, do NOT perform it. Politely explain it is a paid skill and invite them to unlock it from your agent profile page, then offer the free skills you can do instead.',
-		'- Never invent prices, never reveal another user\'s access, and never claim a skill is unlocked when is_owned is false.',
-	].join('\n');
-}
 
 export default wrap(async (req, res) => {
 	if (cors(req, res, { methods: 'POST,OPTIONS', credentials: false })) return;
@@ -146,64 +81,26 @@ export default wrap(async (req, res) => {
 		return error(res, 403, 'mcp_disabled', 'this agent has opted out of MCP delegation');
 	}
 
-	const defaultModel = policy?.brain?.model || 'claude-haiku-4-5-20251001';
-	const model =
-		requestedModel && ALLOWED_MODELS.has(requestedModel) ? requestedModel : defaultModel;
-
-	const basePrompt =
-		agent.meta?.brain?.instructions ||
-		`You are ${agent.name}. ${agent.description || ''}`.trim();
-
-	// Patronage: recognize the caller as a real on-chain patron (greet them by name,
-	// reference the relationship) and free any premium skill their support has earned.
-	// The caller's identity is their linked wallet; standing derives from chain truth.
-	const callerWallet = session?.wallet_address || null;
-	const patronSkills = new Set();
-	if (callerWallet) {
-		try {
-			const [standing, perks] = await Promise.all([
-				patronStanding(agent.id, callerWallet),
-				listPerks(agent.id, { activeOnly: true }),
-			]);
-			for (const p of entitledPerks(perks, standing.usd)) {
-				if (p.perkType === 'skill' && p.payload?.skill) patronSkills.add(p.payload.skill);
-			}
-		} catch { /* patronage is enrichment — never block the reply */ }
-	}
-	const patronBlock = await patronChatContext(agent.id, callerWallet).catch(() => null);
-
-	// Real per-user skill-ownership context: lets the agent know which of its
-	// skills are premium and whether THIS caller has already unlocked them, so it
-	// can use owned skills freely and offer to sell the ones the user lacks.
-	const ownershipBlock = await buildSkillOwnershipBlock(agent, userId, patronSkills);
-	// The agent's own prompt-only custom skills (api/_lib/agent-custom-skills.js):
-	// same install order and budget as /api/chat, so an agent reached over MCP
-	// follows the skills its owner installed. Enrichment, never a failed reply.
-	const { block: agentSkillsBlock } = await agentSkillsForPrompt(agent.id).catch(() => ({ block: '' }));
-	const systemPrompt = [basePrompt, agentSkillsBlock, patronBlock, ownershipBlock].filter(Boolean).join('\n\n');
-
+	// The turn itself (persona, custom skills, patronage, premium-skill access,
+	// the LLM failover chain) is shared with the paid agent API in
+	// api/_lib/agent-turn.js so both surfaces answer as the same agent.
 	const started = Date.now();
 	let result;
 	try {
-		result = await llmComplete({
-			system: systemPrompt,
-			user: message,
-			maxTokens: 1024,
-			// Free providers serve first; if every one fails, the paid backstop
-			// uses the agent's chosen Claude model on the platform key.
-			anthropicModel: model,
-			track: { agentId: agent.id, tool: 'agent.talk' },
+		result = await runAgentTurn({
+			agent,
+			message,
+			userId,
+			callerWallet: session?.wallet_address || null,
+			requestedModel,
+			tool: 'agent.talk',
 		});
 	} catch (err) {
-		if (err instanceof LlmUnavailableError) {
-			return error(
-				res,
-				503,
-				'llm_unavailable',
-				'agent delegation is not available right now',
-			);
+		if (err instanceof AgentTurnError && err.code === 'llm_unavailable') {
+			return error(res, 503, 'llm_unavailable', 'agent delegation is not available right now');
 		}
-		return error(res, 502, 'upstream_error', `LLM call failed: ${err.message}`);
+		if (err instanceof AgentTurnError) return error(res, err.status, err.code, err.message);
+		throw err;
 	}
 
 	return json(res, 200, {
