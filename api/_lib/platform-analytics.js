@@ -291,7 +291,7 @@ export const METRICS = Object.freeze([
 		source: 'agents',
 		label: 'Agents with a wallet',
 		unit: 'count',
-		method: 'Agents from the row above that hold a wallet: a Solana address in their record (the custodial wallet every new agent gets) or a linked EVM wallet address. Each agent is counted once even if it has both.',
+		method: 'Agents from the row above that hold a wallet: a custodial Solana address provisioned in their record, or a linked EVM wallet address. Wallets are provisioned when an agent first needs one, so this trails the agent count. Each agent is counted once even if it has both.',
 	},
 	{
 		key: 'coins_launched',
