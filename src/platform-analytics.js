@@ -246,12 +246,27 @@ function cssVar(name, fallback) {
 	return v || fallback;
 }
 
-function niceMax(v) {
-	if (v <= 0) return 1;
-	const p = 10 ** Math.floor(Math.log10(v));
-	const f = v / p;
-	const step = f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10;
-	return step * p;
+function niceStep(raw) {
+	const p = 10 ** Math.floor(Math.log10(raw));
+	const f = raw / p;
+	return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p;
+}
+
+// Four even gridline intervals on round numbers. Counts never get a fractional
+// tick (a "0.7 coins" gridline reads as a bug). The running-total view starts
+// its axis near the window's first value so growth is visible, not flattened.
+function axisScale(values, unit, fromZero) {
+	const max = Math.max(...values, 0);
+	const min = fromZero ? 0 : Math.min(...values);
+	const whole = unit === 'count' || unit === 'tokens';
+	let step = niceStep(Math.max((max - min) / 4, whole ? 1 : 1e-6));
+	if (whole) step = Math.max(1, Math.ceil(step));
+	let lo = fromZero ? 0 : Math.floor(min / step) * step;
+	while (lo + step * 4 < max) {
+		step = niceStep(step * 1.01);
+		lo = fromZero ? 0 : Math.floor(min / step) * step;
+	}
+	return { lo, hi: lo + step * 4, ticks: 4 };
 }
 
 function drawChart(entry) {
@@ -272,9 +287,7 @@ function drawChart(entry) {
 	const cw = W - pad.left - pad.right;
 	const ch = H - pad.top - pad.bottom;
 	const values = series.map((d) => d.value);
-	const minV = state.view === 'cumulative' ? Math.min(...values) : 0;
-	const lo = state.view === 'cumulative' ? Math.max(0, minV - (Math.max(...values) - minV) * 0.08) : 0;
-	const hi = niceMax(Math.max(...values, lo + 1e-9));
+	const { lo, hi, ticks } = axisScale(values, metric.unit, state.view === 'daily');
 	const yOf = (v) => pad.top + ch - ((v - lo) / (hi - lo || 1)) * ch;
 
 	const ink = cssVar('--ink-dim', '#888');
@@ -287,8 +300,8 @@ function drawChart(entry) {
 	ctx.font = '10px Inter, system-ui, sans-serif';
 	ctx.textBaseline = 'middle';
 	ctx.textAlign = 'right';
-	for (let i = 0; i <= 3; i++) {
-		const v = lo + ((hi - lo) * i) / 3;
+	for (let i = 0; i <= ticks; i++) {
+		const v = lo + ((hi - lo) * i) / ticks;
 		const y = yOf(v);
 		ctx.strokeStyle = grid;
 		ctx.lineWidth = 1;
@@ -315,7 +328,7 @@ function drawChart(entry) {
 
 	if (state.view === 'daily') {
 		// Thin bars, 2px surface gap, rounded data end anchored to the baseline.
-		const gap = n > 120 ? 1 : 2;
+		const gap = slot >= 8 ? 2 : slot >= 3 ? 1 : 0;
 		const barW = Math.max(1, slot - gap);
 		ctx.fillStyle = mark;
 		series.forEach((d, i) => {

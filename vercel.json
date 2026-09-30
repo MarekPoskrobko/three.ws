@@ -443,6 +443,10 @@
 			"dest": "/agent-economy-volume.html"
 		},
 		{
+			"src": "/analytics/?",
+			"dest": "/analytics.html"
+		},
+		{
 			"src": "/economy",
 			"dest": "/economy.html"
 		},

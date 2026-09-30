@@ -865,6 +865,7 @@ const appConfig = {
 				live: resolve(__dirname, 'pages/live.html'),
 				'agent-economy': resolve(__dirname, 'pages/agent-economy.html'),
 				'agent-economy-volume': resolve(__dirname, 'pages/agent-economy-volume.html'),
+				analytics: resolve(__dirname, 'pages/analytics.html'),
 				economy: resolve(__dirname, 'pages/economy.html'),
 				'overlay-control': resolve(__dirname, 'pages/overlay-control.html'),
 				'mocap-studio': resolve(__dirname, 'pages/mocap-studio.html'),
