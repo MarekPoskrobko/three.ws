@@ -4461,6 +4461,19 @@ PATCH /api/notifications/preferences
 
 The bell inbox and its per-user preference matrix. Session required. Event types include `remix`, `dm_received`, `pump_launch_filled` (bonding-curve graduation), and `follow`. Preferences are a category × channel matrix: categories `sales`, `purchases`, `social`, `irl`, `market`, `account`; channels `in_app`, `push`, `email`, `telegram`. The `in_app` channel is always on and cannot be disabled.
 
+### Push devices
+
+```
+POST   /api/push/subscribe   { subscription }                          browser (Web Push)
+DELETE /api/push/subscribe   { endpoint }
+POST   /api/push/device      { token, platform: "ios", app_version?, previous? }   the iOS app (APNs)
+DELETE /api/push/device      { token }
+```
+
+Where a notification's `push` channel is delivered. Session and CSRF token required; 30 registrations per user per hour. A browser registers the object `pushManager.subscribe()` returns. The [iOS app](ios-app.md) has no service worker, so it registers its APNs device token instead (64 or more hex characters, case-insensitive). Both are unique per device and follow the latest signed-in owner. Every push-enabled notification fans out to both, so the preference matrix above governs a phone and a browser the same way; the iOS delivery also sets the app icon's badge to the recipient's unread count.
+
+`previous` marks a silent refresh (the app re-sending its token on launch). It succeeds only if `previous` is already registered to the caller, and answers `409 not_owner` otherwise, so a phone never enrols for whichever account happens to be signed in now. `GET /api/config` reports `nativePush.ios: true` once APNs is configured on the server (`APNS_KEY_ID`, `APNS_AUTH_KEY`, and `APNS_TEAM_ID` or `APPLE_TEAM_ID`).
+
 ---
 
 ## IRL API — presence, pins, money drops, world lines

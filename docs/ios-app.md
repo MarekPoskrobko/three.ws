@@ -12,13 +12,18 @@ submission checklist live in [`ios/README.md`](../ios/README.md).
 
 **Status: in-repo, not yet submitted.** The Xcode project builds and the web
 side is live in every deploy. What is outstanding is an Apple Developer
-organization account, app icons, and push. See "What is missing" below.
+organization account and the APNs signing key that comes with it. See "What is
+missing" below.
 
 ## What the app does differently from the website
 
 | Surface | In the iOS app | Where it lives |
 |---|---|---|
-| Sharing | The system share sheet, with AR captures attached as real image files | `ios/src/native-bridge.js` (`navigator.share` shim) |
+| Sharing out | The system share sheet, with AR captures attached as real image files | `ios/src/native-bridge.js` (`navigator.share` shim) |
+| Sharing in | three.ws in every app's share sheet. One to three photos open the selfie-to-avatar flow as the front, left and right angles; a `.glb` from Files opens the upload flow | `ios/native/App/ShareExtension/`, `src/shared/share-target.js` |
+| Push notifications | Sales, purchases, follows and every other notification you left push on for, delivered over APNs with the same preference center as the web. A tap opens the page it is about | `api/_lib/apns.js`, `api/push/device.js`, `src/push-notifications.js` |
+| Icon badge | The home screen icon shows your unread count, and reading notifications in the app clears it | `ios/src/native-bridge.js`, `ThreeWsAppPlugin.swift` |
+| Quick actions | Press and hold the icon: Create avatar, Discover, My agents, Notifications | `ios/native/App/App/QuickActions.swift`, `Info.plist` |
 | Deep links | Any `https://three.ws/...` link opens in the app once the app association is live | `ios/native/App/App/App.entitlements`, `api/wk.js` |
 | Wallet returns | A wallet or OAuth redirect comes back to the exact page that started it, over `threews://` | `ios/src/native-bridge.js` (`appUrlOpen`), `Info.plist` URL types |
 | Off-site links | Open in an in-app Safari sheet and return, instead of navigating the app away with no way back | `ios/src/native-bridge.js` |
@@ -47,6 +52,53 @@ Two consequences worth knowing:
 - **An old web deploy means an app with no native behaviour.** The app degrades
   to a plain WebView rather than breaking, but the shims are simply absent.
 
+## Compared with the Android app
+
+The [Seeker app](./seeker-app.md) is a Trusted Web Activity, so it inherits
+Chrome's Web Push and the web manifest's share target and shortcuts. The iOS
+WebView inherits none of those, so each one is rebuilt natively, and in two
+places the iOS version goes further:
+
+| | Android (Seeker, Play) | iOS |
+|---|---|---|
+| Launcher shortcuts | Create, Discover, My agents | The same three plus Notifications |
+| Share into three.ws | Photos and `.glb` through the web share target | Photos and `.glb` through a share extension. HEIC photos are converted to JPEG on the phone before the page ever sees them |
+| Push | Web Push through Chrome | APNs, with the unread count on the icon badge |
+| Home screen widget | Agent glance | Agent glance, small, medium and large |
+| Car | Android Auto | CarPlay (voice-based conversation) |
+| Wallet sign-in | Seed Vault through Mobile Wallet Adapter | The site's wallet flows, with wallet and OAuth redirects returning to the page that started them over `threews://` |
+
+## Turning on push
+
+Push is off until you ask for it, the same as on the web: open the bell in the
+header and tap **Turn on push**, or use the toggle in the notification
+preferences. iOS then shows its permission prompt once. Behind the scenes the
+app registers with Apple, sends the device token to `POST /api/push/device`,
+and from then on every notification whose `push` channel is on in your
+preferences arrives on the phone. Turning push off removes that one device and
+leaves your other devices alone.
+
+The app re-sends its token once per launch, because Apple can issue a new one
+after a restore or an OS update. That refresh only succeeds for the account
+that turned push on: if someone else signs in on the same phone, the device is
+forgotten rather than moved to their account, and they get push only by
+turning it on themselves.
+
+## Sharing into the app
+
+Share a photo from Photos, Camera or any other app and pick three.ws in the
+share sheet. The sheet confirms the photo is ready; open three.ws and it is
+waiting in Create as the front view of a selfie-to-avatar run. Two more photos
+shared together fill the left and right angles. A `.glb` shared from Files
+lands in the upload flow instead.
+
+The extension cannot open the app on its own (Apple does not give share
+extensions that ability), so the files wait in the app's shared container for
+ten minutes and the app collects them the next time it comes forward. If you
+have push turned on, the sheet also leaves a notification you can tap to go
+straight there. A share is used once: reloading the page does not bring it back,
+and anything not collected within a day is deleted.
+
 ## The app association
 
 `GET /.well-known/apple-app-site-association` ([`api/wk.js`](../api/wk.js)) is
@@ -74,9 +126,12 @@ and `/widget*` entries (they exist to render inside someone else's page).
 - **`APPLE_TEAM_ID`**, which needs an Apple Developer Program account enrolled
   as an organization. Apple only permits wallet functionality from organization
   accounts, and that enrollment needs a legal entity and a D-U-N-S number.
-- **Push notifications.** The entitlement, background mode and plugin are in
-  place; the APNs key, device-token endpoint and send path are not, and are
-  absent rather than stubbed.
+- **The APNs signing key.** Push is built end to end: the device endpoint,
+  the sender, the fan-out, the in-app enrolment and tap routing. It stays
+  dormant (`nativePush.ios: false` in `/api/config`, so the app never offers
+  it) until a `.p8` key from the same Apple Developer account is set on the
+  Cloud Run service as `APNS_KEY_ID` and `APNS_AUTH_KEY`. Steps in
+  [`ios/docs/SUBMISSION.md`](../ios/docs/SUBMISSION.md).
 - **Listing screenshots**, which have to be captured on a real device. The icon
   and launch images are generated from the brand mark (`npm run ios:icons`) and
   a guard keeps them from drifting (`npm run check:ios-icons`).

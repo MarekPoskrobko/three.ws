@@ -3,6 +3,15 @@
 	"entries": [
 		{
 			"date": "2026-09-30",
+			"title": "The coming iPhone app gains notifications, a share sheet entry and quick actions",
+			"summary": "The three.ws iOS app, on its way to the App Store, now matches the Android app and goes further. Turn on notifications and sales, follows and remixes arrive on your iPhone with your unread count on the app icon, and a tap opens the page it is about. three.ws appears in the share sheet: share one to three photos and they wait in Create as the front, left and right views of a new 3D avatar, or share a .glb from Files to upload it. Press and hold the icon for Create avatar, Discover, My agents and Notifications.",
+			"tags": [
+				"feature"
+			],
+			"link": "/docs/ios-app"
+		},
+		{
+			"date": "2026-09-30",
 			"title": "Every platform total in one free API call",
 			"summary": "GET /api/platform/analytics returns agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily series over 30 days, 90 days or all time and a plain sentence saying exactly which rows were counted. A figure that cannot be read comes back empty with a named reason instead of as zero. It powers the new analytics page and is open to anyone building on three.ws.",
 			"tags": ["feature"],

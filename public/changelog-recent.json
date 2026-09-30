@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-30T08:19:59.976Z",
+	"generated_at": "2026-09-30T08:27:19.820Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3788,
+	"total": 3790,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -15,6 +15,16 @@
 			"title": "Platform Analytics",
 			"summary": "Every three.ws platform total on one page, read live: agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily growth chart over 30 days, 90 days or all time and a note on exactly how it is counted.",
 			"link": "/analytics",
+			"tags": [
+				"launch"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "launch",
+			"title": "Success Stories",
+			"summary": "Agents with results anyone can check: coins launched, creator fees and service income, computed by three.ws from launch records and settled payments and shown only when the agent's owner opts in. Grouped by category, each linking to the full Spotlight entry and the coin on Solscan.",
+			"link": "/stories",
 			"tags": [
 				"launch"
 			]
@@ -67,6 +77,16 @@
 			"title": "See where every $100 paid in $THREE goes",
 			"summary": "The $THREE page now shows, for paid compute, marketplace sales, scarcity mints, spins and copy-trading fees, how every $100 splits between the seller, the treasury that funds buybacks, and holder rewards. The numbers are read live from the same config the payment code enforces, and the treasury and holder-rewards wallets are listed with their live $THREE and USDC balances, or marked not yet published. The platform never burns $THREE. The page also follows your light or dark theme now.",
 			"link": "/three-token",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "The coming iPhone app gains notifications, a share sheet entry and quick actions",
+			"summary": "The three.ws iOS app, on its way to the App Store, now matches the Android app and goes further. Turn on notifications and sales, follows and remixes arrive on your iPhone with your unread count on the app icon, and a tap opens the page it is about. three.ws appears in the share sheet: share one to three photos and they wait in Create as the front, left and right views of a new 3D avatar, or share a .glb from Files to upload it. Press and hold the icon for Create avatar, Discover, My agents and Notifications.",
+			"link": "/docs/ios-app",
 			"tags": [
 				"feature"
 			]
@@ -1564,27 +1584,6 @@
 			"tags": [
 				"fix",
 				"infra"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "New gallery avatars now arrive with a skeleton, so they animate properly out of the box",
-			"summary": "Avatars generated for the gallery were published as static meshes: they still moved, but through a fallback that maps a generic body onto them rather than a skeleton of their own. Every new one whose shape a humanoid skeleton can actually drive now goes through our auto-rigger first and arrives with a real 52-bone skeleton, so the whole motion library drives it directly. The ones that are skipped are skipped for a reason we measured: some generated models come out as a figure standing on a wide base slab, and rigging one of those tears the slab apart the moment it moves, so those keep publishing as static models. If the rigger fails or stalls, the avatar is published anyway rather than held back.",
-			"link": "/gallery",
-			"tags": [
-				"improvement",
-				"feature"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "News cards stop losing their preview picture to a cold cache",
-			"summary": "About a fifth of the crypto-news feed ships text-only, so those cards start as a source tile and upgrade in place once the publisher's own preview image is found. That lookup searched all 197 publisher feeds at once and gave up after 2.5 seconds, which on a freshly started server dropped whichever feed had not answered yet, so an article the feed had just served came back as unknown. The reader kept its tile, but the failed lookup was recorded as a public answer for the next ten minutes, so every visitor to /markets and /markets/news got the same dead result and a 404 in their browser console. The lookup now asks the one publisher that could hold the article first and waits for it, and a result that could not be confirmed is held for 30 seconds instead of ten minutes.",
-			"link": "/markets/news",
-			"tags": [
-				"fix"
 			]
 		}
 	]

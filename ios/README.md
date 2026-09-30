@@ -2,9 +2,10 @@
 
 The App Store build of three.ws. A Capacitor 8 shell whose WKWebView runs the
 live product at `https://three.ws`, wrapped in the native layer an app needs and
-a website cannot have: universal links, the system share sheet, deep links back
-from wallets, haptics, a real launch screen, and the camera / location / motion
-permissions the AR and IRL surfaces depend on.
+a website cannot have: push notifications with an icon badge, a share
+extension, home screen quick actions, universal links, the system share sheet,
+deep links back from wallets, haptics, a real launch screen, and the camera /
+location / motion permissions the AR and IRL surfaces depend on.
 
 The Android counterpart is [`../solana-mobile/`](../solana-mobile), which
 packages the same product as a Trusted Web Activity for the Solana dApp Store.
@@ -22,11 +23,18 @@ ios/
 ├── scripts/make-icons.mjs  # derives the icon + launch images from the brand mark
 ├── native/App/             # the generated Xcode project (committed)
 │   ├── App.xcodeproj
-│   ├── App/MainViewController.swift  # swipe-back, dark chrome, edge-to-edge insets
+│   ├── App/SceneDelegate.swift       # roots MainViewController, quick actions, share pickup
+│   ├── App/AppDelegate.swift         # APNs token forwarding, stale share sweep
+│   ├── App/MainViewController.swift  # swipe-back, dark chrome, edge-to-edge insets, open(path:)
+│   ├── App/QuickActions.swift        # home screen quick action types -> pages
+│   ├── App/ThreeWsAppPlugin.swift    # the app's own plugin: takeShare, setBadge
 │   ├── App/CarPlaySceneDelegate.swift # the car screen: templates + voice control
 │   ├── App/DriveLink.swift           # CarPlay <-> /drive channel + audio session
-│   ├── App/Info.plist                # usage strings, URL scheme, orientations, scenes
-│   ├── App/App.entitlements          # associated domains + APNs + CarPlay
+│   ├── App/Info.plist                # usage strings, URL scheme, quick actions, .glb type, scenes
+│   ├── App/App.entitlements          # associated domains + APNs + CarPlay + App Group
+│   ├── ShareExtension/               # the share sheet entry (ws.three.app.share)
+│   │   ├── ShareViewController.swift #   copies photos (as JPEG) or a .glb out of the sender
+│   │   └── SharedInbox.swift         #   App Group hand-off, compiled into app and extension
 │   └── CapApp-SPM/                   # Swift Package Manager plugin graph
 └── docs/                   # SUBMISSION.md, REVIEW-RISK.md, ASSETS.md, CARPLAY.md
 ```
@@ -49,6 +57,53 @@ so a live credential never reaches the WebView. Everything about it, including
 how to build and verify it without a Mac, is in
 [`../apple/README.md`](../apple/README.md) and
 [`../docs/native-widgets.md`](../docs/native-widgets.md).
+
+## Push notifications
+
+The WebView has no service worker, so Web Push cannot reach it. The app
+registers with APNs instead and every "turn on push" control on the site works
+unchanged, because [`src/push-notifications.js`](../src/push-notifications.js)
+takes the native path inside the app:
+
+1. `enablePush()` asks iOS for permission through the PushNotifications plugin,
+   calls `register()`, and waits for the device token that
+   [`AppDelegate`](native/App/App/AppDelegate.swift) forwards to Capacitor.
+2. The token goes to `POST /api/push/device`
+   ([`api/push/device.js`](../api/push/device.js)), stored in `apns_devices`.
+3. [`api/_lib/notify.js`](../api/_lib/notify.js) sends every push-enabled
+   notification to Web Push and to APNs
+   ([`api/_lib/apns.js`](../api/_lib/apns.js)) in parallel, with the unread
+   count as the icon badge. A token APNs reports gone is pruned; a development
+   build's sandbox token is found on the sandbox host automatically.
+4. A tap reaches `native-bridge.js`, which opens the page with
+   `?source=push&n=<id>` so the re-engagement funnel records it, or opens an
+   off-site link (an explorer) in the Safari sheet.
+
+It needs `APNS_KEY_ID` and `APNS_AUTH_KEY` on the Cloud Run service (plus the
+Team ID, read from `APNS_TEAM_ID` or the existing `APPLE_TEAM_ID`). Without
+them `/api/config` reports `nativePush.ios: false` and the app never offers push.
+
+## Sharing into the app
+
+`ShareExtension/` puts three.ws in every app's share sheet for one to three
+photos or one `.glb`, the same things the Android app's web share target takes.
+The extension copies the files out of the sending app, converts photos to an
+upright JPEG no larger than 2048px, and parks them in the App Group through
+[`SharedInbox`](native/App/ShareExtension/SharedInbox.swift). Share extensions
+cannot open their host app, so when the app next becomes active
+`SceneDelegate` claims the pending share and loads
+`/create/selfie?shared=1&inbox=<id>` or `/create?shared=glb&inbox=<id>`, and
+[`src/shared/share-target.js`](../src/shared/share-target.js) reads the files
+through `ThreeWsApp.takeShare`. A share is claimable for ten minutes, consumed
+once, and swept after a day.
+
+## Quick actions
+
+Press and hold the icon: Create avatar, Discover, My agents, Notifications.
+They are declared in `Info.plist` so they exist from install, and
+[`QuickActions.swift`](native/App/App/QuickActions.swift) maps each type to its
+page. The first three mirror the Android launcher shortcuts in
+[`../solana-mobile/twa/twa-manifest.json`](../solana-mobile/twa/twa-manifest.json).
 
 ## CarPlay
 
@@ -108,7 +163,10 @@ What it installs, and the breakage each one fixes:
 ## The native half
 
 `native/App/App/MainViewController.swift` replaces Capacitor's stock bridge
-controller in `Main.storyboard`. It exists for one thing JavaScript cannot do:
+controller. `SceneDelegate` builds the window in code, which overrides whatever
+`Main.storyboard` names, so the scene delegate is what has to create it;
+`npm run check:ios-app` fails if it ever goes back to the stock class. It
+exists first for one thing JavaScript cannot do:
 
 - **Edge-swipe back and forward.** `WKWebView` ships with them off, and iOS has
   no back button. Without this the app is a one-way trip: follow a link into a
@@ -119,6 +177,11 @@ controller in `Main.storyboard`. It exists for one thing JavaScript cannot do:
 - **`contentInsetAdjustmentBehavior = .never`**, which is what makes
   `env(safe-area-inset-*)` non-zero inside the page. The padding the bridge
   installs has nothing to react to without it.
+
+It also registers the app's own `ThreeWsApp` plugin in `capacitorDidLoad`
+(the plugin is not a Swift package, so the SPM graph never discovers it) and
+exposes `open(path:)`, which native entry points use to navigate the WebView
+and which refuses anything that does not resolve to `https://three.ws`.
 
 The app icon and launch images are generated, not hand-exported:
 
@@ -146,6 +209,19 @@ From the repo root:
 npm run ios:sync     # same as the above, without changing directory
 ```
 
+## Verifying without a Mac
+
+`npm run check:ios-app` ([`../scripts/check-ios-app.mjs`](../scripts/check-ios-app.mjs),
+wired into `npm run gate`) is what a Linux machine can prove about the Swift
+half: every source is a member of a target, the share extension is embedded and
+versioned with the app, the extension and the app agree on the App Group and
+the `.glb` type, every quick action routes to a live page, the `ThreeWsApp`
+plugin's methods match their web callers, and push is wired from the app
+delegate to the notification fan-out. It is a structural check, not a build.
+The web half is unit tested: `tests/ios-native-*.test.js`,
+`tests/push-notifications-native.test.js`, `tests/share-target.test.js`,
+`tests/apns.test.js` and `tests/push-device-endpoint.test.js`.
+
 ## What is not wired yet
 
 Everything here builds and runs; these are the pieces that need an Apple
@@ -156,10 +232,9 @@ them at submission time:
   ([`../api/wk.js`](../api/wk.js)) answers `503 not_configured` until it is set,
   and universal links keep opening in Safari until it serves a real association.
   Set it with `gcloud run services update three-ws-api --region us-central1 --update-env-vars APPLE_TEAM_ID=<id>`.
-- **Push notifications.** The plugin, the `remote-notification` background mode
-  and the `aps-environment` entitlement are in place; the APNs key, the device
-  token endpoint and the send path are not, and are deliberately absent rather
-  than stubbed.
+- **The APNs key.** Push is built end to end and dormant until `APNS_KEY_ID`
+  and `APNS_AUTH_KEY` are set; see "Push notifications" above and
+  [`docs/SUBMISSION.md`](docs/SUBMISSION.md).
 - **Signing.** No team, no provisioning profile, no `ExportOptions.plist`. See
   [`docs/SUBMISSION.md`](docs/SUBMISSION.md).
 - **Screenshots** for the listing, which have to be captured on a real device.

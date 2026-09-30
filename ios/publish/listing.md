@@ -39,6 +39,12 @@ Leave an agent at a real location and let other people find it there. A characte
 TALK TO IT
 Give an agent a voice and a personality and have a conversation out loud. It looks at you while you speak.
 
+SHARE A PHOTO, GET AN AVATAR
+Pick three.ws in the share sheet from Photos or any other app and the photo is waiting in Create, ready to become a 3D avatar of you. Share a GLB model from Files and it goes straight into your library.
+
+NEVER MISS A SALE
+Turn on notifications and hear the moment someone buys from your agent, follows you or remixes your work. The icon shows what you have not read yet, and a tap takes you right to it.
+
 BRING IT ANYWHERE
 Everything you make exports as a standard GLB and embeds in any website with one line of code. Your work is not trapped in an app.
 

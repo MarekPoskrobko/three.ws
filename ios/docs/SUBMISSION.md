@@ -30,8 +30,11 @@ step 3 is blocked on it.
    `PRODUCT_BUNDLE_IDENTIFIER` in `native/App/App.xcodeproj/project.pbxproj`
    and the `appId` in `capacitor.config.ts`.
 2. Register the bundle ID in the Developer portal with the **Associated
-   Domains** and **Push Notifications** capabilities enabled; the app's
-   entitlements declare both and signing fails without them.
+   Domains**, **Push Notifications** and **App Groups** capabilities enabled;
+   the app's entitlements declare all three and signing fails without them.
+   Register `ws.three.app.share` (the share extension) and
+   `ws.three.app.glance` (the widget) as well, each with **App Groups**, and
+   create the group `group.ws.three.app`.
 3. Fill the listing from [`../publish/listing.md`](../publish/listing.md).
 4. Answer the content rights, age rating, and privacy questionnaires. The
    privacy answers must match what the app actually collects; the camera,
@@ -57,6 +60,31 @@ curl -sS -D- -o- https://three.ws/.well-known/apple-app-site-association
 
 It must be `200`, `content-type: application/json`, **no redirect**, and the
 `appIDs` entry must read `<team id>.ws.three.app`.
+
+## 3b. Turn on push
+
+In the Developer portal, Keys, create a key with **Apple Push Notifications
+service (APNs)** enabled. Download the `.p8` once (Apple never shows it again)
+and note its Key ID. One key serves development and production builds.
+
+Store the key in Secret Manager and point the service at it, the way every
+other credential on the service is held:
+
+```bash
+gcloud secrets create apns-auth-key --project aerial-vehicle-466722-p5 \
+  --data-file=AuthKey_<KEY_ID>.p8
+gcloud run services update three-ws-api \
+  --region us-central1 --project aerial-vehicle-466722-p5 \
+  --update-secrets APNS_AUTH_KEY=apns-auth-key:latest \
+  --update-env-vars APNS_KEY_ID=<KEY_ID>
+```
+
+The Team ID is read from `APPLE_TEAM_ID`, set in step 3. Confirm the server
+now offers push to the app:
+
+```bash
+curl -s https://three.ws/api/config | jq .nativePush   # { "ios": true }
+```
 
 ## 4. Build the web bundle
 
@@ -93,6 +121,10 @@ In Xcode:
    needs the same App Group and Keychain Sharing entries; both expand from
    `DEVELOPMENT_TEAM`, so nothing else has to be typed. A build with no team on
    this target fails to sign the .appex and the archive is rejected.
+1c. Select the **ShareExtension** target and choose the same team. It needs
+   only the App Group, which is where it parks shared photos and models for the
+   app. Without the group the extension still appears in the share sheet but
+   the app never finds what was shared.
 2. Set the marketing version and build number. `MARKETING_VERSION` is `1.0`
    and `CURRENT_PROJECT_VERSION` is `1` in the project file; the build number
    must increase on every upload.
