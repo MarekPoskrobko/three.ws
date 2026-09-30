@@ -1012,6 +1012,25 @@ export const RING_CATALOG = [
 		note: 'autobuy:false — price/payee/upstream are agent-controlled per agent_paid_services row; not a fixed known endpoint.',
 	},
 	{
+		slug: 'agents',
+		sourceFile: 'api/x402/agents.js',
+		path: '/api/x402/agents',
+		method: 'POST',
+		body: () => ({ message: 'hello' }),
+		priceAtomicDefault: 0,
+		priceSlug: 'agents',
+		tier: 'service',
+		kind: 'service',
+		network: 'solana',
+		autobuy: false,
+		weight: 0,
+		// Whole-agent dispatcher: /api/x402/agents/<agentId>. Price and payee are
+		// owner-controlled per agent (meta.api_service), so it can't be swept
+		// generically. Path is the base; the real route carries an agent id.
+		businessEffect: 'Buys one conversational turn with an agent; settles USDC to the agent owner\'s payout wallet and returns the reply.',
+		note: 'autobuy:false: price and payee are owner-set per agent and the payment lands in a third-party owner wallet; not a fixed known endpoint.',
+	},
+	{
 		slug: 'animation-download',
 		sourceFile: 'api/x402/animation-download.js',
 		path: '/api/x402/animation-download',

@@ -38,7 +38,8 @@ vi.mock('../../api/_lib/db.js', () => ({
 }));
 
 // Keep verify deterministic and side-effect free — we only care about log timing.
-vi.mock('../../api/_lib/x402/self-facilitator.js', () => ({
+vi.mock('../../api/_lib/x402/self-facilitator.js', async (importOriginal) => ({
+	...(await importOriginal()),
 	SELF_FACILITATOR_ENABLED: true,
 	verifyRingPayment: () => ({ isValid: true, network: 'solana:x', asset: 'MINT', payer: 'BUYER' }),
 	settleRingPayment: async () => ({ success: true, transaction: 'SIG', network: 'solana:x', payer: 'BUYER' }),

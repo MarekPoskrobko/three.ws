@@ -35,6 +35,13 @@ const EXCLUSIONS = new Map([
 			"handleX402Discovery's buildAgentServiceItems(), not as a static entry.",
 	],
 	[
+		'/api/x402/agents',
+		'Dynamic dispatcher, not a single fixed-price route: it serves the paywall ' +
+			'for every agent its owner sells as an API at /api/x402/agents/<agentId>. ' +
+			'Each agent on sale is cataloged dynamically from agent meta.api_service by ' +
+			"handleX402Discovery's buildSellableAgentItems(), not as a static entry.",
+	],
+	[
 		'/api/x402/ring-settle',
 		'Internal closed-loop settlement primitive (discoverable:false in the ' +
 			'endpoint itself): platform-controlled ring wallets pay it to cycle the ' +
