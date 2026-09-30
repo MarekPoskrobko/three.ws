@@ -13,7 +13,7 @@
 // (the inbox banner, the preference center, /companion) works unchanged.
 //
 // Public API:
-//   isPushSupported()        → boolean (SW + PushManager + Notification, or the iOS app)
+//   isPushSupported: true with a service worker, PushManager and Notification, or in the iOS app
 //   getPushConfig()          → { pushEnabled, vapidPublicKey }
 //   getPushState()           → { supported, permission, subscribed }
 //   enablePush()             → subscribe + register; returns final state
