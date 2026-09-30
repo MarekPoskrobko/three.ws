@@ -26,7 +26,7 @@
 				"ms": 700
 			},
 			{
-				"type": "78c5f138-e7ee-4f32-9e00-6165f008f0a4",
+				"type": "62e1863d-3c32-4f9b-a11c-7d89ce2bcd57",
 				"into": "00000000-0000-0000-0000-000000000000",
 				"awaits": "/api/glance/card",
 				"caption": "Paste the id of any public agent"
@@ -107,7 +107,7 @@
 				{
 					"path": "public/x-media/glance/reel.mp4",
 					"probe": {
-						"durationSec": 15.43,
+						"durationSec": 16.03,
 						"width": 1280,
 						"height": 720,
 						"fps": 30,

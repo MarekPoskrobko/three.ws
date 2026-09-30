@@ -1,0 +1,132 @@
+{
+	"id": "avatar-engines",
+	"contentHash": "34f2d071626c94f2c2fa318d642922415374c01a267e821aa71591803263d057",
+	"reviewedAt": "2026-09-30T08:06:54.594Z",
+	"passed": false,
+	"blockers": [
+		"evidence:page https://three.ws/docs/avatar-engines: page.evaluate: TypeError: Cannot read properties of null (reading 'innerText')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+		"the AI editor did not run: no model was reachable:"
+	],
+	"texts": [
+		"The avatar engine with the most realistic demo is usually one you cannot put in a product. Most of the highest-fidelity work in this field is research code under a non-commercial license.\n\nThe Avatar Engines Atlas maps 24 engines and puts each license next to the technique. Turn on the commercial-use filter and 5 remain.\n\nthree.ws/avatar-engines",
+		"Each card states what the engine takes in, what it outputs, what it runs on, and what its license permits.\n\nFor several photorealistic engines the gate is compute, not the license. A training run per subject is not something you put behind a button.",
+		"2 of the 24 are live on the platform today: the MIT-licensed generator behind the free text and image to 3D lane, and the skeleton the animation pipeline canonicalizes against.\n\nFilters are written into the URL, so a filtered view is a link you can share."
+	],
+	"lint": [],
+	"verification": {
+		"ok": false,
+		"checks": [
+			{
+				"claim": "The avatar engine with the most realistic demo is usually one you cannot put in a product",
+				"kind": "evidence:page",
+				"target": "https://three.ws/docs/avatar-engines",
+				"ok": false,
+				"detail": "page.evaluate: TypeError: Cannot read properties of null (reading 'innerText')\n    at eval (eval at evaluate (:311:30), <anonymous>:1:21)\n    at UtilityScript.evaluate (<anonymous>:313:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+			},
+			{
+				"claim": "Most of the highest-fidelity work in this field is research code under a non-commercial license",
+				"kind": "evidence:page",
+				"target": "https://three.ws/docs/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"most of the highest-fidelity work in this field is research code under a non-commercial license\""
+			},
+			{
+				"claim": "maps 24 engines",
+				"kind": "evidence:proof",
+				"target": "engines",
+				"ok": true,
+				"detail": "the run read engines = \"24\""
+			},
+			{
+				"claim": "maps 24 engines",
+				"kind": "evidence:module",
+				"target": "src/avatar-engines-data.js",
+				"ok": true,
+				"detail": "ENGINES has 24 entries; the claim needs 24"
+			},
+			{
+				"claim": "puts each license next to the technique",
+				"kind": "evidence:page",
+				"target": "https://three.ws/docs/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"The atlas puts the license and the integration reality next to the technique\""
+			},
+			{
+				"claim": "Turn on the commercial-use filter and 5 remain",
+				"kind": "evidence:proof",
+				"target": "commercial",
+				"ok": true,
+				"detail": "the run read commercial = \"5\""
+			},
+			{
+				"claim": "Turn on the commercial-use filter and 5 remain",
+				"kind": "evidence:proof",
+				"target": "5 of 24 engines",
+				"ok": true,
+				"detail": "the run waited for and saw \"5 of 24 engines\""
+			},
+			{
+				"claim": "Each card states what the engine takes in, what it outputs, what it runs on, and what its license permits",
+				"kind": "evidence:page",
+				"target": "https://three.ws/docs/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"what it makes, what it eats, what it runs on, what its license permits\""
+			},
+			{
+				"claim": "For several photorealistic engines the gate is compute, not the license. A training run per subject is not something you put behind a button",
+				"kind": "evidence:page",
+				"target": "https://three.ws/docs/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"a per-subject training run is not something you put behind a button\""
+			},
+			{
+				"claim": "2 of the 24 are live on the platform today",
+				"kind": "evidence:proof",
+				"target": "live",
+				"ok": true,
+				"detail": "the run read live = \"2\""
+			},
+			{
+				"claim": "the MIT-licensed generator behind the free text and image to 3D lane",
+				"kind": "evidence:page",
+				"target": "https://three.ws/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"the MIT-licensed engine behind the free three.ws text/image\""
+			},
+			{
+				"claim": "the skeleton the animation pipeline canonicalizes against",
+				"kind": "evidence:page",
+				"target": "https://three.ws/avatar-engines",
+				"ok": true,
+				"detail": "live page shows \"The three.ws animation pipeline canonicalizes against the Mixamo skeleton\""
+			},
+			{
+				"claim": "Filters are written into the URL, so a filtered view is a link you can share",
+				"kind": "evidence:file",
+				"target": "src/avatar-engines.js",
+				"ok": true,
+				"detail": "file supports the claim"
+			},
+			{
+				"kind": "probe:scenario",
+				"target": "the filmed scenario",
+				"ok": true,
+				"detail": "13 steps passed against the live product, facts unchanged (engines 24, live 2, commercial 5)"
+			},
+			{
+				"kind": "probe:api",
+				"target": "the atlas page is up",
+				"ok": true,
+				"detail": "HTTP 200, expectations met"
+			},
+			{
+				"kind": "link",
+				"target": "https://three.ws/avatar-engines",
+				"ok": true,
+				"detail": "HTTP 200"
+			}
+		]
+	},
+	"editor": null,
+	"editorError": "no model was reachable:\n  Vertex 403: {\n  \"error\": {\n    \"code\": 403,\n    \"message\": \"Request had insufficient authentication scopes.\",\n    \"status\": \"PERMISSION_DENIED\",\n    \"details\": [\n      {\n        \"@type\": \"type.googleapis.com/goog\n  openrouter 402: {\"error\":{\"message\":\"Insufficient credits. Add more using https://openrouter.ai/settings/credits\",\"code\":402,\"metadata\":{\"limit_source\":\"openrouter_credits\",\"remedy_hint\":\"Add credits at https://openr\n  openai 429: {\n    \"error\": {\n        \"message\": \"Your account is not active, please check your billing details on our website.\",\n        \"type\": \"billing_not_active\",\n        \"param\": null,\n        \"code\": \"billi\n  editor returned no JSON object"
+}

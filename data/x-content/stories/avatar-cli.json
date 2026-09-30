@@ -19,7 +19,7 @@
 			},
 			{
 				"hold": 1400,
-				"caption": "A command line tool that pins an avatar to the bytes of its model"
+				"caption": "Pin an avatar to the bytes of its model"
 			},
 			{
 				"scroll": 130,
@@ -39,7 +39,7 @@
 			},
 			{
 				"hold": 1600,
-				"caption": "It runs offline, so it is safe inside a release script"
+				"caption": "Runs offline. Safe inside a release script."
 			},
 			{
 				"goto": "https://three.ws/avatar-cli#ci",
@@ -47,7 +47,7 @@
 			},
 			{
 				"hold": 2600,
-				"caption": "A model swapped under the same filename fails the build"
+				"caption": "A swapped model fails the build"
 			},
 			{
 				"goto": "https://three.ws/avatar-cli#live",
@@ -60,12 +60,12 @@
 			},
 			{
 				"hold": 2000,
-				"caption": "preview prints two lines of HTML for the manifest"
+				"caption": "preview prints two lines of HTML"
 			},
 			{
 				"scroll": 470,
 				"ms": 1000,
-				"caption": "Those two lines, pasted into this page unmodified"
+				"caption": "Those two lines, pasted in unmodified"
 			},
 			{
 				"hold": 1200
@@ -82,7 +82,7 @@
 					]
 				],
 				"ms": 2200,
-				"caption": "It is a live viewer, not a screenshot. Turn it."
+				"caption": "A live viewer, not a screenshot. Turn it."
 			},
 			{
 				"hold": 2600

@@ -41,15 +41,15 @@
 			{
 				"drag": [
 					[
-						0.2,
-						0.55
+						0.27,
+						0.52
 					],
 					[
-						0.44,
-						0.3
+						0.34,
+						0.45
 					]
 				],
-				"ms": 2400,
+				"ms": 2200,
 				"caption": "Tilt it and the foil answers the light, like the real thing"
 			},
 			{
@@ -59,15 +59,15 @@
 			{
 				"drag": [
 					[
-						0.44,
-						0.3
+						0.34,
+						0.45
 					],
 					[
-						0.22,
+						0.27,
 						0.5
 					]
 				],
-				"ms": 2000
+				"ms": 1800
 			},
 			{
 				"click": "Your text",
@@ -81,7 +81,7 @@
 				"click": "Cut it"
 			},
 			{
-				"hold": 1200
+				"hold": 1400
 			},
 			{
 				"click": "Neon"
@@ -99,19 +99,19 @@
 			{
 				"drag": [
 					[
-						0.22,
-						0.5
+						0.28,
+						0.48
 					],
 					[
-						0.45,
-						0.32
+						0.33,
+						0.44
 					]
 				],
-				"ms": 2400,
+				"ms": 2000,
 				"caption": "The outline is traced from the letters, holes included"
 			},
 			{
-				"hold": 3000
+				"hold": 3200
 			}
 		]
 	},

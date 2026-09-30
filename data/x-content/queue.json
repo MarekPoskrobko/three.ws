@@ -66,7 +66,7 @@
 			2,
 			3
 		],
-		"vetoHours": 24
+		"vetoHours": 2
 	},
 	"items": [
 		{
@@ -2267,6 +2267,833 @@
 			],
 			"mentions": {},
 			"approvedBy": "policy"
+		},
+		{
+			"id": "avatar-engines",
+			"status": "review",
+			"kind": "post",
+			"tier": 2,
+			"lane": "developer",
+			"pattern": "correction",
+			"notBefore": "2026-09-30T00:00:00Z",
+			"covers": [
+				"/avatar-engines",
+				"/docs/avatar-engines"
+			],
+			"scenario": {
+				"format": "square",
+				"steps": [
+					{
+						"goto": "https://three.ws/avatar-engines",
+						"settle": 6000
+					},
+					{
+						"hold": 1500,
+						"caption": "24 engines that build realistic 3D humans, on one map"
+					},
+					{
+						"read": "engines",
+						"match": "(\\d+) of \\d+ engines"
+					},
+					{
+						"read": "live",
+						"selector": "#ae-stats",
+						"match": "live in three\\.ws\\s+(\\d+)"
+					},
+					{
+						"scroll": 640,
+						"ms": 1600,
+						"caption": "The photoreal heads are research code. Read the license line."
+					},
+					{
+						"hold": 1700
+					},
+					{
+						"scroll": -310,
+						"ms": 900,
+						"caption": "Keep only the licenses that let you ship a product"
+					},
+					{
+						"click": "Commercial-use only"
+					},
+					{
+						"expect": "5 of 24 engines"
+					},
+					{
+						"read": "commercial",
+						"match": "(\\d+) of \\d+ engines"
+					},
+					{
+						"hold": 1600,
+						"caption": "5 of 24 remain"
+					},
+					{
+						"scroll": 920,
+						"ms": 2400,
+						"caption": "One generator, plus the formats and platforms already in production"
+					},
+					{
+						"hold": 2800
+					}
+				]
+			},
+			"probes": [
+				{
+					"type": "scenario"
+				},
+				{
+					"type": "api",
+					"name": "the atlas page is up",
+					"url": "https://three.ws/avatar-engines",
+					"expect": {
+						"contains": "Avatar Engines Atlas"
+					}
+				}
+			],
+			"posts": [
+				{
+					"text": "The avatar engine with the most realistic demo is usually one you cannot put in a product. Most of the highest-fidelity work in this field is research code under a non-commercial license.\n\nThe Avatar Engines Atlas maps 24 engines and puts each license next to the technique. Turn on the commercial-use filter and 5 remain.\n\nthree.ws/avatar-engines",
+					"media": [
+						{
+							"path": "public/x-media/avatar-engines/reel.mp4",
+							"probe": {
+								"durationSec": 13.2,
+								"width": 1080,
+								"height": 1080,
+								"fps": 30,
+								"videoCodec": "h264",
+								"pixFmt": "yuv420p"
+							},
+							"reel": true
+						}
+					]
+				},
+				{
+					"text": "Each card states what the engine takes in, what it outputs, what it runs on, and what its license permits.\n\nFor several photorealistic engines the gate is compute, not the license. A training run per subject is not something you put behind a button."
+				},
+				{
+					"text": "2 of the 24 are live on the platform today: the MIT-licensed generator behind the free text and image to 3D lane, and the skeleton the animation pipeline canonicalizes against.\n\nFilters are written into the URL, so a filtered view is a link you can share."
+				}
+			],
+			"claims": [
+				{
+					"says": "The avatar engine with the most realistic demo is usually one you cannot put in a product",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/avatar-engines",
+							"contains": "The best-looking research engines in this field ship under non-commercial research licenses"
+						}
+					]
+				},
+				{
+					"says": "Most of the highest-fidelity work in this field is research code under a non-commercial license",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/avatar-engines",
+							"contains": "most of the highest-fidelity work in this field is research code under a non-commercial license"
+						}
+					]
+				},
+				{
+					"says": "maps 24 engines",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "engines",
+							"equals": "24"
+						},
+						{
+							"type": "module",
+							"path": "src/avatar-engines-data.js",
+							"export": "ENGINES",
+							"length": 24
+						}
+					]
+				},
+				{
+					"says": "puts each license next to the technique",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/avatar-engines",
+							"contains": "The atlas puts the license and the integration reality next to the technique"
+						}
+					]
+				},
+				{
+					"says": "Turn on the commercial-use filter and 5 remain",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "commercial",
+							"equals": "5"
+						},
+						{
+							"type": "proof",
+							"saw": "5 of 24 engines"
+						}
+					]
+				},
+				{
+					"says": "Each card states what the engine takes in, what it outputs, what it runs on, and what its license permits",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/avatar-engines",
+							"contains": "what it makes, what it eats, what it runs on, what its license permits"
+						}
+					]
+				},
+				{
+					"says": "For several photorealistic engines the gate is compute, not the license. A training run per subject is not something you put behind a button",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/avatar-engines",
+							"contains": "a per-subject training run is not something you put behind a button"
+						}
+					]
+				},
+				{
+					"says": "2 of the 24 are live on the platform today",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "live",
+							"equals": "2"
+						}
+					]
+				},
+				{
+					"says": "the MIT-licensed generator behind the free text and image to 3D lane",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/avatar-engines",
+							"contains": "the MIT-licensed engine behind the free three.ws text/image"
+						}
+					]
+				},
+				{
+					"says": "the skeleton the animation pipeline canonicalizes against",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/avatar-engines",
+							"contains": "The three.ws animation pipeline canonicalizes against the Mixamo skeleton"
+						}
+					]
+				},
+				{
+					"says": "Filters are written into the URL, so a filtered view is a link you can share",
+					"evidence": [
+						{
+							"type": "file",
+							"path": "src/avatar-engines.js",
+							"contains": "Filters reflect into the URL query so a filtered view is shareable"
+						}
+					]
+				}
+			],
+			"mentions": {}
+		},
+		{
+			"id": "herald-reasons",
+			"status": "review",
+			"kind": "post",
+			"tier": 2,
+			"lane": "community",
+			"pattern": "mechanism",
+			"notBefore": "2026-09-30T00:00:00Z",
+			"covers": [
+				"/herald",
+				"/docs/herald"
+			],
+			"scenario": {
+				"format": "square",
+				"show": [
+					".walk-companion"
+				],
+				"hide": [
+					".walk-companion-id",
+					".walk-companion-caption"
+				],
+				"steps": [
+					{
+						"goto": "https://three.ws/herald",
+						"settle": 24000
+					},
+					{
+						"scroll": "Compose",
+						"ms": 900,
+						"caption": "Every message carries an importance"
+					},
+					{
+						"scroll": 215,
+						"ms": 400
+					},
+					{
+						"read": "floor",
+						"match": "Interrupt floor:\\s*(\\d+)"
+					},
+					{
+						"click": {
+							"selector": "#f-send"
+						},
+						"caption": "At 80 it clears the floor of 50"
+					},
+					{
+						"expect": "· importance 80",
+						"within": 20000
+					},
+					{
+						"expect": "Mute 1 min",
+						"within": 45000
+					},
+					{
+						"hold": 2800,
+						"caption": "The 3D character in the corner says it"
+					},
+					{
+						"wait": 6000
+					},
+					{
+						"drag": [
+							[
+								0.759,
+								0.43
+							],
+							[
+								0.3225,
+								0.43
+							]
+						],
+						"ms": 1300,
+						"caption": "Now send one from under the floor"
+					},
+					{
+						"read": "importance",
+						"match": "Importance:\\s*(\\d+)"
+					},
+					{
+						"click": {
+							"selector": "#f-send"
+						}
+					},
+					{
+						"expect": "· below-importance-floor",
+						"within": 20000
+					},
+					{
+						"hold": 1500,
+						"caption": "This time the character says nothing"
+					},
+					{
+						"scroll": "Verdicts",
+						"ms": 900,
+						"caption": "And the reason comes back"
+					},
+					{
+						"scroll": 60,
+						"ms": 300
+					},
+					{
+						"read": "delivered",
+						"match": "(\\d+)\\s*delivered"
+					},
+					{
+						"read": "dropped",
+						"match": "(\\d+)\\s*dropped"
+					},
+					{
+						"hold": 4200
+					}
+				]
+			},
+			"probes": [
+				{
+					"type": "scenario"
+				},
+				{
+					"type": "api",
+					"name": "the Herald playground is up",
+					"url": "https://three.ws/herald",
+					"expect": {
+						"contains": "below-importance-floor"
+					}
+				}
+			],
+			"posts": [
+				{
+					"text": "Herald decides whether a message is worth interrupting you for before a word of it is said. Each message carries an importance, the page sets a floor, and the engine returns a verdict.\n\nWe sent one at 80 against a floor of 50 and it was delivered: the 3D character in the corner of the page said it. We sent the next at 29. The character said nothing, and the verdict came back as a drop with its reason: below-importance-floor.\n\nEvery message that is not delivered comes back with a reason, so why you were not told has an answer.\n\nthree.ws/herald",
+					"media": [
+						{
+							"path": "public/x-media/herald-reasons/reel.mp4",
+							"probe": {
+								"durationSec": 14.3,
+								"width": 1080,
+								"height": 1080,
+								"fps": 30,
+								"videoCodec": "h264",
+								"pixFmt": "yuv420p"
+							},
+							"reel": true
+						}
+					]
+				},
+				{
+					"text": "A drop and a hold are different verdicts.\n\nA held message is delivered once the thing blocking it clears: another message on screen, a tab in the background, a full rate limit, quiet hours. A dropped one is reported with its reason and will not be delivered."
+				},
+				{
+					"text": "A verdict of deliver is what makes the 3D character speak, with the gesture the sender chose. On a page with no GPU the same verdict arrives as a card, in a live region, dismissible with Escape."
+				}
+			],
+			"claims": [
+				{
+					"says": "Herald decides whether a message is worth interrupting you for",
+					"evidence": [
+						{
+							"type": "file",
+							"path": "herald-sdk/src/rules.js",
+							"contains": "everything that decides WHETHER a message is worth"
+						}
+					]
+				},
+				{
+					"says": "Each message carries an importance, the page sets a floor, and the engine returns a verdict",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/herald",
+							"contains": "announce() returns a verdict rather than a promise of delivery"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "The interrupt floor. Below it, nothing is shown"
+						}
+					]
+				},
+				{
+					"says": "We sent one at 80",
+					"evidence": [
+						{
+							"type": "proof",
+							"saw": "importance 80"
+						}
+					]
+				},
+				{
+					"says": "a floor of 50",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "floor",
+							"equals": "50"
+						}
+					]
+				},
+				{
+					"says": "it was delivered",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "delivered",
+							"equals": "1"
+						}
+					]
+				},
+				{
+					"says": "We sent the next at 29",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "importance",
+							"equals": "29"
+						}
+					]
+				},
+				{
+					"says": "the verdict came back as a drop with its reason: below-importance-floor",
+					"evidence": [
+						{
+							"type": "proof",
+							"saw": "· below-importance-floor"
+						},
+						{
+							"type": "proof",
+							"fact": "dropped",
+							"equals": "1"
+						}
+					]
+				},
+				{
+					"says": "Every message that is not delivered comes back with a reason",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "Every message that is not delivered comes back with a reason"
+						}
+					]
+				},
+				{
+					"says": "A held message is delivered once the thing blocking it clears",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/herald",
+							"contains": "Held (delivered once the thing blocking it clears): delivering-another, window-not-focused, rate-limited, quiet-hours"
+						}
+					]
+				},
+				{
+					"says": "A dropped one is reported with its reason and will not be delivered",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/herald",
+							"contains": "Dropped (will never be delivered): empty, muted, duplicate, stale, below-importance-floor"
+						}
+					]
+				},
+				{
+					"says": "On a page with no GPU the same verdict arrives as a card, in a live region, dismissible with Escape",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "An accessible fallback when there is no GPU"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "the card presenter takes over, in a live region, dismissible with Escape"
+						}
+					]
+				},
+				{
+					"says": "the 3D character in the corner of the page said it",
+					"evidence": [
+						{
+							"type": "proof",
+							"saw": "Mute 1 min"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "a 3D character walks into the corner of your page"
+						}
+					]
+				},
+				{
+					"says": "The character said nothing",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "delivered",
+							"equals": "1"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "The interrupt floor. Below it, nothing is shown"
+						}
+					]
+				},
+				{
+					"says": "A verdict of deliver is what makes the 3D character speak, with the gesture the sender chose",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/herald",
+							"contains": "announce() returns a verdict rather than a promise of delivery"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/herald",
+							"contains": "Gesture wave dance punch backflip"
+						}
+					]
+				}
+			],
+			"mentions": {}
+		},
+		{
+			"id": "splat-viewer",
+			"status": "draft",
+			"kind": "post",
+			"tier": 2,
+			"lane": "community",
+			"pattern": "mechanism",
+			"notBefore": "2026-09-30T00:00:00Z",
+			"covers": [
+				"/splat",
+				"/docs/splat"
+			],
+			"scenario": {
+				"format": "square",
+				"steps": [
+					{
+						"goto": "https://three.ws/splat",
+						"settle": 6000
+					},
+					{
+						"hold": 1400,
+						"caption": "A Gaussian splat viewer that runs in a browser tab"
+					},
+					{
+						"scroll": "Samples",
+						"ms": 900
+					},
+					{
+						"click": "Synthetic head bust · 14k splats",
+						"caption": "The built-in sample is synthetic, generated on the page"
+					},
+					{
+						"expect": "Synthetic head bust · 14,000 splats",
+						"within": 90000,
+						"film": true
+					},
+					{
+						"read": "splats",
+						"match": "Synthetic head bust · ([\\d,]+) splats"
+					},
+					{
+						"drag": [
+							[
+								0.012,
+								0.45
+							],
+							[
+								0.012,
+								0.5
+							]
+						],
+						"ms": 200
+					},
+					{
+						"scroll": -670,
+						"ms": 900,
+						"caption": "Decoded and sorted on your device, not on a server"
+					},
+					{
+						"hold": 1000
+					},
+					{
+						"drag": [
+							[
+								0.3,
+								0.5
+							],
+							[
+								0.74,
+								0.5
+							]
+						],
+						"ms": 2800,
+						"caption": "Drag to orbit it"
+					},
+					{
+						"drag": [
+							[
+								0.62,
+								0.52
+							],
+							[
+								0.48,
+								0.58
+							]
+						],
+						"ms": 1600
+					},
+					{
+						"hold": 2800
+					}
+				]
+			},
+			"probes": [
+				{
+					"type": "scenario"
+				},
+				{
+					"type": "api",
+					"name": "the splat viewer page is up",
+					"url": "https://three.ws/splat",
+					"expect": {
+						"contains": "Photoreal splat viewer"
+					}
+				}
+			],
+			"posts": [
+				{
+					"text": "A Gaussian splat rebuilds a person or a room as millions of tiny blobs instead of polygons. The splat viewer decodes one on your own device and draws it in a browser tab with WebGL, so the file stays with you.\n\nPaste a link to a capture or drop the file in. It reads five formats and tells them apart by their bytes, not their filenames.\n\nThe reel is the built-in sample: 14,000 splats, synthetic, generated on the page.",
+					"media": [
+						{
+							"path": "public/x-media/splat-viewer/reel.mp4",
+							"probe": {
+								"durationSec": 14.1,
+								"width": 1080,
+								"height": 1080,
+								"fps": 30,
+								"videoCodec": "h264",
+								"pixFmt": "yuv420p"
+							},
+							"reel": true
+						}
+					]
+				},
+				{
+					"text": "Both built-in samples are synthetic. They exist to exercise the renderer and are not real captures. A real one comes out of a capture engine trained on footage of a person, exported as a file, then opened here.\n\nthree.ws/splat"
+				},
+				{
+					"text": "To share a capture, add ?src= and the address of the file to the address of the viewer. The scene loads as the page opens, so the link is the whole handoff.\n\nThe same scene that is a 1 GB PLY is roughly 100 MB as SPZ, which is the difference between a capture you can send as a link and one you cannot."
+				}
+			],
+			"claims": [
+				{
+					"says": "A Gaussian splat rebuilds a person or a room as millions of tiny blobs instead of polygons",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/splat",
+							"contains": "Gaussian splatting reconstructs a person or a scene as millions of tiny anisotropic blobs"
+						}
+					]
+				},
+				{
+					"says": "decodes one on your own device",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "decoding runs entirely in your browser"
+						}
+					]
+				},
+				{
+					"says": "draws it in a browser tab with WebGL",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Gaussian splatting · WebGL"
+						},
+						{
+							"type": "proof",
+							"saw": "Synthetic head bust · 14,000 splats"
+						}
+					]
+				},
+				{
+					"says": "the file stays with you",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Files stay on your device"
+						}
+					]
+				},
+				{
+					"says": "Paste a link to a capture or drop the file in",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "by URL or drop a file in"
+						}
+					]
+				},
+				{
+					"says": "It reads five formats",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Load a .ply, .spz, .splat, .ksplat, or .sog by URL or drop a file in"
+						}
+					]
+				},
+				{
+					"says": "tells them apart by their bytes, not their filenames",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/splat",
+							"contains": "The format is read from the bytes, not the filename"
+						}
+					]
+				},
+				{
+					"says": "14,000 splats",
+					"evidence": [
+						{
+							"type": "proof",
+							"fact": "splats",
+							"equals": "14,000"
+						}
+					]
+				},
+				{
+					"says": "synthetic, generated on the page",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Samples are procedurally generated to exercise the renderer"
+						}
+					]
+				},
+				{
+					"says": "Both built-in samples are synthetic. They exist to exercise the renderer and are not real captures",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Samples are procedurally generated to exercise the renderer"
+						},
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "not real captures"
+						}
+					]
+				},
+				{
+					"says": "A real one comes out of a capture engine trained on footage of a person, exported as a file, then opened here",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/splat",
+							"contains": "Train one yourself, then view it here"
+						}
+					]
+				},
+				{
+					"says": "add ?src= and the address of the file to the address of the viewer. The scene loads as the page opens",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/splat",
+							"contains": "loads a scene straight from the URL on page load"
+						}
+					]
+				},
+				{
+					"says": "The same scene that is a 1 GB PLY is roughly 100 MB as SPZ",
+					"evidence": [
+						{
+							"type": "page",
+							"url": "https://three.ws/docs/splat",
+							"contains": "the same scene that is a 1 GB PLY is roughly 100 MB as SPZ"
+						}
+					]
+				}
+			],
+			"mentions": {}
 		}
 	]
 }

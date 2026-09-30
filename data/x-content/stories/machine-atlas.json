@@ -113,7 +113,7 @@
 	],
 	"posts": [
 		{
-			"text": "placeholder head post for the machine atlas story, written after the reel is watched and checked against the page",
+			"text": "A nine-cylinder radial engine and a steam locomotive, with no model file behind either one. It is a Labs experiment in building 3D geometry from code instead of files.\n\nBoth machines are built when the page loads: dimensions become profiles, profiles get revolved or extruded, and the results are merged into the parts you can see. Move a slider and the geometry is rebuilt. Nine cylinders to five, and the displacement readout, the parts list and the source panel follow, because all of them are derived from the same numbers.",
 			"media": [
 				{
 					"path": "public/x-media/machine-atlas/reel.mp4",
@@ -130,9 +130,207 @@
 			]
 		},
 		{
-			"text": "placeholder reply with the link: three.ws/assembly"
+			"text": "The motion is solved, not keyframed. Pistons come from the exact planar slider-crank, and the locomotive valve gear closes a four-bar chain by intersecting circles every frame, which is why a rod length that cannot physically reach refuses to move rather than stretching.\n\nEach machine is a small JSON object of numbers. Copy the spec, hand it to an agent, get a different machine back, then export the result as GLB. three.ws/assembly"
 		}
 	],
-	"claims": [],
+	"claims": [
+		{
+			"says": "A nine-cylinder radial engine",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "cylinders",
+					"equals": "9"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Air-cooled radial aero engine"
+				}
+			]
+		},
+		{
+			"says": "a steam locomotive",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Outside-cylinder steam locomotive"
+				}
+			]
+		},
+		{
+			"says": "no model file behind either one",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "no model files"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Two machines. Nothing downloaded."
+				}
+			]
+		},
+		{
+			"says": "a Labs experiment in building 3D geometry from code instead of files",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "The rest of the experiments running live on three.ws"
+				},
+				{
+					"type": "file",
+					"path": "data/pages.json",
+					"contains": "\"path\": \"/assembly\""
+				}
+			]
+		},
+		{
+			"says": "Both machines are built when the page loads",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Both machines are built when the page loads"
+				}
+			]
+		},
+		{
+			"says": "dimensions become profiles, profiles get revolved or extruded, and the results are merged into the parts you can see",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Dimensions become profiles, profiles get revolved or extruded, and the results are merged into the parts you can see"
+				}
+			]
+		},
+		{
+			"says": "Move a slider and the geometry is rebuilt",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "cylindersAfter",
+					"equals": "5"
+				},
+				{
+					"type": "proof",
+					"saw": "16.5 L"
+				}
+			]
+		},
+		{
+			"says": "Nine cylinders to five",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "cylinders",
+					"equals": "9"
+				},
+				{
+					"type": "proof",
+					"fact": "cylindersAfter",
+					"equals": "5"
+				}
+			]
+		},
+		{
+			"says": "the displacement readout, the parts list and the source panel follow, because all of them are derived from the same numbers",
+			"evidence": [
+				{
+					"type": "proof",
+					"fact": "displacement",
+					"equals": "29.7 L"
+				},
+				{
+					"type": "proof",
+					"saw": "16.5 L"
+				},
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Generated from the values on the right, so it always matches what is on screen"
+				}
+			]
+		},
+		{
+			"says": "The motion is solved, not keyframed",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "The motion is solved, not keyframed"
+				}
+			]
+		},
+		{
+			"says": "Pistons come from the exact planar slider-crank",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Pistons come from the exact planar slider-crank"
+				}
+			]
+		},
+		{
+			"says": "the locomotive valve gear closes a four-bar chain by intersecting circles every frame",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "The valve gear closes a four-bar chain by intersecting circles every frame"
+				},
+				{
+					"type": "proof",
+					"saw": "Solved four-bar chain, not baked animation"
+				}
+			]
+		},
+		{
+			"says": "a rod length that cannot physically reach refuses to move rather than stretching",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "a rod length that cannot physically reach refuses to move rather than stretching"
+				}
+			]
+		},
+		{
+			"says": "Each machine is a small JSON object of numbers",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Every machine is a small JSON object of numbers"
+				}
+			]
+		},
+		{
+			"says": "Copy the spec, hand it to an agent, get a different machine back",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Copy the spec, hand it to an agent, get a different machine back"
+				}
+			]
+		},
+		{
+			"says": "export the result as GLB",
+			"evidence": [
+				{
+					"type": "page",
+					"url": "https://three.ws/assembly",
+					"contains": "Export the result as GLB"
+				}
+			]
+		}
+	],
 	"mentions": {}
 }

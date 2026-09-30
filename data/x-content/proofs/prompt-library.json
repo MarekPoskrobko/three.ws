@@ -1,10 +1,10 @@
 {
 	"id": "prompt-library",
-	"scenarioHash": "805c172f66a340c0b5f08e100114555c75d92d5b6b686f31c95bb66c27bd4c37",
-	"ranAt": "2026-09-29T08:51:24.694Z",
+	"scenarioHash": "43324849d97b28fa52176f2c6d1719d264f18003b047fc414a14cb26d725966e",
+	"ranAt": "2026-09-30T08:07:31.871Z",
 	"target": {
-		"commit": "f2081d946",
-		"revision": "three-ws-api-00460-4j6"
+		"commit": "955623897",
+		"revision": "three-ws-api-00464-mbw"
 	},
 	"passed": true,
 	"steps": [
@@ -14,7 +14,7 @@
 			"target": "https://three.ws/prompts",
 			"detail": "loaded https://three.ws/prompts",
 			"ok": true,
-			"ms": 6881,
+			"ms": 10302,
 			"frames": 0
 		},
 		{
@@ -23,7 +23,7 @@
 			"target": "1600",
 			"detail": "1600 ms",
 			"ok": true,
-			"ms": 5538,
+			"ms": 14344,
 			"frames": 48
 		},
 		{
@@ -32,7 +32,7 @@
 			"target": "nosetup",
 			"detail": "nosetup = \"15\"",
 			"ok": true,
-			"ms": 3,
+			"ms": 6,
 			"frames": 0
 		},
 		{
@@ -41,7 +41,7 @@
 			"target": "Search prompts",
 			"detail": "scrolled 1089 px",
 			"ok": true,
-			"ms": 6497,
+			"ms": 15751,
 			"frames": 54
 		},
 		{
@@ -50,7 +50,7 @@
 			"target": "prompts",
 			"detail": "prompts = \"24\"",
 			"ok": true,
-			"ms": 2,
+			"ms": 12,
 			"frames": 0
 		},
 		{
@@ -59,7 +59,7 @@
 			"target": "Make 3D things",
 			"detail": "clicked",
 			"ok": true,
-			"ms": 2481,
+			"ms": 6324,
 			"frames": 21
 		},
 		{
@@ -68,7 +68,7 @@
 			"target": "making",
 			"detail": "making = \"10\"",
 			"ok": true,
-			"ms": 2,
+			"ms": 9,
 			"frames": 0
 		},
 		{
@@ -77,7 +77,7 @@
 			"target": "1200",
 			"detail": "1200 ms",
 			"ok": true,
-			"ms": 3645,
+			"ms": 9346,
 			"frames": 36
 		},
 		{
@@ -86,7 +86,7 @@
 			"target": "rig",
 			"detail": "typed 3 characters",
 			"ok": true,
-			"ms": 2564,
+			"ms": 6017,
 			"frames": 22
 		},
 		{
@@ -95,7 +95,7 @@
 			"target": "1000",
 			"detail": "1000 ms",
 			"ok": true,
-			"ms": 3132,
+			"ms": 7736,
 			"frames": 30
 		},
 		{
@@ -104,7 +104,7 @@
 			"target": "Generate a rigged avatar from a description",
 			"detail": "scrolled 255 px",
 			"ok": true,
-			"ms": 5390,
+			"ms": 13399,
 			"frames": 45
 		},
 		{
@@ -113,7 +113,7 @@
 			"target": "2200",
 			"detail": "2200 ms",
 			"ok": true,
-			"ms": 7247,
+			"ms": 18693,
 			"frames": 66
 		},
 		{
@@ -122,7 +122,7 @@
 			"target": "Copy prompt",
 			"detail": "clicked",
 			"ok": true,
-			"ms": 2503,
+			"ms": 6104,
 			"frames": 21
 		},
 		{
@@ -131,7 +131,7 @@
 			"target": "Copied",
 			"detail": "appeared after 0.0 s",
 			"ok": true,
-			"ms": 17,
+			"ms": 48,
 			"frames": 0
 		},
 		{
@@ -140,7 +140,7 @@
 			"target": "2600",
 			"detail": "2600 ms",
 			"ok": true,
-			"ms": 8215,
+			"ms": 22162,
 			"frames": 78
 		}
 	],
@@ -156,9 +156,9 @@
 	"cuts": [],
 	"video": {
 		"path": "public/x-media/prompt-library/reel.mp4",
-		"sha256": "c699938a879aec8c477fdc0fbd50c5e44ed444dabe3e8b278497740222533331",
+		"sha256": "97d1169c5ef9054c4c9b1dcfa0d69d98cb239a903dd0b64f8792e376eb8fd655",
 		"frames": 421,
-		"motion": 0.388,
+		"motion": 0.386,
 		"durationSec": 14.03,
 		"width": 1080,
 		"height": 1080,

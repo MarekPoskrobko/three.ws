@@ -19,7 +19,7 @@
 			},
 			{
 				"hold": 1400,
-				"caption": "A Gaussian splat viewer that runs in a browser tab"
+				"caption": "Gaussian splats, in a browser tab"
 			},
 			{
 				"scroll": "Samples",
@@ -27,7 +27,7 @@
 			},
 			{
 				"click": "Synthetic head bust · 14k splats",
-				"caption": "The built-in sample is synthetic, generated on the page"
+				"caption": "The built-in sample is synthetic"
 			},
 			{
 				"expect": "Synthetic head bust · 14,000 splats",
@@ -54,7 +54,7 @@
 			{
 				"scroll": -670,
 				"ms": 900,
-				"caption": "Decoded and sorted on your device, not on a server"
+				"caption": "Decoded on your device, not a server"
 			},
 			{
 				"hold": 1000

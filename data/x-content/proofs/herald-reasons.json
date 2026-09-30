@@ -1,11 +1,8 @@
 {
 	"id": "herald-reasons",
-	"scenarioHash": "aaeb9dbf2065bbe0f9de33aa91a0292484bcf182210aff63670b35ea411e9740",
-	"ranAt": "2026-09-29T09:15:38.956Z",
-	"target": {
-		"commit": "f2081d946",
-		"revision": "three-ws-api-00460-4j6"
-	},
+	"scenarioHash": "2b394b0c9c3f492668216588193ee50a57afa7ad4bea584789cb1eb1a22d89a2",
+	"ranAt": "2026-09-30T08:06:54.618Z",
+	"target": null,
 	"passed": true,
 	"steps": [
 		{
@@ -14,7 +11,7 @@
 			"target": "https://three.ws/herald",
 			"detail": "loaded https://three.ws/herald",
 			"ok": true,
-			"ms": 6975,
+			"ms": 34731,
 			"frames": 0
 		},
 		{
@@ -23,169 +20,160 @@
 			"target": "Compose",
 			"detail": "scrolled 487 px",
 			"ok": true,
-			"ms": 3341,
+			"ms": 14194,
 			"frames": 27
 		},
 		{
 			"index": 3,
-			"kind": "click",
-			"target": "#f-presenter",
-			"detail": "clicked",
+			"kind": "scroll",
+			"target": "215",
+			"detail": "scrolled 215 px",
 			"ok": true,
-			"ms": 2453,
-			"frames": 21
+			"ms": 4489,
+			"frames": 12
 		},
 		{
 			"index": 4,
-			"kind": "press",
-			"target": "ArrowDown",
-			"detail": "pressed ArrowDown",
-			"ok": true,
-			"ms": 616,
-			"frames": 6
-		},
-		{
-			"index": 5,
-			"kind": "press",
-			"target": "ArrowDown",
-			"detail": "pressed ArrowDown",
-			"ok": true,
-			"ms": 615,
-			"frames": 6
-		},
-		{
-			"index": 6,
-			"kind": "press",
-			"target": "Enter",
-			"detail": "pressed Enter",
-			"ok": true,
-			"ms": 616,
-			"frames": 6
-		},
-		{
-			"index": 7,
 			"kind": "read",
 			"target": "floor",
 			"detail": "floor = \"50\"",
 			"ok": true,
-			"ms": 2,
+			"ms": 6,
+			"frames": 0
+		},
+		{
+			"index": 5,
+			"kind": "click",
+			"target": "#f-send",
+			"detail": "clicked",
+			"ok": true,
+			"ms": 7307,
+			"frames": 21
+		},
+		{
+			"index": 6,
+			"kind": "expect",
+			"target": "· importance 80",
+			"detail": "appeared after 0.2 s",
+			"ok": true,
+			"ms": 248,
+			"frames": 0
+		},
+		{
+			"index": 7,
+			"kind": "expect",
+			"target": "Mute 1 min",
+			"detail": "appeared after 0.1 s",
+			"ok": true,
+			"ms": 108,
 			"frames": 0
 		},
 		{
 			"index": 8,
-			"kind": "click",
-			"target": "#f-send",
-			"detail": "clicked",
+			"kind": "hold",
+			"target": "2800",
+			"detail": "2800 ms",
 			"ok": true,
-			"ms": 2487,
-			"frames": 21
+			"ms": 29655,
+			"frames": 84
 		},
 		{
 			"index": 9,
-			"kind": "expect",
-			"target": "· importance 80",
-			"detail": "appeared after 0.0 s",
+			"kind": "wait",
+			"target": "6000",
+			"detail": "6000 ms, not filmed",
 			"ok": true,
-			"ms": 13,
+			"ms": 6156,
 			"frames": 0
 		},
 		{
 			"index": 10,
-			"kind": "expect",
-			"target": "Mute 1 min",
-			"detail": "appeared after 0.0 s",
-			"ok": true,
-			"ms": 10,
-			"frames": 0
-		},
-		{
-			"index": 11,
-			"kind": "hold",
-			"target": "2000",
-			"detail": "2000 ms",
-			"ok": true,
-			"ms": 6073,
-			"frames": 60
-		},
-		{
-			"index": 12,
-			"kind": "press",
-			"target": "Escape",
-			"detail": "pressed Escape",
-			"ok": true,
-			"ms": 632,
-			"frames": 6
-		},
-		{
-			"index": 13,
 			"kind": "drag",
-			"target": "0.76,0.779,0.3225,0.779",
+			"target": "0.759,0.43,0.3225,0.43",
 			"detail": "dragged over 39 frames",
 			"ok": true,
-			"ms": 6617,
+			"ms": 20918,
 			"frames": 57
 		},
 		{
-			"index": 14,
+			"index": 11,
 			"kind": "read",
 			"target": "importance",
 			"detail": "importance = \"29\"",
 			"ok": true,
-			"ms": 2,
+			"ms": 16,
 			"frames": 0
 		},
 		{
-			"index": 15,
+			"index": 12,
 			"kind": "click",
 			"target": "#f-send",
 			"detail": "clicked",
 			"ok": true,
-			"ms": 2367,
+			"ms": 7102,
 			"frames": 21
 		},
 		{
-			"index": 16,
+			"index": 13,
 			"kind": "expect",
-			"target": "below-importance-floor",
-			"detail": "appeared after 0.0 s",
+			"target": "· below-importance-floor",
+			"detail": "appeared after 0.2 s",
 			"ok": true,
-			"ms": 14,
+			"ms": 165,
 			"frames": 0
 		},
 		{
-			"index": 17,
+			"index": 14,
+			"kind": "hold",
+			"target": "1500",
+			"detail": "1500 ms",
+			"ok": true,
+			"ms": 16127,
+			"frames": 45
+		},
+		{
+			"index": 15,
 			"kind": "scroll",
 			"target": "Verdicts",
-			"detail": "scrolled 640 px",
+			"detail": "scrolled 425 px",
 			"ok": true,
-			"ms": 3252,
+			"ms": 10504,
 			"frames": 27
+		},
+		{
+			"index": 16,
+			"kind": "scroll",
+			"target": "60",
+			"detail": "scrolled 60 px",
+			"ok": true,
+			"ms": 3861,
+			"frames": 9
+		},
+		{
+			"index": 17,
+			"kind": "read",
+			"target": "delivered",
+			"detail": "delivered = \"1\"",
+			"ok": true,
+			"ms": 3,
+			"frames": 0
 		},
 		{
 			"index": 18,
 			"kind": "read",
-			"target": "delivered",
-			"detail": "delivered = \"1\"",
+			"target": "dropped",
+			"detail": "dropped = \"1\"",
 			"ok": true,
 			"ms": 2,
 			"frames": 0
 		},
 		{
 			"index": 19,
-			"kind": "read",
-			"target": "dropped",
-			"detail": "dropped = \"1\"",
-			"ok": true,
-			"ms": 1,
-			"frames": 0
-		},
-		{
-			"index": 20,
 			"kind": "hold",
 			"target": "4200",
 			"detail": "4200 ms",
 			"ok": true,
-			"ms": 12932,
+			"ms": 46725,
 			"frames": 126
 		}
 	],
@@ -198,16 +186,21 @@
 	"saw": [
 		"· importance 80",
 		"Mute 1 min",
-		"below-importance-floor"
+		"· below-importance-floor"
 	],
 	"responses": [],
-	"cuts": [],
+	"cuts": [
+		{
+			"afterStep": 9,
+			"seconds": 6
+		}
+	],
 	"video": {
 		"path": "public/x-media/herald-reasons/reel.mp4",
-		"sha256": "358a5dccba8a98d778fbf6bcef0b1db66482f9f61bd490a142eb5019fe7ab269",
-		"frames": 384,
-		"motion": 0.559,
-		"durationSec": 12.8,
+		"sha256": "004af3e34cea186a04eb8d3aa414287dabf65abdddfd0c767d83ca688d184d58",
+		"frames": 429,
+		"motion": 1,
+		"durationSec": 14.3,
 		"width": 1080,
 		"height": 1080,
 		"fps": 30,
