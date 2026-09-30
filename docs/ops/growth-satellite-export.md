@@ -1,6 +1,6 @@
 # Growth satellite export and publication
 
-The agent starter and GLB Quality Gate are intentionally small public front doors. Their
+The agent starter, GLB Quality Gate, and Oracle Desk are intentionally small public front doors. Their
 canonical source stays in this monorepo under [`satellites/`](../../satellites), and a one-way
 export creates standalone Git histories ready for their own repositories.
 
@@ -26,7 +26,7 @@ For a structural export without network-dependent installs:
 npm run export:growth-satellites -- --offline
 ```
 
-Build only one tree with `--target agent-starter` or `--target glb-quality-gate`. A custom
+Build only one tree with `--target agent-starter`, `--target glb-quality-gate`, or `--target oracle-desk`. A custom
 `--out` is allowed only beneath this repository's `dist/` directory.
 
 ## Publish
@@ -35,6 +35,7 @@ The destination repositories are:
 
 - `https://github.com/nirholas/threews-agent-starter`
 - `https://github.com/nirholas/glb-quality-gate`
+- `https://github.com/nirholas/oracle-desk`
 
 Create each as a public, empty repository. The exporter prints the exact `remote add` and
 `push` commands for the generated tree. Never pull, fetch, or merge a satellite into the
@@ -55,6 +56,14 @@ After publishing the Action:
 Marketplace publication requires a separate public repository with one root action metadata
 file. The release tag is the install contract, so move `v1` only after the exported tests and
 bundle pass.
+
+After publishing Oracle Desk:
+
+1. clone the published repository fresh, run `npm ci` and `npm start`, and confirm the dashboard at
+   `http://127.0.0.1:4180` shows radar live and Oracle verdicts arriving;
+2. confirm the exported tree holds no `data/` directory or `.env` (the exporter drops a satellite's
+   top-level operator state, but check the manifest's file count against the source);
+3. add the repository topics `solana`, `trading-desk`, `autonomous-agents`, and `three-ws`.
 
 ## Update the monorepo after publication
 

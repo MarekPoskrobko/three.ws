@@ -39,6 +39,12 @@ const TARGETS = [
 		repository: 'https://github.com/nirholas/glb-quality-gate.git',
 		build: true,
 	},
+	{
+		name: 'oracle-desk',
+		source: 'satellites/oracle-desk',
+		repository: 'https://github.com/nirholas/oracle-desk.git',
+		build: false,
+	},
 ];
 
 function assertSafeOutput(path) {
@@ -58,9 +64,12 @@ function run(command, args, cwd) {
 function copyProject(target) {
 	const source = join(REPO, target.source);
 	const destination = join(OUT, target.name);
+	// A satellite's top-level `data/` and `.env` are operator state (the oracle
+	// desk's book of positions and trades, local keys), never source.
+	const operatorState = new Set([join(source, 'data'), join(source, '.env')]);
 	cpSync(source, destination, {
 		recursive: true,
-		filter: (path) => !['node_modules', '.git'].includes(path.split('/').at(-1)),
+		filter: (path) => !['node_modules', '.git'].includes(path.split('/').at(-1)) && !operatorState.has(path),
 	});
 	for (const legal of ['LICENSE', 'NOTICE']) {
 		const sourceFile = join(REPO, legal);

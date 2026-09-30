@@ -8,8 +8,9 @@ main repository.
 | --- | --- | --- |
 | [`agent-starter`](./agent-starter) | One-click Codespaces introduction to an animated 3D agent | `nirholas/threews-agent-starter` |
 | [`glb-quality-gate`](./glb-quality-gate) | GitHub Action that reviews changed GLB files in pull requests | `nirholas/glb-quality-gate` |
+| [`oracle-desk`](./oracle-desk) | Autonomous pump.fun trading desk on the three.ws Oracle: six desks, a head that fires losing strategy seats, paper by default | `nirholas/oracle-desk` |
 
-Build both publishable trees with:
+Build every publishable tree with:
 
 ```bash
 npm run export:growth-satellites
