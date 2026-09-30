@@ -240,6 +240,8 @@ The fee rides inside the same transaction that creates the asset, so a failed de
 
 Two things to notice. First, the treasury leg is explicitly "funds buybacks," so consumption revenue in $THREE is recycled into market demand rather than sitting idle. Second, the rewards leg funds holder reflections: the public `GET /api/three-token/revenue-share` endpoint exposes `revenue_share_pool_pct` (currently 10), `revenue_share_pool_usd`, and `per_token_yield` alongside price, supply, and holder count.
 
+**Where every $100 goes, live.** The table above is a snapshot for reading. The live version is the "Where every $100 goes" section on [/three-token](/three-token): it draws every policy straight from `GET /api/token/config` (`split_policies`, in basis points), so a policy added in code appears there with no page change, and it lists the treasury and holder-rewards wallets with their live $THREE and USDC balances from `GET /api/three-token/wallets`. When the two disagree, the page and the API are right. See the [$THREE Fee Flow API](./api-reference.md#three-fee-flow-api) for the response shapes.
+
 The wallets fail closed in production. If `THREE_TREASURY_WALLET` or `THREE_REWARDS_WALLET` is unset, the platform returns a typed 503 rather than routing real funds to a placeholder. Nobody's money goes to a default address by accident.
 
 ---

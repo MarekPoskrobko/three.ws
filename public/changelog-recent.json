@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-30T08:11:37.031Z",
+	"generated_at": "2026-09-30T08:16:18.027Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3785,
+	"total": 3786,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -39,6 +39,16 @@
 			"tags": [
 				"fix",
 				"improvement"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "See where every $100 paid in $THREE goes",
+			"summary": "The $THREE page now shows, for paid compute, marketplace sales, scarcity mints, spins and copy-trading fees, how every $100 splits between the seller, the treasury that funds buybacks, and holder rewards. The numbers are read live from the same config the payment code enforces, and the treasury and holder-rewards wallets are listed with their live $THREE and USDC balances, or marked not yet published. The platform never burns $THREE. The page also follows your light or dark theme now.",
+			"link": "/three-token",
+			"tags": [
+				"feature"
 			]
 		},
 		{
@@ -1577,17 +1587,6 @@
 			"tags": [
 				"fix",
 				"security"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Pay-per-call is keyboard-drivable, and it now tells you when the wallet lane is down instead of sitting on a spinner",
-			"summary": "A full audit of /pay, the page where an agent pays $0.001 USDC on Solana per call to a paid API. Three things were quietly broken. The wallet pill kept reverting to \"loading\" after it had already shown a real balance: the page fills that pill from a live balance lookup, but the translation pass that runs a moment later put the placeholder back over it, and the same race hit the session ticker and the wallet setup dialog. Those slots are now marked as owned by the page, so a rendered balance stays put. The whole wallet picker was unreachable without a mouse, because each wallet was a clickable box rather than a button; every wallet is now a real button that tab reaches, Enter and Space activate, and a screen reader announces as selected or not. Both dialogs (the first-visit walkthrough and the wallet setup prompt) now take focus when they open, close on Escape, hand focus back to whatever opened them, and stay hidden from screen readers while closed. States are honest now too. When the agent wallet service is unreachable the page used to tell a signed-out visitor to create their first agent, which was never the problem; it now says wallets are unavailable and offers a Retry that re-runs the lookup without a page reload. A failed activity feed used to leave a row of dots ticking forever and now says the feed is unavailable. The page also gained the heading it never had, one high-contrast focus ring across every control, and a copy pass that removed the long dashes from its description and on-page text.",
-			"link": "/pay",
-			"tags": [
-				"fix",
-				"improvement"
 			]
 		}
 	]

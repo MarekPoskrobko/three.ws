@@ -105,7 +105,7 @@ function renderPolicy({ key, legs }) {
 	const segments = parts
 		.map(
 			(p) =>
-				`<span class="tk-ff-seg ${roleClass(p.role)}" style="flex-grow:${p.bps}">${p.bps * 8 >= totalBps ? `<span class="tk-ff-seg-t">${esc(fmtDollars(p.dollars))}</span>` : ''}</span>`,
+				`<span class="tk-ff-seg ${roleClass(p.role)}" style="flex-grow:${p.bps}">${p.bps * 5 >= totalBps ? `<span class="tk-ff-seg-t">${esc(fmtDollars(p.dollars))}</span>` : ''}</span>`,
 		)
 		.join('');
 	const legend = parts
@@ -203,7 +203,8 @@ function renderWallet(w) {
 export function renderWallets(snapshot) {
 	const wallets = Array.isArray(snapshot?.wallets) ? snapshot.wallets : [];
 	const asOf = snapshot?.as_of ? new Date(snapshot.as_of) : null;
-	const stamp = asOf && !Number.isNaN(asOf.getTime())
+	const anyRead = wallets.some((w) => w.configured);
+	const stamp = anyRead && asOf && !Number.isNaN(asOf.getTime())
 		? `Balances read from Solana at ${asOf.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}.`
 		: '';
 	return `<ul class="tk-ff-wallets">${wallets.map(renderWallet).join('')}</ul>${stamp ? `<p class="tk-ff-src">${esc(stamp)}</p>` : ''}`;

@@ -6689,6 +6689,46 @@ page strip (on-chain agents, attestations, forge models).
 
 ---
 
+## $THREE Fee Flow API
+
+Two public reads behind the "Where every $100 goes" section of [/three-token](/three-token). No auth, CORS open.
+
+```
+GET /api/token/config
+GET /api/three-token/wallets
+```
+
+`/api/token/config` returns the $THREE mint, the treasury and holder-rewards wallet addresses (`null` with `treasury_configured` / `rewards_configured` set to `false` when unpublished), and `split_policies`: every split the payment code enforces, as legs of `{ role, bps }` that sum to 10,000 basis points. Roles are `seller` (the seller, creator, or copied trader), `treasury` (funds $THREE buybacks), and `rewards` (paid back to holders). The platform never burns $THREE, so no policy has a burn leg. Divide `bps` by 100 to get dollars out of every $100.
+
+`/api/three-token/wallets` returns what the two receivers hold right now, read from Solana through the RPC failover chain:
+
+```json
+{
+	"as_of": "2026-09-30T08:12:29.625Z",
+	"wallets": [
+		{
+			"role": "treasury",
+			"address": "<base58 address>",
+			"configured": true,
+			"balances": {
+				"three": { "symbol": "$THREE", "ok": true, "amount": 140, "atomics": "140000000", "decimals": 6 },
+				"usdc": { "symbol": "USDC", "ok": true, "amount": 2.081, "atomics": "2081000", "decimals": 6 }
+			}
+		},
+		{ "role": "rewards", "address": null, "configured": false, "balances": null }
+	]
+}
+```
+
+An unpublished wallet is listed with `configured: false`, never omitted. A balance the RPC chain could not read comes back `ok: false` with `amount: null`; it is never reported as zero. Successful reads are cached for 60 seconds.
+
+```bash
+curl -s https://three.ws/api/token/config | jq '.split_policies'
+curl -s https://three.ws/api/three-token/wallets | jq '.wallets[] | {role, configured, three: .balances.three.amount}'
+```
+
+---
+
 ## Unstoppable Agent API
 
 The [Unstoppable Agent](/unstoppable) is a self-funding autonomous agent: it

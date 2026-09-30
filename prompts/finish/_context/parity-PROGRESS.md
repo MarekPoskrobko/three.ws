@@ -9,3 +9,9 @@ Cross-session handoff for the `parity-` orders ([parity-00-CONTEXT.md](parity-00
 - Found: the `three-ws` npm package was never published, so `npx three-ws setup` (named in every MCP 401 and in `/.well-known/mcp.json`) fails for everyone. Order 919.
 - Corrected in the context file: the teardown called the $THREE burn policy contradictory. It is not. The platform never burns $THREE; the burn in `launcher-claimer.js` is each agent's own coin.
 - Orders 015 to 022 and 919 to 925 written 2026-09-30.
+
+## 2026-09-30: order 021, where every $100 goes (/three-token)
+
+- Shipped: `05faebd92` (live wallets API `GET /api/three-token/wallets`, `src/three-token-fee-flow.js`, light theme for the page, tests) and the close-out commit that carries this entry (segment-label and stamp polish, light-theme state-kit tokens, API reference "$THREE Fee Flow API", thesis section 6 pointer, changelog).
+- Measured in production: `treasury: null`, `rewards_wallet: null` on `/api/token/config`; neither `THREE_TREASURY_WALLET` nor `THREE_REWARDS_WALLET` exists on the Cloud Run service. 6 `POST /api/token/quote` answered 503 in the 7 days to 2026-09-30 and none succeeded (Cloud Run request log). The textPayload search for `treasury_unavailable` finds nothing because the quote handler returns that typed 503 without logging it; count refusals from the request log instead.
+- Remaining owner action (not a line of the order): publish the two wallet addresses with `gcloud run services update three-ws-api --region us-central1 --update-env-vars THREE_TREASURY_WALLET=...,THREE_REWARDS_WALLET=...`. The page shows "not yet published" until then and fills itself in afterwards with no code change.

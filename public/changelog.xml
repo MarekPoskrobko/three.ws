@@ -31,6 +31,14 @@
 			<description>When a photo-to-3D job fails partway through, it already moves to the next engine on its own. Until now that only worked while another textured engine was up, so when the two main engines failed together last week, photo generations stopped completely. There is now one more rung: our own TripoSG engine takes over the job and delivers the shape of your model without textures, and the progress screen tells you when that happens. You get a model you can work with instead of an error, and whenever a textured engine is up, it is still used first.</description>
 		</item>
 		<item>
+			<title>See where every $100 paid in $THREE goes</title>
+			<link>https://three.ws/three-token</link>
+			<guid isPermaLink="false">2026-09-30:See where every $100 paid in $THREE goes</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>The $THREE page now shows, for paid compute, marketplace sales, scarcity mints, spins and copy-trading fees, how every $100 splits between the seller, the treasury that funds buybacks, and holder rewards. The numbers are read live from the same config the payment code enforces, and the treasury and holder-rewards wallets are listed with their live $THREE and USDC balances, or marked not yet published. The platform never burns $THREE. The page also follows your light or dark theme now.</description>
+		</item>
+		<item>
 			<title>The language menu now offers 69 languages</title>
 			<link>https://three.ws/sitemap</link>
 			<guid isPermaLink="false">2026-09-30:The language menu now offers 69 languages</guid>

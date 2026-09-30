@@ -103,6 +103,12 @@ function injectStyles() {
 		--tk-text:#111116; --tk-text-2:#33333b; --tk-muted:#55555e; --tk-dim:#62626b; --tk-strong:#000;
 		--tk-btn:#f0f0f4; --tk-btn-hover:#e5e5ec; --tk-link:#0b63b6; --tk-warn:#a15c00;
 		--tk-skel-a:#ececf0; --tk-skel-b:#f6f6f9;
+		/* shared state-kit tokens (src/shared/state-kit.js) so its empty and error
+		   states read correctly on the light page */
+		--ink:#111116; --ink-dim:#55555e; --danger:#b91c1c; --modal-bg:#fff;
+		--surface-2:#f3f3f6; --surface-3:#e9e9ee; --stroke:#e2e2e8; --stroke-strong:#b9b9c4;
+		--btn-primary-bg:#111116; --btn-primary-fg:#fff; --btn-primary-bg-hover:#2b2b33;
+		--btn-secondary-bg:#f0f0f4; --btn-secondary-fg:#111116; --btn-secondary-bg-hover:#e5e5ec; --btn-secondary-border:#d6d6de;
 	}
 	html { scroll-behavior: smooth; }
 	* { box-sizing: border-box; }
