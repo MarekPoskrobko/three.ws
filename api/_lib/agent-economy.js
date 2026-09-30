@@ -420,13 +420,17 @@ function emptyPlatformStats(windowDays) {
  * @param {number} [opts.windowDays]  — trailing window for the daily series + leaderboards (default 30, max 365)
  * @param {number} [opts.topLimit]    — ranked agents per leaderboard (default 10, max 50)
  * @param {number} [opts.recentLimit] — recent settled hires in the feed (default 12, max 50)
+ * @param {number} [opts.maxWindowDays] - ceiling on windowDays (default 365). The public
+ *   /api/agent-economy/volume endpoint keeps the default; the platform analytics roll-up
+ *   raises it so its "all time" window never silently drops the oldest hires.
  */
 export async function platformEconomyStats({
 	windowDays = 30,
 	topLimit = 10,
 	recentLimit = 12,
+	maxWindowDays = 365,
 } = {}) {
-	const win = Math.min(365, Math.max(1, Math.floor(Number(windowDays) || 30)));
+	const win = Math.min(maxWindowDays, Math.max(1, Math.floor(Number(windowDays) || 30)));
 	const top = Math.min(50, Math.max(1, Math.floor(Number(topLimit) || 10)));
 	const recent = Math.min(50, Math.max(1, Math.floor(Number(recentLimit) || 12)));
 
