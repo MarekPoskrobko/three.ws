@@ -6,6 +6,7 @@
  * GET /api/three-token/burns: platform burn ledger (always empty: no platform burns)
  * GET /api/three-token/activity       — protocol activity feed
  * GET /api/three-token/leaderboard    — ranked $THREE holders (public, paginated)
+ * GET /api/three-token/wallets: treasury + rewards wallet addresses and live balances (public)
  *
  * Market data (price, market cap, supply, holders) comes from the shared market
  * module — Birdeye → DexScreener → GeckoTerminal failover with a stale cache —
@@ -24,6 +25,7 @@ import { threeHolderBalances, threeHolderCount } from '../_lib/coin/three-holder
 import { buybackStats } from '../_lib/token/buyback.js';
 import { microbuyStats } from '../_lib/token/microbuy.js';
 import { fetchPumpVerification } from '../_lib/pump-verification.js';
+import { publicWalletBalances } from '../_lib/token/wallet-balances.js';
 
 // Truncate a base58 wallet for display: "FeMb…Jpump".
 function shortWallet(addr) {
@@ -170,6 +172,14 @@ export default wrap(async (req, res) => {
 			// stale-while-revalidate keeps the panel populated during a refresh.
 			{ 'cache-control': 'public, s-maxage=20, stale-while-revalidate=120' },
 		);
+	}
+
+	if (action === 'wallets') {
+		// The two public receivers of every $THREE split, with what each holds right
+		// now. Unset wallets come back `configured: false` (never hidden), and a
+		// balance the RPC chain could not read comes back `ok: false` (never zero).
+		const snapshot = await publicWalletBalances();
+		return json(res, 200, snapshot, { 'cache-control': 'public, s-maxage=30, stale-while-revalidate=60' });
 	}
 
 	if (action === 'revenue-share') {
