@@ -10,7 +10,8 @@ that passed is the queue's `approval` setting: the owner, or a policy that only
 ever releases posts filmed against the live product
 ([Who approves a post](#who-approves-a-post)).
 
-To write a post, start with [Writing a story](./x-story-authoring.md).
+To write a post, start with [Writing a story](./x-story-authoring.md). An author working one
+product area at a time is handed [the author brief](./x-story-author-brief.md).
 
 ---
 
