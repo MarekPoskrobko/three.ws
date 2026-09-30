@@ -157,6 +157,7 @@ export default wrap(async (req, res) => {
 					where coalesce(re.owner_user_id, ai.user_id) = ${user.id}
 					  and re.currency_mint = ${currency_mint}
 					  and ls.id is null
+					  and not re.settled_to_wallet
 				) + (
 					select coalesce(sum(sd.amount), 0)::bigint
 					from split_distributions sd

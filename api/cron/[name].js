@@ -4331,6 +4331,7 @@ async function handleProcessWithdrawals(req, res) {
 				FROM agent_revenue_events re
 				JOIN agent_identities ai ON ai.id = re.agent_id
 				WHERE coalesce(re.owner_user_id, ai.user_id) = w.user_id AND re.currency_mint = w.currency_mint
+				  AND NOT re.settled_to_wallet
 			) -
 			(
 				SELECT coalesce(sum(w2.amount), 0)::bigint

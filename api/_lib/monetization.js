@@ -79,6 +79,8 @@ export async function recordRevenueEvent({
  * Calculate the available (withdrawable) balance for a user.
  *
  * available = sum(net_amount from revenue_events) - sum(amount from pending/processing/completed withdrawals)
+ * Revenue flagged settled_to_wallet already landed in the owner's own wallet on
+ * chain (agent API sales over x402), so it is never withdrawable from the treasury.
  *
  * @param {string} userId
  * @param {string} [currencyMint] - filter to a specific currency (default: all)
@@ -93,6 +95,7 @@ export async function getAvailableBalance(userId, currencyMint = null) {
 			JOIN agent_identities ai ON ai.id = re.agent_id
 			WHERE coalesce(re.owner_user_id, ai.user_id) = ${userId}
 			  AND re.currency_mint = ${currencyMint}
+			  AND NOT re.settled_to_wallet
 		`
 		: await sql`
 			SELECT
@@ -100,6 +103,7 @@ export async function getAvailableBalance(userId, currencyMint = null) {
 			FROM agent_revenue_events re
 			JOIN agent_identities ai ON ai.id = re.agent_id
 			WHERE coalesce(re.owner_user_id, ai.user_id) = ${userId}
+			  AND NOT re.settled_to_wallet
 		`;
 
 	const [wResult] = currencyMint

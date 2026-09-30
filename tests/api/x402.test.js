@@ -18,7 +18,7 @@ vi.mock('../../api/_lib/db.js', () => ({
 		if (q.includes('agent_payout_wallets')) {
 			return walletState.payout ? [{ address: walletState.payout }] : [];
 		}
-		if (q.includes('wallet_address from agent_identities')) {
+		if (q.includes('from agent_identities')) {
 			return walletState.agentWallet ? [{ wallet_address: walletState.agentWallet }] : [];
 		}
 		return [];
