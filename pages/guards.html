@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot, no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Repository guards · three.ws</title>
-	<meta name="description" content="Every mechanical guard that protects the three.ws codebase, and the stage each one runs in. This repository has no CI, so correctness is enforced by fast local checks wired into the prebuild, the gate, the deploy build, and the git pre-push hook." />
+	<title data-i18n="guards.page_title">Repository guards · three.ws</title>
+	<meta name="description" data-i18n-attr="content:guards.meta_desc" content="Every mechanical guard that protects the three.ws codebase, and the stage each one runs in. This repository has no CI, so correctness is enforced by fast local checks wired into the prebuild, the gate, the deploy build, and the git pre-push hook." />
 	<link rel="canonical" href="https://three.ws/guards" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Repository guards · three.ws" />
-	<meta property="og:description" content="No CI, by necessity. Every check that protects this codebase, what it protects, and the stage it runs in." />
+	<meta property="og:title" data-i18n-attr="content:guards.share_title" content="Repository guards · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:guards.og_desc" content="No CI, by necessity. Every check that protects this codebase, what it protects, and the stage it runs in." />
 	<meta property="og:url" content="https://three.ws/guards" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=learn&amp;t=Repository+guards&amp;d=Every+mechanical+guard+that+protects+the+three.ws+codebase%2C+and+the+stage+each+one+runs+in.+This+repository+has+no+CI%2C+so+correctness+is+enforced+by+fast+local&amp;p=%2Fguards" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Repository guards · three.ws" />
-	<meta name="twitter:description" content="No CI, by necessity. Every check that protects this codebase, and where it runs." />
+	<meta name="twitter:title" data-i18n-attr="content:guards.share_title" content="Repository guards · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:guards.twitter_desc" content="No CI, by necessity. Every check that protects this codebase, and where it runs." />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Repository+guards&amp;d=Every+mechanical+guard+that+protects+the+three.ws+codebase%2C+and+the+stage+each+one+runs+in.+This+repository+has+no+CI%2C+so+correctness+is+enforced+by+fast+local&amp;p=%2Fguards" />
 	<style>
 		:root {
@@ -514,9 +514,9 @@
 
 	<main class="gd-wrap">
 		<section class="gd-hero">
-			<span class="gd-eyebrow">Engineering</span>
-			<h1>Repository guards</h1>
-			<p>
+			<span class="gd-eyebrow" data-i18n="guards.eyebrow">Engineering</span>
+			<h1 data-i18n="guards.h1">Repository guards</h1>
+			<p data-i18n-html="guards.hero_p">
 				This codebase has no CI. What protects it instead is a set of small, fast checks wired into paths
 				nobody can skip: the prebuild, the gate, the deploy build, and the git pre-push hook. Every guard
 				below exists because something broke once. Read the
@@ -527,14 +527,15 @@
 		</section>
 
 		<div class="gd-controls">
-			<div class="gd-chips" id="gd-chips" role="group" aria-label="Filter guards by stage"></div>
-			<label class="gd-sr" for="gd-search">Search guards</label>
+			<div class="gd-chips" id="gd-chips" role="group" aria-label="Filter guards by stage" data-i18n-attr="aria-label:guards.chips_aria"></div>
+			<label class="gd-sr" for="gd-search" data-i18n="guards.search_label">Search guards</label>
 			<input
 				class="gd-search"
 				id="gd-search"
 				type="search"
 				placeholder="Search guards, commands, files"
 				autocomplete="off"
+				data-i18n-attr="placeholder:guards.search_placeholder"
 			/>
 		</div>
 
@@ -549,12 +550,12 @@
 				<div class="gd-skeleton"></div>
 				<div class="gd-skeleton"></div>
 			</div>
-			<p class="gd-sr" id="gd-status">Loading the guard registry.</p>
+			<p class="gd-sr" id="gd-status" data-i18n="guards.status_loading">Loading the guard registry.</p>
 		</div>
 
 		<section class="gd-more">
-			<h2>Adding a guard</h2>
-			<p>
+			<h2 data-i18n="guards.more_h2">Adding a guard</h2>
+			<p data-i18n-html="guards.more_p">
 				A guard that is not wired into an unavoidable path protects nothing, and a guard nobody has proven
 				still catches anything protects nothing either. Write the checker, give it an npm script, register it
 				in <code>data/guards.json</code> with the violation it must reject, and wire it into a stage.
@@ -563,9 +564,9 @@
 				it still fires.
 			</p>
 			<div class="gd-links">
-				<a href="/docs/tutorials/write-a-guard">Write a guard</a>
-				<a href="/docs/guards">Guard reference</a>
-				<a href="/docs/start-here">Start here</a>
+				<a href="/docs/tutorials/write-a-guard" data-i18n="guards.link_write">Write a guard</a>
+				<a href="/docs/guards" data-i18n="guards.link_reference">Guard reference</a>
+				<a href="/docs/start-here" data-i18n="guards.link_start">Start here</a>
 			</div>
 		</section>
 	</main>

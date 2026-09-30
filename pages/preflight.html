@@ -4,21 +4,21 @@
 		<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>x402 Preflight · three.ws</title>
-		<meta name="description" content="Check whether any x402 seller can actually settle before you pay it. Fetches the seller's signed payability attestation and verifies the signature and expiry in your browser." />
+		<title data-i18n="preflight.page_title">x402 Preflight · three.ws</title>
+		<meta name="description" data-i18n-attr="content:preflight.meta_desc" content="Check whether any x402 seller can actually settle before you pay it. Fetches the seller's signed payability attestation and verifies the signature and expiry in your browser." />
 		<link rel="canonical" href="https://three.ws/preflight" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/preflight" />
-		<meta property="og:title" content="x402 Preflight · three.ws" />
-		<meta property="og:description" content="x402 tells you what a resource costs. Preflight tells you whether the seller can actually take your money. Signed, time-bounded, verified in your browser." />
+		<meta property="og:title" data-i18n-attr="content:preflight.share_title" content="x402 Preflight · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:preflight.share_desc" content="x402 tells you what a resource costs. Preflight tells you whether the seller can actually take your money. Signed, time-bounded, verified in your browser." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=agent-tools&amp;t=x402+Preflight%3A+can+this+seller+actually+settle%3F&amp;d=Check+whether+any+x402+seller+can+complete+a+payment+before+you+sign+one.+Fetches+the+seller%27s+signed+payability+attestation+and+verifies+the+ed25519&amp;p=%2Fpreflight" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="x402 Preflight · three.ws" />
-		<meta name="twitter:description" content="x402 tells you what a resource costs. Preflight tells you whether the seller can actually take your money. Signed, time-bounded, verified in your browser." />
+		<meta name="twitter:title" data-i18n-attr="content:preflight.share_title" content="x402 Preflight · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:preflight.share_desc" content="x402 tells you what a resource costs. Preflight tells you whether the seller can actually take your money. Signed, time-bounded, verified in your browser." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=agent-tools&amp;t=x402+Preflight%3A+can+this+seller+actually+settle%3F&amp;d=Check+whether+any+x402+seller+can+complete+a+payment+before+you+sign+one.+Fetches+the+seller%27s+signed+payability+attestation+and+verifies+the+ed25519&amp;p=%2Fpreflight" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -91,9 +91,9 @@
 
 		<main class="pf-shell">
 			<section class="pf-hero">
-				<p class="pf-kicker">Don't trust · verify</p>
-				<h1 class="pf-title">Can this seller actually take your money?</h1>
-				<p class="pf-sub">
+				<p class="pf-kicker" data-i18n="preflight.kicker">Don't trust · verify</p>
+				<h1 class="pf-title" data-i18n="preflight.title">Can this seller actually take your money?</h1>
+				<p class="pf-sub" data-i18n-html="preflight.sub">
 					x402 tells an agent what a resource <em>costs</em>. It says nothing about whether the seller
 					can currently <em>settle</em> what it charges, and the gap is paid for by the buyer: a signed
 					transfer, a consumed blockhash, a 502, and no service. Preflight closes it. Paste any origin
@@ -104,21 +104,21 @@
 			</section>
 
 			<form class="pf-form" id="pf-form">
-				<label class="pf-input-label" for="pf-origin" hidden>Seller origin</label>
+				<label class="pf-input-label" for="pf-origin" hidden data-i18n="preflight.origin_label">Seller origin</label>
 				<input class="pf-input" id="pf-origin" name="origin" type="url" inputmode="url"
 					placeholder="https://three.ws" autocomplete="off" spellcheck="false" required />
-				<button class="pf-go" id="pf-go" type="submit">Check</button>
+				<button class="pf-go" id="pf-go" type="submit" data-i18n="preflight.check_btn">Check</button>
 			</form>
 			<div class="pf-examples">
-				<span>Try:</span>
+				<span data-i18n="preflight.try_label">Try:</span>
 				<button class="pf-chip" type="button" data-origin="https://three.ws">three.ws</button>
 			</div>
 
 			<div id="pf-out" aria-live="polite"></div>
 
 			<section class="pf-how">
-				<h2>Use it from your own agent</h2>
-				<p>
+				<h2 data-i18n="preflight.how_h2">Use it from your own agent</h2>
+				<p data-i18n="preflight.how_p1">
 					The client is a package. It fetches, verifies, and refuses to let you pay a seller that cannot
 					settle, re-routing to a rail that works when one is available.
 				</p>
@@ -129,9 +129,9 @@ import { guardedFetch } from '@three-ws/x402-preflight';
 // A drop-in fetch that will not spend your money on a seller who cannot deliver.
 const fetch402 = guardedFetch({ prefer: ['solana:mainnet'] });
 await fetch402('https://three.ws/api/x402/echo');</code></pre>
-				<p>Or from a terminal, where the exit code is the answer:</p>
+				<p data-i18n="preflight.how_p2">Or from a terminal, where the exit code is the answer:</p>
 				<pre><code>npx @three-ws/x402-preflight https://three.ws --network solana:mainnet &amp;&amp; echo "safe to pay"</code></pre>
-				<p>
+				<p data-i18n-html="preflight.how_p3">
 					The wire format is public and unencumbered: any x402 seller can publish one and any client can
 					verify it. Read the <a href="/docs/x402-preflight">documentation</a> for the format, the
 					verification rules, and how to serve an attestation from your own endpoint.

@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Awesome 3D Agents · three.ws</title>
-	<meta name="description" content="A curated list of everything you need to give an AI agent a body: text-to-3D models, capture and splatting, avatars, rigging, motion generation, lipsync and voice, web renderers, asset pipelines, and the agent frameworks that drive them. Searchable, filterable, and link-checked." />
+	<title data-i18n="awesome.page_title">Awesome 3D Agents · three.ws</title>
+	<meta name="description" data-i18n-attr="content:awesome.meta_desc" content="A curated list of everything you need to give an AI agent a body: text-to-3D models, capture and splatting, avatars, rigging, motion generation, lipsync and voice, web renderers, asset pipelines, and the agent frameworks that drive them. Searchable, filterable, and link-checked." />
 	<link rel="canonical" href="https://three.ws/awesome" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Awesome 3D Agents · three.ws" />
-	<meta property="og:description" content="Everything you need to give an AI agent a body: generation, capture, avatars, rigging, motion, voice, renderers, pipelines, and agent frameworks. Curated and link-checked." />
+	<meta property="og:title" data-i18n-attr="content:awesome.share_title" content="Awesome 3D Agents · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:awesome.og_desc" content="Everything you need to give an AI agent a body: generation, capture, avatars, rigging, motion, voice, renderers, pipelines, and agent frameworks. Curated and link-checked." />
 	<meta property="og:url" content="https://three.ws/awesome" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=learn&amp;t=Awesome+3D+Agents&amp;d=A+curated%2C+link-checked+list+of+everything+you+need+to+give+an+AI+agent+a+body%3A+text-to-3D+models%2C+capture+and+Gaussian+splatting%2C+avatars%2C+rigging%2C+motion&amp;p=%2Fawesome" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Awesome 3D Agents · three.ws" />
-	<meta name="twitter:description" content="A curated, link-checked list of everything you need to give an AI agent a body." />
+	<meta name="twitter:title" data-i18n-attr="content:awesome.share_title" content="Awesome 3D Agents · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:awesome.twitter_desc" content="A curated, link-checked list of everything you need to give an AI agent a body." />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Awesome+3D+Agents&amp;d=A+curated%2C+link-checked+list+of+everything+you+need+to+give+an+AI+agent+a+body%3A+text-to-3D+models%2C+capture+and+Gaussian+splatting%2C+avatars%2C+rigging%2C+motion&amp;p=%2Fawesome" />
 	<meta name="twitter:site" content="@trythreews" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -205,7 +205,7 @@
 
 	<main class="aw-wrap">
 		<section class="aw-hero">
-			<p class="aw-eyebrow"><b>Awesome list</b> curated by three.ws</p>
+			<p class="aw-eyebrow" data-i18n-html="awesome.eyebrow"><b>Awesome list</b> curated by three.ws</p>
 			<h1 id="aw-title">Awesome 3D Agents</h1>
 			<p class="aw-lede" id="aw-tagline">Everything you need to give an AI agent a body.</p>
 			<p class="aw-intro" id="aw-intro">
@@ -213,15 +213,15 @@
 				into something you can see, animate, talk to, and put on a web page.
 			</p>
 			<div class="aw-hero-actions">
-				<a class="aw-btn aw-btn-primary" id="aw-repo" href="https://github.com/nirholas/three.ws/tree/main/awesome">
+				<a class="aw-btn aw-btn-primary" id="aw-repo" href="https://github.com/nirholas/three.ws/tree/main/awesome" data-i18n-html="awesome.star_github">
 					<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
 					Star it on GitHub
 				</a>
-				<button type="button" class="aw-btn" id="aw-copy">
+				<button type="button" class="aw-btn" id="aw-copy" data-i18n-html="awesome.copy_md">
 					<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="9" rx="1.5"/><path d="M10.5 3.5h-7a1 1 0 0 0-1 1v8"/></svg>
 					Copy as Markdown
 				</button>
-				<a class="aw-btn" id="aw-suggest" href="https://github.com/nirholas/three.ws/issues/new?title=Awesome%203D%20Agents%3A%20add%20%3Cproject%3E&amp;body=Project%20url%3A%0ASection%3A%0AOne-sentence%20description%3A%0AWhy%20it%20belongs%3A">
+				<a class="aw-btn" id="aw-suggest" href="https://github.com/nirholas/three.ws/issues/new?title=Awesome%203D%20Agents%3A%20add%20%3Cproject%3E&amp;body=Project%20url%3A%0ASection%3A%0AOne-sentence%20description%3A%0AWhy%20it%20belongs%3A" data-i18n="awesome.suggest_entry">
 					Suggest an entry
 				</a>
 			</div>
@@ -231,36 +231,36 @@
 		<div class="aw-controls">
 			<div class="aw-search">
 				<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
-				<label class="sr-only" for="aw-q">Search the list</label>
-				<input id="aw-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the list…" />
+				<label class="sr-only" for="aw-q" data-i18n="awesome.search_label">Search the list</label>
+				<input id="aw-q" type="search" autocomplete="off" spellcheck="false" placeholder="Search the list…" data-i18n-attr="placeholder:awesome.search_placeholder" />
 				<span class="aw-kbd" aria-hidden="true">/</span>
 			</div>
-			<div class="aw-chips" id="aw-tagbar" role="group" aria-label="Filter by tag">
-				<span class="aw-chips-label">Filter</span>
+			<div class="aw-chips" id="aw-tagbar" role="group" aria-label="Filter by tag" data-i18n-attr="aria-label:awesome.tagbar_aria">
+				<span class="aw-chips-label" data-i18n="awesome.filter_label">Filter</span>
 			</div>
 		</div>
 
 		<p class="aw-count" id="aw-count" role="status" aria-live="polite"></p>
 
 		<div class="aw-layout">
-			<nav class="aw-rail" id="aw-rail" aria-label="Sections">
-				<h2>Sections</h2>
+			<nav class="aw-rail" id="aw-rail" aria-label="Sections" data-i18n-attr="aria-label:awesome.rail_aria">
+				<h2 data-i18n="awesome.rail_h2">Sections</h2>
 				<ol id="aw-rail-list"></ol>
 			</nav>
 			<div id="aw-sections"></div>
 		</div>
 
 		<section class="aw-cta">
-			<h2>Something missing?</h2>
-			<p>
+			<h2 data-i18n="awesome.cta_h2">Something missing?</h2>
+			<p data-i18n-html="awesome.cta_p">
 				Entries live in <code>data/awesome.json</code>, and the list you are reading is generated
 				from it, so a pull request never touches a Markdown file by hand. Every link here is
 				fetched and classified by <code>npm run awesome:links</code> before it ships.
 			</p>
 			<div class="aw-cta-actions">
-				<a class="aw-btn" href="https://github.com/nirholas/three.ws/blob/main/awesome/CONTRIBUTING.md">How to contribute</a>
-				<a class="aw-btn" href="https://github.com/nirholas/three.ws/blob/main/data/awesome.json">Edit the source</a>
-				<a class="aw-btn" href="/forge">Try the free text-to-3D lane</a>
+				<a class="aw-btn" href="https://github.com/nirholas/three.ws/blob/main/awesome/CONTRIBUTING.md" data-i18n="awesome.cta_contribute">How to contribute</a>
+				<a class="aw-btn" href="https://github.com/nirholas/three.ws/blob/main/data/awesome.json" data-i18n="awesome.cta_edit_source">Edit the source</a>
+				<a class="aw-btn" href="/forge" data-i18n="awesome.cta_try_lane">Try the free text-to-3D lane</a>
 			</div>
 		</section>
 	</main>
@@ -591,5 +591,6 @@
 
 		load();
 	</script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

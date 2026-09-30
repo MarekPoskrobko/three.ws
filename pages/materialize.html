@@ -4,17 +4,17 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Materialize · Turn any 3D model into a real printed object · three.ws</title>
-	<meta name="description" content="Take any three.ws creation from a spinning model to a high-precision physical print. Live printability analysis, true-scale AR preview on your own desk, an itemized price, and USDC checkout on Solana." />
+	<title data-i18n="materialize.page_title">Materialize · Turn any 3D model into a real printed object · three.ws</title>
+	<meta name="description" data-i18n-attr="content:materialize.meta_desc" content="Take any three.ws creation from a spinning model to a high-precision physical print. Live printability analysis, true-scale AR preview on your own desk, an itemized price, and USDC checkout on Solana." />
 	<link rel="canonical" href="https://three.ws/materialize" />
-	<meta property="og:title" content="Materialize · three.ws" />
-	<meta property="og:description" content="Turn any 3D model into a real printed object. Printability analysis, true-scale AR, an itemized quote, and USDC checkout on Solana." />
+	<meta property="og:title" data-i18n-attr="content:materialize.share_title" content="Materialize · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:materialize.share_desc" content="Turn any 3D model into a real printed object. Printability analysis, true-scale AR, an itemized quote, and USDC checkout on Solana." />
 	<meta property="og:url" content="https://three.ws/materialize" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Materialize&amp;d=Turn+any+3D+model+into+a+real+printed+object.+Live+printability+analysis+and+automatic+repair%2C+a+true-scale+AR+preview+on+your+own+desk%2C+an+itemized+price+from&amp;p=%2Fmaterialize" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@trythreews" />
-	<meta name="twitter:title" content="Materialize · three.ws" />
-	<meta name="twitter:description" content="Turn any 3D model into a real printed object. Printability analysis, true-scale AR, an itemized quote, and USDC checkout on Solana." />
+	<meta name="twitter:title" data-i18n-attr="content:materialize.share_title" content="Materialize · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:materialize.share_desc" content="Turn any 3D model into a real printed object. Printability analysis, true-scale AR, an itemized quote, and USDC checkout on Solana." />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
 	<link rel="stylesheet" href="/nav.css" />
@@ -324,9 +324,9 @@
 <body>
 	<div class="mz-wrap">
 		<header class="mz-hero">
-			<p class="mz-eyebrow">Materialize · physical prints</p>
-			<h1 class="mz-title">Hold the thing you generated.</h1>
-			<p class="mz-lede">
+			<p class="mz-eyebrow" data-i18n="materialize.eyebrow">Materialize · physical prints</p>
+			<h1 class="mz-title" data-i18n="materialize.title">Hold the thing you generated.</h1>
+			<p class="mz-lede" data-i18n-html="materialize.lede">
 				Pick any model, and this measures whether it can actually be printed, repairs it if it cannot,
 				shows it at <strong>true scale on your own desk in AR</strong>, and prices the real object.
 				Paid in <strong>USDC on Solana</strong>, printed on real machines, shipped to your door.
@@ -335,23 +335,23 @@
 
 		<!-- Empty state: no model chosen yet. -->
 		<section id="mz-picker" aria-labelledby="mz-picker-title">
-			<h2 id="mz-picker-title" class="mz-h2" style="margin-bottom: 0.7rem;">Choose something to print</h2>
+			<h2 id="mz-picker-title" class="mz-h2" style="margin-bottom: 0.7rem;" data-i18n="materialize.picker_title">Choose something to print</h2>
 			<div class="mz-pick">
 				<div class="mz-drop" id="mz-drop">
-					<h2>Drop a .glb, or paste a link</h2>
-					<p>Any glTF binary. Your own file is analyzed and never published.</p>
-					<button type="button" class="mz-btn" id="mz-browse">Choose a file</button>
+					<h2 data-i18n="materialize.drop_title">Drop a .glb, or paste a link</h2>
+					<p data-i18n="materialize.drop_note">Any glTF binary. Your own file is analyzed and never published.</p>
+					<button type="button" class="mz-btn" id="mz-browse" data-i18n="materialize.choose_file">Choose a file</button>
 					<input type="file" id="mz-file" accept=".glb,model/gltf-binary" hidden />
 					<form class="mz-url-row" id="mz-url-form">
-						<input type="url" id="mz-url" placeholder="https://…/model.glb" aria-label="Model URL" />
-						<button type="submit" class="mz-btn">Load</button>
+						<input type="url" id="mz-url" placeholder="https://…/model.glb" aria-label="Model URL" data-i18n-attr="aria-label:materialize.url_aria" />
+						<button type="submit" class="mz-btn" data-i18n="materialize.load_btn">Load</button>
 					</form>
 				</div>
 
 				<div class="mz-panel">
 					<div class="mz-panel-head">
 						<h2 class="mz-h2" id="mz-rail-title">Your creations</h2>
-						<a class="mz-meta" href="/create" style="color: inherit;">Make a new one</a>
+						<a class="mz-meta" href="/create" style="color: inherit;" data-i18n="materialize.make_new">Make a new one</a>
 					</div>
 					<div class="mz-rail" id="mz-rail" aria-labelledby="mz-rail-title">
 						<div class="mz-skel"></div><div class="mz-skel"></div><div class="mz-skel"></div>
@@ -387,7 +387,7 @@
 					<div class="mz-scale" id="mz-scale" hidden>
 						<div class="mz-scale-col">
 							<div class="mz-scale-bar" id="mz-scale-bar" style="height: 60px;"></div>
-							<span class="mz-scale-tag" id="mz-scale-tag">Print</span>
+							<span class="mz-scale-tag" id="mz-scale-tag" data-i18n="materialize.scale_print">Print</span>
 						</div>
 						<div class="mz-scale-col">
 							<div class="mz-scale-ref" id="mz-scale-ref" style="height: 90px;"></div>
@@ -402,14 +402,14 @@
 				</div>
 				<div class="mz-stage-bar">
 					<p class="mz-meta" id="mz-source-note"></p>
-					<button type="button" class="mz-btn mz-ar" id="mz-ar-btn" hidden>
+					<button type="button" class="mz-btn mz-ar" id="mz-ar-btn" hidden data-i18n-html="materialize.ar_btn">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 							<path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2" />
 							<path d="M12 8.5 8 10.7v4.6l4 2.2 4-2.2v-4.6z" />
 						</svg>
 						See it at true size
 					</button>
-					<button type="button" class="mz-btn" id="mz-change">Change model</button>
+					<button type="button" class="mz-btn" id="mz-change" data-i18n="materialize.change_model">Change model</button>
 				</div>
 			</div>
 
@@ -417,7 +417,7 @@
 				<!-- Printability -->
 				<div class="mz-panel" id="mz-printability">
 					<div class="mz-panel-head">
-						<h2 class="mz-h2">Printability</h2>
+						<h2 class="mz-h2" data-i18n="materialize.printability">Printability</h2>
 						<p class="mz-meta" id="mz-printability-meta"></p>
 					</div>
 					<div class="mz-score">
@@ -436,7 +436,7 @@
 					<dl class="mz-facts" id="mz-facts"></dl>
 					<ul class="mz-issues" id="mz-issues"></ul>
 					<div class="mz-repair-row" id="mz-repair-row" hidden>
-						<button type="button" class="mz-btn" id="mz-repair">Repair this model</button>
+						<button type="button" class="mz-btn" id="mz-repair" data-i18n="materialize.repair_btn">Repair this model</button>
 						<span class="mz-meta" id="mz-repair-note"></span>
 					</div>
 					<ul class="mz-repair-metrics" id="mz-repair-metrics" hidden></ul>
@@ -445,13 +445,13 @@
 				<!-- Material -->
 				<div class="mz-panel">
 					<div class="mz-panel-head">
-						<h2 class="mz-h2">Material</h2>
+						<h2 class="mz-h2" data-i18n="materialize.material">Material</h2>
 						<p class="mz-meta" id="mz-finish-note"></p>
 					</div>
-					<div class="mz-mats" id="mz-mats" role="group" aria-label="Print material"></div>
+					<div class="mz-mats" id="mz-mats" role="group" aria-label="Print material" data-i18n-attr="aria-label:materialize.material_aria"></div>
 					<div class="mz-opts" id="mz-finish-row" hidden>
 						<label class="mz-field">
-							Finish
+							<span data-i18n="materialize.finish_label">Finish</span>
 							<select id="mz-finish"></select>
 						</label>
 					</div>
@@ -460,30 +460,30 @@
 				<!-- Size -->
 				<div class="mz-panel" id="mz-size-panel">
 					<div class="mz-size-row">
-						<h2 class="mz-h2">Size</h2>
+						<h2 class="mz-h2" data-i18n="materialize.size">Size</h2>
 						<div style="text-align: right;">
 							<span class="mz-size-value" id="mz-size-value">-</span>
 							<span class="mz-meta" id="mz-size-foot" hidden style="display: block;"></span>
 						</div>
 					</div>
-					<input type="range" class="mz-slider" id="mz-size" min="10" max="200" step="1" value="100" aria-label="Printed height in millimetres" />
+					<input type="range" class="mz-slider" id="mz-size" min="10" max="200" step="1" value="100" aria-label="Printed height in millimetres" data-i18n-attr="aria-label:materialize.size_aria" />
 					<div class="mz-track-ends">
 						<span id="mz-size-min"></span>
 						<span id="mz-size-max"></span>
 					</div>
-					<div class="mz-chips" id="mz-presets" role="group" aria-label="Size presets"></div>
+					<div class="mz-chips" id="mz-presets" role="group" aria-label="Size presets" data-i18n-attr="aria-label:materialize.presets_aria"></div>
 					<div class="mz-opts">
 						<label class="mz-field">
-							Quantity
+							<span data-i18n="materialize.quantity_label">Quantity</span>
 							<input type="number" id="mz-qty" min="1" max="500" step="1" value="1" />
 						</label>
 						<label class="mz-field">
-							Ship to
+							<span data-i18n="materialize.shipto_label">Ship to</span>
 							<select id="mz-country"></select>
 						</label>
 						<label class="mz-switch mz-field" id="mz-hollow-label" hidden>
 							<input type="checkbox" id="mz-hollow" />
-							Hollow it
+							<span data-i18n="materialize.hollow_label">Hollow it</span>
 						</label>
 					</div>
 				</div>
@@ -491,7 +491,7 @@
 				<!-- Quote -->
 				<div class="mz-panel" id="mz-quote-panel">
 					<div class="mz-panel-head">
-						<h2 class="mz-h2">Price</h2>
+						<h2 class="mz-h2" data-i18n="materialize.price">Price</h2>
 						<p class="mz-meta" id="mz-quote-meta"></p>
 					</div>
 					<div id="mz-quote-body" aria-live="polite">
@@ -507,16 +507,16 @@
 
 		<section class="mz-notes">
 			<div class="mz-note">
-				<h3>The price is measured, not guessed</h3>
-				<p>Every quote comes from the mesh itself: the analyzer computes the true solid volume of the repaired model, and the price is that volume in the material you picked. Nothing is estimated from a bounding box.</p>
+				<h3 data-i18n="materialize.note_price_h">The price is measured, not guessed</h3>
+				<p data-i18n="materialize.note_price_p">Every quote comes from the mesh itself: the analyzer computes the true solid volume of the repaired model, and the price is that volume in the material you picked. Nothing is estimated from a bounding box.</p>
 			</div>
 			<div class="mz-note">
-				<h3>USDC on Solana, by decision</h3>
-				<p>There is no card processor. You pay the exact quoted amount in USDC on Solana, the order is opened against a signed quote, and the price can never move between the quote and the charge.</p>
+				<h3 data-i18n="materialize.note_usdc_h">USDC on Solana, by decision</h3>
+				<p data-i18n="materialize.note_usdc_p">There is no card processor. You pay the exact quoted amount in USDC on Solana, the order is opened against a signed quote, and the price can never move between the quote and the charge.</p>
 			</div>
 			<div class="mz-note">
-				<h3>Agents can order too</h3>
-				<p>The same pipeline is exposed to autonomous agents over x402, so a model an agent just generated can be manufactured without a human in the loop. See <a href="/docs/api-reference">the API reference</a>.</p>
+				<h3 data-i18n="materialize.note_agents_h">Agents can order too</h3>
+				<p data-i18n-html="materialize.note_agents_p">The same pipeline is exposed to autonomous agents over x402, so a model an agent just generated can be manufactured without a human in the loop. See <a href="/docs/api-reference">the API reference</a>.</p>
 			</div>
 		</section>
 	</div>
@@ -529,7 +529,7 @@
 					<h2 id="mz-sheet-title">Where should it go?</h2>
 					<p class="mz-meta" id="mz-sheet-sub">We keep the minimum a courier needs, and nothing else.</p>
 				</div>
-				<button type="button" class="mz-close" id="mz-sheet-close" aria-label="Close checkout">×</button>
+				<button type="button" class="mz-close" id="mz-sheet-close" aria-label="Close checkout" data-i18n-attr="aria-label:materialize.close_checkout">×</button>
 			</div>
 			<div id="mz-sheet-body"></div>
 		</div>
@@ -537,5 +537,6 @@
 
 	<script src="/nav.js"></script>
 	<script type="module" src="/src/materialize.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

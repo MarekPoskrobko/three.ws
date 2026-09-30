@@ -4,9 +4,10 @@
 		<script>/* three.ws theme boot, no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Prompt Library: Claude Prompts You Can Copy and Paste · three.ws</title>
+		<title data-i18n="prompts.page_title">Prompt Library: Claude Prompts You Can Copy and Paste · three.ws</title>
 		<meta
 			name="description"
+			data-i18n-attr="content:prompts.meta_desc"
 			content="Ready-made prompts to paste into Claude: generate a 3D model or a rigged avatar, embed one on your site, validate a GLB, find or sell a paid API in the agent economy. Most need no account, no key and no setup."
 		/>
 		<meta name="robots" content="index, follow, max-image-preview:large" />
@@ -14,8 +15,8 @@
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="three.ws Prompt Library" />
-		<meta property="og:description" content="Copy a prompt. Paste it into your Claude. Get a 3D model, an embed, or a paid endpoint back." />
+		<meta property="og:title" data-i18n-attr="content:prompts.share_title" content="three.ws Prompt Library" />
+		<meta property="og:description" data-i18n-attr="content:prompts.og_desc" content="Copy a prompt. Paste it into your Claude. Get a 3D model, an embed, or a paid endpoint back." />
 		<meta property="og:url" content="https://three.ws/prompts" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Prompt+Library&amp;d=Copy-paste+prompts+for+Claude+and+any+AI+agent%3A+generate+a+3D+model+or+a+rigged+avatar%2C+embed+one+on+a+site%2C+validate+a+GLB%2C+find+or+sell+a+paid+API+in+the&amp;p=%2Fprompts" />
 		<meta property="og:image:width" content="1200" />
@@ -24,8 +25,8 @@
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="three.ws Prompt Library" />
-		<meta name="twitter:description" content="Copy a prompt. Paste it into your Claude. Get a real result." />
+		<meta name="twitter:title" data-i18n-attr="content:prompts.share_title" content="three.ws Prompt Library" />
+		<meta name="twitter:description" data-i18n-attr="content:prompts.twitter_desc" content="Copy a prompt. Paste it into your Claude. Get a real result." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Prompt+Library&amp;d=Copy-paste+prompts+for+Claude+and+any+AI+agent%3A+generate+a+3D+model+or+a+rigged+avatar%2C+embed+one+on+a+site%2C+validate+a+GLB%2C+find+or+sell+a+paid+API+in+the&amp;p=%2Fprompts" />
 
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -47,7 +48,7 @@
 
 		<main class="pl" id="main-content">
 			<div id="prompt-library">
-				<p class="pl-boot" role="status">Loading the prompt library…</p>
+				<p class="pl-boot" role="status" data-i18n="prompts.loading">Loading the prompt library…</p>
 			</div>
 		</main>
 

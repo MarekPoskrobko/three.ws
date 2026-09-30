@@ -8,11 +8,11 @@
 	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 	<link rel="manifest" href="/manifest.webmanifest" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Oracle Lab · three.ws</title>
-	<meta name="description" content="The Oracle's conviction model, published in full: every bucket weight with the sample count behind it, held-out reliability curves, the version history of what the machine learned and when, and a live scorer you can drive by hand." />
+	<title data-i18n="oracle-lab.page_title">Oracle Lab · three.ws</title>
+	<meta name="description" data-i18n-attr="content:oracle-lab.meta_desc" content="The Oracle's conviction model, published in full: every bucket weight with the sample count behind it, held-out reliability curves, the version history of what the machine learned and when, and a live scorer you can drive by hand." />
 	<link rel="canonical" href="https://three.ws/oracle-lab" />
-	<meta property="og:title" content="Oracle Lab: the model, published" />
-	<meta property="og:description" content="Every weight, every sample count, every version. Download the model and reproduce any score offline." />
+	<meta property="og:title" data-i18n-attr="content:oracle-lab.og_title" content="Oracle Lab: the model, published" />
+	<meta property="og:description" data-i18n-attr="content:oracle-lab.og_desc" content="Every weight, every sample count, every version. Download the model and reproduce any score offline." />
 	<meta property="og:url" content="https://three.ws/oracle-lab" />
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary_large_image" />
@@ -166,8 +166,8 @@
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:alt" content="Oracle Lab: the model, published - three.ws">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Oracle Lab: the model, published · three.ws">
-	<meta name="twitter:description" content="The Oracle's conviction model in full: every bucket weight with the number of labeled launches behind it and what happened to them, the held-out reliability curve for each tier, the version history of every refit including the ones that were refused, and a live scorer that runs the real weights in your browser. Download it and reproduce any score offline.">
+	<meta name="twitter:title" data-i18n-attr="content:oracle-lab.twitter_title" content="Oracle Lab: the model, published · three.ws">
+	<meta name="twitter:description" data-i18n-attr="content:oracle-lab.twitter_desc" content="The Oracle's conviction model in full: every bucket weight with the number of labeled launches behind it and what happened to them, the held-out reliability curve for each tier, the version history of every refit including the ones that were refused, and a live scorer that runs the real weights in your browser. Download it and reproduce any score offline.">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Oracle+Lab%3A+the+model%2C+published&amp;d=The+Oracle%27s+conviction+model+in+full%3A+every+bucket+weight+with+the+number+of+labeled+launches+behind+it+and+what+happened+to+them%2C+the+held-out+reliability&amp;p=%2Foracle-lab">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Oracle Lab: the model, published","description":"The Oracle's conviction model in full: every bucket weight with the number of labeled launches behind it and what happened to them, the held-out reliability curve for each tier, the version history of every refit including the ones that were refused, and a live scorer that runs the real weights in your browser. Download it and reproduce any score offline.","url":"https://three.ws/oracle-lab","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=crypto&t=Oracle+Lab%3A+the+model%2C+published&d=The+Oracle%27s+conviction+model+in+full%3A+every+bucket+weight+with+the+number+of+labeled+launches+behind+it+and+what+happened+to+them%2C+the+held-out+reliability&p=%2Foracle-lab"}]}</script>
 </head>
@@ -176,37 +176,37 @@
 
 	<main class="wrap">
 		<header class="hero">
-			<p class="eyebrow">Oracle Lab</p>
-			<h1>The model, published.</h1>
-			<p>
+			<p class="eyebrow" data-i18n="oracle-lab.eyebrow">Oracle Lab</p>
+			<h1 data-i18n="oracle-lab.h1">The model, published.</h1>
+			<p data-i18n-html="oracle-lab.lede">
 				The Oracle watches every pump.fun launch for its first ninety seconds and scores it.
 				<span class="lede-strong">This page is the machine that makes the score</span>, not a summary of it:
 				every bucket weight with the number of labeled launches behind it, what actually happened to
 				those launches, the reliability curve it earned on data it had never seen, and the full history
 				of every version it has tried, including the ones that were refused.
 			</p>
-			<p style="margin-top:14px">
+			<p style="margin-top:14px" data-i18n="oracle-lab.lede2">
 				It is a lookup table, roughly 32KB. Download it and you can reproduce any score we have ever
 				published, offline, with no key.
 			</p>
 			<div class="hero-actions">
-				<a class="btn primary" href="/api/oracle/model" target="_blank" rel="noopener">Download the model</a>
-				<a class="btn" href="/docs/oracle-model">Read the docs</a>
-				<a class="btn" href="/oracle">Live feed</a>
-				<a class="btn" href="https://www.npmjs.com/package/@three-ws/oracle-model" target="_blank" rel="noopener">npm package</a>
+				<a class="btn primary" href="/api/oracle/model" target="_blank" rel="noopener" data-i18n="oracle-lab.btn_download">Download the model</a>
+				<a class="btn" href="/docs/oracle-model" data-i18n="oracle-lab.btn_docs">Read the docs</a>
+				<a class="btn" href="/oracle" data-i18n="oracle-lab.btn_feed">Live feed</a>
+				<a class="btn" href="https://www.npmjs.com/package/@three-ws/oracle-model" target="_blank" rel="noopener" data-i18n="oracle-lab.btn_npm">npm package</a>
 			</div>
 		</header>
 
 		<section class="block" id="summary">
-			<h2>What is scoring right now</h2>
-			<p class="sub">The exact model this platform is using this second, with the numbers it earned on launches held out of its own training.</p>
+			<h2 data-i18n="oracle-lab.scoring_h">What is scoring right now</h2>
+			<p class="sub" data-i18n="oracle-lab.scoring_sub">The exact model this platform is using this second, with the numbers it earned on launches held out of its own training.</p>
 			<div class="stats" id="stats"></div>
 			<div id="predicts" class="note"></div>
 		</section>
 
 		<section class="block" id="ladder-block">
-			<h2>Does each tier earn what it claims</h2>
-			<p class="sub">
+			<h2 data-i18n="oracle-lab.ladder_h">Does each tier earn what it claims</h2>
+			<p class="sub" data-i18n="oracle-lab.ladder_sub">
 				The score line is not a percentage: 86 claims a 45% chance, not an 86% one. Each rung is a
 				public promise about measured frequency, so here is the promise next to the measurement, on
 				launches the model never saw. A model whose top band stops clearing its own claim is refused
@@ -216,8 +216,8 @@
 		</section>
 
 		<section class="block" id="scorer-block">
-			<h2>Drive it yourself</h2>
-			<p class="sub">
+			<h2 data-i18n="oracle-lab.scorer_h">Drive it yourself</h2>
+			<p class="sub" data-i18n="oracle-lab.scorer_sub">
 				Every control below feeds the real weights, in your browser. Nothing is sent anywhere. This is
 				the same arithmetic that scores the live feed.
 			</p>
@@ -230,20 +230,20 @@
 		</section>
 
 		<section class="block" id="weights-block">
-			<h2>Every weight, and the evidence for it</h2>
-			<p class="sub">
+			<h2 data-i18n="oracle-lab.weights_h">Every weight, and the evidence for it</h2>
+			<p class="sub" data-i18n-html="oracle-lab.weights_sub">
 				One row per bucket. <b>Log-odds</b> is what that bucket adds to the score. <b>Win</b>, <b>rug</b>
 				and <b>run</b> are what actually happened to the launches in it, and <b>n</b> is how many there
 				were. A claim with a small n is a weak claim, and you can see which is which.
 			</p>
 			<div class="selrow">
-				<label for="wsort">Sort by</label>
+				<label for="wsort" data-i18n="oracle-lab.sort_by">Sort by</label>
 				<select id="wsort">
-					<option value="impact">strongest influence</option>
-					<option value="win">highest win rate</option>
-					<option value="rug">highest rug rate</option>
-					<option value="n">most samples</option>
-					<option value="feature">feature name</option>
+					<option value="impact" data-i18n="oracle-lab.sort_impact">strongest influence</option>
+					<option value="win" data-i18n="oracle-lab.sort_win">highest win rate</option>
+					<option value="rug" data-i18n="oracle-lab.sort_rug">highest rug rate</option>
+					<option value="n" data-i18n="oracle-lab.sort_n">most samples</option>
+					<option value="feature" data-i18n="oracle-lab.sort_feature">feature name</option>
 				</select>
 				<span id="wcount" class="pill"></span>
 			</div>
@@ -251,8 +251,8 @@
 		</section>
 
 		<section class="block" id="registry-block">
-			<h2>What it has learned, and when</h2>
-			<p class="sub">
+			<h2 data-i18n="oracle-lab.registry_h">What it has learned, and when</h2>
+			<p class="sub" data-i18n="oracle-lab.registry_sub">
 				The model refits every six hours and only takes over if it beats the incumbent on held-out
 				ranking. Refused candidates are listed here too, with the reason: a registry that shows only the
 				winners is a highlight reel, not a record.
@@ -262,10 +262,10 @@
 		</section>
 
 		<section class="block" id="use-block">
-			<h2>Use it</h2>
-			<p class="sub">Zero dependencies. Node, Deno, Bun, Workers, browser. One request, then it is local arithmetic forever.</p>
+			<h2 data-i18n="oracle-lab.use_h">Use it</h2>
+			<p class="sub" data-i18n="oracle-lab.use_sub">Zero dependencies. Node, Deno, Bun, Workers, browser. One request, then it is local arithmetic forever.</p>
 			<pre><code id="snippet"></code></pre>
-			<p class="note">
+			<p class="note" data-i18n-html="oracle-lab.use_note">
 				<b>verify() is the important one.</b> Feed it launches with outcomes you collected yourself and
 				it re-measures our AUC, Brier score and reliability curve on your data. If our published numbers
 				do not survive an independent sample, you should be able to find that out from us.
@@ -275,5 +275,6 @@
 
 	<script type="module" src="/nav.js"></script>
 	<script type="module" src="/src/oracle-lab.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

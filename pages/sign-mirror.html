@@ -4,24 +4,25 @@
 		<meta charset="utf-8" />
 		<script>/* three.ws theme boot - no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Sign Mirror: make the letter, get graded live · three.ws</title>
+		<title data-i18n="sign-mirror.page_title">Sign Mirror: make the letter, get graded live · three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta
 			name="description"
+			data-i18n-attr="content:sign-mirror.meta_desc"
 			content="Learn the ASL manual alphabet by making it, not just watching it. The avatar forms the letter, your camera watches your hand, and the page grades your handshape live and names the finger that is off. Everything stays on your device."
 		/>
 		<meta name="theme-color" content="#000000" />
 		<link rel="canonical" href="https://three.ws/sign-mirror" />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Sign Mirror: make the letter, get graded live · three.ws" />
-		<meta property="og:description" content="The avatar forms the ASL letter, your camera watches your hand, and the page grades your handshape live. No video ever leaves your device." />
+		<meta property="og:title" content="Sign Mirror: make the letter, get graded live · three.ws" data-i18n-attr="content:sign-mirror.share_title" />
+		<meta property="og:description" content="The avatar forms the ASL letter, your camera watches your hand, and the page grades your handshape live. No video ever leaves your device." data-i18n-attr="content:sign-mirror.share_desc" />
 		<meta property="og:url" content="https://three.ws/sign-mirror" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Sign+Mirror&amp;d=Learn+the+ASL+alphabet+by+making+it%3A+the+avatar+forms+the+letter%2C+your+camera+watches+your+hand%2C+and+the+page+grades+the+handshape+live%2C+naming+the+finger+that&amp;p=%2Fsign-mirror" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Sign Mirror: make the letter, get graded live · three.ws" />
-		<meta name="twitter:description" content="The avatar forms the ASL letter, your camera watches your hand, and the page grades your handshape live. No video ever leaves your device." />
+		<meta name="twitter:title" content="Sign Mirror: make the letter, get graded live · three.ws" data-i18n-attr="content:sign-mirror.share_title" />
+		<meta name="twitter:description" content="The avatar forms the ASL letter, your camera watches your hand, and the page grades your handshape live. No video ever leaves your device." data-i18n-attr="content:sign-mirror.share_desc" />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Sign+Mirror&amp;d=Learn+the+ASL+alphabet+by+making+it%3A+the+avatar+forms+the+letter%2C+your+camera+watches+your+hand%2C+and+the+page+grades+the+handshape+live%2C+naming+the+finger+that&amp;p=%2Fsign-mirror" />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -277,9 +278,9 @@
 
 		<main class="sm-main">
 			<section class="sm-hero">
-				<span class="sm-chip"><span class="sm-chip-dot"></span> Handshape practice · graded on your device</span>
-				<h1>The mirror that knows the alphabet.</h1>
-				<p class="sm-lede">
+				<span class="sm-chip" data-i18n-html="sign-mirror.chip"><span class="sm-chip-dot"></span> Handshape practice · graded on your device</span>
+				<h1 data-i18n="sign-mirror.title">The mirror that knows the alphabet.</h1>
+				<p class="sm-lede" data-i18n="sign-mirror.lede">
 					Watching a letter is the easy half. Here you make it: the avatar forms the target,
 					your camera watches your hand, and the page scores the handshape live, finger by
 					finger. Hold it right and the letter passes. Hold it wrong and it names the finger.
@@ -287,22 +288,22 @@
 				</p>
 				<div class="sm-progress-wrap">
 					<span id="sm-progress">0 of 26 letters held correctly</span>
-					<div class="sm-bar" id="sm-progress-bar" role="progressbar" aria-label="Alphabet progress" aria-valuemin="0" aria-valuemax="26" aria-valuenow="0"></div>
-					<button class="sm-reset-btn" id="sm-reset" type="button">Reset progress</button>
+					<div class="sm-bar" id="sm-progress-bar" role="progressbar" aria-label="Alphabet progress" aria-valuemin="0" aria-valuemax="26" aria-valuenow="0" data-i18n-attr="aria-label:sign-mirror.progress_aria"></div>
+					<button class="sm-reset-btn" id="sm-reset" type="button" data-i18n="sign-mirror.reset_btn">Reset progress</button>
 				</div>
 			</section>
 
 			<div class="sm-mirror">
 				<section class="sm-panel" aria-label="The avatar forming the target letter">
 					<div class="sm-panel-head">
-						<h2>The target</h2>
-						<span class="sm-panel-sub">watch, then copy</span>
+						<h2 data-i18n="sign-mirror.target_h">The target</h2>
+						<span class="sm-panel-sub" data-i18n="sign-mirror.target_sub">watch, then copy</span>
 					</div>
 					<div class="sm-stage-wrap">
 						<div id="sm-stage"></div>
 						<figure class="sm-target-card">
-							<svg id="sm-target" viewBox="0 0 320 320" role="img" aria-label="Target handshape diagram"></svg>
-							<figcaption>Target shape</figcaption>
+							<svg id="sm-target" viewBox="0 0 320 320" role="img" aria-label="Target handshape diagram" data-i18n-attr="aria-label:sign-mirror.target_diagram_aria"></svg>
+							<figcaption data-i18n="sign-mirror.target_caption">Target shape</figcaption>
 						</figure>
 						<div class="sm-status" id="sm-status" aria-live="polite"></div>
 					</div>
@@ -317,11 +318,11 @@
 						<p class="sm-callout" id="sm-shared" hidden></p>
 						<p class="sm-callout" id="sm-moving" hidden></p>
 						<div class="sm-controls">
-							<button class="sm-btn sm-btn-quiet" id="sm-replay" type="button">Show it again</button>
-							<span class="sm-opt-label" id="sm-hand-label">Your hand</span>
+							<button class="sm-btn sm-btn-quiet" id="sm-replay" type="button" data-i18n="sign-mirror.replay_btn">Show it again</button>
+							<span class="sm-opt-label" id="sm-hand-label" data-i18n="sign-mirror.hand_label">Your hand</span>
 							<div class="sm-opts" role="group" aria-labelledby="sm-hand-label">
-								<button class="sm-opt" type="button" data-hand="Right" aria-pressed="true">Right</button>
-								<button class="sm-opt" type="button" data-hand="Left" aria-pressed="false">Left</button>
+								<button class="sm-opt" type="button" data-hand="Right" aria-pressed="true" data-i18n="sign-mirror.hand_right">Right</button>
+								<button class="sm-opt" type="button" data-hand="Left" aria-pressed="false" data-i18n="sign-mirror.hand_left">Left</button>
 							</div>
 						</div>
 					</div>
@@ -329,26 +330,26 @@
 
 				<section class="sm-panel" aria-label="Your camera, graded live">
 					<div class="sm-panel-head">
-						<h2>Your hand</h2>
-						<span class="sm-panel-sub">graded in this tab only</span>
+						<h2 data-i18n="sign-mirror.yourhand_h">Your hand</h2>
+						<span class="sm-panel-sub" data-i18n="sign-mirror.yourhand_sub">graded in this tab only</span>
 					</div>
 					<div class="sm-video-wrap">
-						<video id="sm-video" playsinline muted aria-label="Your camera, mirrored"></video>
+						<video id="sm-video" playsinline muted aria-label="Your camera, mirrored" data-i18n-attr="aria-label:sign-mirror.video_aria"></video>
 						<svg id="sm-overlay" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
 						<div class="sm-video-empty">
-							<div class="sm-video-empty-inner sm-video-idle">
+							<div class="sm-video-empty-inner sm-video-idle" data-i18n-html="sign-mirror.video_idle">
 								<strong>The camera is off.</strong>
 								Turn it on to be graded live. The video, the hand landmarks, and every score
 								stay in this tab: there is no network call in the practice loop. Or skip the
 								camera and copy the target diagram by eye.
 							</div>
-							<div class="sm-video-inner sm-video-loading" role="status">
+							<div class="sm-video-inner sm-video-loading" role="status" data-i18n-html="sign-mirror.video_loading">
 								<span class="sm-spinner" aria-hidden="true"></span>
 								<strong>Downloading the hand tracker.</strong>
 								About 8 MB, once per browser. It is cached after this, and it runs in this
 								tab from then on.
 							</div>
-							<div class="sm-video-inner sm-video-starting" role="status">
+							<div class="sm-video-inner sm-video-starting" role="status" data-i18n-html="sign-mirror.video_starting">
 								<span class="sm-spinner" aria-hidden="true"></span>
 								<strong>Waiting for the camera.</strong>
 								Allow the camera in your browser prompt and the grading starts.
@@ -359,21 +360,21 @@
 						<div class="sm-score-row">
 							<span id="sm-score" aria-hidden="true">0</span>
 							<span class="sm-score-unit" aria-hidden="true">/100</span>
-							<div id="sm-score-bar" role="progressbar" aria-label="Handshape score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+							<div id="sm-score-bar" role="progressbar" aria-label="Handshape score" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-i18n-attr="aria-label:sign-mirror.score_aria"></div>
 						</div>
-						<div id="sm-hint" role="status" aria-live="polite">Turn the camera on to be graded, or just copy the diagram.</div>
-						<div id="sm-fingers" role="group" aria-label="Per-finger score"></div>
+						<div id="sm-hint" role="status" aria-live="polite" data-i18n="sign-mirror.hint_default">Turn the camera on to be graded, or just copy the diagram.</div>
+						<div id="sm-fingers" role="group" aria-label="Per-finger score" data-i18n-attr="aria-label:sign-mirror.fingers_aria"></div>
 						<div class="sm-camera-row">
-							<button class="sm-btn" id="sm-camera" type="button" aria-pressed="false">Turn the camera on</button>
-							<p id="sm-camera-note" hidden>Hand tracking runs locally via MediaPipe. Close the tab and it is gone.</p>
+							<button class="sm-btn" id="sm-camera" type="button" aria-pressed="false" data-i18n="sign-mirror.camera_btn">Turn the camera on</button>
+							<p id="sm-camera-note" hidden data-i18n="sign-mirror.camera_note">Hand tracking runs locally via MediaPipe. Close the tab and it is gone.</p>
 						</div>
 					</div>
 				</section>
 			</div>
 
 			<section class="sm-course" aria-label="The course">
-				<h2>The alphabet, in the order it is easiest to learn</h2>
-				<p>
+				<h2 data-i18n="sign-mirror.course_h">The alphabet, in the order it is easiest to learn</h2>
+				<p data-i18n="sign-mirror.course_copy">
 					Closed fists first, open hands next, then the pairs every beginner confuses. A letter
 					turns green once you have held it correctly; your progress is kept on this device.
 					You can also press any letter key to jump straight to it.
@@ -381,7 +382,7 @@
 				<div id="sm-rail"></div>
 			</section>
 
-			<p class="sm-note">
+			<p class="sm-note" data-i18n-html="sign-mirror.footer_note">
 				This is the practice half of the signing loop. The reference for every letter and number
 				lives at <a href="/asl-alphabet">/asl-alphabet</a>, whole words and signed chat replies at
 				<a href="/sign-language">/sign-language</a>, and the engine behind all three pages is
@@ -395,5 +396,6 @@
 
 		<script src="/footer.js" defer></script>
 		<script type="module" src="/src/sign-mirror-page.js"></script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

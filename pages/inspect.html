@@ -4,11 +4,11 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Model Inspector · Does your model clear the catalog bar? · three.ws</title>
-	<meta name="description" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded. Instant per-rule verdict with the fix for every failure." />
+	<title data-i18n="inspect.page_title">Model Inspector · Does your model clear the catalog bar? · three.ws</title>
+	<meta name="description" data-i18n-attr="content:inspect.meta_desc" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded. Instant per-rule verdict with the fix for every failure." />
 	<link rel="canonical" href="https://three.ws/inspect" />
-	<meta property="og:title" content="Model Inspector · three.ws" />
-	<meta property="og:description" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded." />
+	<meta property="og:title" data-i18n-attr="content:inspect.share_title" content="Model Inspector · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:inspect.og_desc" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded." />
 	<meta property="og:url" content="https://three.ws/inspect" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
@@ -205,8 +205,8 @@
 	<meta property="og:image:alt" content="Model Inspector on three.ws">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Model Inspector · three.ws">
-	<meta name="twitter:description" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded. Per-rule verdict, what was measured against each bound, and the fix for every failure.">
+	<meta name="twitter:title" data-i18n-attr="content:inspect.share_title" content="Model Inspector · three.ws">
+	<meta name="twitter:description" data-i18n-attr="content:inspect.twitter_desc" content="Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded. Per-rule verdict, what was measured against each bound, and the fix for every failure.">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Model+Inspector&amp;d=Run+the+exact+quality+gate+three.ws+applies+to+its+own+catalog+against+any+.glb%2C+in+your+browser.+Nothing+is+uploaded.+Per-rule+verdict%2C+what+was+measured&amp;p=%2Finspect">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Model Inspector","description":"Run the exact quality gate three.ws applies to its own catalog against any .glb, in your browser. Nothing is uploaded. Per-rule verdict, what was measured against each bound, and the fix for every failure.","url":"https://three.ws/inspect","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=build&t=Model+Inspector&d=Run+the+exact+quality+gate+three.ws+applies+to+its+own+catalog+against+any+.glb%2C+in+your+browser.+Nothing+is+uploaded.+Per-rule+verdict%2C+what+was+measured&p=%2Finspect"}]}</script>
 </head>
@@ -214,8 +214,8 @@
 	<div class="ins-wrap">
 		<header class="ins-hero">
 			<p class="ins-eyebrow">Catalog bar · <span id="ins-gate-version">gate</span></p>
-			<h1 class="ins-title">Would your model make it into the catalog?</h1>
-			<p class="ins-lede">
+			<h1 class="ins-title" data-i18n="inspect.title">Would your model make it into the catalog?</h1>
+			<p class="ins-lede" data-i18n-html="inspect.lede">
 				This runs the <strong>exact quality gate</strong> three.ws applies to its own catalog entries against any
 				<code>.glb</code> you give it. Same module, same thresholds, same decision.
 				It runs entirely in your browser: <strong>nothing is uploaded</strong>, and the verdict is instant.
@@ -224,30 +224,30 @@
 
 		<div class="ins-intake">
 			<div class="ins-drop" id="ins-drop">
-				<p class="ins-drop-title">Drop a .glb here</p>
-				<p class="ins-drop-sub">It never leaves your machine.</p>
-				<button type="button" class="ins-btn" id="ins-browse">Choose a file</button>
+				<p class="ins-drop-title" data-i18n="inspect.drop_title">Drop a .glb here</p>
+				<p class="ins-drop-sub" data-i18n="inspect.drop_sub">It never leaves your machine.</p>
+				<button type="button" class="ins-btn" id="ins-browse" data-i18n="inspect.choose_file">Choose a file</button>
 				<input type="file" id="ins-file" accept=".glb,model/gltf-binary" hidden />
 			</div>
 
 			<div class="ins-side">
 				<form class="ins-url-row" id="ins-url-form">
-					<input type="url" id="ins-url" placeholder="…or paste a .glb URL" aria-label="Model URL" />
-					<button type="submit" class="ins-btn">Inspect</button>
+					<input type="url" id="ins-url" placeholder="…or paste a .glb URL" aria-label="Model URL" data-i18n-attr="placeholder:inspect.url_placeholder;aria-label:inspect.url_aria" />
+					<button type="submit" class="ins-btn" data-i18n="inspect.inspect_btn">Inspect</button>
 				</form>
 				<div>
-					<p class="ins-meta" style="margin: 0 0 0.45rem;">Try one of these real models from our library:</p>
+					<p class="ins-meta" style="margin: 0 0 0.45rem;" data-i18n="inspect.try_samples">Try one of these real models from our library:</p>
 					<div class="ins-presets" id="ins-presets"></div>
 				</div>
 			</div>
 		</div>
 
 		<div class="ins-toolbar">
-			<div class="ins-seg" role="group" aria-label="Asset category">
-				<button type="button" data-category="avatar" aria-pressed="true">Character</button>
-				<button type="button" data-category="accessory" aria-pressed="false">Prop</button>
+			<div class="ins-seg" role="group" aria-label="Asset category" data-i18n-attr="aria-label:inspect.category_aria">
+				<button type="button" data-category="avatar" aria-pressed="true" data-i18n="inspect.cat_character">Character</button>
+				<button type="button" data-category="accessory" aria-pressed="false" data-i18n="inspect.cat_prop">Prop</button>
 			</div>
-			<span class="ins-meta">Props skip the character-only checks.</span>
+			<span class="ins-meta" data-i18n="inspect.props_note">Props skip the character-only checks.</span>
 			<span class="ins-filename" id="ins-filename" hidden></span>
 		</div>
 
@@ -258,9 +258,9 @@
 					<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
 						<path d="M12 2 3 7v10l9 5 9-5V7z" /><path d="M3 7l9 5 9-5M12 12v10" />
 					</svg>
-					<span>Your model appears here</span>
+					<span data-i18n="inspect.stage_empty">Your model appears here</span>
 				</div>
-				<div class="ins-hint" id="ins-hint" hidden>Drag to orbit · scroll to zoom</div>
+				<div class="ins-hint" id="ins-hint" hidden data-i18n="inspect.orbit_hint">Drag to orbit · scroll to zoom</div>
 				<div class="ins-viewer-note" id="ins-viewer-note" hidden></div>
 				<div class="ins-busy" id="ins-busy" hidden>
 					<div class="ins-spinner"></div>
@@ -270,12 +270,12 @@
 
 			<div>
 				<div class="ins-panel ins-placeholder" id="ins-placeholder">
-					<h2>No model yet</h2>
-					<p>Give the inspector a model and it reports every structural check the catalog applies, what it measured, and how to fix anything that failed.</p>
+					<h2 data-i18n="inspect.placeholder_h">No model yet</h2>
+					<p data-i18n="inspect.placeholder_p">Give the inspector a model and it reports every structural check the catalog applies, what it measured, and how to fix anything that failed.</p>
 					<ol>
-						<li>Drop a <code>.glb</code>, paste a URL, or pick a sample.</li>
-						<li>Read the per-rule verdict. Failures open first.</li>
-						<li>Switch to <strong>Prop</strong> if it is not a character.</li>
+						<li data-i18n-html="inspect.step_drop">Drop a <code>.glb</code>, paste a URL, or pick a sample.</li>
+						<li data-i18n="inspect.step_read">Read the per-rule verdict. Failures open first.</li>
+						<li data-i18n-html="inspect.step_prop">Switch to <strong>Prop</strong> if it is not a character.</li>
 					</ol>
 				</div>
 
@@ -290,9 +290,9 @@
 					<div class="ins-rig" id="ins-rig"></div>
 					<div class="ins-checks" id="ins-checks"></div>
 					<div class="ins-actions">
-						<button type="button" class="ins-btn" id="ins-copy-json">Copy verdict JSON</button>
-						<button type="button" class="ins-btn" id="ins-share" hidden>Copy shareable link</button>
-						<a class="ins-btn" href="/create" style="text-decoration: none;">Generate a new one</a>
+						<button type="button" class="ins-btn" id="ins-copy-json" data-i18n="inspect.copy_json">Copy verdict JSON</button>
+						<button type="button" class="ins-btn" id="ins-share" hidden data-i18n="inspect.copy_link">Copy shareable link</button>
+						<a class="ins-btn" href="/create" style="text-decoration: none;" data-i18n="inspect.generate_new">Generate a new one</a>
 					</div>
 				</div>
 			</div>
@@ -300,21 +300,22 @@
 
 		<section class="ins-notes">
 			<div class="ins-note">
-				<h3>Why the bar is strict</h3>
-				<p>A creator who generates a coarse mesh chose to, and can regenerate. A visitor browsing the catalog chose nothing: every entry is the platform vouching for itself. One melted blob on the storefront costs more trust than ten rejected generations cost compute.</p>
+				<h3 data-i18n="inspect.note_strict_h">Why the bar is strict</h3>
+				<p data-i18n="inspect.note_strict_p">A creator who generates a coarse mesh chose to, and can regenerate. A visitor browsing the catalog chose nothing: every entry is the platform vouching for itself. One melted blob on the storefront costs more trust than ten rejected generations cost compute.</p>
 			</div>
 			<div class="ins-note">
-				<h3>This is the real gate</h3>
-				<p>The page imports the same module the seeding cron runs, so the rules here cannot drift from the rules in production. Read <a href="/docs/seed-quality">the full gate documentation</a> for the vision stage that runs after this one.</p>
+				<h3 data-i18n="inspect.note_gate_h">This is the real gate</h3>
+				<p data-i18n-html="inspect.note_gate_p">The page imports the same module the seeding cron runs, so the rules here cannot drift from the rules in production. Read <a href="/docs/seed-quality">the full gate documentation</a> for the vision stage that runs after this one.</p>
 			</div>
 			<div class="ins-note">
-				<h3>Structure, not taste</h3>
-				<p>These checks measure whether a model is built well enough to publish: density, weight, texture, bounds, assembly. Whether it <em>looks</em> good is judged separately by a vision model on the catalog path.</p>
+				<h3 data-i18n="inspect.note_structure_h">Structure, not taste</h3>
+				<p data-i18n-html="inspect.note_structure_p">These checks measure whether a model is built well enough to publish: density, weight, texture, bounds, assembly. Whether it <em>looks</em> good is judged separately by a vision model on the catalog path.</p>
 			</div>
 		</section>
 	</div>
 
 	<script src="/nav.js"></script>
 	<script type="module" src="/src/inspect-page.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

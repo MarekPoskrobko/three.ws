@@ -4,13 +4,13 @@
 		<script>/* three.ws theme boot, no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Atomic · Solana V1 Transaction Inspector · three.ws</title>
-		<meta name="description" content="Inspect any Solana transaction or unsigned handoff before you co-sign it. See exact wire size, V1 transactionConfig limits, compute use, and sponsor safety." />
+		<title data-i18n="atomic.page_title">Atomic · Solana V1 Transaction Inspector · three.ws</title>
+		<meta name="description" data-i18n-attr="content:atomic.meta_desc" content="Inspect any Solana transaction or unsigned handoff before you co-sign it. See exact wire size, V1 transactionConfig limits, compute use, and sponsor safety." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/atomic" />
-		<meta property="og:title" content="Atomic · Solana V1 Transaction Inspector" />
-		<meta property="og:description" content="A live V1 observatory and pre-sign safety microscope for Solana's new 4,096-byte transactions." />
+		<meta property="og:title" data-i18n-attr="content:atomic.og_title" content="Atomic · Solana V1 Transaction Inspector" />
+		<meta property="og:description" data-i18n-attr="content:atomic.og_desc" content="A live V1 observatory and pre-sign safety microscope for Solana's new 4,096-byte transactions." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Atomic+-+Solana+V1+Inspector&amp;d=A+live+Solana+Transaction+V1+observatory+and+pre-sign+inspector.+Paste+a+mainnet+signature+or+base64+wire+transaction+to+see+exact+bytes%2C+resource+caps&amp;p=%2Fatomic" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
@@ -27,8 +27,8 @@
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image:alt" content="Atomic - Solana V1 Inspector - three.ws">
-	<meta name="twitter:title" content="Atomic - Solana V1 Inspector · three.ws">
-	<meta name="twitter:description" content="A live Solana Transaction V1 observatory and pre-sign inspector. Paste a mainnet signature or base64 wire transaction to see exact bytes, resource caps, compute use, and sponsor safety.">
+	<meta name="twitter:title" data-i18n-attr="content:atomic.tw_title" content="Atomic - Solana V1 Inspector · three.ws">
+	<meta name="twitter:description" data-i18n-attr="content:atomic.tw_desc" content="A live Solana Transaction V1 observatory and pre-sign inspector. Paste a mainnet signature or base64 wire transaction to see exact bytes, resource caps, compute use, and sponsor safety.">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Atomic+-+Solana+V1+Inspector&amp;d=A+live+Solana+Transaction+V1+observatory+and+pre-sign+inspector.+Paste+a+mainnet+signature+or+base64+wire+transaction+to+see+exact+bytes%2C+resource+caps&amp;p=%2Fatomic">
 </head>
 	<body>
@@ -37,87 +37,88 @@
 
 		<main class="at-shell">
 			<section class="at-hero">
-				<div class="at-live" id="at-live"><span></span><strong>Checking mainnet</strong><small id="at-slot">Live RPC</small></div>
-				<p class="at-eyebrow">Solana Transaction V1</p>
-				<h1>See what fits <em>atomically.</em></h1>
-				<p class="at-lede">The transaction ceiling is now 4 KiB. Atomic shows where every byte goes, reads V1 resource caps from the right place, and tells a sponsor what it would actually co-sign.</p>
-				<div class="at-hero-stats" aria-label="Transaction V1 headline statistics">
-					<div><strong>4,096</strong><span>bytes per V1 transaction</span></div>
-					<div><strong>3.3x</strong><span>the legacy payload room</span></div>
-					<div><strong>0x81</strong><span>visible at wire byte zero</span></div>
+				<div class="at-live" id="at-live"><span></span><strong data-i18n="atomic.live_status">Checking mainnet</strong><small id="at-slot" data-i18n="atomic.live_rpc">Live RPC</small></div>
+				<p class="at-eyebrow" data-i18n="atomic.eyebrow">Solana Transaction V1</p>
+				<h1 data-i18n-html="atomic.hero_title">See what fits <em>atomically.</em></h1>
+				<p class="at-lede" data-i18n="atomic.lede">The transaction ceiling is now 4 KiB. Atomic shows where every byte goes, reads V1 resource caps from the right place, and tells a sponsor what it would actually co-sign.</p>
+				<div class="at-hero-stats" aria-label="Transaction V1 headline statistics" data-i18n-attr="aria-label:atomic.hero_stats_aria">
+					<div><strong>4,096</strong><span data-i18n="atomic.stat_bytes">bytes per V1 transaction</span></div>
+					<div><strong>3.3x</strong><span data-i18n="atomic.stat_legacy_room">the legacy payload room</span></div>
+					<div><strong>0x81</strong><span data-i18n="atomic.stat_wire_zero">visible at wire byte zero</span></div>
 				</div>
 			</section>
 
 			<section class="at-inspector" aria-labelledby="at-inspector-title">
 				<div class="at-panel-head">
-					<div><p class="at-label">Flight recorder</p><h2 id="at-inspector-title">Inspect before you sign</h2></div>
-					<div class="at-tabs" role="tablist" aria-label="Transaction input type">
-						<button type="button" role="tab" id="at-tab-signature" aria-selected="true" data-mode="signature">On-chain signature</button>
-						<button type="button" role="tab" id="at-tab-wire" aria-selected="false" data-mode="wire">Base64 wire</button>
+					<div><p class="at-label" data-i18n="atomic.inspector_label">Flight recorder</p><h2 id="at-inspector-title" data-i18n="atomic.inspector_title">Inspect before you sign</h2></div>
+					<div class="at-tabs" role="tablist" aria-label="Transaction input type" data-i18n-attr="aria-label:atomic.tabs_aria">
+						<button type="button" role="tab" id="at-tab-signature" aria-selected="true" data-mode="signature" data-i18n="atomic.tab_signature">On-chain signature</button>
+						<button type="button" role="tab" id="at-tab-wire" aria-selected="false" data-mode="wire" data-i18n="atomic.tab_wire">Base64 wire</button>
 					</div>
 				</div>
 				<form id="at-form" class="at-form">
-					<label for="at-input" id="at-input-label">Solana mainnet transaction signature</label>
+					<label for="at-input" id="at-input-label" data-i18n="atomic.input_label">Solana mainnet transaction signature</label>
 					<div class="at-input-row">
-						<textarea id="at-input" rows="2" spellcheck="false" autocomplete="off" placeholder="Paste a transaction signature"></textarea>
-						<button type="submit" id="at-submit">Inspect transaction</button>
+						<textarea id="at-input" rows="2" spellcheck="false" autocomplete="off" placeholder="Paste a transaction signature" data-i18n-attr="placeholder:atomic.input_placeholder"></textarea>
+						<button type="submit" id="at-submit" data-i18n="atomic.submit_btn">Inspect transaction</button>
 					</div>
-					<p id="at-hint">Fetched through the three.ws rotating Solana RPC rail with V1 reads enabled.</p>
+					<p id="at-hint" data-i18n="atomic.hint">Fetched through the three.ws rotating Solana RPC rail with V1 reads enabled.</p>
 				</form>
 			</section>
 
 			<section class="at-state" id="at-loading" hidden aria-live="polite">
-				<span class="at-spinner" aria-hidden="true"></span><p>Decoding the exact wire transaction...</p>
+				<span class="at-spinner" aria-hidden="true"></span><p data-i18n="atomic.loading_text">Decoding the exact wire transaction...</p>
 			</section>
 			<section class="at-state at-error" id="at-error" hidden aria-live="assertive">
-				<strong>Could not inspect that transaction</strong><p id="at-error-message"></p><button type="button" id="at-retry">Try again</button>
+				<strong data-i18n="atomic.error_title">Could not inspect that transaction</strong><p id="at-error-message"></p><button type="button" id="at-retry" data-i18n="atomic.retry_btn">Try again</button>
 			</section>
 
 			<section class="at-report" id="at-report" hidden aria-live="polite">
 				<div class="at-verdict">
-					<div><p class="at-label">Decoded format</p><h2><span id="at-version">V1</span> transaction</h2><p id="at-verdict-copy"></p></div>
-					<div class="at-verdict-badge" id="at-verdict-badge">Caps explicit</div>
+					<div><p class="at-label" data-i18n="atomic.verdict_label">Decoded format</p><h2><span id="at-version">V1</span> transaction</h2><p id="at-verdict-copy"></p></div>
+					<div class="at-verdict-badge" id="at-verdict-badge" data-i18n="atomic.verdict_badge">Caps explicit</div>
 				</div>
 
 				<section class="at-size-card" aria-labelledby="at-size-title">
-					<div class="at-section-head"><div><p class="at-label">Wire envelope</p><h3 id="at-size-title"><span id="at-bytes">0</span> bytes</h3></div><strong id="at-headroom">0 bytes free</strong></div>
-					<div class="at-ruler" id="at-ruler"><div id="at-size-fill"></div><i id="at-legacy-mark"><span>Legacy wall · 1,232</span></i></div>
+					<div class="at-section-head"><div><p class="at-label" data-i18n="atomic.size_label">Wire envelope</p><h3 id="at-size-title"><span id="at-bytes">0</span> bytes</h3></div><strong id="at-headroom">0 bytes free</strong></div>
+					<div class="at-ruler" id="at-ruler"><div id="at-size-fill"></div><i id="at-legacy-mark"><span data-i18n="atomic.legacy_wall">Legacy wall · 1,232</span></i></div>
 					<p class="at-ruler-note" id="at-size-note"></p>
 				</section>
 
 				<div class="at-metrics">
-					<div><span>Signatures</span><strong id="at-signatures">0</strong></div>
-					<div><span>Inline accounts</span><strong id="at-accounts">0</strong></div>
-					<div><span>Instructions</span><strong id="at-instructions">0</strong></div>
-					<div><span>Compute used</span><strong id="at-compute-used">Not on-chain</strong></div>
+					<div><span data-i18n="atomic.metric_signatures">Signatures</span><strong id="at-signatures">0</strong></div>
+					<div><span data-i18n="atomic.metric_accounts">Inline accounts</span><strong id="at-accounts">0</strong></div>
+					<div><span data-i18n="atomic.metric_instructions">Instructions</span><strong id="at-instructions">0</strong></div>
+					<div><span data-i18n="atomic.metric_compute">Compute used</span><strong id="at-compute-used" data-i18n="atomic.compute_not_onchain">Not on-chain</strong></div>
 				</div>
 
 				<div class="at-report-grid">
 					<section class="at-card" aria-labelledby="at-config-title">
-						<div class="at-section-head"><div><p class="at-label">Resource envelope</p><h3 id="at-config-title">Transaction config</h3></div><span class="at-source" id="at-config-source"></span></div>
+						<div class="at-section-head"><div><p class="at-label" data-i18n="atomic.config_label">Resource envelope</p><h3 id="at-config-title" data-i18n="atomic.config_title">Transaction config</h3></div><span class="at-source" id="at-config-source"></span></div>
 					<dl class="at-config">
-						<div><dt>Compute unit limit</dt><dd id="at-cu-limit"></dd></div>
-						<div><dt>Loaded account data</dt><dd id="at-data-limit"></dd></div>
-						<div><dt>Heap size</dt><dd id="at-heap"></dd></div>
-						<div><dt>Priority fee</dt><dd id="at-priority"></dd></div>
+						<div><dt data-i18n="atomic.cfg_cu_limit">Compute unit limit</dt><dd id="at-cu-limit"></dd></div>
+						<div><dt data-i18n="atomic.cfg_data_limit">Loaded account data</dt><dd id="at-data-limit"></dd></div>
+						<div><dt data-i18n="atomic.cfg_heap">Heap size</dt><dd id="at-heap"></dd></div>
+						<div><dt data-i18n="atomic.cfg_priority">Priority fee</dt><dd id="at-priority"></dd></div>
 					</dl>
 					</section>
 					<section class="at-card" aria-labelledby="at-sponsor-title">
-						<p class="at-label">Co-signing lens</p><h3 id="at-sponsor-title">Sponsor assessment</h3>
+						<p class="at-label" data-i18n="atomic.sponsor_label">Co-signing lens</p><h3 id="at-sponsor-title" data-i18n="atomic.sponsor_title">Sponsor assessment</h3>
 						<ul class="at-notes" id="at-notes"></ul>
-						<div class="at-actions"><a id="at-explorer" target="_blank" rel="noopener noreferrer" hidden>Open in Solscan</a><button type="button" id="at-share">Copy inspection link</button></div>
+						<div class="at-actions"><a id="at-explorer" target="_blank" rel="noopener noreferrer" hidden data-i18n="atomic.explorer_link">Open in Solscan</a><button type="button" id="at-share" data-i18n="atomic.share_btn">Copy inspection link</button></div>
 					</section>
 				</div>
 			</section>
 
 			<section class="at-empty" id="at-empty">
-				<article><span>01</span><h2>Reader safe</h2><p>Atomic requests transaction version 1 explicitly, so V1 traffic cannot break or disappear from the read path.</p></article>
-				<article><span>02</span><h2>Sponsor aware</h2><p>V1 caps live in <code>transactionConfig</code>. Atomic never pretends a Compute Budget instruction scan still binds them.</p></article>
-				<article><span>03</span><h2>Byte exact</h2><p>The gauge measures signed wire bytes, not an estimate. Transactions above the old MTU wall become immediately visible.</p></article>
+				<article><span>01</span><h2 data-i18n="atomic.feat1_title">Reader safe</h2><p data-i18n="atomic.feat1_body">Atomic requests transaction version 1 explicitly, so V1 traffic cannot break or disappear from the read path.</p></article>
+				<article><span>02</span><h2 data-i18n="atomic.feat2_title">Sponsor aware</h2><p data-i18n-html="atomic.feat2_body">V1 caps live in <code>transactionConfig</code>. Atomic never pretends a Compute Budget instruction scan still binds them.</p></article>
+				<article><span>03</span><h2 data-i18n="atomic.feat3_title">Byte exact</h2><p data-i18n="atomic.feat3_body">The gauge measures signed wire bytes, not an estimate. Transactions above the old MTU wall become immediately visible.</p></article>
 			</section>
 		</main>
 
 		<div id="footer-container"></div>
 		<script type="module" src="/src/atomic.js"></script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

@@ -4,24 +4,25 @@
 		<meta charset="utf-8" />
 		<script>/* three.ws theme boot - no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>ASL Alphabet: every letter on a live 3D hand · three.ws</title>
+		<title data-i18n="asl-alphabet.page_title">ASL Alphabet: every letter on a live 3D hand · three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta
 			name="description"
+			data-i18n-attr="content:asl-alphabet.meta_desc"
 			content="The American manual alphabet on a live 3D avatar. Click or type any letter to see the handshape, read what to look for, learn the look-alikes, spell any word, and drill yourself until you can read fingerspelling."
 		/>
 		<meta name="theme-color" content="#000000" />
 		<link rel="canonical" href="https://three.ws/asl-alphabet" />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="ASL Alphabet: every letter on a live 3D hand · three.ws" />
-		<meta property="og:description" content="Click or type any letter to watch a 3D avatar sign it, read the handshape, learn the look-alikes, and practise reading fingerspelling." />
+		<meta property="og:title" data-i18n-attr="content:asl-alphabet.share_title" content="ASL Alphabet: every letter on a live 3D hand · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:asl-alphabet.share_desc" content="Click or type any letter to watch a 3D avatar sign it, read the handshape, learn the look-alikes, and practise reading fingerspelling." />
 		<meta property="og:url" content="https://three.ws/asl-alphabet" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=ASL+Alphabet&amp;d=The+American+manual+alphabet+on+a+live+3D+avatar%3A+every+letter+and+number%2C+what+to+look+for%2C+the+look-alikes+it+is+confused+with%2C+spell+any+word%2C+and+a+drill&amp;p=%2Fasl-alphabet" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="ASL Alphabet: every letter on a live 3D hand · three.ws" />
-		<meta name="twitter:description" content="Click or type any letter to watch a 3D avatar sign it, read the handshape, learn the look-alikes, and practise reading fingerspelling." />
+		<meta name="twitter:title" data-i18n-attr="content:asl-alphabet.share_title" content="ASL Alphabet: every letter on a live 3D hand · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:asl-alphabet.share_desc" content="Click or type any letter to watch a 3D avatar sign it, read the handshape, learn the look-alikes, and practise reading fingerspelling." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=ASL+Alphabet&amp;d=The+American+manual+alphabet+on+a+live+3D+avatar%3A+every+letter+and+number%2C+what+to+look+for%2C+the+look-alikes+it+is+confused+with%2C+spell+any+word%2C+and+a+drill&amp;p=%2Fasl-alphabet" />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -219,9 +220,9 @@
 				</div>
 
 				<div>
-					<span class="aa-chip"><span class="aa-chip-dot"></span> The manual alphabet · live in 3D</span>
-					<h1>Every ASL letter, on a hand you can turn around.</h1>
-					<p class="aa-lede">
+					<span class="aa-chip" data-i18n-html="asl-alphabet.chip"><span class="aa-chip-dot"></span> The manual alphabet · live in 3D</span>
+					<h1 data-i18n="asl-alphabet.h1">Every ASL letter, on a hand you can turn around.</h1>
+					<p class="aa-lede" data-i18n="asl-alphabet.lede">
 						A picture of a handshape shows you one angle. This is the real thing: a rigged
 						avatar forming each letter of the American manual alphabet, at the speed you
 						choose, on either hand. Click a key, or just press it on your keyboard.
@@ -235,48 +236,48 @@
 								<p class="aa-look" id="aa-look"></p>
 							</div>
 						</div>
-						<span class="aa-motion" id="aa-motion" hidden>Traced: the motion is the letter</span>
+						<span class="aa-motion" id="aa-motion" hidden data-i18n="asl-alphabet.motion">Traced: the motion is the letter</span>
 						<div>
-							<button class="aa-btn aa-btn-quiet aa-share" id="aa-share" type="button" hidden title="Copy a link that opens this letter">🔗 Share this</button>
+							<button class="aa-btn aa-btn-quiet aa-share" id="aa-share" type="button" hidden title="Copy a link that opens this letter" data-i18n="asl-alphabet.share_btn" data-i18n-attr="title:asl-alphabet.share_title_attr">🔗 Share this</button>
 						</div>
 					</div>
 
 					<div class="aa-settings">
 						<div class="aa-setting">
-							<span class="aa-setting-label" id="aa-speed-label">Speed</span>
+							<span class="aa-setting-label" id="aa-speed-label" data-i18n="asl-alphabet.speed_label">Speed</span>
 							<div class="aa-opts" id="aa-speed" role="group" aria-labelledby="aa-speed-label"></div>
 						</div>
 						<div class="aa-setting">
-							<span class="aa-setting-label" id="aa-hand-label">Signing hand</span>
+							<span class="aa-setting-label" id="aa-hand-label" data-i18n="asl-alphabet.hand_label">Signing hand</span>
 							<div class="aa-opts" id="aa-hand-opts" role="group" aria-labelledby="aa-hand-label"></div>
 						</div>
 						<div class="aa-setting">
-							<span class="aa-setting-label" id="aa-rig-label">Avatar</span>
+							<span class="aa-setting-label" id="aa-rig-label" data-i18n="asl-alphabet.rig_label">Avatar</span>
 							<div class="aa-opts" id="aa-rig" role="group" aria-labelledby="aa-rig-label"></div>
 						</div>
 					</div>
 				</div>
 			</section>
 
-			<section class="aa-keys-section" aria-label="The manual alphabet">
-				<h2>A to Z</h2>
-				<p>
+			<section class="aa-keys-section" aria-label="The manual alphabet" data-i18n-attr="aria-label:asl-alphabet.keys_section_aria">
+				<h2 data-i18n="asl-alphabet.atoz_h">A to Z</h2>
+				<p data-i18n="asl-alphabet.atoz_p">
 					Every letter is signed by the same engine an agent uses to sign a chat reply, so
 					what you learn here is exactly what you will read there. Hover a key for its
 					description; click it, or press it, to watch it.
 				</p>
-				<div class="aa-keys" id="aa-letters" role="group" aria-label="Letters"></div>
+				<div class="aa-keys" id="aa-letters" role="group" aria-label="Letters" data-i18n-attr="aria-label:asl-alphabet.letters_aria"></div>
 
-				<h2 style="margin-top: 34px">0 to 9</h2>
-				<div class="aa-keys aa-keys-digits" id="aa-digits" role="group" aria-label="Numbers"></div>
+				<h2 style="margin-top: 34px" data-i18n="asl-alphabet.digits_h">0 to 9</h2>
+				<div class="aa-keys aa-keys-digits" id="aa-digits" role="group" aria-label="Numbers" data-i18n-attr="aria-label:asl-alphabet.numbers_aria"></div>
 
-				<p class="aa-keys-hint">Tip: press any <kbd>letter</kbd> or <kbd>number</kbd> key to sign it instantly.</p>
+				<p class="aa-keys-hint" data-i18n-html="asl-alphabet.keys_hint">Tip: press any <kbd>letter</kbd> or <kbd>number</kbd> key to sign it instantly.</p>
 			</section>
 
 			<div class="aa-grid">
-				<section class="aa-panel" aria-label="Spell a word">
-					<h2>Spell anything</h2>
-					<p>
+				<section class="aa-panel" aria-label="Spell a word" data-i18n-attr="aria-label:asl-alphabet.spell_section_aria">
+					<h2 data-i18n="asl-alphabet.spell_h">Spell anything</h2>
+					<p data-i18n="asl-alphabet.spell_p">
 						Type a word and watch it spelled letter by letter, with each key lighting up as
 						the hand reaches it. Names, places, and anything with no sign of its own are
 						exactly what fingerspelling is for.
@@ -290,24 +291,25 @@
 							placeholder="your name, a city, a word…"
 							aria-label="Word to fingerspell"
 							autocomplete="off"
+							data-i18n-attr="placeholder:asl-alphabet.spell_placeholder;aria-label:asl-alphabet.spell_input_aria"
 						/>
-						<button id="aa-spell-btn" class="aa-btn" type="button">🤟 Spell it</button>
+						<button id="aa-spell-btn" class="aa-btn" type="button" data-i18n="asl-alphabet.spell_btn">🤟 Spell it</button>
 					</div>
 					<div class="aa-feedback" id="aa-spell-feedback" role="status" aria-live="polite">
 						Type a word and the letters appear here as the hand reaches them.
 					</div>
 				</section>
 
-				<section class="aa-panel" id="aa-practice" aria-label="Practice reading fingerspelling">
-					<h2>Practice reading it</h2>
-					<p>
+				<section class="aa-panel" id="aa-practice" aria-label="Practice reading fingerspelling" data-i18n-attr="aria-label:asl-alphabet.practice_section_aria">
+					<h2 data-i18n="asl-alphabet.practice_h">Practice reading it</h2>
+					<p data-i18n="asl-alphabet.practice_p">
 						Reading fingerspelling is the harder half, and it only comes from repetition.
 						The avatar spells something; you type what you read. Your streak is kept on
 						this device.
 					</p>
-					<div class="aa-modes" role="group" aria-label="What to practise">
-						<label><input type="radio" name="aa-mode" value="letters" checked /> Single letters</label>
-						<label><input type="radio" name="aa-mode" value="words" /> Whole words</label>
+					<div class="aa-modes" role="group" aria-label="What to practise" data-i18n-attr="aria-label:asl-alphabet.modes_aria">
+						<label><input type="radio" name="aa-mode" value="letters" checked /> <span data-i18n="asl-alphabet.mode_letters">Single letters</span></label>
+						<label><input type="radio" name="aa-mode" value="words" /> <span data-i18n="asl-alphabet.mode_words">Whole words</span></label>
 					</div>
 					<div class="aa-row">
 						<input
@@ -318,23 +320,24 @@
 							placeholder="what did it spell?"
 							aria-label="What the avatar spelled"
 							autocomplete="off"
+							data-i18n-attr="placeholder:asl-alphabet.practice_placeholder;aria-label:asl-alphabet.practice_input_aria"
 						/>
-						<button id="aa-practice-check" class="aa-btn" type="button">Check</button>
+						<button id="aa-practice-check" class="aa-btn" type="button" data-i18n="asl-alphabet.check_btn">Check</button>
 					</div>
 					<div class="aa-practice-actions">
-						<button id="aa-practice-start" class="aa-btn aa-btn-quiet" type="button">Start practising</button>
-						<button id="aa-practice-replay" class="aa-btn aa-btn-quiet" type="button" hidden>Show it again</button>
-						<button id="aa-practice-reveal" class="aa-btn aa-btn-quiet" type="button" hidden>Reveal</button>
+						<button id="aa-practice-start" class="aa-btn aa-btn-quiet" type="button" data-i18n="asl-alphabet.start_btn">Start practising</button>
+						<button id="aa-practice-replay" class="aa-btn aa-btn-quiet" type="button" hidden data-i18n="asl-alphabet.replay_btn">Show it again</button>
+						<button id="aa-practice-reveal" class="aa-btn aa-btn-quiet" type="button" hidden data-i18n="asl-alphabet.reveal_btn">Reveal</button>
 					</div>
 					<div class="aa-feedback" id="aa-practice-feedback" role="status" aria-live="polite">Press start and the avatar will spell something.</div>
 					<div class="aa-score">
-						<span>Streak <strong id="aa-streak">0</strong></span>
-						<span>Best <strong id="aa-best">0</strong></span>
+						<span data-i18n-html="asl-alphabet.streak">Streak <strong id="aa-streak">0</strong></span>
+						<span data-i18n-html="asl-alphabet.best">Best <strong id="aa-best">0</strong></span>
 					</div>
 				</section>
 			</div>
 
-			<p class="aa-note">
+			<p class="aa-note" data-i18n-html="asl-alphabet.note">
 				Fingerspelling is one part of American Sign Language: it spells names, loanwords, and
 				anything with no sign of its own. Words that have signs are <em>signed</em>, and you
 				can watch those, get signed AI chat replies, and sign back with your webcam at
@@ -347,5 +350,6 @@
 
 		<script src="/footer.js" defer></script>
 		<script type="module" src="/src/asl-alphabet-page.js"></script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

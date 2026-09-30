@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Skill Bundles · three.ws</title>
-	<meta name="description" content="Bundle an agent's skills into one purchase and price it from your own sales. three.ws backtests any price against the buyers who already bought two or more of those skills separately, so you can see what the bundle would have earned before you publish it." />
+	<title data-i18n="bundles.page_title">Skill Bundles · three.ws</title>
+	<meta name="description" data-i18n-attr="content:bundles.meta_desc" content="Bundle an agent's skills into one purchase and price it from your own sales. three.ws backtests any price against the buyers who already bought two or more of those skills separately, so you can see what the bundle would have earned before you publish it." />
 	<link rel="canonical" href="https://three.ws/bundles" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Skill Bundles · three.ws" />
-	<meta property="og:description" content="Bundle an agent's skills into one purchase, priced from your own sales rather than a rule of thumb." />
+	<meta property="og:title" data-i18n-attr="content:bundles.share_title" content="Skill Bundles · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:bundles.og_desc" content="Bundle an agent's skills into one purchase, priced from your own sales rather than a rule of thumb." />
 	<meta property="og:url" content="https://three.ws/bundles" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Skill+Bundles&amp;d=Sell+several+of+an+agent%27s+skills+as+one+purchase%2C+priced+from+your+own+sales+instead+of+a+rule+of+thumb.+three.ws+finds+the+buyers+who+already+bought+two+or&amp;p=%2Fbundles" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Skill Bundles · three.ws" />
-	<meta name="twitter:description" content="Price a bundle from your own ledger, not a rule of thumb." />
+	<meta name="twitter:title" data-i18n-attr="content:bundles.share_title" content="Skill Bundles · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:bundles.tw_desc" content="Price a bundle from your own ledger, not a rule of thumb." />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Skill+Bundles&amp;d=Sell+several+of+an+agent%27s+skills+as+one+purchase%2C+priced+from+your+own+sales+instead+of+a+rule+of+thumb.+three.ws+finds+the+buyers+who+already+bought+two+or&amp;p=%2Fbundles" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 	<meta property="og:locale" content="en_US" />
@@ -198,8 +198,8 @@
 
 	<main class="bd-wrap">
 		<section class="bd-hero">
-			<h1>Skill bundles</h1>
-			<p>
+			<h1 data-i18n="bundles.hero_h1">Skill bundles</h1>
+			<p data-i18n-html="bundles.hero_lede">
 				Sell several of an agent's skills as one purchase. The hard part was never the bundle,
 				it was the price, so three.ws prices it from your own sales: it finds the buyers who already
 				bought two or more of these skills separately and shows what the bundle would have earned
@@ -208,9 +208,9 @@
 		</section>
 
 		<div class="bd-steps">
-			<div class="bd-step"><b>1 · Pick</b><span>Choose two or more priced skills. The sum of their list prices is your ceiling.</span></div>
-			<div class="bd-step"><b>2 · Price</b><span>Move the price and watch the backtest against buyers who really paid.</span></div>
-			<div class="bd-step"><b>3 · Publish</b><span>The bundle goes live on the agent. One payment unlocks every skill in it.</span></div>
+			<div class="bd-step"><b data-i18n="bundles.step1_label">1 · Pick</b><span data-i18n="bundles.step1_body">Choose two or more priced skills. The sum of their list prices is your ceiling.</span></div>
+			<div class="bd-step"><b data-i18n="bundles.step2_label">2 · Price</b><span data-i18n="bundles.step2_body">Move the price and watch the backtest against buyers who really paid.</span></div>
+			<div class="bd-step"><b data-i18n="bundles.step3_label">3 · Publish</b><span data-i18n="bundles.step3_body">The bundle goes live on the agent. One payment unlocks every skill in it.</span></div>
 		</div>
 
 		<!-- Signed out / no agents / load failure all land here. -->
@@ -218,23 +218,23 @@
 
 		<div id="bd-builder" class="bd-hide">
 			<label class="bd-field" id="bd-agent-field">
-				<span>Agent</span>
+				<span data-i18n="bundles.agent_label">Agent</span>
 				<select class="bd-select" id="bd-agent"></select>
 			</label>
 
 			<div class="bd-grid">
 				<section class="bd-card" aria-labelledby="bd-pick-h">
-					<h2 id="bd-pick-h">Pick the skills</h2>
-					<p class="bd-sub">Only skills with an active price can be bundled, because a bundle has to be worth less than its parts to mean anything.</p>
-					<div id="bd-skills" class="bd-skills" role="group" aria-label="Skills to bundle"></div>
+					<h2 id="bd-pick-h" data-i18n="bundles.pick_h">Pick the skills</h2>
+					<p class="bd-sub" data-i18n="bundles.pick_sub">Only skills with an active price can be bundled, because a bundle has to be worth less than its parts to mean anything.</p>
+					<div id="bd-skills" class="bd-skills" role="group" aria-label="Skills to bundle" data-i18n-attr="aria-label:bundles.skills_group_aria"></div>
 					<div id="bd-skills-empty" class="bd-note bd-hide" style="margin-top:12px"></div>
 				</section>
 
 				<section class="bd-card" aria-labelledby="bd-price-h">
-					<h2 id="bd-price-h">Price it against your sales</h2>
-					<p class="bd-sub">Every number here comes from this agent's confirmed, paid purchases. Trials and access granted by an earlier bundle are excluded, so nothing inflates what you see.</p>
+					<h2 id="bd-price-h" data-i18n="bundles.price_h">Price it against your sales</h2>
+					<p class="bd-sub" data-i18n="bundles.price_sub">Every number here comes from this agent's confirmed, paid purchases. Trials and access granted by an earlier bundle are excluded, so nothing inflates what you see.</p>
 
-					<div id="bd-price-idle" class="bd-note">Select at least two skills to see pricing.</div>
+					<div id="bd-price-idle" class="bd-note" data-i18n="bundles.price_idle">Select at least two skills to see pricing.</div>
 
 					<div id="bd-price-loading" class="bd-hide">
 						<div class="bd-sk bd-sk-row"></div>
@@ -245,55 +245,55 @@
 					<div id="bd-price-body" class="bd-hide">
 						<div class="bd-pricebox">
 							<div class="bd-priceline">
-								<span>Sum of the parts
+								<span data-i18n-html="bundles.sum_label">Sum of the parts
 									<button type="button" class="bd-tip" data-tip="What a buyer pays today if they buy every selected skill one at a time. Your bundle price should sit below this." aria-label="What sum of the parts means">?</button>
 								</span>
 								<b id="bd-sum">&#183;</b>
 							</div>
 							<div class="bd-priceline">
-								<span>Suggested
+								<span data-i18n-html="bundles.suggested_label">Suggested
 									<button type="button" class="bd-tip" id="bd-suggest-tip" data-tip="" aria-label="How the suggested price was derived">?</button>
 								</span>
 								<span class="bd-basis" id="bd-basis" data-basis="discount_off_list">&#183;</span>
 							</div>
 							<div class="bd-priceinput">
-								<label class="bd-sr" for="bd-price">Bundle price</label>
+								<label class="bd-sr" for="bd-price" data-i18n="bundles.price_sr_label">Bundle price</label>
 								<input type="number" id="bd-price" min="0" step="0.000001" inputmode="decimal" />
 								<span class="bd-unit" id="bd-unit">$THREE</span>
-								<button type="button" class="bd-btn bd-btn--ghost" id="bd-use-suggested">Use suggested</button>
+								<button type="button" class="bd-btn bd-btn--ghost" id="bd-use-suggested" data-i18n="bundles.use_suggested">Use suggested</button>
 							</div>
-							<label class="bd-sr" for="bd-slider">Bundle price slider</label>
+							<label class="bd-sr" for="bd-slider" data-i18n="bundles.slider_sr_label">Bundle price slider</label>
 							<input type="range" class="bd-slider" id="bd-slider" min="1" max="100" value="80" />
 							<div class="bd-discount" id="bd-discount">&#183;</div>
 						</div>
 
 						<dl class="bd-tiles">
 							<div class="bd-tile">
-								<dt>Multi-skill buyers
+								<dt data-i18n-html="bundles.tile_buyers">Multi-skill buyers
 									<button type="button" class="bd-tip" data-tip="People who already bought two or more of the selected skills separately. This is the population a bundle would have converted, so it is the only one worth pricing against." aria-label="What multi-skill buyers means">?</button>
 								</dt>
 								<dd id="bd-buyers">&#183;</dd>
 							</div>
 							<div class="bd-tile">
-								<dt>They paid
+								<dt data-i18n-html="bundles.tile_paid">They paid
 									<button type="button" class="bd-tip" data-tip="What those buyers actually spent across the selected skills, at your list prices, in confirmed purchases." aria-label="What they paid means">?</button>
 								</dt>
 								<dd id="bd-paid">&#183;</dd>
 							</div>
 							<div class="bd-tile">
-								<dt>Bundle would earn
+								<dt data-i18n-html="bundles.tile_backtest">Bundle would earn
 									<button type="button" class="bd-tip" data-tip="The same buyers, at the price above. This is a backtest over real history, not a forecast: it says nothing about buyers you have not had yet." aria-label="What bundle would earn means">?</button>
 								</dt>
 								<dd id="bd-backtest">&#183;</dd>
 							</div>
 							<div class="bd-tile">
-								<dt>Revenue delta
+								<dt data-i18n-html="bundles.tile_delta">Revenue delta
 									<button type="button" class="bd-tip" data-tip="Backtest minus what they really paid. Negative means this price would have left money on the table with the buyers you already had." aria-label="What revenue delta means">?</button>
 								</dt>
 								<dd id="bd-delta">&#183;</dd>
 							</div>
 							<div class="bd-tile">
-								<dt>Better off
+								<dt data-i18n-html="bundles.tile_better">Better off
 									<button type="button" class="bd-tip" data-tip="How many of those buyers spent more piecemeal than this bundle costs. These are the ones the bundle wins on value." aria-label="What better off means">?</button>
 								</dt>
 								<dd id="bd-better">&#183;</dd>
@@ -304,16 +304,16 @@
 						<div id="bd-unpriced" class="bd-note bd-hide" style="margin-top:12px"></div>
 
 						<label class="bd-field" style="margin-top:16px">
-							<span>Bundle name</span>
-							<input type="text" id="bd-name" maxlength="80" placeholder="Research starter pack" />
+							<span data-i18n="bundles.name_label">Bundle name</span>
+							<input type="text" id="bd-name" maxlength="80" placeholder="Research starter pack" data-i18n-attr="placeholder:bundles.name_placeholder" />
 						</label>
 						<label class="bd-field">
-							<span>Description <span style="text-transform:none;letter-spacing:0">(optional)</span></span>
-							<textarea id="bd-desc" maxlength="500" placeholder="What a buyer gets, in one line."></textarea>
+							<span data-i18n-html="bundles.desc_label">Description <span style="text-transform:none;letter-spacing:0">(optional)</span></span>
+							<textarea id="bd-desc" maxlength="500" placeholder="What a buyer gets, in one line." data-i18n-attr="placeholder:bundles.desc_placeholder"></textarea>
 						</label>
 
 						<div class="bd-actions">
-							<button type="button" class="bd-btn bd-btn--primary" id="bd-publish">Publish bundle</button>
+							<button type="button" class="bd-btn bd-btn--primary" id="bd-publish" data-i18n="bundles.publish_btn">Publish bundle</button>
 							<span id="bd-publish-note" class="bd-discount"></span>
 						</div>
 					</div>
@@ -323,8 +323,8 @@
 			</div>
 
 			<section class="bd-section" aria-labelledby="bd-live-h">
-				<h2 id="bd-live-h">Published bundles</h2>
-				<p>Live on this agent right now, served publicly at <code>/api/agents/&lt;id&gt;/bundles</code> and bought in one payment that unlocks every skill inside. Pausing one hides it from buyers and leaves it here, dimmed, so you can put it back. <a href="/docs/skill-bundles">How checkout works</a>.</p>
+				<h2 id="bd-live-h" data-i18n="bundles.live_h">Published bundles</h2>
+				<p data-i18n-html="bundles.live_p">Live on this agent right now, served publicly at <code>/api/agents/&lt;id&gt;/bundles</code> and bought in one payment that unlocks every skill inside. Pausing one hides it from buyers and leaves it here, dimmed, so you can put it back. <a href="/docs/skill-bundles">How checkout works</a>.</p>
 				<div id="bd-list" class="bd-list"></div>
 				<div id="bd-list-empty" class="bd-note bd-hide" style="margin-top:14px"></div>
 			</section>

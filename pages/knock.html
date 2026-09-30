@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Knock · three.ws</title>
-		<meta name="description" content="Put a price on reaching you. Anyone, human or agent, can pay it to get one message through, and your 3D companion delivers it in person. The USDC settles straight to your wallet." />
+		<title data-i18n="knock.page_title">Knock · three.ws</title>
+		<meta name="description" data-i18n-attr="content:knock.meta_desc" content="Put a price on reaching you. Anyone, human or agent, can pay it to get one message through, and your 3D companion delivers it in person. The USDC settles straight to your wallet." />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,8 +16,8 @@
 		<link rel="canonical" href="https://three.ws/knock">
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content="three.ws">
-		<meta property="og:title" content="Knock · three.ws">
-		<meta property="og:description" content="Put a price on reaching you. Anyone, human or agent, can pay it to get one message through, and your 3D companion delivers it in person.">
+		<meta property="og:title" data-i18n-attr="content:knock.share_title" content="Knock · three.ws">
+		<meta property="og:description" data-i18n-attr="content:knock.og_desc" content="Put a price on reaching you. Anyone, human or agent, can pay it to get one message through, and your 3D companion delivers it in person.">
 		<meta property="og:url" content="https://three.ws/knock">
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Knock&amp;d=Put+a+price+on+reaching+you.+Anyone%2C+a+person+or+an+agent%2C+can+pay+it+to+get+exactly+one+message+through%2C+and+your+3D+companion+walks+on+screen+and+delivers+it&amp;p=%2Fknock">
 		<meta property="og:image:width" content="1200">
@@ -25,8 +25,8 @@
 		<meta property="og:image:alt" content="Knock - three.ws">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@trythreews">
-		<meta name="twitter:title" content="Knock · three.ws">
-		<meta name="twitter:description" content="Put a price on reaching you. Your 3D companion delivers what gets through, in person.">
+		<meta name="twitter:title" data-i18n-attr="content:knock.share_title" content="Knock · three.ws">
+		<meta name="twitter:description" data-i18n-attr="content:knock.tw_desc" content="Put a price on reaching you. Your 3D companion delivers what gets through, in person.">
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Knock&amp;d=Put+a+price+on+reaching+you.+Anyone%2C+a+person+or+an+agent%2C+can+pay+it+to+get+exactly+one+message+through%2C+and+your+3D+companion+walks+on+screen+and+delivers+it&amp;p=%2Fknock">
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 		<meta property="og:locale" content="en_US">
@@ -141,28 +141,28 @@
 
 		<main class="shell">
 			<div class="hero">
-				<h1>Knock</h1>
-				<p>
+				<h1 data-i18n="knock.hero_title">Knock</h1>
+				<p data-i18n="knock.hero_sub">
 					Put a price on reaching you. Anyone, a person or an agent, can pay it to get exactly
 					one message through, and your 3D companion walks on screen and delivers it out loud,
 					with their name and what they paid. The USDC settles straight to your wallet.
 				</p>
 				<div class="hero-actions">
-					<a class="btn" href="/docs/knock">How it works</a>
-					<a class="btn" href="/companion">Your companion</a>
+					<a class="btn" href="/docs/knock" data-i18n="knock.how_it_works">How it works</a>
+					<a class="btn" href="/companion" data-i18n="knock.your_companion">Your companion</a>
 				</div>
 			</div>
 
 			<section class="how" aria-label="How Knock works">
-				<div><b>1. Set your price</b><p>Anything from $0.001 to $1,000, or free. It is what one message from a stranger costs.</p></div>
-				<div><b>2. They pay it</b><p>A person pays with the wallet in their browser. An agent pays over x402 with no human in the loop.</p></div>
-				<div><b>3. You hear it in person</b><p>Your companion walks on wherever you are on the site and says who is at the door and what they paid.</p></div>
+				<div><b data-i18n="knock.step1_title">1. Set your price</b><p data-i18n="knock.step1_body">Anything from $0.001 to $1,000, or free. It is what one message from a stranger costs.</p></div>
+				<div><b data-i18n="knock.step2_title">2. They pay it</b><p data-i18n="knock.step2_body">A person pays with the wallet in their browser. An agent pays over x402 with no human in the loop.</p></div>
+				<div><b data-i18n="knock.step3_title">3. You hear it in person</b><p data-i18n="knock.step3_body">Your companion walks on wherever you are on the site and says who is at the door and what they paid.</p></div>
 			</section>
 
 			<section aria-labelledby="owner-h">
 				<div class="sec-head">
-					<h2 id="owner-h">Your door</h2>
-					<p>Shut until you open it. Nothing here is public except the price, your headline, and your greeting.</p>
+					<h2 id="owner-h" data-i18n="knock.owner_h">Your door</h2>
+					<p data-i18n="knock.owner_sub">Shut until you open it. Nothing here is public except the price, your headline, and your greeting.</p>
 				</div>
 
 				<div id="owner-loading" class="card" aria-busy="true">
@@ -172,19 +172,19 @@
 				</div>
 
 				<div id="signed-out" class="empty" hidden>
-					<strong>Sign in to open your door</strong>
+					<strong data-i18n="knock.signin_title">Sign in to open your door</strong>
 					Your price, your wallet, and everything that comes through it stays private to your account.
 					<div class="hero-actions" style="justify-content:center;">
-						<a class="btn btn-primary" href="/login?next=/knock">Sign in</a>
+						<a class="btn btn-primary" href="/login?next=/knock" data-i18n="knock.signin_btn">Sign in</a>
 					</div>
 				</div>
 
 				<div id="owner" class="card" hidden>
 					<div class="stats">
-						<div class="stat"><b id="stat-pending">0</b><span>Waiting</span></div>
-						<div class="stat"><b id="stat-total">0</b><span>All time</span></div>
-						<div class="stat"><b id="stat-earned">$0.00</b><span>Earned</span></div>
-						<div class="stat" id="stat-escrowed-card" hidden><b id="stat-escrowed">$0.00</b><span>In escrow</span></div>
+						<div class="stat"><b id="stat-pending">0</b><span data-i18n="knock.stat_waiting">Waiting</span></div>
+						<div class="stat"><b id="stat-total">0</b><span data-i18n="knock.stat_alltime">All time</span></div>
+						<div class="stat"><b id="stat-earned">$0.00</b><span data-i18n="knock.stat_earned">Earned</span></div>
+						<div class="stat" id="stat-escrowed-card" hidden><b id="stat-escrowed">$0.00</b><span data-i18n="knock.stat_escrow">In escrow</span></div>
 					</div>
 
 					<div class="fields">
@@ -194,53 +194,53 @@
 						</div>
 						<label>Price per knock (USDC)
 							<input type="text" id="door-price" inputmode="decimal" placeholder="0.05" />
-							<span class="hint">0 makes it free. Otherwise between $0.001 and $1,000.</span>
+							<span class="hint" data-i18n="knock.price_hint">0 makes it free. Otherwise between $0.001 and $1,000.</span>
 						</label>
 						<label>Knocks per day
 							<input type="number" id="door-cap" min="1" max="1000" />
-							<span class="hint">After this, the door answers "full for today" and charges nobody.</span>
+							<span class="hint" data-i18n="knock.cap_hint">After this, the door answers "full for today" and charges nobody.</span>
 						</label>
 						<label>Solana wallet (paid to you)
-							<input type="text" id="door-solana" placeholder="Your USDC address on Solana" />
-							<span class="hint">The home chain, and the lane an agent settles on by default.</span>
+							<input type="text" id="door-solana" placeholder="Your USDC address on Solana" data-i18n-attr="placeholder:knock.solana_placeholder" />
+							<span class="hint" data-i18n="knock.solana_hint">The home chain, and the lane an agent settles on by default.</span>
 						</label>
 						<label>Base wallet (optional)
 							<input type="text" id="door-base" placeholder="0x…" />
-							<span class="hint">Offered alongside Solana only when you set it.</span>
+							<span class="hint" data-i18n="knock.base_hint">Offered alongside Solana only when you set it.</span>
 						</label>
 						<label class="wide">Headline
-							<input type="text" id="door-headline" maxlength="120" placeholder="What you are worth interrupting for" />
+							<input type="text" id="door-headline" maxlength="120" placeholder="What you are worth interrupting for" data-i18n-attr="placeholder:knock.headline_placeholder" />
 						</label>
 						<label class="wide">Greeting
-							<textarea id="door-greeting" maxlength="600" placeholder="What a visitor reads before they write. Tell them what you actually want to hear about."></textarea>
+							<textarea id="door-greeting" maxlength="600" placeholder="What a visitor reads before they write. Tell them what you actually want to hear about." data-i18n-attr="placeholder:knock.greeting_placeholder"></textarea>
 						</label>
 						<label>Message length limit
 							<input type="number" id="door-max" min="40" max="2000" />
-							<span class="hint">Characters. Long enough to be useful, short enough to read.</span>
+							<span class="hint" data-i18n="knock.maxlen_hint">Characters. Long enough to be useful, short enough to read.</span>
 						</label>
 					</div>
 
 					<div class="escrow-panel" id="escrow-panel">
 						<div class="escrow-head">
 							<div>
-								<h3>Escrowed knocks</h3>
-								<p id="escrow-pitch">Let a stranger pay into an on-chain vault instead of paying you directly. You are paid by answering; if you decline, or the window closes, every unit goes back to them. Nobody can move it, including us.</p>
+								<h3 data-i18n="knock.escrow_h">Escrowed knocks</h3>
+								<p id="escrow-pitch" data-i18n="knock.escrow_pitch">Let a stranger pay into an on-chain vault instead of paying you directly. You are paid by answering; if you decline, or the window closes, every unit goes back to them. Nobody can move it, including us.</p>
 							</div>
 							<label class="toggle"><input type="checkbox" id="escrow-enabled" /> Take escrowed knocks</label>
 						</div>
 						<div class="escrow-grid" id="escrow-fields" hidden>
 							<label>Answer within
 								<input type="number" id="escrow-window" min="1" max="720" />
-								<span class="hint">Hours. After this the sender can take their payment back, and anybody can trigger it for them.</span>
+								<span class="hint" data-i18n="knock.escrow_window_hint">Hours. After this the sender can take their payment back, and anybody can trigger it for them.</span>
 							</label>
 							<div class="chain-state" id="chain-state">
 								<span class="dot" id="chain-dot"></span>
-								<span id="chain-text">Checking your on-chain door</span>
+								<span id="chain-text" data-i18n="knock.chain_checking">Checking your on-chain door</span>
 							</div>
 						</div>
 						<div class="chain-actions" id="chain-actions" hidden>
-							<button type="button" class="btn btn-sm btn-primary" id="open-chain-door">Open my door on-chain</button>
-							<a class="btn btn-sm" id="chain-explorer" target="_blank" rel="noopener noreferrer" hidden>View it</a>
+							<button type="button" class="btn btn-sm btn-primary" id="open-chain-door" data-i18n="knock.open_chain_btn">Open my door on-chain</button>
+							<a class="btn btn-sm" id="chain-explorer" target="_blank" rel="noopener noreferrer" hidden data-i18n="knock.view_it_link">View it</a>
 						</div>
 						<code class="escrow-address" id="escrow-address" hidden></code>
 					</div>
@@ -248,70 +248,70 @@
 					<div class="error" id="settings-error" hidden></div>
 
 					<div class="save-row">
-						<button type="button" class="btn btn-primary" id="save">Save door</button>
+						<button type="button" class="btn btn-primary" id="save" data-i18n="knock.save_btn">Save door</button>
 						<span class="ok-note" id="save-note" hidden></span>
 					</div>
 
 					<div class="empty" id="no-handle" hidden style="margin-top:18px;">
-						<strong>Pick a username first</strong>
+						<strong data-i18n="knock.no_handle_title">Pick a username first</strong>
 						Your door lives at /knock/&lt;username&gt;, so it needs one.
-						<div class="hero-actions" style="justify-content:center;"><a class="btn" href="/dashboard/settings">Choose a username</a></div>
+						<div class="hero-actions" style="justify-content:center;"><a class="btn" href="/dashboard/settings" data-i18n="knock.choose_username_btn">Choose a username</a></div>
 					</div>
 
 					<div class="share" id="share-block" hidden>
 						<div class="share-row">
 							<code class="inline" id="share-url"></code>
-							<button type="button" class="btn btn-sm" id="copy-share" data-copy="">Copy link</button>
+							<button type="button" class="btn btn-sm" id="copy-share" data-copy="" data-i18n="knock.copy_link_btn">Copy link</button>
 						</div>
 						<div class="share-row">
 							<code class="inline" id="endpoint-url"></code>
-							<button type="button" class="btn btn-sm" id="copy-endpoint" data-copy="">Copy endpoint</button>
+							<button type="button" class="btn btn-sm" id="copy-endpoint" data-copy="" data-i18n="knock.copy_endpoint_btn">Copy endpoint</button>
 						</div>
-						<span class="hint">The first is for people. The second is what an agent pays.</span>
+						<span class="hint" data-i18n="knock.share_hint">The first is for people. The second is what an agent pays.</span>
 					</div>
 				</div>
 			</section>
 
 			<section id="inbox-section" aria-labelledby="inbox-h">
 				<div class="sec-head">
-					<h2 id="inbox-h">Who knocked</h2>
-					<p>Every message that made it through, and what it was worth. Replying writes back to the receipt link the sender already holds.</p>
+					<h2 id="inbox-h" data-i18n="knock.inbox_h">Who knocked</h2>
+					<p data-i18n="knock.inbox_sub">Every message that made it through, and what it was worth. Replying writes back to the receipt link the sender already holds.</p>
 				</div>
 				<div id="inbox-loading" class="card" aria-busy="true">
 					<div class="skeleton" style="width:40%;"></div>
 					<div class="skeleton" style="width:80%;"></div>
 				</div>
 				<div id="inbox-empty" class="empty" hidden>
-					<strong>Nobody has knocked yet</strong>
-					<span data-msg>Open your door and share the link. Anything that comes through lands here and gets announced by your companion.</span>
+					<strong data-i18n="knock.inbox_empty_title">Nobody has knocked yet</strong>
+					<span data-msg data-i18n="knock.inbox_empty_msg">Open your door and share the link. Anything that comes through lands here and gets announced by your companion.</span>
 				</div>
 				<ul class="inbox" id="inbox" hidden></ul>
 				<div class="hero-actions" style="justify-content:center;">
-					<button type="button" class="btn" id="load-more" hidden>Load more</button>
+					<button type="button" class="btn" id="load-more" hidden data-i18n="knock.load_more_btn">Load more</button>
 				</div>
 			</section>
 
 			<section id="blocks-section" aria-labelledby="blocks-h">
 				<div class="sec-head">
-					<h2 id="blocks-h">Blocked</h2>
-					<p>Blocked senders get the same answer a shut door gives, so they cannot tell it was them.</p>
+					<h2 id="blocks-h" data-i18n="knock.blocks_h">Blocked</h2>
+					<p data-i18n="knock.blocks_sub">Blocked senders get the same answer a shut door gives, so they cannot tell it was them.</p>
 				</div>
-				<div id="blocks-empty" class="empty" hidden><strong>Nobody blocked</strong>Block a sender from any knock in the list above.</div>
+				<div id="blocks-empty" class="empty" hidden><strong data-i18n="knock.blocks_empty_title">Nobody blocked</strong>Block a sender from any knock in the list above.</div>
 				<ul class="blocks" id="blocks" hidden></ul>
 			</section>
 
 			<section aria-labelledby="dir-h">
 				<div class="sec-head">
-					<h2 id="dir-h">Open doors</h2>
-					<p>Everyone reachable right now, cheapest first.</p>
+					<h2 id="dir-h" data-i18n="knock.dir_h">Open doors</h2>
+					<p data-i18n="knock.dir_sub">Everyone reachable right now, cheapest first.</p>
 				</div>
 				<div id="directory-loading" class="card" aria-busy="true">
 					<div class="skeleton" style="width:30%;"></div>
 					<div class="skeleton" style="width:60%;"></div>
 				</div>
 				<div id="directory-empty" class="empty" hidden>
-					<strong>No open doors yet</strong>
-					<span data-msg>Be the first. Open yours above and it appears here.</span>
+					<strong data-i18n="knock.dir_empty_title">No open doors yet</strong>
+					<span data-msg data-i18n="knock.dir_empty_msg">Be the first. Open yours above and it appears here.</span>
 				</div>
 				<div class="grid" id="directory" hidden></div>
 			</section>

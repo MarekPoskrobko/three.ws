@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Herald: deliver a message in person · three.ws</title>
-		<meta name="description" content="A 3D character walks onto your page and tells the user what happened. Open SDK, one line of code, an accessible fallback, and a CLI that announces when your build finishes." />
+		<title data-i18n="herald.page_title">Herald: deliver a message in person · three.ws</title>
+		<meta name="description" data-i18n-attr="content:herald.meta_desc" content="A 3D character walks onto your page and tells the user what happened. Open SDK, one line of code, an accessible fallback, and a CLI that announces when your build finishes." />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -124,15 +124,15 @@
 		<link rel="canonical" href="https://three.ws/herald">
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content="three.ws">
-		<meta property="og:title" content="Herald: deliver a message in person · three.ws">
-		<meta property="og:description" content="A 3D character walks onto your page and tells the user what happened. Open SDK, one line of code, an accessible fallback, and a CLI that announces when your build finishes.">
+		<meta property="og:title" data-i18n-attr="content:herald.share_title" content="Herald: deliver a message in person · three.ws">
+		<meta property="og:description" data-i18n-attr="content:herald.meta_desc" content="A 3D character walks onto your page and tells the user what happened. Open SDK, one line of code, an accessible fallback, and a CLI that announces when your build finishes.">
 		<meta property="og:url" content="https://three.ws/herald">
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Herald&amp;d=Deliver+a+message+in+person%3A+a+3D+character+walks+onto+your+page+and+tells+the+user+what+happened.+Open+SDK%2C+one+line+of+code%2C+an+accessible+fallback%2C+and+a&amp;p=%2Fherald">
 		<meta property="og:image:width" content="1200">
 		<meta property="og:image:height" content="630">
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:title" content="Herald: deliver a message in person · three.ws">
-		<meta name="twitter:description" content="A 3D character walks onto your page and tells the user what happened. One line of code, an accessible fallback, and a CLI that announces when your build finishes.">
+		<meta name="twitter:title" data-i18n-attr="content:herald.share_title" content="Herald: deliver a message in person · three.ws">
+		<meta name="twitter:description" data-i18n-attr="content:herald.share_desc" content="A 3D character walks onto your page and tells the user what happened. One line of code, an accessible fallback, and a CLI that announces when your build finishes.">
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Herald&amp;d=Deliver+a+message+in+person%3A+a+3D+character+walks+onto+your+page+and+tells+the+user+what+happened.+Open+SDK%2C+one+line+of+code%2C+an+accessible+fallback%2C+and+a&amp;p=%2Fherald">
 		<meta name="twitter:site" content="@trythreews">
 		<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"@three-ws/herald","description":"Deliver a message in person: a 3D character walks onto your page and tells the user, with importance scoring, quiet hours, dedupe and an accessible fallback.","programmingLanguage":"JavaScript","codeRepository":"https://github.com/nirholas/three.ws/tree/main/herald-sdk","license":"https://www.apache.org/licenses/LICENSE-2.0","url":"https://three.ws/herald"}</script>
@@ -148,8 +148,8 @@
 		<main class="shell">
 			<div class="hero">
 				<span class="eyebrow">@three-ws/herald · Apache-2.0</span>
-				<h1>Deliver a message <em>in person</em>.</h1>
-				<p class="lede">
+				<h1 data-i18n-html="herald.hero_title">Deliver a message <em>in person</em>.</h1>
+				<p class="lede" data-i18n="herald.hero_lede">
 					A notification is a badge you have to notice, in a tray you have to open, competing with
 					forty others. This is the opposite: a 3D character walks into the corner of your page,
 					looks at the person using it, and tells them, with a link to the thing it is about.
@@ -157,100 +157,100 @@
 					when your build finishes.
 				</p>
 				<div class="hero-actions">
-					<button type="button" class="btn primary" id="demo-run">Deliver one now</button>
-					<a class="btn" href="https://github.com/nirholas/three.ws/tree/main/herald-sdk">Read the source</a>
-					<a class="btn" href="/docs/herald">Documentation</a>
+					<button type="button" class="btn primary" id="demo-run" data-i18n="herald.hero_deliver">Deliver one now</button>
+					<a class="btn" href="https://github.com/nirholas/three.ws/tree/main/herald-sdk" data-i18n="herald.hero_source">Read the source</a>
+					<a class="btn" href="/docs/herald" data-i18n="herald.hero_docs">Documentation</a>
 				</div>
 			</div>
 
 			<section id="playground">
-				<h2>The playground</h2>
-				<p class="sub">
+				<h2 data-i18n="herald.play_h">The playground</h2>
+				<p class="sub" data-i18n="herald.play_sub">
 					Everything below runs the real library in this tab. Change the rules, send a message,
 					and watch what the engine decides. Nothing here is a mock.
 				</p>
 
 				<div class="grid-2" style="margin-top:18px">
 					<div class="panel">
-						<h3>Compose</h3>
+						<h3 data-i18n="herald.compose_h">Compose</h3>
 						<label class="field">
-							<span>Message</span>
+							<span data-i18n="herald.f_message">Message</span>
 							<input type="text" id="f-text" value="Deploy is green" maxlength="200" />
 						</label>
 						<div class="row">
 							<label class="field">
-								<span>From (optional)</span>
+								<span data-i18n="herald.f_from">From (optional)</span>
 								<input type="text" id="f-from" placeholder="CI" maxlength="40" />
 							</label>
 							<label class="field">
-								<span>Link (optional)</span>
+								<span data-i18n="herald.f_link">Link (optional)</span>
 								<input type="text" id="f-url" placeholder="/dashboard" maxlength="200" />
 							</label>
 						</div>
 						<div class="row">
 							<label class="field">
-								<span>Tone</span>
+								<span data-i18n="herald.f_tone">Tone</span>
 								<select id="f-tone">
-									<option value="alert">alert</option>
-									<option value="celebrate">celebrate</option>
-									<option value="neutral">neutral</option>
-									<option value="error">error</option>
+									<option value="alert" data-i18n="herald.tone_alert">alert</option>
+									<option value="celebrate" data-i18n="herald.tone_celebrate">celebrate</option>
+									<option value="neutral" data-i18n="herald.tone_neutral">neutral</option>
+									<option value="error" data-i18n="herald.tone_error">error</option>
 								</select>
 							</label>
 							<label class="field">
-								<span>Gesture</span>
+								<span data-i18n="herald.f_gesture">Gesture</span>
 								<select id="f-emote">
-									<option value="wave">wave</option>
-									<option value="dance">dance</option>
-									<option value="punch">punch</option>
-									<option value="backflip">backflip</option>
+									<option value="wave" data-i18n="herald.emote_wave">wave</option>
+									<option value="dance" data-i18n="herald.emote_dance">dance</option>
+									<option value="punch" data-i18n="herald.emote_punch">punch</option>
+									<option value="backflip" data-i18n="herald.emote_backflip">backflip</option>
 								</select>
 							</label>
 							<label class="field">
-								<span>Body</span>
+								<span data-i18n="herald.f_body">Body</span>
 								<select id="f-presenter">
-									<option value="auto">auto (avatar, then card)</option>
-									<option value="avatar">avatar only</option>
-									<option value="card">card only</option>
+									<option value="auto" data-i18n="herald.body_auto">auto (avatar, then card)</option>
+									<option value="avatar" data-i18n="herald.body_avatar">avatar only</option>
+									<option value="card" data-i18n="herald.body_card">card only</option>
 								</select>
 							</label>
 						</div>
 						<label class="field">
-							<span>Importance: <b id="f-importance-out">80</b></span>
+							<span data-i18n-html="herald.f_importance">Importance: <b id="f-importance-out">80</b></span>
 							<input type="range" id="f-importance" min="0" max="100" value="80" />
 						</label>
 						<div class="checkline">
 							<input type="checkbox" id="f-voice" />
-							<label for="f-voice">Say it out loud (real text to speech)</label>
+							<label for="f-voice" data-i18n="herald.f_voice">Say it out loud (real text to speech)</label>
 						</div>
 						<div class="hero-actions" style="margin-top:6px">
-							<button type="button" class="btn primary" id="f-send">Deliver</button>
-							<button type="button" class="btn" id="f-burst">Send a burst of five</button>
+							<button type="button" class="btn primary" id="f-send" data-i18n="herald.f_send">Deliver</button>
+							<button type="button" class="btn" id="f-burst" data-i18n="herald.f_burst">Send a burst of five</button>
 						</div>
 					</div>
 
 					<div class="panel">
-						<h3>Rules</h3>
+						<h3 data-i18n="herald.rules_h">Rules</h3>
 						<label class="field">
-							<span>Interrupt floor: <b id="r-floor-out">50</b></span>
+							<span data-i18n-html="herald.r_floor">Interrupt floor: <b id="r-floor-out">50</b></span>
 							<input type="range" id="r-floor" min="0" max="100" value="50" />
 						</label>
 						<label class="field">
-							<span>Max per minute: <b id="r-rate-out">4</b></span>
+							<span data-i18n-html="herald.r_rate">Max per minute: <b id="r-rate-out">4</b></span>
 							<input type="range" id="r-rate" min="1" max="10" value="4" />
 						</label>
 						<div class="checkline">
 							<input type="checkbox" id="r-quiet" />
-							<label for="r-quiet">Quiet hours 22:00 to 07:00 (only 90+ gets through)</label>
+							<label for="r-quiet" data-i18n="herald.r_quiet">Quiet hours 22:00 to 07:00 (only 90+ gets through)</label>
 						</div>
 						<div class="checkline">
 							<input type="checkbox" id="r-focus" checked />
-							<label for="r-focus">Hold while this tab is in the background</label>
+							<label for="r-focus" data-i18n="herald.r_focus">Hold while this tab is in the background</label>
 						</div>
 
-						<h3 style="margin-top:16px">Verdicts</h3>
+						<h3 style="margin-top:16px" data-i18n="herald.verdicts_h">Verdicts</h3>
 						<div class="verdicts" id="verdicts" aria-live="polite" aria-atomic="false">
-							<div class="verdict"><span class="why">Nothing yet. Send a message.</span></div>
+							<div class="verdict"><span class="why" data-i18n="herald.verdicts_empty">Nothing yet. Send a message.</span></div>
 						</div>
 						<div class="stats" id="stats"></div>
 					</div>
@@ -258,8 +258,8 @@
 			</section>
 
 			<section id="terminal">
-				<h2>From your terminal, to your screen</h2>
-				<p class="sub">
+				<h2 data-i18n="herald.term_h">From your terminal, to your screen</h2>
+				<p class="sub" data-i18n="herald.term_sub">
 					Anything that can make an HTTPS request can reach the browser tab you already have open.
 					A message is always delivered to the caller's own sessions, so a key can never be used to
 					interrupt somebody else.
@@ -267,28 +267,28 @@
 
 				<div class="grid-2" style="margin-top:18px">
 					<div>
-						<pre class="code" id="code-cli"><button type="button" class="copy" data-copy="#code-cli">Copy</button><span class="c"># announce when a long command finishes, keeping its exit code</span>
+						<pre class="code" id="code-cli"><button type="button" class="copy" data-copy="#code-cli" data-i18n="herald.copy">Copy</button><span class="c"># announce when a long command finishes, keeping its exit code</span>
 npx @three-ws/herald watch -- npm test
 
 <span class="c"># or say something directly</span>
 npx @three-ws/herald say <span class="s">"Migration finished"</span> --from db</pre>
-						<pre class="code" id="code-curl" style="margin-top:14px"><button type="button" class="copy" data-copy="#code-curl">Copy</button>curl -X POST https://three.ws/api/herald/announce \
+						<pre class="code" id="code-curl" style="margin-top:14px"><button type="button" class="copy" data-copy="#code-curl" data-i18n="herald.copy">Copy</button>curl -X POST https://three.ws/api/herald/announce \
   -H <span class="s">"Authorization: Bearer $THREE_WS_API_KEY"</span> \
   -H <span class="s">'content-type: application/json'</span> \
   -d <span class="s">'{"text":"Deploy is green","importance":80}'</span></pre>
 					</div>
 
 					<div class="panel">
-						<h3>Your rail</h3>
-						<p style="font-size:13.5px;color:var(--muted);line-height:1.6">
+						<h3 data-i18n="herald.rail_h">Your rail</h3>
+						<p style="font-size:13.5px;color:var(--muted);line-height:1.6" data-i18n="herald.rail_body">
 							This tab listens on your own delivery rail while you are signed in. Send the command
 							on the left from anywhere and your avatar will say it here.
 						</p>
 						<div style="margin:14px 0">
-							<span class="rail-state" id="rail-state"><span class="dot" id="rail-dot"></span><span id="rail-label">Checking…</span></span>
+							<span class="rail-state" id="rail-state"><span class="dot" id="rail-dot"></span><span id="rail-label" data-i18n="herald.rail_checking">Checking…</span></span>
 						</div>
-						<a class="btn" href="/dashboard/developers" id="rail-key">Create an API key</a>
-						<p class="foot-note">
+						<a class="btn" href="/dashboard/developers" id="rail-key" data-i18n="herald.rail_key">Create an API key</a>
+						<p class="foot-note" data-i18n-html="herald.rail_note">
 							The key needs the <code>herald:announce</code> scope. Revoke it any time; nothing else
 							can address your avatar.
 						</p>
@@ -297,10 +297,10 @@ npx @three-ws/herald say <span class="s">"Migration finished"</span> --from db</
 			</section>
 
 			<section id="install">
-				<h2>Put it in your own product</h2>
-				<p class="sub">No build step required, and the 3D body is optional.</p>
+				<h2 data-i18n="herald.install_h">Put it in your own product</h2>
+				<p class="sub" data-i18n="herald.install_sub">No build step required, and the 3D body is optional.</p>
 				<div class="grid-2" style="margin-top:18px">
-					<pre class="code" id="code-npm"><button type="button" class="copy" data-copy="#code-npm">Copy</button><span class="c">// npm install @three-ws/herald</span>
+					<pre class="code" id="code-npm"><button type="button" class="copy" data-copy="#code-npm" data-i18n="herald.copy">Copy</button><span class="c">// npm install @three-ws/herald</span>
 <span class="k">import</span> { createHerald } <span class="k">from</span> <span class="s">'@three-ws/herald'</span>;
 
 <span class="k">const</span> herald = createHerald({
@@ -314,7 +314,7 @@ herald.announce({
   importance: <span class="s">85</span>,
   url: <span class="s">'/payments/inv_123'</span>,
 });</pre>
-					<pre class="code" id="code-cdn"><button type="button" class="copy" data-copy="#code-cdn">Copy</button><span class="c">&lt;!-- or with no bundler at all --&gt;</span>
+					<pre class="code" id="code-cdn"><button type="button" class="copy" data-copy="#code-cdn" data-i18n="herald.copy">Copy</button><span class="c">&lt;!-- or with no bundler at all --&gt;</span>
 &lt;script type="module"&gt;
   <span class="k">import</span> { createHerald, pollSource }
     <span class="k">from</span> <span class="s">'https://three.ws/herald.js'</span>;
@@ -333,48 +333,48 @@ herald.announce({
 				<div class="cards">
 					<div class="mini">
 						<div class="ico" aria-hidden="true">🎯</div>
-						<h3>An interrupt budget</h3>
-						<p>An importance floor, a rate limit, quiet hours, dedupe with a TTL, and a freshness
+						<h3 data-i18n="herald.card_budget_h">An interrupt budget</h3>
+						<p data-i18n="herald.card_budget_body">An importance floor, a rate limit, quiet hours, dedupe with a TTL, and a freshness
 						window. Scarcity is what keeps an interruption effective.</p>
 					</div>
 					<div class="mini">
 						<div class="ico" aria-hidden="true">🧾</div>
-						<h3>Never silently silent</h3>
-						<p>Every message that is not delivered comes back with a reason:
+						<h3 data-i18n="herald.card_silent_h">Never silently silent</h3>
+						<p data-i18n-html="herald.card_silent_body">Every message that is not delivered comes back with a reason:
 						<code>duplicate</code>, <code>rate-limited</code>, <code>quiet-hours</code>,
 						<code>below-importance-floor</code>.</p>
 					</div>
 					<div class="mini">
 						<div class="ico" aria-hidden="true">♿</div>
-						<h3>Works without a GPU</h3>
-						<p>No WebGL, an iframe, reduced motion: the card presenter takes over, in a live region,
+						<h3 data-i18n="herald.card_gpu_h">Works without a GPU</h3>
+						<p data-i18n="herald.card_gpu_body">No WebGL, an iframe, reduced motion: the card presenter takes over, in a live region,
 						dismissible with Escape, in your theme.</p>
 					</div>
 					<div class="mini">
 						<div class="ico" aria-hidden="true">🔌</div>
-						<h3>Any feed</h3>
-						<p>Poll a JSON endpoint, subscribe to SSE, bridge your own event bus, or take the hosted
+						<h3 data-i18n="herald.card_feed_h">Any feed</h3>
+						<p data-i18n="herald.card_feed_body">Poll a JSON endpoint, subscribe to SSE, bridge your own event bus, or take the hosted
 						rail. A source is fifteen lines.</p>
 					</div>
 				</div>
 			</section>
 
 			<section id="rules">
-				<h2>The defaults, in full</h2>
-				<p class="sub">Chosen so that dropping this into a page cannot make it obnoxious.</p>
+				<h2 data-i18n="herald.defaults_h">The defaults, in full</h2>
+				<p class="sub" data-i18n="herald.defaults_sub">Chosen so that dropping this into a page cannot make it obnoxious.</p>
 				<table class="rules">
-					<thead><tr><th>Rule</th><th>Default</th><th>What it does</th></tr></thead>
+					<thead><tr><th data-i18n="herald.th_rule">Rule</th><th data-i18n="herald.th_default">Default</th><th data-i18n="herald.th_does">What it does</th></tr></thead>
 					<tbody>
-						<tr><td><code>minImportance</code></td><td>50</td><td>The interrupt floor. Below it, nothing is shown.</td></tr>
-						<tr><td><code>freshnessMs</code></td><td>15 min</td><td>Older than this is history, and history belongs in an inbox.</td></tr>
-						<tr><td><code>dedupeTtlMs</code></td><td>6 h</td><td>The same key is said once, however many times a feed repeats it.</td></tr>
-						<tr><td><code>quietHours</code></td><td>off</td><td>Local window, wrapping past midnight, e.g. <code>[22, 7]</code>.</td></tr>
-						<tr><td><code>maxPerWindow</code></td><td>4 / min</td><td>The rate limit on interruptions.</td></tr>
-						<tr><td><code>focusOnly</code></td><td>true</td><td>Hold while the tab is in the background.</td></tr>
-						<tr><td><code>batchSize</code></td><td>2</td><td>Said per burst, before the rest collapse into one line.</td></tr>
+						<tr><td><code>minImportance</code></td><td>50</td><td data-i18n="herald.def_minimportance">The interrupt floor. Below it, nothing is shown.</td></tr>
+						<tr><td><code>freshnessMs</code></td><td>15 min</td><td data-i18n="herald.def_freshness">Older than this is history, and history belongs in an inbox.</td></tr>
+						<tr><td><code>dedupeTtlMs</code></td><td>6 h</td><td data-i18n="herald.def_dedupe">The same key is said once, however many times a feed repeats it.</td></tr>
+						<tr><td><code>quietHours</code></td><td>off</td><td data-i18n-html="herald.def_quiet">Local window, wrapping past midnight, e.g. <code>[22, 7]</code>.</td></tr>
+						<tr><td><code>maxPerWindow</code></td><td>4 / min</td><td data-i18n="herald.def_maxwindow">The rate limit on interruptions.</td></tr>
+						<tr><td><code>focusOnly</code></td><td>true</td><td data-i18n="herald.def_focus">Hold while the tab is in the background.</td></tr>
+						<tr><td><code>batchSize</code></td><td>2</td><td data-i18n="herald.def_batch">Said per burst, before the rest collapse into one line.</td></tr>
 					</tbody>
 				</table>
-				<p class="foot-note">
+				<p class="foot-note" data-i18n-html="herald.defaults_foot">
 					Full API, recipes and the rail contract are in the
 					<a href="/docs/herald">documentation</a>, and three.ws uses this to deliver its own
 					<a href="/notifications">notifications</a>.

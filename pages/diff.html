@@ -4,25 +4,27 @@
 		<script>/* three.ws theme boot - no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Model Diff &middot; What changed between two 3D models &middot; three.ws</title>
+		<title data-i18n="diff.page_title">Model Diff &middot; What changed between two 3D models &middot; three.ws</title>
 		<meta
 			name="description"
+			data-i18n-attr="content:diff.meta_desc"
 			content="Drop two .glb files and see exactly what changed: geometry, materials, textures, skeletons, and animation clips, with git-style rename and move detection and a severity you can gate a build on. Runs in your browser, nothing is uploaded."
 		/>
 		<meta name="theme-color" content="#000000" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="Model Diff &middot; git diff for 3D" />
+		<meta property="og:title" data-i18n-attr="content:diff.og_title" content="Model Diff &middot; git diff for 3D" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:diff.og_desc"
 			content="Two models in, one change set out: what moved, what was renamed, which joints disappeared, and whether anything downstream just broke."
 		/>
 		<meta property="og:url" content="https://three.ws/diff" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Model+Diff&amp;d=Drop+two+.glb+files+and+see+exactly+what+changed%3A+geometry%2C+materials%2C+textures%2C+skeletons+and+animation+clips%2C+with+git-style+rename+and+move+detection+and+a&amp;p=%2Fdiff" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Model Diff &middot; three.ws" />
-		<meta name="twitter:description" content="git diff for 3D. Two models in, one change set out. Runs in your browser." />
+		<meta name="twitter:title" data-i18n-attr="content:diff.tw_title" content="Model Diff &middot; three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:diff.tw_desc" content="git diff for 3D. Two models in, one change set out. Runs in your browser." />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Model+Diff&amp;d=Drop+two+.glb+files+and+see+exactly+what+changed%3A+geometry%2C+materials%2C+textures%2C+skeletons+and+animation+clips%2C+with+git-style+rename+and+move+detection+and+a&amp;p=%2Fdiff" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -51,9 +53,9 @@
 
 		<main>
 			<section class="dx-hero">
-				<span class="dx-badge"><span class="dx-badge-dot" aria-hidden="true"></span>Runs in your browser</span>
-				<h1 class="dx-title">What actually changed between these two models?</h1>
-				<p class="dx-sub">
+				<span class="dx-badge" data-i18n-html="diff.badge"><span class="dx-badge-dot" aria-hidden="true"></span>Runs in your browser</span>
+				<h1 class="dx-title" data-i18n="diff.hero_title">What actually changed between these two models?</h1>
+				<p class="dx-sub" data-i18n-html="diff.hero_sub">
 					A checksum says two files differ. It cannot tell a lossless recompression from a
 					rig that quietly lost three finger joints, and only one of those takes your
 					avatar off the screen. Drop a <code>.glb</code> on each side and get the change
@@ -62,25 +64,25 @@
 				</p>
 			</section>
 
-			<section class="dx-inputs" aria-label="Choose two models">
+			<section class="dx-inputs" aria-label="Choose two models" data-i18n-attr="aria-label:diff.inputs_aria">
 				<div class="dx-slot" id="dx-slot-a" data-state="idle">
 					<div class="dx-slot-head">
-						<span class="dx-slot-role">Before</span>
+						<span class="dx-slot-role" data-i18n="diff.slot_before">Before</span>
 						<span class="dx-slot-meta" id="dx-meta-a"></span>
 					</div>
 					<label class="dx-drop" id="dx-drop-a">
 						<input type="file" id="dx-file-a" accept=".glb,.gltf,model/gltf-binary,model/gltf+json" />
-						<span class="dx-slot-name" id="dx-name-a">Drop the baseline .glb</span>
-						<span class="dx-row-detail">or click to choose. Nothing is uploaded.</span>
+						<span class="dx-slot-name" id="dx-name-a" data-i18n="diff.drop_a_name">Drop the baseline .glb</span>
+						<span class="dx-row-detail" data-i18n="diff.drop_detail">or click to choose. Nothing is uploaded.</span>
 					</label>
 					<div class="dx-url-row">
-						<input type="url" class="dx-url" id="dx-url-a" placeholder="https://.../before.glb" aria-label="Baseline model URL" spellcheck="false" />
-						<button type="button" class="dx-btn" id="dx-load-a">Load</button>
+						<input type="url" class="dx-url" id="dx-url-a" placeholder="https://.../before.glb" aria-label="Baseline model URL" data-i18n-attr="aria-label:diff.url_a_aria" spellcheck="false" />
+						<button type="button" class="dx-btn" id="dx-load-a" data-i18n="diff.load_a_btn">Load</button>
 					</div>
 					<p class="dx-slot-error" id="dx-error-a" hidden></p>
 				</div>
 
-				<button type="button" class="dx-swap" id="dx-swap" title="Swap the two models" aria-label="Swap the two models">
+				<button type="button" class="dx-swap" id="dx-swap" title="Swap the two models" aria-label="Swap the two models" data-i18n-attr="title:diff.swap_label;aria-label:diff.swap_label">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 						<path d="M7 4 4 7l3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
 						<path d="M4 7h13a3 3 0 0 1 3 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
@@ -91,57 +93,57 @@
 
 				<div class="dx-slot" id="dx-slot-b" data-state="idle">
 					<div class="dx-slot-head">
-						<span class="dx-slot-role">After</span>
+						<span class="dx-slot-role" data-i18n="diff.slot_after">After</span>
 						<span class="dx-slot-meta" id="dx-meta-b"></span>
 					</div>
 					<label class="dx-drop" id="dx-drop-b">
 						<input type="file" id="dx-file-b" accept=".glb,.gltf,model/gltf-binary,model/gltf+json" />
-						<span class="dx-slot-name" id="dx-name-b">Drop the candidate .glb</span>
-						<span class="dx-row-detail">or click to choose. Nothing is uploaded.</span>
+						<span class="dx-slot-name" id="dx-name-b" data-i18n="diff.drop_b_name">Drop the candidate .glb</span>
+						<span class="dx-row-detail" data-i18n="diff.drop_detail">or click to choose. Nothing is uploaded.</span>
 					</label>
 					<div class="dx-url-row">
-						<input type="url" class="dx-url" id="dx-url-b" placeholder="https://.../after.glb" aria-label="Candidate model URL" spellcheck="false" />
-						<button type="button" class="dx-btn" id="dx-load-b">Load</button>
+						<input type="url" class="dx-url" id="dx-url-b" placeholder="https://.../after.glb" aria-label="Candidate model URL" data-i18n-attr="aria-label:diff.url_b_aria" spellcheck="false" />
+						<button type="button" class="dx-btn" id="dx-load-b" data-i18n="diff.load_b_btn">Load</button>
 					</div>
 					<p class="dx-slot-error" id="dx-error-b" hidden></p>
 				</div>
 			</section>
 
-			<section class="dx-examples" id="dx-examples" aria-label="Example comparisons">
-				<span class="dx-examples-label">No files handy?</span>
+			<section class="dx-examples" id="dx-examples" aria-label="Example comparisons" data-i18n-attr="aria-label:diff.examples_aria">
+				<span class="dx-examples-label" data-i18n="diff.examples_label">No files handy?</span>
 			</section>
 
 			<section class="dx-workbench">
 				<div class="dx-stage-card">
 					<div class="dx-stage" id="dx-stage">
 						<div class="dx-stage-empty" id="dx-stage-empty">
-							<strong>Both models render here</strong>
-							<span>Overlay the after on top of the before, wipe between them, or set them side by side.</span>
+							<strong data-i18n="diff.stage_empty_title">Both models render here</strong>
+							<span data-i18n="diff.stage_empty_body">Overlay the after on top of the before, wipe between them, or set them side by side.</span>
 						</div>
 					</div>
 					<div class="dx-stage-bar" id="dx-stage-bar" hidden>
-						<div class="dx-seg" role="group" aria-label="Comparison mode">
-							<button type="button" data-mode="overlay" aria-pressed="true">Overlay</button>
-							<button type="button" data-mode="wipe" aria-pressed="false">Wipe</button>
-							<button type="button" data-mode="split" aria-pressed="false">Side by side</button>
+						<div class="dx-seg" role="group" aria-label="Comparison mode" data-i18n-attr="aria-label:diff.mode_aria">
+							<button type="button" data-mode="overlay" aria-pressed="true" data-i18n="diff.mode_overlay">Overlay</button>
+							<button type="button" data-mode="wipe" aria-pressed="false" data-i18n="diff.mode_wipe">Wipe</button>
+							<button type="button" data-mode="split" aria-pressed="false" data-i18n="diff.mode_split">Side by side</button>
 						</div>
 						<label class="dx-toggle"><input type="checkbox" id="dx-highlight" checked /> Highlight changes</label>
 						<label class="dx-toggle" id="dx-play-wrap" hidden><input type="checkbox" id="dx-play" /> Play clips</label>
-						<input type="range" class="dx-wipe" id="dx-wipe" min="0" max="100" value="50" aria-label="Wipe position" hidden />
+						<input type="range" class="dx-wipe" id="dx-wipe" min="0" max="100" value="50" aria-label="Wipe position" data-i18n-attr="aria-label:diff.wipe_aria" hidden />
 					</div>
 					<div class="dx-legend" id="dx-legend" hidden>
-						<span><i style="background: #60a5fa"></i> before</span>
-						<span><i style="background: #e8e8e8"></i> after</span>
-						<span><i style="background: #fbbf24"></i> changed</span>
-						<span><i style="background: #4ade80"></i> added</span>
-						<span><i style="background: #f87171"></i> removed</span>
+						<span data-i18n-html="diff.legend_before"><i style="background: #60a5fa"></i> before</span>
+						<span data-i18n-html="diff.legend_after"><i style="background: #e8e8e8"></i> after</span>
+						<span data-i18n-html="diff.legend_changed"><i style="background: #fbbf24"></i> changed</span>
+						<span data-i18n-html="diff.legend_added"><i style="background: #4ade80"></i> added</span>
+						<span data-i18n-html="diff.legend_removed"><i style="background: #f87171"></i> removed</span>
 					</div>
 				</div>
 
 				<div class="dx-report" id="dx-report">
 					<div class="dx-card">
 						<div class="dx-empty">
-							<strong>Load two models</strong>
+							<strong data-i18n="diff.report_empty_title">Load two models</strong>
 							Drop a file on each side, paste two URLs, or pick one of the example pairs
 							above. The comparison runs on your machine.
 						</div>
@@ -150,26 +152,26 @@
 			</section>
 
 			<section class="dx-explain">
-				<h2>How it decides</h2>
+				<h2 data-i18n="diff.explain_h">How it decides</h2>
 				<article>
-					<h3>Renames, not churn</h3>
-					<p>
+					<h3 data-i18n="diff.explain1_title">Renames, not churn</h3>
+					<p data-i18n-html="diff.explain1_body">
 						Objects are matched by name, then by content hash, then by similarity, the
 						same three-tier strategy git uses for file renames. An exporter that
 						renumbers <code>Mesh.001</code> reads as a rename, not as a rewrite.
 					</p>
 				</article>
 				<article>
-					<h3>Tolerant on noise, strict on edits</h3>
-					<p>
+					<h3 data-i18n="diff.explain2_title">Tolerant on noise, strict on edits</h3>
+					<p data-i18n="diff.explain2_body">
 						Vertex data is compared at a quantum of 1e-4 units, so the float drift a
 						re-export or a Draco round trip introduces does not register while a genuine
 						edit does.
 					</p>
 				</article>
 				<article>
-					<h3>Severity you can gate on</h3>
-					<p>
+					<h3 data-i18n="diff.explain3_title">Severity you can gate on</h3>
+					<p data-i18n-html="diff.explain3_body">
 						<code>none</code>, <code>cosmetic</code>, <code>minor</code>,
 						<code>major</code>, <code>breaking</code>. Breaking means something a
 						consumer references by name is gone: a clip, a joint, a mesh. That is the
@@ -177,8 +179,8 @@
 					</p>
 				</article>
 				<article>
-					<h3>Same engine everywhere</h3>
-					<p>
+					<h3 data-i18n="diff.explain4_title">Same engine everywhere</h3>
+					<p data-i18n-html="diff.explain4_body">
 						This page, the <code>glb-diff</code> CLI, and
 						<a href="/docs/model-diff">the free API</a> all run
 						<a href="https://www.npmjs.com/package/@three-ws/glb-diff">@three-ws/glb-diff</a>,

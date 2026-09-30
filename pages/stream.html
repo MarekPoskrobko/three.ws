@@ -4,21 +4,21 @@
 		<script>/* three.ws theme boot, no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Progressive Avatars · three.ws</title>
-		<meta name="description" content="A 3D avatar should not be a blank box until the last byte arrives. A3S packs a GLB into layers whose first 50 KB is already a complete, skinned, spec-valid avatar, refined in place over plain HTTP range requests." />
+		<title data-i18n="stream.page_title">Progressive Avatars · three.ws</title>
+		<meta name="description" data-i18n-attr="content:stream.meta_desc" content="A 3D avatar should not be a blank box until the last byte arrives. A3S packs a GLB into layers whose first 50 KB is already a complete, skinned, spec-valid avatar, refined in place over plain HTTP range requests." />
 		<link rel="canonical" href="https://three.ws/stream" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/stream" />
-		<meta property="og:title" content="Progressive Avatars · three.ws" />
-		<meta property="og:description" content="The first 50 KB of an A3S stream is already a complete, skinned avatar. Watch it race a classic GLB load." />
+		<meta property="og:title" data-i18n-attr="content:stream.share_title" content="Progressive Avatars · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:stream.share_desc" content="The first 50 KB of an A3S stream is already a complete, skinned avatar. Watch it race a classic GLB load." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Progressive+Avatars&amp;d=A3S+packs+a+GLB+into+nested+layers+whose+first+50+KB+is+already+a+complete%2C+skinned%2C+spec-valid+avatar%2C+then+refines+it+in+place+over+plain+HTTP+range&amp;p=%2Fstream" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Progressive Avatars · three.ws" />
-		<meta name="twitter:description" content="The first 50 KB of an A3S stream is already a complete, skinned avatar. Watch it race a classic GLB load." />
+		<meta name="twitter:title" data-i18n-attr="content:stream.share_title" content="Progressive Avatars · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:stream.share_desc" content="The first 50 KB of an A3S stream is already a complete, skinned avatar. Watch it race a classic GLB load." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Progressive+Avatars&amp;d=A3S+packs+a+GLB+into+nested+layers+whose+first+50+KB+is+already+a+complete%2C+skinned%2C+spec-valid+avatar%2C+then+refines+it+in+place+over+plain+HTTP+range&amp;p=%2Fstream" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -94,9 +94,9 @@
 
 		<main class="st-shell">
 			<section class="st-hero">
-				<p class="st-kicker">Progressive delivery</p>
-				<h1 class="st-title">A 3D avatar should not be a blank box</h1>
-				<p class="st-sub">
+				<p class="st-kicker" data-i18n="stream.kicker">Progressive delivery</p>
+				<h1 class="st-title" data-i18n="stream.title">A 3D avatar should not be a blank box</h1>
+				<p class="st-sub" data-i18n-html="stream.sub">
 					A GLB is atomic: nothing renders until the last byte lands. On a slow connection that is
 					several seconds of empty frame on every embed. <strong>A3S</strong> repacks the same asset
 					into nested layers, ordered so that any byte-prefix of the file is a complete, skinned,
@@ -109,8 +109,8 @@
 			<div id="stream-root"></div>
 
 			<section class="st-how">
-				<h2>How a prefix can be a whole avatar</h2>
-				<p>
+				<h2 data-i18n="stream.how_h2">How a prefix can be a whole avatar</h2>
+				<p data-i18n-html="stream.how_p1">
 					The packer simplifies the mesh <em>successively</em>, finest to coarsest, so the vertices
 					surviving at each level are a strict subset of the level below it. Rank every vertex by the
 					coarsest level it reaches, sort the vertex buffer by that rank, and each level's vertices
@@ -119,12 +119,12 @@
 					the vertex array it was given.
 				</p>
 				<div class="st-layers">
-					<div class="st-layer"><b>Layer 0</b><span>Coarse mesh, full skeleton, thumbnail textures. A valid GLB on its own.</span></div>
-					<div class="st-layer"><b>Layer 1</b><span>New vertices, finer indices, and the animation clips.</span></div>
-					<div class="st-layer"><b>Layer 2</b><span>More geometry, applied in place on the live scene.</span></div>
-					<div class="st-layer"><b>Layer 3</b><span>Full detail and full-resolution textures.</span></div>
+					<div class="st-layer"><b data-i18n="stream.layer0_label">Layer 0</b><span data-i18n="stream.layer0_desc">Coarse mesh, full skeleton, thumbnail textures. A valid GLB on its own.</span></div>
+					<div class="st-layer"><b data-i18n="stream.layer1_label">Layer 1</b><span data-i18n="stream.layer1_desc">New vertices, finer indices, and the animation clips.</span></div>
+					<div class="st-layer"><b data-i18n="stream.layer2_label">Layer 2</b><span data-i18n="stream.layer2_desc">More geometry, applied in place on the live scene.</span></div>
+					<div class="st-layer"><b data-i18n="stream.layer3_label">Layer 3</b><span data-i18n="stream.layer3_desc">Full detail and full-resolution textures.</span></div>
 				</div>
-				<p>
+				<p data-i18n-html="stream.how_p2">
 					Because layer 0 is a real GLB and not a custom blob, you can cut it out with nothing but
 					<code>curl</code> and open it in any glTF tool:
 				</p>
@@ -132,7 +132,7 @@
 npx @three-ws/avatar-stream inspect avatar.a3s
 npx @three-ws/avatar-stream extract avatar.a3s -o preview.glb   # a 50 KB avatar
 npx @three-ws/avatar-stream verify avatar.a3s --deep            # replays every layer</code></pre>
-				<p>
+				<p data-i18n="stream.how_p3">
 					In a browser, the reader takes one ranged request to first frame and refines in the
 					background, mutating the geometry already on screen rather than rebuilding the scene:
 				</p>
@@ -144,7 +144,7 @@ const player = await A3SPlayer.load('/api/avatar-stream?src=/avatars/michelle.gl
 });
 scene.add(player.scene);   // already skinned and posed
 await player.refine();     // detail arrives without touching the camera or pose</code></pre>
-				<p>
+				<p data-i18n-html="stream.how_p4">
 					The format is documented in
 					<a href="https://github.com/nirholas/three.ws/blob/main/specs/AVATAR_STREAM.md">specs/AVATAR_STREAM.md</a>
 					and the endpoint serving these streams is

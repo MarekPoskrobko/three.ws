@@ -3,19 +3,21 @@
 	<head>
 		<script>/* three.ws theme boot: no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
-		<title>Atlas · three.ws</title>
+		<title data-i18n="atlas.page_title">Atlas · three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="theme-color" content="#000000" />
 		<meta
 			name="description"
+			data-i18n-attr="content:atlas.meta_desc"
 			content="The whole three.ws platform as one searchable map: every page grouped by what it is for, plus task shortcuts that answer with steps. Press Cmd+K anywhere on the site to search it."
 		/>
 
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://three.ws/atlas" />
-		<meta property="og:title" content="Atlas · three.ws" />
+		<meta property="og:title" data-i18n-attr="content:atlas.share_title" content="Atlas · three.ws" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:atlas.share_desc"
 			content="Every page on three.ws, grouped and searchable, plus the task shortcuts behind Cmd+K."
 		/>
 		<meta name="twitter:card" content="summary_large_image" />
@@ -405,8 +407,8 @@
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:alt" content="Atlas — three.ws">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Atlas · three.ws">
-	<meta name="twitter:description" content="The whole platform as one searchable map: every page grouped by what it is for, plus the task shortcuts the Cmd+K palette answers with. Press Cmd+K anywhere on the site to search it without leaving the page.">
+	<meta name="twitter:title" data-i18n-attr="content:atlas.share_title" content="Atlas · three.ws">
+	<meta name="twitter:description" data-i18n-attr="content:atlas.twitter_desc" content="The whole platform as one searchable map: every page grouped by what it is for, plus the task shortcuts the Cmd+K palette answers with. Press Cmd+K anywhere on the site to search it without leaving the page.">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Atlas&amp;d=The+whole+platform+as+one+searchable+map%3A+every+page+grouped+by+what+it+is+for%2C+plus+the+task+shortcuts+the+Cmd%2BK+palette+answers+with.+Press+Cmd%2BK+anywhere+on&amp;p=%2Fatlas">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Atlas","description":"The whole platform as one searchable map: every page grouped by what it is for, plus the task shortcuts the Cmd+K palette answers with. Press Cmd+K anywhere on the site to search it without leaving the page.","url":"https://three.ws/atlas","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=main&t=Atlas&d=The+whole+platform+as+one+searchable+map%3A+every+page+grouped+by+what+it+is+for%2C+plus+the+task+shortcuts+the+Cmd%2BK+palette+answers+with.+Press+Cmd%2BK+anywhere+on&p=%2Fatlas"}]}</script>
 </head>
@@ -414,11 +416,11 @@
 		<header><div id="nav-container"></div></header>
 
 		<main class="at-wrap">
-			<p class="at-crumb"><a href="/">Home</a> / Atlas</p>
+			<p class="at-crumb" data-i18n-html="atlas.breadcrumb"><a href="/">Home</a> / Atlas</p>
 
 			<div class="at-hero">
-				<h1 class="at-title">Atlas</h1>
-				<p class="at-lede">
+				<h1 class="at-title" data-i18n="atlas.title">Atlas</h1>
+				<p class="at-lede" data-i18n-html="atlas.lede">
 					The whole platform on one page, grouped by what each surface is for. Start with a goal
 					below, or search. Press <kbd>⌘ K</kbd> anywhere on three.ws to open the same search
 					without leaving the page you are on.
@@ -436,10 +438,11 @@
 					autocomplete="off"
 					spellcheck="false"
 					placeholder="Search every page, or describe what you want to do"
+					data-i18n-attr="placeholder:atlas.search_placeholder;aria-label:atlas.search_aria"
 					aria-label="Search the atlas"
 					aria-describedby="at-live"
 				/>
-				<button type="button" class="at-clear" id="at-clear" aria-label="Clear search" hidden>×</button>
+				<button type="button" class="at-clear" id="at-clear" aria-label="Clear search" data-i18n-attr="aria-label:atlas.clear_aria" hidden>×</button>
 			</div>
 
 			<p id="at-live" role="status" aria-live="polite" class="at-crumb" style="min-height: 1.2em"></p>
@@ -448,9 +451,9 @@
 
 			<section id="at-intents-wrap" aria-labelledby="at-intents-h" hidden>
 				<div class="at-section-head">
-					<h2 id="at-intents-h">Start with a goal</h2>
+					<h2 id="at-intents-h" data-i18n="atlas.intents_h">Start with a goal</h2>
 					<span class="at-count" id="at-intent-count"></span>
-					<p>
+					<p data-i18n="atlas.intents_desc">
 						Each of these answers with the ordered steps, not just a link. They are the same
 						shortcuts the ⌘K palette surfaces when you describe a task.
 					</p>

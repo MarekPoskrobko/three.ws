@@ -4,20 +4,22 @@
 		<script>/* three.ws theme boot: no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>three.ws: Cookbook</title>
+		<title data-i18n="cookbook.page_title">three.ws: Cookbook</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="author" content="nirholas" />
 		<meta
 			name="description"
+			data-i18n-attr="content:cookbook.meta_desc"
 			content="Runnable recipes for building with three.ws: text to 3D from the command line, parallel asset packs, an MCP tool for your AI assistant, a CI quality gate, and a self-correcting generation loop. Every recipe ships a file you can run."
 		/>
 		<meta name="theme-color" content="#000000" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="three.ws: Cookbook" />
+		<meta property="og:title" data-i18n-attr="content:cookbook.share_title" content="three.ws: Cookbook" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:cookbook.share_desc"
 			content="Runnable recipes for building with three.ws. Every recipe ships a file you can run, against the free and keyless 3D API."
 		/>
 		<meta property="og:url" content="https://three.ws/cookbook" />
@@ -29,9 +31,10 @@
 		<meta property="og:image:height" content="630" />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="three.ws: Cookbook" />
+		<meta name="twitter:title" data-i18n-attr="content:cookbook.share_title" content="three.ws: Cookbook" />
 		<meta
 			name="twitter:description"
+			data-i18n-attr="content:cookbook.share_desc"
 			content="Runnable recipes for building with three.ws. Every recipe ships a file you can run, against the free and keyless 3D API."
 		/>
 		<meta
@@ -69,27 +72,27 @@
 			<main id="main-content">
 			<section class="cb-hero">
 				<div class="cb-hero-inner">
-					<span class="cb-eyebrow">Cookbook</span>
-					<h1>Recipes you can run.</h1>
-					<p>
+					<span class="cb-eyebrow" data-i18n="cookbook.eyebrow">Cookbook</span>
+					<h1 data-i18n="cookbook.hero_h1">Recipes you can run.</h1>
+					<p data-i18n="cookbook.hero_p">
 						Not walkthroughs. Every recipe here is a real file that was executed against the
 						live API before it was published: a command-line tool, a batch pipeline, an MCP
 						server, a CI gate, a self-correcting agent loop. Copy one, run it, change it.
 					</p>
 					<div class="cb-hero-meta">
 						<span><strong id="cb-total">0</strong> recipes</span>
-						<span>Free, keyless <a href="/docs/3d-api">3D API</a></span>
-						<span>Python and Node</span>
+						<span data-i18n-html="cookbook.hero_free">Free, keyless <a href="/docs/3d-api">3D API</a></span>
+						<span data-i18n="cookbook.hero_langs">Python and Node</span>
 					</div>
 				</div>
 			</section>
 
 			<div class="cb-main">
-				<div class="cb-toolbar" role="group" aria-label="Filter recipes by level">
-					<button class="cb-filter" type="button" data-level="all" aria-pressed="true">
+				<div class="cb-toolbar" role="group" aria-label="Filter recipes by level" data-i18n-attr="aria-label:cookbook.toolbar_aria">
+					<button class="cb-filter" type="button" data-level="all" aria-pressed="true" data-i18n="cookbook.filter_all">
 						All
 					</button>
-					<button class="cb-filter" type="button" data-level="beginner" aria-pressed="false">
+					<button class="cb-filter" type="button" data-level="beginner" aria-pressed="false" data-i18n="cookbook.filter_beginner">
 						Beginner
 					</button>
 					<button
@@ -97,10 +100,11 @@
 						type="button"
 						data-level="intermediate"
 						aria-pressed="false"
+						data-i18n="cookbook.filter_intermediate"
 					>
 						Intermediate
 					</button>
-					<button class="cb-filter" type="button" data-level="advanced" aria-pressed="false">
+					<button class="cb-filter" type="button" data-level="advanced" aria-pressed="false" data-i18n="cookbook.filter_advanced">
 						Advanced
 					</button>
 					<span class="cb-count" id="cb-count" aria-live="polite"></span>
@@ -109,26 +113,26 @@
 				<ul class="cb-grid" id="cb-grid"></ul>
 
 				<div class="cb-empty" id="cb-empty" hidden>
-					<h2>No recipes at that level yet</h2>
-					<p>
+					<h2 data-i18n="cookbook.empty_h2">No recipes at that level yet</h2>
+					<p data-i18n="cookbook.empty_p">
 						The cookbook is small and growing. Clear the filter to see everything, or open an
 						issue with the recipe you wish existed.
 					</p>
-					<button type="button" id="cb-clear">Show all recipes</button>
+					<button type="button" id="cb-clear" data-i18n="cookbook.empty_clear_btn">Show all recipes</button>
 				</div>
 
 				<section class="cb-outro">
 					<div>
-						<h2>Write one</h2>
-						<p>
+						<h2 data-i18n="cookbook.outro_h2">Write one</h2>
+						<p data-i18n="cookbook.outro_p">
 							A recipe is a file that runs, plus the prose explaining why it is shaped that
 							way. If you built something on the 3D API worth copying, send it.
 						</p>
 					</div>
 					<div class="cb-outro-links">
-						<a class="cb-btn primary" href="/docs/3d-api">Read the API docs</a>
-						<a class="cb-btn" href="https://github.com/nirholas/three.ws">Contribute on GitHub</a>
-						<a class="cb-btn" href="/tutorials">Browse tutorials</a>
+						<a class="cb-btn primary" href="/docs/3d-api" data-i18n="cookbook.outro_read_docs">Read the API docs</a>
+						<a class="cb-btn" href="https://github.com/nirholas/three.ws" data-i18n="cookbook.outro_contribute">Contribute on GitHub</a>
+						<a class="cb-btn" href="/tutorials" data-i18n="cookbook.outro_tutorials">Browse tutorials</a>
 					</div>
 				</section>
 			</div>
@@ -280,5 +284,6 @@
 				}
 			})();
 		</script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

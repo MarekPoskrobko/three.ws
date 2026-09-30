@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Companion · three.ws</title>
-		<meta name="description" content="A 3D companion that delivers your important messages in person. Connect Telegram, your calendar, your inbox, or your phone, give each contact their own avatar, and hear what matters out loud." />
+		<title data-i18n="companion.page_title">Companion · three.ws</title>
+		<meta name="description" content="A 3D companion that delivers your important messages in person. Connect Telegram, your calendar, your inbox, or your phone, give each contact their own avatar, and hear what matters out loud." data-i18n-attr="content:companion.meta_desc" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,8 +16,8 @@
 		<link rel="canonical" href="https://three.ws/companion">
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content="three.ws">
-		<meta property="og:title" content="Companion · three.ws">
-		<meta property="og:description" content="A 3D companion that delivers your important messages in person. Bring your own keys, give your contacts a face, and hear what matters out loud.">
+		<meta property="og:title" content="Companion · three.ws" data-i18n-attr="content:companion.share_title">
+		<meta property="og:description" content="A 3D companion that delivers your important messages in person. Bring your own keys, give your contacts a face, and hear what matters out loud." data-i18n-attr="content:companion.og_desc">
 		<meta property="og:url" content="https://three.ws/companion">
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Companion&amp;d=A+3D+companion+that+delivers+your+important+messages+in+person.+Connect+your+own+Telegram+bot%2C+calendar%2C+inbox%2C+or+phone%2C+give+each+contact+their+own+avatar&amp;p=%2Fcompanion">
 		<meta property="og:image:width" content="1200">
@@ -25,8 +25,8 @@
 		<meta property="og:image:alt" content="Companion - three.ws">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@trythreews">
-		<meta name="twitter:title" content="Companion · three.ws">
-		<meta name="twitter:description" content="A 3D companion that delivers your important messages in person.">
+		<meta name="twitter:title" content="Companion · three.ws" data-i18n-attr="content:companion.share_title">
+		<meta name="twitter:description" content="A 3D companion that delivers your important messages in person." data-i18n-attr="content:companion.tw_desc">
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Companion&amp;d=A+3D+companion+that+delivers+your+important+messages+in+person.+Connect+your+own+Telegram+bot%2C+calendar%2C+inbox%2C+or+phone%2C+give+each+contact+their+own+avatar&amp;p=%2Fcompanion">
 		<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"three.ws Companion","applicationCategory":"CommunicationApplication","operatingSystem":"Web","description":"A 3D companion that delivers your important messages in person, from your own Telegram, calendar, inbox, and phone.","url":"https://three.ws/companion","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 		<style>
@@ -185,16 +185,16 @@
 		<main class="shell">
 			<div class="hero">
 				<div>
-					<h1>Your companion</h1>
-					<p>
+					<h1 data-i18n="companion.hero_title">Your companion</h1>
+					<p data-i18n="companion.hero_sub">
 						A 3D character that walks on and tells you the things worth interrupting you for.
 						Connect what you already use, give the people who matter their own face and voice,
 						and let everything else stay quiet.
 					</p>
 				</div>
 				<div class="hero-actions">
-					<button type="button" id="check-now" class="btn">Check now</button>
-					<a href="/docs/companion" class="btn">How it works</a>
+					<button type="button" id="check-now" class="btn" data-i18n="companion.check_now">Check now</button>
+					<a href="/docs/companion" class="btn" data-i18n="companion.how_link">How it works</a>
 				</div>
 			</div>
 
@@ -204,46 +204,46 @@
 			<div id="auth-wall" hidden>
 				<section class="pitch">
 					<div class="pitch-lead">
-						<h2>Your phone buzzes forty times a day. Two of those mattered.</h2>
-						<p>
+						<h2 data-i18n="companion.pitch_h">Your phone buzzes forty times a day. Two of those mattered.</h2>
+						<p data-i18n="companion.pitch_lead">
 							The companion reads what comes in from the accounts you already use, decides what a
 							person would actually want a tap on the shoulder for, and then walks over and says it.
 							Everything else stays quiet, in a feed, with the reason it stayed quiet.
 						</p>
 						<div class="hero-actions">
-							<a href="/login?next=/companion" class="btn btn-primary">Sign in and set it up</a>
-							<a href="/register?next=/companion" class="btn">Create an account</a>
-							<a href="/docs/companion" class="btn">Read the docs</a>
+							<a href="/login?next=/companion" class="btn btn-primary" data-i18n="companion.pitch_signin">Sign in and set it up</a>
+							<a href="/register?next=/companion" class="btn" data-i18n="companion.pitch_register">Create an account</a>
+							<a href="/docs/companion" class="btn" data-i18n="companion.pitch_docs">Read the docs</a>
 						</div>
 					</div>
 					<ul class="pitch-grid">
-						<li>
+						<li data-i18n-html="companion.pitch_card1">
 							<strong>📱 Your phone, your Mac, anything</strong>
 							One token, one endpoint. An Android profile, a Shortcut, a Mail rule, a build script,
 							or an agent that decided you need to know.
 						</li>
-						<li>
+						<li data-i18n-html="companion.pitch_card2">
 							<strong>✈️ Telegram</strong>
 							A bot you create yourself relays only the chats you add it to. Revoke it and the
 							connection is gone, with nothing left behind here.
 						</li>
-						<li>
+						<li data-i18n-html="companion.pitch_card3">
 							<strong>📅 Calendar</strong>
 							The private iCal link Google, Apple, Outlook and CalDAV all publish. It tells you the
 							meeting is starting while you can still make it.
 						</li>
-						<li>
+						<li data-i18n-html="companion.pitch_card4">
 							<strong>✉️ Email</strong>
 							IMAP with an app password. Read only, headers and a preview, and your unread state is
 							never touched. Or triage it on your own machine and send nothing but the sentence.
 						</li>
 					</ul>
 					<ol class="pitch-steps">
-						<li><span>1</span> Connect what you already use. Every credential is yours, and encrypted here.</li>
-						<li><span>2</span> Give the people who matter a face and a voice. Their messages arrive as them.</li>
-						<li><span>3</span> Set the bar, and the hours you will not be disturbed. That is the whole product.</li>
+						<li data-i18n-html="companion.pitch_step1"><span>1</span> Connect what you already use. Every credential is yours, and encrypted here.</li>
+						<li data-i18n-html="companion.pitch_step2"><span>2</span> Give the people who matter a face and a voice. Their messages arrive as them.</li>
+						<li data-i18n-html="companion.pitch_step3"><span>3</span> Set the bar, and the hours you will not be disturbed. That is the whole product.</li>
 					</ol>
-					<p class="pitch-foot">
+					<p class="pitch-foot" data-i18n-html="companion.pitch_foot">
 						It reaches you here, as a push on your phone, and on your desktop as a character that walks
 						across your screen. Developers get all of it as
 						<a href="/docs/companion">an SDK, a CLI, and an MCP server</a>.
@@ -258,23 +258,23 @@
 				<section id="stage-section" aria-labelledby="stage-h">
 					<div class="sec-head">
 						<div>
-							<h2 id="stage-h">On stage</h2>
-							<p>The most recent delivery, exactly as your companion performs it.</p>
+							<h2 id="stage-h" data-i18n="companion.stage_h">On stage</h2>
+							<p data-i18n="companion.stage_sub">The most recent delivery, exactly as your companion performs it.</p>
 						</div>
 						<div class="hero-actions">
-							<button type="button" id="say-again" class="btn btn-sm">Say it out loud</button>
+							<button type="button" id="say-again" class="btn btn-sm" data-i18n="companion.say_again">Say it out loud</button>
 						</div>
 					</div>
 					<div class="stage">
 						<div class="stage-viewer" id="stage-viewer">
-							<div class="stage-empty" id="stage-empty">
+							<div class="stage-empty" id="stage-empty" data-i18n="companion.stage_empty">
 								Nothing delivered yet. Connect a source below, or send a test message from your phone,
 								and whoever it is from will show up here.
 							</div>
 						</div>
 						<div class="stage-body">
 							<div class="bubble">
-								<div class="bubble-line" id="stage-line">Waiting for something worth saying.</div>
+								<div class="bubble-line" id="stage-line" data-i18n="companion.stage_line_default">Waiting for something worth saying.</div>
 								<div class="bubble-meta" id="stage-meta"></div>
 							</div>
 							<div class="card" id="stage-stats"></div>
@@ -286,8 +286,8 @@
 				<section aria-labelledby="sources-h">
 					<div class="sec-head">
 						<div>
-							<h2 id="sources-h">Connections</h2>
-							<p>
+							<h2 id="sources-h" data-i18n="companion.sources_h">Connections</h2>
+							<p data-i18n="companion.sources_sub">
 								Bring your own keys. Nothing is stored that you cannot revoke from the other side in one click,
 								and every credential is encrypted before it touches the database.
 							</p>
@@ -300,13 +300,13 @@
 				<section aria-labelledby="contacts-h">
 					<div class="sec-head">
 						<div>
-							<h2 id="contacts-h">Who gets a face</h2>
-							<p>
+							<h2 id="contacts-h" data-i18n="companion.contacts_h">Who gets a face</h2>
+							<p data-i18n="companion.contacts_sub">
 								Give a person an avatar and their messages arrive in that body, in their own voice.
 								Everyone else is delivered by your default companion.
 							</p>
 						</div>
-						<a href="/create-selfie?next=/companion" class="btn btn-sm">Make one from a selfie</a>
+						<a href="/create-selfie?next=/companion" class="btn btn-sm" data-i18n="companion.make_selfie">Make one from a selfie</a>
 					</div>
 					<div class="card">
 						<div id="contacts-list"></div>
@@ -333,15 +333,15 @@
 								<label class="field">
 									Priority
 									<select id="contact-priority">
-										<option value="0">Normal</option>
-										<option value="15">Important</option>
-										<option value="30">Always interrupt me</option>
-										<option value="-20">Rarely urgent</option>
+										<option value="0" data-i18n="companion.priority_normal">Normal</option>
+										<option value="15" data-i18n="companion.priority_important">Important</option>
+										<option value="30" data-i18n="companion.priority_always">Always interrupt me</option>
+										<option value="-20" data-i18n="companion.priority_rarely">Rarely urgent</option>
 									</select>
 								</label>
 							</div>
 							<div class="row" style="justify-content:flex-end;">
-								<button type="submit" class="btn btn-primary" style="flex:0 0 auto;">Save contact</button>
+								<button type="submit" class="btn btn-primary" style="flex:0 0 auto;" data-i18n="companion.save_contact">Save contact</button>
 							</div>
 						</form>
 					</div>
@@ -351,8 +351,8 @@
 				<section aria-labelledby="feed-h">
 					<div class="sec-head">
 						<div>
-							<h2 id="feed-h">Everything it heard</h2>
-							<p>Every message that came in, what it scored, and why. Quiet ones are kept here instead of being spoken.</p>
+							<h2 id="feed-h" data-i18n="companion.feed_h">Everything it heard</h2>
+							<p data-i18n="companion.feed_sub">Every message that came in, what it scored, and why. Quiet ones are kept here instead of being spoken.</p>
 						</div>
 						<div class="hero-actions">
 							<label class="switch"><input type="checkbox" id="feed-loud-only" /> Only what it spoke</label>
@@ -360,7 +360,7 @@
 					</div>
 					<div class="card"><div id="feed-list"></div></div>
 					<div class="hero-actions" style="justify-content:center;margin-top:16px;">
-						<button type="button" id="feed-more" class="btn btn-sm" hidden>Load more</button>
+						<button type="button" id="feed-more" class="btn btn-sm" hidden data-i18n="companion.feed_more">Load more</button>
 					</div>
 				</section>
 
@@ -368,15 +368,15 @@
 				<section aria-labelledby="settings-h">
 					<div class="sec-head">
 						<div>
-							<h2 id="settings-h">How loud, and when</h2>
-							<p>The bar a message has to clear before anyone walks on stage.</p>
+							<h2 id="settings-h" data-i18n="companion.settings_h">How loud, and when</h2>
+							<p data-i18n="companion.settings_sub">The bar a message has to clear before anyone walks on stage.</p>
 						</div>
 					</div>
 					<div class="card settings-grid">
 						<label class="field">
 							Interrupt me at <strong id="threshold-value" style="color:var(--text)">60</strong> and above
 							<input type="range" id="threshold" min="0" max="100" step="5" />
-							<span class="hint">Lower hears more. Higher keeps it to the things you would want a tap on the shoulder for.</span>
+							<span class="hint" data-i18n="companion.threshold_hint">Lower hears more. Higher keeps it to the things you would want a tap on the shoulder for.</span>
 						</label>
 						<label class="field">
 							Quiet hours
@@ -384,17 +384,17 @@
 								<select id="quiet-start"></select>
 								<select id="quiet-end"></select>
 							</div>
-							<span class="hint" id="quiet-hint">Inside this window messages are stored, never spoken.</span>
+							<span class="hint" id="quiet-hint" data-i18n="companion.quiet_hint">Inside this window messages are stored, never spoken.</span>
 						</label>
 						<label class="field">
 							Default companion
 							<select id="default-avatar"></select>
-							<span class="hint">Used for anyone without their own contact card.</span>
+							<span class="hint" data-i18n="companion.default_avatar_hint">Used for anyone without their own contact card.</span>
 						</label>
 						<label class="field">
 							Default voice
 							<select id="default-voice"></select>
-							<span class="hint">Real speech from <a href="/voice">Voice Lab</a> lanes, spoken in the browser.</span>
+							<span class="hint" data-i18n-html="companion.default_voice_hint">Real speech from <a href="/voice">Voice Lab</a> lanes, spoken in the browser.</span>
 						</label>
 						<div class="field">
 							On this device
@@ -405,7 +405,7 @@
 						<div class="field">
 							Timezone
 							<input type="text" id="timezone" readonly />
-							<span class="hint">Detected from this browser and used for quiet hours.</span>
+							<span class="hint" data-i18n="companion.timezone_hint">Detected from this browser and used for quiet hours.</span>
 						</div>
 					</div>
 				</section>

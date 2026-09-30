@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Trial Conversions · three.ws</title>
-		<meta name="description" content="Every free trial you hold and every trial running on the skills you sell, with the runs left, the price to convert, and the revenue sitting in the queue." />
+		<title data-i18n="conversions.page_title">Trial Conversions · three.ws</title>
+		<meta name="description" data-i18n-attr="content:conversions.meta_desc" content="Every free trial you hold and every trial running on the skills you sell, with the runs left, the price to convert, and the revenue sitting in the queue." />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -159,8 +159,8 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="three.ws">
 	<meta property="og:locale" content="en_US">
-	<meta property="og:title" content="Trial Conversions · three.ws">
-	<meta property="og:description" content="Both sides of the moment a metered free trial runs out: the trials you are holding with the runs you have left and the price to keep them, and the trials running on skills you sell with the revenue waiting in the queue.">
+	<meta property="og:title" data-i18n-attr="content:conversions.share_title" content="Trial Conversions · three.ws">
+	<meta property="og:description" data-i18n-attr="content:conversions.share_desc" content="Both sides of the moment a metered free trial runs out: the trials you are holding with the runs you have left and the price to keep them, and the trials running on skills you sell with the revenue waiting in the queue.">
 	<meta property="og:url" content="https://three.ws/conversions">
 	<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Trial+Conversions&amp;d=Both+sides+of+the+moment+a+metered+free+trial+runs+out%3A+the+trials+you+are+holding+with+the+runs+you+have+left+and+the+price+to+keep+them%2C+and+the+trials&amp;p=%2Fconversions">
 	<meta property="og:image:width" content="1200">
@@ -169,8 +169,8 @@
 	<meta property="og:image:alt" content="Trial Conversions — three.ws">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Trial Conversions · three.ws">
-	<meta name="twitter:description" content="Both sides of the moment a metered free trial runs out: the trials you are holding with the runs you have left and the price to keep them, and the trials running on skills you sell with the revenue waiting in the queue.">
+	<meta name="twitter:title" data-i18n-attr="content:conversions.share_title" content="Trial Conversions · three.ws">
+	<meta name="twitter:description" data-i18n-attr="content:conversions.share_desc" content="Both sides of the moment a metered free trial runs out: the trials you are holding with the runs you have left and the price to keep them, and the trials running on skills you sell with the revenue waiting in the queue.">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Trial+Conversions&amp;d=Both+sides+of+the+moment+a+metered+free+trial+runs+out%3A+the+trials+you+are+holding+with+the+runs+you+have+left+and+the+price+to+keep+them%2C+and+the+trials&amp;p=%2Fconversions">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Trial Conversions","description":"Both sides of the moment a metered free trial runs out: the trials you are holding with the runs you have left and the price to keep them, and the trials running on skills you sell with the revenue waiting in the queue.","url":"https://three.ws/conversions","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=main&t=Trial+Conversions&d=Both+sides+of+the+moment+a+metered+free+trial+runs+out%3A+the+trials+you+are+holding+with+the+runs+you+have+left+and+the+price+to+keep+them%2C+and+the+trials&p=%2Fconversions"}]}</script>
 </head>
@@ -180,18 +180,18 @@
 
 		<main class="page-shell">
 			<div class="page-hero">
-				<h1>Trial conversions</h1>
-				<p>
+				<h1 data-i18n="conversions.title">Trial conversions</h1>
+				<p data-i18n="conversions.intro">
 					A metered free trial only earns anything at the moment it runs out. This is both sides of that
 					moment: the trials you are holding, and the trials running on skills you sell.
 				</p>
 			</div>
 
-			<div class="role-switch" role="tablist" aria-label="Whose trials to show">
-				<button class="role-tab" role="tab" id="tab-buyer" aria-selected="true" aria-controls="cv-panel" data-role="buyer">
+			<div class="role-switch" role="tablist" aria-label="Whose trials to show" data-i18n-attr="aria-label:conversions.roleswitch_aria">
+				<button class="role-tab" role="tab" id="tab-buyer" aria-selected="true" aria-controls="cv-panel" data-role="buyer" data-i18n="conversions.tab_buyer">
 					Trials I hold
 				</button>
-				<button class="role-tab" role="tab" id="tab-seller" aria-selected="false" aria-controls="cv-panel" data-role="seller" tabindex="-1">
+				<button class="role-tab" role="tab" id="tab-seller" aria-selected="false" aria-controls="cv-panel" data-role="seller" tabindex="-1" data-i18n="conversions.tab_seller">
 					Trials on my skills
 				</button>
 			</div>
@@ -211,7 +211,7 @@
 				</div>
 			</div>
 
-			<p class="cv-note">
+			<p class="cv-note" data-i18n-html="conversions.note">
 				Prices are the seller's live list price in the mint they chose. Buying happens on the agent's own page,
 				where the amount and destination are shown before anything is signed. Read
 				<a href="/tutorials/sell-a-skill-with-a-trial">how a trial converts</a> or see the platform-wide

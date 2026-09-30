@@ -5,20 +5,20 @@
 		<meta charset="utf-8" />
 		<script src="/referral-capture.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Copy Coach: your first copy trade, the careful way · three.ws</title>
-		<meta name="description" content="A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. Plain risk, real data, no promises." />
+		<title data-i18n="copy-coach.page_title">Copy Coach: your first copy trade, the careful way · three.ws</title>
+		<meta name="description" data-i18n-attr="content:copy-coach.meta_desc" content="A guided first copy trade for someone who has never copied one. See a real verified win next to the full record behind it, ghost-copy a leader with fake money, then make one tiny, server-capped copy you sign yourself. Plain risk, real data, no promises." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/copy-coach" />
-		<meta property="og:title" content="Copy Coach: your first copy trade, the careful way · three.ws" />
-		<meta property="og:description" content="Never copied a trader? Start with a real win and the record behind it, then fake money, then one tiny capped copy you sign yourself. You can lose what you put in, and the coach says so." />
+		<meta property="og:title" data-i18n-attr="content:copy-coach.share_title" content="Copy Coach: your first copy trade, the careful way · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:copy-coach.og_desc" content="Never copied a trader? Start with a real win and the record behind it, then fake money, then one tiny capped copy you sign yourself. You can lose what you put in, and the coach says so." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Copy+Coach&amp;d=Your+first+copy+trade%2C+the+careful+way%3A+a+real+win+and+its+full+record%2C+fake+money+first%2C+then+one+tiny+capped+copy+you+sign+yourself.&amp;p=%2Fcopy-coach" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Copy Coach: your first copy trade, the careful way · three.ws" />
-		<meta name="twitter:description" content="A real win and its full record, fake money first, then one tiny capped copy you sign yourself." />
+		<meta name="twitter:title" data-i18n-attr="content:copy-coach.share_title" content="Copy Coach: your first copy trade, the careful way · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:copy-coach.twitter_desc" content="A real win and its full record, fake money first, then one tiny capped copy you sign yourself." />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -40,13 +40,13 @@
 
 		<main class="cc" aria-labelledby="cc-title">
 			<section class="cc-hero">
-				<p class="cc-kicker">Copy Coach</p>
-				<h1 class="cc-title" id="cc-title">Your first copy trade, the careful way</h1>
-				<p class="cc-sub">Four small steps from never-copied to one tiny copy you control. Every number is real and links to the record it came from. The first two steps need no account and no wallet, and you can stop at any step.</p>
-				<p class="cc-risk" role="note"><strong>Plain truth first.</strong> Copy trading can lose money, including all of what you put in. Nobody here can promise returns, and the coach will not try.</p>
+				<p class="cc-kicker" data-i18n="copy-coach.kicker">Copy Coach</p>
+				<h1 class="cc-title" id="cc-title" data-i18n="copy-coach.title">Your first copy trade, the careful way</h1>
+				<p class="cc-sub" data-i18n="copy-coach.sub">Four small steps from never-copied to one tiny copy you control. Every number is real and links to the record it came from. The first two steps need no account and no wallet, and you can stop at any step.</p>
+				<p class="cc-risk" role="note" data-i18n-html="copy-coach.risk"><strong>Plain truth first.</strong> Copy trading can lose money, including all of what you put in. Nobody here can promise returns, and the coach will not try.</p>
 			</section>
 
-			<nav class="cc-rail" aria-label="Your progress">
+			<nav class="cc-rail" aria-label="Your progress" data-i18n-attr="aria-label:copy-coach.rail_aria">
 				<ol id="cc-rail"></ol>
 			</nav>
 
@@ -55,15 +55,15 @@
 
 				<aside class="cc-chat" aria-labelledby="cc-chat-title">
 					<div class="cc-chat-head">
-						<h2 id="cc-chat-title">Ask the coach</h2>
-						<p>Answers use only the real numbers on this page. No guarantees, ever.</p>
+						<h2 id="cc-chat-title" data-i18n="copy-coach.chat_title">Ask the coach</h2>
+						<p data-i18n="copy-coach.chat_note">Answers use only the real numbers on this page. No guarantees, ever.</p>
 					</div>
-					<ol class="cc-msgs" id="cc-msgs" aria-live="polite" aria-label="Conversation with the coach"></ol>
-					<div class="cc-chips" id="cc-chips" role="group" aria-label="Suggested questions"></div>
+					<ol class="cc-msgs" id="cc-msgs" aria-live="polite" aria-label="Conversation with the coach" data-i18n-attr="aria-label:copy-coach.msgs_aria"></ol>
+					<div class="cc-chips" id="cc-chips" role="group" aria-label="Suggested questions" data-i18n-attr="aria-label:copy-coach.chips_aria"></div>
 					<form class="cc-ask" id="cc-ask">
-						<label class="cc-sr" for="cc-input">Your question</label>
-						<input id="cc-input" type="text" maxlength="500" autocomplete="off" placeholder="Ask anything, e.g. can I lose money?" />
-						<button type="submit" class="cc-btn cc-btn-primary" id="cc-send">Ask</button>
+						<label class="cc-sr" for="cc-input" data-i18n="copy-coach.input_label">Your question</label>
+						<input id="cc-input" type="text" maxlength="500" autocomplete="off" placeholder="Ask anything, e.g. can I lose money?" data-i18n-attr="placeholder:copy-coach.input_placeholder" />
+						<button type="submit" class="cc-btn cc-btn-primary" id="cc-send" data-i18n="copy-coach.send_btn">Ask</button>
 					</form>
 				</aside>
 			</div>

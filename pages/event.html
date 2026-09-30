@@ -4,24 +4,25 @@
 		<meta charset="utf-8" />
 		<script>/* three.ws theme boot - no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>The live event · three.ws</title>
+		<title data-i18n="event.page_title">The live event · three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta
 			name="description"
+			data-i18n-attr="content:event.meta_desc"
 			content="One link for the live gathering in the three.ws world: a ticking countdown, the schedule in your own timezone, an add-to-calendar file, and the door into the shared 3D world. Bring a photo, get an avatar, drop in."
 		/>
 		<meta name="theme-color" content="#000000" />
 		<link rel="canonical" href="https://three.ws/event" />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="The live event · three.ws" />
-		<meta property="og:description" content="The countdown, the schedule in your timezone, and the one door into the shared 3D world. Bring a photo, get an avatar, drop in." />
+		<meta property="og:title" data-i18n-attr="content:event.share_title" content="The live event · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:event.share_desc" content="The countdown, the schedule in your timezone, and the one door into the shared 3D world. Bring a photo, get an avatar, drop in." />
 		<meta property="og:url" content="https://three.ws/event" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Live+event&amp;d=The+live+three.ws+community+meetup%3A+a+ticking+countdown+off+the+same+config+%2Fplay+reads%2C+the+run+of+show+in+your+own+timezone%2C+an+add-to-calendar+file%2C+who+is&amp;p=%2Fevent" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="The live event · three.ws" />
-		<meta name="twitter:description" content="The countdown, the schedule in your timezone, and the one door into the shared 3D world. Bring a photo, get an avatar, drop in." />
+		<meta name="twitter:title" data-i18n-attr="content:event.share_title" content="The live event · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:event.share_desc" content="The countdown, the schedule in your timezone, and the one door into the shared 3D world. Bring a photo, get an avatar, drop in." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Live+event&amp;d=The+live+three.ws+community+meetup%3A+a+ticking+countdown+off+the+same+config+%2Fplay+reads%2C+the+run+of+show+in+your+own+timezone%2C+an+add-to-calendar+file%2C+who+is&amp;p=%2Fevent" />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -236,7 +237,7 @@
 					</a>
 					<button class="ev-ghost" id="ev-cal" type="button" hidden>
 						<span aria-hidden="true">📅</span>
-						<span>Add to calendar</span>
+						<span data-i18n="event.add_to_calendar">Add to calendar</span>
 					</button>
 				</div>
 				<p class="ev-cal-note" id="ev-cal-note" role="status" aria-live="polite"></p>
@@ -252,16 +253,16 @@
 			</section>
 
 			<section class="ev-sec" aria-labelledby="ev-expect-h">
-				<h2 id="ev-expect-h">Never been here? This is the whole thing.</h2>
-				<p class="ev-sec-lede">
+				<h2 id="ev-expect-h" data-i18n="event.expect_h">Never been here? This is the whole thing.</h2>
+				<p class="ev-sec-lede" data-i18n="event.expect_lede">
 					No download, no wallet, no account. It runs in the browser tab you already have open,
 					on a phone or a laptop.
 				</p>
 				<div class="ev-cards">
 					<article class="ev-card">
 						<span class="ev-card-mark" aria-hidden="true">🧍</span>
-						<h3>First, you get a body</h3>
-						<p>
+						<h3 data-i18n="event.card_body_h">First, you get a body</h3>
+						<p data-i18n-html="event.card_body_p">
 							Make an avatar from a selfie, pick one from the library, or drag in your own
 							<code>.glb</code>. It animates properly either way: idle, walk and gestures are
 							retargeted onto whatever skeleton you bring.
@@ -269,24 +270,24 @@
 					</article>
 					<article class="ev-card">
 						<span class="ev-card-mark" aria-hidden="true">🌍</span>
-						<h3>Then you drop into the world</h3>
-						<p>
+						<h3 data-i18n="event.card_world_h">Then you drop into the world</h3>
+						<p data-i18n="event.card_world_p">
 							A shared 3D town built from the coin itself, with a real day/night clock everyone
 							agrees on. Walk it, drive it, and see everyone else who is in there with you.
 						</p>
 					</article>
 					<article class="ev-card">
 						<span class="ev-card-mark" aria-hidden="true">💬</span>
-						<h3>You can actually do things</h3>
-						<p>
+						<h3 data-i18n="event.card_do_h">You can actually do things</h3>
+						<p data-i18n="event.card_do_p">
 							Town chat and voice, emotes and a dance floor, jobs from the board, the general
 							store and bank, King of the Totem at the landmark, and the wheel in the plaza.
 						</p>
 					</article>
 					<article class="ev-card">
 						<span class="ev-card-mark" aria-hidden="true">🎡</span>
-						<h3>And you can leave with something</h3>
-						<p>
+						<h3 data-i18n="event.card_leave_h">And you can leave with something</h3>
+						<p data-i18n="event.card_leave_p">
 							A free spin on Fortune's Folly every 12 hours, cosmetics you own, and a
 							commemorative photo of the crowd taken from inside the world.
 						</p>
@@ -300,7 +301,7 @@
 				<div class="ev-agenda" id="ev-agenda"></div>
 			</section>
 
-			<p class="ev-foot">
+			<p class="ev-foot" data-i18n-html="event.foot">
 				The world is at <a href="/play">/play</a> and it is open whether or not an event is running.
 				Build an avatar first at <a href="/create">/create</a>, read what the in-world economy pays
 				at <a href="/play/economy">/play/economy</a>, and see everything that shipped recently on the
@@ -309,17 +310,18 @@
 
 			<noscript>
 				<div class="ev-empty" style="margin-top: 32px">
-					<h2>The countdown needs JavaScript</h2>
-					<p>
+					<h2 data-i18n="event.noscript_h">The countdown needs JavaScript</h2>
+					<p data-i18n="event.noscript_p">
 						The schedule on this page is converted into your own timezone in the browser, so it
 						cannot render without JavaScript. The world itself is always open.
 					</p>
-					<a class="ev-cta" href="/play">Enter the three.ws world</a>
+					<a class="ev-cta" href="/play" data-i18n="event.noscript_cta">Enter the three.ws world</a>
 				</div>
 			</noscript>
 		</main>
 
 		<script src="/footer.js" defer></script>
 		<script type="module" src="/src/event-page.js"></script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

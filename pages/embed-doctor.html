@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Embed Doctor · three.ws</title>
-	<meta name="description" content="Your 3D agent embed renders nothing and the console is empty. Paste the page URL and we load it in a real browser to tell you exactly which line to fix: a CSP that dropped the runtime, a container with no height, a private agent id, WebGL turned off." />
+	<title data-i18n="embed-doctor.page_title">Embed Doctor · three.ws</title>
+	<meta name="description" data-i18n-attr="content:embed-doctor.meta_desc" content="Your 3D agent embed renders nothing and the console is empty. Paste the page URL and we load it in a real browser to tell you exactly which line to fix: a CSP that dropped the runtime, a container with no height, a private agent id, WebGL turned off." />
 	<link rel="canonical" href="https://three.ws/embed-doctor" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Embed Doctor · three.ws" />
-	<meta property="og:description" content="Find out in one click why your <agent-3d> embed is not showing up. We load your real page in a real browser and name the line to change." />
+	<meta property="og:title" data-i18n-attr="content:embed-doctor.share_title" content="Embed Doctor · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:embed-doctor.og_desc" content="Find out in one click why your <agent-3d> embed is not showing up. We load your real page in a real browser and name the line to change." />
 	<meta property="og:url" content="https://three.ws/embed-doctor" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Embed+Doctor&amp;d=Find+out+why+your+3D+agent+embed+is+not+showing+up.+Paste+your+page+URL+and+we+load+it+in+a+real+browser%2C+watch+the+embed+try+to+boot%2C+and+name+the+exact+line&amp;p=%2Fembed-doctor" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Embed Doctor · three.ws" />
-	<meta name="twitter:description" content="One click tells you why your 3D agent embed is invisible, and which line to change." />
+	<meta name="twitter:title" data-i18n-attr="content:embed-doctor.share_title" content="Embed Doctor · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:embed-doctor.twitter_desc" content="One click tells you why your 3D agent embed is invisible, and which line to change." />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Embed+Doctor&amp;d=Find+out+why+your+3D+agent+embed+is+not+showing+up.+Paste+your+page+URL+and+we+load+it+in+a+real+browser%2C+watch+the+embed+try+to+boot%2C+and+name+the+exact+line&amp;p=%2Fembed-doctor" />
 	<meta name="twitter:site" content="@trythreews" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -321,9 +321,9 @@
 
 	<main id="main-content" class="ed-wrap">
 		<section class="ed-hero">
-			<span class="ed-kicker">Live diagnostic</span>
-			<h1>Embed Doctor</h1>
-			<p>
+			<span class="ed-kicker" data-i18n="embed-doctor.kicker">Live diagnostic</span>
+			<h1 data-i18n="embed-doctor.h1">Embed Doctor</h1>
+			<p data-i18n-html="embed-doctor.hero_p">
 				Your <code>&lt;agent-3d&gt;</code> tag is on the page and nothing appears. The console is
 				empty, the markup looks right, and there is no error to search for. Paste the URL and we
 				load your real page in a real browser, watch the embed try to boot, and name the one line
@@ -334,31 +334,31 @@
 		</section>
 
 		<section class="ed-console" aria-labelledby="ed-console-title">
-			<h2 id="ed-console-title" class="ed-sr">Run a diagnosis</h2>
-			<div class="ed-modes" role="tablist" aria-label="What to check">
-				<button class="ed-mode" role="tab" id="ed-tab-url" aria-selected="true" aria-controls="ed-panel-url" data-mode="url">A live page</button>
-				<button class="ed-mode" role="tab" id="ed-tab-snippet" aria-selected="false" aria-controls="ed-panel-snippet" data-mode="snippet" tabindex="-1">A snippet, before you deploy</button>
+			<h2 id="ed-console-title" class="ed-sr" data-i18n="embed-doctor.run_diagnosis">Run a diagnosis</h2>
+			<div class="ed-modes" role="tablist" aria-label="What to check" data-i18n-attr="aria-label:embed-doctor.modes_aria">
+				<button class="ed-mode" role="tab" id="ed-tab-url" aria-selected="true" aria-controls="ed-panel-url" data-mode="url" data-i18n="embed-doctor.tab_url">A live page</button>
+				<button class="ed-mode" role="tab" id="ed-tab-snippet" aria-selected="false" aria-controls="ed-panel-snippet" data-mode="snippet" tabindex="-1" data-i18n="embed-doctor.tab_snippet">A snippet, before you deploy</button>
 			</div>
 
 			<div class="ed-panel" id="ed-panel-url" role="tabpanel" aria-labelledby="ed-tab-url">
-				<label class="ed-label" for="ed-url">The page where you put the embed</label>
+				<label class="ed-label" for="ed-url" data-i18n="embed-doctor.url_label">The page where you put the embed</label>
 				<div class="ed-row">
-					<input class="ed-input" id="ed-url" type="url" inputmode="url" spellcheck="false" autocomplete="url" placeholder="https://your-site.com/page-with-the-agent" />
-					<button class="ed-run" id="ed-run-url" type="button">Diagnose</button>
+					<input class="ed-input" id="ed-url" type="url" inputmode="url" spellcheck="false" autocomplete="url" placeholder="https://your-site.com/page-with-the-agent" data-i18n-attr="placeholder:embed-doctor.url_placeholder" />
+					<button class="ed-run" id="ed-run-url" type="button" data-i18n="embed-doctor.diagnose_btn">Diagnose</button>
 				</div>
-				<p class="ed-hint">
+				<p class="ed-hint" data-i18n-html="embed-doctor.url_hint">
 					The page has to be reachable from the public internet. Working on localhost or behind a
 					login? <button type="button" class="ed-linkish" data-goto-mode="snippet">Check your snippet instead</button>.
 				</p>
 			</div>
 
 			<div class="ed-panel" id="ed-panel-snippet" role="tabpanel" aria-labelledby="ed-tab-snippet" hidden>
-				<label class="ed-label" for="ed-snippet">Paste the two tags exactly as they appear in your HTML</label>
+				<label class="ed-label" for="ed-snippet" data-i18n="embed-doctor.snippet_label">Paste the two tags exactly as they appear in your HTML</label>
 				<textarea class="ed-textarea" id="ed-snippet" spellcheck="false" placeholder="&lt;script type=&quot;module&quot; src=&quot;https://three.ws/agent-3d/latest/agent-3d.js&quot;&gt;&lt;/script&gt;&#10;&lt;agent-3d agent-id=&quot;YOUR_AGENT_ID&quot; mode=&quot;floating&quot;&gt;&lt;/agent-3d&gt;"></textarea>
 				<div class="ed-row" style="margin-top:12px">
-					<button class="ed-run" id="ed-run-snippet" type="button">Diagnose snippet</button>
+					<button class="ed-run" id="ed-run-snippet" type="button" data-i18n="embed-doctor.diagnose_snippet_btn">Diagnose snippet</button>
 				</div>
-				<p class="ed-hint">
+				<p class="ed-hint" data-i18n="embed-doctor.snippet_hint">
 					We run it in a blank sandbox with no CSP and no other scripts, so anything that fails
 					here is a mistake in the markup itself rather than something your site did to it.
 				</p>
@@ -374,30 +374,30 @@
 		<div id="ed-result" aria-live="polite"></div>
 
 		<section class="ed-empty" id="ed-empty">
-			<h3>What gets checked</h3>
+			<h3 data-i18n="embed-doctor.checks_title">What gets checked</h3>
 			<ul class="ed-checks">
-				<li>The runtime script is present, downloaded, and actually executed</li>
-				<li>A Content-Security-Policy silently dropped it</li>
-				<li>The bundle was loaded without <code>type="module"</code></li>
-				<li>The element exists and was upgraded to a live component</li>
-				<li>The agent id resolves and is publicly readable</li>
-				<li>The element has real size and is not hidden by an ancestor</li>
-				<li>WebGL is available in the visiting browser</li>
-				<li>A canvas was created and painted actual pixels</li>
-				<li>Model and manifest requests succeeded</li>
-				<li>Mixed content, duplicate tags, and console errors</li>
+				<li data-i18n="embed-doctor.check_runtime">The runtime script is present, downloaded, and actually executed</li>
+				<li data-i18n="embed-doctor.check_csp">A Content-Security-Policy silently dropped it</li>
+				<li data-i18n-html="embed-doctor.check_module">The bundle was loaded without <code>type="module"</code></li>
+				<li data-i18n="embed-doctor.check_element">The element exists and was upgraded to a live component</li>
+				<li data-i18n="embed-doctor.check_agent_id">The agent id resolves and is publicly readable</li>
+				<li data-i18n="embed-doctor.check_size">The element has real size and is not hidden by an ancestor</li>
+				<li data-i18n="embed-doctor.check_webgl">WebGL is available in the visiting browser</li>
+				<li data-i18n="embed-doctor.check_canvas">A canvas was created and painted actual pixels</li>
+				<li data-i18n="embed-doctor.check_requests">Model and manifest requests succeeded</li>
+				<li data-i18n="embed-doctor.check_misc">Mixed content, duplicate tags, and console errors</li>
 			</ul>
-			<p class="ed-hint" style="margin-top:16px">
+			<p class="ed-hint" style="margin-top:16px" data-i18n="embed-doctor.checks_note">
 				Nothing is simulated. Every answer comes from your page running in a browser we drive,
 				and every failure carries the evidence that proves it.
 			</p>
 		</section>
 
-		<nav class="ed-next" aria-label="Related">
-			<a href="/tutorials/embed-in-30-seconds">Embed in 30 seconds</a>
-			<a href="/studio">Build an embed in the Studio</a>
-			<a href="/docs/embed-doctor">How the Doctor works</a>
-			<a href="/docs#embedding">Embedding reference</a>
+		<nav class="ed-next" aria-label="Related" data-i18n-attr="aria-label:embed-doctor.related_aria">
+			<a href="/tutorials/embed-in-30-seconds" data-i18n="embed-doctor.next_embed30">Embed in 30 seconds</a>
+			<a href="/studio" data-i18n="embed-doctor.next_studio">Build an embed in the Studio</a>
+			<a href="/docs/embed-doctor" data-i18n="embed-doctor.next_how">How the Doctor works</a>
+			<a href="/docs#embedding" data-i18n="embed-doctor.next_reference">Embedding reference</a>
 		</nav>
 	</main>
 

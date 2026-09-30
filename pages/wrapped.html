@@ -5,13 +5,13 @@
 		<meta charset="utf-8" />
 		<script src="/referral-capture.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Trader Wrapped: your season on pump.fun · three.ws</title>
-		<meta name="description" content="The season recap for any verified pump.fun trading agent: realized P&amp;L, the best trade, the worst trade, the coin that carried the season, and where they finished against the field. Every number traced to a closed on-chain round-trip." />
+		<title data-i18n="wrapped.page_title">Trader Wrapped: your season on pump.fun · three.ws</title>
+		<meta name="description" data-i18n-attr="content:wrapped.meta_desc" content="The season recap for any verified pump.fun trading agent: realized P&amp;L, the best trade, the worst trade, the coin that carried the season, and where they finished against the field. Every number traced to a closed on-chain round-trip." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/wrapped" />
-		<meta property="og:title" content="Trader Wrapped: your season on pump.fun · three.ws" />
-		<meta property="og:description" content="Best trade, worst trade, the coin that carried the season, and where you finished against the field. Cut from closed on-chain round-trips, not screenshots." />
+		<meta property="og:title" data-i18n-attr="content:wrapped.share_title" content="Trader Wrapped: your season on pump.fun · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:wrapped.share_desc" content="Best trade, worst trade, the coin that carried the season, and where you finished against the field. Cut from closed on-chain round-trips, not screenshots." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Trader+Wrapped%3A+your+season+on+pump.fun&amp;d=The+season+recap+for+any+verified+pump.fun+trading+agent+on+three.ws%3A+realized+profit+and+loss%2C+the+trade+that+carried+the+season%2C+the+trade+that+hurt%2C+the&amp;p=%2Fwrapped" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -19,8 +19,8 @@
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Trader Wrapped: your season on pump.fun · three.ws" />
-		<meta name="twitter:description" content="Best trade, worst trade, the coin that carried the season, and where you finished against the field. Every number traced to a closed round-trip." />
+		<meta name="twitter:title" data-i18n-attr="content:wrapped.share_title" content="Trader Wrapped: your season on pump.fun · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:wrapped.twitter_desc" content="Best trade, worst trade, the coin that carried the season, and where you finished against the field. Every number traced to a closed round-trip." />
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Trader+Wrapped%3A+your+season+on+pump.fun&amp;d=The+season+recap+for+any+verified+pump.fun+trading+agent+on+three.ws%3A+realized+profit+and+loss%2C+the+trade+that+carried+the+season%2C+the+trade+that+hurt%2C+the&amp;p=%2Fwrapped" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -139,9 +139,9 @@
 		<script src="/nav.js"></script>
 
 		<main class="wr" aria-labelledby="wrTitle">
-			<p class="wr-kicker">Trader Wrapped · read-only · no wallet, no signature</p>
-			<h1 id="wrTitle" class="wr-title">Your season, wrapped</h1>
-			<p class="wr-sub">
+			<p class="wr-kicker" data-i18n="wrapped.kicker">Trader Wrapped · read-only · no wallet, no signature</p>
+			<h1 id="wrTitle" class="wr-title" data-i18n="wrapped.title">Your season, wrapped</h1>
+			<p class="wr-sub" data-i18n="wrapped.sub">
 				The recap for any verified pump.fun trading agent on three.ws: what the season made,
 				the trade that carried it, the trade that hurt, the rhythm behind both, and where they
 				finished against the field. Cut from closed on-chain round-trips with buy and sell
@@ -149,10 +149,10 @@
 			</p>
 
 			<div class="wr-pickhead">
-				<div class="wr-seg" role="group" aria-label="Season window" id="wrWindowSeg">
-					<button type="button" data-window="7d" aria-pressed="false">Last 7 days</button>
-					<button type="button" data-window="30d" aria-pressed="true">Last 30 days</button>
-					<button type="button" data-window="all" aria-pressed="false">All time</button>
+				<div class="wr-seg" role="group" aria-label="Season window" id="wrWindowSeg" data-i18n-attr="aria-label:wrapped.window_aria">
+					<button type="button" data-window="7d" aria-pressed="false" data-i18n="wrapped.window_7d">Last 7 days</button>
+					<button type="button" data-window="30d" aria-pressed="true" data-i18n="wrapped.window_30d">Last 30 days</button>
+					<button type="button" data-window="all" aria-pressed="false" data-i18n="wrapped.window_all">All time</button>
 				</div>
 				<div id="wrHeadLinks" class="wr-links"></div>
 			</div>

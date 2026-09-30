@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="theme-color" content="#000000" />
-		<title>three.ws Drive · your 3D agent in the car</title>
+		<title data-i18n="drive.page_title">three.ws Drive · your 3D agent in the car</title>
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="/tokens.css" />
 		<meta
 			name="description"
+			data-i18n-attr="content:drive.meta_desc"
 			content="three.ws Drive: a voice-first 3D agent built for the car. Runs on CarPlay, Android Auto, a head unit, or a phone in the cradle."
 		/>
 		<link rel="canonical" href="https://three.ws/drive" />
@@ -476,8 +477,8 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="three.ws">
 	<meta property="og:locale" content="en_US">
-	<meta property="og:title" content="three.ws Drive · three.ws">
-	<meta property="og:description" content="Your 3D agent in the car: voice-first, glanceable, and built to the rules CarPlay and Android Auto enforce. Runs on a head unit, a phone in the cradle, or inside the native car shell.">
+	<meta property="og:title" content="three.ws Drive · three.ws" data-i18n-attr="content:drive.share_title">
+	<meta property="og:description" content="Your 3D agent in the car: voice-first, glanceable, and built to the rules CarPlay and Android Auto enforce. Runs on a head unit, a phone in the cradle, or inside the native car shell." data-i18n-attr="content:drive.share_desc">
 	<meta property="og:url" content="https://three.ws/drive">
 	<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=three.ws+Drive&amp;d=Your+3D+agent+in+the+car%3A+voice-first%2C+glanceable%2C+and+built+to+the+rules+CarPlay+and+Android+Auto+enforce.+Runs+on+a+head+unit%2C+a+phone+in+the+cradle%2C+or&amp;p=%2Fdrive">
 	<meta property="og:image:width" content="1200">
@@ -486,8 +487,8 @@
 	<meta property="og:image:alt" content="three.ws Drive - three.ws">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="three.ws Drive · three.ws">
-	<meta name="twitter:description" content="Your 3D agent in the car: voice-first, glanceable, and built to the rules CarPlay and Android Auto enforce. Runs on a head unit, a phone in the cradle, or inside the native car shell.">
+	<meta name="twitter:title" content="three.ws Drive · three.ws" data-i18n-attr="content:drive.share_title">
+	<meta name="twitter:description" content="Your 3D agent in the car: voice-first, glanceable, and built to the rules CarPlay and Android Auto enforce. Runs on a head unit, a phone in the cradle, or inside the native car shell." data-i18n-attr="content:drive.share_desc">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=three.ws+Drive&amp;d=Your+3D+agent+in+the+car%3A+voice-first%2C+glanceable%2C+and+built+to+the+rules+CarPlay+and+Android+Auto+enforce.+Runs+on+a+head+unit%2C+a+phone+in+the+cradle%2C+or&amp;p=%2Fdrive">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"three.ws Drive","description":"Your 3D agent in the car: voice-first, glanceable, and built to the rules CarPlay and Android Auto enforce. Runs on a head unit, a phone in the cradle, or inside the native car shell.","url":"https://three.ws/drive","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=main&t=three.ws+Drive&d=Your+3D+agent+in+the+car%3A+voice-first%2C+glanceable%2C+and+built+to+the+rules+CarPlay+and+Android+Auto+enforce.+Runs+on+a+head+unit%2C+a+phone+in+the+cradle%2C+or&p=%2Fdrive"}]}</script>
 </head>
@@ -502,11 +503,11 @@
 				</div>
 				<span class="dr-state" id="dr-status" role="status" aria-live="polite">Starting</span>
 				<span class="dr-top-spacer"></span>
-				<button type="button" class="dr-pill" id="dr-motion" aria-pressed="true" title="Driving locks the keyboard. Switch to Parked to type.">
+				<button type="button" class="dr-pill" id="dr-motion" aria-pressed="true" title="Driving locks the keyboard. Switch to Parked to type." data-i18n-attr="title:drive.motion_title">
 					Driving
 				</button>
-				<button type="button" class="dr-pill" id="dr-light" aria-pressed="false" title="Day or night palette">Night</button>
-				<button type="button" class="dr-pill" id="dr-swap">Agent</button>
+				<button type="button" class="dr-pill" id="dr-light" aria-pressed="false" title="Day or night palette" data-i18n-attr="title:drive.light_title">Night</button>
+				<button type="button" class="dr-pill" id="dr-swap" data-i18n="drive.swap_btn">Agent</button>
 			</header>
 
 			<main class="dr-mid">
@@ -517,6 +518,7 @@
 					role="status"
 					aria-live="polite"
 					data-placeholder="Hold Talk and speak."
+					data-i18n-attr="data-placeholder:drive.said_placeholder"
 				></p>
 				<p class="dr-fault" id="dr-fault" hidden>
 					<span id="dr-fault-text"></span>
@@ -526,21 +528,21 @@
 
 			<div class="dr-deck">
 				<div class="dr-acts" id="dr-acts">
-					<button type="button" class="dr-act" id="dr-act-hands" aria-pressed="false">Hands free</button>
-					<button type="button" class="dr-act" id="dr-act-repeat" disabled>Repeat</button>
-					<button type="button" class="dr-act" id="dr-act-stop" disabled>Stop</button>
-					<button type="button" class="dr-act" id="dr-act-type">Type</button>
+					<button type="button" class="dr-act" id="dr-act-hands" aria-pressed="false" data-i18n="drive.act_hands">Hands free</button>
+					<button type="button" class="dr-act" id="dr-act-repeat" disabled data-i18n="drive.act_repeat">Repeat</button>
+					<button type="button" class="dr-act" id="dr-act-stop" disabled data-i18n="drive.act_stop">Stop</button>
+					<button type="button" class="dr-act" id="dr-act-type" data-i18n="drive.act_type">Type</button>
 				</div>
-				<button type="button" class="dr-talk" id="dr-talk">Talk</button>
+				<button type="button" class="dr-talk" id="dr-talk" data-i18n="drive.talk_btn">Talk</button>
 			</div>
 		</div>
 
 		<section class="dr-sheet" id="dr-picker" hidden aria-label="Choose your copilot">
 			<div class="dr-sheet-head">
-				<h1 class="dr-sheet-title">Choose your copilot</h1>
-				<button type="button" class="dr-pill" id="dr-picker-close" hidden>Back</button>
+				<h1 class="dr-sheet-title" data-i18n="drive.picker_title">Choose your copilot</h1>
+				<button type="button" class="dr-pill" id="dr-picker-close" hidden data-i18n="drive.picker_back">Back</button>
 			</div>
-			<p class="dr-sheet-sub" id="dr-picker-sub">
+			<p class="dr-sheet-sub" id="dr-picker-sub" data-i18n="drive.picker_sub">
 				Pick the agent that rides with you. It keeps its voice, its face, and its memory in
 				the car.
 			</p>
@@ -549,10 +551,10 @@
 
 		<section class="dr-sheet" id="dr-confirm" hidden aria-label="Approve a home action">
 			<div class="dr-sheet-head">
-				<h1 class="dr-sheet-title">Approve this</h1>
-				<button type="button" class="dr-pill" id="dr-confirm-close">Not now</button>
+				<h1 class="dr-sheet-title" data-i18n="drive.confirm_title">Approve this</h1>
+				<button type="button" class="dr-pill" id="dr-confirm-close" data-i18n="drive.confirm_close">Not now</button>
 			</div>
-			<p class="dr-sheet-sub">
+			<p class="dr-sheet-sub" data-i18n="drive.confirm_sub">
 				Your agent will not touch a lock, a garage door, or an alarm on its own. It froze the
 				action and is waiting for you.
 			</p>
@@ -561,10 +563,10 @@
 
 		<section class="dr-sheet" id="dr-type" hidden aria-label="Type to your agent">
 			<div class="dr-sheet-head">
-				<h1 class="dr-sheet-title">Type</h1>
-				<button type="button" class="dr-pill" id="dr-type-close">Back</button>
+				<h1 class="dr-sheet-title" data-i18n="drive.type_title">Type</h1>
+				<button type="button" class="dr-pill" id="dr-type-close" data-i18n="drive.type_close">Back</button>
 			</div>
-			<p class="dr-sheet-sub">
+			<p class="dr-sheet-sub" data-i18n="drive.type_sub">
 				The keyboard is here for a stopped car or a passenger. Switch back to Driving when you
 				pull away.
 			</p>
@@ -576,9 +578,11 @@
 					autocomplete="off"
 					placeholder="Ask your agent something"
 					aria-label="Message"
+					data-i18n-attr="placeholder:drive.type_input_placeholder;aria-label:drive.type_input_aria"
 				/>
-				<button type="submit" class="dr-pill" id="dr-type-send">Send</button>
+				<button type="submit" class="dr-pill" id="dr-type-send" data-i18n="drive.type_send">Send</button>
 			</form>
 		</section>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

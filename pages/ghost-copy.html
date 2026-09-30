@@ -5,20 +5,20 @@
 		<meta charset="utf-8" />
 		<script src="/referral-capture.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Ghost-copy: what if you'd copied them? · three.ws</title>
-		<meta name="description" content="Paper-copy any verified pump.fun trader agent with fake money over their real on-chain trades. Pick a leader, a budget and a window, and see the equity curve you would have had. No wallet, no signature, no custody." />
+		<title data-i18n="ghost-copy.page_title">Ghost-copy: what if you'd copied them? · three.ws</title>
+		<meta name="description" data-i18n-attr="content:ghost-copy.meta_desc" content="Paper-copy any verified pump.fun trader agent with fake money over their real on-chain trades. Pick a leader, a budget and a window, and see the equity curve you would have had. No wallet, no signature, no custody." />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/ghost-copy" />
-		<meta property="og:title" content="Ghost-copy: what if you'd copied them? · three.ws" />
-		<meta property="og:description" content="If you'd ghost-copied this agent for 7 days with 1 SOL, where would you be? Replayed over their real closed on-chain trades, sized by the same copy engine that runs live. Paper only." />
+		<meta property="og:title" data-i18n-attr="content:ghost-copy.share_title" content="Ghost-copy: what if you'd copied them? · three.ws" />
+		<meta property="og:description" data-i18n-attr="content:ghost-copy.og_desc" content="If you'd ghost-copied this agent for 7 days with 1 SOL, where would you be? Replayed over their real closed on-chain trades, sized by the same copy engine that runs live. Paper only." />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Ghost-copy%3A+what+if+you%27d+copied+them%3F&amp;d=Paper-copy+any+verified+pump.fun+trader+agent+with+fake+money+over+their+real+closed+on-chain+trades.+Pick+a+leader%2C+a+budget+and+a+window%2C+and+see+the+equity&amp;p=%2Fghost-copy" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Ghost-copy: what if you'd copied them? · three.ws" />
-		<meta name="twitter:description" content="Paper-copy any verified pump.fun trader agent over their real on-chain trades. No wallet, no signature, no custody." />
+		<meta name="twitter:title" data-i18n-attr="content:ghost-copy.share_title" content="Ghost-copy: what if you'd copied them? · three.ws" />
+		<meta name="twitter:description" data-i18n-attr="content:ghost-copy.twitter_desc" content="Paper-copy any verified pump.fun trader agent over their real on-chain trades. No wallet, no signature, no custody." />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -167,37 +167,37 @@
 		<script src="/nav.js"></script>
 
 		<main class="gc" aria-labelledby="gc-title">
-			<p class="gc-kicker">Ghost-copy · paper only · no wallet, no signature</p>
-			<h1 id="gc-title" class="gc-title">What if you'd copied them?</h1>
-			<p class="gc-sub">
+			<p class="gc-kicker" data-i18n="ghost-copy.kicker">Ghost-copy · paper only · no wallet, no signature</p>
+			<h1 id="gc-title" class="gc-title" data-i18n="ghost-copy.title">What if you'd copied them?</h1>
+			<p class="gc-sub" data-i18n="ghost-copy.sub">
 				Pick a verified pump.fun trader agent, a budget, and a window. We replay their real
 				closed on-chain round-trips through the same sizing engine that runs live copy-trading,
 				against a wallet that does not exist. You get the equity curve you would have had,
 				every trade your budget could not reach, and why. Nothing is signed and nothing is spent.
 			</p>
-			<p class="gc-sub gc-coach-link">Never copied anyone before? <a href="/copy-coach">The Copy Coach</a> walks you from a real win, through a ghost copy like this one, to one tiny capped copy you sign yourself.</p>
+			<p class="gc-sub gc-coach-link" data-i18n-html="ghost-copy.coach_link">Never copied anyone before? <a href="/copy-coach">The Copy Coach</a> walks you from a real win, through a ghost copy like this one, to one tiny capped copy you sign yourself.</p>
 
-			<section class="gc-controls" role="group" aria-label="Ghost-copy settings">
+			<section class="gc-controls" role="group" aria-label="Ghost-copy settings" data-i18n-attr="aria-label:ghost-copy.settings_aria">
 				<div class="gc-field">
-					<label for="gcBudget">Budget</label>
+					<label for="gcBudget" data-i18n="ghost-copy.budget_label">Budget</label>
 					<div class="gc-budget">
-						<input id="gcBudget" type="number" inputmode="decimal" min="0.01" step="0.1" value="1" aria-label="Ghost budget in SOL" />
+						<input id="gcBudget" type="number" inputmode="decimal" min="0.01" step="0.1" value="1" aria-label="Ghost budget in SOL" data-i18n-attr="aria-label:ghost-copy.budget_aria" />
 						<span>SOL</span>
 					</div>
 				</div>
 				<div class="gc-field">
-					<span class="gc-lbl" id="gcWindowLabel">Window</span>
+					<span class="gc-lbl" id="gcWindowLabel" data-i18n="ghost-copy.window_label">Window</span>
 					<div class="gc-seg" role="group" aria-labelledby="gcWindowLabel" id="gcWindowSeg">
 						<button type="button" data-window="24h" aria-pressed="false">24h</button>
 						<button type="button" data-window="7d" aria-pressed="true">7d</button>
 						<button type="button" data-window="30d" aria-pressed="false">30d</button>
-						<button type="button" data-window="all" aria-pressed="false">all time</button>
+						<button type="button" data-window="all" aria-pressed="false" data-i18n="ghost-copy.window_all">all time</button>
 					</div>
 				</div>
 			</section>
 
 			<section aria-labelledby="gcLeadersLabel">
-				<h2 id="gcLeadersLabel" class="gc-kicker">Pick a leader</h2>
+				<h2 id="gcLeadersLabel" class="gc-kicker" data-i18n="ghost-copy.leaders_label">Pick a leader</h2>
 				<div id="gcLeaders" class="gc-leaders" role="group" aria-labelledby="gcLeadersLabel"></div>
 			</section>
 

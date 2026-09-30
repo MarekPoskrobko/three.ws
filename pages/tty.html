@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot, no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Your agent, in your terminal · three.ws</title>
-	<meta name="description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. A real software rasterizer streams ANSI frames over HTTP: no GPU, no WebGL, no install. Plus @three-ws/tty-3d, the CLI and SDK that render any GLB in a terminal." />
+	<title data-i18n="tty.page_title">Your agent, in your terminal · three.ws</title>
+	<meta name="description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. A real software rasterizer streams ANSI frames over HTTP: no GPU, no WebGL, no install. Plus @three-ws/tty-3d, the CLI and SDK that render any GLB in a terminal." data-i18n-attr="content:tty.meta_desc" />
 	<link rel="canonical" href="https://three.ws/tty" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Your agent, in your terminal · three.ws" />
-	<meta property="og:description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. No GPU, no WebGL, no install." />
+	<meta property="og:title" content="Your agent, in your terminal · three.ws" data-i18n-attr="content:tty.share_title" />
+	<meta property="og:description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. No GPU, no WebGL, no install." data-i18n-attr="content:tty.share_desc" />
 	<meta property="og:url" content="https://three.ws/tty" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=build&amp;t=Terminal+renderer&amp;d=curl+three.ws%2Ftty+and+a+rigged+3D+agent+walks+in+your+terminal.+A+software+rasterizer+streams+ANSI+frames+over+HTTP%3A+no+GPU%2C+no+WebGL%2C+nothing+to+install.+Also&amp;p=%2Ftty" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Your agent, in your terminal · three.ws" />
-	<meta name="twitter:description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. No GPU, no WebGL, no install." />
+	<meta name="twitter:title" content="Your agent, in your terminal · three.ws" data-i18n-attr="content:tty.share_title" />
+	<meta name="twitter:description" content="curl three.ws/tty and a rigged 3D agent walks in your terminal. No GPU, no WebGL, no install." data-i18n-attr="content:tty.share_desc" />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=build&amp;t=Terminal+renderer&amp;d=curl+three.ws%2Ftty+and+a+rigged+3D+agent+walks+in+your+terminal.+A+software+rasterizer+streams+ANSI+frames+over+HTTP%3A+no+GPU%2C+no+WebGL%2C+nothing+to+install.+Also&amp;p=%2Ftty" />
 	<style>
 		:root {
@@ -150,9 +150,9 @@
 
 	<main class="wrap">
 		<section class="hero">
-			<span class="eyebrow">no gpu · no webgl · no install</span>
-			<h1>Your agent, in your terminal.</h1>
-			<p class="lede">
+			<span class="eyebrow" data-i18n="tty.eyebrow">no gpu · no webgl · no install</span>
+			<h1 data-i18n="tty.hero_title">Your agent, in your terminal.</h1>
+			<p class="lede" data-i18n="tty.hero_lede">
 				One command. A rigged 3D character loads, plays its animation, and turns on a
 				turntable, drawn entirely out of coloured text. There is nothing to install and
 				nothing to run: the frames are rasterized on our servers and streamed to your
@@ -162,16 +162,16 @@
 			<div class="cmd">
 				<span class="prompt" aria-hidden="true">$</span>
 				<code id="curl-cmd">curl three.ws/tty</code>
-				<button class="copy" type="button" data-copy-target="curl-cmd">Copy</button>
+				<button class="copy" type="button" data-copy-target="curl-cmd" data-i18n="tty.copy_btn">Copy</button>
 			</div>
-			<p style="font-size:13.5px;margin-top:0">
+			<p style="font-size:13.5px;margin-top:0" data-i18n="tty.cmd_note">
 				Works in any terminal that renders colour. Press Ctrl-C to stop it.
 			</p>
 		</section>
 
 		<section aria-labelledby="demo-heading">
-			<h2 id="demo-heading" style="margin-top:22px">This is the actual output</h2>
-			<p>
+			<h2 id="demo-heading" style="margin-top:22px" data-i18n="tty.demo_h">This is the actual output</h2>
+			<p data-i18n-html="tty.demo_p">
 				Not a video and not a recording. The panel below opens the same HTTP stream
 				<code style="color:var(--tty-accent)">curl</code> would, and paints the escape
 				sequences it receives.
@@ -182,20 +182,20 @@
 					<span class="dot" aria-hidden="true"></span>
 					<span class="dot" aria-hidden="true"></span>
 					<span class="title">curl three.ws/tty</span>
-					<span class="status" id="stream-status" role="status" aria-live="polite">idle</span>
+					<span class="status" id="stream-status" role="status" aria-live="polite" data-i18n="tty.status_idle">idle</span>
 				</div>
-				<pre id="screen" tabindex="0" aria-label="Live terminal render of a 3D agent"></pre>
+				<pre id="screen" tabindex="0" aria-label="Live terminal render of a 3D agent" data-i18n-attr="aria-label:tty.screen_aria"></pre>
 			</div>
 			<div class="screen-actions">
-				<button class="btn" type="button" id="btn-play">Run it</button>
-				<button class="btn" type="button" id="btn-spin" aria-pressed="true">Turntable</button>
-				<button class="btn" type="button" id="btn-color" aria-pressed="true">Colour</button>
+				<button class="btn" type="button" id="btn-play" data-i18n="tty.btn_play">Run it</button>
+				<button class="btn" type="button" id="btn-spin" aria-pressed="true" data-i18n="tty.btn_spin">Turntable</button>
+				<button class="btn" type="button" id="btn-color" aria-pressed="true" data-i18n="tty.btn_color">Colour</button>
 			</div>
 		</section>
 
 		<section>
-			<h2>Render any model, locally</h2>
-			<p>
+			<h2 data-i18n="tty.render_h">Render any model, locally</h2>
+			<p data-i18n-html="tty.render_p">
 				The renderer is a published package. It takes a GLB, decodes it (including
 				<code style="color:var(--tty-accent)">EXT_meshopt_compression</code>, which most
 				real avatars ship with), evaluates the animation, applies linear blend skinning
@@ -210,13 +210,13 @@ npx @three-ws/tty-3d https://three.ws/avatars/default.glb --spin 1.4
 
 # a still frame, piped somewhere
 npx @three-ws/tty-3d avatar.glb --once --width 80 --color mono &gt; frame.txt</code></pre>
-			<p style="font-size:13.5px">
+			<p style="font-size:13.5px" data-i18n-html="tty.render_keys">
 				Arrow keys orbit, <code style="color:var(--tty-accent)">w</code>/<code style="color:var(--tty-accent)">s</code>
 				tilt, <code style="color:var(--tty-accent)">+</code>/<code style="color:var(--tty-accent)">-</code> zoom,
 				space pauses, <code style="color:var(--tty-accent)">q</code> quits.
 			</p>
 
-			<h2>Or as a library</h2>
+			<h2 data-i18n="tty.library_h">Or as a library</h2>
 			<pre class="block"><code>import { loadModel, createRenderer } from '@three-ws/tty-3d';
 
 const model = await loadModel('./avatar.glb');
@@ -227,25 +227,25 @@ process.stdout.write(renderer.frame(1.25));</code></pre>
 		</section>
 
 		<section>
-			<h2>The hosted endpoint</h2>
-			<p>
+			<h2 data-i18n="tty.endpoint_h">The hosted endpoint</h2>
+			<p data-i18n-html="tty.endpoint_p">
 				<code style="color:var(--tty-accent)">GET /api/tty</code> streams frames as
 				<code style="color:var(--tty-accent)">text/plain</code>, paced in real time, so the
 				response itself is the animation. Every parameter is optional.
 			</p>
 			<table>
-				<thead><tr><th>Parameter</th><th>Meaning</th><th>Default</th></tr></thead>
+				<thead><tr><th data-i18n="tty.th_param">Parameter</th><th data-i18n="tty.th_meaning">Meaning</th><th data-i18n="tty.th_default">Default</th></tr></thead>
 				<tbody>
-					<tr><td><code>avatar</code></td><td>A public three.ws avatar id. Also the path form, <code>/tty/&lt;id&gt;</code>.</td><td>the three.ws model</td></tr>
-					<tr><td><code>src</code></td><td>Any public GLB URL.</td><td>none</td></tr>
-					<tr><td><code>w</code>, <code>h</code></td><td>Columns and rows.</td><td>76 x 30</td></tr>
-					<tr><td><code>frames</code></td><td>How many frames to send. <code>1</code> gives a still.</td><td>8 seconds</td></tr>
-					<tr><td><code>fps</code></td><td>Frames per second, 4 to 30.</td><td>18</td></tr>
-					<tr><td><code>t</code></td><td>Where in the clip to start, in seconds.</td><td>0</td></tr>
-					<tr><td><code>spin</code></td><td>Turntable speed in radians per second. <code>0</code> holds still.</td><td>0.9</td></tr>
-					<tr><td><code>clip</code></td><td>Animation name to play.</td><td>the first clip</td></tr>
-					<tr><td><code>color</code></td><td><code>truecolor</code>, <code>ansi256</code>, or <code>mono</code>.</td><td>ansi256</td></tr>
-					<tr><td><code>zoom</code>, <code>pitch</code></td><td>Camera distance and elevation.</td><td>1, 0.08</td></tr>
+					<tr><td><code>avatar</code></td><td data-i18n-html="tty.row_avatar_meaning">A public three.ws avatar id. Also the path form, <code>/tty/&lt;id&gt;</code>.</td><td data-i18n="tty.row_avatar_default">the three.ws model</td></tr>
+					<tr><td><code>src</code></td><td data-i18n="tty.row_src_meaning">Any public GLB URL.</td><td data-i18n="tty.row_src_default">none</td></tr>
+					<tr><td><code>w</code>, <code>h</code></td><td data-i18n="tty.row_wh_meaning">Columns and rows.</td><td>76 x 30</td></tr>
+					<tr><td><code>frames</code></td><td data-i18n-html="tty.row_frames_meaning">How many frames to send. <code>1</code> gives a still.</td><td data-i18n="tty.row_frames_default">8 seconds</td></tr>
+					<tr><td><code>fps</code></td><td data-i18n="tty.row_fps_meaning">Frames per second, 4 to 30.</td><td>18</td></tr>
+					<tr><td><code>t</code></td><td data-i18n="tty.row_t_meaning">Where in the clip to start, in seconds.</td><td>0</td></tr>
+					<tr><td><code>spin</code></td><td data-i18n-html="tty.row_spin_meaning">Turntable speed in radians per second. <code>0</code> holds still.</td><td>0.9</td></tr>
+					<tr><td><code>clip</code></td><td data-i18n="tty.row_clip_meaning">Animation name to play.</td><td data-i18n="tty.row_clip_default">the first clip</td></tr>
+					<tr><td><code>color</code></td><td data-i18n-html="tty.row_color_meaning"><code>truecolor</code>, <code>ansi256</code>, or <code>mono</code>.</td><td>ansi256</td></tr>
+					<tr><td><code>zoom</code>, <code>pitch</code></td><td data-i18n="tty.row_zoom_meaning">Camera distance and elevation.</td><td>1, 0.08</td></tr>
 				</tbody>
 			</table>
 			<pre class="block"><code># your own avatar, wider, held still
@@ -253,7 +253,7 @@ curl 'three.ws/tty/&lt;avatar-id&gt;?w=110&amp;spin=0'
 
 # a single frame in plain ASCII, for a README or a commit hook
 curl 'three.ws/tty?frames=1&amp;color=mono&amp;w=60'</code></pre>
-			<p class="note">
+			<p class="note" data-i18n-html="tty.note">
 				A browser asking for this URL is redirected here instead, because a browser would
 				show the escape codes as literal garbage. Pass
 				<code style="color:var(--tty-accent)">?raw=1</code> to see the bytes anyway.
@@ -261,35 +261,36 @@ curl 'three.ws/tty?frames=1&amp;color=mono&amp;w=60'</code></pre>
 		</section>
 
 		<section>
-			<h2>How it works</h2>
+			<h2 data-i18n="tty.how_h">How it works</h2>
 			<div class="grid">
 				<div class="card">
-					<h3>Half blocks, not ASCII art</h3>
-					<p>Each cell is a <code>▀</code> with its own foreground and background colour, so one character carries two pixels. That doubles vertical resolution and makes pixels square, which is why a sphere comes out round.</p>
+					<h3 data-i18n="tty.card1_title">Half blocks, not ASCII art</h3>
+					<p data-i18n-html="tty.card1_desc">Each cell is a <code>▀</code> with its own foreground and background colour, so one character carries two pixels. That doubles vertical resolution and makes pixels square, which is why a sphere comes out round.</p>
 				</div>
 				<div class="card">
-					<h3>Real skinning</h3>
-					<p>Joint matrices are evaluated per frame and blended per vertex, so a rigged avatar actually moves its limbs. It is not a spinning static mesh.</p>
+					<h3 data-i18n="tty.card2_title">Real skinning</h3>
+					<p data-i18n="tty.card2_desc">Joint matrices are evaluated per frame and blended per vertex, so a rigged avatar actually moves its limbs. It is not a spinning static mesh.</p>
 				</div>
 				<div class="card">
-					<h3>Framing that holds still</h3>
-					<p>The camera radius is fixed from the widest frame of the clip and the centre tracks the pose, so a walk cycle with root motion neither breathes nor walks out of shot.</p>
+					<h3 data-i18n="tty.card3_title">Framing that holds still</h3>
+					<p data-i18n="tty.card3_desc">The camera radius is fixed from the widest frame of the clip and the centre tracks the pose, so a walk cycle with root motion neither breathes nor walks out of shot.</p>
 				</div>
 				<div class="card">
-					<h3>Silhouette-first shading</h3>
-					<p>A key light, a fill, and a rim term. At this resolution the outline carries the shape, so faces turning away are lifted rather than crushed to black.</p>
+					<h3 data-i18n="tty.card4_title">Silhouette-first shading</h3>
+					<p data-i18n="tty.card4_desc">A key light, a fill, and a rim term. At this resolution the outline carries the shape, so faces turning away are lifted rather than crushed to black.</p>
 				</div>
 			</div>
 		</section>
 
 		<footer>
-			<a href="/docs/tty">Docs</a>
-			<a href="/gallery">Avatars</a>
-			<a href="/create">Create an agent</a>
-			<a href="https://github.com/nirholas/three.ws/tree/main/packages/tty-3d">Source</a>
+			<a href="/docs/tty" data-i18n="tty.foot_docs">Docs</a>
+			<a href="/gallery" data-i18n="tty.foot_avatars">Avatars</a>
+			<a href="/create" data-i18n="tty.foot_create">Create an agent</a>
+			<a href="https://github.com/nirholas/three.ws/tree/main/packages/tty-3d" data-i18n="tty.foot_source">Source</a>
 		</footer>
 	</main>
 
 	<script type="module" src="/src/tty-page.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

@@ -18,17 +18,19 @@
 		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Global Intel Globe · three.ws</title>
+		<title data-i18n="globe.page_title">Global Intel Globe · three.ws</title>
 		<meta
 			name="description"
+			data-i18n-attr="content:globe.meta_desc"
 			content="A live 3D globe of what is happening on Earth right now: armed conflict, force posture, sanctions, natural events, severe weather, internet outages and economic stress, layered over military bases, nuclear sites and maritime chokepoints."
 		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/globe" />
-		<meta property="og:title" content="Global Intel Globe · three.ws" />
+		<meta property="og:title" data-i18n-attr="content:globe.share_title" content="Global Intel Globe · three.ws" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:globe.share_desc"
 			content="Eleven live layers on one 3D globe: conflict, force posture, sanctions, natural events, weather, outages, economic stress, bases, nuclear sites and chokepoints."
 		/>
 		<meta
@@ -41,9 +43,10 @@
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Global Intel Globe · three.ws" />
+		<meta name="twitter:title" data-i18n-attr="content:globe.share_title" content="Global Intel Globe · three.ws" />
 		<meta
 			name="twitter:description"
+			data-i18n-attr="content:globe.share_desc"
 			content="Eleven live layers on one 3D globe: conflict, force posture, sanctions, natural events, weather, outages, economic stress, bases, nuclear sites and chokepoints."
 		/>
 		<meta
@@ -88,28 +91,28 @@
 		<main class="gi-shell" id="gi-shell">
 			<!-- The scene. Everything inside is drawn by src/globe-intel.js. -->
 			<div class="gi-stage" id="gi-stage">
-				<canvas id="gi-canvas" aria-label="Interactive 3D globe of live world events" role="img"></canvas>
+				<canvas id="gi-canvas" aria-label="Interactive 3D globe of live world events" role="img" data-i18n-attr="aria-label:globe.canvas_aria"></canvas>
 
 				<div class="gi-stage-head">
 					<div class="gi-title-block">
-						<nav class="gi-crumbs" aria-label="Breadcrumb">
-							<a href="/labs">Labs</a><span class="gi-sep">/</span><span class="gi-here">Globe</span>
+						<nav class="gi-crumbs" aria-label="Breadcrumb" data-i18n-attr="aria-label:globe.crumb_aria">
+							<a href="/labs" data-i18n="globe.crumb_labs">Labs</a><span class="gi-sep">/</span><span class="gi-here" data-i18n="globe.crumb_here">Globe</span>
 						</nav>
-						<h1 class="gi-h1">Global Intel Globe</h1>
+						<h1 class="gi-h1" data-i18n="globe.h1">Global Intel Globe</h1>
 					</div>
 					<div class="gi-head-actions">
-						<div class="gi-seg" role="group" aria-label="View">
-							<button type="button" class="gi-seg-btn" data-view="global" aria-pressed="true">Globe</button>
-							<button type="button" class="gi-seg-btn" data-view="flat" aria-pressed="false">Flat</button>
+						<div class="gi-seg" role="group" aria-label="View" data-i18n-attr="aria-label:globe.view_aria">
+							<button type="button" class="gi-seg-btn" data-view="global" aria-pressed="true" data-i18n="globe.view_global">Globe</button>
+							<button type="button" class="gi-seg-btn" data-view="flat" aria-pressed="false" data-i18n="globe.view_flat">Flat</button>
 						</div>
-						<div class="gi-seg" role="group" aria-label="Time range" id="gi-range"></div>
-						<button type="button" class="gi-icon-btn" id="gi-share" aria-label="Copy a link to this exact view">
+						<div class="gi-seg" role="group" aria-label="Time range" id="gi-range" data-i18n-attr="aria-label:globe.range_aria"></div>
+						<button type="button" class="gi-icon-btn" id="gi-share" aria-label="Copy a link to this exact view" data-i18n="globe.share_btn" data-i18n-attr="aria-label:globe.share_aria">
 							Share view
 						</button>
 					</div>
 				</div>
 
-				<p class="gi-hint" id="gi-hint">
+				<p class="gi-hint" id="gi-hint" data-i18n-html="globe.hint">
 					Drag to spin, scroll to zoom, click any point to read it. Press
 					<kbd>F</kbd> to flatten, <kbd>Space</kbd> to pause the spin.
 				</p>
@@ -118,18 +121,18 @@
 				<div class="gi-tooltip" id="gi-tooltip" role="status" aria-live="polite" hidden></div>
 
 				<div class="gi-stage-foot">
-					<p class="gi-updated" id="gi-updated">Loading live layers…</p>
-					<button type="button" class="gi-ghost-btn" id="gi-refresh">Refresh</button>
+					<p class="gi-updated" id="gi-updated" data-i18n="globe.updated_loading">Loading live layers…</p>
+					<button type="button" class="gi-ghost-btn" id="gi-refresh" data-i18n="globe.refresh_btn">Refresh</button>
 				</div>
 			</div>
 
 			<!-- Control rail. Layers, the live feed, and the detail card for a selected point. -->
-			<aside class="gi-rail" id="gi-rail" aria-label="Layers and events">
-				<div class="gi-rail-tabs" role="tablist" aria-label="Panel">
-					<button type="button" class="gi-tab" role="tab" data-tab="layers" aria-selected="true" id="gi-tab-layers" aria-controls="gi-panel-layers">
+			<aside class="gi-rail" id="gi-rail" aria-label="Layers and events" data-i18n-attr="aria-label:globe.rail_aria">
+				<div class="gi-rail-tabs" role="tablist" aria-label="Panel" data-i18n-attr="aria-label:globe.panel_aria">
+					<button type="button" class="gi-tab" role="tab" data-tab="layers" aria-selected="true" id="gi-tab-layers" aria-controls="gi-panel-layers" data-i18n="globe.tab_layers">
 						Layers
 					</button>
-					<button type="button" class="gi-tab" role="tab" data-tab="feed" aria-selected="false" id="gi-tab-feed" aria-controls="gi-panel-feed">
+					<button type="button" class="gi-tab" role="tab" data-tab="feed" aria-selected="false" id="gi-tab-feed" aria-controls="gi-panel-feed" data-i18n="globe.tab_feed">
 						Feed
 					</button>
 				</div>
@@ -141,22 +144,22 @@
 
 				<section class="gi-panel" id="gi-panel-feed" role="tabpanel" aria-labelledby="gi-tab-feed" hidden>
 					<label class="gi-search">
-						<span class="gi-sr">Search events</span>
-						<input type="search" id="gi-search" placeholder="Search place, actor or event" autocomplete="off" />
+						<span class="gi-sr" data-i18n="globe.search_label">Search events</span>
+						<input type="search" id="gi-search" placeholder="Search place, actor or event" autocomplete="off" data-i18n-attr="placeholder:globe.search_placeholder" />
 					</label>
 					<div class="gi-feed" id="gi-feed"></div>
 				</section>
 
 				<section class="gi-detail" id="gi-detail" hidden aria-live="polite">
-					<button type="button" class="gi-detail-close" id="gi-detail-close" aria-label="Close event detail">Close</button>
+					<button type="button" class="gi-detail-close" id="gi-detail-close" aria-label="Close event detail" data-i18n="globe.detail_close_btn" data-i18n-attr="aria-label:globe.detail_close_aria">Close</button>
 					<div id="gi-detail-body"></div>
 				</section>
 			</aside>
 		</main>
 
 		<section class="gi-about">
-			<h2>What this is</h2>
-			<p>
+			<h2 data-i18n="globe.about_h2">What this is</h2>
+			<p data-i18n="globe.about_p1">
 				Eleven layers of open data on one globe, refreshed continuously. Armed conflict, force
 				posture and sanctions are classified from the GDELT event stream by CAMEO code and kept in
 				a rolling window on three.ws, so the time control is real rather than decorative. Natural
@@ -165,7 +168,7 @@
 				indicators. Military bases, nuclear sites and maritime chokepoints are reference geography,
 				and the chokepoint layer scores itself against the live feed rather than sitting still.
 			</p>
-			<p>
+			<p data-i18n-html="globe.about_p2">
 				Every layer states the window it actually covered and every point links to its source. No
 				credential is needed to read any of it. The full payload is one call:
 				<a href="/api/globe/intel?range=7d"><code>/api/globe/intel</code></a>, documented in

@@ -18,17 +18,19 @@
 		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Receipt Vault · three.ws</title>
+		<title data-i18n="receipts.page_title">Receipt Vault · three.ws</title>
 		<meta
 			name="description"
+			data-i18n-attr="content:receipts.meta_desc"
 			content="Every x402 payment you ever made to three.ws, retrievable forever. Connect a Solana or EVM wallet, sign one message, and get back your signed proof-of-purchase receipts: endpoint, network, settlement tx, and the full artifact as JSON or CSV."
 		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/receipts" />
-		<meta property="og:title" content="Receipt Vault · three.ws" />
+		<meta property="og:title" content="Receipt Vault · three.ws" data-i18n-attr="content:receipts.share_title" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:receipts.og_desc"
 			content="Connect a wallet, sign one message, and retrieve every signed x402 receipt three.ws ever issued you: proof of purchase for every paid API call, exportable as JSON or CSV."
 		/>
 		<meta
@@ -39,9 +41,10 @@
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Receipt Vault · three.ws" />
+		<meta name="twitter:title" content="Receipt Vault · three.ws" data-i18n-attr="content:receipts.share_title" />
 		<meta
 			name="twitter:description"
+			data-i18n-attr="content:receipts.twitter_desc"
 			content="Retrieve every signed x402 receipt three.ws ever issued to your wallet. Proof of purchase, exportable, explorer-verifiable."
 		/>
 		<meta
@@ -83,9 +86,9 @@
 
 			<!-- hero -->
 			<section class="rc-hero">
-				<p class="rc-kicker">Proof of purchase, forever</p>
-				<h1 class="rc-title">Receipt <em>Vault</em></h1>
-				<p class="rc-sub">
+				<p class="rc-kicker" data-i18n="receipts.kicker">Proof of purchase, forever</p>
+				<h1 class="rc-title" data-i18n-html="receipts.title">Receipt <em>Vault</em></h1>
+				<p class="rc-sub" data-i18n-html="receipts.sub">
 					Every paid x402 call you make to three.ws issues a signed receipt, and we
 					keep a durable copy. Lost the original payment-response header? Connect
 					your wallet, sign one read-only message, and pull back every receipt ever
@@ -96,8 +99,8 @@
 
 			<!-- signed-out state -->
 			<section class="rc-signin" id="rc-signin" aria-label="Connect a wallet">
-				<h2>Prove your wallet, get your receipts</h2>
-				<p class="rc-signin-copy">
+				<h2 data-i18n="receipts.signin_h">Prove your wallet, get your receipts</h2>
+				<p class="rc-signin-copy" data-i18n="receipts.signin_copy">
 					Sign a plain-text message stating your address and a timestamp. The
 					signature authorizes a read of your own receipts and nothing else: no
 					transaction, no approval, no fee. It expires after 5 minutes.
@@ -109,7 +112,7 @@
 						id="rc-connect-solana"
 						data-label="Connect Solana wallet"
 					>
-						<span class="rc-btn-label">Connect Solana wallet</span>
+						<span class="rc-btn-label" data-i18n="receipts.connect_solana">Connect Solana wallet</span>
 					</button>
 					<button
 						type="button"
@@ -117,11 +120,11 @@
 						id="rc-connect-evm"
 						data-label="Connect EVM wallet"
 					>
-						<span class="rc-btn-label">Connect EVM wallet</span>
+						<span class="rc-btn-label" data-i18n="receipts.connect_evm">Connect EVM wallet</span>
 					</button>
 				</div>
 				<p class="rc-signin-error" id="rc-signin-error" role="alert" hidden></p>
-				<p class="rc-signin-note">
+				<p class="rc-signin-note" data-i18n-html="receipts.signin_note">
 					Works with Phantom, Backpack, and Solflare on Solana, and MetaMask or any
 					injected wallet on EVM chains. Receipts are signed by three.ws under the
 					x402 Offer &amp; Receipt extension, so third parties can verify them
@@ -138,7 +141,7 @@
 						<span class="rc-wallet-addr" id="rc-wallet-addr"></span>
 					</span>
 					<span class="rc-vault-tools">
-						<button type="button" class="rc-tool" id="rc-refresh" title="Re-fetch receipts">
+						<button type="button" class="rc-tool" id="rc-refresh" title="Re-fetch receipts" data-i18n="receipts.refresh_btn" data-i18n-attr="title:receipts.refresh_title">
 							Refresh
 						</button>
 						<button
@@ -146,10 +149,12 @@
 							class="rc-tool"
 							id="rc-export"
 							title="Export the visible receipts as CSV"
+							data-i18n="receipts.export_btn"
+							data-i18n-attr="title:receipts.export_title"
 						>
 							Export CSV
 						</button>
-						<button type="button" class="rc-tool" id="rc-disconnect" title="Forget this session">
+						<button type="button" class="rc-tool" id="rc-disconnect" title="Forget this session" data-i18n="receipts.disconnect_btn" data-i18n-attr="title:receipts.disconnect_title">
 							Disconnect
 						</button>
 					</span>
@@ -157,35 +162,36 @@
 
 				<div class="rc-kpis" aria-label="Summary">
 					<div class="rc-kpi rc-kpi-hero">
-						<span class="rc-kpi-label">Total spend</span>
+						<span class="rc-kpi-label" data-i18n="receipts.kpi_spend">Total spend</span>
 						<span class="rc-kpi-val" id="rc-k-spend">·</span>
 						<span class="rc-kpi-sub" id="rc-k-spend-note">USDC settled</span>
 					</div>
 					<div class="rc-kpi">
-						<span class="rc-kpi-label">Receipts</span>
+						<span class="rc-kpi-label" data-i18n="receipts.kpi_receipts">Receipts</span>
 						<span class="rc-kpi-val" id="rc-k-total">·</span>
 					</div>
 					<div class="rc-kpi">
-						<span class="rc-kpi-label">Endpoints used</span>
+						<span class="rc-kpi-label" data-i18n="receipts.kpi_endpoints">Endpoints used</span>
 						<span class="rc-kpi-val" id="rc-k-endpoints">·</span>
 					</div>
 					<div class="rc-kpi">
-						<span class="rc-kpi-label">Networks</span>
+						<span class="rc-kpi-label" data-i18n="receipts.kpi_networks">Networks</span>
 						<span class="rc-kpi-val" id="rc-k-networks">·</span>
 					</div>
 					<div class="rc-kpi">
-						<span class="rc-kpi-label">Last purchase</span>
+						<span class="rc-kpi-label" data-i18n="receipts.kpi_last">Last purchase</span>
 						<span class="rc-kpi-val" id="rc-k-last">·</span>
 					</div>
 				</div>
 
 				<div class="rc-search-wrap">
-					<label class="rc-search-label" for="rc-search">Filter loaded receipts</label>
+					<label class="rc-search-label" for="rc-search" data-i18n="receipts.search_label">Filter loaded receipts</label>
 					<input
 						type="search"
 						class="rc-search"
 						id="rc-search"
 						placeholder="Filter by endpoint, network, or tx hash"
+						data-i18n-attr="placeholder:receipts.search_placeholder"
 					/>
 				</div>
 
@@ -194,7 +200,7 @@
 				<div class="rc-more-wrap" id="rc-more-wrap" hidden>
 					<p class="rc-shown" id="rc-shown"></p>
 					<button type="button" class="rc-btn rc-btn-secondary rc-more" id="rc-more">
-						<span class="rc-btn-label">Load 200 more</span>
+						<span class="rc-btn-label" data-i18n="receipts.load_more">Load 200 more</span>
 					</button>
 				</div>
 
@@ -204,12 +210,12 @@
 				</div>
 
 				<div class="rc-load-error" id="rc-load-error" role="alert" hidden>
-					<h3>Could not load your receipts</h3>
+					<h3 data-i18n="receipts.load_error_h">Could not load your receipts</h3>
 					<p id="rc-load-error-msg"></p>
-					<button type="button" class="rc-tool" id="rc-retry">Retry</button>
+					<button type="button" class="rc-tool" id="rc-retry" data-i18n="receipts.retry_btn">Retry</button>
 				</div>
 
-				<p class="rc-fineprint rc-hint">
+				<p class="rc-fineprint rc-hint" data-i18n-html="receipts.fineprint">
 					<kbd>/</kbd> search · <kbd>e</kbd> export CSV. Each receipt is a signed
 					artifact (JWS) from the x402 Offer &amp; Receipt extension; the JSON
 					download includes the signature so anyone can verify it against the

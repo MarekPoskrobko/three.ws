@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot, no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Brownout · three.ws</title>
-	<meta name="description" content="Every response this API sends says where its data came from and how fresh it is, and every fallback is proven by breaking the upstream it protects against. Read the receipts: which provider refused, which one caught the request, and how old the answer was." />
+	<title data-i18n="brownout.page_title">Brownout · three.ws</title>
+	<meta name="description" data-i18n-attr="content:brownout.meta_desc" content="Every response this API sends says where its data came from and how fresh it is, and every fallback is proven by breaking the upstream it protects against. Read the receipts: which provider refused, which one caught the request, and how old the answer was." />
 	<link rel="canonical" href="https://three.ws/brownout" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Brownout · three.ws" />
-	<meta property="og:description" content="Fallbacks are the least-tested code in any codebase, because the thing they protect against does not happen on demand. So we break it on purpose, and publish the receipts." />
+	<meta property="og:title" data-i18n-attr="content:brownout.share_title" content="Brownout · three.ws" />
+	<meta property="og:description" data-i18n-attr="content:brownout.og_desc" content="Fallbacks are the least-tested code in any codebase, because the thing they protect against does not happen on demand. So we break it on purpose, and publish the receipts." />
 	<meta property="og:url" content="https://three.ws/brownout" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=learn&amp;t=Brownout&amp;d=Every+response+from+this+API+says+where+its+data+came+from+and+how+fresh+it+is%2C+and+every+declared+fallback+has+been+proven+by+breaking+the+upstream+it&amp;p=%2Fbrownout" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Brownout · three.ws" />
-	<meta name="twitter:description" content="We break our own providers on purpose, in the real request path, and publish what came back." />
+	<meta name="twitter:title" data-i18n-attr="content:brownout.share_title" content="Brownout · three.ws" />
+	<meta name="twitter:description" data-i18n-attr="content:brownout.twitter_desc" content="We break our own providers on purpose, in the real request path, and publish what came back." />
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Brownout&amp;d=Every+response+from+this+API+says+where+its+data+came+from+and+how+fresh+it+is%2C+and+every+declared+fallback+has+been+proven+by+breaking+the+upstream+it&amp;p=%2Fbrownout" />
 	<style>
 		:root {
@@ -202,9 +202,9 @@
 
 	<main class="bo-wrap">
 		<section class="bo-hero">
-			<span class="bo-eyebrow">Engineering</span>
-			<h1>Brownout</h1>
-			<p>
+			<span class="bo-eyebrow" data-i18n="brownout.eyebrow">Engineering</span>
+			<h1 data-i18n="brownout.h1">Brownout</h1>
+			<p data-i18n-html="brownout.hero_p">
 				A fallback is code that only runs when something is broken, which makes it the least-tested code in
 				any codebase. So this platform does two things about it. Every response says where its data came from
 				and how fresh it is, in a header you can read. And every fallback below has been executed for real,
@@ -217,15 +217,15 @@
 
 		<section class="bo-live-panel" id="bo-live-panel" hidden>
 			<div class="bo-live-head">
-				<h2>A live call, from your browser, just now</h2>
+				<h2 data-i18n="brownout.live_h2">A live call, from your browser, just now</h2>
 				<span class="bo-tier" id="bo-live-tier" data-tier="none">unknown</span>
 			</div>
 			<p class="bo-live-body" id="bo-live-body"></p>
 		</section>
 
 		<div class="bo-section-head">
-			<h2>Proven fallbacks</h2>
-			<p>
+			<h2 data-i18n="brownout.proven_h2">Proven fallbacks</h2>
+			<p data-i18n-html="brownout.proven_p">
 				Each card names an upstream, the failure injected into it, and what the endpoint did anyway. A verdict
 				of <b>not exercised</b> is reported as plainly as a failure: it means the fault was accepted but a warm
 				cache answered before any upstream call happened, so nothing was actually proven. A proof that did not
@@ -239,12 +239,12 @@
 				<div class="bo-skeleton"></div>
 				<div class="bo-skeleton"></div>
 			</div>
-			<p class="bo-sr" id="bo-status">Loading the degradation registry.</p>
+			<p class="bo-sr" id="bo-status" data-i18n="brownout.status_loading">Loading the degradation registry.</p>
 		</div>
 
 		<section class="bo-more">
-			<h2>Reading a response</h2>
-			<p>
+			<h2 data-i18n="brownout.reading_h2">Reading a response</h2>
+			<p data-i18n-html="brownout.reading_p1">
 				Every endpoint answers with <code>x-brownout</code>, and adds <code>x-brownout-trace</code> when
 				something degraded. Freshness is a lattice rather than a flag, and a response reports the
 				<b>worst</b> tier that contributed to it: <code>live</code> came off the wire during your request,
@@ -253,16 +253,16 @@
 				different method answered the question. A page assembled from one live read and one half-hour-old
 				reading is not live, so it does not get to say it is.
 			</p>
-			<p>
+			<p data-i18n-html="brownout.reading_p2">
 				The <code>@three-ws/brownout</code> package parses these headers, and gives your own tests the same
 				fault injection this page is built on, so you can assert that your integration degrades the way you
 				think it does.
 			</p>
 			<div class="bo-links">
-				<a href="/docs/brownout">Brownout reference</a>
-				<a href="/api/brownout">Registry as JSON</a>
-				<a href="/guards">Repository guards</a>
-				<a href="/docs/start-here">Start here</a>
+				<a href="/docs/brownout" data-i18n="brownout.link_reference">Brownout reference</a>
+				<a href="/api/brownout" data-i18n="brownout.link_json">Registry as JSON</a>
+				<a href="/guards" data-i18n="brownout.link_guards">Repository guards</a>
+				<a href="/docs/start-here" data-i18n="brownout.link_start">Start here</a>
 			</div>
 		</section>
 	</main>

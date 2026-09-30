@@ -18,17 +18,19 @@
 		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Examples: everything a 3D AI agent can do · three.ws</title>
+		<title data-i18n="examples.page_title">Examples: everything a 3D AI agent can do · three.ws</title>
 		<meta
 			name="description"
+			data-i18n-attr="content:examples.meta_desc"
 			content="Runnable examples across four lanes: embed a 3D avatar, generate and measure 3D models on the free text-to-3D API, define an agent entirely as files, and read the x402 payment handshake agents trade on. Every snippet runs on the page against live production APIs."
 		/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/examples" />
-		<meta property="og:title" content="Examples: everything a 3D AI agent can do · three.ws" />
+		<meta property="og:title" data-i18n-attr="content:examples.share_title" content="Examples: everything a 3D AI agent can do · three.ws" />
 		<meta
 			property="og:description"
+			data-i18n-attr="content:examples.og_desc"
 			content="Runnable examples for 3D avatars, model generation, file-defined agents, and the agent economy. Run them here, copy them anywhere."
 		/>
 		<meta
@@ -39,9 +41,10 @@
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Examples: everything a 3D AI agent can do · three.ws" />
+		<meta name="twitter:title" data-i18n-attr="content:examples.share_title" content="Examples: everything a 3D AI agent can do · three.ws" />
 		<meta
 			name="twitter:description"
+			data-i18n-attr="content:examples.twitter_desc"
 			content="Runnable examples for 3D avatars, model generation, file-defined agents, and the agent economy. Real APIs, real data."
 		/>
 		<meta
@@ -83,12 +86,12 @@
 
 		<main class="exg-shell">
 			<section class="exg-hero">
-				<p class="exg-kicker">
+				<p class="exg-kicker" data-i18n-html="examples.kicker">
 					<span class="exg-live-dot" aria-hidden="true"></span> Every snippet runs on this
 					page
 				</p>
-				<h1 class="exg-title">Everything an agent <em>can do</em></h1>
-				<p class="exg-sub">
+				<h1 class="exg-title" data-i18n-html="examples.title">Everything an agent <em>can do</em></h1>
+				<p class="exg-sub" data-i18n-html="examples.sub">
 					<span id="exg-count">17</span> runnable examples across
 					<span id="exg-lane-count">4</span> lanes: embedding a 3D body, generating and
 					measuring the models themselves, defining an agent as files, and reading the
@@ -108,8 +111,8 @@
 			<div id="exg-lanes"></div>
 
 			<section class="exg-more" aria-labelledby="exg-more-h" data-role="ex-browse">
-				<h2 id="exg-more-h">Every example in the repo</h2>
-				<p>
+				<h2 id="exg-more-h" data-i18n="examples.more_h">Every example in the repo</h2>
+				<p data-i18n="examples.more_p">
 					Beyond the single-file snippets above, the repository ships complete example
 					projects and an example folder beside each SDK and published package: agents
 					defined entirely as files, installable skill bundles, and scripts that drive the
@@ -122,6 +125,7 @@
 					class="exi-toolbar"
 					role="toolbar"
 					aria-label="Search and filter repository examples"
+					data-i18n-attr="aria-label:examples.toolbar_aria"
 				>
 					<div class="exi-search-wrap">
 						<svg
@@ -146,6 +150,7 @@
 							placeholder="Search all examples…"
 							aria-label="Search all repository examples"
 							autocomplete="off"
+							data-i18n-attr="placeholder:examples.search_placeholder;aria-label:examples.search_aria"
 						/>
 					</div>
 					<span class="exi-count" data-role="ex-count" aria-live="polite"></span>
@@ -156,10 +161,11 @@
 					data-role="ex-chips"
 					role="tablist"
 					aria-label="Filter examples by kind"
+					data-i18n-attr="aria-label:examples.chips_aria"
 				></div>
 				<p class="exi-sr" data-role="ex-live" aria-live="polite"></p>
 
-				<div class="exi-grid" data-role="ex-loading" aria-label="Loading examples">
+				<div class="exi-grid" data-role="ex-loading" aria-label="Loading examples" data-i18n-attr="aria-label:examples.loading_aria">
 					<div class="exi-skeleton"></div>
 					<div class="exi-skeleton"></div>
 					<div class="exi-skeleton"></div>
@@ -171,22 +177,22 @@
 				<div class="exi-grid" data-role="ex-grid" hidden></div>
 
 				<div class="exi-state" data-role="ex-empty-search" hidden>
-					<h3>No matches</h3>
-					<p>No examples match your search or the selected kind.</p>
-					<button type="button" class="exi-btn exi-btn--ghost" data-role="ex-clear">
+					<h3 data-i18n="examples.empty_h">No matches</h3>
+					<p data-i18n="examples.empty_p">No examples match your search or the selected kind.</p>
+					<button type="button" class="exi-btn exi-btn--ghost" data-role="ex-clear" data-i18n="examples.clear_filters">
 						Clear filters
 					</button>
 				</div>
 
 				<div class="exi-state" data-role="ex-error" hidden>
-					<h3>Couldn't load the example index</h3>
+					<h3 data-i18n="examples.error_h">Couldn't load the example index</h3>
 					<p data-role="ex-error-msg">Something went wrong loading the example index.</p>
-					<button type="button" class="exi-btn exi-btn--ghost" data-role="ex-retry">
+					<button type="button" class="exi-btn exi-btn--ghost" data-role="ex-retry" data-i18n="examples.try_again">
 						Try again
 					</button>
 				</div>
 
-				<h3 class="exi-subhead">Start with these</h3>
+				<h3 class="exi-subhead" data-i18n="examples.start_with">Start with these</h3>
 				<div class="exg-more-grid">
 					<a
 						class="exg-more-card"
@@ -195,7 +201,7 @@
 						rel="noopener"
 					>
 						<strong>coach-leo</strong>
-						<span
+						<span data-i18n="examples.card_coach_leo"
 							>The smallest complete agent defined as files: manifest, system prompt,
 							one skill. The template to copy.</span
 						>
@@ -207,7 +213,7 @@
 						rel="noopener"
 					>
 						<strong>three-concierge</strong>
-						<span
+						<span data-i18n="examples.card_three_concierge"
 							>Trinity, the reference agent for manifest spec 0.2: pump.fun skills,
 							extended thinking, discovery card.</span
 						>
@@ -219,7 +225,7 @@
 						rel="noopener"
 					>
 						<strong>skills</strong>
-						<span
+						<span data-i18n="examples.card_skills"
 							>Six installable skill bundles with documented tools, config, and safety
 							caps.</span
 						>
@@ -231,7 +237,7 @@
 						rel="noopener"
 					>
 						<strong>agent-native-3d</strong>
-						<span
+						<span data-i18n="examples.card_agent_native_3d"
 							>A Node script that generates a mesh, rigs it, saves it as an agent
 							persona, and speaks through it via MCP.</span
 						>
@@ -243,14 +249,14 @@
 						rel="noopener"
 					>
 						<strong>monicas-apartment</strong>
-						<span
+						<span data-i18n="examples.card_monicas_apartment"
 							>A walkable first-person Three.js scene in one self-contained HTML file.
 							No server at all.</span
 						>
 					</a>
 					<a class="exg-more-card" href="/docs/examples">
-						<strong>Examples doc</strong>
-						<span
+						<strong data-i18n="examples.card_doc_title">Examples doc</strong>
+						<span data-i18n="examples.card_doc"
 							>The written companion: every example annotated with what it
 							demonstrates and where the pieces live.</span
 						>
