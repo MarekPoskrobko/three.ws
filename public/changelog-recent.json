@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-30T08:18:25.791Z",
+	"generated_at": "2026-09-30T08:19:15.043Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3787,
+	"total": 3788,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -38,6 +38,16 @@
 			"tags": [
 				"improvement",
 				"fix"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "Every platform total in one free API call",
+			"summary": "GET /api/platform/analytics returns agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily series over 30 days, 90 days or all time and a plain sentence saying exactly which rows were counted. A figure that cannot be read comes back empty with a named reason instead of as zero. It powers the new analytics page and is open to anyone building on three.ws.",
+			"link": "/analytics",
+			"tags": [
+				"feature"
 			]
 		},
 		{
@@ -1575,17 +1585,6 @@
 			"link": "/markets/news",
 			"tags": [
 				"fix"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Oracle: a failed request now says so, instead of claiming no coins have been scored",
-			"summary": "A full audit of /oracle, the fused conviction board for pump.fun launches. When a panel's request failed, the page told you the opposite of the truth: the live feed claimed \"Oracle is warming up\" and said the engine ships with its backend, the movers, proof, agent-ranking, activity and 3D-graph panels each claimed there was simply nothing to show, and the performance record said the edge was still proving itself. Every one of those is now a real error state that names what went wrong (offline, rate limited, or an engine error) and offers a retry that actually recovers. The Proof gallery had a second bug behind that one: opening it for the first time while the request failed painted nothing at all, not even a skeleton. Searching a symbol Oracle has not scored used to make the results dropdown vanish with no explanation, which reads as a broken search box; it now says there is no match, and says so differently when search itself is down. The conviction-breadth bar's tier segments and legend chips were 10 and 15 pixels tall, too small to reliably tap on a phone, and now carry a full 24-pixel target without changing how the bar looks. Screen readers can finally move from a tab into the panel it opens, every button declares its type, and if a browser is holding a cached copy of an older release the 3D graph explains that and offers a reload instead of retrying a module that can never load.",
-			"link": "/oracle",
-			"tags": [
-				"fix",
-				"improvement"
 			]
 		}
 	]

@@ -3,6 +3,13 @@
 	"entries": [
 		{
 			"date": "2026-09-30",
+			"title": "Every platform total in one free API call",
+			"summary": "GET /api/platform/analytics returns agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily series over 30 days, 90 days or all time and a plain sentence saying exactly which rows were counted. A figure that cannot be read comes back empty with a named reason instead of as zero. It powers the new analytics page and is open to anyone building on three.ws.",
+			"tags": ["feature"],
+			"link": "/analytics"
+		},
+		{
+			"date": "2026-09-30",
 			"title": "See where every $100 paid in $THREE goes",
 			"summary": "The $THREE page now shows, for paid compute, marketplace sales, scarcity mints, spins and copy-trading fees, how every $100 splits between the seller, the treasury that funds buybacks, and holder rewards. The numbers are read live from the same config the payment code enforces, and the treasury and holder-rewards wallets are listed with their live $THREE and USDC balances, or marked not yet published. The platform never burns $THREE. The page also follows your light or dark theme now.",
 			"tags": ["feature"],

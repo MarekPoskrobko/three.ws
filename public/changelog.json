@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-30T08:18:25.735Z",
+	"generated_at": "2026-09-30T08:19:14.981Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
@@ -35,6 +35,16 @@
 			"tags": [
 				"improvement",
 				"fix"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "Every platform total in one free API call",
+			"summary": "GET /api/platform/analytics returns agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily series over 30 days, 90 days or all time and a plain sentence saying exactly which rows were counted. A figure that cannot be read comes back empty with a named reason instead of as zero. It powers the new analytics page and is open to anyone building on three.ws.",
+			"link": "/analytics",
+			"tags": [
+				"feature"
 			]
 		},
 		{

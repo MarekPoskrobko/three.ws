@@ -31,6 +31,14 @@
 			<description>Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like &quot;Loading&quot; back over it.</description>
 		</item>
 		<item>
+			<title>Every platform total in one free API call</title>
+			<link>https://three.ws/analytics</link>
+			<guid isPermaLink="false">2026-09-30:Every platform total in one free API call</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>GET /api/platform/analytics returns agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily series over 30 days, 90 days or all time and a plain sentence saying exactly which rows were counted. A figure that cannot be read comes back empty with a named reason instead of as zero. It powers the new analytics page and is open to anyone building on three.ws.</description>
+		</item>
+		<item>
 			<title>Photo to 3D keeps going when its main engines go down</title>
 			<link>https://three.ws/image-to-3d</link>
 			<guid isPermaLink="false">2026-09-30:Photo to 3D keeps going when its main engines go down</guid>
