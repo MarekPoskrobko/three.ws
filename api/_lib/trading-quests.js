@@ -317,7 +317,7 @@ export async function loadQuestBoard(userId, { now = Date.now() } = {}) {
 	const [[totals], clearRows] = await Promise.all([
 		sql`
 			select coalesce(sum(xp), 0)::int as xp,
-			       count(*) filter (where code <> ${DAILY_CLEAR.code})::int as quests_done
+			       count(*) filter (where code <> ${DAILY_CLEAR.code} and code not like 'duel:%')::int as quests_done
 			from trading_quest_completions where user_id = ${userId}
 		`,
 		sql`

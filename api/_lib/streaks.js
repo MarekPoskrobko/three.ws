@@ -32,6 +32,10 @@ export const BADGES = Object.freeze({
 	QUEST_FIRST: 'quest_first',
 	QUEST_CLEAR: 'quest_clear',
 	QUEST_STREAK_7: 'quest_streak_7',
+	DUEL_FIRST: 'duel_first',
+	DUEL_HIT: 'duel_hit',
+	DUEL_STREAK_3: 'duel_streak_3',
+	DUEL_SHARP: 'duel_sharp',
 	TOP10: (metric) => `top10_${metric}`,
 });
 
@@ -80,6 +84,26 @@ export const BADGE_META = {
 		label: 'Quest Streak 7',
 		description: 'Cleared the daily trading quests seven days running.',
 		icon: '🏅',
+	},
+	duel_first: {
+		label: 'First Call',
+		description: 'Made a first call on a trader duel.',
+		icon: '🎲',
+	},
+	duel_hit: {
+		label: 'Called It',
+		description: 'Called a trader duel correctly.',
+		icon: '📣',
+	},
+	duel_streak_3: {
+		label: 'Hot Hand',
+		description: 'Called three decided trader duels in a row correctly.',
+		icon: '🔥',
+	},
+	duel_sharp: {
+		label: 'Sharp Caller',
+		description: 'Right on at least 70% of ten or more decided trader duels.',
+		icon: '🧠',
 	},
 };
 
