@@ -35,7 +35,7 @@
 			},
 			{
 				"title": "Economy and $THREE",
-				"paths": ["/three-token", "/three", "/three-launchpad", "/launch", "/launches", "/pay", "/credits", "/pricing", "/economy"]
+				"paths": ["/three-token", "/three", "/three-launchpad", "/launch", "/launches", "/pay", "/credits", "/pricing", "/economy", "/analytics"]
 			},
 			{
 				"title": "Learn",
@@ -2428,6 +2428,14 @@
 					"priority": 0.7,
 					"changefreq": "daily",
 					"added": "2026-06-29"
+				},
+				{
+					"path": "/analytics",
+					"title": "Platform Analytics",
+					"description": "Every three.ws platform total on one page, read live: agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily growth chart over 30 days, 90 days or all time and a note on exactly how it is counted.",
+					"priority": 0.7,
+					"changefreq": "daily",
+					"added": "2026-09-30"
 				},
 				{
 					"path": "/agent-trade",

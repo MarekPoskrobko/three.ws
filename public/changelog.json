@@ -1,11 +1,21 @@
 {
-	"generated_at": "2026-09-30T08:16:17.942Z",
+	"generated_at": "2026-09-30T08:18:25.735Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-30",
+			"type": "launch",
+			"title": "Platform Analytics",
+			"summary": "Every three.ws platform total on one page, read live: agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily growth chart over 30 days, 90 days or all time and a note on exactly how it is counted.",
+			"link": "/analytics",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-30",
 			"type": "update",

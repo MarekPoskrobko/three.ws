@@ -7,6 +7,14 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>Platform Analytics</title>
+			<link>https://three.ws/analytics</link>
+			<guid isPermaLink="false">2026-09-30:Platform Analytics</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>launch</category>
+			<description>Every three.ws platform total on one page, read live: agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily growth chart over 30 days, 90 days or all time and a note on exactly how it is counted.</description>
+		</item>
+		<item>
 			<title>3D models no longer arrive glued to a floor slab</title>
 			<link>https://three.ws/forge</link>
 			<guid isPermaLink="false">2026-09-30:3D models no longer arrive glued to a floor slab</guid>

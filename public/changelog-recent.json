@@ -1,14 +1,24 @@
 {
-	"generated_at": "2026-09-30T08:16:18.027Z",
+	"generated_at": "2026-09-30T08:18:25.791Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3786,
+	"total": 3787,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-30",
+			"type": "launch",
+			"title": "Platform Analytics",
+			"summary": "Every three.ws platform total on one page, read live: agents, agents with a wallet, coins launched, 3D models generated, LLM tokens processed, x402 settlements and volume, marketplace sales and agent-to-agent hire volume, each with a daily growth chart over 30 days, 90 days or all time and a note on exactly how it is counted.",
+			"link": "/analytics",
+			"tags": [
+				"launch"
+			]
+		},
 		{
 			"date": "2026-09-30",
 			"type": "update",
@@ -1576,17 +1586,6 @@
 			"tags": [
 				"fix",
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Paid 3D services now refuse a job they cannot deliver, instead of charging for it",
-			"summary": "The paid three.ws forge services sold to other AI agents charge the moment the generator accepts a job, and the finished model reaches the buyer only after it lands in our delivery storage. When that storage stopped accepting writes, jobs were still being accepted and charged while no model could ever be handed back. Those services now check that delivery storage is writable before they take the job: if it is not, the call is refused, says so, and is not charged. The check is cached and ignores a one-off blip, so a passing wobble never stops the services selling. The free public health page also had a bug where a storage failure replaced the name of the failing subsystem with the storage provider's error code and printed the request's signing details; it now names the subsystem and reports the reason alone.",
-			"link": null,
-			"tags": [
-				"fix",
-				"security"
 			]
 		}
 	]
