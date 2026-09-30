@@ -223,7 +223,7 @@ export function settleCall(pick, market) {
  * Validate a call's shape and stake against a balance. PURE.
  * @returns {{ok:true, side:'a'|'b', stake:number} | {ok:false, code:string, message:string}}
  */
-export function validateCall({ side, stake, balance = Infinity } = {}) {
+export function validateCall({ side, stake, balance = null } = {}) {
 	if (side !== 'a' && side !== 'b') return { ok: false, code: 'invalid_side', message: 'side must be "a" or "b".' };
 	const s = Number(stake);
 	if (!Number.isInteger(s) || s < DUEL_RULES.min_stake || s > DUEL_RULES.max_stake) {
@@ -233,7 +233,7 @@ export function validateCall({ side, stake, balance = Infinity } = {}) {
 			message: `Stake a whole number of points from ${DUEL_RULES.min_stake} to ${DUEL_RULES.max_stake}.`,
 		};
 	}
-	if (s > n(balance)) {
+	if (balance != null && s > n(balance)) {
 		return { ok: false, code: 'not_enough_points', message: `You have ${n(balance)} points. Your free allowance tops up at 00:00 UTC.` };
 	}
 	return { ok: true, side, stake: s };
