@@ -22,6 +22,7 @@ import { putObject, publicUrl, deleteObject, keyFromPublicUrl, objectStorageConf
 import { recordDailyActivity, maybeAwardFirstCreation } from './streaks.js';
 import { recordGenerationEvent } from './forge-events.js';
 import { scoreGlbQuality } from './glb-quality.js';
+import { stripFloorSlab } from './glb-floor-slab.js';
 import { compressGlb, deliveryCompressionOptions } from './glb-compress.js';
 import { classifyModelCategory } from './forge-classify.js';
 import { cleanupGlb } from './glb-cleanup.js';
@@ -346,6 +347,19 @@ async function scoreAndCompress(buf, { computeQuality, compress, cleanup = false
 			}
 		} catch (err) {
 			console.warn('[forge-store] geometry cleanup failed, delivering as-is:', err?.message);
+		}
+		// The reconstructors fuse a floor plate under a resting subject even from a
+		// clean cutout (glb-floor-slab.js). Cut it here, on geometry alone, so the
+		// fix never depends on a vision provider answering, and before scoring so
+		// the quality signal describes the model users actually receive.
+		try {
+			const r = await stripFloorSlab(outBuf);
+			if (r.stripped) {
+				outBuf = r.buffer;
+				cleaned = { ...(cleaned || {}), floor_slab_removed_tris: r.removedTriangles };
+			}
+		} catch (err) {
+			console.warn('[forge-store] floor slab strip failed, delivering as-is:', err?.message);
 		}
 	}
 	// Material completion SECOND: it reads the albedo the lane baked and writes

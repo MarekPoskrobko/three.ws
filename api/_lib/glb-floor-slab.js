@@ -36,8 +36,10 @@ export const SLAB_BAND = 0.05;
 const SUBJECT_FLOOR = 0.08;
 // The subject's contact footprint: the part of it below this fraction of the
 // height, which is where it rests on the plate. The cut keeps the plate only
-// under this, so a teapot keeps a patch under its body, not spout to spout.
-const CONTACT_CEILING = 0.2;
+// under this, so a teapot keeps a sliver under its foot rather than a ring under
+// its flared body, and a tripod keeps a small pad under each foot. Measured on
+// live results: 0.2 left a visible ragged ring round a teapot, 0.08 does not.
+const CONTACT_CEILING = 0.08;
 // The band must fill at least this share of its bounding rectangle, seen from
 // above, to be a sheet rather than feet, legs or a rounded foot.
 export const SLAB_FILL = 0.9;
@@ -45,6 +47,8 @@ export const SLAB_FILL = 0.9;
 export const SLAB_FOOTPRINT_RATIO = 1.25;
 // Resolution of the top-down coverage grid the fill is measured on.
 const FILL_GRID = 48;
+// Resolution of the contact mask the cut follows.
+const CONTACT_GRID = 64;
 // Minimum shares of all triangles for the band and for the subject.
 const MIN_BAND_SHARE = 0.01;
 const MIN_SUBJECT_SHARE = 0.2;
@@ -89,21 +93,32 @@ function area(box) {
 	return box.maxX > box.minX && box.maxZ > box.minZ ? (box.maxX - box.minX) * (box.maxZ - box.minZ) : 0;
 }
 
-// Share of the band's bounding rectangle its triangles cover, seen from above:
-// each grid cell whose centre falls inside any band triangle counts.
-function coverage(parts, isBand, box) {
+// Rasterize the triangles `pick` selects onto a g x g grid over `box`, seen from
+// above: a cell is covered when its centre falls inside any picked triangle.
+// With `edges`, a triangle's edges mark the cells they cross too, because a
+// vertical wall has no area from above and would otherwise vanish.
+function rasterize(parts, pick, box, g, { edges = false } = {}) {
 	const w = box.maxX - box.minX;
 	const d = box.maxZ - box.minZ;
-	if (!(w > 0 && d > 0)) return 0;
-	const g = FILL_GRID;
+	if (!(w > 0 && d > 0)) return null;
 	const cells = new Uint8Array(g * g);
 	const cell = (v, lo, span) => Math.min(g - 1, Math.max(0, Math.floor(((v - lo) / span) * g)));
 	for (const { positions: p, indices } of parts) {
 		for (let t = 0; t + 2 < indices.length; t += 3) {
-			if (!isBand(p, indices, t)) continue;
+			if (!pick(p, indices, t)) continue;
 			const ax = p[indices[t] * 3], az = p[indices[t] * 3 + 2];
 			const bx = p[indices[t + 1] * 3], bz = p[indices[t + 1] * 3 + 2];
 			const cx = p[indices[t + 2] * 3], cz = p[indices[t + 2] * 3 + 2];
+			if (edges) {
+				for (const [x0e, z0e, x1e, z1e] of [[ax, az, bx, bz], [bx, bz, cx, cz], [cx, cz, ax, az]]) {
+					const steps = Math.max(1, Math.ceil(Math.max(Math.abs(x1e - x0e) / w, Math.abs(z1e - z0e) / d) * g * 2));
+					for (let k = 0; k <= steps; k++) {
+						const ex = x0e + ((x1e - x0e) * k) / steps;
+						const ez = z0e + ((z1e - z0e) * k) / steps;
+						cells[cell(ez, box.minZ, d) * g + cell(ex, box.minX, w)] = 1;
+					}
+				}
+			}
 			const den = (bz - cz) * (ax - cx) + (cx - bx) * (az - cz);
 			if (Math.abs(den) < 1e-12) continue;
 			const x0 = cell(Math.min(ax, bx, cx), box.minX, w), x1 = cell(Math.max(ax, bx, cx), box.minX, w);
@@ -120,9 +135,72 @@ function coverage(parts, isBand, box) {
 			}
 		}
 	}
+	return cells;
+}
+
+// Share of the band's bounding rectangle its triangles cover, seen from above.
+function coverage(parts, isBand, box) {
+	const cells = rasterize(parts, isBand, box, FILL_GRID);
+	if (!cells) return 0;
 	let covered = 0;
 	for (const c of cells) covered += c;
-	return covered / (g * g);
+	return covered / cells.length;
+}
+
+// Where the subject touches down, as a top-down mask: the contact layer
+// rasterized over its own bounds (plus the margin), with everything it encloses
+// filled in (a box's walls enclose its whole bottom face, a teapot's lower curve
+// its foot), then grown by one cell so the plate directly under an edge is kept
+// rather than nibbled.
+function contactMask(parts, isContact, box) {
+	const g = CONTACT_GRID;
+	const cells = rasterize(parts, isContact, box, g, { edges: true });
+	if (!cells) return null;
+	// Flood the open floor in from the border; any uncovered cell it cannot
+	// reach is enclosed by the subject and belongs to its footprint.
+	const outside = new Uint8Array(cells.length);
+	const queue = [];
+	for (let i = 0; i < g; i++) {
+		for (const c of [i, (g - 1) * g + i, i * g, i * g + g - 1]) {
+			if (!cells[c] && !outside[c]) {
+				outside[c] = 1;
+				queue.push(c);
+			}
+		}
+	}
+	while (queue.length) {
+		const c = queue.pop();
+		const x = c % g, z = (c - x) / g;
+		for (const [nx, nz] of [[x - 1, z], [x + 1, z], [x, z - 1], [x, z + 1]]) {
+			if (nx < 0 || nz < 0 || nx >= g || nz >= g) continue;
+			const n = nz * g + nx;
+			if (!cells[n] && !outside[n]) {
+				outside[n] = 1;
+				queue.push(n);
+			}
+		}
+	}
+	for (let c = 0; c < cells.length; c++) if (!outside[c]) cells[c] = 1;
+	const grown = new Uint8Array(cells.length);
+	for (let z = 0; z < g; z++) {
+		for (let x = 0; x < g; x++) {
+			if (!cells[z * g + x]) continue;
+			for (let dz = -1; dz <= 1; dz++) {
+				for (let dx = -1; dx <= 1; dx++) {
+					const nz = z + dz, nx = x + dx;
+					if (nz >= 0 && nz < g && nx >= 0 && nx < g) grown[nz * g + nx] = 1;
+				}
+			}
+		}
+	}
+	const w = box.maxX - box.minX;
+	const d = box.maxZ - box.minZ;
+	return (px, pz) => {
+		if (px < box.minX || px > box.maxX || pz < box.minZ || pz > box.maxZ) return false;
+		const gx = Math.min(g - 1, Math.floor(((px - box.minX) / w) * g));
+		const gz = Math.min(g - 1, Math.floor(((pz - box.minZ) / d) * g));
+		return grown[gz * g + gx] === 1;
+	};
 }
 
 /**
@@ -149,6 +227,8 @@ export function detectFloorSlab(parts) {
 	const contactTop = minY + CONTACT_CEILING * height;
 	const inBand = (p, idx, t) =>
 		Math.max(p[idx[t] * 3 + 1], p[idx[t + 1] * 3 + 1], p[idx[t + 2] * 3 + 1]) <= bandTop;
+	const inContact = (p, idx, t) =>
+		!inBand(p, idx, t) && Math.min(p[idx[t] * 3 + 1], p[idx[t + 1] * 3 + 1], p[idx[t + 2] * 3 + 1]) <= contactTop;
 
 	let total = 0;
 	let bandTris = 0;
@@ -188,7 +268,10 @@ export function detectFloorSlab(parts) {
 	const rest = area(contact) > 0 ? contact : subject;
 	const mx = (rest.maxX - rest.minX) * FOOTPRINT_MARGIN;
 	const mz = (rest.maxZ - rest.minZ) * FOOTPRINT_MARGIN;
-	const keep = { minX: rest.minX - mx, maxX: rest.maxX + mx, minZ: rest.minZ - mz, maxZ: rest.maxZ + mz };
+	const keepBox = { minX: rest.minX - mx, maxX: rest.maxX + mx, minZ: rest.minZ - mz, maxZ: rest.maxZ + mz };
+	const underSubject =
+		(area(contact) > 0 && contactMask(parts, inContact, keepBox)) ||
+		((x, z) => x >= keepBox.minX && x <= keepBox.maxX && z >= keepBox.minZ && z <= keepBox.maxZ);
 	let removedTriangles = 0;
 	const remove = parts.map(({ positions: p, indices }) => {
 		const drop = new Set();
@@ -199,8 +282,7 @@ export function detectFloorSlab(parts) {
 			if (Math.max(p[a + 1], p[b + 1], p[c + 1]) > bandTop) continue;
 			const cx = (p[a] + p[b] + p[c]) / 3;
 			const cz = (p[a + 2] + p[b + 2] + p[c + 2]) / 3;
-			const inside = cx >= keep.minX && cx <= keep.maxX && cz >= keep.minZ && cz <= keep.maxZ;
-			if (!inside) {
+			if (!underSubject(cx, cz)) {
 				drop.add(t);
 				removedTriangles++;
 			}
