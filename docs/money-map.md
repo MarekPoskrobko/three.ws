@@ -34,11 +34,39 @@ to these two wallets by the buyer's own transaction. Both are **required in
 production and fail closed**: unset, `/api/token/quote` answers `503
 treasury_unavailable` and no purchase can be priced at all.
 
-| Env var | Role | Value |
-| ------- | ---- | ----- |
-| `THREE_TREASURY_WALLET` | Platform cut of every split; the pot the buyback lane buys into | `wwwwwDxFWRn7grgr3Esrsg5C6NvDoDHSA4gaCffccrU` (the x402 receiver, `holdsTokens`) |
-| `THREE_REWARDS_WALLET` | Holder reflections pool, distributed pro-rata by the `rewards-distribute` cron | `WwwuGbqHrwF5RG89KhUbmRWEvjnRH9k5kVM5p7T3WwW` (the economy master, which `REWARDS_DISTRIBUTOR_SECRET` signs as) |
-| `THREE_QUOTE_SECRET` | HMAC key that seals a quote's amount, split and destinations | Secret Manager (`three-quote-secret`) |
+| Env var | Role | Production state (2026-09-30) |
+| ------- | ---- | ----------------------------- |
+| `THREE_TREASURY_WALLET` | Platform cut of every split; the pot the buyback lane buys into | **Unset, awaiting the owner's address.** Candidate: `wwwwwDxFWRn7grgr3Esrsg5C6NvDoDHSA4gaCffccrU` (the x402 receiver) |
+| `THREE_REWARDS_WALLET` | Holder reflections pool, planned pro-rata by the `rewards-distribute` cron | **Unset, awaiting the owner's address.** Candidate: `WwwuGbqHrwF5RG89KhUbmRWEvjnRH9k5kVM5p7T3WwW` (the economy master), with the conflict below |
+| `THREE_QUOTE_SECRET` | HMAC key that seals a quote's amount, split and destinations | **Set.** Secret Manager `three-quote-secret` (48 random bytes, base64url), `three-ws@` has `secretAccessor`, wired as a secret reference since revision `three-ws-api-00466-85g` |
+
+Neither wallet has ever been set on any `three-ws-api` revision (all 465 through
+2026-09-30 were checked), so there is no prior value to restore. Both candidates
+are ordinary system-owned mainnet accounts that can hold $THREE: the x402
+receiver already holds a $THREE token account, the economy master has none yet
+and the buyer's transaction creates it (`src/token-pay.js` adds an idempotent
+ATA create for every leg). They are written here as candidates, not values,
+because the wallets decide where every buyer's $THREE lands and the owner has
+not named them. Setting them is one config-only command once the
+owner confirms:
+
+    gcloud run services update three-ws-api --region us-central1 --project aerial-vehicle-466722-p5 \
+      --update-env-vars THREE_TREASURY_WALLET=<treasury>,THREE_REWARDS_WALLET=<rewards>
+
+Setting them arms no transfer on its own. `rewards-distribute` only plans (it
+never sends), and the buyback, micro-buy and fee-bridge lanes that sweep $THREE
+into the treasury stay off until `THREE_BUYBACK_ENABLED`,
+`THREE_MICROBUY_ENABLED` or `FEE_BRIDGE_ENABLED` is set, none of which is.
+
+**The rewards candidate conflicts with the buyback signer.**
+`THREE_BUYBACK_SECRET_KEY_B64` resolves to the economy master too, and the
+micro-buy lane falls back to that key when `THREE_MICROBUY_SECRET_KEY_B64` is
+unset. Both lanes "self-heal" by sweeping the signer's entire $THREE balance to
+the treasury (`sweepStrandedThree`, `sweepMicrobuyThree`). With the rewards pool
+on the economy master, arming either lane would move the whole holder-rewards
+pool into the treasury. Before arming either lane, give the rewards pool its
+own keypair (and point `REWARDS_DISTRIBUTOR_SECRET` at it), or give the buyback
+and micro-buy lanes keys of their own.
 
 The rewards pool **must** be the wallet `REWARDS_DISTRIBUTOR_SECRET` resolves to,
 or the pool accrues into an address the distribution cron cannot sign for. The
