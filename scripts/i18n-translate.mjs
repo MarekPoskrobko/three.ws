@@ -1160,6 +1160,10 @@ async function main() {
 
 	writeManifest();
 	const results = await pool(targets, 1, translateLocale); // locales sequential; chunks parallel within
+	// The manifest lists only complete locales, and the pass above is what
+	// completes them. Written only before it, the language menu always lagged one
+	// run behind: a run that finished 16 locales left all 16 out of the menu.
+	writeManifest();
 	const n = results.reduce((s, r) => s + (r?.translated || 0), 0);
 	console.log(`\ni18n-translate: ${n} key(s) translated across ${targets.length} locale(s).`);
 }
