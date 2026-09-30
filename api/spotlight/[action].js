@@ -7,6 +7,9 @@
 //   POST /api/spotlight/submit  { agentId, title, tagline, story?, demoUrl?, category, tags[] }
 //   POST /api/spotlight/vote    { id }      (toggle)
 //   POST /api/spotlight/remove  { id }      (submitter or agent owner)
+//   GET  /api/spotlight/stories             (consented entries with a verified result, by category)
+//   POST /api/spotlight/consent { id, consent }  (agent owner: feature as a story, or withdraw)
+//   POST /api/spotlight/moderate { id, action: 'hide'|'unhide', reason? }  (admin)
 //
 // Reads are public and CDN-cached; writes need a session plus CSRF. The ranking
 // and every query live in api/_lib/spotlight-store.js; this file is the HTTP
@@ -17,6 +20,9 @@ import { requireCsrf } from '../_lib/csrf.js';
 import { getSessionUser } from '../_lib/auth.js';
 import { limits, clientIp } from '../_lib/rate-limit.js';
 import { isUuid } from '../_lib/validate.js';
+import { requireAdmin } from '../_lib/admin.js';
+import { logAudit } from '../_lib/audit.js';
+import { verifiedMetrics, shapeVerified } from '../_lib/spotlight-metrics.js';
 import {
 	CATEGORIES,
 	SORTS,
@@ -29,7 +35,10 @@ import {
 	getEntry,
 	isCategory,
 	listEntries,
+	listStoryEntries,
 	ownsAgent,
+	setEntryVisibility,
+	setStoryConsent,
 	showcaseConfigured,
 	showcaseTotals,
 	softDeleteEntry,
@@ -62,6 +71,12 @@ export default wrap(async (req, res) => {
 			return await handleVote(req, res);
 		case 'remove':
 			return await handleRemove(req, res);
+		case 'stories':
+			return await handleStories(req, res);
+		case 'consent':
+			return await handleConsent(req, res);
+		case 'moderate':
+			return await handleModerate(req, res);
 		default:
 			return error(res, 404, 'not_found', `unknown spotlight action "${actionOf(req)}"`);
 	}
@@ -148,7 +163,55 @@ async function handleGet(req, res) {
 	if (!entry) return error(res, 404, 'not_found', 'no such showcase entry');
 
 	void bumpViews(id);
+	entry.verified = await entryVerified(entry.agent.id);
 	return json(res, 200, { entry }, { 'Cache-Control': 'private, no-store' });
+}
+
+// Verified results for one entry's agent. A failure here degrades to null (the
+// page shows "results unavailable") rather than failing the whole entry: the
+// write-up is still worth reading while a metrics table is unreachable.
+async function entryVerified(agentId) {
+	try {
+		const metrics = await verifiedMetrics([agentId]);
+		return shapeVerified(metrics.get(agentId));
+	} catch (err) {
+		console.error('[spotlight] verified metrics failed:', err?.message || err);
+		return null;
+	}
+}
+
+async function handleStories(req, res) {
+	if (!method(req, res, ['GET'])) return;
+	const rl = await limits.publicIp(clientIp(req));
+	if (!rl.success) return rateLimited(res, rl);
+
+	const candidates = await listStoryEntries({ limit: 60 });
+	const metrics = await verifiedMetrics(candidates.map((e) => e.agent.id));
+	const stories = [];
+	for (const e of candidates) {
+		const verified = shapeVerified(metrics.get(e.agent.id));
+		// Consent alone is not enough: a story needs a result anyone can check.
+		if (!verified.qualifies) continue;
+		stories.push({ ...e, verified });
+	}
+	const groups = CATEGORIES.map((c) => ({
+		...c,
+		entries: stories.filter((s) => s.category === c.slug),
+	})).filter((g) => g.entries.length);
+
+	return json(
+		res,
+		200,
+		{
+			groups,
+			total: stories.length,
+			consented: candidates.length,
+			method:
+				'Only entries whose agent owner opted in appear here, and only when the agent has a verified result: a coin launched (pump_agent_mints), service income (agent_revenue_events and completed agent_hires, USDC at 1:1), or creator fees (the agent earnings read model). Every figure is computed server-side from those tables; none is typed by the builder.',
+			generated_at: new Date().toISOString(),
+		},
+		{ 'Cache-Control': 'public, max-age=60, stale-while-revalidate=300' },
+	);
 }
 
 async function handleCategories(req, res) {
@@ -228,6 +291,8 @@ async function handleSubmit(req, res) {
 
 	const tags = normalizeTags(body?.tags);
 	if (tags === false) return error(res, 400, 'bad_request', 'tags must be up to 6 short labels');
+	// Off unless the owner explicitly ticked it: only a literal true consents.
+	const featureStory = body?.featureStory === true;
 
 	const id = await upsertEntry({
 		agentId,
@@ -238,6 +303,7 @@ async function handleSubmit(req, res) {
 		demoUrl: demoUrl || null,
 		category,
 		tags,
+		featureStory,
 	});
 	if (!id) return error(res, 500, 'write_failed', 'the entry could not be saved');
 
@@ -278,6 +344,67 @@ async function handleRemove(req, res) {
 		return error(res, 403, 'forbidden', 'only the submitter or the agent owner can remove an entry');
 	}
 	return json(res, 200, { removed: true }, { 'Cache-Control': 'private, no-store' });
+}
+
+async function handleConsent(req, res) {
+	if (!method(req, res, ['POST'])) return;
+	const user = await sessionOr401(req, res, 'sign in to feature your agent as a story');
+	if (!user) return;
+	if (!(await requireCsrf(req, res, user.id))) return;
+
+	const rl = await limits.showcaseWrite(user.id);
+	if (!rl.success) return rateLimited(res, rl, 'too many showcase changes; slow down');
+
+	const body = await readJson(req, 2_000);
+	const id = String(body?.id || '').trim();
+	if (!isUuid(id)) return error(res, 400, 'bad_request', 'id must be a uuid');
+	if (typeof body?.consent !== 'boolean') return error(res, 400, 'bad_request', 'consent must be true or false');
+
+	const result = await setStoryConsent(id, user.id, body.consent);
+	if (!result) {
+		return error(res, 403, 'forbidden', 'only the owner of the agent can feature it as a story');
+	}
+	logAudit({
+		userId: user.id,
+		action: body.consent ? 'spotlight_story_consent' : 'spotlight_story_withdraw',
+		resourceId: id,
+		req,
+	});
+	return json(res, 200, result, { 'Cache-Control': 'private, no-store' });
+}
+
+async function handleModerate(req, res) {
+	if (!method(req, res, ['POST'])) return;
+	const admin = await requireAdmin(req, res);
+	if (!admin) return;
+	if (!(await requireCsrf(req, res, admin.id))) return;
+
+	const body = await readJson(req, 4_000);
+	const id = String(body?.id || '').trim();
+	if (!isUuid(id)) return error(res, 400, 'bad_request', 'id must be a uuid');
+	const action = String(body?.action || '');
+	if (action !== 'hide' && action !== 'unhide') {
+		return error(res, 400, 'bad_request', "action must be 'hide' or 'unhide'");
+	}
+	const reason = trimmed(body?.reason) || null;
+	if (reason && reason.length > 280) return error(res, 400, 'bad_request', 'reason must be 280 characters or fewer');
+
+	const row = await setEntryVisibility(id, { hidden: action === 'hide', adminId: admin.id, reason });
+	if (!row) return error(res, 404, 'not_found', 'no such showcase entry');
+
+	logAudit({
+		userId: admin.id,
+		action: action === 'hide' ? 'spotlight_hide' : 'spotlight_unhide',
+		resourceId: id,
+		meta: reason ? { reason } : null,
+		req,
+	});
+	return json(
+		res,
+		200,
+		{ id: row.id, status: row.status, hidden_at: row.hidden_at, hidden_reason: row.hidden_reason },
+		{ 'Cache-Control': 'private, no-store' },
+	);
 }
 
 /* ── input helpers ────────────────────────────────────────────────────────── */

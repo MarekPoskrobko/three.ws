@@ -136,6 +136,11 @@ export function mapEntry(row, { now = Date.now() } = {}) {
 		},
 		builder: builderOf(row),
 		editable_by_me: Boolean(row.editable_by_me),
+		// Only the agent's owner can consent to a story; a submitter who does not
+		// own the agent can edit the pitch but never claim results for it.
+		owned_by_me: Boolean(row.owned_by_me),
+		story_consent: Boolean(row.featured_story_at),
+		story_consented_at: row.featured_story_at || null,
 	};
 }
 
@@ -160,6 +165,7 @@ export async function listEntries({
 		select
 			s.id, s.title, s.tagline, s.story, s.demo_url, s.category, s.tags,
 			s.source, s.featured_at, s.view_count, s.created_at, s.submitted_by,
+			s.featured_story_at,
 			i.id            as agent_id,
 			i.name          as agent_name,
 			i.description   as agent_description,
@@ -176,7 +182,8 @@ export async function listEntries({
 			coalesce(ch.n, 0) as chat_count,
 			coalesce(ac.n, 0) as action_count,
 			${viewerId ? sql`(mv.user_id is not null)` : sql`false`} as voted_by_me,
-			${viewerId ? sql`(s.submitted_by = ${viewerId} or i.user_id = ${viewerId})` : sql`false`} as editable_by_me
+			${viewerId ? sql`(s.submitted_by = ${viewerId} or i.user_id = ${viewerId})` : sql`false`} as editable_by_me,
+			${viewerId ? sql`(i.user_id = ${viewerId})` : sql`false`} as owned_by_me
 		from agent_showcase s
 		join agent_identities i on i.id = s.agent_id and i.deleted_at is null and i.is_public = true
 		left join avatars a on a.id = i.avatar_id and a.deleted_at is null
@@ -257,6 +264,7 @@ export async function getEntry(id, { viewerId = null } = {}) {
 		select
 			s.id, s.title, s.tagline, s.story, s.demo_url, s.category, s.tags,
 			s.source, s.featured_at, s.view_count, s.created_at, s.submitted_by,
+			s.featured_story_at,
 			i.id            as agent_id,
 			i.name          as agent_name,
 			i.description   as agent_description,
@@ -273,7 +281,8 @@ export async function getEntry(id, { viewerId = null } = {}) {
 			coalesce(ch.n, 0) as chat_count,
 			coalesce(ac.n, 0) as action_count,
 			${viewerId ? sql`(mv.user_id is not null)` : sql`false`} as voted_by_me,
-			${viewerId ? sql`(s.submitted_by = ${viewerId} or i.user_id = ${viewerId})` : sql`false`} as editable_by_me
+			${viewerId ? sql`(s.submitted_by = ${viewerId} or i.user_id = ${viewerId})` : sql`false`} as editable_by_me,
+			${viewerId ? sql`(i.user_id = ${viewerId})` : sql`false`} as owned_by_me
 		from agent_showcase s
 		join agent_identities i on i.id = s.agent_id and i.deleted_at is null and i.is_public = true
 		left join avatars a on a.id = i.avatar_id and a.deleted_at is null
@@ -382,13 +391,18 @@ export async function upsertEntry({
 	demoUrl = null,
 	category,
 	tags = [],
+	featureStory = false,
 }) {
+	// Story consent rides on the owner's own submission: the endpoint only
+	// reaches here after ownsAgent() passed, so the submitter IS the owner.
 	const [row] = await sql`
 		insert into agent_showcase
-			(agent_id, submitted_by, source, title, tagline, story, demo_url, category, tags)
+			(agent_id, submitted_by, source, title, tagline, story, demo_url, category, tags,
+			 featured_story_at, featured_story_by)
 		values
 			(${agentId}, ${userId}, 'community', ${title}, ${tagline}, ${story}, ${demoUrl},
-			 ${category}, ${tags}::text[])
+			 ${category}, ${tags}::text[],
+			 ${featureStory ? sql`now()` : sql`null`}, ${featureStory ? userId : null})
 		on conflict (agent_id) where deleted_at is null
 		do update set
 			title      = excluded.title,
@@ -400,6 +414,16 @@ export async function upsertEntry({
 			-- A curated write-up that the builder later claims becomes theirs.
 			source     = 'community',
 			submitted_by = excluded.submitted_by,
+			-- Keep the original consent time on an edit that keeps consenting;
+			-- unticking the box withdraws it.
+			featured_story_at = case
+				when excluded.featured_story_at is null then null
+				else coalesce(agent_showcase.featured_story_at, excluded.featured_story_at)
+			end,
+			featured_story_by = case
+				when excluded.featured_story_at is null then null
+				else coalesce(agent_showcase.featured_story_by, excluded.featured_story_by)
+			end,
 			updated_at = now()
 		returning id
 	`;
@@ -464,6 +488,100 @@ export async function softDeleteEntry(entryId, userId) {
 		returning s.id
 	`;
 	return rows.length > 0;
+}
+
+/* ── stories + moderation ─────────────────────────────────────────────── */
+
+// Consented, published entries on public agents: the /stories candidate set.
+// Whether a candidate is SHOWN also depends on it having a verified result,
+// which api/_lib/spotlight-metrics.js decides; this query never widens past
+// consent, so a curated entry without its owner's yes can never reach /stories.
+export async function listStoryEntries({ limit = 60 } = {}) {
+	const rows = await sql`
+		select
+			s.id, s.title, s.tagline, s.story, s.demo_url, s.category, s.tags,
+			s.source, s.featured_at, s.view_count, s.created_at, s.submitted_by,
+			s.featured_story_at,
+			i.id            as agent_id,
+			i.name          as agent_name,
+			i.description   as agent_description,
+			i.skills        as agent_skills,
+			i.meta          as agent_meta,
+			i.erc8004_agent_id,
+			i.created_at    as agent_created_at,
+			a.thumbnail_key as avatar_thumbnail_key,
+			a.storage_key   as avatar_storage_key,
+			a.visibility    as avatar_visibility,
+			u.display_name  as builder_display_name,
+			u.username      as builder_username,
+			coalesce(v.n, 0)  as vote_count,
+			coalesce(ch.n, 0) as chat_count,
+			coalesce(ac.n, 0) as action_count,
+			false as voted_by_me,
+			false as editable_by_me,
+			false as owned_by_me
+		from agent_showcase s
+		join agent_identities i on i.id = s.agent_id and i.deleted_at is null and i.is_public = true
+		left join avatars a on a.id = i.avatar_id and a.deleted_at is null
+		left join users   u on u.id = i.user_id    and u.deleted_at is null
+		left join lateral (
+			select count(*)::int n from agent_showcase_votes sv where sv.entry_id = s.id
+		) v on true
+		left join lateral (
+			select count(*)::int n from usage_events ue where ue.agent_id = i.id and ue.kind = 'llm'
+		) ch on true
+		left join lateral (
+			select count(*)::int n from agent_actions aa where aa.agent_id = i.id
+		) ac on true
+		where s.deleted_at is null
+		  and s.status = 'published'
+		  and s.featured_story_at is not null
+		  -- Consent must come from the agent's current owner. If the agent changed
+		  -- hands after consent was given, the new owner has not said yes.
+		  and s.featured_story_by = i.user_id
+		order by s.featured_story_at desc, s.id
+		limit ${limit}
+	`;
+	const now = Date.now();
+	return rows.map((r) => mapEntry(r, { now }));
+}
+
+// Owner-only consent toggle. Returns the new state, or null when the caller
+// does not own the agent behind a live entry (the endpoint answers 403).
+export async function setStoryConsent(entryId, userId, consent) {
+	const rows = await sql`
+		update agent_showcase s
+		set featured_story_at = ${consent ? sql`coalesce(s.featured_story_at, now())` : sql`null`},
+		    featured_story_by = ${consent ? userId : null},
+		    updated_at = now()
+		from agent_identities i
+		where s.id = ${entryId}
+		  and s.deleted_at is null
+		  and i.id = s.agent_id
+		  and i.deleted_at is null
+		  and i.user_id = ${userId}
+		returning s.featured_story_at
+	`;
+	if (!rows.length) return null;
+	return { story_consent: Boolean(rows[0].featured_story_at), story_consented_at: rows[0].featured_story_at };
+}
+
+// Moderation: an admin hides or restores an entry. Hidden entries are retained
+// (the builder's words are not destroyed) but drop out of every public read,
+// because each read filters on status = 'published'. Returns the row's new
+// state, or null when no live entry has that id.
+export async function setEntryVisibility(entryId, { hidden, adminId, reason = null }) {
+	const rows = await sql`
+		update agent_showcase
+		set status        = ${hidden ? 'hidden' : 'published'},
+		    hidden_at     = ${hidden ? sql`now()` : sql`null`},
+		    hidden_by     = ${hidden ? adminId : null},
+		    hidden_reason = ${hidden ? reason : null},
+		    updated_at    = now()
+		where id = ${entryId} and deleted_at is null
+		returning id, status, hidden_at, hidden_reason
+	`;
+	return rows[0] || null;
 }
 
 // Best-effort view counter. A failure here must never break the page it counts,
