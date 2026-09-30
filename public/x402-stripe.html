@@ -593,6 +593,7 @@
 
 	// ── Category classification (derived from path + copy) ─────────────────
 	const CATS = [
+		{ key: 'Agents', icon: '◉', test: /^\/api\/x402\/agents\//i },
 		{ key: 'Crypto', icon: '◎', test: /pump|token|mint|vanity|symbol|intel|crypto|cross-chain|three-intel|reputation|bouncer|identity|did/i },
 		{ key: '3D', icon: '◈', test: /mesh|forge|model|avatar|animation|cosmetic|club|dance|glb/i },
 		{ key: 'AI', icon: '✦', test: /fact-check|tutor|vision|insight/i },
@@ -664,10 +665,37 @@
 				});
 			}
 		}
+		items.push(...(await loadAgentServices()));
 		// de-dupe by path (prefer the paid/GET representation), keep stable
 		const seen = new Map();
 		for (const it of items) { if (!seen.has(it.path)) seen.set(it.path, it); }
 		return Array.from(seen.values());
+	}
+
+	// Whole agents their owners sell as a paid API (POST /api/x402/agents/:id).
+	// Listed live from /api/x402/agents; a failure here only hides that one
+	// category, never the rest of the catalog.
+	async function loadAgentServices() {
+		try {
+			const r = await fetch('/api/x402/agents', { headers: { accept: 'application/json' } });
+			if (!r.ok) return [];
+			const doc = await r.json();
+			const msg = doc.input_schema && doc.input_schema.properties && doc.input_schema.properties.message;
+			return (doc.services || []).map((svc) => ({
+				id: 'agent:' + svc.agent_id,
+				path: svc.path,
+				method: 'POST',
+				title: svc.name,
+				desc: svc.description,
+				price: { amount: Number(svc.price_usd), min: null, max: null, note: '' },
+				params: [],
+				bodyProps: msg ? [{ name: 'message', required: true, ...schemaInfo(msg) }] : [],
+				category: 'Agents',
+				rails: 'USDC · Solana',
+			}));
+		} catch {
+			return [];
+		}
 	}
 
 	// ── Category chips ───────────────────────────────────────────────────────
@@ -714,7 +742,7 @@
 				<span class="top"><span class="cat">${catIcon(c.category)} ${esc(c.category)}</span><span class="price ${priceClass(c.price)}">${esc(priceChip(c.price))}</span></span>
 				<span class="title">${esc(c.title)}</span>
 				<span class="desc">${esc(c.desc)}</span>
-				<span class="meta"><span class="verb">${c.method}</span><span>USDC · Base · Solana</span></span>
+				<span class="meta"><span class="verb">${c.method}</span><span>${esc(c.rails || 'USDC · Base · Solana')}</span></span>
 				<span class="run"><span class="go">Inspect &amp; run <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
 			</button>`;
 		}).join('');

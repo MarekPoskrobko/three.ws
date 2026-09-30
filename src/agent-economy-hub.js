@@ -7,6 +7,8 @@
  *   - savePricing    → PUT  /api/agents/:id/skills-pricing     (atomic price replace)
  *   - fetchLimits    → GET  /api/agents/:id/solana/limits      (spend policy snapshot)
  *   - setFrozen      → PUT  /api/agents/:id/solana/limits      (kill switch)
+ *   - fetchApiService → GET /api/agents/:id/api-service       (sell-as-API config + earnings)
+ *   - saveApiService → PUT  /api/agents/:id/api-service       (owner switch, price, description)
  *
  * Every read is real DB/chain state; every write is owner-authenticated +
  * CSRF-protected server-side. Mirrors the Withdraw tab's `call` shape so the UI
@@ -41,6 +43,7 @@ async function call(url, { method = 'GET', body = null } = {}) {
 				code: j?.error || j?.code || 'error',
 				message: j?.error_description || j?.message || `request failed (${r.status})`,
 				detail: j?.detail || null,
+				reasons: Array.isArray(j?.reasons) ? j.reasons : null,
 			};
 		}
 		return { ok: true, status: r.status, data: j?.data ?? j };
@@ -78,4 +81,20 @@ export function fetchLimits(agentId) {
 /** Arm / disarm the kill switch (freeze every autonomous spend path). */
 export function setFrozen(agentId, frozen) {
 	return call(`/api/agents/${enc(agentId)}/solana/limits`, { method: 'PUT', body: { frozen: !!frozen } });
+}
+
+/**
+ * The "Sell this agent as an API" service: stored config, endpoint URL, payout,
+ * sellability (with owner-facing reasons) and earnings from agent_revenue_events.
+ */
+export function fetchApiService(agentId) {
+	return call(`/api/agents/${enc(agentId)}/api-service`);
+}
+
+/**
+ * Save { active, price_usd, description }. Validated server-side; activation is
+ * refused with `reasons` when the agent cannot be sold.
+ */
+export function saveApiService(agentId, config) {
+	return call(`/api/agents/${enc(agentId)}/api-service`, { method: 'PUT', body: config });
 }

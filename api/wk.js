@@ -46,6 +46,8 @@ import { loadYieldPools } from './defi/yields.js';
 import { buildExchanges } from './coin/exchanges.js';
 import { FORGE_OUTPUT_EXAMPLE } from './_lib/forge-listing.js';
 import { listBazaarServices, serviceResourceUrl } from './_lib/agent-paid-services.js';
+import { listActiveAgentServices, CALL_INPUT_EXAMPLE, CALL_INPUT_SCHEMA, CALL_OUTPUT_EXAMPLE, serviceNameFor } from './_lib/agent-api-service.js';
+import { buildRequirements } from './_lib/x402-paid-endpoint.js';
 import { toBazaarDiscovery } from './_lib/service-catalog/index.js';
 
 // ── agent-attestation-schemas ─────────────────────────────────────────────────
@@ -482,6 +484,63 @@ async function buildAgentServiceItems(origin) {
 				discoverable: true,
 				input: {},
 				inputSchema,
+			}),
+		});
+	}
+	return items;
+}
+
+// Whole agents sold as paid APIs (POST /api/x402/agents/:id, switched on from
+// the agent wallet's Earn tab). One entry per agent on sale, built with the SAME
+// buildRequirements() call the live route makes, so the advertised accepts
+// (Solana USDC to the agent's own payout wallet, the owner's price) are exactly
+// what the 402 will ask for. Never throws: a DB hiccup yields no rows and the
+// rest of the catalog still renders.
+async function buildSellableAgentItems() {
+	let services;
+	try {
+		services = await listActiveAgentServices({ limit: 200 });
+	} catch (err) {
+		console.error('[wk/x402-discovery] agent API services unavailable', err?.message || err);
+		return [];
+	}
+	const items = [];
+	for (const svc of services) {
+		let accepts;
+		try {
+			accepts = buildRequirements({
+				priceAtomics: svc.price_atomics,
+				networks: ['solana'],
+				resourceUrl: svc.url,
+				payToOverride: { solana: svc.pay_to },
+				acceptThree: false,
+			}).map((a) => ({
+				...a,
+				network_label: 'solana-mainnet',
+				price: RAW_AMOUNT_TO_USDC(a.amount),
+				asset_symbol: 'USDC',
+			}));
+		} catch (err) {
+			// Solana settlement is not configured on this deploy, so the live route
+			// would refuse too. Skip rather than advertise an unpayable entry.
+			console.error('[wk/x402-discovery] agent API accepts unavailable', err?.message || err);
+			return [];
+		}
+		items.push({
+			path: svc.path,
+			url: svc.url,
+			method: 'POST',
+			description: `${svc.description} (one turn with ${svc.name} on three.ws)`,
+			mimeType: 'application/json',
+			serviceName: serviceNameFor({ name: svc.name }),
+			tags: ['agent', 'chat', 'pay-per-call', 'solana'],
+			accepts,
+			extensions: extensionsForAccepts(accepts, {
+				method: 'POST',
+				discoverable: true,
+				input: CALL_INPUT_EXAMPLE,
+				inputSchema: CALL_INPUT_SCHEMA,
+				output: { type: 'json', example: CALL_OUTPUT_EXAMPLE },
 			}),
 		});
 	}
@@ -1734,6 +1793,7 @@ export async function buildX402DiscoveryDoc() {
 
 	// Agent-published paid services — dynamic, one entry per active listing.
 	const agentServiceItems = await buildAgentServiceItems(origin);
+	const sellableAgentItems = await buildSellableAgentItems();
 	const datapointItems = await buildDatapointItems(origin);
 
 	return {
@@ -1828,6 +1888,9 @@ export async function buildX402DiscoveryDoc() {
 			// Agent-published paid endpoints (monetize_endpoint). Dynamic —
 			// one entry per active agent_paid_services listing.
 			...agentServiceItems,
+			// Whole agents sold as paid APIs (Earn tab switch). Dynamic, one
+			// entry per public agent whose owner turned the service on.
+			...sellableAgentItems,
 			// Datapoint fabric (/api/x402/d/…): a curated, runtime-derived
 			// slice of the 400k+ addressable single-datapoint endpoints, so
 			// indexers surface the fabric; the full id space is enumerated
