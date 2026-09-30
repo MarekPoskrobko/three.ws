@@ -4,7 +4,7 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Payment Outcomes · three.ws</title>
+	<title data-i18n="payment_outcomes.meta_title">Payment Outcomes · three.ws</title>
 	<meta name="robots" content="noindex, nofollow" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
@@ -86,8 +86,8 @@
 </head>
 <body>
 	<div class="po-wrap">
-		<h1 class="po-title">Payment Outcomes</h1>
-		<p class="po-sub">
+		<h1 class="po-title" data-i18n="payment_outcomes.payment_outcomes">Payment Outcomes</h1>
+		<p class="po-sub" data-i18n="payment_outcomes.every_way_an_x402_payment_can_fail">
 			Every way an x402 payment can fail, before it halts the economy. Verify rejections, settle
 			failures and replayed proofs are read from the durable payment ledger; the ring settle sensor
 			and live wallet balances say whether a collapse is a rail fault or a starved sponsor, which
@@ -95,13 +95,13 @@
 		</p>
 
 		<div class="po-controls">
-			<label for="po-window">Window</label>
+			<label for="po-window" data-i18n="payment_outcomes.window">Window</label>
 			<select id="po-window">
-				<option value="1h">Last hour</option>
-				<option value="3h">Last 3 hours</option>
-				<option value="24h" selected>Last 24 hours</option>
+				<option value="1h" data-i18n="payment_outcomes.last_hour">Last hour</option>
+				<option value="3h" data-i18n="payment_outcomes.last_3_hours">Last 3 hours</option>
+				<option value="24h" selected data-i18n="payment_outcomes.last_24_hours">Last 24 hours</option>
 			</select>
-			<button id="po-refresh" type="button">Refresh</button>
+			<button id="po-refresh" type="button" data-i18n="payment_outcomes.refresh">Refresh</button>
 			<span class="po-stamp" id="po-stamp"></span>
 		</div>
 
@@ -492,5 +492,6 @@
 		refreshBtn.addEventListener('click', load);
 		load();
 	</script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

@@ -18,19 +18,19 @@
 		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>The in-game economy · three.ws</title>
+		<title data-i18n="play_economy.meta_title">The in-game economy · three.ws</title>
 		<meta
 			name="description"
 			content="Every price, prize and gate in the /play world economy: what the general store pays for what you gather, what it sells, how the bank protects your cash through death, what the $THREE boutique charges, and the full wheel paytable with real odds. Read from the same tables the game server prices trades with."
-		/>
+		 data-i18n-attr="content:play_economy.meta_description"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/play/economy" />
-		<meta property="og:title" content="The in-game economy · three.ws" />
+		<meta property="og:title" content="The in-game economy · three.ws"  data-i18n-attr="content:play_economy.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="The complete /play economy reference: store prices, bank rules, the $THREE boutique, and the full wheel paytable with real odds. Never transcribed, read straight from the game's own tables."
-		/>
+		 data-i18n-attr="content:play_economy.meta_og_description"/>
 		<meta
 			property="og:image"
 			content="https://three.ws/api/page-og?s=crypto&amp;t=The+in-game+economy&amp;d=Every+price%2C+prize+and+gate+in+the+%2Fplay+world+economy%3A+what+the+general+store+pays+for+gathered+goods%2C+what+it+sells%2C+how+the+bank+protects+cash+through&amp;p=%2Fplay%2Feconomy"
@@ -39,11 +39,11 @@
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="The in-game economy · three.ws" />
+		<meta name="twitter:title" content="The in-game economy · three.ws"  data-i18n-attr="content:play_economy.meta_twitter_title"/>
 		<meta
 			name="twitter:description"
 			content="Store prices, bank rules, the $THREE boutique, and the full wheel paytable with real odds."
-		/>
+		 data-i18n-attr="content:play_economy.meta_twitter_description"/>
 		<meta
 			name="twitter:image"
 			content="https://three.ws/api/page-og?s=crypto&amp;t=The+in-game+economy&amp;d=Every+price%2C+prize+and+gate+in+the+%2Fplay+world+economy%3A+what+the+general+store+pays+for+gathered+goods%2C+what+it+sells%2C+how+the+bank+protects+cash+through&amp;p=%2Fplay%2Feconomy"
@@ -82,24 +82,24 @@
 			<div class="pe-glow" aria-hidden="true"></div>
 
 			<section class="pe-hero">
-				<p class="pe-kicker">The /play world economy</p>
-				<h1 class="pe-title">Every price, prize and <em>gate</em></h1>
-				<p class="pe-sub">
+				<p class="pe-kicker" data-i18n="play_economy.the_play_world_economy">The /play world economy</p>
+				<h1 class="pe-title" data-i18n-html="play_economy.every_price_prize_and_gate">Every price, prize and <em>gate</em></h1>
+				<p class="pe-sub" data-i18n="play_economy.the_open_world_runs_a_real_economy">
 					The open world runs a real economy: a purse you can lose, a bank that protects
 					it, a store that prices every trade server-side, a cosmetics boutique that
 					settles on Solana, and a wheel with published odds. Until now you had to walk up
 					to each NPC to learn any of it. This is the whole thing, in one place.
 				</p>
-				<p class="pe-sub">
+				<p class="pe-sub" data-i18n="play_economy.nothing_below_is_transcribed_by_hand_the">
 					Nothing below is transcribed by hand. The page reads the same tables the
 					authoritative game server prices trades with, so a number here is the number
 					you will be charged.
 				</p>
 				<div class="pe-hero-actions">
-					<a class="pe-btn pe-btn-primary" href="/play">Enter the world</a>
-					<a class="pe-btn" href="/docs/in-game-economy">Read the reference doc</a>
+					<a class="pe-btn pe-btn-primary" href="/play" data-i18n="play_economy.enter_the_world">Enter the world</a>
+					<a class="pe-btn" href="/docs/in-game-economy" data-i18n="play_economy.read_the_reference_doc">Read the reference doc</a>
 					<a class="pe-btn" href="/docs/tutorials/earn-and-spend-in-play"
-						>Tutorial: earn and spend</a
+						 data-i18n="play_economy.tutorial_earn_and_spend">Tutorial: earn and spend</a
 					>
 				</div>
 			</section>
@@ -107,7 +107,7 @@
 			<p id="pe-status" class="pe-sr" role="status" aria-live="polite"></p>
 			<div id="pe-content"></div>
 
-			<p class="pe-fineprint">
+			<p class="pe-fineprint" data-i18n-html="play_economy.the_catalogs_gates_and_odds_on_this">
 				The catalogs, gates and odds on this page are served by
 				<code>/api/play/economy</code>, which imports them from the game's own modules
 				rather than restating them, so this reference cannot drift from what the server

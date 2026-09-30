@@ -4,13 +4,13 @@
 	<script>/* three.ws theme boot — no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Watching your 3D model · three.ws</title>
-<meta name="description" content="Live progress for a three.ws 3D generation: countdown, concept art, and an automatic hand-off to the interactive viewer the moment the model is ready." />
+<title data-i18n="watch.meta_title">Watching your 3D model · three.ws</title>
+<meta name="description" content="Live progress for a three.ws 3D generation: countdown, concept art, and an automatic hand-off to the interactive viewer the moment the model is ready."  data-i18n-attr="content:watch.meta_description"/>
 <meta name="robots" content="noindex" />
 <meta name="theme-color" content="#0b0c10" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f3f5f9" media="(prefers-color-scheme: light)" />
-<meta property="og:title" content="Watching a 3D model being made · three.ws" />
-<meta property="og:description" content="A 3D model is being generated on three.ws right now. Watch the live countdown and concept art." />
+<meta property="og:title" content="Watching a 3D model being made · three.ws"  data-i18n-attr="content:watch.meta_og_title"/>
+<meta property="og:description" content="A 3D model is being generated on three.ws right now. Watch the live countdown and concept art."  data-i18n-attr="content:watch.meta_og_description"/>
 <meta property="og:type" content="website" />
 <style>
   :root {
@@ -155,16 +155,16 @@
 	<meta property="og:image:alt" content="Generation Watch — three.ws">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Generation Watch · three.ws">
-	<meta name="twitter:description" content="Live progress page for a running text-to-3D generation: real countdown, the painted concept art, and an automatic hand-off into the interactive viewer the moment the model is ready.">
+	<meta name="twitter:title" content="Generation Watch · three.ws" data-i18n-attr="content:watch.meta_twitter_title">
+	<meta name="twitter:description" content="Live progress page for a running text-to-3D generation: real countdown, the painted concept art, and an automatic hand-off into the interactive viewer the moment the model is ready." data-i18n-attr="content:watch.meta_twitter_description">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=labs&amp;t=Generation+Watch&amp;d=Live+progress+page+for+a+running+text-to-3D+generation%3A+real+countdown%2C+the+painted+concept+art%2C+and+an+automatic+hand-off+into+the+interactive+viewer+the&amp;p=%2Fwatch">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Generation Watch","description":"Live progress page for a running text-to-3D generation: real countdown, the painted concept art, and an automatic hand-off into the interactive viewer the moment the model is ready.","url":"https://three.ws/watch","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=labs&t=Generation+Watch&d=Live+progress+page+for+a+running+text-to-3D+generation%3A+real+countdown%2C+the+painted+concept+art%2C+and+an+automatic+hand-off+into+the+interactive+viewer+the&p=%2Fwatch"}]}</script>
 </head>
 <body>
 <div class="wrap">
   <header class="bar">
-    <a class="brand" href="/"><span class="dot" aria-hidden="true"></span>three.ws</a>
-    <h1 id="title" class="title">Watching your 3D generation</h1>
+    <a class="brand" href="/" data-i18n-html="watch.three_ws"><span class="dot" aria-hidden="true"></span>three.ws</a>
+    <h1 id="title" class="title" data-i18n="watch.watching_your_3d_generation">Watching your 3D generation</h1>
   </header>
 
   <main class="stage">
@@ -181,41 +181,41 @@
           <div id="timesub" class="ring-sub">warming up</div>
         </div>
       </div>
-      <h2 id="phase" class="h">Starting your 3D generation…</h2>
-      <p class="muted">This page updates itself. When the model is ready it opens straight into the interactive 3D viewer with download and place-in-your-room AR links.</p>
+      <h2 id="phase" class="h" data-i18n="watch.starting_your_3d_generation">Starting your 3D generation…</h2>
+      <p class="muted" data-i18n="watch.this_page_updates_itself_when_the_model">This page updates itself. When the model is ready it opens straight into the interactive 3D viewer with download and place-in-your-room AR links.</p>
       <img id="concept" class="concept" alt="Concept art the generator painted for this model" decoding="async" hidden />
-      <p id="concept-cap" class="concept-cap">Concept art, now being sculpted into 3D</p>
+      <p id="concept-cap" class="concept-cap" data-i18n="watch.concept_art_now_being_sculpted_into_3d">Concept art, now being sculpted into 3D</p>
       <noscript>
         <p class="muted">This page needs JavaScript to follow the generation live. Your model is still being made on our servers either way: reopen this link with JavaScript enabled, or start a new one at <a href="/forge">three.ws/forge</a>.</p>
       </noscript>
     </div>
 
     <div id="ready" class="overlay hidden">
-      <h2 class="h">Your model is ready, opening the viewer…</h2>
-      <p class="muted">If nothing happens, <a id="ready-link" href="/viewer">open it here</a>.</p>
+      <h2 class="h" data-i18n="watch.your_model_is_ready_opening_the_viewer">Your model is ready, opening the viewer…</h2>
+      <p class="muted"><span data-i18n="watch.if_nothing_happens_open_it_here_label">If nothing happens,</span> <a id="ready-link" href="/viewer">open it here</a>.</p>
     </div>
 
     <div id="error" class="overlay hidden">
-      <h2 class="h">This generation hit a snag</h2>
-      <p id="errmsg" class="muted">The generator failed upstream. Generating is free, so trying again costs nothing.</p>
+      <h2 class="h" data-i18n="watch.this_generation_hit_a_snag">This generation hit a snag</h2>
+      <p id="errmsg" class="muted" data-i18n="watch.the_generator_failed_upstream_generating_is">The generator failed upstream. Generating is free, so trying again costs nothing.</p>
       <div class="actions">
-        <button id="retry" type="button" class="btn primary hidden">Keep watching</button>
-        <a id="forge-again" class="btn primary" href="/forge">Forge it again, free</a>
+        <button id="retry" type="button" class="btn primary hidden" data-i18n="watch.keep_watching">Keep watching</button>
+        <a id="forge-again" class="btn primary" href="/forge" data-i18n="watch.forge_it_again_free">Forge it again, free</a>
       </div>
     </div>
 
     <div id="empty" class="overlay hidden">
-      <h2 class="h">Nothing to watch here</h2>
-      <p class="muted">This page shows a 3D generation in progress from a <code>?job=</code> link. Start one for free at <a href="/forge">three.ws/forge</a>, no account needed.</p>
-      <a class="btn primary" href="/forge">Create a 3D model</a>
+      <h2 class="h" data-i18n="watch.nothing_to_watch_here">Nothing to watch here</h2>
+      <p class="muted" data-i18n-html="watch.this_page_shows_a_3d_generation_in">This page shows a 3D generation in progress from a <code>?job=</code> link. Start one for free at <a href="/forge">three.ws/forge</a>, no account needed.</p>
+      <a class="btn primary" href="/forge" data-i18n="watch.create_a_3d_model">Create a 3D model</a>
     </div>
   </main>
 
   <footer class="bar">
-    <span class="muted">Free text-to-3D by three.ws</span>
+    <span class="muted" data-i18n="watch.free_text_to_3d_by_three_ws">Free text-to-3D by three.ws</span>
     <div class="spacer"></div>
-    <a class="btn" href="/viewer">3D viewer</a>
-    <a class="btn primary" href="/forge">Make your own →</a>
+    <a class="btn" href="/viewer" data-i18n="watch.3d_viewer">3D viewer</a>
+    <a class="btn primary" href="/forge" data-i18n="watch.make_your_own">Make your own →</a>
   </footer>
 </div>
 

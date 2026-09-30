@@ -262,7 +262,7 @@
 				This page is generated from the source of every tool, so it cannot drift from what the servers actually serve.
 				The same data is machine-readable at <a href="/mcp-catalog.json"><code>/mcp-catalog.json</code></a>.
 			</p>
-			<p style="margin-top:10px"><a href="/connect">Connect three.ws to Claude, ChatGPT, Cursor or VS Code</a> in two clicks to use them.</p>
+			<p style="margin-top:10px" data-i18n-html="mcp_tools.connect_three_ws_to_claude_chatgpt_cursor"><a href="/connect">Connect three.ws to Claude, ChatGPT, Cursor or VS Code</a> in two clicks to use them.</p>
 		</div>
 
 		<dl class="mc-stats" id="mc-stats" aria-live="polite"></dl>
@@ -299,8 +299,8 @@
 		<section class="mc-policy" id="mc-policy" aria-labelledby="mc-policy-h">
 			<div class="mc-policy-head">
 				<div>
-					<h2 id="mc-policy-h">Let your assistant run the safe ones by itself</h2>
-					<p>
+					<h2 id="mc-policy-h" data-i18n="mcp_tools.let_your_assistant_run_the_safe_ones">Let your assistant run the safe ones by itself</h2>
+					<p data-i18n-html="mcp_tools.your_ai_client_decides_whether_to_run">
 						Your AI client decides whether to run a tool without asking you by trusting its
 						read-only label. Everywhere else that label is the tool author's own word for it.
 						Here it is <a href="/docs/mcp-safety">checked against the code on every build</a>,
@@ -311,17 +311,17 @@
 			</div>
 
 			<div class="mc-policy-profiles" role="radiogroup" aria-label="How much to automate">
-				<button type="button" class="mc-prof" data-profile="strict" role="radio" aria-checked="false">
+				<button type="button" class="mc-prof" data-profile="strict" role="radio" aria-checked="false" data-i18n-html="mcp_tools.strict_only_free_verified_reads_run_by">
 					<span class="mc-prof-name">Strict</span>
 					<span class="mc-prof-desc">Only free, verified reads run by themselves. Nothing irreversible may run at all.</span>
 					<span class="mc-prof-counts" data-counts></span>
 				</button>
-				<button type="button" class="mc-prof" data-profile="balanced" role="radio" aria-checked="true">
+				<button type="button" class="mc-prof" data-profile="balanced" role="radio" aria-checked="true" data-i18n-html="mcp_tools.balanced_recommended_every_verified_read_run">
 					<span class="mc-prof-name">Balanced <em>recommended</em></span>
 					<span class="mc-prof-desc">Every verified read runs. Anything that changes state asks first.</span>
 					<span class="mc-prof-counts" data-counts></span>
 				</button>
-				<button type="button" class="mc-prof" data-profile="open" role="radio" aria-checked="false">
+				<button type="button" class="mc-prof" data-profile="open" role="radio" aria-checked="false" data-i18n-html="mcp_tools.open_reads_and_reversible_writes_run_only">
 					<span class="mc-prof-name">Open</span>
 					<span class="mc-prof-desc">Reads and reversible writes run. Only the un-undoable stops for you.</span>
 					<span class="mc-prof-counts" data-counts></span>
@@ -330,19 +330,19 @@
 
 			<div class="mc-policy-out">
 				<div class="mc-policy-tabs" role="tablist" aria-label="Client format">
-					<button type="button" class="mc-tab" data-format="claude" role="tab" aria-selected="true">Claude</button>
-					<button type="button" class="mc-tab" data-format="vscode" role="tab" aria-selected="false">VS Code</button>
-					<button type="button" class="mc-tab" data-format="json" role="tab" aria-selected="false">Portable JSON</button>
+					<button type="button" class="mc-tab" data-format="claude" role="tab" aria-selected="true" data-i18n="mcp_tools.claude">Claude</button>
+					<button type="button" class="mc-tab" data-format="vscode" role="tab" aria-selected="false" data-i18n="mcp_tools.vs_code">VS Code</button>
+					<button type="button" class="mc-tab" data-format="json" role="tab" aria-selected="false" data-i18n="mcp_tools.portable_json">Portable JSON</button>
 				</div>
 				<p class="mc-policy-where" id="mc-policy-where"></p>
 				<div class="mc-snippet">
 					<pre><code id="mc-policy-code">Loading the policy…</code></pre>
-					<button type="button" class="mc-btn mc-copy" id="mc-policy-copy">Copy</button>
+					<button type="button" class="mc-btn mc-copy" id="mc-policy-copy" data-i18n="mcp_tools.copy">Copy</button>
 				</div>
 				<p class="mc-policy-live">
-					Always current: <a id="mc-policy-url" href="/api/mcp-policy">/api/mcp-policy</a> returns
+					<span data-i18n="mcp_tools.always_current_api_mcp_policy_returns_this_label">Always current:</span> <a id="mc-policy-url" href="/api/mcp-policy">/api/mcp-policy</a> <span data-i18n="mcp_tools.always_current_api_mcp_policy_returns_this_label2">returns
 					this same document, so a client can refetch it instead of pinning a copy that goes stale
-					as tools are added.
+					as tools are added.</span>
 				</p>
 			</div>
 		</section>

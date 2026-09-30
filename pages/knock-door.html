@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Knock · three.ws</title>
-		<meta name="description" content="Pay someone's price and get one message through to them. Their 3D companion walks on screen and delivers it in person, with your name and what you paid." />
+		<title data-i18n="knock_door.meta_title">Knock · three.ws</title>
+		<meta name="description" content="Pay someone's price and get one message through to them. Their 3D companion walks on screen and delivers it in person, with your name and what you paid."  data-i18n-attr="content:knock_door.meta_description"/>
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,8 +15,8 @@
 		<link rel="stylesheet" href="/fonts/fonts.css" />
 		<meta property="og:type" content="website">
 		<meta property="og:site_name" content="three.ws">
-		<meta property="og:title" content="Knock · three.ws">
-		<meta property="og:description" content="Pay someone's price and get one message through. Their 3D companion delivers it in person.">
+		<meta property="og:title" content="Knock · three.ws" data-i18n-attr="content:knock_door.meta_og_title">
+		<meta property="og:description" content="Pay someone's price and get one message through. Their 3D companion delivers it in person." data-i18n-attr="content:knock_door.meta_og_description">
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:site" content="@trythreews">
 		<meta name="robots" content="noindex, follow">
@@ -131,20 +131,20 @@
 				<div class="skeleton sk-row" style="width:45%;height:22px;"></div>
 				<div class="skeleton sk-row" style="width:70%;"></div>
 				<div class="skeleton sk-row" style="width:60%;"></div>
-				<span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Loading this door</span>
+				<span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);" data-i18n="knock_door.loading_this_door">Loading this door</span>
 			</div>
 
 			<div id="not-found" class="empty" hidden>
-				<h2>No answer</h2>
+				<h2 data-i18n="knock_door.no_answer">No answer</h2>
 				<p data-msg></p>
-				<a class="btn" href="/knock">See who is open</a>
+				<a class="btn" href="/knock" data-i18n="knock_door.see_who_is_open">See who is open</a>
 			</div>
 
 			<section id="door-card" class="card" style="margin-top:40px;" hidden>
 				<div class="who">
 					<div class="face" data-initial="?"><img id="avatar" alt="" hidden /></div>
 					<div class="who-text">
-						<h1><span id="display-name"></span><span class="verified" id="verified" hidden title="Verified">&#10003;</span></h1>
+						<h1><span id="display-name"></span><span class="verified" id="verified" hidden title="Verified" data-i18n-attr="title:knock_door.verified_title">&#10003;</span></h1>
 						<a id="handle"></a>
 					</div>
 					<div class="price"><span class="price-badge" id="price-badge"></span></div>
@@ -157,12 +157,12 @@
 				<div class="lanes" id="lanes" role="radiogroup" aria-label="How to pay" hidden>
 					<label class="lane">
 						<input type="radio" name="lane" value="pay" checked />
-						<span class="lane-title">Pay now</span>
+						<span class="lane-title" data-i18n="knock_door.pay_now">Pay now</span>
 						<span class="lane-note" id="lane-pay-note"></span>
 					</label>
 					<label class="lane">
 						<input type="radio" name="lane" value="escrow" />
-						<span class="lane-title">Escrow <span class="lane-tag">refundable</span></span>
+						<span class="lane-title" data-i18n-html="knock_door.escrow_refundable">Escrow <span class="lane-tag">refundable</span></span>
 						<span class="lane-note" id="lane-escrow-note"></span>
 					</label>
 				</div>
@@ -185,76 +185,76 @@
 						<span class="counter" id="counter">0 / 600</span>
 					</label>
 					<div class="error" id="form-error" hidden></div>
-					<button type="submit" class="btn btn-primary btn-lg" id="submit">Knock</button>
+					<button type="submit" class="btn btn-primary btn-lg" id="submit" data-i18n="knock_door.knock">Knock</button>
 				</form>
 
 				<div class="sent" id="sent" hidden>
-					<h2>Through the door</h2>
+					<h2 data-i18n="knock_door.through_the_door">Through the door</h2>
 					<p id="sent-line"></p>
 					<code class="receipt" id="receipt-url" hidden></code>
 					<div class="reply-box" id="reply-box" hidden></div>
 
 					<div class="escrow-status" id="escrow-status" hidden>
-						<div class="escrow-row"><span>Held in escrow</span><strong id="escrow-amount"></strong></div>
-						<div class="escrow-row"><span id="escrow-clock-label">Answer due in</span><strong id="escrow-clock"></strong></div>
+						<div class="escrow-row"><span data-i18n="knock_door.held_in_escrow">Held in escrow</span><strong id="escrow-amount"></strong></div>
+						<div class="escrow-row"><span id="escrow-clock-label" data-i18n="knock_door.answer_due_in">Answer due in</span><strong id="escrow-clock"></strong></div>
 						<div class="escrow-bar" id="escrow-bar"><span id="escrow-bar-fill"></span></div>
 						<p class="escrow-note" id="escrow-note"></p>
 						<div class="sent-actions">
-							<a class="btn btn-sm" id="escrow-explorer" target="_blank" rel="noopener noreferrer">View the escrow</a>
-							<button type="button" class="btn btn-sm" id="reclaim" hidden>Take my payment back</button>
+							<a class="btn btn-sm" id="escrow-explorer" target="_blank" rel="noopener noreferrer" data-i18n="knock_door.view_the_escrow">View the escrow</a>
+							<button type="button" class="btn btn-sm" id="reclaim" hidden data-i18n="knock_door.take_my_payment_back">Take my payment back</button>
 						</div>
 					</div>
 
 					<div class="sent-actions">
-						<button type="button" class="btn btn-sm" id="copy-receipt" hidden>Copy receipt link</button>
-						<button type="button" class="btn btn-sm" id="check-reply" hidden>Check for a reply</button>
-						<button type="button" class="btn btn-sm" id="knock-again">Knock again</button>
+						<button type="button" class="btn btn-sm" id="copy-receipt" hidden data-i18n="knock_door.copy_receipt_link">Copy receipt link</button>
+						<button type="button" class="btn btn-sm" id="check-reply" hidden data-i18n="knock_door.check_for_a_reply">Check for a reply</button>
+						<button type="button" class="btn btn-sm" id="knock-again" data-i18n="knock_door.knock_again">Knock again</button>
 					</div>
 				</div>
 			</section>
 
 			<details class="agents" id="agent-panel">
-				<summary>Reach this person from an agent</summary>
+				<summary data-i18n="knock_door.reach_this_person_from_an_agent">Reach this person from an agent</summary>
 				<div class="agents-body">
 					<div>
 						<div class="snip-head">
-							<h3>Endpoint</h3>
-							<button type="button" class="btn btn-sm" id="copy-endpoint">Copy</button>
+							<h3 data-i18n="knock_door.endpoint">Endpoint</h3>
+							<button type="button" class="btn btn-sm" id="copy-endpoint" data-i18n="knock_door.copy">Copy</button>
 						</div>
 						<code class="inline" id="agent-endpoint"></code>
 					</div>
 					<div>
 						<div class="snip-head">
-							<h3>curl</h3>
-							<button type="button" class="btn btn-sm" data-copy-target="curl-snippet">Copy</button>
+							<h3 data-i18n="knock_door.curl">curl</h3>
+							<button type="button" class="btn btn-sm" data-copy-target="curl-snippet" data-i18n="knock_door.copy_2">Copy</button>
 						</div>
 						<pre id="curl-snippet"></pre>
 					</div>
 					<div id="escrow-block" hidden>
 						<div class="snip-head">
-							<h3>Escrowed lane (refunded if unanswered)</h3>
-							<button type="button" class="btn btn-sm" data-copy-target="escrow-snippet">Copy</button>
+							<h3 data-i18n="knock_door.escrowed_lane_refunded_if_unanswered">Escrowed lane (refunded if unanswered)</h3>
+							<button type="button" class="btn btn-sm" data-copy-target="escrow-snippet" data-i18n="knock_door.copy_3">Copy</button>
 						</div>
 						<pre id="escrow-snippet"></pre>
 					</div>
 					<div>
 						<div class="snip-head">
-							<h3>SDK</h3>
-							<button type="button" class="btn btn-sm" data-copy-target="sdk-snippet">Copy</button>
+							<h3 data-i18n="knock_door.sdk">SDK</h3>
+							<button type="button" class="btn btn-sm" data-copy-target="sdk-snippet" data-i18n="knock_door.copy_4">Copy</button>
 						</div>
 						<pre id="sdk-snippet"></pre>
 					</div>
 					<div>
 						<div class="snip-head">
-							<h3>MCP (Claude, Cursor, any MCP client)</h3>
-							<button type="button" class="btn btn-sm" data-copy-target="mcp-snippet">Copy</button>
+							<h3 data-i18n="knock_door.mcp_claude_cursor_any_mcp_client">MCP (Claude, Cursor, any MCP client)</h3>
+							<button type="button" class="btn btn-sm" data-copy-target="mcp-snippet" data-i18n="knock_door.copy_5">Copy</button>
 						</div>
 						<pre id="mcp-snippet"></pre>
 					</div>
 				</div>
 			</details>
 
-			<p class="foot-note">
+			<p class="foot-note" data-i18n-html="knock_door.knock_is_a_priced_door_to_a">
 				Knock is a priced door to a person. The money settles straight to them, never to three.ws.
 				<a href="/docs/knock">How it works</a> &middot; <a href="/knock">Open your own door</a>
 			</p>
@@ -262,12 +262,12 @@
 
 		<dialog class="confirm" id="confirm-escrow" aria-labelledby="confirm-title">
 			<form method="dialog">
-				<h2 id="confirm-title">Confirm what you are signing</h2>
+				<h2 id="confirm-title" data-i18n="knock_door.confirm_what_you_are_signing">Confirm what you are signing</h2>
 				<dl id="confirm-terms"></dl>
 				<p class="confirm-note" id="confirm-note"></p>
 				<div class="confirm-actions">
-					<button class="btn" value="cancel">Cancel</button>
-					<button class="btn btn-primary" value="ok" id="confirm-ok">Escrow and knock</button>
+					<button class="btn" value="cancel" data-i18n="knock_door.cancel">Cancel</button>
+					<button class="btn btn-primary" value="ok" id="confirm-ok" data-i18n="knock_door.escrow_and_knock">Escrow and knock</button>
 				</div>
 			</form>
 		</dialog>

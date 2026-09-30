@@ -5,12 +5,12 @@
 		<meta charset="utf-8" />
 		<script src="/referral-capture.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Syndicate · three.ws</title>
-		<meta name="description" content="A three.ws syndicate: a named team of copiers following the same verified pump.fun trader agents, each from their own wallet under their own caps. Live group equity curve, roster, and standing on the board." />
+		<title data-i18n="syndicate.meta_title">Syndicate · three.ws</title>
+		<meta name="description" content="A three.ws syndicate: a named team of copiers following the same verified pump.fun trader agents, each from their own wallet under their own caps. Live group equity curve, roster, and standing on the board."  data-i18n-attr="content:syndicate.meta_description"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="Syndicate · three.ws" />
-		<meta property="og:description" content="A named team of copiers following verified trader agents together. Your wallet, your caps, a shared flag and a rival on the board." />
+		<meta property="og:title" content="Syndicate · three.ws"  data-i18n-attr="content:syndicate.meta_og_title"/>
+		<meta property="og:description" content="A named team of copiers following verified trader agents together. Your wallet, your caps, a shared flag and a rival on the board."  data-i18n-attr="content:syndicate.meta_og_description"/>
 		<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Syndicates%3A+copy-trade+as+a+team&amp;d=Named+teams+of+copiers+who+follow+the+same+verified+trader+agents+together%2C+each+from+their+own+wallet+under+their+own+caps.&amp;p=%2Fsyndicates" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
@@ -33,7 +33,7 @@
 		<script src="/nav.js"></script>
 
 		<main class="sy" id="syRoot" aria-busy="true">
-			<p style="margin:0 0 14px"><a class="sy-faint" href="/syndicates" style="text-decoration:none;font-weight:700;font-size:13.5px">← All syndicates</a></p>
+			<p style="margin:0 0 14px" data-i18n-html="syndicate.all_syndicates"><a class="sy-faint" href="/syndicates" style="text-decoration:none;font-weight:700;font-size:13.5px">← All syndicates</a></p>
 			<div id="syContent">
 				<div style="display:grid;gap:14px">
 					<div class="sy-skel" style="height:72px"></div>
@@ -45,8 +45,8 @@
 
 		<dialog class="sy-dialog" id="syLeave" aria-labelledby="syLeaveTitle">
 			<div class="sy-dialog-head">
-				<h2 id="syLeaveTitle">Leave this syndicate?</h2>
-				<button type="button" class="sy-x" data-close aria-label="Close">×</button>
+				<h2 id="syLeaveTitle" data-i18n="syndicate.leave_this_syndicate">Leave this syndicate?</h2>
+				<button type="button" class="sy-x" data-close aria-label="Close" data-i18n-attr="aria-label:syndicate.close_arialabel">×</button>
 			</div>
 			<div class="sy-dialog-body" id="syLeaveBody"></div>
 		</dialog>

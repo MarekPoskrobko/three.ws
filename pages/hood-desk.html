@@ -18,19 +18,19 @@
 		</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Hood Desk · live onchain trading desk for Robinhood Chain · three.ws</title>
+		<title data-i18n="hood_desk.meta_title">Hood Desk · live onchain trading desk for Robinhood Chain · three.ws</title>
 		<meta
 			name="description"
 			content="A live trading desk for any Robinhood Chain (4663) wallet: book value, native balance history, an onchain activity tape, positions priced against Chainlink NAV and Uniswap, the NAV premium ridge, counterparty flow, and memecoin movers. Real onchain data, no API key, no signature."
-		/>
+		 data-i18n-attr="content:hood_desk.meta_description"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/markets/robinhood/desk" />
-		<meta property="og:title" content="Hood Desk · live onchain trading desk for Robinhood Chain" />
+		<meta property="og:title" content="Hood Desk · live onchain trading desk for Robinhood Chain"  data-i18n-attr="content:hood_desk.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="Paste any Robinhood Chain address and get its whole book: balance history, activity tape, priced positions, NAV premium ridge and counterparty flow."
-		/>
+		 data-i18n-attr="content:hood_desk.meta_og_description"/>
 		<meta
 			property="og:image"
 			content="https://three.ws/api/page-og?s=crypto&amp;t=Hood+Desk&amp;d=A+live+onchain+trading+desk+for+any+Robinhood+Chain+%284663%29+wallet%3A+book+value%2C+native+balance+history+rebuilt+from+the+indexer%2C+an+activity+tape+of+swaps+and&amp;p=%2Fmarkets%2Frobinhood%2Fdesk"
@@ -39,11 +39,11 @@
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="Hood Desk · three.ws" />
+		<meta name="twitter:title" content="Hood Desk · three.ws"  data-i18n-attr="content:hood_desk.meta_twitter_title"/>
 		<meta
 			name="twitter:description"
 			content="A live onchain trading desk for Robinhood Chain: book, tape, positions, NAV premium ridge."
-		/>
+		 data-i18n-attr="content:hood_desk.meta_twitter_description"/>
 		<meta
 			name="twitter:image"
 			content="https://three.ws/api/page-og?s=crypto&amp;t=Hood+Desk&amp;d=A+live+onchain+trading+desk+for+any+Robinhood+Chain+%284663%29+wallet%3A+book+value%2C+native+balance+history+rebuilt+from+the+indexer%2C+an+activity+tape+of+swaps+and&amp;p=%2Fmarkets%2Frobinhood%2Fdesk"
@@ -71,22 +71,22 @@
 
 		<main class="hd-main" id="hd-main">
 			<nav class="cv-crumbs" aria-label="Breadcrumb">
-				<a href="/markets">Markets</a>
+				<a href="/markets" data-i18n="hood_desk.markets">Markets</a>
 				<span class="sep" aria-hidden="true">/</span>
-				<a href="/markets/robinhood">Robinhood Chain</a>
+				<a href="/markets/robinhood" data-i18n="hood_desk.robinhood_chain">Robinhood Chain</a>
 				<span class="sep" aria-hidden="true">/</span>
-				<span class="here">Desk</span>
+				<span class="here" data-i18n="hood_desk.desk">Desk</span>
 			</nav>
 
 			<section class="hd-bar" aria-label="Desk status">
 				<h1 class="hd-brand">
-					<span class="hd-brand-mark" aria-hidden="true">◆</span>
-					HOOD DESK
+					<span class="hd-brand-mark" aria-hidden="true">◆
+					HOOD DESK</span>
 					<span class="hd-brand-sub" id="hd-brand-sub">/ no wallet</span>
 				</h1>
 				<div class="hd-bar-spacer"></div>
 				<form class="hd-wallet-form" id="hd-wallet-form">
-					<label class="cv-sr-only" for="hd-address">Robinhood Chain wallet address</label>
+					<label class="cv-sr-only" for="hd-address" data-i18n="hood_desk.robinhood_chain_wallet_address">Robinhood Chain wallet address</label>
 					<input
 						class="hd-input"
 						id="hd-address"
@@ -97,16 +97,16 @@
 						placeholder="0x… paste any wallet to load its book"
 						aria-describedby="hd-address-help"
 					/>
-					<button class="hd-btn hd-btn-accent" type="submit">Load book</button>
-					<button class="hd-btn hd-btn-ghost" type="button" id="hd-connect">Connect wallet</button>
+					<button class="hd-btn hd-btn-accent" type="submit" data-i18n="hood_desk.load_book">Load book</button>
+					<button class="hd-btn hd-btn-ghost" type="button" id="hd-connect" data-i18n="hood_desk.connect_wallet">Connect wallet</button>
 				</form>
 				<span class="hd-live" id="hd-live" data-state="stale" role="status">
 					<span class="hd-live-dot" aria-hidden="true"></span>
 					<span id="hd-live-text">booting</span>
 				</span>
-				<span class="hd-clock hd-mono" id="hd-clock" aria-label="Session clock">00:00</span>
+				<span class="hd-clock hd-mono" id="hd-clock" aria-label="Session clock" data-i18n-attr="aria-label:hood_desk.session_clock_arialabel">00:00</span>
 			</section>
-			<p class="cv-sr-only" id="hd-address-help">
+			<p class="cv-sr-only" id="hd-address-help" data-i18n="hood_desk.read_only_any_robinhood_chain_address_can">
 				Read-only. Any Robinhood Chain address can be loaded; nothing is signed and no key is
 				needed.
 			</p>
@@ -129,7 +129,7 @@
 
 			<section class="hd-card" id="hd-movers" aria-label="Memecoin movers"></section>
 
-			<p class="hd-note" id="hd-updated">
+			<p class="hd-note" id="hd-updated" data-i18n="hood_desk.every_number_on_this_desk_is_read">
 				Every number on this desk is read live from Robinhood Chain (4663): balances and history
 				from the chain RPC and the Blockscout indexer, Stock Token NAV from the tokens' Chainlink
 				feeds on-chain, coin prices from the deepest Uniswap pool. Stock Tokens are tokenized debt
@@ -141,9 +141,9 @@
 
 		<dialog class="hd-drawer" id="hd-trade-dialog" aria-labelledby="hd-trade-title">
 			<div class="hd-drawer-head">
-				<h2 id="hd-trade-title">Trade ticket</h2>
+				<h2 id="hd-trade-title" data-i18n="hood_desk.trade_ticket">Trade ticket</h2>
 				<div class="hd-bar-spacer"></div>
-				<button class="hd-btn hd-btn-sm hd-btn-ghost" type="button" id="hd-trade-close">Close</button>
+				<button class="hd-btn hd-btn-sm hd-btn-ghost" type="button" id="hd-trade-close" data-i18n="hood_desk.close">Close</button>
 			</div>
 			<div class="hd-drawer-body" id="hd-trade-body"></div>
 		</dialog>

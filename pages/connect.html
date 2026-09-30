@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code · three.ws</title>
-	<meta name="description" content="Add three.ws to your AI client in two clicks. One connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools: 3D generation, agents, wallets and x402 payments. Sign in once, no API key to copy." />
+	<title data-i18n="connect.meta_title">Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code · three.ws</title>
+	<meta name="description" content="Add three.ws to your AI client in two clicks. One connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools: 3D generation, agents, wallets and x402 payments. Sign in once, no API key to copy."  data-i18n-attr="content:connect.meta_description"/>
 	<link rel="canonical" href="https://three.ws/connect" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -15,13 +15,13 @@
 	<link rel="stylesheet" href="/nav.css" />
 	<link rel="stylesheet" href="/mobile.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Connect three.ws to your AI client" />
-	<meta property="og:description" content="One URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools. Sign in once, no key to copy." />
+	<meta property="og:title" content="Connect three.ws to your AI client"  data-i18n-attr="content:connect.meta_og_title"/>
+	<meta property="og:description" content="One URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools. Sign in once, no key to copy."  data-i18n-attr="content:connect.meta_og_description"/>
 	<meta property="og:url" content="https://three.ws/connect" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=learn&amp;t=Connect+three.ws+to+your+AI&amp;d=One+URL+gives+Claude%2C+ChatGPT%2C+Cursor%2C+VS+Code+or+Claude+Code+the+three.ws+MCP+tools.+Sign+in+once%2C+no+key+to+copy.&amp;p=%2Fconnect" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Connect three.ws to your AI client" />
-	<meta name="twitter:description" content="One URL, two clicks: three.ws MCP tools in Claude, ChatGPT, Cursor, VS Code and Claude Code." />
+	<meta name="twitter:title" content="Connect three.ws to your AI client"  data-i18n-attr="content:connect.meta_twitter_title"/>
+	<meta name="twitter:description" content="One URL, two clicks: three.ws MCP tools in Claude, ChatGPT, Cursor, VS Code and Claude Code."  data-i18n-attr="content:connect.meta_twitter_description"/>
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Connect+three.ws+to+your+AI&amp;d=One+URL+gives+Claude%2C+ChatGPT%2C+Cursor%2C+VS+Code+or+Claude+Code+the+three.ws+MCP+tools.+Sign+in+once%2C+no+key+to+copy.&amp;p=%2Fconnect" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 	<meta property="og:locale" content="en_US" />
@@ -182,9 +182,9 @@
 
 	<main class="cn-wrap" id="main">
 		<section class="cn-hero">
-			<p class="cn-eyebrow">Connector</p>
-			<h1>One URL. Your AI gets three.ws.</h1>
-			<p>
+			<p class="cn-eyebrow" data-i18n="connect.connector">Connector</p>
+			<h1 data-i18n="connect.one_url_your_ai_gets_three_ws">One URL. Your AI gets three.ws.</h1>
+			<p data-i18n-html="connect.add_three_ws_to_claude_chatgpt_cursor">
 				Add three.ws to Claude, ChatGPT, Cursor, VS Code or Claude Code and your assistant can generate 3D models and avatars,
 				run your agents, read their wallets and pay for services over x402. Sign in once in your browser: there is no API key
 				to copy. Every tool is listed in the <a href="/mcp-tools">MCP tool catalog</a>.
@@ -195,8 +195,8 @@
 			<div class="cn-step-head">
 				<span class="cn-step-num" aria-hidden="true">1</span>
 				<div>
-					<h2 id="cn-step1">Pick a server</h2>
-					<p>Start with <strong>three.ws</strong>. Add others later; each is its own connector.</p>
+					<h2 id="cn-step1" data-i18n="connect.pick_a_server">Pick a server</h2>
+					<p data-i18n-html="connect.start_with_three_ws_add_others_later">Start with <strong>three.ws</strong>. Add others later; each is its own connector.</p>
 				</div>
 			</div>
 			<div class="cn-servers" id="cn-servers" role="radiogroup" aria-label="Hosted MCP servers" aria-busy="true">
@@ -207,11 +207,11 @@
 			<p class="cn-note" id="cn-servers-note" role="status" aria-live="polite"></p>
 
 			<div class="cn-url">
-				<span class="cn-url-label">URL</span>
+				<span class="cn-url-label" data-i18n="connect.url">URL</span>
 				<code id="cn-url">https://three.ws/api/mcp</code>
 				<button type="button" class="cn-btn" id="cn-copy-url" data-copy-target="cn-url">
 					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-					<span>Copy URL</span>
+					<span data-i18n="connect.copy_url">Copy URL</span>
 				</button>
 			</div>
 		</section>
@@ -220,103 +220,103 @@
 			<div class="cn-step-head">
 				<span class="cn-step-num" aria-hidden="true">2</span>
 				<div>
-					<h2 id="cn-step2">Add it to your client</h2>
-					<p>Links open your client with the server filled in. You still review it and confirm.</p>
+					<h2 id="cn-step2" data-i18n="connect.add_it_to_your_client">Add it to your client</h2>
+					<p data-i18n="connect.links_open_your_client_with_the_server">Links open your client with the server filled in. You still review it and confirm.</p>
 				</div>
 			</div>
 
 			<div class="cn-tabs" role="tablist" aria-label="AI clients">
-				<button type="button" class="cn-tab" role="tab" id="tab-claude" aria-controls="panel-claude" data-client="claude">Claude</button>
-				<button type="button" class="cn-tab" role="tab" id="tab-chatgpt" aria-controls="panel-chatgpt" data-client="chatgpt">ChatGPT</button>
-				<button type="button" class="cn-tab" role="tab" id="tab-claude-code" aria-controls="panel-claude-code" data-client="claude-code">Claude Code</button>
-				<button type="button" class="cn-tab" role="tab" id="tab-cursor" aria-controls="panel-cursor" data-client="cursor">Cursor</button>
-				<button type="button" class="cn-tab" role="tab" id="tab-vscode" aria-controls="panel-vscode" data-client="vscode">VS Code</button>
-				<button type="button" class="cn-tab" role="tab" id="tab-other" aria-controls="panel-other" data-client="other">Other clients</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-claude" aria-controls="panel-claude" data-client="claude" data-i18n="connect.claude">Claude</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-chatgpt" aria-controls="panel-chatgpt" data-client="chatgpt" data-i18n="connect.chatgpt">ChatGPT</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-claude-code" aria-controls="panel-claude-code" data-client="claude-code" data-i18n="connect.claude_code">Claude Code</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-cursor" aria-controls="panel-cursor" data-client="cursor" data-i18n="connect.cursor">Cursor</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-vscode" aria-controls="panel-vscode" data-client="vscode" data-i18n="connect.vs_code">VS Code</button>
+				<button type="button" class="cn-tab" role="tab" id="tab-other" aria-controls="panel-other" data-client="other" data-i18n="connect.other_clients">Other clients</button>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-claude" aria-labelledby="tab-claude" tabindex="0">
-				<p class="cn-panel-lede">Works on claude.ai and the Claude desktop app, on every plan. Free accounts can add one custom connector. On Team and Enterprise, only owners can add one.</p>
+				<p class="cn-panel-lede" data-i18n="connect.works_on_claude_ai_and_the_claude">Works on claude.ai and the Claude desktop app, on every plan. Free accounts can add one custom connector. On Team and Enterprise, only owners can add one.</p>
 				<div class="cn-actions">
-					<a class="cn-btn" data-variant="primary" id="cn-claude-link" href="https://claude.ai/customize/connectors?modal=add-custom-connector&amp;connectorName=three.ws&amp;connectorUrl=https%3A%2F%2Fthree.ws%2Fapi%2Fmcp" target="_blank" rel="noopener">Open Claude with the URL filled in</a>
+					<a class="cn-btn" data-variant="primary" id="cn-claude-link" href="https://claude.ai/customize/connectors?modal=add-custom-connector&amp;connectorName=three.ws&amp;connectorUrl=https%3A%2F%2Fthree.ws%2Fapi%2Fmcp" target="_blank" rel="noopener" data-i18n="connect.open_claude_with_the_url_filled_in">Open Claude with the URL filled in</a>
 				</div>
 				<ol class="cn-list">
-					<li>Click the button above, check the name and URL, then click <strong>Add</strong>. Adding it by hand instead: <strong>Customize → Connectors</strong> (Settings → Connectors on some accounts), <strong>Add custom connector</strong>, paste the URL.</li>
-					<li>Click <strong>Connect</strong> and sign in to three.ws. Read the permissions before you approve.</li>
-					<li>In a chat, open the <kbd>+</kbd> menu, then <strong>Connectors</strong>, and switch three.ws on for that conversation.</li>
+					<li data-i18n-html="connect.click_the_button_above_check_the_name">Click the button above, check the name and URL, then click <strong>Add</strong>. Adding it by hand instead: <strong>Customize → Connectors</strong> (Settings → Connectors on some accounts), <strong>Add custom connector</strong>, paste the URL.</li>
+					<li data-i18n-html="connect.click_connect_and_sign_in_to_three">Click <strong>Connect</strong> and sign in to three.ws. Read the permissions before you approve.</li>
+					<li data-i18n-html="connect.in_a_chat_open_the_menu_then">In a chat, open the <kbd>+</kbd> menu, then <strong>Connectors</strong>, and switch three.ws on for that conversation.</li>
 				</ol>
-				<p class="cn-src">Steps follow <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener">Claude's own guide</a>. Its menus move: if these drift, <a href="https://github.com/nirholas/three.ws/issues" target="_blank" rel="noopener">tell us</a>.</p>
+				<p class="cn-src" data-i18n-html="connect.steps_follow_claude_s_own_guide_its">Steps follow <a href="https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp" target="_blank" rel="noopener">Claude's own guide</a>. Its menus move: if these drift, <a href="https://github.com/nirholas/three.ws/issues" target="_blank" rel="noopener">tell us</a>.</p>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-chatgpt" aria-labelledby="tab-chatgpt" tabindex="0" hidden>
-				<p class="cn-panel-lede">ChatGPT adds custom MCP servers through <strong>Developer mode</strong>, on the plans where OpenAI offers it. There is no pre-filled link, so copy the URL first.</p>
+				<p class="cn-panel-lede" data-i18n-html="connect.chatgpt_adds_custom_mcp_servers_through_deve">ChatGPT adds custom MCP servers through <strong>Developer mode</strong>, on the plans where OpenAI offers it. There is no pre-filled link, so copy the URL first.</p>
 				<div class="cn-actions">
-					<button type="button" class="cn-btn" data-variant="primary" data-copy-target="cn-url">Copy the connector URL</button>
+					<button type="button" class="cn-btn" data-variant="primary" data-copy-target="cn-url" data-i18n="connect.copy_the_connector_url">Copy the connector URL</button>
 				</div>
 				<ol class="cn-list">
-					<li>In <strong>Settings → Apps &amp; Connectors → Advanced settings</strong>, turn on <strong>Developer mode</strong>.</li>
-					<li>Back in <strong>Apps &amp; Connectors</strong>, click <strong>Create</strong>. Name it <code class="cn-name">three.ws</code>, paste the URL, choose <strong>OAuth</strong>, and create it.</li>
-					<li>Sign in to three.ws when ChatGPT asks, and approve the permissions.</li>
-					<li>In a new chat, open the <kbd>+</kbd> menu, choose <strong>Developer mode</strong>, and tick three.ws.</li>
+					<li data-i18n-html="connect.in_settings_apps_connectors_advanced_setting">In <strong>Settings → Apps &amp; Connectors → Advanced settings</strong>, turn on <strong>Developer mode</strong>.</li>
+					<li data-i18n-html="connect.back_in_apps_connectors_click_create_name">Back in <strong>Apps &amp; Connectors</strong>, click <strong>Create</strong>. Name it <code class="cn-name">three.ws</code>, paste the URL, choose <strong>OAuth</strong>, and create it.</li>
+					<li data-i18n="connect.sign_in_to_three_ws_when_chatgpt">Sign in to three.ws when ChatGPT asks, and approve the permissions.</li>
+					<li data-i18n-html="connect.in_a_new_chat_open_the_menu">In a new chat, open the <kbd>+</kbd> menu, choose <strong>Developer mode</strong>, and tick three.ws.</li>
 				</ol>
-				<p class="cn-src">Steps follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-apps-and-full-mcp-connectors-in-chatgpt-beta" target="_blank" rel="noopener">OpenAI's developer mode guide</a>. Its labels change often: if these drift, <a href="https://github.com/nirholas/three.ws/issues" target="_blank" rel="noopener">tell us</a>.</p>
+				<p class="cn-src" data-i18n-html="connect.steps_follow_openai_s_developer_mode_guide">Steps follow <a href="https://help.openai.com/en/articles/12584461-developer-mode-apps-and-full-mcp-connectors-in-chatgpt-beta" target="_blank" rel="noopener">OpenAI's developer mode guide</a>. Its labels change often: if these drift, <a href="https://github.com/nirholas/three.ws/issues" target="_blank" rel="noopener">tell us</a>.</p>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-claude-code" aria-labelledby="tab-claude-code" tabindex="0" hidden>
-				<p class="cn-panel-lede">One command adds the server. The first time a tool needs your account, Claude Code opens three.ws sign-in in your browser.</p>
+				<p class="cn-panel-lede" data-i18n="connect.one_command_adds_the_server_the_first">One command adds the server. The first time a tool needs your account, Claude Code opens three.ws sign-in in your browser.</p>
 				<div class="cn-snippet">
-					<div class="cn-snippet-head"><span>Terminal</span><button type="button" class="cn-btn" data-copy-target="cn-cc-cmd">Copy</button></div>
+					<div class="cn-snippet-head"><span data-i18n="connect.terminal">Terminal</span><button type="button" class="cn-btn" data-copy-target="cn-cc-cmd" data-i18n="connect.copy">Copy</button></div>
 					<pre><code id="cn-cc-cmd">claude mcp add --transport http three-ws-main https://three.ws/api/mcp</code></pre>
 				</div>
 				<ol class="cn-list">
-					<li>Run the command. Add <code>--scope project</code> to share it with your team through <code>.mcp.json</code>.</li>
-					<li>In Claude Code, type <code>/mcp</code>, pick the server you just added and choose <strong>Authenticate</strong>.</li>
+					<li data-i18n-html="connect.run_the_command_add_to_share_it">Run the command. Add <code>--scope project</code> to share it with your team through <code>.mcp.json</code>.</li>
+					<li data-i18n-html="connect.in_claude_code_type_pick_the_server">In Claude Code, type <code>/mcp</code>, pick the server you just added and choose <strong>Authenticate</strong>.</li>
 				</ol>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-cursor" aria-labelledby="tab-cursor" tabindex="0" hidden>
-				<p class="cn-panel-lede">The button opens Cursor's install prompt with the server filled in. Cursor then runs the three.ws sign-in.</p>
+				<p class="cn-panel-lede" data-i18n="connect.the_button_opens_cursor_s_install_prompt">The button opens Cursor's install prompt with the server filled in. Cursor then runs the three.ws sign-in.</p>
 				<div class="cn-actions">
-					<a class="cn-btn" data-variant="primary" id="cn-cursor-link" href="cursor://anysphere.cursor-deeplink/mcp/install?name=three-ws-main&amp;config=eyJ1cmwiOiJodHRwczovL3RocmVlLndzL2FwaS9tY3AifQ%3D%3D">Add to Cursor</a>
+					<a class="cn-btn" data-variant="primary" id="cn-cursor-link" href="cursor://anysphere.cursor-deeplink/mcp/install?name=three-ws-main&amp;config=eyJ1cmwiOiJodHRwczovL3RocmVlLndzL2FwaS9tY3AifQ%3D%3D" data-i18n="connect.add_to_cursor">Add to Cursor</a>
 				</div>
 				<div class="cn-snippet">
-					<div class="cn-snippet-head"><span>Or add it to ~/.cursor/mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-cursor-json">Copy</button></div>
+					<div class="cn-snippet-head"><span data-i18n="connect.or_add_it_to_cursor_mcp_json">Or add it to ~/.cursor/mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-cursor-json" data-i18n="connect.copy_2">Copy</button></div>
 					<pre><code id="cn-cursor-json">{
   "mcpServers": {
     "three-ws-main": { "url": "https://three.ws/api/mcp" }
   }
 }</code></pre>
 				</div>
-				<p class="cn-src">Link format from <a href="https://cursor.com/docs/context/mcp/install-links" target="_blank" rel="noopener">Cursor's install-link docs</a>.</p>
+				<p class="cn-src" data-i18n-html="connect.link_format_from_cursor_s_install_link">Link format from <a href="https://cursor.com/docs/context/mcp/install-links" target="_blank" rel="noopener">Cursor's install-link docs</a>.</p>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-vscode" aria-labelledby="tab-vscode" tabindex="0" hidden>
-				<p class="cn-panel-lede">For GitHub Copilot agent mode in VS Code. The button opens VS Code's install prompt; the server signs you in on first use.</p>
+				<p class="cn-panel-lede" data-i18n="connect.for_github_copilot_agent_mode_in_vs">For GitHub Copilot agent mode in VS Code. The button opens VS Code's install prompt; the server signs you in on first use.</p>
 				<div class="cn-actions">
-					<a class="cn-btn" data-variant="primary" id="cn-vscode-link" href="vscode:mcp/install?%7B%22name%22%3A%22three-ws-main%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fthree.ws%2Fapi%2Fmcp%22%7D">Add to VS Code</a>
-					<a class="cn-btn" id="cn-vscode-insiders-link" href="vscode-insiders:mcp/install?%7B%22name%22%3A%22three-ws-main%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fthree.ws%2Fapi%2Fmcp%22%7D">VS Code Insiders</a>
+					<a class="cn-btn" data-variant="primary" id="cn-vscode-link" href="vscode:mcp/install?%7B%22name%22%3A%22three-ws-main%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fthree.ws%2Fapi%2Fmcp%22%7D" data-i18n="connect.add_to_vs_code">Add to VS Code</a>
+					<a class="cn-btn" id="cn-vscode-insiders-link" href="vscode-insiders:mcp/install?%7B%22name%22%3A%22three-ws-main%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fthree.ws%2Fapi%2Fmcp%22%7D" data-i18n="connect.vs_code_insiders">VS Code Insiders</a>
 				</div>
 				<div class="cn-snippet">
-					<div class="cn-snippet-head"><span>Or add it to .vscode/mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-vscode-json">Copy</button></div>
+					<div class="cn-snippet-head"><span data-i18n="connect.or_add_it_to_vscode_mcp_json">Or add it to .vscode/mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-vscode-json" data-i18n="connect.copy_3">Copy</button></div>
 					<pre><code id="cn-vscode-json">{
   "servers": {
     "three-ws-main": { "type": "http", "url": "https://three.ws/api/mcp" }
   }
 }</code></pre>
 				</div>
-				<p class="cn-src">Link format from <a href="https://code.visualstudio.com/api/extension-guides/ai/mcp" target="_blank" rel="noopener">VS Code's MCP developer guide</a>.</p>
+				<p class="cn-src" data-i18n-html="connect.link_format_from_vs_code_s_mcp">Link format from <a href="https://code.visualstudio.com/api/extension-guides/ai/mcp" target="_blank" rel="noopener">VS Code's MCP developer guide</a>.</p>
 			</div>
 
 			<div class="cn-panel" role="tabpanel" id="panel-other" aria-labelledby="tab-other" tabindex="0" hidden>
-				<p class="cn-panel-lede">Any client that speaks <strong>Streamable HTTP</strong> MCP can connect. Clients with OAuth support sign you in automatically from the server's <code>WWW-Authenticate</code> header. Clients without it can send an API key from <a href="/dashboard/api">Dashboard → API</a> as <code>Authorization: Bearer</code>.</p>
+				<p class="cn-panel-lede" data-i18n-html="connect.any_client_that_speaks_streamable_http_mcp">Any client that speaks <strong>Streamable HTTP</strong> MCP can connect. Clients with OAuth support sign you in automatically from the server's <code>WWW-Authenticate</code> header. Clients without it can send an API key from <a href="/dashboard/api">Dashboard → API</a> as <code>Authorization: Bearer</code>.</p>
 				<div class="cn-snippet">
-					<div class="cn-snippet-head"><span>mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-other-json">Copy</button></div>
+					<div class="cn-snippet-head"><span data-i18n="connect.mcp_json">mcp.json</span><button type="button" class="cn-btn" data-copy-target="cn-other-json" data-i18n="connect.copy_4">Copy</button></div>
 					<pre><code id="cn-other-json">{
   "mcpServers": {
     "three-ws-main": { "type": "http", "url": "https://three.ws/api/mcp" }
   }
 }</code></pre>
 				</div>
-				<p class="cn-src">Every hosted server, with its auth and resources, is listed machine-readably at <a href="/.well-known/mcp.json">/.well-known/mcp.json</a>.</p>
+				<p class="cn-src" data-i18n-html="connect.every_hosted_server_with_its_auth_and">Every hosted server, with its auth and resources, is listed machine-readably at <a href="/.well-known/mcp.json">/.well-known/mcp.json</a>.</p>
 			</div>
 		</section>
 
@@ -324,33 +324,33 @@
 			<div class="cn-step-head">
 				<span class="cn-step-num" aria-hidden="true">3</span>
 				<div>
-					<h2 id="cn-step3">Worth knowing</h2>
+					<h2 id="cn-step3" data-i18n="connect.worth_knowing">Worth knowing</h2>
 				</div>
 			</div>
 			<div class="cn-facts">
 				<div class="cn-fact">
-					<h3>You never copy a key</h3>
-					<p>Signing in gives your client its own token for your three.ws account, with the permissions you approved on the consent screen. Tools act on the agents and wallets of the account you sign in with.</p>
+					<h3 data-i18n="connect.you_never_copy_a_key">You never copy a key</h3>
+					<p data-i18n="connect.signing_in_gives_your_client_its_own">Signing in gives your client its own token for your three.ws account, with the permissions you approved on the consent screen. Tools act on the agents and wallets of the account you sign in with.</p>
 				</div>
 				<div class="cn-fact">
-					<h3>Revoke it any time</h3>
-					<p>Every client you connect appears under <a href="/dashboard/settings">Dashboard → Settings → Connected apps</a>. Revoking one stops that client within an hour, when its current access token expires. Your agents and balances are untouched.</p>
+					<h3 data-i18n="connect.revoke_it_any_time">Revoke it any time</h3>
+					<p data-i18n-html="connect.every_client_you_connect_appears_under_dashb">Every client you connect appears under <a href="/dashboard/settings">Dashboard → Settings → Connected apps</a>. Revoking one stops that client within an hour, when its current access token expires. Your agents and balances are untouched.</p>
 				</div>
 				<div class="cn-fact">
-					<h3>Every tool is labelled</h3>
-					<p>Each tool declares whether it only reads, writes, or does something irreversible, so your client knows what to ask you about. The <a href="/mcp-tools">tool catalog</a> has a ready-made trust policy to paste in.</p>
+					<h3 data-i18n="connect.every_tool_is_labelled">Every tool is labelled</h3>
+					<p data-i18n-html="connect.each_tool_declares_whether_it_only_reads">Each tool declares whether it only reads, writes, or does something irreversible, so your client knows what to ask you about. The <a href="/mcp-tools">tool catalog</a> has a ready-made trust policy to paste in.</p>
 				</div>
 				<div class="cn-fact">
-					<h3>Try it without an account</h3>
-					<p>The <strong>3D Studio (free)</strong> server needs no sign-in: text to 3D, image to 3D and rigged avatars. Pick it above and connect in seconds.</p>
+					<h3 data-i18n="connect.try_it_without_an_account">Try it without an account</h3>
+					<p data-i18n-html="connect.the_3d_studio_free_server_needs_no">The <strong>3D Studio (free)</strong> server needs no sign-in: text to 3D, image to 3D and rigged avatars. Pick it above and connect in seconds.</p>
 				</div>
 			</div>
 		</section>
 
 		<nav class="cn-next" aria-label="Related">
-			<a class="cn-btn" href="/mcp-tools">Browse every tool</a>
-			<a class="cn-btn" href="/docs/mcp">MCP docs</a>
-			<a class="cn-btn" href="/docs/cli">Command-line setup</a>
+			<a class="cn-btn" href="/mcp-tools" data-i18n="connect.browse_every_tool">Browse every tool</a>
+			<a class="cn-btn" href="/docs/mcp" data-i18n="connect.mcp_docs">MCP docs</a>
+			<a class="cn-btn" href="/docs/cli" data-i18n="connect.command_line_setup">Command-line setup</a>
 		</nav>
 	</main>
 

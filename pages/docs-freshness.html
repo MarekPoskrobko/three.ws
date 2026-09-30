@@ -5,20 +5,20 @@
 		<script>/* three.ws theme boot (no-flash); runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-		<title>Docs Freshness · three.ws</title>
+		<title data-i18n="docs_freshness.meta_title">Docs Freshness · three.ws</title>
 		<meta
 			name="description"
 			content="Which three.ws docs still describe the code that ships. Every doc is bound to the source files it names, and git decides whether that source moved after the doc was written."
-		/>
+		 data-i18n-attr="content:docs_freshness.meta_description"/>
 		<link rel="canonical" href="https://three.ws/docs/freshness" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/docs/freshness" />
-		<meta property="og:title" content="Docs Freshness · three.ws" />
+		<meta property="og:title" content="Docs Freshness · three.ws"  data-i18n-attr="content:docs_freshness.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="Documentation drift, measured. Each doc is bound to the code it names; git decides whether that code moved after the doc was last written."
-		/>
+		 data-i18n-attr="content:docs_freshness.meta_og_description"/>
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="robots" content="index, follow, max-snippet:-1" />
@@ -34,34 +34,34 @@
 	<meta property="og:image:height" content="630">
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:alt" content="Docs · Freshness - three.ws">
-	<meta name="twitter:title" content="Docs · Freshness · three.ws">
-	<meta name="twitter:description" content="Does this documentation still describe the code? Every doc is scored against the source files it documents, and this dashboard ranks the drift so the stalest pages get fixed first.">
+	<meta name="twitter:title" content="Docs · Freshness · three.ws" data-i18n-attr="content:docs_freshness.meta_twitter_title">
+	<meta name="twitter:description" content="Does this documentation still describe the code? Every doc is scored against the source files it documents, and this dashboard ranks the drift so the stalest pages get fixed first." data-i18n-attr="content:docs_freshness.meta_twitter_description">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Docs+%C2%B7+Freshness&amp;d=Does+this+documentation+still+describe+the+code%3F+Every+doc+is+scored+against+the+source+files+it+documents%2C+and+this+dashboard+ranks+the+drift+so+the+stalest&amp;p=%2Fdocs%2Ffreshness">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Docs · Freshness","description":"Does this documentation still describe the code? Every doc is scored against the source files it documents, and this dashboard ranks the drift so the stalest pages get fixed first.","url":"https://three.ws/docs/freshness","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=learn&t=Docs+%C2%B7+Freshness&d=Does+this+documentation+still+describe+the+code%3F+Every+doc+is+scored+against+the+source+files+it+documents%2C+and+this+dashboard+ranks+the+drift+so+the+stalest&p=%2Fdocs%2Ffreshness"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://three.ws/"},{"@type":"ListItem","position":2,"name":"Docs","item":"https://three.ws/docs"},{"@type":"ListItem","position":3,"name":"Freshness","item":"https://three.ws/docs/freshness"}]}]}</script>
 </head>
 	<body>
 		<div class="df-wrap">
 			<nav class="df-crumb" aria-label="Breadcrumb">
-				<a href="/docs">Docs</a>
+				<a href="/docs" data-i18n="docs_freshness.docs">Docs</a>
 				<span aria-hidden="true">/</span>
-				<span aria-current="page">Freshness</span>
+				<span aria-current="page" data-i18n="docs_freshness.freshness">Freshness</span>
 			</nav>
 
-			<h1 class="df-title">Does this documentation still describe the code?</h1>
-			<p class="df-lede">
+			<h1 class="df-title" data-i18n="docs_freshness.does_this_documentation_still_describe_the_c">Does this documentation still describe the code?</h1>
+			<p class="df-lede" data-i18n="docs_freshness.every_doc_names_the_files_npm_scripts">
 				Every doc names the files, npm scripts, and API routes it is about. That makes each page
 				measurable: bind it to the source it names, then ask git whether that source was committed
 				to after the doc was last written or last reviewed. Code that moved since is code the page
 				has never been checked against. Reading a page and finding it already correct counts too:
 				that check is recorded as a review, so real work never has to be faked with a cosmetic edit.
 			</p>
-			<p class="df-meta" id="df-meta">Loading the report…</p>
+			<p class="df-meta" id="df-meta" data-i18n="docs_freshness.loading_the_report">Loading the report…</p>
 
 			<div class="df-totals" id="df-totals" role="group" aria-label="Filter by status"></div>
 			<div class="df-bar" id="df-bar" role="img" aria-label="Share of docs by freshness status"></div>
 
 			<div class="df-controls">
-				<label class="df-search-label" for="df-search" hidden>Filter docs</label>
+				<label class="df-search-label" for="df-search" hidden data-i18n="docs_freshness.filter_docs">Filter docs</label>
 				<input
 					class="df-search"
 					id="df-search"
@@ -70,12 +70,12 @@
 					autocomplete="off"
 					spellcheck="false"
 				/>
-				<label for="df-sort" hidden>Sort order</label>
+				<label for="df-sort" hidden data-i18n="docs_freshness.sort_order">Sort order</label>
 				<select class="df-sort" id="df-sort">
-					<option value="signal">Most drift first</option>
-					<option value="files">Most files drifted</option>
-					<option value="age">Oldest doc first</option>
-					<option value="path">Path (A to Z)</option>
+					<option value="signal" data-i18n="docs_freshness.most_drift_first">Most drift first</option>
+					<option value="files" data-i18n="docs_freshness.most_files_drifted">Most files drifted</option>
+					<option value="age" data-i18n="docs_freshness.oldest_doc_first">Oldest doc first</option>
+					<option value="path" data-i18n="docs_freshness.path_a_to_z">Path (A to Z)</option>
 				</select>
 				<span class="df-count" id="df-count" aria-live="polite"></span>
 			</div>
@@ -393,5 +393,6 @@
 			boot();
 		</script>
 		<script src="/footer.js" defer></script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

@@ -4,21 +4,21 @@
 		<script>/* three.ws theme boot: no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>three.ws Cookbook recipe</title>
+		<title data-i18n="recipe.meta_title">three.ws Cookbook recipe</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="author" content="nirholas" />
 		<meta
 			name="description"
 			content="A runnable three.ws cookbook recipe: the file, why it is shaped that way, and what it produces."
-		/>
+		 data-i18n-attr="content:recipe.meta_description"/>
 		<meta name="theme-color" content="#000000" />
 		<meta property="og:type" content="article" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="three.ws Cookbook recipe" />
+		<meta property="og:title" content="three.ws Cookbook recipe"  data-i18n-attr="content:recipe.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="A runnable three.ws cookbook recipe: the file, why it is shaped that way, and what it produces."
-		/>
+		 data-i18n-attr="content:recipe.meta_og_description"/>
 
 		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -77,8 +77,8 @@
 	<meta property="og:image:alt" content="The three.ws Cookbook">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="three.ws Cookbook recipe">
-	<meta name="twitter:description" content="A runnable three.ws cookbook recipe: the file, why it is shaped that way, and what it produces.">
+	<meta name="twitter:title" content="three.ws Cookbook recipe" data-i18n-attr="content:recipe.meta_twitter_title">
+	<meta name="twitter:description" content="A runnable three.ws cookbook recipe: the file, why it is shaped that way, and what it produces." data-i18n-attr="content:recipe.meta_twitter_description">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=learn&amp;t=Cookbook&amp;d=Runnable+recipes+for+building+with+three.ws&amp;p=%2Fcookbook">
 </head>
 	<body>
@@ -87,8 +87,8 @@
 
 			<main class="cb-main" id="main-content">
 				<nav class="cb-crumbs" aria-label="Breadcrumb">
-					<a href="/cookbook">Cookbook</a> <span aria-hidden="true">/</span>
-					<span id="cb-crumb-title">Recipe</span>
+					<a href="/cookbook" data-i18n="recipe.cookbook">Cookbook</a> <span aria-hidden="true">/</span>
+					<span id="cb-crumb-title" data-i18n="recipe.recipe">Recipe</span>
 				</nav>
 
 				<div class="cb-doc">
@@ -96,19 +96,19 @@
 						<div class="cb-skeleton" aria-hidden="true">
 							<span></span><span></span><span></span><span></span><span></span>
 						</div>
-						<p class="sr-only" role="status">Loading the recipe.</p>
+						<p class="sr-only" role="status" data-i18n="recipe.loading_the_recipe">Loading the recipe.</p>
 					</article>
 
 					<aside class="cb-side" id="cb-side" hidden>
 						<div class="cb-side-card" id="cb-facts-card">
-							<h2>The file</h2>
+							<h2 data-i18n="recipe.the_file">The file</h2>
 							<dl class="cb-facts" id="cb-facts"></dl>
 							<p style="margin: 0.9rem 0 0">
 								<a class="cb-btn primary" id="cb-download" download>Download</a>
 							</p>
 						</div>
 						<nav class="cb-side-card" id="cb-toc-card" aria-label="On this page">
-							<h2>On this page</h2>
+							<h2 data-i18n="recipe.on_this_page">On this page</h2>
 							<ul class="cb-toc" id="cb-toc"></ul>
 						</nav>
 					</aside>
@@ -384,5 +384,6 @@
 				}
 			})();
 		</script>
+		<script type="module" src="/i18n.js"></script>
 	</body>
 </html>

@@ -287,6 +287,17 @@ function buildSitemapHtml() {
 	// "Newest" strip: the most recently added public pages, so what just
 	// shipped is visible without scanning every section. News articles are
 	// excluded (they have their own feed and would drown product launches).
+	// Each card's title and description carry their own translation key, derived
+	// from the page path so it survives reordering and new pages. The path and
+	// the date are not copy and are marked translate="no": translated as one
+	// block with the card, /launcher came back as /lanzador.
+	const sitemapKey = (path) => path.replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '').toLowerCase() || 'home';
+	const cardTitle = (p) => `<span data-i18n="sitemap_index.t_${sitemapKey(p.path)}">${escapeHtml(p.title)}</span>`;
+	const cardDesc = (p) => `<span class="sm-desc" data-i18n="sitemap_index.d_${sitemapKey(p.path)}">${escapeHtml(p.description)}</span>`;
+	const SITEMAP_BADGES = {
+		auth: '<span class="sm-badge sm-badge-auth" data-i18n="sitemap_index.badge_signin">sign-in</span>',
+		internal: '<span class="sm-badge sm-badge-internal" data-i18n="sitemap_index.badge_internal">internal</span>',
+	};
 	const NEWEST_COUNT = 9;
 	const fmtAdded = (iso) =>
 		new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -299,10 +310,10 @@ function buildSitemapHtml() {
 	const newestHtml = newestPages
 		.map((p) => `\t\t\t\t<li>
 \t\t\t\t\t<a href="${escapeHtml(p.path)}">
-\t\t\t\t\t\t<span class="sm-new-date">${escapeHtml(fmtAdded(p.added))}</span>
-\t\t\t\t\t\t<span class="sm-title">${escapeHtml(p.title)}${p.auth === 'required' ? '<span class="sm-badge sm-badge-auth">sign-in</span>' : ''}</span>
-\t\t\t\t\t\t<span class="sm-path">${escapeHtml(p.path)}</span>
-\t\t\t\t\t\t<span class="sm-desc">${escapeHtml(p.description)}</span>
+\t\t\t\t\t\t<span class="sm-new-date" translate="no">${escapeHtml(fmtAdded(p.added))}</span>
+\t\t\t\t\t\t<span class="sm-title">${cardTitle(p)}${p.auth === 'required' ? SITEMAP_BADGES.auth : ''}</span>
+\t\t\t\t\t\t<span class="sm-path" translate="no">${escapeHtml(p.path)}</span>
+\t\t\t\t\t\t${cardDesc(p)}
 \t\t\t\t\t</a>
 \t\t\t\t</li>`)
 		.join('\n');
@@ -313,20 +324,20 @@ function buildSitemapHtml() {
 				.map((p) => {
 					const url = p.path.startsWith('http') ? p.path : p.path;
 					const badges = [];
-					if (p.auth === 'required') badges.push('<span class="sm-badge sm-badge-auth">sign-in</span>');
-					if (p.indexable === false) badges.push('<span class="sm-badge sm-badge-internal">internal</span>');
+					if (p.auth === 'required') badges.push(SITEMAP_BADGES.auth);
+					if (p.indexable === false) badges.push(SITEMAP_BADGES.internal);
 					return `\t\t\t\t<li>
 \t\t\t\t\t<a href="${escapeHtml(url)}">
-\t\t\t\t\t\t<span class="sm-title">${escapeHtml(p.title)}${badges.join('')}</span>
-\t\t\t\t\t\t<span class="sm-path">${escapeHtml(p.path)}</span>
-\t\t\t\t\t\t<span class="sm-desc">${escapeHtml(p.description)}</span>
+\t\t\t\t\t\t<span class="sm-title">${cardTitle(p)}${badges.join('')}</span>
+\t\t\t\t\t\t<span class="sm-path" translate="no">${escapeHtml(p.path)}</span>
+\t\t\t\t\t\t${cardDesc(p)}
 \t\t\t\t\t</a>
 \t\t\t\t</li>`;
 				})
 				.join('\n');
 			return `\t\t<section class="sm-section" id="${escapeHtml(section.id)}">
 \t\t\t<header>
-\t\t\t\t<h2>${escapeHtml(section.title)}<span class="sm-count" data-count>${section.pages.length}</span></h2>
+\t\t\t\t<h2><span data-i18n="sitemap_index.section_${section.id}">${escapeHtml(section.title)}</span><span class="sm-count" data-count>${section.pages.length}</span></h2>
 \t\t\t\t${section.description ? `<p class="sm-section-desc">${escapeHtml(section.description)}</p>` : ''}
 \t\t\t</header>
 \t\t\t<ul class="sm-list">
@@ -466,7 +477,7 @@ ${items}
 \t<main class="sm-wrap">
 \t\t<div class="sm-hero">
 \t\t\t<h1>Sitemap</h1>
-\t\t\t<p>All ${totalPages} pages on ${escapeHtml(site.name)}, grouped by purpose. Looking for the machine-readable versions?</p>
+\t\t\t<p><span>${totalPages}</span> <span data-i18n="sitemap_index.pages_grouped">pages on ${escapeHtml(site.name)}, grouped by purpose. Looking for the machine-readable versions?</span></p>
 \t\t\t<div class="sm-formats">
 \t\t\t\t<a href="/sitemap.xml"><code>sitemap.xml</code> · for search engines</a>
 \t\t\t\t<a href="/llms.txt"><code>llms.txt</code> · for AI agents</a>
@@ -494,7 +505,7 @@ ${tocHtml}
 \t\t</nav>
 ${sectionHtml}
 \t\t<div class="sm-empty" id="sm-empty" hidden>
-\t\t\t<p>No pages match &ldquo;<span id="sm-empty-q"></span>&rdquo;.</p>
+\t\t\t<p><span data-i18n="sitemap_index.no_pages_match">No pages match</span> &ldquo;<span id="sm-empty-q"></span>&rdquo;.</p>
 \t\t\t<p class="sm-empty-hint">Try a shorter word, or search everything: global search covers agents, coins, and skills too.</p>
 \t\t\t<div class="sm-empty-actions">
 \t\t\t\t<button type="button" id="sm-empty-clear">Clear filter</button>
@@ -627,6 +638,7 @@ ${sectionHtml}
 \t\tif (initial) { input.value = initial; apply(initial); }
 \t})();
 \t</script>
+\t<script type="module" src="/i18n.js"></script>
 </body>
 </html>
 `;

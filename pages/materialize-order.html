@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Your print · Materialize · three.ws</title>
-	<meta name="description" content="Track a three.ws Materialize print order from quote to doorstep: every status change with its real timestamp, the prepared model, tracking once it ships, and the on-chain certificate." />
+	<title data-i18n="materialize_order.meta_title">Your print · Materialize · three.ws</title>
+	<meta name="description" content="Track a three.ws Materialize print order from quote to doorstep: every status change with its real timestamp, the prepared model, tracking once it ships, and the on-chain certificate."  data-i18n-attr="content:materialize_order.meta_description"/>
 	<meta name="robots" content="noindex, follow" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
@@ -130,19 +130,19 @@
 				<div class="mo-stage" id="mo-stage">
 					<div class="mo-stage-empty" id="mo-stage-empty">
 						<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7z" /><path d="M3 7l9 5 9-5M12 12v10" /></svg>
-						<span>Preparing the print file</span>
+						<span data-i18n="materialize_order.preparing_the_print_file">Preparing the print file</span>
 					</div>
 				</div>
 				<div>
-					<p class="mo-eyebrow" id="mo-eyebrow">Materialize order</p>
-					<h1 class="mo-title" id="mo-title">Your print</h1>
+					<p class="mo-eyebrow" id="mo-eyebrow" data-i18n="materialize_order.materialize_order">Materialize order</p>
+					<h1 class="mo-title" id="mo-title" data-i18n="materialize_order.your_print">Your print</h1>
 					<p class="mo-sub" id="mo-sub"></p>
 					<dl class="mo-specs" id="mo-specs"></dl>
 				</div>
 			</div>
 
 			<div class="mo-panel">
-				<h2 class="mo-h2">Progress</h2>
+				<h2 class="mo-h2" data-i18n="materialize_order.progress">Progress</h2>
 				<div id="mo-branch"></div>
 				<ol class="mo-rail" id="mo-rail"></ol>
 				<div class="mo-waiting" id="mo-waiting" hidden>
@@ -152,12 +152,12 @@
 			</div>
 
 			<div class="mo-panel" id="mo-ship-panel" hidden>
-				<h2 class="mo-h2">Shipment</h2>
+				<h2 class="mo-h2" data-i18n="materialize_order.shipment">Shipment</h2>
 				<div class="mo-row" id="mo-ship-row"></div>
 			</div>
 
 			<div class="mo-panel" id="mo-cert-panel" hidden>
-				<h2 class="mo-h2">Certificate</h2>
+				<h2 class="mo-h2" data-i18n="materialize_order.certificate">Certificate</h2>
 				<p class="mo-sub" id="mo-cert-text"></p>
 				<div class="mo-row" id="mo-cert-row"></div>
 			</div>
@@ -166,5 +166,6 @@
 
 	<script src="/nav.js"></script>
 	<script type="module" src="/src/materialize-order.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

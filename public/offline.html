@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 	<meta name="theme-color" content="#000000" />
-	<title>Offline · three.ws</title>
+	<title data-i18n="offline.meta_title">Offline · three.ws</title>
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<style>
 		:root { color-scheme: dark; --bg: #080814; --panel: #10101c; --border: #23233a; --text: #f5f5f7; --muted: #9a9ab0; --accent: #ffffff; --accent-ink: #000000; }
@@ -31,11 +31,11 @@
 <body>
 	<main>
 		<img class="mark" src="/pwa-icon.svg" alt="" width="56" height="56" />
-		<h1>You're offline</h1>
-		<p>three.ws needs a connection to load 3D agents and to sign with Seed Vault. Nothing is lost: your session and your keys stay on the device.</p>
-		<div class="status" role="status" aria-live="polite"><span class="dot" id="dot"></span><span id="status-text">Waiting for a connection</span></div>
-		<button type="button" id="retry">Try again</button>
-		<small>The app reconnects on its own the moment the network is back.</small>
+		<h1 data-i18n="offline.you_re_offline">You're offline</h1>
+		<p data-i18n="offline.three_ws_needs_a_connection_to_load">three.ws needs a connection to load 3D agents and to sign with Seed Vault. Nothing is lost: your session and your keys stay on the device.</p>
+		<div class="status" role="status" aria-live="polite"><span class="dot" id="dot"></span><span id="status-text" data-i18n="offline.waiting_for_a_connection">Waiting for a connection</span></div>
+		<button type="button" id="retry" data-i18n="offline.try_again">Try again</button>
+		<small data-i18n="offline.the_app_reconnects_on_its_own_the">The app reconnects on its own the moment the network is back.</small>
 	</main>
 	<script>
 		(function () {
@@ -64,5 +64,6 @@
 			paint();
 		})();
 	</script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

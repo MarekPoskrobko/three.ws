@@ -4,7 +4,7 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Forge Funnel · three.ws</title>
+	<title data-i18n="forge_funnel.meta_title">Forge Funnel · three.ws</title>
 	<meta name="robots" content="noindex, nofollow" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
@@ -105,8 +105,8 @@
 </head>
 <body>
 	<div class="ff-wrap">
-		<h1 class="ff-title">Forge Funnel</h1>
-		<p class="ff-sub">
+		<h1 class="ff-title" data-i18n="forge_funnel.forge_funnel">Forge Funnel</h1>
+		<p class="ff-sub" data-i18n="forge_funnel.the_health_board_says_whether_meshes_come">
 			The health board says whether meshes come back. This one says whether anyone keeps them:
 			how much of Forge's output a maker accepts or downloads, whether new makers return for a
 			second model, what each model was for, and which engine earns its attempts. Platform
@@ -115,14 +115,14 @@
 		</p>
 
 		<div class="ff-controls">
-			<label for="ff-window">Window</label>
+			<label for="ff-window" data-i18n="forge_funnel.window">Window</label>
 			<select id="ff-window">
-				<option value="7">Last 7 days</option>
-				<option value="30" selected>Last 30 days</option>
-				<option value="90">Last 90 days</option>
-				<option value="365">Last 365 days</option>
+				<option value="7" data-i18n="forge_funnel.last_7_days">Last 7 days</option>
+				<option value="30" selected data-i18n="forge_funnel.last_30_days">Last 30 days</option>
+				<option value="90" data-i18n="forge_funnel.last_90_days">Last 90 days</option>
+				<option value="365" data-i18n="forge_funnel.last_365_days">Last 365 days</option>
 			</select>
-			<button id="ff-refresh" type="button">Refresh</button>
+			<button id="ff-refresh" type="button" data-i18n="forge_funnel.refresh">Refresh</button>
 			<span class="ff-stamp" id="ff-stamp"></span>
 		</div>
 
@@ -379,5 +379,6 @@
 		refreshBtn.addEventListener('click', load);
 		load();
 	</script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

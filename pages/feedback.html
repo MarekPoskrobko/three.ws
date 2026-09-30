@@ -5,8 +5,8 @@
 		<script>/* three.ws theme boot */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Feedback queue · three.ws</title>
-		<meta name="description" content="What visitors told the corner companion, grouped into one row per problem, scored by severity, and carrying the route, build, and console errors captured when it happened." />
+		<title data-i18n="feedback.meta_title">Feedback queue · three.ws</title>
+		<meta name="description" content="What visitors told the corner companion, grouped into one row per problem, scored by severity, and carrying the route, build, and console errors captured when it happened."  data-i18n-attr="content:feedback.meta_description"/>
 		<meta name="robots" content="noindex" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -179,8 +179,8 @@
 
 		<main class="shell">
 			<div class="hero">
-				<h1>Feedback queue</h1>
-				<p>
+				<h1 data-i18n="feedback.feedback_queue">Feedback queue</h1>
+				<p data-i18n="feedback.what_visitors_told_the_corner_companion_one">
 					What visitors told the corner companion. One row per distinct problem, loudest first,
 					each carrying the route, the build it happened on, and the console errors the browser
 					captured at the time. Where a session was recorded, the report compiles into a
@@ -192,11 +192,11 @@
 			<div class="stats" id="stats" hidden></div>
 
 			<div class="filters" role="group" aria-label="Filter by status">
-				<button type="button" data-status="open" aria-pressed="true">Open</button>
-				<button type="button" data-status="accepted" aria-pressed="false">Accepted</button>
-				<button type="button" data-status="fixed" aria-pressed="false">Fixed</button>
-				<button type="button" data-status="dismissed" aria-pressed="false">Dismissed</button>
-				<button type="button" data-status="all" aria-pressed="false">All</button>
+				<button type="button" data-status="open" aria-pressed="true" data-i18n="feedback.open">Open</button>
+				<button type="button" data-status="accepted" aria-pressed="false" data-i18n="feedback.accepted">Accepted</button>
+				<button type="button" data-status="fixed" aria-pressed="false" data-i18n="feedback.fixed">Fixed</button>
+				<button type="button" data-status="dismissed" aria-pressed="false" data-i18n="feedback.dismissed">Dismissed</button>
+				<button type="button" data-status="all" aria-pressed="false" data-i18n="feedback.all">All</button>
 			</div>
 
 			<div id="list" aria-live="polite">

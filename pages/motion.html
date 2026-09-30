@@ -4,24 +4,24 @@
 		<meta charset="utf-8" />
 		<script>/* three.ws theme boot, no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Motion Studio · Type a sentence, get an animation · three.ws</title>
+		<title data-i18n="motion.meta_title">Motion Studio · Type a sentence, get an animation · three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta
 			name="description"
 			content="Describe a movement in plain language and watch any 3D avatar perform it. No motion capture, no model weights: a kinematics solver reads a Motion Score and produces a real animation clip you can scrub, edit beat by beat, and export as GLB."
-		/>
+		 data-i18n-attr="content:motion.meta_description"/>
 		<meta name="theme-color" content="#000000" />
 		<link rel="canonical" href="https://three.ws/motion" />
 
 		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Motion Studio · three.ws" />
-		<meta property="og:description" content="Type a sentence, get a real full-body animation. No mocap, no model weights, no download." />
+		<meta property="og:title" content="Motion Studio · three.ws"  data-i18n-attr="content:motion.meta_og_title"/>
+		<meta property="og:description" content="Type a sentence, get a real full-body animation. No mocap, no model weights, no download."  data-i18n-attr="content:motion.meta_og_description"/>
 		<meta property="og:url" content="https://three.ws/motion" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:image" content="https://three.ws/api/page-og?s=main&amp;t=Motion+Studio&amp;d=Type+a+sentence%2C+get+a+real+full-body+animation.+No+motion+capture%2C+no+model+weights%2C+nothing+to+download&amp;p=%2Fmotion" />
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Motion Studio · three.ws" />
-		<meta name="twitter:description" content="Type a sentence, get a real full-body animation. No mocap, no model weights, no download." />
+		<meta name="twitter:title" content="Motion Studio · three.ws"  data-i18n-attr="content:motion.meta_twitter_title"/>
+		<meta name="twitter:description" content="Type a sentence, get a real full-body animation. No mocap, no model weights, no download."  data-i18n-attr="content:motion.meta_twitter_description"/>
 		<meta name="twitter:image" content="https://three.ws/api/page-og?s=main&amp;t=Motion+Studio&amp;d=Type+a+sentence%2C+get+a+real+full-body+animation.+No+motion+capture%2C+no+model+weights%2C+nothing+to+download&amp;p=%2Fmotion" />
 		<meta name="twitter:site" content="@trythreews" />
 		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
@@ -233,9 +233,9 @@
 
 		<main class="mo-main">
 			<div class="mo-head">
-				<span class="mo-chip"><span class="mo-chip-dot"></span>Motion Studio</span>
-				<h1>Type a sentence. Get an animation.</h1>
-				<p class="mo-lede">
+				<span class="mo-chip" data-i18n-html="motion.motion_studio"><span class="mo-chip-dot"></span>Motion Studio</span>
+				<h1 data-i18n="motion.type_a_sentence_get_an_animation">Type a sentence. Get an animation.</h1>
+				<p class="mo-lede" data-i18n="motion.no_motion_capture_no_model_weights_nothing">
 					No motion capture, no model weights, nothing to download. Describe a
 					movement and a kinematics solver works out the joint rotations for
 					every frame: feet on the floor, weight over them, shoulders doing what
@@ -246,7 +246,7 @@
 
 			<form class="mo-composer" id="mo-form">
 				<div class="mo-input-row">
-					<label class="sr-only" for="mo-prompt">Describe the movement</label>
+					<label class="sr-only" for="mo-prompt" data-i18n="motion.describe_the_movement">Describe the movement</label>
 					<input
 						class="mo-input"
 						id="mo-prompt"
@@ -257,14 +257,14 @@
 						placeholder="wave hello twice, excitedly"
 						aria-describedby="mo-prompt-help"
 					/>
-					<button class="mo-go" id="mo-go" type="submit">Animate</button>
+					<button class="mo-go" id="mo-go" type="submit" data-i18n="motion.animate">Animate</button>
 				</div>
-				<p class="sr-only" id="mo-prompt-help">
+				<p class="sr-only" id="mo-prompt-help" data-i18n="motion.describe_a_movement_in_plain_language_known">
 					Describe a movement in plain language. Known movements answer instantly;
 					anything else is written by a language model into the same score format.
 				</p>
 				<div class="mo-examples">
-					<span class="mo-examples-label">Try</span>
+					<span class="mo-examples-label" data-i18n="motion.try">Try</span>
 					<div id="mo-examples" role="group" aria-label="Example movements"></div>
 				</div>
 			</form>
@@ -276,28 +276,28 @@
 							<div id="mo-stage"></div>
 							<div class="mo-stage-empty" id="mo-empty">
 								<div class="mo-skeleton" aria-hidden="true">◍</div>
-								<strong>Nothing is moving yet</strong>
-								<span>Type a movement above, or pick one of the examples.</span>
+								<strong data-i18n="motion.nothing_is_moving_yet">Nothing is moving yet</strong>
+								<span data-i18n="motion.type_a_movement_above_or_pick_one">Type a movement above, or pick one of the examples.</span>
 							</div>
 							<div class="mo-status" id="mo-status" role="status" aria-live="polite"></div>
 						</div>
 
 						<div class="mo-transport">
 							<div class="mo-transport-row">
-								<button class="mo-icon-btn" id="mo-play" type="button" title="Play or pause" aria-label="Play" disabled>▶</button>
-								<button class="mo-icon-btn" id="mo-loop" type="button" title="Loop the motion" aria-label="Loop" aria-pressed="false" disabled>↻</button>
+								<button class="mo-icon-btn" id="mo-play" type="button" title="Play or pause" aria-label="Play" disabled data-i18n-attr="aria-label:motion.play_arialabel;title:motion.play_or_pause_title">▶</button>
+								<button class="mo-icon-btn" id="mo-loop" type="button" title="Loop the motion" aria-label="Loop" aria-pressed="false" disabled data-i18n-attr="aria-label:motion.loop_arialabel;title:motion.loop_the_motion_title">↻</button>
 								<div class="mo-scrub-wrap">
-									<label class="sr-only" for="mo-scrub">Scrub the motion</label>
+									<label class="sr-only" for="mo-scrub" data-i18n="motion.scrub_the_motion">Scrub the motion</label>
 									<input class="mo-scrub" id="mo-scrub" type="range" min="0" max="1000" value="0" step="1" disabled />
 									<div class="mo-beats" id="mo-beat-marks" aria-hidden="true"></div>
 								</div>
-								<span class="mo-time" id="mo-time">0.00 / 0.00s</span>
+								<span class="mo-time" id="mo-time" data-i18n="motion.0_00_0_00s">0.00 / 0.00s</span>
 							</div>
 							<div class="mo-transport-row">
 								<span class="mo-speed">
-									<label for="mo-speed">Speed</label>
+									<label for="mo-speed" data-i18n="motion.speed">Speed</label>
 									<input id="mo-speed" type="range" min="25" max="200" value="100" step="5" disabled />
-									<span id="mo-speed-value">1.00x</span>
+									<span id="mo-speed-value" data-i18n="motion.1_00x">1.00x</span>
 								</span>
 								<span style="flex:1"></span>
 								<div id="mo-rigs" role="group" aria-label="Which avatar performs the motion" style="display:flex;gap:8px;flex-wrap:wrap"></div>
@@ -307,8 +307,8 @@
 
 					<div class="mo-panel" style="margin-top:14px">
 						<div class="mo-panel-head">
-							<span class="mo-panel-title">Export</span>
-							<span class="mo-panel-sub" id="mo-export-sub">nothing to export yet</span>
+							<span class="mo-panel-title" data-i18n="motion.export">Export</span>
+							<span class="mo-panel-sub" id="mo-export-sub" data-i18n="motion.nothing_to_export_yet">nothing to export yet</span>
 						</div>
 						<div class="mo-panel-body">
 							<div class="mo-toggles">
@@ -318,10 +318,10 @@
 								<label><input type="checkbox" id="mo-opt-fingers" checked /> Fingers</label>
 							</div>
 							<div class="mo-actions">
-								<button class="mo-btn" id="mo-dl-clip" type="button" disabled>Download clip JSON</button>
-								<button class="mo-btn" id="mo-dl-score" type="button" disabled>Download score</button>
-								<button class="mo-btn" id="mo-copy-link" type="button" disabled>Copy link</button>
-								<a class="mo-btn" id="mo-open-studio" href="/pose" hidden>Open in Animation Studio</a>
+								<button class="mo-btn" id="mo-dl-clip" type="button" disabled data-i18n="motion.download_clip_json">Download clip JSON</button>
+								<button class="mo-btn" id="mo-dl-score" type="button" disabled data-i18n="motion.download_score">Download score</button>
+								<button class="mo-btn" id="mo-copy-link" type="button" disabled data-i18n="motion.copy_link">Copy link</button>
+								<a class="mo-btn" id="mo-open-studio" href="/pose" hidden data-i18n="motion.open_in_animation_studio">Open in Animation Studio</a>
 							</div>
 						</div>
 					</div>
@@ -330,16 +330,16 @@
 				<div>
 					<div class="mo-panel">
 						<div class="mo-panel-head">
-							<span class="mo-panel-title">The score</span>
-							<span class="mo-panel-sub" id="mo-score-sub">no beats yet</span>
+							<span class="mo-panel-title" data-i18n="motion.the_score">The score</span>
+							<span class="mo-panel-sub" id="mo-score-sub" data-i18n="motion.no_beats_yet">no beats yet</span>
 						</div>
 						<div class="mo-panel-body">
 							<div class="mo-source" id="mo-source" hidden>
-								<span class="mo-lane" id="mo-lane">composer</span>
+								<span class="mo-lane" id="mo-lane" data-i18n="motion.composer">composer</span>
 								<span id="mo-source-note"></span>
 							</div>
 							<div class="mo-beat-list" id="mo-beats" role="list"></div>
-							<p class="mo-empty-note" id="mo-beats-empty">
+							<p class="mo-empty-note" id="mo-beats-empty" data-i18n="motion.a_motion_is_a_handful_of_beats">
 								A motion is a handful of beats: where the body is at one instant,
 								how long it takes to get there, and how long it stays. Once you
 								animate something, every beat shows up here and you can jump to it.
@@ -350,16 +350,16 @@
 
 					<div class="mo-panel">
 						<div class="mo-panel-head">
-							<span class="mo-panel-title">Edit it</span>
-							<span class="mo-panel-sub">recompiles on the spot</span>
+							<span class="mo-panel-title" data-i18n="motion.edit_it">Edit it</span>
+							<span class="mo-panel-sub" data-i18n="motion.recompiles_on_the_spot">recompiles on the spot</span>
 						</div>
 						<div class="mo-panel-body">
-							<label class="sr-only" for="mo-score-json">Motion Score JSON</label>
+							<label class="sr-only" for="mo-score-json" data-i18n="motion.motion_score_json">Motion Score JSON</label>
 							<textarea class="mo-score-editor" id="mo-score-json" spellcheck="false" disabled placeholder="Animate something first, then edit its score here."></textarea>
 							<div class="mo-actions">
-								<button class="mo-btn mo-btn-primary" id="mo-recompile" type="button" disabled>Recompile</button>
-								<button class="mo-btn" id="mo-revert" type="button" disabled>Revert</button>
-								<a class="mo-btn" href="/docs/motion" target="_blank" rel="noopener">Score reference</a>
+								<button class="mo-btn mo-btn-primary" id="mo-recompile" type="button" disabled data-i18n="motion.recompile">Recompile</button>
+								<button class="mo-btn" id="mo-revert" type="button" disabled data-i18n="motion.revert">Revert</button>
+								<a class="mo-btn" href="/docs/motion" target="_blank" rel="noopener" data-i18n="motion.score_reference">Score reference</a>
 							</div>
 							<div id="mo-edit-error"></div>
 						</div>
@@ -368,8 +368,8 @@
 			</section>
 
 			<section class="mo-how">
-				<h2>How a sentence becomes a body</h2>
-				<p class="mo-how-lede">
+				<h2 data-i18n="motion.how_a_sentence_becomes_a_body">How a sentence becomes a body</h2>
+				<p class="mo-how-lede" data-i18n="motion.every_other_way_to_get_a_new">
 					Every other way to get a new animation needs data you do not have: a
 					capture stage, a licensed clip library, or a diffusion model trained on
 					one. This needs a sentence, because a human body is a solved kinematics
@@ -377,8 +377,8 @@
 				</p>
 				<div class="mo-grid">
 					<div class="mo-card">
-						<h3>A score, not a keyframe dump</h3>
-						<p>
+						<h3 data-i18n="motion.a_score_not_a_keyframe_dump">A score, not a keyframe dump</h3>
+						<p data-i18n-html="motion.the_intermediate_format_is_anatomy_and_timin">
 							The intermediate format is anatomy and timing: <code>posture: "crouch"</code>,
 							<code>arms.right.at: "chin"</code>, <code>gaze: "aside"</code>. No bone names,
 							no quaternions. That is what makes it writable by a language model,
@@ -386,8 +386,8 @@
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Feet meet the floor, not the hips</h3>
-						<p>
+						<h3 data-i18n="motion.feet_meet_the_floor_not_the_hips">Feet meet the floor, not the hips</h3>
+						<p data-i18n="motion.ankles_are_placed_in_world_space_against">
 							Ankles are placed in world space against the ground. The hips are
 							then free to drop, lean and turn, and the legs absorb it through
 							inverse kinematics, which is exactly what a real body does and why
@@ -395,8 +395,8 @@
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Balance is measured</h3>
-						<p>
+						<h3 data-i18n="motion.balance_is_measured">Balance is measured</h3>
+						<p data-i18n="motion.the_centre_of_mass_is_a_mass">
 							The centre of mass is a mass-weighted sum over the segments that
 							carry a body's weight, and the hips move until it sits over
 							whichever feet are actually carrying weight. Lift one foot and the
@@ -404,8 +404,8 @@
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>The shoulder helps</h3>
-						<p>
+						<h3 data-i18n="motion.the_shoulder_helps">The shoulder helps</h3>
+						<p data-i18n="motion.an_arm_is_not_two_bones_on">
 							An arm is not two bones on a fixed socket. The clavicle swings
 							toward a distant target, worth ten to fifteen centimetres of reach
 							and most of what makes a reach read as a whole body reaching
@@ -413,16 +413,16 @@
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Effort is not decoration</h3>
-						<p>
+						<h3 data-i18n="motion.effort_is_not_decoration">Effort is not decoration</h3>
+						<p data-i18n="motion.weight_time_and_flow_pick_the_easing">
 							Weight, time and flow pick the easing curve, scale the travel, and
 							set how far a limb overshoots before it settles. It is what makes
 							the same three shapes read as a wave, a swat, or a salute.
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Deterministic, so it is cacheable</h3>
-						<p>
+						<h3 data-i18n="motion.deterministic_so_it_is_cacheable">Deterministic, so it is cacheable</h3>
+						<p data-i18n="motion.the_same_score_compiles_to_the_same">
 							The same score compiles to the same clip, byte for byte, forever.
 							That is what lets a motion be cached at the edge, diffed in review,
 							and pinned in a regression test.
@@ -430,13 +430,13 @@
 					</div>
 				</div>
 
-				<h2 style="margin-top:clamp(32px,4vw,56px)">The order each beat is solved in</h2>
-				<p class="mo-how-lede">
+				<h2 style="margin-top:clamp(32px,4vw,56px)" data-i18n="motion.the_order_each_beat_is_solved_in">The order each beat is solved in</h2>
+				<p class="mo-how-lede" data-i18n="motion.reverse_any_two_of_these_and_the">
 					Reverse any two of these and the result is subtly wrong in a way that is
 					impossible to fix downstream. Solve the arms before the torso and every
 					gesture sits where the chest used to be.
 				</p>
-				<p class="mo-order">
+				<p class="mo-order" data-i18n-html="motion.root_where_the_hips_are_which_everything">
 					<b>root</b> where the hips are, which everything below hangs from<br />
 					<b>turn</b> the body's heading, so limbs solve in the turned frame<br />
 					<b>torso</b> lean, twist and side-bend, shared along the spine<br />
@@ -449,8 +449,8 @@
 
 				<div class="mo-grid" style="margin-top:24px">
 					<div class="mo-card">
-						<h3>Use it in your own code</h3>
-						<p>
+						<h3 data-i18n="motion.use_it_in_your_own_code">Use it in your own code</h3>
+						<p data-i18n-html="motion.is_the_same_compiler_this_page_runs">
 							<code>npm i @three-ws/motion</code> is the same compiler this page
 							runs, with zero dependencies and no renderer.
 							<a href="/docs/motion">Read the docs</a> or hit
@@ -458,16 +458,16 @@
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Refine it by hand</h3>
-						<p>
+						<h3 data-i18n="motion.refine_it_by_hand">Refine it by hand</h3>
+						<p data-i18n-html="motion.send_any_motion_to_the_animation_studio">
 							Send any motion to the <a href="/pose">Animation Studio</a> to
 							keyframe over it, then save it to your account, play it back across
 							the platform, or sell it.
 						</p>
 					</div>
 					<div class="mo-card">
-						<h3>Put it on your site</h3>
-						<p>
+						<h3 data-i18n="motion.put_it_on_your_site">Put it on your site</h3>
+						<p data-i18n-html="motion.the_clip_plays_on_any_humanoid_rig">
 							The clip plays on any humanoid rig through the
 							<a href="/walk">one-tag embed</a> and the
 							<a href="/docs/animations">retargeter</a>, which maps Mixamo,

@@ -4,17 +4,17 @@
 	<style>/* three.ws hidden-guard: make the `hidden` attribute authoritative; see scripts/lib/hidden-guard.mjs */[hidden]{display:none!important}</style>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Coin Wars arena: fight for your community · three.ws</title>
-	<meta name="description" content="The live Coin Wars arena: two coin communities meet in one 3D battlefield, fight to the kill cap, and the result lands on the war league ladder. You fight for the coin you hold." />
-	<meta property="og:title" content="Coin Wars arena · three.ws" />
-	<meta property="og:description" content="Two coin communities, one battlefield. Hold the coin, enlist from your world's war portal, and fight for the ladder." />
+	<title data-i18n="play_war.meta_title">Coin Wars arena: fight for your community · three.ws</title>
+	<meta name="description" content="The live Coin Wars arena: two coin communities meet in one 3D battlefield, fight to the kill cap, and the result lands on the war league ladder. You fight for the coin you hold."  data-i18n-attr="content:play_war.meta_description"/>
+	<meta property="og:title" content="Coin Wars arena · three.ws"  data-i18n-attr="content:play_war.meta_og_title"/>
+	<meta property="og:description" content="Two coin communities, one battlefield. Hold the coin, enlist from your world's war portal, and fight for the ladder."  data-i18n-attr="content:play_war.meta_og_description"/>
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="three.ws" />
 	<meta property="og:url" content="https://three.ws/play/war" />
 	<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Coin+Wars+arena%3A+two+communities%2C+one+battlefield&amp;d=The+live+Coin+Wars+arena.+Enlist+at+your+coin+world%27s+war+portal%2C+fight+the+rival+community+to+the+kill+cap%2C+and+the+result+lands+on+the+Elo+ladder.+You+fight&amp;p=%2Fplay%2Fwar" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Coin Wars arena · three.ws" />
-	<meta name="twitter:description" content="Two coin communities, one battlefield. Hold the coin, enlist from your world's war portal, and fight for the ladder." />
+	<meta name="twitter:title" content="Coin Wars arena · three.ws"  data-i18n-attr="content:play_war.meta_twitter_title"/>
+	<meta name="twitter:description" content="Two coin communities, one battlefield. Hold the coin, enlist from your world's war portal, and fight for the ladder."  data-i18n-attr="content:play_war.meta_twitter_description"/>
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Coin+Wars+arena%3A+two+communities%2C+one+battlefield&amp;d=The+live+Coin+Wars+arena.+Enlist+at+your+coin+world%27s+war+portal%2C+fight+the+rival+community+to+the+kill+cap%2C+and+the+result+lands+on+the+Elo+ladder.+You+fight&amp;p=%2Fplay%2Fwar" />
 	<link rel="canonical" href="https://three.ws/play/war" />
 	<link rel="icon" href="/favicon.ico" />
@@ -67,7 +67,7 @@
 	<!-- The page heading. A fullscreen arena has no chrome to hang a visible
 	     title on, but the document still needs exactly one h1: the two cards
 	     below are dialog headings and are mutually exclusive. -->
-	<h1 class="war-page-title">Coin Wars arena</h1>
+	<h1 class="war-page-title" data-i18n="play_war.coin_wars_arena">Coin Wars arena</h1>
 	<canvas id="scene" aria-label="Coin Wars battlefield"></canvas>
 	<div class="war-vignette" aria-hidden="true"></div>
 	<div id="labels" aria-hidden="true"></div>
@@ -75,7 +75,7 @@
 	<!-- Loading / working. Never a spinner alone: it always says what it is doing. -->
 	<div id="status" class="war-status" role="status" aria-live="polite">
 		<span class="war-spinner" aria-hidden="true"></span>
-		<span id="status-text">Preparing the arena…</span>
+		<span id="status-text" data-i18n="play_war.preparing_the_arena">Preparing the arena…</span>
 	</div>
 
 	<!-- The battle HUD. Hidden until the room is joined. -->
@@ -114,32 +114,32 @@
 		</div>
 		<div class="war-right">
 			<dl class="war-vitals" aria-label="Your record this battle">
-				<div><dt>Kills</dt><dd id="kills">0</dd></div>
-				<div><dt>Downs</dt><dd id="deaths">0</dd></div>
+				<div><dt data-i18n="play_war.kills">Kills</dt><dd id="kills">0</dd></div>
+				<div><dt data-i18n="play_war.downs">Downs</dt><dd id="deaths">0</dd></div>
 			</dl>
-			<button id="attack" class="war-attack no-orbit" type="button" aria-keyshortcuts="Space F">Fire<small aria-hidden="true">space</small></button>
-			<button id="leave" class="war-leave no-orbit" type="button">Leave</button>
+			<button id="attack" class="war-attack no-orbit" type="button" aria-keyshortcuts="Space F" data-i18n-html="play_war.firespace">Fire<small aria-hidden="true">space</small></button>
+			<button id="leave" class="war-leave no-orbit" type="button" data-i18n="play_war.leave">Leave</button>
 		</div>
-		<p id="downed" class="war-downed" role="status" hidden>You are down, respawning shortly.</p>
-		<p class="war-keys">WASD or the arrow keys to move</p>
+		<p id="downed" class="war-downed" role="status" hidden data-i18n="play_war.you_are_down_respawning_shortly">You are down, respawning shortly.</p>
+		<p class="war-keys" data-i18n="play_war.wasd_or_the_arrow_keys_to_move">WASD or the arrow keys to move</p>
 	</div>
 
 	<!-- Terminal states. Both are designed cards with the one way out. -->
 	<div id="result" class="war-modal" role="dialog" aria-modal="true" aria-labelledby="result-title" hidden>
 		<div class="war-modal-card">
-			<h2 id="result-title" class="war-result-title">Battle over</h2>
+			<h2 id="result-title" class="war-result-title" data-i18n="play_war.battle_over">Battle over</h2>
 			<p id="result-score" class="war-result-score"></p>
 			<p id="result-reason" class="war-modal-b"></p>
 			<p id="result-mvp" class="war-modal-b war-modal-faint"></p>
-			<button id="result-back" class="war-modal-btn" type="button">Back to the world</button>
+			<button id="result-back" class="war-modal-btn" type="button" data-i18n="play_war.back_to_the_world">Back to the world</button>
 		</div>
 	</div>
 
 	<div id="fail" class="war-modal" role="dialog" aria-modal="true" aria-labelledby="fail-title" hidden>
 		<div class="war-modal-card">
-			<h2 id="fail-title" class="war-fail-title">No battle to join</h2>
+			<h2 id="fail-title" class="war-fail-title" data-i18n="play_war.no_battle_to_join">No battle to join</h2>
 			<p id="fail-detail" class="war-modal-b"></p>
-			<button id="fail-back" class="war-modal-btn" type="button">Back to the world</button>
+			<button id="fail-back" class="war-modal-btn" type="button" data-i18n="play_war.back_to_the_world_2">Back to the world</button>
 			<!-- The war room. src/play/war-board.js fills this from /api/wars with
 			     the battles running now, the communities queued for an opponent
 			     and the top of the ladder, so a card that says "no battle here"
@@ -149,5 +149,6 @@
 	</div>
 
 	<script type="module" src="/src/play/war.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

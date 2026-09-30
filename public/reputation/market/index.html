@@ -3,12 +3,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Reputation Staking Market &middot; three.ws</title>
+		<title data-i18n="reputation_market_index.meta_title">Reputation Staking Market &middot; three.ws</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<meta
 			name="description"
 			content="Stake conviction on an agent and earn from its attested action history. Escrowed principal, per-epoch yield derived from signed on-chain attestations, withdraw any time."
-		/>
+		 data-i18n-attr="content:reputation_market_index.meta_description"/>
 		<meta name="theme-color" content="#090909" />
 
 		<link rel="shortcut icon" href="/favicon.ico" />
@@ -21,11 +21,11 @@
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
-		<meta property="og:title" content="Reputation Staking Market &middot; three.ws" />
+		<meta property="og:title" content="Reputation Staking Market &middot; three.ws"  data-i18n-attr="content:reputation_market_index.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="Stake conviction on an agent and earn from its attested action history."
-		/>
+		 data-i18n-attr="content:reputation_market_index.meta_og_description"/>
 		<meta property="og:url" content="https://three.ws/reputation/market" />
 		<meta
 			property="og:image"
@@ -198,16 +198,16 @@
 	<link rel="canonical" href="https://three.ws/reputation/market">
 	<meta property="og:locale" content="en_US">
 	<meta property="og:image:alt" content="Reputation Staking Market - three.ws">
-	<meta name="twitter:title" content="Reputation Staking Market · three.ws">
-	<meta name="twitter:description" content="Stake conviction on an agent and earn from its attested action history: escrowed principal, per-epoch yield derived from signed on-chain attestations, withdraw any time.">
+	<meta name="twitter:title" content="Reputation Staking Market · three.ws" data-i18n-attr="content:reputation_market_index.meta_twitter_title">
+	<meta name="twitter:description" content="Stake conviction on an agent and earn from its attested action history: escrowed principal, per-epoch yield derived from signed on-chain attestations, withdraw any time." data-i18n-attr="content:reputation_market_index.meta_twitter_description">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=agent-tools&amp;t=Reputation+Staking+Market&amp;d=Stake+conviction+on+an+agent+and+earn+from+its+attested+action+history%3A+escrowed+principal%2C+per-epoch+yield+derived+from+signed+on-chain+attestations%2C+withdraw&amp;p=%2Freputation%2Fmarket">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Reputation Staking Market","description":"Stake conviction on an agent and earn from its attested action history: escrowed principal, per-epoch yield derived from signed on-chain attestations, withdraw any time.","url":"https://three.ws/reputation/market","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=agent-tools&t=Reputation+Staking+Market&d=Stake+conviction+on+an+agent+and+earn+from+its+attested+action+history%3A+escrowed+principal%2C+per-epoch+yield+derived+from+signed+on-chain+attestations%2C+withdraw&p=%2Freputation%2Fmarket"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://three.ws/"},{"@type":"ListItem","position":2,"name":"Reputation","item":"https://three.ws/reputation"},{"@type":"ListItem","position":3,"name":"Market","item":"https://three.ws/reputation/market"}]}]}</script>
 </head>
 	<body>
-		<a href="#rsm-content" class="h-skip-link">Skip to content</a>
+		<a href="#rsm-content" class="h-skip-link" data-i18n="reputation_market_index.skip_to_content">Skip to content</a>
 
 		<header>
-			<h1>
+			<h1 data-i18n-html="reputation_market_index.three_ws">
 				<a href="/" aria-label="three.ws home"
 					><img class="wordmark-logo" src="/three.svg" alt="" aria-hidden="true" /><span class="wordmark-dot" aria-hidden="true"></span>three.ws</a
 				>
@@ -220,24 +220,24 @@
 			<div class="rsm-wrap">
 				<div class="rsm-head">
 					<div>
-						<h2>Reputation Staking Market</h2>
-						<p class="rsm-sub">
+						<h2 data-i18n="reputation_market_index.reputation_staking_market">Reputation Staking Market</h2>
+						<p class="rsm-sub" data-i18n="reputation_market_index.back_an_agent_with_escrowed_sol_and">
 							Back an agent with escrowed SOL and earn from what it actually did. Yield comes from the agent's signed,
 							on-chain action history, split each UTC day between everyone staked on it. Principal is never slashed and
 							can be withdrawn at any time.
 						</p>
 					</div>
 					<div class="rsm-net" role="group" aria-label="Network">
-						<button type="button" data-network="devnet" aria-pressed="true">Devnet</button>
-						<button type="button" data-network="mainnet" aria-pressed="false">Mainnet</button>
+						<button type="button" data-network="devnet" aria-pressed="true" data-i18n="reputation_market_index.devnet">Devnet</button>
+						<button type="button" data-network="mainnet" aria-pressed="false" data-i18n="reputation_market_index.mainnet">Mainnet</button>
 					</div>
 				</div>
 
 				<div class="rsm-stats" id="rsm-stats" aria-live="polite"></div>
 
 				<section class="rsm-sec" aria-labelledby="rsm-market-h">
-					<h3 id="rsm-market-h">Agents by staked conviction</h3>
-					<p class="rsm-sec-note">
+					<h3 id="rsm-market-h" data-i18n="reputation_market_index.agents_by_staked_conviction">Agents by staked conviction</h3>
+					<p class="rsm-sec-note" data-i18n-html="reputation_market_index.ranked_by_net_principal_currently_escrowed_e">
 						Ranked by net principal currently escrowed. <strong>Epoch weight</strong> is today's yield weight derived
 						from the agent's attested work and faults; <strong>realized</strong> is the annualised rate its stakers have
 						actually been paid, never a projection.
@@ -246,8 +246,8 @@
 				</section>
 
 				<section class="rsm-sec" aria-labelledby="rsm-open-h">
-					<h3 id="rsm-open-h">Open a position</h3>
-					<p class="rsm-sec-note">
+					<h3 id="rsm-open-h" data-i18n="reputation_market_index.open_a_position">Open a position</h3>
+					<p class="rsm-sec-note" data-i18n-html="reputation_market_index.a_stake_is_a_transaction_you_sign">
 						A stake is a transaction you sign: SOL to the market escrow plus a
 						<code>threews.stake.v1</code> memo. Connect a Solana wallet to build it here, or paste the signature of one
 						you already broadcast and the market will verify it against the chain.
@@ -255,7 +255,7 @@
 					<form class="rsm-form" id="rsm-stake-form">
 						<input class="rsm-input" id="rsm-stake-agent" placeholder="Agent asset pubkey" aria-label="Agent asset pubkey" autocomplete="off" spellcheck="false" />
 						<input class="rsm-input" id="rsm-stake-amount" type="number" min="0.001" step="0.001" value="0.01" style="flex: 0 1 130px" aria-label="Stake amount in SOL" />
-						<label class="rsm-mono" for="rsm-stake-score" style="color: rgba(232,233,240,0.6)">Conviction</label>
+						<label class="rsm-mono" for="rsm-stake-score" style="color: rgba(232,233,240,0.6)" data-i18n="reputation_market_index.conviction">Conviction</label>
 						<select class="rsm-input" id="rsm-stake-score" style="flex: 0 1 90px" aria-label="Conviction score 1 to 5">
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -263,62 +263,62 @@
 							<option value="4" selected>4</option>
 							<option value="5">5</option>
 						</select>
-						<button class="rsm-btn primary" type="submit" id="rsm-stake-go">Connect wallet and stake</button>
+						<button class="rsm-btn primary" type="submit" id="rsm-stake-go" data-i18n="reputation_market_index.connect_wallet_and_stake">Connect wallet and stake</button>
 					</form>
 					<form class="rsm-form" id="rsm-record-form">
 						<input class="rsm-input" id="rsm-record-sig" placeholder="Or paste an existing stake transaction signature" aria-label="Stake transaction signature" autocomplete="off" spellcheck="false" />
-						<button class="rsm-btn" type="submit">Verify and index</button>
+						<button class="rsm-btn" type="submit" data-i18n="reputation_market_index.verify_and_index">Verify and index</button>
 					</form>
 					<p class="rsm-msg" id="rsm-stake-msg" role="status" aria-live="polite"></p>
 				</section>
 
 				<section class="rsm-sec" aria-labelledby="rsm-pos-h">
-					<h3 id="rsm-pos-h">Your positions</h3>
-					<p class="rsm-sec-note">
+					<h3 id="rsm-pos-h" data-i18n="reputation_market_index.your_positions">Your positions</h3>
+					<p class="rsm-sec-note" data-i18n="reputation_market_index.positions_belong_to_the_wallet_that_signed">
 						Positions belong to the wallet that signed the stake, so anyone can look one up. Earnings shown for an open
 						position are pending: they are recomputed on every read and only fixed when you withdraw.
 					</p>
 					<form class="rsm-form" id="rsm-pos-form">
 						<input class="rsm-input" id="rsm-pos-staker" placeholder="Staker wallet pubkey" aria-label="Staker wallet pubkey" autocomplete="off" spellcheck="false" />
-						<button class="rsm-btn" type="submit">Look up</button>
-						<button class="rsm-btn" type="button" id="rsm-pos-connect">Use my wallet</button>
+						<button class="rsm-btn" type="submit" data-i18n="reputation_market_index.look_up">Look up</button>
+						<button class="rsm-btn" type="button" id="rsm-pos-connect" data-i18n="reputation_market_index.use_my_wallet">Use my wallet</button>
 					</form>
 					<div id="rsm-positions"></div>
 					<p class="rsm-msg" id="rsm-pos-msg" role="status" aria-live="polite"></p>
 				</section>
 
 				<section class="rsm-sec" aria-labelledby="rsm-model-h">
-					<h3 id="rsm-model-h">How the yield is derived</h3>
-					<p class="rsm-sec-note">
+					<h3 id="rsm-model-h" data-i18n="reputation_market_index.how_the_yield_is_derived">How the yield is derived</h3>
+					<p class="rsm-sec-note" data-i18n-html="reputation_market_index.every_constant_below_lives_in_one_place">
 						Every constant below lives in one place and runs identically in your browser and on the server, so you can
 						re-derive any payout yourself. Full contract:
 						<a href="https://github.com/nirholas/three.ws/blob/main/specs/REPUTATION_STAKING_MARKET.md">the spec</a>.
 					</p>
 					<div class="rsm-model">
 						<div class="rsm-model-card">
-							<h4>Work, from attestations</h4>
-							<p>
+							<h4 data-i18n="reputation_market_index.work_from_attestations">Work, from attestations</h4>
+							<p data-i18n="reputation_market_index.accepted_tasks_passed_validations_and_task_l">
 								Accepted tasks, passed validations and task-linked feedback add work. Failed validations, disputes and
 								revocations add faults, charged at double the rate work pays.
 							</p>
 						</div>
 						<div class="rsm-model-card">
-							<h4>Performance</h4>
-							<p>
+							<h4 data-i18n="reputation_market_index.performance">Performance</h4>
+							<p data-i18n-html="reputation_market_index.where_quality_maps_the_1_5_feedback">
 								<code>quality &times; integrity</code>, where quality maps the 1-5 feedback scale onto 0-1 and integrity
 								is <code>work / (work + 2 &times; faults)</code>. No feedback reads as neutral, not as bad.
 							</p>
 						</div>
 						<div class="rsm-model-card">
-							<h4>Concave in activity</h4>
-							<p>
+							<h4 data-i18n="reputation_market_index.concave_in_activity">Concave in activity</h4>
+							<p data-i18n-html="reputation_market_index.weight_is_doubling_output_does_not_double">
 								Weight is <code>performance &times; log2(1 + work)</code>. Doubling output does not double yield, so
 								spraying cheap attestations buys nothing.
 							</p>
 						</div>
 						<div class="rsm-model-card">
-							<h4>A fixed pool, never a rate</h4>
-							<p>
+							<h4 data-i18n="reputation_market_index.a_fixed_pool_never_a_rate">A fixed pool, never a rate</h4>
+							<p data-i18n-html="reputation_market_index.each_epoch_has_a_funded_budget_split">
 								Each epoch has a funded budget split by <code>principal &times; time &times; weight</code>. The market can
 								never owe more than the escrow holds, and principal is never at risk.
 							</p>

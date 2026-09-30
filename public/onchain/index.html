@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Open files and messages stored in Solana transaction memos.">
-  <title>Onchain viewer · three.ws</title>
+  <meta name="description" content="Open files and messages stored in Solana transaction memos." data-i18n-attr="content:onchain_index.meta_description">
+  <title data-i18n="onchain_index.meta_title">Onchain viewer · three.ws</title>
   <style>
     :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #080a10; color: #f6f7fb; }
     * { box-sizing: border-box; }
@@ -27,8 +27,8 @@
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="three.ws">
 	<meta property="og:locale" content="en_US">
-	<meta property="og:title" content="Onchain Viewer · three.ws">
-	<meta property="og:description" content="Open an image or text written into a public Solana Memo. Paste a transaction signature or Solscan link to preview the signed data without copying a data URI.">
+	<meta property="og:title" content="Onchain Viewer · three.ws" data-i18n-attr="content:onchain_index.meta_og_title">
+	<meta property="og:description" content="Open an image or text written into a public Solana Memo. Paste a transaction signature or Solscan link to preview the signed data without copying a data URI." data-i18n-attr="content:onchain_index.meta_og_description">
 	<meta property="og:url" content="https://three.ws/onchain">
 	<meta property="og:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Onchain+Viewer&amp;d=Open+an+image+or+text+written+into+a+public+Solana+Memo.+Paste+a+transaction+signature+or+Solscan+link+to+preview+the+signed+data+without+copying+a+data+URI.&amp;p=%2Fonchain">
 	<meta property="og:image:width" content="1200">
@@ -37,25 +37,25 @@
 	<meta property="og:image:alt" content="Onchain Viewer - three.ws">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:site" content="@trythreews">
-	<meta name="twitter:title" content="Onchain Viewer · three.ws">
-	<meta name="twitter:description" content="Open an image or text written into a public Solana Memo. Paste a transaction signature or Solscan link to preview the signed data without copying a data URI.">
+	<meta name="twitter:title" content="Onchain Viewer · three.ws" data-i18n-attr="content:onchain_index.meta_twitter_title">
+	<meta name="twitter:description" content="Open an image or text written into a public Solana Memo. Paste a transaction signature or Solscan link to preview the signed data without copying a data URI." data-i18n-attr="content:onchain_index.meta_twitter_description">
 	<meta name="twitter:image" content="https://three.ws/api/page-og?s=crypto&amp;t=Onchain+Viewer&amp;d=Open+an+image+or+text+written+into+a+public+Solana+Memo.+Paste+a+transaction+signature+or+Solscan+link+to+preview+the+signed+data+without+copying+a+data+URI.&amp;p=%2Fonchain">
 	<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Onchain Viewer","description":"Open an image or text written into a public Solana Memo. Paste a transaction signature or Solscan link to preview the signed data without copying a data URI.","url":"https://three.ws/onchain","isPartOf":{"@type":"WebSite","name":"three.ws","url":"https://three.ws"},"primaryImageOfPage":"https://three.ws/api/page-og?s=crypto&t=Onchain+Viewer&d=Open+an+image+or+text+written+into+a+public+Solana+Memo.+Paste+a+transaction+signature+or+Solscan+link+to+preview+the+signed+data+without+copying+a+data+URI.&p=%2Fonchain"}]}</script>
 </head>
 <body>
   <main>
-    <h1>Onchain viewer</h1>
-    <p class="lede">Paste a Solana transaction. If it contains a file or message in a Memo, we’ll show it here without copying an inscrutable data URI.</p>
+    <h1 data-i18n="onchain_index.onchain_viewer">Onchain viewer</h1>
+    <p class="lede" data-i18n="onchain_index.paste_a_solana_transaction_if_it_contains">Paste a Solana transaction. If it contains a file or message in a Memo, we’ll show it here without copying an inscrutable data URI.</p>
     <form id="lookup">
       <input id="transaction" aria-label="Solana transaction signature or Solscan link" placeholder="Transaction signature or Solscan link" autocomplete="off" spellcheck="false">
-      <button>Open</button>
+      <button data-i18n="onchain_index.open">Open</button>
     </form>
-    <p id="status" role="status">Enter a transaction to begin.</p>
+    <p id="status" role="status" data-i18n="onchain_index.enter_a_transaction_to_begin">Enter a transaction to begin.</p>
     <section class="card" id="result" aria-live="polite">
       <div class="meta" id="meta"></div>
       <div class="preview" id="preview"></div>
       <div class="actions" id="actions"></div>
-      <p class="fine">This viewer reads public, signed transaction data directly from Solana. Treat unfamiliar files with the same care you would any internet download.</p>
+      <p class="fine" data-i18n="onchain_index.this_viewer_reads_public_signed_transaction">This viewer reads public, signed transaction data directly from Solana. Treat unfamiliar files with the same care you would any internet download.</p>
     </section>
   </main>
   <script>
@@ -114,5 +114,6 @@
     const initial = new URLSearchParams(location.search).get('tx');
     if (initial) { $('transaction').value = initial; lookup(); }
   </script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

@@ -4,29 +4,29 @@
 		<script>/* three.ws theme boot, no-flash; runtime in /theme-switcher.js */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>3D Model · three.ws</title>
+		<title data-i18n="model.meta_title">3D Model · three.ws</title>
 		<meta
 			name="description"
 			content="A forged 3D model on three.ws: interactive viewer, real geometry stats, creator profile, likes, comments, remixing, and AR."
-		/>
+		 data-i18n-attr="content:model.meta_description"/>
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="three.ws" />
 		<meta property="og:url" content="https://three.ws/creations" />
-		<meta property="og:title" content="3D Model · three.ws" />
+		<meta property="og:title" content="3D Model · three.ws"  data-i18n-attr="content:model.meta_og_title"/>
 		<meta
 			property="og:description"
 			content="A forged 3D model on three.ws: interactive viewer, real geometry stats, creator profile, likes, comments, remixing, and AR."
-		/>
+		 data-i18n-attr="content:model.meta_og_description"/>
 		<meta property="og:image" content="https://three.ws/og-image.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:site" content="@trythreews" />
-		<meta name="twitter:title" content="3D Model · three.ws" />
+		<meta name="twitter:title" content="3D Model · three.ws"  data-i18n-attr="content:model.meta_twitter_title"/>
 		<meta
 			name="twitter:description"
 			content="A forged 3D model on three.ws: interactive viewer, real geometry stats, creator profile, likes, comments, remixing, and AR."
-		/>
+		 data-i18n-attr="content:model.meta_twitter_description"/>
 		<meta name="twitter:image" content="https://three.ws/og-image.png" />
 		<meta name="theme-color" content="#0a0a0a" />
 		<link rel="icon" href="/favicon.ico" sizes="any" />
@@ -46,7 +46,7 @@
 		<script src="/nav.js"></script>
 
 		<main id="mp-shell" class="mp-shell" aria-busy="true">
-			<a class="mp-back" href="/creations">← All creations</a>
+			<a class="mp-back" href="/creations" data-i18n="model.all_creations">← All creations</a>
 
 			<!-- Viewer hero. Hydrated by src/model-page.js. -->
 			<section id="mp-viewer" class="mp-viewer" aria-label="3D model viewer">
@@ -63,9 +63,9 @@
 				</div>
 
 				<aside class="mp-side" aria-label="Suggested models">
-					<h2>Suggested models</h2>
+					<h2 data-i18n="model.suggested_models">Suggested models</h2>
 					<div id="mp-suggested" class="mp-suggested"></div>
-					<a class="mp-side-more" href="/creations">Browse all creations →</a>
+					<a class="mp-side-more" href="/creations" data-i18n="model.browse_all_creations">Browse all creations →</a>
 				</aside>
 			</div>
 		</main>

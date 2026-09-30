@@ -4,7 +4,7 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Likeness Bench · three.ws</title>
+	<title data-i18n="likeness_bench.meta_title">Likeness Bench · three.ws</title>
 	<meta name="robots" content="noindex, nofollow" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="stylesheet" href="/style.css" />
@@ -65,19 +65,19 @@
 <body>
 	<div class="lk-wrap">
 		<div class="lk-header">
-			<h1 class="lk-title">Likeness Bench</h1>
+			<h1 class="lk-title" data-i18n="likeness_bench.likeness_bench">Likeness Bench</h1>
 		</div>
-		<p class="lk-sub">
+		<p class="lk-sub" data-i18n="likeness_bench.the_phase_1_verification_metric_measured_rat">
 			The Phase 1 verification metric, measured rather than asserted. Every scored reconstruction is rendered at three yaws and compared to the photos it was built from with an open-source face-recognition embedding. 4.0 out of 5 is the roadmap gate. Internal tooling, not a public surface.
 		</p>
 
 		<div class="lk-controls">
-			<label for="lk-window">Window</label>
+			<label for="lk-window" data-i18n="likeness_bench.window">Window</label>
 			<select id="lk-window">
-				<option value="7">Last 7 days</option>
-				<option value="30" selected>Last 30 days</option>
-				<option value="90">Last 90 days</option>
-				<option value="365">Last year</option>
+				<option value="7" data-i18n="likeness_bench.last_7_days">Last 7 days</option>
+				<option value="30" selected data-i18n="likeness_bench.last_30_days">Last 30 days</option>
+				<option value="90" data-i18n="likeness_bench.last_90_days">Last 90 days</option>
+				<option value="365" data-i18n="likeness_bench.last_year">Last year</option>
 			</select>
 		</div>
 
@@ -233,5 +233,6 @@
 		windowSelect.addEventListener('change', load);
 		load();
 	</script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

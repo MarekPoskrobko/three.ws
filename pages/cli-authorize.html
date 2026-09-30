@@ -4,14 +4,14 @@
 	<script>/* three.ws theme boot */(function(){document.documentElement.classList.add('js');try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Authorize the three-ws CLI · three.ws</title>
-	<meta name="description" content="Approve a sign-in from the three-ws command line. Check the code matches your terminal, choose what the new API key may do, and the CLI finishes setup on its own." />
+	<title data-i18n="cli_authorize.meta_title">Authorize the three-ws CLI · three.ws</title>
+	<meta name="description" content="Approve a sign-in from the three-ws command line. Check the code matches your terminal, choose what the new API key may do, and the CLI finishes setup on its own."  data-i18n-attr="content:cli_authorize.meta_description"/>
 	<link rel="canonical" href="https://three.ws/cli/authorize" />
 	<meta name="robots" content="noindex, follow" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="three.ws" />
-	<meta property="og:title" content="Authorize the three-ws CLI · three.ws" />
-	<meta property="og:description" content="Approve a sign-in from the three-ws command line and pick what the new API key may do." />
+	<meta property="og:title" content="Authorize the three-ws CLI · three.ws"  data-i18n-attr="content:cli_authorize.meta_og_title"/>
+	<meta property="og:description" content="Approve a sign-in from the three-ws command line and pick what the new API key may do."  data-i18n-attr="content:cli_authorize.meta_og_description"/>
 	<meta property="og:url" content="https://three.ws/cli/authorize" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:site" content="@trythreews" />
@@ -23,9 +23,9 @@
 <body>
 	<main class="cla-wrap" id="main">
 		<header class="cla-hero">
-			<p class="cla-eyebrow">Command line</p>
-			<h1 class="cla-title">Sign in the three-ws CLI</h1>
-			<p class="cla-lede">
+			<p class="cla-eyebrow" data-i18n="cli_authorize.command_line">Command line</p>
+			<h1 class="cla-title" data-i18n="cli_authorize.sign_in_the_three_ws_cli">Sign in the three-ws CLI</h1>
+			<p class="cla-lede" data-i18n-html="cli_authorize.a_terminal_asked_to_connect_to_your">
 				A terminal asked to connect to your three.ws account. Approving creates an API key that
 				only that terminal receives, once. You can revoke it any time from
 				<a href="/dashboard/api">your API keys</a>.
@@ -51,10 +51,11 @@
 			</section>
 		</noscript>
 
-		<p class="cla-foot">Did not run <code>npx three-ws</code> yourself? Deny it. Nobody at three.ws will ever ask you for a code.</p>
+		<p class="cla-foot" data-i18n-html="cli_authorize.did_not_run_yourself_deny_it_nobody">Did not run <code>npx three-ws</code> yourself? Deny it. Nobody at three.ws will ever ask you for a code.</p>
 	</main>
 
 	<script src="/nav.js"></script>
 	<script type="module" src="/src/cli-authorize.js"></script>
+	<script type="module" src="/i18n.js"></script>
 </body>
 </html>

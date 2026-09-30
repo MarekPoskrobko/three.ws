@@ -4,8 +4,8 @@
 	<script>/* three.ws theme boot: no-flash */(function(){try{var m=localStorage.getItem('twx_theme');var l=m==='auto'?(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches):m==='light';document.documentElement.setAttribute('data-theme',l?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-	<title>Hands-free voice for your home · three.ws</title>
-	<meta name="description" content="Talk to your house without finding a phone. A wake word matched on your own device, real barge-in, and a spoken confirmation that a background yes can never satisfy." />
+	<title data-i18n="voice_home.meta_title">Hands-free voice for your home · three.ws</title>
+	<meta name="description" content="Talk to your house without finding a phone. A wake word matched on your own device, real barge-in, and a spoken confirmation that a background yes can never satisfy."  data-i18n-attr="content:voice_home.meta_description"/>
 	<link rel="canonical" href="https://three.ws/voice/home" />
 	<link rel="icon" href="/favicon.ico" sizes="any" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,12 +16,12 @@
 	<link rel="stylesheet" href="/mobile.css" />
 	<link rel="stylesheet" href="/home-voice.css" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Hands-free voice for your home · three.ws" />
-	<meta property="og:description" content="A wake word matched on your own device, real barge-in, and a spoken confirmation a background yes can never satisfy." />
+	<meta property="og:title" content="Hands-free voice for your home · three.ws"  data-i18n-attr="content:voice_home.meta_og_title"/>
+	<meta property="og:description" content="A wake word matched on your own device, real barge-in, and a spoken confirmation a background yes can never satisfy."  data-i18n-attr="content:voice_home.meta_og_description"/>
 	<meta property="og:url" content="https://three.ws/voice/home" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Hands-free voice for your home · three.ws" />
-	<meta name="twitter:description" content="Talk to your house without finding a phone. The wake word never leaves your device." />
+	<meta name="twitter:title" content="Hands-free voice for your home · three.ws"  data-i18n-attr="content:voice_home.meta_twitter_title"/>
+	<meta name="twitter:description" content="Talk to your house without finding a phone. The wake word never leaves your device."  data-i18n-attr="content:voice_home.meta_twitter_description"/>
 	<meta name="twitter:site" content="@trythreews" />
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 	<style>
@@ -98,9 +98,9 @@
 
 	<main id="main-content" class="vh-wrap">
 		<section class="vh-hero">
-			<span class="vh-kicker">Hands-free</span>
-			<h1>Talk to your house without finding a phone</h1>
-			<p>
+			<span class="vh-kicker" data-i18n="voice_home.hands_free">Hands-free</span>
+			<h1 data-i18n="voice_home.talk_to_your_house_without_finding_a">Talk to your house without finding a phone</h1>
+			<p data-i18n="voice_home.a_wake_word_matched_by_a_model">
 				A wake word matched by a model running in this tab, an interruption that actually stops the agent
 				mid-sentence, and a spoken confirmation narrow enough that somebody agreeing with somebody else in the
 				same room can never unlock your front door.
@@ -117,8 +117,8 @@
 				     for an engineer, and the two must never drift apart. -->
 				<section class="vh-card" id="voice-disclosure"></section>
 				<section class="vh-card">
-					<h2>The same thing, as a pipeline</h2>
-					<p>
+					<h2 data-i18n="voice_home.the_same_thing_as_a_pipeline">The same thing, as a pipeline</h2>
+					<p data-i18n="voice_home.the_wake_word_runs_on_openwakeword_and">
 						The wake word runs on openWakeWord and the endpointing on silero, both downloaded from three.ws
 						and executed in this tab. That audio is never uploaded. Only the sentence after the wake word is
 						sent, and only to be transcribed.
@@ -133,26 +133,26 @@
 				</section>
 
 				<section class="vh-card">
-					<h2>The latency budget</h2>
+					<h2 data-i18n="voice_home.the_latency_budget">The latency budget</h2>
 					<div class="vh-scroll">
 						<table class="vh-budget">
-							<thead><tr><th scope="col">Leg</th><th scope="col">Budget</th></tr></thead>
+							<thead><tr><th scope="col" data-i18n="voice_home.leg">Leg</th><th scope="col" data-i18n="voice_home.budget">Budget</th></tr></thead>
 							<tbody>
-								<tr><td>Wake word detection</td><td>200 ms</td></tr>
-								<tr><td>End of speech</td><td>400 ms</td></tr>
-								<tr><td>Transcription round trip</td><td>900 ms</td></tr>
-								<tr><td>Agent turn</td><td>1200 ms</td></tr>
-								<tr><td>Action to device change</td><td>700 ms</td></tr>
-								<tr><td>First audible reply</td><td>1800 ms</td></tr>
+								<tr><td data-i18n="voice_home.wake_word_detection">Wake word detection</td><td data-i18n="voice_home.200_ms">200 ms</td></tr>
+								<tr><td data-i18n="voice_home.end_of_speech">End of speech</td><td data-i18n="voice_home.400_ms">400 ms</td></tr>
+								<tr><td data-i18n="voice_home.transcription_round_trip">Transcription round trip</td><td data-i18n="voice_home.900_ms">900 ms</td></tr>
+								<tr><td data-i18n="voice_home.agent_turn">Agent turn</td><td data-i18n="voice_home.1200_ms">1200 ms</td></tr>
+								<tr><td data-i18n="voice_home.action_to_device_change">Action to device change</td><td data-i18n="voice_home.700_ms">700 ms</td></tr>
+								<tr><td data-i18n="voice_home.first_audible_reply">First audible reply</td><td data-i18n="voice_home.1800_ms">1800 ms</td></tr>
 							</tbody>
 						</table>
 					</div>
-					<p>Measured live in the panel while you use it, not asserted here.</p>
+					<p data-i18n="voice_home.measured_live_in_the_panel_while_you">Measured live in the panel while you use it, not asserted here.</p>
 				</section>
 
 				<section class="vh-card">
-					<h2>Why a door is different</h2>
-					<p>
+					<h2 data-i18n="voice_home.why_a_door_is_different">Why a door is different</h2>
+					<p data-i18n-html="voice_home.turning_a_light_off_happens_the_moment">
 						Turning a light off happens the moment you ask. Unlocking a door does not: the agent says the whole
 						sentence, the entity appears on screen, and only the word <strong>confirm</strong> goes through. A
 						general yes does not, and on a device with no screen a guarded action is refused outright.
@@ -162,8 +162,8 @@
 		</div>
 
 		<section class="vh-states">
-			<h2>Every state</h2>
-			<p>
+			<h2 data-i18n="voice_home.every_state">Every state</h2>
+			<p data-i18n="voice_home.the_same_panel_component_driven_into_each">
 				The same panel component, driven into each of the twelve states it can be in. Off is the default, and
 				nothing about listening is downloaded until you turn it on.
 			</p>
@@ -171,9 +171,9 @@
 		</section>
 
 		<nav class="vh-links" aria-label="Related">
-			<a href="/docs/home-voice">Voice loop documentation</a>
-			<a href="/lipsync/mic">Audio-driven lipsync</a>
-			<a href="/voice">Voice and cloning</a>
+			<a href="/docs/home-voice" data-i18n="voice_home.voice_loop_documentation">Voice loop documentation</a>
+			<a href="/lipsync/mic" data-i18n="voice_home.audio_driven_lipsync">Audio-driven lipsync</a>
+			<a href="/voice" data-i18n="voice_home.voice_and_cloning">Voice and cloning</a>
 		</nav>
 	</main>
 
