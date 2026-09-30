@@ -88,6 +88,22 @@ const CEREBRAS_MODEL = 'llama-3.3-70b';
 // retired, so the composed id 404'd on every call while the base id looked fine.
 // Keep this in step with DEFAULT_FREE_MODEL in _lib/chat-models.js.
 const OPENROUTER_FREE_MODEL = DEFAULT_FREE_MODEL;
+// Further `:free` routes, each on its own upstream pool. A saturated free model
+// 429s every key at once ("Provider returned error"), so a second and third
+// model, not a fourth key, is what keeps the lane serving. Verified live
+// 2026-09-30: all three answered plain text and tool calls while one of them
+// was 429ing. Every id keeps the ':free' suffix so the lane can never bill.
+const OPENROUTER_ALT_FREE_MODELS = Object.freeze([
+	'nvidia/nemotron-3-super-120b-a12b:free',
+	'qwen/qwen3.8-27b:free',
+]);
+// Hugging Face Inference Providers (router.huggingface.co): OpenAI-compatible,
+// routed to whichever partner serves the model, billed to the token's monthly
+// included credit. Llama 3.3 70B answered clean text and JSON in ~0.5s under a
+// 32-token budget (2026-09-30); gpt-oss on this router spends small budgets on
+// reasoning and returns no content, so it is not used here.
+const HF_ROUTER_URL = 'https://router.huggingface.co/v1/chat/completions';
+const HF_MODEL = 'meta-llama/Llama-3.3-70B-Instruct';
 // Gemini Flash-Lite on the AI Studio FREE tier (GEMINI_API_KEY): an external
 // free quota, so it stays on the cheapest model.
 const GEMINI_MODEL = 'gemini-2.5-flash-lite';
@@ -168,6 +184,63 @@ const POLLINATIONS_MODEL = 'openai-fast';
 // fails over to the reliable Vertex anchor in seconds. Read per-call (not a
 // load-time const) so it's tunable via env without a redeploy; floored so a bad
 // value can't disable the guard.
+// Cross-request rung cooldown, per server instance. A rung whose key is out of
+// credit (402), rejected (401/403) or whose model is retired (404/410) will give
+// the same answer for a long while; a 429 for a short one. Without memory every
+// completion re-asked each dead rung, and with twenty-odd free rungs on a bad
+// day those round trips added up before the first live lane was reached.
+// Keyed by rung name + model (the name already encodes which key). State lives
+// on a global symbol so the test setup can clear it between tests without
+// importing this module ahead of each file's mocks.
+const COOLDOWNS = (globalThis[Symbol.for('three.ws.llmCooldowns')] ??= new Map());
+const COOLDOWN_DEAD_MS = 30 * 60_000;
+const COOLDOWN_RATE_DEFAULT_MS = 30_000;
+const COOLDOWN_RATE_MAX_MS = 5 * 60_000;
+
+function rungKey(p) {
+	return `${p.name}|${p.model}`;
+}
+
+/**
+ * How long a rung sits out after an HTTP failure, or 0 for "retry next call".
+ * 5xx and transport errors are treated as transient and never cool a rung.
+ */
+export function cooldownMsForStatus(status, retryAfter = null) {
+	if (status === 401 || status === 402 || status === 403 || status === 404 || status === 410) return COOLDOWN_DEAD_MS;
+	if (status === 429) {
+		const secs = Number(retryAfter);
+		const ms = Number.isFinite(secs) && secs > 0 ? secs * 1000 : COOLDOWN_RATE_DEFAULT_MS;
+		return Math.min(ms, COOLDOWN_RATE_MAX_MS);
+	}
+	return 0;
+}
+
+function noteRungFailure(p, status, retryAfter) {
+	const ms = cooldownMsForStatus(status, retryAfter);
+	if (ms > 0) COOLDOWNS.set(rungKey(p), { until: Date.now() + ms, status });
+}
+
+function rungCooling(p, now = Date.now()) {
+	const c = COOLDOWNS.get(rungKey(p));
+	if (!c) return false;
+	if (c.until <= now) {
+		COOLDOWNS.delete(rungKey(p));
+		return false;
+	}
+	return true;
+}
+
+/** Rungs currently sitting out, for health endpoints: [{ rung, status, seconds }]. */
+export function llmCooldownSnapshot(now = Date.now()) {
+	return [...COOLDOWNS.entries()]
+		.filter(([, c]) => c.until > now)
+		.map(([rung, c]) => ({ rung, status: c.status, seconds: Math.ceil((c.until - now) / 1000) }));
+}
+
+export function resetLlmCooldowns() {
+	COOLDOWNS.clear();
+}
+
 // Per-provider wall clock for one rung of the chain. Shared so a rung that wants
 // "the same budget as everyone else" cannot drift from the number llmComplete
 // actually enforces.
@@ -239,7 +312,10 @@ export async function checkUserLlmSpendCap(userId, { anthropicKey, grokKey } = {
 				-- on the platform key is real spend and counts against the cap.
 				AND NOT (provider LIKE 'openrouter%' AND (model IS NULL OR model LIKE '%:free'))
 				AND provider NOT LIKE 'vertex%'
-				AND provider NOT IN ('nvidia', 'cerebras', 'gemini', 'ovh', 'pollinations', 'sambanova', 'mistral', 'zai', 'cloudflare', 'siliconflow', 'llm7')
+				-- Multi-key rungs (nvidia#2, huggingface#2) meter like their base lane.
+				AND provider NOT LIKE 'nvidia%'
+				AND provider NOT LIKE 'huggingface%'
+				AND provider NOT IN ('cerebras', 'gemini', 'ovh', 'pollinations', 'sambanova', 'mistral', 'zai', 'cloudflare', 'siliconflow', 'llm7')
 				AND created_at > NOW() - INTERVAL '24 hours'
 		`;
 		const spent = Number(row?.spent ?? 0);
@@ -571,10 +647,23 @@ export function providerChain({ anthropicKey, anthropicModel, grokKey = null, gr
 			model: OPENROUTER_FREE_MODEL,
 		}));
 	});
-	if (env.NVIDIA_API_KEY) {
+	// The alternate free models, one rung each, rotating across the keys so a
+	// single account's daily free-request cap never carries them all.
+	if (openrouterKeys.length) {
+		OPENROUTER_ALT_FREE_MODELS.filter((m) => m !== OPENROUTER_FREE_MODEL).forEach((model, i) => {
+			chain.push(openrouterProvider({
+				name: `openrouter:${model.split('/')[1].replace(/:free$/, '')}`,
+				key: openrouterKeys[i % openrouterKeys.length],
+				model,
+			}));
+		});
+	}
+	// One NIM rung per nvapi key: each free key carries its own rate limit.
+	const nvidiaKeys = [...new Set([env.NVIDIA_API_KEY, ...env.NVIDIA_FALLBACK_KEYS].filter(Boolean))];
+	nvidiaKeys.forEach((key, i) => {
 		chain.push(openaiCompatProvider({
-			name: 'nvidia',
-			key: env.NVIDIA_API_KEY,
+			name: i === 0 ? 'nvidia' : `nvidia#${i + 1}`,
+			key,
 			url: 'https://integrate.api.nvidia.com/v1/chat/completions',
 			model: NVIDIA_MODEL,
 			extraBody: NVIDIA_NO_THINK,
@@ -584,7 +673,7 @@ export function providerChain({ anthropicKey, anthropicModel, grokKey = null, gr
 			// hardcoded 6s.
 			timeoutMs: nvidiaLaneTimeoutMs(),
 		}));
-	}
+	});
 	// SambaNova's free tier: the same Llama 3.3 70B on a fourth independent
 	// quota pool, so a day that exhausts Groq, Cerebras, and NVIDIA at once
 	// still has a 70B-class free rung with budget left.
@@ -627,6 +716,19 @@ export function providerChain({ anthropicKey, anthropicModel, grokKey = null, gr
 			model: CLOUDFLARE_MODEL,
 		}));
 	}
+	// Hugging Face Inference Providers, one rung per token. A free account's
+	// monthly credit is small (a dozen short calls drained a fresh one), so
+	// these sit behind the lanes with daily quotas; an exhausted token answers
+	// 402 in ~100ms and the provider cooldown below keeps it out of later calls.
+	const hfTokens = [...new Set([env.HF_TOKEN, ...env.HF_FALLBACK_TOKENS].filter(Boolean))];
+	hfTokens.forEach((key, i) => {
+		chain.push(openaiCompatProvider({
+			name: i === 0 ? 'huggingface' : `huggingface#${i + 1}`,
+			key,
+			url: HF_ROUTER_URL,
+			model: HF_MODEL,
+		}));
+	});
 	// OVH AI Endpoints anonymous tier — no key required, always available.
 	// Last of the 70B-class free rungs because its per-model anonymous quota
 	// (2 req/min/IP) is the tightest in the chain; everything with a real key
@@ -829,7 +931,14 @@ export async function llmComplete({ system, user, maxTokens = 1024, anthropicKey
 	const stalledHosts = new Set();
 	const hostOf = (url) => { try { return new URL(url).host; } catch { return url; } };
 	const isStall = (e) => e?.name === 'TimeoutError' || e?.name === 'AbortError' || /abort|timed? ?out/i.test(e?.message || '');
+	// Honor cooldowns only while something else can still answer: when every
+	// rung is sitting out, try them all anyway rather than fail without asking.
+	const everyRungCooling = chain.every((p) => rungCooling(p));
 	for (const p of chain) {
+		if (!everyRungCooling && rungCooling(p)) {
+			attempts.push({ provider: p.name, skipped: 'cooling' });
+			continue;
+		}
 		const remaining = deadline - Date.now();
 		// Out of overall budget — stop rather than start an attempt we can't finish.
 		if (remaining <= 500) {
@@ -876,6 +985,7 @@ export async function llmComplete({ system, user, maxTokens = 1024, anthropicKey
 		}
 		if (!upstream.ok) {
 			const body = await upstream.text().catch(() => '');
+			noteRungFailure(p, upstream.status, upstream.headers?.get?.('retry-after'));
 			lastErr = Object.assign(new Error(`${p.name} ${upstream.status}: ${body.slice(0, 200)}`), { status: 502, code: 'upstream_error' });
 			attempts.push({ provider: p.name, ms: Date.now() - startedAt, error: `http ${upstream.status}` });
 			continue;
@@ -907,6 +1017,7 @@ export async function llmComplete({ system, user, maxTokens = 1024, anthropicKey
 			attempts.push({ provider: p.name, ms: Date.now() - startedAt, error: 'empty completion' });
 			continue;
 		}
+		COOLDOWNS.delete(rungKey(p));
 		recordLlmSpend(p, usage, Date.now() - startedAt, track);
 		return {
 			text,

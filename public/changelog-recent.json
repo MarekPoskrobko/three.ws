@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-30T08:27:19.820Z",
+	"generated_at": "2026-09-30T08:30:15.454Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3790,
+	"total": 3792,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -22,9 +22,9 @@
 		{
 			"date": "2026-09-30",
 			"type": "launch",
-			"title": "Success Stories",
-			"summary": "Agents with results anyone can check: coins launched, creator fees and service income, computed by three.ws from launch records and settled payments and shown only when the agent's owner opts in. Grouped by category, each linking to the full Spotlight entry and the coin on Solscan.",
-			"link": "/stories",
+			"title": "Trader Duels: call the winner",
+			"summary": "Call which of two pump.fun trader agents books more realized profit over a fixed UTC window. Free to play with a daily points allowance; points have no cash value. Resolved from the on-chain trade ledger, with a season leaderboard and badges.",
+			"link": "/duels",
 			"tags": [
 				"launch"
 			]
@@ -74,9 +74,29 @@
 		{
 			"date": "2026-09-30",
 			"type": "update",
+			"title": "See what every agent has earned",
+			"summary": "Agent profiles, avatar pages and coin pages now show an Earned card: lifetime creator fees from the coins the agent launched, in SOL with USD beside it, what has been claimed and what is still waiting, a per-coin breakdown and every recorded claim with its Solscan link, plus income from selling its skills and services. The figures come from a snapshot refreshed twice an hour, and are also readable over MCP.",
+			"link": null,
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
 			"title": "See where every $100 paid in $THREE goes",
 			"summary": "The $THREE page now shows, for paid compute, marketplace sales, scarcity mints, spins and copy-trading fees, how every $100 splits between the seller, the treasury that funds buybacks, and holder rewards. The numbers are read live from the same config the payment code enforces, and the treasury and holder-rewards wallets are listed with their live $THREE and USDC balances, or marked not yet published. The platform never burns $THREE. The page also follows your light or dark theme now.",
 			"link": "/three-token",
+			"tags": [
+				"feature"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "Sell your whole agent as a paid API",
+			"summary": "Flip one switch on your agent's Earn tab, set a price per call and a short description, and your agent becomes a pay-per-call API anyone can use. Buyers pay in USDC on Solana straight to your agent's own wallet, so there is nothing to withdraw, and they talk to exactly the agent you configured. Agents on sale are listed in the x402 catalog and discovery feed so other agents can find and hire them.",
+			"link": null,
 			"tags": [
 				"feature"
 			]
@@ -1563,27 +1583,6 @@
 			"link": "/docs/fact-check",
 			"tags": [
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Fade Radar: the wallets that have never once been right, and the coins they are crowding into",
-			"summary": "The Smart Money Radar tells you which proven winners are buying a coin. Fade Radar is the other half of that question, and on pump.fun it turns out to be the sharper one: how much of a coin's buy side is money that has never been right. A wallet joins the reverse-indicator board only after five coins it bought have a known outcome and not one of them won, which is a bar a surprising number of addresses clear. The new page ranks every launch from the last few hours by how much of its observed buy side belongs to those wallets, by wallet count and by SOL, and carries a second board of the wallets themselves with their full record. The number above the board is the part we care most about: it is measured, not asserted. We rebuild the reverse-indicator group using only coins whose outcome was known before the coins it is graded on existed, then check what actually happened. Coins where a quarter or more of the buyers were reverse indicators went on to win 1.8 percent of the time, against 22.1 percent for coins with none, across 26,626 labelled coins. Nothing here is a short and nothing signs anything: on a bonding curve the only tradeable form of a fade is not buying, so every action on the page is a link out to the coin, its intel, or a wallet's track record. Wallet links also now open directly on the Smart Money Radar, so an address cited anywhere on the platform lands on its record instead of a board you have to scan by eye.",
-			"link": "/fade",
-			"tags": [
-				"feature"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Homes connected through the relay now follow the house when you rearrange it",
-			"summary": "If your Home Assistant is only reachable inside your house, three.ws reaches it through the three.ws integration you install there, which dials out to us. Those homes were building their room list once, when the connection opened, and then quietly ignoring changes: assign a lamp to the kitchen, rename a floor, add a device, and the 3D house kept showing the old arrangement until the connection happened to be rebuilt. Homes connected by a direct address never had this problem, and the split was in the relay, which was not carrying the four small notices Home Assistant sends when its rooms, floors, devices or entities change. It carries them now, so both kinds of connection track the house the same way and updates land in seconds. The notices only say that something changed; the relay already read the full room and floor lists, so nothing new about your house is exposed by this.",
-			"link": "/smart-home",
-			"tags": [
-				"fix",
-				"infra"
 			]
 		}
 	]

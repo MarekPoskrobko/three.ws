@@ -104,6 +104,9 @@ const FREE_PROVIDERS = new Set([
 	'cloudflare',
 	'siliconflow',
 	'llm7',
+	// Inference Providers on each token's monthly included credit: the chain
+	// never buys pre-paid credit, so an exhausted token 402s and fails over.
+	'huggingface',
 ]);
 
 // Strip a rung suffix from a provider name: '#n' for multi-key rungs

@@ -1536,6 +1536,32 @@ export const env = {
 			.filter(Boolean);
 	},
 
+	// Additional NVIDIA NIM keys (build.nvidia.com), comma-separated. Each free
+	// nvapi key carries its own rate limit, so the chain rotates across
+	// NVIDIA_API_KEY then these before leaving the NIM lane.
+	get NVIDIA_FALLBACK_KEYS() {
+		return (opt('NVIDIA_FALLBACK_KEYS') || '')
+			.split(',')
+			.map((k) => k.trim())
+			.filter(Boolean);
+	},
+
+	// Hugging Face token. The forge's free Spaces lane reads it for ZeroGPU
+	// quota, and the LLM chain uses it for Inference Providers
+	// (router.huggingface.co), which bills the account's monthly free credits.
+	get HF_TOKEN() {
+		return opt('HF_TOKEN');
+	},
+
+	// Additional Hugging Face tokens, comma-separated, each on its own account's
+	// monthly Inference Providers credit. Tried after HF_TOKEN runs dry (402).
+	get HF_FALLBACK_TOKENS() {
+		return (opt('HF_FALLBACK_TOKENS') || '')
+			.split(',')
+			.map((k) => k.trim())
+			.filter(Boolean);
+	},
+
 	// Per-user daily LLM spend cap, in whole USD, for completions that route to
 	// the platform's paid keys (Anthropic / OpenAI / Grok). Consumed by
 	// _lib/llm.js (dailyCapMicroUsd) as a float; unset or non-positive falls back

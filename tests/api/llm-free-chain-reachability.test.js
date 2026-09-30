@@ -28,6 +28,7 @@ const HOSTS = {
 	mistral: 'api.mistral.ai',
 	zai: 'api.z.ai',
 	cloudflare: 'api.cloudflare.com',
+	huggingface: 'router.huggingface.co',
 	ovh: 'oai.endpoints.kepler.ai.cloud.ovh.net',
 	gemini: 'generativelanguage.googleapis.com',
 	vertex: 'aiplatform.googleapis.com',
@@ -47,11 +48,20 @@ const FREE_CHAIN = [
 	{ provider: 'groq#120b', host: HOSTS.groq, model: 'openai/gpt-oss-120b' },
 	{ provider: 'cerebras', host: HOSTS.cerebras, model: 'llama-3.3-70b' },
 	{ provider: 'openrouter', host: HOSTS.openrouter, model: 'google/gemma-4-31b-it:free' },
-	{ provider: 'nvidia', host: HOSTS.nvidia, model: 'nvidia/nemotron-3-super-120b-a12b' },
+	// A saturated free model 429s every key at once, so the lane also rotates
+	// across alternate ':free' models, each on its own upstream pool.
+	{ provider: 'openrouter:nemotron-3-super-120b-a12b', host: HOSTS.openrouter, model: 'nvidia/nemotron-3-super-120b-a12b:free' },
+	{ provider: 'openrouter:qwen3.8-27b', host: HOSTS.openrouter, model: 'qwen/qwen3.8-27b:free' },
+	// One NIM rung per nvapi key; same host and model, told apart by the key.
+	{ provider: 'nvidia', host: HOSTS.nvidia, model: 'nvidia/nemotron-3-super-120b-a12b', auth: 'nvapi-x' },
+	{ provider: 'nvidia#2', host: HOSTS.nvidia, model: 'nvidia/nemotron-3-super-120b-a12b', auth: 'nvapi-y' },
 	{ provider: 'sambanova', host: HOSTS.sambanova, model: 'Meta-Llama-3.3-70B-Instruct' },
 	{ provider: 'mistral', host: HOSTS.mistral, model: 'mistral-small-latest' },
 	{ provider: 'zai', host: HOSTS.zai, model: 'glm-4.7-flash' },
 	{ provider: 'cloudflare', host: HOSTS.cloudflare, model: '@cf/meta/llama-3.3-70b-instruct-fp8-fast' },
+	// Hugging Face Inference Providers, one rung per token's monthly credit.
+	{ provider: 'huggingface', host: HOSTS.huggingface, model: 'meta-llama/Llama-3.3-70B-Instruct', auth: 'hf-a' },
+	{ provider: 'huggingface#2', host: HOSTS.huggingface, model: 'meta-llama/Llama-3.3-70B-Instruct', auth: 'hf-b' },
 	{ provider: 'ovh', host: HOSTS.ovh, model: 'Meta-Llama-3_3-70B-Instruct' },
 	{ provider: 'gemini', host: HOSTS.gemini, model: 'gemini-2.5-flash-lite' },
 	{ provider: 'vertex-gemini', host: HOSTS.vertex, model: 'google/gemini-2.5-flash' },
@@ -67,6 +77,9 @@ const ENV_KEYS = [
 	'OPENROUTER_API_KEY',
 	'OPENROUTER_FALLBACK_KEYS',
 	'NVIDIA_API_KEY',
+	'NVIDIA_FALLBACK_KEYS',
+	'HF_TOKEN',
+	'HF_FALLBACK_TOKENS',
 	'SAMBANOVA_API_KEY',
 	'MISTRAL_API_KEY',
 	'ZAI_API_KEY',
@@ -95,6 +108,9 @@ function configureFreeLanes() {
 	process.env.CEREBRAS_API_KEY = 'c';
 	process.env.OPENROUTER_API_KEY = 'or';
 	process.env.NVIDIA_API_KEY = 'nvapi-x';
+	process.env.NVIDIA_FALLBACK_KEYS = 'nvapi-y';
+	process.env.HF_TOKEN = 'hf-a';
+	process.env.HF_FALLBACK_TOKENS = 'hf-b';
 	process.env.SAMBANOVA_API_KEY = 'sn';
 	process.env.MISTRAL_API_KEY = 'mi';
 	process.env.ZAI_API_KEY = 'z';
@@ -162,7 +178,11 @@ describe('free chain: every rung is reachable through a transport-level failure'
 				// lane and the instant lane indistinguishable, which is exactly the
 				// pair this suite has to tell apart.
 				const requested = JSON.parse(opts.body).model;
-				const idx = FREE_CHAIN.findIndex((r) => u.includes(r.host) && r.model === requested);
+				// Multi-key rungs share host AND model, so the key tells them apart.
+				const auth = opts.headers?.authorization;
+				const idx = FREE_CHAIN.findIndex(
+					(r) => u.includes(r.host) && r.model === requested && (!r.auth || auth === `Bearer ${r.auth}`),
+				);
 				expect(idx, `unexpected fetch: ${u} (${requested})`).toBeGreaterThanOrEqual(0);
 				tried.push(FREE_CHAIN[idx].provider);
 				// A rung above the target dies at the transport level. Alternate the
@@ -172,8 +192,11 @@ describe('free chain: every rung is reachable through a transport-level failure'
 				// host, which is deliberate (three Groq rungs must not each burn the
 				// budget while api.groq.com is hanging) and would make this case
 				// measure the stall guard instead of chain reachability.
-				const sameHost = FREE_CHAIN[idx].host === rung.host;
-				if (idx < i) throw transportFailure(!sameHost && idx % 2 === 1 ? 'abort' : 'reset');
+				// Same reasoning for any host that serves more than one rung (the
+				// OpenRouter models, the NIM and Hugging Face keys): aborting one
+				// would skip its siblings as a stalled host.
+				const sharedHost = FREE_CHAIN.filter((r) => r.host === FREE_CHAIN[idx].host).length > 1;
+				if (idx < i) throw transportFailure(!sharedHost && idx % 2 === 1 ? 'abort' : 'reset');
 				return okOpenAiShape(`served by ${FREE_CHAIN[idx].provider}`, rung.model);
 			});
 

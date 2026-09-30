@@ -209,19 +209,17 @@ describe('llmComplete — multiple OpenRouter keys', () => {
 	it('dedupes a fallback key that repeats the primary', async () => {
 		process.env.OPENROUTER_API_KEY = 'or-same';
 		process.env.OPENROUTER_FALLBACK_KEYS = 'or-same, or-extra';
-		let n = 0;
-		globalThis.fetch = vi.fn(async () => {
-			n += 1;
+		const primaryModelKeys = [];
+		globalThis.fetch = vi.fn(async (url, opts) => {
+			if (String(url).includes('openrouter.ai') && JSON.parse(opts.body).model === 'google/gemma-4-31b-it:free') {
+				primaryModelKeys.push(opts.headers.authorization);
+			}
 			return errResp(500);
 		});
 		await expect(llm.llmComplete({ system: 's', user: 'u' })).rejects.toMatchObject({ status: 502 });
-		// or-same is deduped to a single key (one :free rung), then or-extra's :free
-		// rung, two OpenRouter fetches (without dedup or-same would be tried again as
-		// a fallback too). The chain then falls through the two unconditional keyless
-		// lanes (OVH, Pollinations) before giving up: four fetches total. LLM7 is not
-		// among them any more; llm7.io retired its anonymous tier, so that rung is
-		// gated on LLM7_API_KEY (see api/_lib/llm.js).
-		expect(n).toBe(4);
+		// or-same is deduped to a single key, so the primary free model is asked
+		// exactly once per distinct key (without dedup or-same would be tried twice).
+		expect(primaryModelKeys).toEqual(['Bearer or-same', 'Bearer or-extra']);
 	});
 
 	it('llmConfigured is true with only fallback keys set', () => {

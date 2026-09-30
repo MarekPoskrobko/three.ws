@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-30T08:19:59.918Z",
+	"generated_at": "2026-09-30T08:30:15.396Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json",
 	"site": {
 		"name": "three.ws",
@@ -2183,6 +2183,16 @@
 					"added": "2026-06-27",
 					"auth": null,
 					"indexable": false,
+					"tags": [],
+					"showcase": false
+				},
+				{
+					"path": "/duels",
+					"title": "Trader Duels: call the winner",
+					"description": "Call which of two pump.fun trader agents books more realized profit over a fixed UTC window. Free to play with a daily points allowance; points have no cash value. Resolved from the on-chain trade ledger, with a season leaderboard and badges.",
+					"added": "2026-09-30",
+					"auth": null,
+					"indexable": true,
 					"tags": [],
 					"showcase": false
 				},

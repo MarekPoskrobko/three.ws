@@ -1297,6 +1297,12 @@ Indexable: no (excluded from sitemap)
 
 Live command center for all 4 autonomous agent capabilities: Alpha Hunt smart-money scoring, autonomous Coin Launcher on schedule, Creator Auto-Claim for fee harvesting, and Market Maker with Jito execution.
 
+### Trader Duels: call the winner
+
+URL: https://three.ws/duels
+
+Call which of two pump.fun trader agents books more realized profit over a fixed UTC window. Free to play with a daily points allowance; points have no cash value. Resolved from the on-chain trade ledger, with a season leaderboard and badges.
+
 ### The Arena: live PvP trading tournaments
 
 URL: https://three.ws/arena

@@ -117,20 +117,25 @@ const NVIDIA_VISION_MODELS = [
 // Replace this ordering with measured latency and JSON-success rates by running
 // `node scripts/probe-vision-lanes.mjs`, which sends the real rubric payload to
 // every route and ranks them.
+//
+// Pruned 2026-09-30 against a live image probe: ling-3.0-flash-vl and both
+// nex-agi routes lost their free tier (404 "unavailable for free") and both
+// inkling routes are now restricted to OpenRouter's agentic surfaces (403), so
+// every vision request was paying five dead round trips. qwen3.8-27b:free
+// joined: the catalog lists it with image input.
 const OPENROUTER_VISION_MODELS = [
 	{ model: 'google/gemma-4-31b-it:free' },
 	{ model: 'google/gemma-4-26b-a4b-it:free' },
-	{ model: 'inclusionai/ling-3.0-flash-vl:free', extraBody: { reasoning: { effort: 'none' } } },
+	{ model: 'qwen/qwen3.8-27b:free' },
 	{ model: 'dots-studio/dots-3-note-preview:free' },
-	{ model: 'nex-agi/nex-n2.5-pro:free' },
-	{ model: 'nex-agi/nex-n2.5-mini:free' },
-	{ model: 'thinkingmachines/inkling-small:free', extraBody: { reasoning: { effort: 'none' } } },
-	{ model: 'thinkingmachines/inkling:free', extraBody: { reasoning: { effort: 'none' } } },
 	{ model: 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free', extraBody: { reasoning: { effort: 'none' } } },
 ];
-// Cloudflare Workers AI's vision route. Same weights as the NIM lane above, so
-// it is a capacity and quota hedge rather than a new capability.
-const CLOUDFLARE_VISION_MODEL = '@cf/meta/llama-3.2-11b-vision-instruct';
+// Cloudflare Workers AI's vision route. Llama 4 Scout, not the 11B Llama 3.2
+// vision model the NIM lane uses: on Workers AI that one sits behind a Meta
+// license click-through (403 "Model Agreement") that has to be accepted on the
+// account by its owner, while Scout answered a real image correctly in ~2s
+// with no gate (probed 2026-09-30).
+const CLOUDFLARE_VISION_MODEL = '@cf/meta/llama-4-scout-17b-16e-instruct';
 // Paid last-resort tail. gpt-5.4-nano is vision-capable and already priced in
 // llm-pricing.js, keeping the backstop cheap and the spend ledger truthful.
 const OPENAI_VISION_MODEL = 'gpt-5.4-nano';
@@ -306,31 +311,36 @@ function openaiCompatVisionProvider({ name, key, url, model, getHeaders = null, 
 // (tests/api/llm-vertex-anchor-surfaces).
 export function visionChain() {
 	const chain = [];
-	if (env.NVIDIA_API_KEY) {
+	// One lane per nvapi key: each free key carries its own rate limit.
+	const nvidiaKeys = [...new Set([env.NVIDIA_API_KEY, ...env.NVIDIA_FALLBACK_KEYS].filter(Boolean))];
+	nvidiaKeys.forEach((key, i) => {
 		for (const model of NVIDIA_VISION_MODELS) {
 			chain.push(openaiCompatVisionProvider({
-				name: 'nvidia',
-				key: env.NVIDIA_API_KEY,
+				name: i === 0 ? 'nvidia' : `nvidia#${i + 1}`,
+				key,
 				url: 'https://integrate.api.nvidia.com/v1/chat/completions',
 				model,
 			}));
 		}
-	}
+	});
 	// Free OpenRouter routes, alongside the NIM lanes and ahead of the credits
 	// anchor: same free tier, same zero meter, and they are the rungs that keep
 	// vision answering when both NVIDIA and Google are down at once. Ordering
 	// them here leaves the Vertex anchor exactly where it was in the chain
 	// relative to the paid tail; nothing is evicted.
-	if (env.OPENROUTER_API_KEY) {
-		for (const spec of OPENROUTER_VISION_MODELS) {
+	// The routes rotate across every OpenRouter key, so one account's daily
+	// free-request cap never carries the whole vision lane.
+	const openrouterKeys = [...new Set([env.OPENROUTER_API_KEY, ...env.OPENROUTER_FALLBACK_KEYS].filter(Boolean))];
+	if (openrouterKeys.length) {
+		OPENROUTER_VISION_MODELS.forEach((spec, i) => {
 			chain.push(openaiCompatVisionProvider({
 				name: 'openrouter',
-				key: env.OPENROUTER_API_KEY,
+				key: openrouterKeys[i % openrouterKeys.length],
 				url: 'https://openrouter.ai/api/v1/chat/completions',
 				model: spec.model,
 				extraBody: spec.extraBody || null,
 			}));
-		}
+		});
 	}
 	// Cloudflare Workers AI: the SAME llama-3.2-11b-vision weights the free NIM
 	// lane already answers with, served on a different host behind a different
