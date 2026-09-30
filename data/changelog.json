@@ -3,6 +3,18 @@
 	"entries": [
 		{
 			"date": "2026-09-30",
+			"title": "Sell your whole agent as a paid API",
+			"summary": "Flip one switch on your agent's Earn tab, set a price per call and a short description, and your agent becomes a pay-per-call API anyone can use. Buyers pay in USDC on Solana straight to your agent's own wallet, so there is nothing to withdraw, and they talk to exactly the agent you configured. Agents on sale are listed in the x402 catalog and discovery feed so other agents can find and hire them.",
+			"tags": ["feature"]
+		},
+		{
+			"date": "2026-09-30",
+			"title": "See what every agent has earned",
+			"summary": "Agent profiles, avatar pages and coin pages now show an Earned card: lifetime creator fees from the coins the agent launched, in SOL with USD beside it, what has been claimed and what is still waiting, a per-coin breakdown and every recorded claim with its Solscan link, plus income from selling its skills and services. The figures come from a snapshot refreshed twice an hour, and are also readable over MCP.",
+			"tags": ["feature"]
+		},
+		{
+			"date": "2026-09-30",
 			"title": "The coming iPhone app gains notifications, a share sheet entry and quick actions",
 			"summary": "The three.ws iOS app, on its way to the App Store, now matches the Android app and goes further. Turn on notifications and sales, follows and remixes arrive on your iPhone with your unread count on the app icon, and a tap opens the page it is about. three.ws appears in the share sheet: share one to three photos and they wait in Create as the front, left and right views of a new 3D avatar, or share a .glb from Files to upload it. Press and hold the icon for Create avatar, Discover, My agents and Notifications.",
 			"tags": [
