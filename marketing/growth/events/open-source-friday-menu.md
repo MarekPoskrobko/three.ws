@@ -41,6 +41,17 @@ person, can I still help?"
 
 ## Create them (owner, one command each)
 
+**Issues 2 to 7 were created on 2026-09-30**, after re-running every probe against `main` (all
+six still reproduce): [#339](https://github.com/nirholas/three.ws/issues/339) Biped fingers,
+[#340](https://github.com/nirholas/three.ws/issues/340) ValveBiped (its body links #339),
+[#341](https://github.com/nirholas/three.ws/issues/341) GLB declared length,
+[#342](https://github.com/nirholas/three.ws/issues/342) URL scheme guard tests,
+[#343](https://github.com/nirholas/three.ws/issues/343) model URL allowlist tests,
+[#344](https://github.com/nirholas/three.ws/issues/344) Money Pulse rollover. They went up before
+the stream was booked because the repo had no open good first issue at all, which kept it off
+GitHub's `/contribute` page and the aggregators that read the label. Issue 1 is still held for
+the on-air segment; its command is below.
+
 Run from the repo root. Titles use single quotes because several contain backticks. Create
 issues 2 to 7 when the stream date is booked, so the community can claim them before air. Create
 issue 1 the Monday before the stream so it is still open for the live segment.
