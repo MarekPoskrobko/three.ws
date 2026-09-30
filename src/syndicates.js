@@ -121,7 +121,7 @@ function candidateCard(l) {
 				<div class="sy-leader-links">
 					<a href="${esc(l.trader_url)}">Full record</a>
 					<a href="${esc(l.ghost_url)}">Ghost-copy</a>
-					${l.copyable ? `<a href="#" data-found="${esc(l.agent_id)}">Rally around</a>` : ''}
+					${l.copyable ? `<button type="button" class="sy-rally" data-found="${esc(l.agent_id)}">Rally around</button>` : ''}
 				</div>
 			</div>
 		</div>`;
