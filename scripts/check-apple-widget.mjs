@@ -110,9 +110,13 @@ for (const file of KIT_APP_FILES) {
 pass('every shared source is a member of the iOS targets that need it');
 
 for (const setting of SETTINGS) {
-	// Once in each of the app's two configurations and the extension's two.
+	// Once in each of the app's two configurations and the widget's two. The
+	// App Group is also the share extension's hand-off container, so it is
+	// defined on that target's two configurations as well
+	// (scripts/check-ios-app.mjs holds the share extension to it).
+	const expected = setting === 'GLANCE_APP_GROUP' ? 6 : 4;
 	const count = (pbx.match(new RegExp(`^\\s*${setting} = `, 'gm')) || []).length;
-	if (count !== 4) fail(`${setting} is defined ${count} times in project.pbxproj, expected 4 (both targets, both configurations)`);
+	if (count !== expected) fail(`${setting} is defined ${count} times in project.pbxproj, expected ${expected} (every target that reads it, both configurations)`);
 }
 pass('the iOS project defines the three Glance build settings on both targets');
 

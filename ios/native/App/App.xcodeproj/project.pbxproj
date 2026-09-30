@@ -36,6 +36,12 @@
 		C4A11E0230B1004A00000000 /* GlanceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0230B1000A00000000 /* GlanceProvider.swift */; };
 		C4A11E0230B1004B00000000 /* AgentGlanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0230B1000B00000000 /* AgentGlanceWidget.swift */; };
 		C4A11E0230B1005000000000 /* GlanceWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C4A11E0230B1000E00000000 /* GlanceWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C4A11E0330C1001100000000 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000100000000 /* QuickActions.swift */; };
+		C4A11E0330C1001200000000 /* ThreeWsAppPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000200000000 /* ThreeWsAppPlugin.swift */; };
+		C4A11E0330C1001300000000 /* SharedInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000300000000 /* SharedInbox.swift */; };
+		C4A11E0330C1001400000000 /* SharedInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000300000000 /* SharedInbox.swift */; };
+		C4A11E0330C1001500000000 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000400000000 /* ShareViewController.swift */; };
+		C4A11E0330C1001600000000 /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C4A11E0330C1000700000000 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C4A11E0230B1006000000000;
 			remoteInfo = GlanceWidgetExtension;
+		};
+		C4A11E0330C1006600000000 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4A11E0330C1006000000000;
+			remoteInfo = ShareExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -56,6 +69,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				C4A11E0230B1005000000000 /* GlanceWidget.appex in Embed Foundation Extensions */,
+				C4A11E0330C1001600000000 /* ShareExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +105,13 @@
 		C4A11E0230B1000C00000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4A11E0230B1000D00000000 /* GlanceWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlanceWidget.entitlements; sourceTree = "<group>"; };
 		C4A11E0230B1000E00000000 /* GlanceWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GlanceWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A11E0330C1000100000000 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
+		C4A11E0330C1000200000000 /* ThreeWsAppPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeWsAppPlugin.swift; sourceTree = "<group>"; };
+		C4A11E0330C1000300000000 /* SharedInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInbox.swift; sourceTree = "<group>"; };
+		C4A11E0330C1000400000000 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		C4A11E0330C1000500000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4A11E0330C1000600000000 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		C4A11E0330C1000700000000 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +130,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4A11E0330C1006200000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +145,7 @@
 			children = (
 				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
 				504EC3061FED79650016851F /* App */,
+				C4A11E0330C1002000000000 /* ShareExtension */,
 				C4A11E0230B1002000000000 /* Glance */,
 				504EC3051FED79650016851F /* Products */,
 			);
@@ -127,6 +156,7 @@
 			children = (
 				504EC3041FED79650016851F /* App.app */,
 				C4A11E0230B1000E00000000 /* GlanceWidget.appex */,
+				C4A11E0330C1000700000000 /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +170,8 @@
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
 				7A31B0C14E5F41A290C30011 /* MainViewController.swift */,
+				C4A11E0330C1000100000000 /* QuickActions.swift */,
+				C4A11E0330C1000200000000 /* ThreeWsAppPlugin.swift */,
 				504EC30B1FED79650016851F /* Main.storyboard */,
 				504EC30E1FED79650016851F /* Assets.xcassets */,
 				504EC3101FED79650016851F /* LaunchScreen.storyboard */,
@@ -188,6 +220,17 @@
 			path = ../../../apple/GlanceWidget;
 			sourceTree = SOURCE_ROOT;
 		};
+		C4A11E0330C1002000000000 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				C4A11E0330C1000400000000 /* ShareViewController.swift */,
+				C4A11E0330C1000300000000 /* SharedInbox.swift */,
+				C4A11E0330C1000500000000 /* Info.plist */,
+				C4A11E0330C1000600000000 /* ShareExtension.entitlements */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,6 +247,7 @@
 			);
 			dependencies = (
 				C4A11E0230B1006500000000 /* PBXTargetDependency */,
+				C4A11E0330C1006500000000 /* PBXTargetDependency */,
 			);
 			name = App;
 			packageProductDependencies = (
@@ -229,6 +273,22 @@
 			productReference = C4A11E0230B1000E00000000 /* GlanceWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		C4A11E0330C1006000000000 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4A11E0330C1006700000000 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				C4A11E0330C1006100000000 /* Sources */,
+				C4A11E0330C1006200000000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = C4A11E0330C1000700000000 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -244,6 +304,10 @@
 						ProvisioningStyle = Automatic;
 					};
 					C4A11E0230B1006000000000 = {
+						CreatedOnToolsVersion = 15.0;
+						ProvisioningStyle = Automatic;
+					};
+					C4A11E0330C1006000000000 = {
 						CreatedOnToolsVersion = 15.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -267,6 +331,7 @@
 			targets = (
 				504EC3031FED79650016851F /* App */,
 				C4A11E0230B1006000000000 /* GlanceWidgetExtension */,
+				C4A11E0330C1006000000000 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -302,6 +367,9 @@
 				C4A11E0230B1003300000000 /* GlanceTokenStore.swift in Sources */,
 				C4A11E0230B1003400000000 /* GlanceCache.swift in Sources */,
 				C4A11E0230B1003500000000 /* GlanceLink.swift in Sources */,
+				C4A11E0330C1001100000000 /* QuickActions.swift in Sources */,
+				C4A11E0330C1001200000000 /* ThreeWsAppPlugin.swift in Sources */,
+				C4A11E0330C1001300000000 /* SharedInbox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +391,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4A11E0330C1006100000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4A11E0330C1001500000000 /* ShareViewController.swift in Sources */,
+				C4A11E0330C1001400000000 /* SharedInbox.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -330,6 +407,11 @@
 			isa = PBXTargetDependency;
 			target = C4A11E0230B1006000000000 /* GlanceWidgetExtension */;
 			targetProxy = C4A11E0230B1006600000000 /* PBXContainerItemProxy */;
+		};
+		C4A11E0330C1006500000000 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4A11E0330C1006000000000 /* ShareExtension */;
+			targetProxy = C4A11E0330C1006600000000 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -596,6 +678,72 @@
 			};
 			name = Release;
 		};
+		C4A11E0330C1006800000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				/* The App Group the extension parks shares in and the app reads
+				   them from. Same value as the app and the glance widget. */
+				GLANCE_APP_GROUP = group.ws.three.app;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ws.three.app.share;
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C4A11E0330C1006900000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				/* The App Group the extension parks shares in and the app reads
+				   them from. Same value as the app and the glance widget. */
+				GLANCE_APP_GROUP = group.ws.three.app;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ws.three.app.share;
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,6 +770,15 @@
 			buildConfigurations = (
 				C4A11E0230B1006800000000 /* Debug */,
 				C4A11E0230B1006900000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4A11E0330C1006700000000 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4A11E0330C1006800000000 /* Debug */,
+				C4A11E0330C1006900000000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

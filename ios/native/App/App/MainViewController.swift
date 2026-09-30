@@ -51,4 +51,28 @@ class MainViewController: CAPBridgeViewController {
         // a CarPlay scene can ever connect. It is inert until one does.
         if let webView { DriveLink.shared.attach(to: webView) }
     }
+
+    /// Registers the app's own plugin beside the packaged ones. It is not a
+    /// Swift package, so the SPM plugin graph never discovers it; this is the
+    /// hook Capacitor gives an app for exactly that case.
+    override func capacitorDidLoad() {
+        bridge?.registerPluginInstance(ThreeWsAppPlugin())
+    }
+
+    /// Navigates the WebView to a path on the product origin.
+    ///
+    /// Native entry points (quick actions, a collected share) arrive as a path
+    /// rather than a URL, and only ever resolve against three.ws, so nothing
+    /// that reaches this method can point the app's only WebView off-site.
+    func open(path: String) {
+        guard path.hasPrefix("/"), !path.hasPrefix("//"),
+              let url = URL(string: path, relativeTo: MainViewController.origin)?.absoluteURL,
+              url.host == MainViewController.origin.host
+        else { return }
+        if webView?.url == url { return }
+        webView?.load(URLRequest(url: url))
+    }
+
+    /// The origin the WebView serves, which is `server.url` in capacitor.config.ts.
+    static let origin = URL(string: "https://three.ws")!
 }

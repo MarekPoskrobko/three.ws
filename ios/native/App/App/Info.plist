@@ -30,8 +30,8 @@
 		are declared in App.entitlements + public/.well-known/apple-app-site-association;
 		this custom scheme is the fallback that wallet and OAuth redirects can always
 		reach, including from a Safari view controller that cannot resolve an
-		associated domain. Handled in AppDelegate -> Capacitor's App plugin ->
-		src/native-bridge.js.
+		associated domain. Handled in SceneDelegate -> Capacitor's App plugin ->
+		ios/src/native-bridge.js.
 	-->
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -80,6 +80,83 @@
 	<!-- Gyro world-lock in the non-WebXR AR path (src/ar/multi-place.js). -->
 	<key>NSMotionUsageDescription</key>
 	<string>three.ws reads device motion to keep an agent anchored in place as you move the camera.</string>
+
+	<!--
+		Home screen quick actions: press and hold the icon. The same doors as the
+		Android app's launcher shortcuts (solana-mobile/twa/twa-manifest.json),
+		plus the inbox, which is where a push lands. Each type maps to a page in
+		QuickActions.swift; declaring them here rather than in code means they
+		exist from install, before the app has ever been opened.
+	-->
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ws.three.app.create</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Create avatar</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>sparkles</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ws.three.app.discover</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Discover</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Marketplace</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>square.grid.2x2</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ws.three.app.agents</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>My agents</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>person.2</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ws.three.app.notifications</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Notifications</string>
+			<key>UIApplicationShortcutItemIconSymbolName</key>
+			<string>bell</string>
+		</dict>
+	</array>
+
+	<!--
+		Binary glTF. iOS ships no identifier for .glb, so a model in Files would
+		otherwise carry an anonymous dynamic type the share extension's
+		activation rule cannot name. Imported, not exported: three.ws does not
+		own the format, and an app that declares it too simply agrees with us.
+	-->
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>org.khronos.glb</string>
+			<key>UTTypeDescription</key>
+			<string>glTF binary model</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>glb</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>model/gltf-binary</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 
 	<!-- Push notifications arriving while the app is backgrounded. -->
 	<key>UIBackgroundModes</key>
