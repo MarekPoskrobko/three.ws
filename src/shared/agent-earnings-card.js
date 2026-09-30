@@ -6,10 +6,9 @@
 // breakdown, and every recorded claim with its Solscan link. Every figure comes
 // from GET /api/agents/:id/earnings; the card never computes or invents one.
 //
-// Single source of truth: import and mount it, never copy it per page.
-//   import { mountEarningsCard } from './shared/agent-earnings-card.js';
-//   const handle = mountEarningsCard({ mount, agentId, onState });
-//   handle.refresh(); handle.destroy();
+// Single source of truth: import mountEarningsCard and call it with a mount
+// element and an agent id, never copy it per page. It returns a handle whose
+// refresh() re-reads the endpoint and whose destroy() tears the card down.
 //
 // `onState(state)` reports 'loading' | 'empty' | 'zero' | 'earned' | 'error' so a
 // host page can decide whether to show the surrounding card at all.

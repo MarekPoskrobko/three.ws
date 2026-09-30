@@ -14,7 +14,7 @@
  *   1. Earnings hero  — lifetime / 7d / today, count-up, "earned while away".
  *   2. Earning engine — price the agent's skills in USDC (the buy side settles
  *      for real over Solana Pay → real funds into the agent wallet).
- *   2b. Sell as an API — one switch turns the whole agent into a paid x402
+ *   2b. Sell as an API: one switch turns the whole agent into a paid x402
  *      endpoint (POST /api/x402/agents/:id): price per call, public description,
  *      the stable URL + a ready curl, and what the service has earned.
  *   3. Autonomous spend — allowance snapshot + prominent kill switch; the agent
