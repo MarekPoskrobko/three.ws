@@ -45,6 +45,7 @@ import {
 	ringFeeConfig,
 	expectedFeeLamports,
 	nextAutoNonce,
+	currentBlockhash,
 } from '../_lib/x402/pay.js';
 import { assessFeeAdmission } from '../_lib/x402/wallet-fee-meter.js';
 import {
@@ -641,9 +642,15 @@ export default wrapCron(async (req, res) => {
 			);
 			const receiverAtaInfo = await conn.getAccountInfo(receiverAta).catch(() => null);
 
-			// Step 3: build signed tx
+			// Step 3: build signed tx. Signed against the freshness-cached blockhash,
+			// not the tick's: a tick runs its entries one after another and can last
+			// three minutes, and a hash read at the top of it is past its ~60 second
+			// validity by the later entries. Measured 2026-09-30: 16 settles in 90
+			// minutes died at broadcast with `BlockhashNotFound`, every one from a
+			// tick running 70 to 230 seconds.
+			const signBlockhash = await currentBlockhash(conn, blockhash);
 			const txBase64 = buildPaymentTx({
-				accept, buyer, blockhash, mintInfo,
+				accept, buyer, blockhash: signBlockhash, mintInfo,
 				receiverAtaExists: receiverAtaInfo !== null,
 				nonce: payNonce,
 			});

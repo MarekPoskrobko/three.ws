@@ -314,7 +314,10 @@ function seedBlockhash(value) {
 // TTL, else a fresh fetch. Falls back to the caller-supplied tick blockhash
 // when the RPC fetch fails (a stale attempt beats no attempt: the facilitator
 // side still retries preflight-off for provably-unlanded blockhash misses).
-async function currentBlockhash(conn, fallback, { forceFresh = false } = {}) {
+// Exported for every caller that signs later in a tick than the tick's own
+// blockhash read: the autonomous loop's inline payments and the pipelines it
+// runs, which can start two or three minutes into a tick.
+export async function currentBlockhash(conn, fallback, { forceFresh = false } = {}) {
 	const age = Date.now() - blockhashCache.fetchedAt;
 	if (!forceFresh && blockhashCache.value && age < BLOCKHASH_TTL_MS) return blockhashCache.value;
 	try {

@@ -66,6 +66,7 @@ import {
 	fetchWithTimeout,
 	admitSponsorSettle,
 	nextAutoNonce,
+	currentBlockhash,
 	USDC_MINT,
 	SOLANA_RPC,
 } from '../pay.js';
@@ -259,8 +260,11 @@ export async function runIdempotencyAudit(ctx = {}) {
 			false, TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID,
 		);
 		const receiverAtaInfo = await conn.getAccountInfo(receiverAta).catch(() => null);
+		// Sign against a fresh blockhash: this runs inside a loop tick that can be
+		// minutes old, and the tick's own hash expires after about 60 seconds.
+		const signBlockhash = await currentBlockhash(conn, blockhash);
 		const txBase64 = buildPaymentTx({
-			accept, buyer, blockhash, mintInfo, receiverAtaExists: receiverAtaInfo !== null,
+			accept, buyer, blockhash: signBlockhash, mintInfo, receiverAtaExists: receiverAtaInfo !== null,
 			nonce: payNonce,
 		});
 		xPayment = Buffer.from(JSON.stringify({

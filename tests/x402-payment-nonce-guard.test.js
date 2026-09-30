@@ -70,4 +70,23 @@ describe('payment nonce guard', () => {
 		expect(seen).toBeGreaterThanOrEqual(8);
 		expect(offenders).toEqual([]);
 	});
+
+	// The same tick-wide blockhash is also why these callers must re-read it. A
+	// tick runs its entries in sequence for up to about four minutes, and a hash
+	// read at the top of it is past its ~60 second validity by the later ones:
+	// 16 `BlockhashNotFound` broadcast failures in 90 minutes on 2026-09-30.
+	it('every payment signed inside a loop tick uses the freshness-cached blockhash', async () => {
+		for (const file of [
+			'api/cron/x402-autonomous-loop.js',
+			'api/_lib/x402/pipelines/streaming-mcp-health.js',
+			'api/_lib/x402/pipelines/payment-proof-idempotency-audit.js',
+			'api/_lib/x402/pipelines/builder-code-attribution.js',
+		]) {
+			const source = await readFile(file, 'utf8');
+			for (const args of callArguments(source)) {
+				expect(args, file).toMatch(/blockhash:\s*signBlockhash/);
+			}
+			expect(source, file).toMatch(/const signBlockhash = await currentBlockhash\(conn, blockhash\)/);
+		}
+	});
 });
