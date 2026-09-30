@@ -162,7 +162,7 @@
 		"build:docs-search": "node scripts/build-docs-search-index.mjs",
 		"check:docs-search": "node scripts/build-docs-search-index.mjs --check",
 		"build:globe-geometry": "node scripts/build-globe-geometry.mjs",
-		"build:pages": "node scripts/build-community-registry.mjs && node scripts/build-page-index.mjs",
+		"build:pages": "node scripts/build-community-registry.mjs && node scripts/build-page-index.mjs && node scripts/i18n-annotate.mjs --apply --no-wire --pages=\"public/sitemap/index.html\"",
 		"build:community-skills": "node scripts/build-community-registry.mjs",
 		"check:community-skills": "node scripts/build-community-registry.mjs --check",
 		"sync:community-skills": "node scripts/sync-community-skills.mjs",
