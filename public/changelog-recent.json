@@ -1,11 +1,11 @@
 {
-	"generated_at": "2026-09-30T05:14:02.749Z",
+	"generated_at": "2026-09-30T06:03:59.897Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3782,
+	"total": 3784,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
@@ -28,6 +28,27 @@
 			"link": "/image-to-3d",
 			"tags": [
 				"fix",
+				"improvement"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "The language menu now offers 69 languages",
+			"summary": "The language menu grew from 14 languages to 69, each one fully translated. 55 more pages now follow the language you pick, including Hood Desk, Portfolios, Fee Bridge, Agent Cards, Connect, the CLI sign-in approval, Motion, Docs World and the legal pages. Their titles, headings, buttons and the text shown when a page is shared all translate, and so does the sitemap, so you can find every page on three.ws in your own language.",
+			"link": "/sitemap",
+			"tags": [
+				"feature",
+				"improvement"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "The Oracle's model now downloads from any website",
+			"summary": "The Oracle's conviction model is published data, and the @three-ws/oracle-model package is meant to score coins anywhere. Until now its download endpoint only answered pages on three.ws and a short list of partners, so a browser app on any other site could not load the model. It now answers every origin, the same as the rest of the Oracle's public reads, so any web page can fetch the model once and score coins locally with no key.",
+			"link": "/oracle-lab",
+			"tags": [
 				"improvement"
 			]
 		},
@@ -1568,27 +1589,6 @@
 			"tags": [
 				"fix",
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Pump Dashboard: the live feed shows real launches again instead of raw JSON",
-			"summary": "A full audit of /pump-dashboard, the pump.fun trading desk. The headline defect was the feed itself: every event streaming in from the realtime socket was labelled UNKNOWN and printed as a wall of raw JSON, because the socket names its event type in a field the page never read. Launches, graduations and trades now render as readable rows with the token name, symbol, mint and size, whale-sized trades are tagged as whales, and the socket's own subscription acknowledgements stop appearing as feed entries. Recent activity loaded on arrival was stamped with the current time, so a graduation from yesterday claimed to have happened seconds ago; each row now carries the time it actually happened. Filtering the feed to a type with nothing in it left an empty panel with no explanation, and now says what is being filtered and offers a way back to everything. The Token Scanner gave no sign it was working during a scan that routinely takes ten seconds, and could hang forever with no result and no error if a Solana provider accepted the request and never answered; it now shows a busy state, times out, and explains a failure with a way to retry. The Quote Engine printed raw machine codes at you (internal_error, no_curve) where a sentence belongs, and the quote service itself answered a rate-limited Solana chain with a generic internal error instead of an honest \"try again in a moment\". The Watch List fired a request that could only fail unless you had pointed the dashboard at your own PumpKit backend, and now explains the requirement and takes you to the setting. Twenty-one form fields across the desk got the labels screen readers need, the feed's filter row is now a properly labelled group of toggles, and the high-conviction stats no longer clip their labels on a 320 pixel phone.",
-			"link": "/pump-dashboard",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Put a live trader on your own page with one script tag",
-			"summary": "A trader with a following had no way to show it anywhere except on three.ws. Every public trader profile now has an Embed this trader button that hands over a one-line snippet: paste it into a site, a blog post, a link in bio or a stream overlay and the trader's live record renders there, updating itself. It shows realized profit or loss for the period, win rate, settled trades, whatever they are holding right now and their last few results, and every coin on it carries a Fork button that opens the real trade panel back on three.ws, signed by the reader's own wallet. The card holds no funds, asks for no key and signs nothing. It follows the reader's light or dark setting, stops updating when nobody is looking at it, keeps the last good card on screen if a refresh fails rather than blanking the page it sits on, and shows a loss exactly as plainly as a win. The snippet carries the leader's referral code, so the traffic it brings back is credited to them, and the panel previews the real card before they copy anything.",
-			"link": "/docs/trader-card-embed",
-			"tags": [
-				"feature"
 			]
 		}
 	]

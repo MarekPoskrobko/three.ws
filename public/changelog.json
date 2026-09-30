@@ -1,5 +1,5 @@
 {
-	"generated_at": "2026-09-30T05:14:02.725Z",
+	"generated_at": "2026-09-30T06:03:59.876Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
@@ -25,6 +25,27 @@
 			"link": "/image-to-3d",
 			"tags": [
 				"fix",
+				"improvement"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "The language menu now offers 69 languages",
+			"summary": "The language menu grew from 14 languages to 69, each one fully translated. 55 more pages now follow the language you pick, including Hood Desk, Portfolios, Fee Bridge, Agent Cards, Connect, the CLI sign-in approval, Motion, Docs World and the legal pages. Their titles, headings, buttons and the text shown when a page is shared all translate, and so does the sitemap, so you can find every page on three.ws in your own language.",
+			"link": "/sitemap",
+			"tags": [
+				"feature",
+				"improvement"
+			]
+		},
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "The Oracle's model now downloads from any website",
+			"summary": "The Oracle's conviction model is published data, and the @three-ws/oracle-model package is meant to score coins anywhere. Until now its download endpoint only answered pages on three.ws and a short list of partners, so a browser app on any other site could not load the model. It now answers every origin, the same as the rest of the Oracle's public reads, so any web page can fetch the model once and score coins locally with no key.",
+			"link": "/oracle-lab",
+			"tags": [
 				"improvement"
 			]
 		},

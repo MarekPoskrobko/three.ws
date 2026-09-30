@@ -23,6 +23,22 @@
 			<description>When a photo-to-3D job fails partway through, it already moves to the next engine on its own. Until now that only worked while another textured engine was up, so when the two main engines failed together last week, photo generations stopped completely. There is now one more rung: our own TripoSG engine takes over the job and delivers the shape of your model without textures, and the progress screen tells you when that happens. You get a model you can work with instead of an error, and whenever a textured engine is up, it is still used first.</description>
 		</item>
 		<item>
+			<title>The language menu now offers 69 languages</title>
+			<link>https://three.ws/sitemap</link>
+			<guid isPermaLink="false">2026-09-30:The language menu now offers 69 languages</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>feature</category>
+			<description>The language menu grew from 14 languages to 69, each one fully translated. 55 more pages now follow the language you pick, including Hood Desk, Portfolios, Fee Bridge, Agent Cards, Connect, the CLI sign-in approval, Motion, Docs World and the legal pages. Their titles, headings, buttons and the text shown when a page is shared all translate, and so does the sitemap, so you can find every page on three.ws in your own language.</description>
+		</item>
+		<item>
+			<title>The Oracle's model now downloads from any website</title>
+			<link>https://three.ws/oracle-lab</link>
+			<guid isPermaLink="false">2026-09-30:The Oracle's model now downloads from any website</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>improvement</category>
+			<description>The Oracle's conviction model is published data, and the @three-ws/oracle-model package is meant to score coins anywhere. Until now its download endpoint only answered pages on three.ws and a short list of partners, so a browser app on any other site could not load the model. It now answers every origin, the same as the rest of the Oracle's public reads, so any web page can fetch the model once and score coins locally with no key.</description>
+		</item>
+		<item>
 			<title>Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</title>
 			<link>https://three.ws/connect</link>
 			<guid isPermaLink="false">2026-09-29:Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</guid>

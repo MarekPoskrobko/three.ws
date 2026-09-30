@@ -28864,6 +28864,16 @@
 				"improvement"
 			],
 			"link": "/oracle-lab"
+		},
+		{
+			"date": "2026-09-30",
+			"title": "The language menu now offers 69 languages",
+			"summary": "The language menu grew from 14 languages to 69, each one fully translated. 55 more pages now follow the language you pick, including Hood Desk, Portfolios, Fee Bridge, Agent Cards, Connect, the CLI sign-in approval, Motion, Docs World and the legal pages. Their titles, headings, buttons and the text shown when a page is shared all translate, and so does the sitemap, so you can find every page on three.ws in your own language.",
+			"tags": [
+				"feature",
+				"improvement"
+			],
+			"link": "/sitemap"
 		}
 	]
 }
