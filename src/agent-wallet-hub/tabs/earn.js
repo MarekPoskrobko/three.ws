@@ -14,6 +14,9 @@
  *   1. Earnings hero  — lifetime / 7d / today, count-up, "earned while away".
  *   2. Earning engine — price the agent's skills in USDC (the buy side settles
  *      for real over Solana Pay → real funds into the agent wallet).
+ *   2b. Sell as an API — one switch turns the whole agent into a paid x402
+ *      endpoint (POST /api/x402/agents/:id): price per call, public description,
+ *      the stable URL + a ready curl, and what the service has earned.
  *   3. Autonomous spend — allowance snapshot + prominent kill switch; the agent
  *      pays services over the real x402 bridge bounded by enforceSpendLimit.
  *   4. Receipts — unified in/out statement with real signatures.
@@ -26,8 +29,10 @@ import {
 	fetchPricing,
 	savePricing,
 	setFrozen,
+	fetchApiService,
+	saveApiService,
 } from '../../agent-economy-hub.js';
-import { timeAgo, shortAddress, explorerTxUrl, explorerAddressUrl } from '../util.js';
+import { timeAgo, shortAddress, explorerTxUrl, explorerAddressUrl, copyToClipboard } from '../util.js';
 
 const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 const SEEN_KEY = (id) => `tws-earn-seen:${id}`;
@@ -109,6 +114,47 @@ const STYLE = `
 .awh-earn-disc { display: flex; gap: var(--space-2,8px); flex-wrap: wrap; }
 .awh-earn-skel span { display: block; height: 16px; border-radius: var(--radius-sm,6px); background: var(--surface-2, rgba(255,255,255,.05)); animation: awh-skel 1.4s ease-in-out infinite; margin-bottom: 10px; }
 .awh-earn-skel span:nth-child(2){ width: 60%; } .awh-earn-skel span:nth-child(3){ width: 80%; }
+.awh-api-intro { font-size: var(--text-sm,.764rem); color: var(--ink-dim,#888); line-height: 1.5; margin: 0 0 var(--space-3,12px); }
+.awh-api-switch { display: flex; align-items: center; gap: var(--space-3,12px); padding: 10px 12px; border: 1px solid var(--stroke, rgba(255,255,255,.08)); border-radius: var(--radius-md,10px); background: var(--surface-1, rgba(255,255,255,.03)); cursor: pointer; transition: border-color var(--duration-fast,140ms), background var(--duration-fast,140ms); }
+.awh-api-switch:hover { border-color: var(--stroke-strong, rgba(255,255,255,.14)); }
+.awh-api-switch.is-on { border-color: color-mix(in srgb, var(--success,#4ade80) 45%, transparent); background: color-mix(in srgb, var(--success,#4ade80) 8%, transparent); }
+.awh-api-switch.is-disabled { cursor: not-allowed; opacity: .6; }
+.awh-api-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.awh-api-track { flex: none; position: relative; width: 38px; height: 22px; border-radius: 999px; background: var(--surface-3, rgba(255,255,255,.12)); transition: background var(--duration-base,220ms) var(--ease-standard,ease); }
+.awh-api-track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--ink-bright,#fff); transition: transform var(--duration-base,220ms) var(--ease-standard,ease); }
+.awh-api-switch.is-on .awh-api-track { background: var(--success,#4ade80); }
+.awh-api-switch.is-on .awh-api-track::after { transform: translateX(16px); }
+.awh-api-switch input:focus-visible + .awh-api-track { outline: var(--focus-ring-width,2px) solid var(--focus-ring-color,#fff); outline-offset: 2px; }
+.awh-api-switch-copy { flex: 1 1 auto; min-width: 0; }
+.awh-api-switch-copy strong { display: block; font-size: var(--text-md,.8125rem); color: var(--ink-bright,#fff); }
+.awh-api-switch-copy span { font-size: var(--text-2xs,.6875rem); color: var(--ink-dim,#888); }
+.awh-api-fields { display: grid; grid-template-columns: minmax(0, 160px) minmax(0, 1fr); gap: var(--space-3,12px); margin-top: var(--space-3,12px); }
+.awh-api-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.awh-api-field label { font-size: var(--text-2xs,.6875rem); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-dim,#888); }
+.awh-api-field .hint { font-size: var(--text-2xs,.6875rem); color: var(--ink-dim,#888); }
+.awh-api-field .hint.over { color: var(--danger,#f87171); }
+.awh-api-price { display: flex; align-items: center; gap: 6px; }
+.awh-api-price .pre { color: var(--ink-dim,#888); font-family: var(--font-mono, ui-monospace, monospace); }
+.awh-api-input, .awh-api-textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: var(--text-sm,.764rem); color: var(--ink,#e8e8e8); background: var(--surface-2, rgba(255,255,255,.05)); border: 1px solid var(--stroke, rgba(255,255,255,.08)); border-radius: var(--radius-sm,6px); padding: 8px 10px; transition: border-color var(--duration-fast,140ms); }
+.awh-api-input { font-family: var(--font-mono, ui-monospace, monospace); text-align: right; }
+.awh-api-textarea { resize: vertical; min-height: 64px; line-height: 1.45; }
+.awh-api-input:hover, .awh-api-textarea:hover { border-color: var(--stroke-strong, rgba(255,255,255,.14)); }
+.awh-api-input:focus-visible, .awh-api-textarea:focus-visible { outline: var(--focus-ring-width,2px) solid var(--focus-ring-color,#fff); outline-offset: 1px; }
+.awh-api-blockers { margin: var(--space-3,12px) 0 0; padding: 10px 12px; border-radius: var(--radius-md,10px); border: 1px solid color-mix(in srgb, var(--warn,#fbbf24) 40%, transparent); background: color-mix(in srgb, var(--warn,#fbbf24) 9%, transparent); font-size: var(--text-sm,.764rem); color: var(--ink,#e8e8e8); }
+.awh-api-blockers strong { display: block; margin-bottom: 4px; color: var(--warn,#fbbf24); }
+.awh-api-blockers ul { margin: 0; padding-left: 18px; }
+.awh-api-live { margin-top: var(--space-4,16px); display: flex; flex-direction: column; gap: var(--space-3,12px); animation: awh-earn-pop var(--duration-base,220ms) var(--ease-standard, ease); }
+.awh-api-row-h { font-size: var(--text-2xs,.6875rem); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-dim,#888); margin: 0 0 6px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.awh-api-url { display: flex; align-items: center; gap: 8px; }
+.awh-api-url code, .awh-api-curl { font-family: var(--font-mono, ui-monospace, monospace); font-size: var(--text-2xs,.6875rem); color: var(--ink,#e8e8e8); background: var(--surface-2, rgba(255,255,255,.05)); border: 1px solid var(--stroke, rgba(255,255,255,.08)); border-radius: var(--radius-sm,6px); }
+.awh-api-url code { flex: 1 1 auto; min-width: 0; padding: 8px 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.awh-api-curl { margin: 0; padding: 10px 12px; white-space: pre-wrap; word-break: break-all; line-height: 1.5; }
+.awh-api-copy { flex: none; padding: 6px 10px; font-size: var(--text-sm,.764rem); }
+.awh-api-meta { font-size: var(--text-2xs,.6875rem); color: var(--ink-dim,#888); }
+.awh-api-meta a { color: inherit; border-bottom: 1px dotted currentColor; text-decoration: none; }
+.awh-api-meta a:hover { color: var(--ink,#e8e8e8); }
+.awh-api-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2,8px); }
+@media (max-width: 520px){ .awh-api-fields { grid-template-columns: 1fr; } .awh-api-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @keyframes awh-earn-pop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 @keyframes awh-skel { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce){ .awh-earn-away, .awh-earn-skel span, .awh-earn-pbar i { animation: none; transition: none; } }
@@ -173,6 +219,15 @@ registerWalletTab({
 			saving: false,
 			saveMsg: null,
 			saveOk: false,
+			// sell-as-API
+			api: null, // GET /api/agents/:id/api-service snapshot
+			apiLoading: true,
+			apiError: null,
+			apiDraft: null, // { active, price, description } while editing
+			apiSaving: false,
+			apiMsg: null,
+			apiOk: false,
+			apiReasons: null,
 			// kill switch
 			freezing: false,
 			// "earned while away"
@@ -185,6 +240,7 @@ registerWalletTab({
 			panel.innerHTML = `
 				<div class="awh-card" data-host="hero"></div>
 				<div class="awh-card" data-host="engine"></div>
+				<div class="awh-card" data-host="api"></div>
 				<div class="awh-card" data-host="spend"></div>
 				<div class="awh-card" data-host="receipts"></div>
 				<div class="awh-card" data-host="discover"></div>
@@ -196,6 +252,7 @@ registerWalletTab({
 		function renderAll() {
 			renderHero();
 			renderEngine();
+			renderApi();
 			renderSpend();
 			renderReceipts();
 			renderDiscover();
@@ -417,6 +474,182 @@ registerWalletTab({
 			return out;
 		}
 
+		// ── 2b. Sell this agent as an API ───────────────────────────────────────
+		function renderApi() {
+			const h = host('api');
+			if (!h) return;
+			const title = `<h2 class="awh-card-h">Sell this agent as an API</h2>`;
+			if (state.apiLoading) {
+				h.innerHTML = `${title}<div class="awh-earn-skel" aria-busy="true"><span></span><span></span><span></span></div>`;
+				return;
+			}
+			if (state.apiError) {
+				h.innerHTML = `${title}<div class="awh-empty" role="alert">Couldn’t load the API service. <button class="awh-btn awh-bal-mini" type="button" data-act="api-reload">Retry</button><div class="awh-rcpt-meta" style="margin-top:6px">${escapeHtml(state.apiError)}</div></div>`;
+				return;
+			}
+			const snap = state.api;
+			const d = state.apiDraft;
+			const blockers = snap.sellable?.ok ? [] : snap.sellable?.reasons || [];
+			const canTurnOn = blockers.length === 0;
+			const on = d.active;
+			const lim = snap.limits;
+			const feePct = (lim.fee_bps / 100).toFixed(lim.fee_bps % 100 ? 2 : 0);
+			const descLen = d.description.length;
+			const dirty = on !== snap.service.active
+				|| String(d.price) !== String(snap.service.price_usd ?? '')
+				|| d.description !== (snap.service.description || '');
+			const blockerHtml = blockers.length && !snap.service.active
+				? `<div class="awh-api-blockers" role="alert"><strong>This agent can’t be sold yet</strong><ul>${blockers.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul></div>`
+				: '';
+			const serverReasons = state.apiReasons?.length
+				? `<div class="awh-api-blockers" role="alert"><strong>Not saved</strong><ul>${state.apiReasons.map((r) => `<li>${escapeHtml(r)}</li>`).join('')}</ul></div>`
+				: '';
+
+			h.innerHTML = `${title}
+				<p class="awh-api-intro">One switch turns ${escapeHtml(ctx.agent?.name || 'this agent')} into a pay-per-call endpoint. Any app or agent POSTs a message, pays your price in USDC on Solana straight to the agent’s wallet, and gets one reply. A call that fails is never charged.</p>
+				<label class="awh-api-switch${on ? ' is-on' : ''}${!canTurnOn && !on ? ' is-disabled' : ''}">
+					<input type="checkbox" data-api="active" ${on ? 'checked' : ''} ${!canTurnOn && !on ? 'disabled' : ''} aria-describedby="awh-api-switch-sub" />
+					<span class="awh-api-track" aria-hidden="true"></span>
+					<span class="awh-api-switch-copy"><strong>${on ? 'On sale as an API' : 'Sell this agent as an API'}</strong><span id="awh-api-switch-sub">${on ? 'Buyers can call it now.' : 'Off. Nobody can call it until you turn this on and save.'}</span></span>
+				</label>
+				${blockerHtml}
+				<div class="awh-api-fields">
+					<div class="awh-api-field">
+						<label for="awh-api-price">Price per call</label>
+						<span class="awh-api-price"><span class="pre">$</span><input id="awh-api-price" class="awh-api-input" type="number" inputmode="decimal" min="${lim.min_price_usd}" max="${lim.max_price_usd}" step="0.001" data-api="price" value="${escapeHtml(String(d.price))}" placeholder="0.05" /></span>
+						<span class="hint">USDC · $${escapeHtml(String(lim.min_price_usd))} to $${escapeHtml(String(lim.max_price_usd))}</span>
+					</div>
+					<div class="awh-api-field">
+						<label for="awh-api-desc">Public description</label>
+						<textarea id="awh-api-desc" class="awh-api-textarea" maxlength="${lim.description_max}" rows="2" data-api="description" placeholder="What buyers get from one call, in a sentence.">${escapeHtml(d.description)}</textarea>
+						<span class="hint${descLen > lim.description_max ? ' over' : ''}" data-api-count>${descLen}/${lim.description_max} · shown in the x402 catalog</span>
+					</div>
+				</div>
+				${serverReasons}
+				<div class="awh-earn-save-row">
+					<button class="awh-btn awh-btn--primary" type="button" data-act="api-save" ${state.apiSaving || !dirty ? 'disabled' : ''}>${state.apiSaving ? 'Saving…' : 'Save'}</button>
+					<span class="awh-api-meta">You keep the price minus the ${escapeHtml(feePct)}% platform fee.</span>
+					${state.apiMsg ? `<span class="msg ${state.apiOk ? 'ok' : 'err'}">${escapeHtml(state.apiMsg)}</span>` : ''}
+				</div>
+				${snap.service.active ? liveBlock(snap) : ''}`;
+		}
+
+		function curlFor(snap) {
+			return `curl -i -X POST ${snap.endpoint_url} \\\n  -H 'content-type: application/json' \\\n  -d '{"message":"hi"}'`;
+		}
+
+		function liveBlock(snap) {
+			const net = ctx.getNetwork?.() || 'mainnet';
+			const e = snap.earnings;
+			const payTo = snap.pay_to?.solana;
+			const recent = (e.recent || []).slice(0, 5).map((r) => {
+				const when = r.created_at ? timeAgo(unixSec(r.created_at)) : '';
+				const tx = r.tx ? ` · <a href="${escapeHtml(explorerTxUrl(r.tx, net))}" target="_blank" rel="noopener">tx ↗</a>` : '';
+				const who = r.payer ? `from ${escapeHtml(shortAddress(r.payer, 4, 4))}` : 'paid call';
+				return `<li class="awh-rcpt"><div class="awh-rcpt-ic in" aria-hidden="true">↓</div><div class="awh-rcpt-main"><div class="awh-rcpt-label">API call</div><div class="awh-rcpt-meta">${who} · ${escapeHtml(when)}${tx}</div></div><div class="awh-rcpt-amt in">+${escapeHtml(money(r.net_usd))}</div></li>`;
+			}).join('');
+			return `<div class="awh-api-live">
+				<div>
+					<p class="awh-api-row-h">Endpoint</p>
+					<div class="awh-api-url"><code title="${escapeHtml(snap.endpoint_url)}">POST ${escapeHtml(snap.endpoint_url)}</code><button class="awh-btn awh-api-copy" type="button" data-act="api-copy-url" aria-label="Copy endpoint URL">Copy</button></div>
+					${payTo ? `<p class="awh-api-meta" style="margin:6px 0 0">Pays to <a href="${escapeHtml(explorerAddressUrl(payTo, net))}" target="_blank" rel="noopener">${escapeHtml(shortAddress(payTo, 4, 4))} ↗</a> on Solana · listed in the <a href="/x402">x402 catalog</a></p>` : ''}
+				</div>
+				<div>
+					<p class="awh-api-row-h"><span>Try it: the first call answers 402 with the price</span><button class="awh-btn awh-api-copy" type="button" data-act="api-copy-curl" aria-label="Copy curl command">Copy</button></p>
+					<pre class="awh-api-curl">${escapeHtml(curlFor(snap))}</pre>
+					<p class="awh-api-meta" style="margin:6px 0 0">Pay the challenge with any x402 client, then repeat the request with the payment header. <a href="/docs/x402#sell-your-agent-as-an-api">Buyer guide</a></p>
+				</div>
+				<div>
+					<p class="awh-api-row-h">Earned by this API</p>
+					<div class="awh-api-stats">
+						<div class="awh-earn-pcell"><b>${escapeHtml(money(e.net_usd))}</b><span>All time</span></div>
+						<div class="awh-earn-pcell"><b>${escapeHtml(money(e.net_week_usd))}</b><span>7 days</span></div>
+						<div class="awh-earn-pcell"><b>${e.calls}</b><span>Paid calls</span></div>
+					</div>
+					${recent
+						? `<ul class="awh-rcpt-list" style="margin-top:8px">${recent}</ul>`
+						: `<div class="awh-earn-empty">No paid calls yet. Share the endpoint or the curl above; every paid call lands here with its transaction.</div>`}
+				</div>
+			</div>`;
+		}
+
+		function draftFrom(snap) {
+			return {
+				active: !!snap.service.active,
+				price: snap.service.price_usd ?? '',
+				description: snap.service.description || '',
+			};
+		}
+
+		async function loadApi() {
+			const res = await fetchApiService(ctx.agentId);
+			if (destroyed) return;
+			state.apiLoading = false;
+			if (res.ok) {
+				state.api = res.data;
+				state.apiError = null;
+				state.apiDraft = draftFrom(res.data);
+			} else {
+				state.apiError = res.message || 'load failed';
+			}
+			renderApi();
+		}
+
+		async function saveApi() {
+			const d = state.apiDraft;
+			const price = Number(d.price);
+			state.apiMsg = null;
+			state.apiReasons = null;
+			if (!Number.isFinite(price) || price <= 0) {
+				state.apiOk = false;
+				state.apiMsg = 'Set a price per call above $0.';
+				renderApi();
+				return;
+			}
+			state.apiSaving = true;
+			renderApi();
+			const res = await saveApiService(ctx.agentId, { active: d.active, price_usd: price, description: d.description });
+			if (destroyed) return;
+			state.apiSaving = false;
+			if (res.ok) {
+				state.api = res.data;
+				state.apiDraft = draftFrom(res.data);
+				state.apiOk = true;
+				state.apiMsg = res.data.service.active ? 'Saved · on sale now' : 'Saved · not on sale';
+				toast(res.data.service.active ? 'Your agent is on sale as an API' : 'API service saved');
+			} else {
+				state.apiOk = false;
+				state.apiMsg = res.message || 'Could not save';
+				state.apiReasons = res.reasons && res.reasons.length > 1 ? res.reasons : null;
+			}
+			renderApi();
+		}
+
+		// Typing must not re-render the card (it would steal focus), so the Save
+		// button's enabled state and the character counter update in place.
+		function syncApiSaveState() {
+			const h = host('api');
+			const snap = state.api;
+			const d = state.apiDraft;
+			if (!h || !snap || !d) return;
+			const dirty = d.active !== snap.service.active
+				|| String(d.price) !== String(snap.service.price_usd ?? '')
+				|| d.description !== (snap.service.description || '');
+			const btn = h.querySelector('[data-act="api-save"]');
+			if (btn) btn.disabled = state.apiSaving || !dirty;
+			const count = h.querySelector('[data-api-count]');
+			if (count) {
+				const max = snap.limits.description_max;
+				count.textContent = `${d.description.length}/${max} · shown in the x402 catalog`;
+				count.classList.toggle('over', d.description.length > max);
+			}
+		}
+
+		async function copyText(text, label) {
+			const ok = await copyToClipboard(text);
+			toast(ok ? `${label} copied` : 'Copy failed. Select the text and copy it by hand.');
+		}
+
 		// ── 3. Autonomous spend (allowance + kill switch) ───────────────────────
 		function renderSpend() {
 			const h = host('spend');
@@ -632,6 +865,17 @@ registerWalletTab({
 				reload();
 			} else if (act === 'save-prices') {
 				savePrices();
+			} else if (act === 'api-save') {
+				saveApi();
+			} else if (act === 'api-reload') {
+				state.apiLoading = true;
+				state.apiError = null;
+				renderApi();
+				loadApi();
+			} else if (act === 'api-copy-url' && state.api) {
+				copyText(state.api.endpoint_url, 'Endpoint URL');
+			} else if (act === 'api-copy-curl' && state.api) {
+				copyText(curlFor(state.api), 'curl command');
 			} else if (act === 'toggle-freeze') {
 				toggleFreeze();
 			} else if (act === 'hire') {
@@ -647,6 +891,13 @@ registerWalletTab({
 
 		panel.addEventListener('change', (ev) => {
 			const t = ev.target;
+			if (t?.dataset?.api === 'active' && state.apiDraft) {
+				state.apiDraft.active = t.checked;
+				state.apiMsg = null;
+				state.apiReasons = null;
+				renderApi();
+				return;
+			}
 			const edit = t?.dataset?.edit;
 			if (!edit) return;
 			const i = Number(t.dataset.i);
@@ -661,6 +912,12 @@ registerWalletTab({
 
 		panel.addEventListener('input', (ev) => {
 			const t = ev.target;
+			const apiField = t?.dataset?.api;
+			if ((apiField === 'price' || apiField === 'description') && state.apiDraft) {
+				state.apiDraft[apiField] = t.value;
+				syncApiSaveState();
+				return;
+			}
 			if (t?.dataset?.edit === 'usd') {
 				const row = state.editor[Number(t.dataset.i)];
 				if (row) row.usd = t.value;
@@ -675,6 +932,7 @@ registerWalletTab({
 					reload();
 					loadPricing();
 				}
+				if (state.apiLoading) loadApi();
 			},
 			destroy() {
 				destroyed = true;
