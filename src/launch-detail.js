@@ -1201,7 +1201,9 @@ function renderEconomics() {
 	}
 
 	const creatorFees = econ?.creator_fees;
-	const hasCreatorFees = !!creatorFees && Number(creatorFees.earned_sol) > 0;
+	// Present whenever the earnings snapshot (or the live fallback) reported this
+	// coin, zero included: "earned 0 SOL so far" is a real, useful answer.
+	const hasCreatorFees = !!creatorFees && creatorFees.earned_sol != null;
 
 	if (buybackBps <= 0 && (!econ || econ.confirmed_payments === 0) && !hasCreatorFees) {
 		section(
@@ -1224,11 +1226,15 @@ function renderEconomics() {
 		]);
 
 	const body = el('div', { class: 'ld-econ' }, [
-		el('p', { class: 'ld-econ-lede', text: `Every agent payment routes ${(buybackBps / 100).toFixed(1)}% into an automated buyback that burns supply — paying users fund a deflationary loop.` }),
+		buybackBps > 0
+			? el('p', { class: 'ld-econ-lede', text: `Every agent payment routes ${(buybackBps / 100).toFixed(1)}% into an automated buyback that burns supply, so paying users fund a deflationary loop.` })
+			: el('p', { class: 'ld-econ-lede', text: 'Every trade of this coin pays its creator a fee. Here is what it has earned, claimed and left to claim.' }),
 		el('div', { class: 'ld-econ-grid' }, [
-			metric('Buyback rate', `${(buybackBps / 100).toFixed(1)}%`),
-			metric('Paid calls', compact(econ?.confirmed_payments || 0), `${compact(econ?.unique_payers || 0)} payers`),
-			metric('Burn runs', compact(econ?.burns?.runs || 0)),
+			buybackBps > 0 ? metric('Buyback rate', `${(buybackBps / 100).toFixed(1)}%`) : null,
+			buybackBps > 0 || econ?.confirmed_payments
+				? metric('Paid calls', compact(econ?.confirmed_payments || 0), `${compact(econ?.unique_payers || 0)} payers`)
+				: null,
+			buybackBps > 0 ? metric('Burn runs', compact(econ?.burns?.runs || 0)) : null,
 			burned > 0 ? metric('Supply burned', compact(burned / 1e6)) : null,
 			hasCreatorFees
 				? metric(
@@ -1237,8 +1243,15 @@ function renderEconomics() {
 						creatorFees.earned_usd != null ? fmtUsd(Number(creatorFees.earned_usd), { sign: false }) : null,
 					)
 				: null,
+			hasCreatorFees && creatorFees.claimed_sol != null
+				? metric('Claimed', fmtSol(Number(creatorFees.claimed_sol), { sign: false }))
+				: null,
+			hasCreatorFees && creatorFees.unclaimed_sol != null
+				? metric('Unclaimed', fmtSol(Number(creatorFees.unclaimed_sol), { sign: false }))
+				: null,
 		]),
 	]);
+	if (hasCreatorFees) body.appendChild(creatorFeesNote(creatorFees));
 
 	// Recent burn proofs — each links to its Solana transaction.
 	const feed = (econ?.burns_feed || []).slice(0, 5);
@@ -1269,6 +1282,28 @@ function renderEconomics() {
 	}
 
 	section(target, 'Economics', body, { tag: 'on-chain' });
+}
+
+// Where the creator-fee figures come from, how fresh they are, and (when
+// pump.fun reports one figure for a wallet that created several coins) that
+// the number is shared. Links to the agent's full earnings on its own page.
+function creatorFeesNote(fees) {
+	const parts = [];
+	if (Number(fees.wallet_coin_count) > 1) {
+		parts.push(`Combined for ${fees.wallet_coin_count} coins created by the same wallet.`);
+	}
+	parts.push(
+		fees.refreshed_at
+			? `Creator fees from pump.fun, updated ${relTime(fees.refreshed_at)}.`
+			: 'Creator fees from pump.fun.',
+	);
+	const agent = state.detail.agent;
+	return el('p', { class: 'ld-econ-note' }, [
+		el('span', { text: parts.join(' ') + ' ' }),
+		agent?.id && agent.is_public
+			? el('a', { href: `/agents/${encodeURIComponent(agent.id)}#av-earned`, text: 'See everything this agent earned →' })
+			: null,
+	]);
 }
 
 // ════════════════════════════════════════════════════════════════════════════

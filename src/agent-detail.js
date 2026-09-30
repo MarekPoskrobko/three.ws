@@ -37,6 +37,7 @@ import { log } from './shared/log.js';
 import { track, trackError, ANALYTICS_EVENTS } from './analytics.js';
 import { mountViewSwitcher } from './view-switcher.js';
 import { mountCoinStatus } from './pump/coin-status-card.js';
+import { mountEarningsCard } from './shared/agent-earnings-card.js';
 import { mountAgentTokenPlan } from './agent-token-plan.js';
 import { consumeCsrfToken } from './api.js';
 import { countUp, updateValue, flashValue, ring, playRings, sparkline, enterStagger } from './ui-juice.js';
@@ -53,6 +54,7 @@ let _streamHandle = null;
 let _strategyHandle = null;
 let _cardHandle = null;
 let _patronageHandle = null;
+let _earnedHandle = null;
 let _watchHandle = null;
 let _achievementsHandle = null;
 // Live WebGL avatar mounts (hero + fullscreen modal). Disposed on re-render so a
@@ -1441,6 +1443,18 @@ function render(agent) {
 				agent: { id: agent.id, name: agent.name, solana_address: wMeta.solana_address, rawMetadata: agent.rawMetadata },
 				isOwner: !!agent.isOwner,
 			});
+		}
+	}
+
+	// Earned: creator fees from the agent's coins plus service income, from
+	// GET /api/agents/:id/earnings, through the shared card the agent page mounts
+	// too. It renders its own loading, empty ("launch a coin"), nothing-earned-yet
+	// and error states. The classic layout has no #ad-earned-body.
+	{
+		const earnedBody = $('ad-earned-body');
+		if (_earnedHandle) { try { _earnedHandle.destroy(); } catch { /* idempotent */ } _earnedHandle = null; }
+		if (earnedBody && agent.id) {
+			_earnedHandle = mountEarningsCard({ mount: earnedBody, agentId: agent.id });
 		}
 	}
 

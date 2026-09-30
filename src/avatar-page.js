@@ -37,6 +37,7 @@ import { emitRecallFromChat } from './agents/memory-client.js';
 import { moodEngine } from './agents/mood-engine.js';
 import { skillLabel } from './shared/skill-label.js';
 import { mountCoinStatus } from './pump/coin-status-card.js';
+import { mountEarningsCard } from './shared/agent-earnings-card.js';
 import { renderHomeConfirmation } from './home-confirm-card.js';
 
 const ATTACHED_KEY_PREFIX = 'avatar_attached_v1:';
@@ -703,6 +704,10 @@ function renderShell(glbUrl) {
 						? `<section class="av-coin" id="av-coin" hidden aria-labelledby="av-coin-heading">
 								<h3 class="av-used-by-heading" id="av-coin-heading">Its coin</h3>
 								<div id="av-coin-slot"></div>
+							</section>
+							<section class="av-coin" id="av-earned" aria-labelledby="av-earned-heading">
+								<h3 class="av-used-by-heading" id="av-earned-heading">Earned</h3>
+								<div id="av-earned-slot"></div>
 							</section>`
 						: ''}
 					${mode === 'agent' ? bodyCardHTML() : ''}
@@ -814,6 +819,20 @@ function renderShell(glbUrl) {
 
 	mountWalletManager();
 	mountAgentCoin();
+	mountEarned();
+}
+
+/**
+ * What this agent has earned: creator fees from its coins plus service income,
+ * from GET /api/agents/:id/earnings via the shared Earned card (the same widget
+ * the full profile mounts). Shown for every agent; the card itself renders the
+ * "launch a coin" empty state, the nothing-earned-yet state and the error state.
+ */
+function mountEarned() {
+	const slot = $('av-earned-slot');
+	const agentId = agent?.id || entityId;
+	if (!slot || mode !== 'agent' || !agentId) return;
+	mountEarningsCard({ mount: slot, agentId });
 }
 
 /**

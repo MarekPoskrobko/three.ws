@@ -33,8 +33,9 @@ import { sql } from '../_lib/db.js';
 import { publicUrl as r2PublicUrl } from '../_lib/r2.js';
 import { normalizeGatewayURL } from '../../src/ipfs.js';
 import { getTraderStats } from '../_lib/trader-stats.js';
-import { withBreaker } from '../_lib/resilience.js';
-import { pumpFetchJson } from '../_lib/pump-feed-fetch.js';
+import { getConnection } from '../_lib/pump.js';
+import { solPriceUsd } from '../_lib/sol-price.js';
+import { resolveCoinCreators, readCreatorFeeReport } from '../_lib/pump-creator-fees.js';
 
 const MINT_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 const lamportsToSol = (v) => (v == null ? null : Number(BigInt(v)) / 1e9);
@@ -52,48 +53,54 @@ function safeR2Url(key) {
 	}
 }
 
-// Creator fee-sharing earnings — what the coin's creator has actually earned
-// from pump.fun's creator-reward program. Two public pump.fun endpoints (the
-// same ones the pump.fun frontend calls): coin metadata → creator wallet, then
-// the creator's fee-sharing totals filtered to this mint.
+// Creator fees: what the coin's creator wallet has earned from pump.fun's
+// creator-fee program. Read from the agent_coin_earnings snapshot the
+// creator-earnings cron refreshes every 30 minutes, so a page view never waits
+// on pump.fun. A coin the snapshot has not reached yet (launched minutes ago)
+// falls back to one live read through the shared client in
+// api/_lib/pump-creator-fees.js, which runs behind the 'pumpfun:creator-fees'
+// circuit breaker and resolves the fee recipient on-chain.
 //
-// Each call is timeout-bounded, and the whole thing runs behind a circuit
-// breaker at the call site (see buildDetail): an UNHEALTHY upstream (network
-// error, timeout, non-2xx) throws so consecutive failures open the breaker and
-// later requests skip pump.fun instantly instead of every launch-page load
-// waiting out two 5s timeouts during an outage. A VALID-but-empty response (no
-// creator, no earnings) returns null and counts as a success — it isn't an
-// outage, so it must not trip the breaker.
-const PUMP_FRONTEND_V3 = 'https://frontend-api-v3.pump.fun';
-const PUMP_SWAP_API = 'https://swap-api.pump.fun';
-
-async function fetchCreatorFees(mint, network) {
+// pump.fun indexes these fees per creator wallet: `wallet_coin_count` > 1 means
+// the figure is shared by that many coins from the same wallet.
+async function creatorFeesFor(mint, network, price) {
 	if (network !== 'mainnet') return null;
-	// pump.fun answers a burst with 429 far more often than it goes down, and a
-	// bare fetch treated the two identically. pumpFetchJson honours Retry-After
-	// and retries once, which is the difference between a launch page rendering
-	// and a launch page erroring during someone else's mint.
-	const metaRes = await pumpFetchJson(`${PUMP_FRONTEND_V3}/coins-v2/${mint}`, { timeoutMs: 5000 });
-	if (!metaRes.ok) throw new Error(`pump.fun coin meta ${metaRes.status}`);
-	const meta = metaRes.body;
-	const creator = meta?.creator || meta?.creator_address;
-	if (!creator || typeof creator !== 'string') return null; // valid: no creator on file
-
-	const totRes = await pumpFetchJson(
-		`${PUMP_SWAP_API}/v1/fee-sharing/account/${creator}/totals?mint=${mint}`,
-		{ timeoutMs: 5000 },
-	);
-	if (!totRes.ok) throw new Error(`pump.fun fee-sharing ${totRes.status}`);
-	const t = totRes.body;
-	const earnedSol = Number(t?.shareholderTotalEarned?.sol);
-	if (!Number.isFinite(earnedSol)) return null; // valid: creator has no fee-sharing earnings
+	const toUsd = (sol) => (price > 0 && sol != null ? Math.round(sol * price * 100) / 100 : null);
+	const [snap] = await sql`
+		select creator, earned_lamports::text, claimed_lamports::text, unclaimed_lamports::text,
+		       wallet_coin_count, source, refreshed_at
+		from agent_coin_earnings
+		where mint = ${mint} and network = 'mainnet'
+	`;
+	if (snap?.source === 'pumpfun_creator_fees' && snap.earned_lamports != null) {
+		const earned = lamportsToSol(snap.earned_lamports);
+		return {
+			creator: snap.creator,
+			earned_sol: earned,
+			earned_usd: toUsd(earned),
+			claimed_sol: lamportsToSol(snap.claimed_lamports),
+			unclaimed_sol: lamportsToSol(snap.unclaimed_lamports),
+			wallet_coin_count: snap.wallet_coin_count,
+			refreshed_at: snap.refreshed_at,
+			source: 'snapshot',
+		};
+	}
+	const connection = getConnection({ network: 'mainnet' });
+	const creators = await resolveCoinCreators(connection, [mint]).catch(() => null);
+	const creator = creators?.get(mint)?.creator;
+	if (!creator) return null;
+	const report = await readCreatorFeeReport(connection, creator);
+	if (!report.ok) return null;
+	const earned = Number(report.earned_lamports) / 1e9;
 	return {
 		creator,
-		earned_sol: earnedSol,
-		earned_usd: Number(t?.shareholderTotalEarned?.usd) || null,
-		claimed_sol: Number(t?.shareholderClaimed?.sol) || 0,
-		unclaimed_sol: Number(t?.shareholderUnclaimed?.sol) || 0,
-		mint_count: t?.mintCount != null ? Number(t.mintCount) : null,
+		earned_sol: earned,
+		earned_usd: toUsd(earned),
+		claimed_sol: report.claimed_lamports == null ? null : Number(report.claimed_lamports) / 1e9,
+		unclaimed_sol: report.unclaimed_lamports == null ? null : Number(report.unclaimed_lamports) / 1e9,
+		wallet_coin_count: null,
+		refreshed_at: new Date().toISOString(),
+		source: 'live',
 	};
 }
 
@@ -210,15 +217,10 @@ async function buildDetail(mint, network) {
 				where mint_id=${reg.id} and status='confirmed'
 				order by created_at desc limit 8
 			`,
-			// Behind a circuit breaker: a healthy pump.fun returns the fees (or a
-			// valid null); a sick one trips the breaker after 3 failures so later
-			// launch-page loads skip it instantly and degrade to null instead of
-			// each waiting out two 5s timeouts during an outage.
-			withBreaker('pumpfun:creator-fees', () => fetchCreatorFees(mint, network), {
-				fallback: null,
-				threshold: 3,
-				halfOpenAfterMs: 30_000,
-			}),
+			// Snapshot first; a live read (behind the shared creator-fee breaker)
+			// only for a coin the snapshot has not reached. Enrichment, so a
+			// failure degrades to null rather than failing the page.
+			solPriceUsd().then((price) => creatorFeesFor(mint, network, price)).catch(() => null),
 		]);
 		economics = {
 			confirmed_payments: stats?.confirmed_payments ?? 0,

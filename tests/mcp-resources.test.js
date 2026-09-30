@@ -141,6 +141,7 @@ describe('resource registry', () => {
 			'three://agents/{agentId}/orders',
 			'three://agents/{agentId}/dca',
 			'three://agents/{agentId}/intents',
+			'three://agents/{agentId}/earnings',
 			'three://marketplace',
 			'three://models',
 			'three://wallets',

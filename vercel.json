@@ -719,6 +719,10 @@
 			"dest": "/api/agents/[id]/economy?id=$1"
 		},
 		{
+			"src": "/api/agents/([^/]+)/earnings",
+			"dest": "/api/agents/[id]/earnings?id=$1"
+		},
+		{
 			"src": "/api/agents/([^/]+)/skills-pricing",
 			"dest": "/api/agents/[id]/skills-pricing?id=$1"
 		},
@@ -1245,6 +1249,14 @@
 		{
 			"src": "/quests/?",
 			"dest": "/quests.html"
+		},
+		{
+			"src": "/duels/?",
+			"dest": "/duels.html"
+		},
+		{
+			"src": "/duels/([^/.]+)/?",
+			"dest": "/duel.html"
 		},
 		{
 			"src": "/fade/?",
@@ -6674,6 +6686,10 @@
 			"schedule": "*/5 * * * *"
 		},
 		{
+			"path": "/api/cron/creator-earnings-snapshot",
+			"schedule": "11,41 * * * *"
+		},
+		{
 			"path": "/api/cron/fee-bridge",
 			"schedule": "*/10 * * * *"
 		},
@@ -6808,6 +6824,10 @@
 		{
 			"path": "/api/cron/forge-web-variants",
 			"schedule": "*/10 * * * *"
+		},
+		{
+			"path": "/api/cron/duels-tick",
+			"schedule": "*/15 * * * *"
 		}
 	]
 }

@@ -138,6 +138,7 @@ function agentLinks(id) {
 			orders: `three://agents/${id}/orders`,
 			dca: `three://agents/${id}/dca`,
 			intents: `three://agents/${id}/intents`,
+			earnings: `three://agents/${id}/earnings`,
 		},
 	};
 }
@@ -822,6 +823,23 @@ async function readAsset(ctx, { id }) {
 	};
 }
 
+// three://agents/{agentId}/earnings  (api/agents/[id]/earnings.js)
+// Public like its REST twin: a public agent's creator fees and claims are
+// on-chain for anyone to read. A private agent reads only for its owner.
+async function readEarnings(ctx, { agentId }) {
+	if (!UUID_RE.test(agentId)) throw notFound(ctx.uri);
+	const [agent] = await sql`
+		SELECT id, name, is_public, user_id, meta->>'solana_address' AS solana_address
+		  FROM agent_identities
+		 WHERE id = ${agentId} AND deleted_at IS NULL
+		 LIMIT 1
+	`;
+	if (!agent) throw notFound(ctx.uri);
+	if (!agent.is_public && agent.user_id !== ctx.auth?.userId) throw notFound(ctx.uri);
+	const { getAgentEarnings } = await import('../_lib/agent-earnings.js');
+	return { ...(await getAgentEarnings(agent)), page: `${origin()}/agents/${agent.id}` };
+}
+
 // ── Registry ──────────────────────────────────────────────────────────────────
 
 const AGENT_SCOPES = ['agents:read', 'agents:write'];
@@ -941,6 +959,16 @@ export const RESOURCES = [
 		read: readIntents,
 	},
 	{
+		key: 'earnings',
+		uriTemplate: 'three://agents/{agentId}/earnings',
+		name: 'agent-earnings',
+		title: 'Agent earnings',
+		description: 'What an agent has earned: lifetime pump.fun creator fees from its coins (earned, claimed, unclaimed, in SOL and USD, per coin), its recorded claim transactions with explorer links, x402 skill sales and hires, its earnings-leaderboard rank, and a method line saying where every number comes from. Public for public agents.',
+		access: 'public',
+		perAgent: true,
+		read: readEarnings,
+	},
+	{
 		key: 'marketplace',
 		uri: 'three://marketplace',
 		name: 'marketplace',
@@ -1002,8 +1030,8 @@ const BY_KEY = new Map(RESOURCES.map((r) => [r.key, r]));
 
 // Which resources each hosted server exposes.
 const SERVER_RESOURCES = {
-	mcp: ['me', 'agents', 'agent', 'wallet', 'usage', 'chat', 'runs', 'run', 'orders', 'dca', 'intents', 'marketplace', 'models', 'wallets', 'launches', 'x402-services'],
-	'mcp-agent': ['me', 'agents', 'agent', 'wallet', 'usage', 'runs', 'run', 'orders', 'dca', 'intents', 'wallets', 'launches', 'marketplace', 'x402-services'],
+	mcp: ['me', 'agents', 'agent', 'wallet', 'usage', 'chat', 'runs', 'run', 'orders', 'dca', 'intents', 'earnings', 'marketplace', 'models', 'wallets', 'launches', 'x402-services'],
+	'mcp-agent': ['me', 'agents', 'agent', 'wallet', 'usage', 'runs', 'run', 'orders', 'dca', 'intents', 'earnings', 'wallets', 'launches', 'marketplace', 'x402-services'],
 	'mcp-3d': ['me', 'agents', 'agent', 'asset', 'models'],
 	'mcp-bazaar': ['me', 'x402-services', 'marketplace'],
 };
