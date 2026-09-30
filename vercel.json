@@ -719,6 +719,10 @@
 			"dest": "/api/agents/[id]/skills-pricing?id=$1"
 		},
 		{
+			"src": "/api/agents/([^/]+)/api-service",
+			"dest": "/api/agents/[id]/api-service?id=$1"
+		},
+		{
 			"src": "/api/agents/([^/]+)/skills/price",
 			"dest": "/api/agent-skill-price.js?agentId=$1"
 		},
@@ -5397,6 +5401,10 @@
 		{
 			"src": "/api/x402/service/([^/?]+)",
 			"dest": "/api/x402/service.js?slug=$1"
+		},
+		{
+			"src": "/api/x402/agents/([^/?]+)/?",
+			"dest": "/api/x402/agents.js?agent=$1"
 		},
 		{
 			"src": "/api/(.*)",
