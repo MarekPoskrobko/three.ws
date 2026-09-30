@@ -1,10 +1,10 @@
 {
 	"id": "avatar-cli",
-	"scenarioHash": "32d76632748b9514a5e8b6e1c1df51b852c3cd7c085b5373cd85223b648261a1",
-	"ranAt": "2026-09-29T09:19:53.183Z",
+	"scenarioHash": "3efddd3ebc2ff698ee0b7f4325b15032775b9571be131f58792ff213cfaf9981",
+	"ranAt": "2026-09-30T08:05:35.698Z",
 	"target": {
-		"commit": "f2081d946",
-		"revision": "three-ws-api-00460-4j6"
+		"commit": "955623897",
+		"revision": "three-ws-api-00464-mbw"
 	},
 	"passed": true,
 	"steps": [
@@ -14,7 +14,7 @@
 			"target": "https://three.ws/avatar-cli",
 			"detail": "loaded https://three.ws/avatar-cli",
 			"ok": true,
-			"ms": 7243,
+			"ms": 9584,
 			"frames": 0
 		},
 		{
@@ -23,7 +23,7 @@
 			"target": "1400",
 			"detail": "1400 ms",
 			"ok": true,
-			"ms": 8052,
+			"ms": 11327,
 			"frames": 42
 		},
 		{
@@ -32,7 +32,7 @@
 			"target": "130",
 			"detail": "scrolled 130 px",
 			"ok": true,
-			"ms": 3154,
+			"ms": 4756,
 			"frames": 18
 		},
 		{
@@ -41,7 +41,7 @@
 			"target": "commands",
 			"detail": "commands = \"4\"",
 			"ok": true,
-			"ms": 3,
+			"ms": 2,
 			"frames": 0
 		},
 		{
@@ -50,7 +50,7 @@
 			"target": "networkCalls",
 			"detail": "networkCalls = \"0\"",
 			"ok": true,
-			"ms": 1,
+			"ms": 2,
 			"frames": 0
 		},
 		{
@@ -59,7 +59,7 @@
 			"target": "runtimeDeps",
 			"detail": "runtimeDeps = \"1\"",
 			"ok": true,
-			"ms": 1,
+			"ms": 2,
 			"frames": 0
 		},
 		{
@@ -68,7 +68,7 @@
 			"target": "1600",
 			"detail": "1600 ms",
 			"ok": true,
-			"ms": 9619,
+			"ms": 12119,
 			"frames": 48
 		},
 		{
@@ -77,7 +77,7 @@
 			"target": "https://three.ws/avatar-cli#ci",
 			"detail": "loaded https://three.ws/avatar-cli#ci",
 			"ok": true,
-			"ms": 410,
+			"ms": 413,
 			"frames": 0
 		},
 		{
@@ -86,7 +86,7 @@
 			"target": "2600",
 			"detail": "2600 ms",
 			"ok": true,
-			"ms": 9067,
+			"ms": 15926,
 			"frames": 78
 		},
 		{
@@ -95,7 +95,7 @@
 			"target": "https://three.ws/avatar-cli#live",
 			"detail": "loaded https://three.ws/avatar-cli#live",
 			"ok": true,
-			"ms": 664,
+			"ms": 2023,
 			"frames": 0
 		},
 		{
@@ -104,7 +104,7 @@
 			"target": "viewer",
 			"detail": "viewer = \"michelle.glb\"",
 			"ok": true,
-			"ms": 114,
+			"ms": 498,
 			"frames": 0
 		},
 		{
@@ -113,7 +113,7 @@
 			"target": "2000",
 			"detail": "2000 ms",
 			"ok": true,
-			"ms": 17956,
+			"ms": 61914,
 			"frames": 60
 		},
 		{
@@ -122,7 +122,7 @@
 			"target": "470",
 			"detail": "scrolled 470 px",
 			"ok": true,
-			"ms": 9527,
+			"ms": 34547,
 			"frames": 30
 		},
 		{
@@ -131,7 +131,7 @@
 			"target": "1200",
 			"detail": "1200 ms",
 			"ok": true,
-			"ms": 10632,
+			"ms": 35946,
 			"frames": 36
 		},
 		{
@@ -140,7 +140,7 @@
 			"target": "0.36,0.5,0.66,0.5",
 			"detail": "dragged over 66 frames",
 			"ok": true,
-			"ms": 25534,
+			"ms": 88412,
 			"frames": 84
 		},
 		{
@@ -149,7 +149,7 @@
 			"target": "2600",
 			"detail": "2600 ms",
 			"ok": true,
-			"ms": 24847,
+			"ms": 110213,
 			"frames": 78
 		}
 	],
@@ -164,7 +164,7 @@
 	"cuts": [],
 	"video": {
 		"path": "public/x-media/avatar-cli/reel.mp4",
-		"sha256": "346dc8bb39307018eb3969088f115ed018762194ea8becc49dcadbdf82a5748c",
+		"sha256": "5b470e59ec36c696472ae37a065fa2201b903ab52dd8c35ea7b62a339c6af14e",
 		"frames": 474,
 		"motion": 0.524,
 		"durationSec": 15.8,

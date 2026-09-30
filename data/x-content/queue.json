@@ -2823,7 +2823,7 @@
 		},
 		{
 			"id": "splat-viewer",
-			"status": "draft",
+			"status": "review",
 			"kind": "post",
 			"tier": 2,
 			"lane": "community",

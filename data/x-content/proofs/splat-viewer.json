@@ -1,10 +1,10 @@
 {
 	"id": "splat-viewer",
-	"scenarioHash": "68cb6584c6422cab7149195f52b341f33a3db1c831999762693d357e37278dcb",
-	"ranAt": "2026-09-29T09:30:05.114Z",
+	"scenarioHash": "e0a2e37a75975c740d2526818b9db673aa1c024a1bb25b1c7dfa7c703132f0ca",
+	"ranAt": "2026-09-30T08:06:21.660Z",
 	"target": {
-		"commit": "f2081d946",
-		"revision": "three-ws-api-00460-4j6"
+		"commit": "955623897",
+		"revision": "three-ws-api-00464-mbw"
 	},
 	"passed": true,
 	"steps": [
@@ -14,7 +14,7 @@
 			"target": "https://three.ws/splat",
 			"detail": "loaded https://three.ws/splat",
 			"ok": true,
-			"ms": 6903,
+			"ms": 7896,
 			"frames": 0
 		},
 		{
@@ -23,7 +23,7 @@
 			"target": "1400",
 			"detail": "1400 ms",
 			"ok": true,
-			"ms": 5589,
+			"ms": 14419,
 			"frames": 42
 		},
 		{
@@ -32,7 +32,7 @@
 			"target": "Samples",
 			"detail": "scrolled 885 px",
 			"ok": true,
-			"ms": 4041,
+			"ms": 9950,
 			"frames": 27
 		},
 		{
@@ -41,17 +41,17 @@
 			"target": "Synthetic head bust · 14k splats",
 			"detail": "clicked",
 			"ok": true,
-			"ms": 6432,
+			"ms": 6500,
 			"frames": 21
 		},
 		{
 			"index": 5,
 			"kind": "expect",
 			"target": "Synthetic head bust · 14,000 splats",
-			"detail": "appeared after 0 filmed frames",
+			"detail": "appeared after 58 filmed frames",
 			"ok": true,
-			"ms": 8,
-			"frames": 0
+			"ms": 19582,
+			"frames": 58
 		},
 		{
 			"index": 6,
@@ -59,7 +59,7 @@
 			"target": "splats",
 			"detail": "splats = \"14,000\"",
 			"ok": true,
-			"ms": 1,
+			"ms": 2,
 			"frames": 0
 		},
 		{
@@ -68,7 +68,7 @@
 			"target": "0.012,0.45,0.012,0.5",
 			"detail": "dragged over 6 frames",
 			"ok": true,
-			"ms": 14460,
+			"ms": 38262,
 			"frames": 24
 		},
 		{
@@ -77,7 +77,7 @@
 			"target": "-670",
 			"detail": "scrolled -670 px",
 			"ok": true,
-			"ms": 16500,
+			"ms": 34838,
 			"frames": 27
 		},
 		{
@@ -86,7 +86,7 @@
 			"target": "1000",
 			"detail": "1000 ms",
 			"ok": true,
-			"ms": 17876,
+			"ms": 40169,
 			"frames": 30
 		},
 		{
@@ -95,7 +95,7 @@
 			"target": "0.3,0.5,0.74,0.5",
 			"detail": "dragged over 84 frames",
 			"ok": true,
-			"ms": 53573,
+			"ms": 180164,
 			"frames": 102
 		},
 		{
@@ -104,7 +104,7 @@
 			"target": "0.62,0.52,0.48,0.58",
 			"detail": "dragged over 48 frames",
 			"ok": true,
-			"ms": 30486,
+			"ms": 76821,
 			"frames": 66
 		},
 		{
@@ -113,7 +113,7 @@
 			"target": "2800",
 			"detail": "2800 ms",
 			"ok": true,
-			"ms": 37459,
+			"ms": 100407,
 			"frames": 84
 		}
 	],
@@ -127,10 +127,10 @@
 	"cuts": [],
 	"video": {
 		"path": "public/x-media/splat-viewer/reel.mp4",
-		"sha256": "b7f8322afb7542fe328ed4e43d6ed6d2cb7807c42232724066b2c2c2727b5af5",
-		"frames": 423,
-		"motion": 0.82,
-		"durationSec": 14.1,
+		"sha256": "bcfa913996b66a18e4cf2308ef3eba2d7fba00529ae5b3524d4798b495262223",
+		"frames": 481,
+		"motion": 0.723,
+		"durationSec": 16.03,
 		"width": 1080,
 		"height": 1080,
 		"fps": 30,

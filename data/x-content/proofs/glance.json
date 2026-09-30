@@ -1,8 +1,11 @@
 {
 	"id": "glance",
-	"scenarioHash": "8bb4a375fc2d1cb6e45549d36f2194bf49ae52c2613e36416c1b57a11e9d4e79",
-	"ranAt": "2026-09-30T08:04:18.803Z",
-	"target": null,
+	"scenarioHash": "555ee3554050a902e8248c7a5d62b3e7136a6606a9d5dec6f76c16abd974a1c2",
+	"ranAt": "2026-09-30T08:09:23.814Z",
+	"target": {
+		"commit": "07a1ab3b5",
+		"revision": "three-ws-api-00465-jlh"
+	},
 	"passed": true,
 	"steps": [
 		{
@@ -11,7 +14,7 @@
 			"target": "https://three.ws/glance",
 			"detail": "loaded https://three.ws/glance",
 			"ok": true,
-			"ms": 54750,
+			"ms": 14779,
 			"frames": 0
 		},
 		{
@@ -20,7 +23,7 @@
 			"target": "1500",
 			"detail": "1500 ms",
 			"ok": true,
-			"ms": 6869,
+			"ms": 18420,
 			"frames": 45
 		},
 		{
@@ -29,25 +32,25 @@
 			"target": "150",
 			"detail": "scrolled 150 px",
 			"ok": true,
-			"ms": 3900,
+			"ms": 9176,
 			"frames": 21
 		},
 		{
 			"index": 4,
 			"kind": "type",
-			"target": "78c5f138-e7ee-4f32-9e00-6165f008f0a4",
-			"detail": "typed 36 characters; GET /api/glance/card answered 200 in 15 s",
+			"target": "62e1863d-3c32-4f9b-a11c-7d89ce2bcd57",
+			"detail": "typed 36 characters; GET /api/glance/card answered 200 in 36.7 s",
 			"ok": true,
-			"ms": 18978,
+			"ms": 44554,
 			"frames": 88
 		},
 		{
 			"index": 5,
 			"kind": "expect",
 			"target": "Showing the agent you pasted",
-			"detail": "appeared after 0.0 s",
+			"detail": "appeared after 0.1 s",
 			"ok": true,
-			"ms": 20,
+			"ms": 56,
 			"frames": 0
 		},
 		{
@@ -56,16 +59,16 @@
 			"target": "300",
 			"detail": "scrolled 300 px",
 			"ok": true,
-			"ms": 5632,
+			"ms": 13030,
 			"frames": 27
 		},
 		{
 			"index": 7,
 			"kind": "read",
 			"target": "name",
-			"detail": "name = \"Azul\"",
+			"detail": "name = \"Whatchget\"",
 			"ok": true,
-			"ms": 11,
+			"ms": 9,
 			"frames": 0
 		},
 		{
@@ -74,7 +77,7 @@
 			"target": "metric",
 			"detail": "metric = \"moves today\"",
 			"ok": true,
-			"ms": 4,
+			"ms": 6,
 			"frames": 0
 		},
 		{
@@ -83,7 +86,7 @@
 			"target": "2200",
 			"detail": "2200 ms",
 			"ok": true,
-			"ms": 13964,
+			"ms": 37202,
 			"frames": 66
 		},
 		{
@@ -92,7 +95,7 @@
 			"target": "#theme-select",
 			"detail": "hovered",
 			"ok": true,
-			"ms": 4021,
+			"ms": 9629,
 			"frames": 18
 		},
 		{
@@ -101,7 +104,7 @@
 			"target": "Tab",
 			"detail": "pressed Tab",
 			"ok": true,
-			"ms": 1450,
+			"ms": 2900,
 			"frames": 6
 		},
 		{
@@ -110,7 +113,7 @@
 			"target": "Tab",
 			"detail": "pressed Tab",
 			"ok": true,
-			"ms": 1788,
+			"ms": 2401,
 			"frames": 6
 		},
 		{
@@ -119,16 +122,16 @@
 			"target": "ArrowDown",
 			"detail": "pressed ArrowDown; GET /api/glance/card answered 200 in 0 s",
 			"ok": true,
-			"ms": 2298,
+			"ms": 2432,
 			"frames": 6
 		},
 		{
 			"index": 14,
 			"kind": "press",
 			"target": "ArrowDown",
-			"detail": "pressed ArrowDown; GET /api/glance/card answered 200 in 0 s",
+			"detail": "pressed ArrowDown; GET /api/glance/card answered 200 in 0.1 s",
 			"ok": true,
-			"ms": 2249,
+			"ms": 2357,
 			"frames": 6
 		},
 		{
@@ -137,7 +140,7 @@
 			"target": "theme",
 			"detail": "theme = \"dark\"",
 			"ok": true,
-			"ms": 4,
+			"ms": 10,
 			"frames": 0
 		},
 		{
@@ -146,7 +149,7 @@
 			"target": "2200",
 			"detail": "2200 ms",
 			"ok": true,
-			"ms": 27147,
+			"ms": 25986,
 			"frames": 66
 		},
 		{
@@ -155,7 +158,7 @@
 			"target": "Take it with you",
 			"detail": "scrolled 458 px",
 			"ok": true,
-			"ms": 12194,
+			"ms": 12267,
 			"frames": 30
 		},
 		{
@@ -164,7 +167,7 @@
 			"target": "cli",
 			"detail": "cli = \"npx @three-ws/agent-glance\"",
 			"ok": true,
-			"ms": 4,
+			"ms": 9,
 			"frames": 0
 		},
 		{
@@ -173,12 +176,12 @@
 			"target": "3200",
 			"detail": "3200 ms",
 			"ok": true,
-			"ms": 45133,
+			"ms": 34117,
 			"frames": 96
 		}
 	],
 	"facts": {
-		"name": "Azul",
+		"name": "Whatchget",
 		"metric": "moves today",
 		"theme": "dark",
 		"cli": "npx @three-ws/agent-glance"
@@ -191,7 +194,7 @@
 			"method": "GET",
 			"path": "/api/glance/card",
 			"status": 200,
-			"seconds": 15
+			"seconds": 36.7
 		},
 		{
 			"method": "GET",
@@ -203,13 +206,13 @@
 			"method": "GET",
 			"path": "/api/glance/card",
 			"status": 200,
-			"seconds": 0
+			"seconds": 0.1
 		}
 	],
 	"cuts": [],
 	"video": {
 		"path": "public/x-media/glance/reel.mp4",
-		"sha256": "88472ea6e953a9318395f6138ec175b4a3d2f8d0176f9c780ca8c2f73233b65f",
+		"sha256": "311875747e696b01fbbeea20330777bc4a4c313cd7858272940c443d90652f05",
 		"frames": 481,
 		"motion": 1,
 		"durationSec": 16.03,

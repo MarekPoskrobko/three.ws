@@ -130,7 +130,7 @@
 			]
 		},
 		{
-			"text": "The motion is solved, not keyframed. Pistons come from the exact planar slider-crank, and the locomotive valve gear closes a four-bar chain by intersecting circles every frame, which is why a rod length that cannot physically reach refuses to move rather than stretching.\n\nEach machine is a small JSON object of numbers. Copy the spec, hand it to an agent, get a different machine back, then export the result as GLB. three.ws/assembly"
+			"text": "The motion is solved, not baked animation. Pistons come from the exact planar slider-crank, and the locomotive valve gear closes a four-bar chain by intersecting circles every frame, which is why a rod length that cannot physically reach refuses to move rather than stretching.\n\nEach machine is a small JSON object of numbers. Copy the spec, hand it to an agent, get a different machine back, then export the result as GLB. three.ws/assembly"
 		}
 	],
 	"claims": [
@@ -153,9 +153,13 @@
 			"says": "a steam locomotive",
 			"evidence": [
 				{
+					"type": "proof",
+					"saw": "Outside-cylinder steam locomotive"
+				},
+				{
 					"type": "page",
 					"url": "https://three.ws/assembly",
-					"contains": "Outside-cylinder steam locomotive"
+					"contains": "Coupled Six"
 				}
 			]
 		},
@@ -258,12 +262,16 @@
 			]
 		},
 		{
-			"says": "The motion is solved, not keyframed",
+			"says": "The motion is solved, not baked animation",
 			"evidence": [
 				{
 					"type": "page",
 					"url": "https://three.ws/assembly",
 					"contains": "The motion is solved, not keyframed"
+				},
+				{
+					"type": "proof",
+					"saw": "Solved four-bar chain, not baked animation"
 				}
 			]
 		},
