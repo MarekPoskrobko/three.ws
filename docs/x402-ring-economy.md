@@ -225,6 +225,21 @@ reclaimable. So the practical minimum is: **self-pay + the biggest per-call size
 your float supports.** $100/call settles thousands of dollars of volume for a few
 cents of SOL.
 
+### Every payment picks its own nonce
+
+`buildPaymentTx()` is deterministic: the same inputs rebuild the same bytes, so
+a retry is safe, and its default nonce is 0. Two payments with the same payer,
+payTo, mint and amount, signed against one blockhash with the same nonce, are
+one transaction with one signature. Only the first lands; the facilitator
+refuses the others with `signature_already_settled`, which the caller sees as
+`http_502`. The autonomous loop and every pipeline it runs sign against one
+tick-wide blockhash, so each payment passes `nonce: nextAutoNonce()` (the seed
+cron uses a random base plus the batch position). In sponsor mode every nonce
+costs the same 10,000 lamports, so uniqueness is free. On 2026-09-30 the loop's
+inline path still built with nonce 0, and its $0.001 health, volume and
+canonicalize entries collided 51 times in 20 minutes. `tests/x402-payment-nonce-guard.test.js`
+now fails any `buildPaymentTx` call under `api/` that does not name a nonce.
+
 ### Fee floor, enforced — ceiling + continuous audit
 
 The floor is not just a default; it is guarded on both the write and the read

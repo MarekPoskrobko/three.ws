@@ -68,6 +68,7 @@ import {
 	buildPaymentTx,
 	bootstrapSolanaContext,
 	admitSponsorSettle,
+	nextAutoNonce,
 	USDC_MINT,
 } from '../pay.js';
 
@@ -270,7 +271,11 @@ async function settleAttributed({ row, buyer, conn, blockhash, mintInfo, remaini
 
 	const amountAtomic = Number(accept.amount || 0);
 	if (amountAtomic > (remainingCap ?? Infinity)) { out.error = 'cap_would_exceed'; return out; }
-	const admission = await admitSponsorSettle({ accept, connection: conn });
+	// The loop hands every pipeline the tick's shared blockhash: a random nonce
+	// keeps this payment's signature distinct from any other same-amount payment
+	// to the same payTo in the tick (see x402-autonomous-loop.js).
+	const payNonce = nextAutoNonce();
+	const admission = await admitSponsorSettle({ accept, connection: conn, nonce: payNonce });
 	if (!admission.ok) { out.error = admission.reason || 'fee_runway_exhausted'; return out; }
 
 	// Echo the declared app code (anti-tamper: the server rejects a mismatch) and
@@ -291,6 +296,7 @@ async function settleAttributed({ row, buyer, conn, blockhash, mintInfo, remaini
 		const txBase64 = buildPaymentTx({
 			accept, buyer, blockhash, mintInfo,
 			receiverAtaExists: receiverAtaInfo !== null,
+			nonce: payNonce,
 		});
 		const xPayment = Buffer.from(JSON.stringify({
 			x402Version: 2,

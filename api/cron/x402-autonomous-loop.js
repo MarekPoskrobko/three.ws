@@ -44,6 +44,7 @@ import {
 	buildPaymentTx,
 	ringFeeConfig,
 	expectedFeeLamports,
+	nextAutoNonce,
 } from '../_lib/x402/pay.js';
 import { assessFeeAdmission } from '../_lib/x402/wallet-fee-meter.js';
 import {
@@ -596,7 +597,18 @@ export default wrapCron(async (req, res) => {
 			// arriving after a full handshake. Skipping here removes only doomed work:
 			// assessFeeAdmission() fails open whenever it cannot price the call, and
 			// it settles nothing extra when the budget is healthy.
-			const feeConfig = ringFeeConfig(0, { selfPay: false });
+			// Every inline payment in a tick shares one blockhash, so two entries
+			// paying the same amount to the same payTo would compile to the SAME
+			// transaction and signature if they also shared a fee config. Only the
+			// first can land; the facilitator refuses the rest with
+			// `signature_already_settled`, which reaches this loop as `http_502`.
+			// Measured 2026-09-30: 51 such refusals in 20 minutes, the whole of the
+			// settle sensor's http_502 count, from $0.001 health, volume and
+			// canonicalize entries that all built with nonce 0. A random nonce per
+			// payment keeps each transaction byte-unique at no extra fee (every
+			// sponsor-mode fee config costs the same 10,000 lamports).
+			const payNonce = nextAutoNonce();
+			const feeConfig = ringFeeConfig(payNonce, { selfPay: false });
 			const admission = await assessFeeAdmission({
 				feeWalletB58: accept.extra.feePayer,
 				estFeeLamports: expectedFeeLamports({
@@ -633,6 +645,7 @@ export default wrapCron(async (req, res) => {
 			const txBase64 = buildPaymentTx({
 				accept, buyer, blockhash, mintInfo,
 				receiverAtaExists: receiverAtaInfo !== null,
+				nonce: payNonce,
 			});
 
 			const xPayment = Buffer.from(JSON.stringify({

@@ -65,6 +65,7 @@ import {
 	buildPaymentTx,
 	fetchWithTimeout,
 	admitSponsorSettle,
+	nextAutoNonce,
 	USDC_MINT,
 	SOLANA_RPC,
 } from '../pay.js';
@@ -238,7 +239,11 @@ export async function runIdempotencyAudit(ctx = {}) {
 	const amountAtomic = Number(accept.amount || 0);
 	if (!(amountAtomic > 0)) return fail('zero_price');
 	if (amountAtomic > remainingCap) return fail('cap_would_exceed', { skipped: true });
-	const admission = await admitSponsorSettle({ accept, connection: conn });
+	// The loop hands every pipeline the tick's shared blockhash: a random nonce
+	// keeps this payment's signature distinct from any other same-amount payment
+	// to the same payTo in the tick (see x402-autonomous-loop.js).
+	const payNonce = nextAutoNonce();
+	const admission = await admitSponsorSettle({ accept, connection: conn, nonce: payNonce });
 	if (!admission.ok) return fail(admission.reason || 'fee_runway_exhausted', { skipped: true });
 
 	// ── Step 2: build ONE signed payment proof carrying a payment-identifier ───
@@ -256,6 +261,7 @@ export async function runIdempotencyAudit(ctx = {}) {
 		const receiverAtaInfo = await conn.getAccountInfo(receiverAta).catch(() => null);
 		const txBase64 = buildPaymentTx({
 			accept, buyer, blockhash, mintInfo, receiverAtaExists: receiverAtaInfo !== null,
+			nonce: payNonce,
 		});
 		xPayment = Buffer.from(JSON.stringify({
 			x402Version: 2,

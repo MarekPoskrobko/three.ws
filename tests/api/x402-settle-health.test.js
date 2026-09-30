@@ -657,3 +657,21 @@ describe('classifySettleBuckets: a caller that skips the admission gate is not a
 		expect(v.gateBypass).toBe(5_000);
 	});
 });
+
+describe('the settle sensor ignores pipelines that never pay', () => {
+	it('excludes the external uptime monitor, and that monitor is still free', async () => {
+		const { UNPAID_PROBE_PIPELINES } = await import('../../api/_lib/ops/x402-settle-health.js');
+		expect(UNPAID_PROBE_PIPELINES).toContain('reliability');
+		// The exclusion is only honest while every registry entry in these pipelines
+		// is priced at zero. A paid entry added under one of them must fail here
+		// rather than vanish from the settle rate.
+		const registry = await readFile('api/_lib/x402/autonomous-registry.js', 'utf8');
+		for (const pipeline of UNPAID_PROBE_PIPELINES) {
+			const entries = registry.split(/\n\t\{\n/).filter((block) => block.includes(`pipeline: '${pipeline}'`));
+			expect(entries.length).toBeGreaterThan(0);
+			for (const block of entries) expect(block).toMatch(/price_atomic:\s*0\b/);
+		}
+		const source = await readFile('api/_lib/ops/x402-settle-health.js', 'utf8');
+		expect(source).toMatch(/<> ALL\(\$\{\[\.\.\.UNPAID_PROBE_PIPELINES\]\}::text\[\]\)/);
+	});
+});

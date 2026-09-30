@@ -73,6 +73,14 @@ const MIN_ATTEMPTS = 20;
 const OK_RATE = 0.9;
 const DOWN_RATE = 0.5;
 
+// Pipelines that record rows in x402_autonomous_log but never pay: their
+// failures are a third party being slow, not our settle rail. The external
+// service uptime monitor (`reliability`, price_atomic 0 in autonomous-registry.js)
+// sends unpaid HEAD probes with a short timeout, and on 2026-09-30 its
+// `This operation was aborted` rows for slow third-party hosts were 5 of the 60
+// "rail faults" behind a degraded 74.9%, while not one of them touched a payment.
+export const UNPAID_PROBE_PIPELINES = Object.freeze(['reliability']);
+
 // A recorded failure is a SETTLE/PAYMENT-RAIL fault when its reason (the first
 // `:`-delimited token of error_msg) matches these. Two rules: any 5xx or a 402,
 // and any RPC/broadcast/settle/confirm/simulation/timeout signature.
@@ -509,6 +517,7 @@ export async function gatherX402SettleHealth() {
 				       count(*)::int AS n
 				FROM x402_autonomous_log
 				WHERE ts >= now() - ${WINDOW_INTERVAL}::interval
+				  AND COALESCE(pipeline, '') <> ALL(${[...UNPAID_PROBE_PIPELINES]}::text[])
 				GROUP BY success, paid, reason, rent
 			`
 		);

@@ -113,9 +113,7 @@ describe('seed fee pricing and reserve', () => {
 	it('prices every batch member at the sponsor-mode worst case the facilitator meters', () => {
 		// Two signatures, and sponsor-mode price slots that floor to zero priority
 		// lamports: exactly the `+10000` in the production refusal string.
-		expect(seedFeeEstimateLamports(60)).toBe(10_000);
-		expect(seedFeeEstimateLamports(120)).toBe(10_000);
-		expect(seedFeeEstimateLamports(0)).toBe(10_000);
+		expect(seedFeeEstimateLamports()).toBe(10_000);
 	});
 
 	it('leaves twenty sponsor settles of budget for paid pipelines by default', () => {

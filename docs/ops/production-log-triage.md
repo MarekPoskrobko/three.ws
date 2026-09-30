@@ -330,6 +330,15 @@ HTTP 502/503 GET|POST /api/x402/*, /api/mcp   ua: threews-x402-autonomous/1.0 or
   in the caller, not the budget: funding the fee wallet only moves the line such a
   caller runs into.
 
+  Two things the sensor deliberately does not count. Rows from pipelines that never
+  pay (`UNPAID_PROBE_PIPELINES` in `api/_lib/ops/x402-settle-health.js`, today the
+  external uptime monitor `reliability`) are dropped before the rate is taken: an
+  unpaid HEAD probe timing out on a slow third-party host is not our rail. And an
+  `http_502` cluster whose facilitator rows read `signature_already_settled` with
+  a matching `ok` row for the same `tx_sig` seconds earlier is a nonce collision
+  (two same-amount payments built against one blockhash), not the chain: see
+  "Every payment picks its own nonce" in `docs/x402-ring-economy.md`.
+
   On 2026-09-09 production was `settle_refused` verbatim: **0** `no_solana_accept`,
   164 `fee_wallet_below_floor:1167627<2000000`, and 126 `http_402` recorded by the
   ring on the paid replay (a 402 there means the payment we built was rejected,

@@ -43,7 +43,7 @@ import { logger } from '../_lib/usage.js';
 import { SPONSOR_SOL_FLOOR_LAMPORTS } from '../_lib/x402/self-facilitator.js';
 import {
 	loadSeedKeypair, fetchWithTimeout, parseSolanaAccept, buildPaymentTx,
-	ringFeeConfig, expectedFeeLamports,
+	ringFeeConfig, expectedFeeLamports, nextAutoNonce, RING_CU_JITTER_SLOTS,
 } from '../_lib/x402/pay.js';
 import { reserveFeeAdmissions } from '../_lib/x402/wallet-fee-meter.js';
 import { readPayerUsdcAtomic } from './x402-autonomous-loop.js';
@@ -121,13 +121,20 @@ export function seedFeeReserveLamports(e = process.env) {
 	return raw && Number.isFinite(n) && n >= 0 ? Math.floor(n) : 200_000;
 }
 
-// Worst-case SOL fee of one seed payment. The batch uses nonces 0..batch-1 in
-// sponsor mode, so the ceiling over that range is what every admission is priced
-// at: the same expectedFeeLamports() math payX402 prices its own admissions with.
-export function seedFeeEstimateLamports(batch) {
+// Sponsor mode may only use the price slots whose priority floors to zero
+// lamports (see ringFeeConfig in api/_lib/x402/pay.js).
+const SPONSOR_PRICE_SLOTS = 11;
+
+// Worst-case SOL fee of one seed payment. The batch starts at a random nonce, so
+// every admission is priced at the dearest sponsor-mode fee config there is: the
+// highest price slot at the largest compute limit, which ringFeeConfig reaches at
+// the top of its jitter range. Same expectedFeeLamports() math payX402 uses.
+export function seedFeeEstimateLamports() {
 	let worst = 0;
-	for (let i = 0; i < Math.max(1, batch); i += 1) {
-		const { microLamports, cuLimit } = ringFeeConfig(i, { selfPay: false });
+	for (let slot = 0; slot < SPONSOR_PRICE_SLOTS; slot += 1) {
+		const { microLamports, cuLimit } = ringFeeConfig(
+			SPONSOR_PRICE_SLOTS * (RING_CU_JITTER_SLOTS - 1) + slot, { selfPay: false },
+		);
 		worst = Math.max(worst, expectedFeeLamports({
 			selfPay: false, priorityMicrolamports: microLamports, cuLimit,
 		}));
@@ -282,7 +289,7 @@ export default wrapCron(async (req, res) => {
 	// settle attempt the platform made, each after a simulated verify. The seeder
 	// sends only what the governor will admit, and leaves the reserve for the
 	// pipelines that buy real data from the same wallet.
-	const feeEstimate = seedFeeEstimateLamports(plan.batch);
+	const feeEstimate = seedFeeEstimateLamports();
 	const admission = await reserveFeeAdmissions({
 		feeWalletB58: accept.extra.feePayer,
 		estFeeLamports: feeEstimate,
@@ -307,9 +314,14 @@ export default wrapCron(async (req, res) => {
 	// ── Step 3: build the signed transactions (synchronous) ───────────────────
 	// The nonce spread is what makes each batch member a distinct transaction;
 	// see ringFeeConfig in api/_lib/x402/pay.js for why it costs ~nothing.
+	// A random base keeps the batch clear of the autonomous loop's payments to
+	// the same endpoint: both are fired by economy-tick and can sign against the
+	// same blockhash, and a batch that always started at nonce 0 was guaranteed to
+	// share a fee config with anything else that did.
 	const affordable = Math.min(plan.batch, admission.admitted);
+	const nonceBase = nextAutoNonce();
 	const txBases = Array.from({ length: affordable }, (_, index) =>
-		buildPaymentTx({ accept, buyer, blockhash, mintInfo, receiverAtaExists, nonce: index }),
+		buildPaymentTx({ accept, buyer, blockhash, mintInfo, receiverAtaExists, nonce: nonceBase + index }),
 	);
 
 	// ── Step 4: fire all in parallel ──────────────────────────────────────────
