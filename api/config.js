@@ -3,6 +3,7 @@
 import { cors, json, method, wrap } from './_lib/http.js';
 import { resolveProviderName, BYOK_REGEN_PROVIDERS } from './_lib/regen-provider.js';
 import { vapidPublicKey, pushConfigured } from './_lib/web-push.js';
+import { apnsConfigured } from './_lib/apns.js';
 
 export default wrap(async (req, res) => {
 	if (cors(req, res, { methods: 'GET,OPTIONS', credentials: false })) return;
@@ -44,6 +45,10 @@ export default wrap(async (req, res) => {
 		// enable-push affordance".
 		pushEnabled: pushConfigured(),
 		vapidPublicKey: vapidPublicKey(),
+		// Native push for the iOS app (APNs). Separate from pushEnabled because
+		// the two are configured independently: the app can receive push on a
+		// deploy that has no VAPID keys, and a browser on one that has no .p8.
+		nativePush: { ios: apnsConfigured() },
 		samlLabel: process.env.SAML_BUTTON_LABEL || 'Single sign-on (SSO)',
 		features: {
 			// avatarReconstruct is always true: BYOK providers (Meshy, Tripo) are

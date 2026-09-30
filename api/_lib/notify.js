@@ -7,7 +7,8 @@
  *   2. inserts the durable in-app row (the bell inbox) when the category's
  *      `in_app` channel is on,
  *   3. records a `sent` funnel event for in_app,
- *   4. fans out to Web Push for the categories the user left enabled,
+ *   4. fans out to Web Push and to the iOS app (APNs) for the categories the
+ *      user left enabled,
  *   5. records a `sent` event per push delivery,
  *   6. queues Telegram and Discord delivery into the chats the owner paired
  *      through the chat gateways (api/_lib/gateway/notify.js).
@@ -33,6 +34,7 @@ import {
 	lockedChannelsFor,
 } from './notify-prefs.js';
 import { sendPushToUser } from './web-push.js';
+import { sendApnsToUser } from './apns.js';
 import { queueChatNotifications } from './gateway/notify.js';
 
 export function insertNotification(userId, type, payload = {}) {
@@ -81,8 +83,16 @@ async function deliver(userId, type, payload) {
 	// worker already tolerates (it only attributes funnel events when present).
 	try {
 		if (channelEnabled(prefs, type, 'push')) {
-			const delivered = await sendPushToUser(userId, pushPayloadFor(type, payload, id));
-			if (delivered > 0) recordEvent(id, userId, 'push', 'sent', { count: delivered });
+			// One payload, two transports: browsers and installed PWAs over Web
+			// Push, the iOS app over APNs (its WebView has no service worker).
+			// Either failing leaves the other to deliver.
+			const push = pushPayloadFor(type, payload, id);
+			const [web, ios] = await Promise.all([
+				sendPushToUser(userId, push).catch(() => 0),
+				sendApnsToUser(userId, push).catch(() => 0),
+			]);
+			const delivered = web + ios;
+			if (delivered > 0) recordEvent(id, userId, 'push', 'sent', { count: delivered, web, ios });
 		}
 	} catch (err) {
 		console.error('[notify] push fan-out failed:', err.message);

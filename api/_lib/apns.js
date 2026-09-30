@@ -240,15 +240,15 @@ export async function sendApnsToUser(userId, payload) {
 	await Promise.all(
 		devices.map(async (device) => {
 			try {
-				let env = device.environment in HOSTS ? device.environment : 'production';
-				let result = await sendApns({ token: device.token, environment: env, body, collapseId });
+				let host = device.environment in HOSTS ? device.environment : 'production';
+				let result = await sendApns({ token: device.token, environment: host, body, collapseId });
 				// A sandbox token sent to production (or the reverse) answers
 				// BadDeviceToken. Try the other host once before calling it dead.
 				if (result.status === 400 && result.reason === 'BadDeviceToken') {
-					env = OTHER[env];
-					result = await sendApns({ token: device.token, environment: env, body, collapseId });
+					host = OTHER[host];
+					result = await sendApns({ token: device.token, environment: host, body, collapseId });
 					if (result.status === 200) {
-						sql`update apns_devices set environment = ${env} where id = ${device.id}`.catch((e) =>
+						sql`update apns_devices set environment = ${host} where id = ${device.id}`.catch((e) =>
 							console.error('[apns] environment update failed:', e.message),
 						);
 					}

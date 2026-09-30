@@ -6689,6 +6689,91 @@ page strip (on-chain agents, attestations, forge models).
 
 ---
 
+## Platform Analytics API
+
+```
+GET /api/platform/analytics?window=30d|90d|all
+```
+
+Every platform total three.ws publishes about itself, in one read, each with a
+zero-filled daily series over the window and a `method` string that says
+exactly which rows were counted. This is the data behind the
+[analytics page](/analytics). No auth, CORS open to any origin, IP rate-limited.
+Cached 5 minutes in the shared cache and at the CDN
+(`public, s-maxage=300, stale-while-revalidate=600`).
+
+| Param | Values | Default |
+|---|---|---|
+| `window` | `30d`, `90d`, `all` (anything else falls back to `30d`) | `30d` |
+
+**Response** (one metric shown in full, the rest have the same shape)
+
+```json
+{
+	"window": "30d",
+	"window_days": 30,
+	"from": "2026-09-01",
+	"to": "2026-09-30",
+	"updated_at": "2026-09-30T08:14:03.151Z",
+	"metrics": {
+		"agents": {
+			"key": "agents",
+			"label": "Agents",
+			"unit": "count",
+			"method": "Every agent identity on three.ws that has not been deleted (table agent_identities, deleted_at is null), published or not. The daily series counts agents by the day they were created. Same rows /api/home-stats and /api/platform/stats count.",
+			"available": true,
+			"total": 4165,
+			"window_total": 724,
+			"daily": [{ "day": "2026-09-29", "value": 23 }, { "day": "2026-09-30", "value": 2 }]
+		},
+		"creator_fees": {
+			"key": "creator_fees",
+			"label": "Creator fees earned",
+			"unit": "usd",
+			"method": "coming with per-agent earnings",
+			"available": false,
+			"pending": true,
+			"total": null,
+			"window_total": null,
+			"daily": null
+		}
+	},
+	"errors": []
+}
+```
+
+| Metric key | Unit | Source |
+|---|---|---|
+| `agents` | count | `agent_identities`, not deleted (same rows as `/api/home-stats`) |
+| `agents_with_wallet` | count | agents above with a Solana address or a linked EVM wallet |
+| `coins_launched` | count | mainnet rows in `pump_agent_mints` plus `fixed_supply_launches` |
+| `models_generated` | count | finished, non-rejected `forge_creations` with a stored GLB |
+| `llm_tokens` | tokens | input plus output tokens of `usage_events` of kind `llm` (metered since 2026-06-08) |
+| `x402_settlements` | count | successful settles in `x402_self_facilitator_log` (includes the self-cycled ring, see `/api/x402-ring`) |
+| `x402_volume_usd` | usd | the USDC-paid share of those settlements, at face value |
+| `marketplace_sales` | count | `skill_purchases` confirmed with a paid kind (trials excluded) |
+| `marketplace_volume_three` | three | price of those sales paid in $THREE, in whole tokens |
+| `marketplace_volume_usd` | usd | price of those sales paid in USDC |
+| `hire_volume_usd` | usd | completed `agent_hires`, read through the same helper as `/api/agent-economy/volume` |
+| `creator_fees` | usd | pending (`pending: true`) until per-agent earnings ship |
+
+`total` is all time; `window_total` is the sum of `daily`; `daily` has one
+entry per UTC day from `from` to `to`, zeros included. For `window=all`,
+`from` is the first day any source recorded activity.
+
+**Partial failures.** A source that fails or times out sets its metrics to
+`available: false` with `null` figures and adds one entry per metric to
+`errors` (`{ metric, source, error: "query_failed" | "timeout", message }`).
+The response is still `200`, cached for 30 seconds only. Never read a `null`
+as zero.
+
+```bash
+curl -s "https://three.ws/api/platform/analytics?window=90d" \
+  | jq '.metrics | map_values(select(.available) | {total, window_total})'
+```
+
+---
+
 ## $THREE Fee Flow API
 
 Two public reads behind the "Where every $100 goes" section of [/three-token](/three-token). No auth, CORS open.
