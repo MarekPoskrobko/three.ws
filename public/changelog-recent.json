@@ -1,14 +1,24 @@
 {
-	"generated_at": "2026-09-30T06:03:59.897Z",
+	"generated_at": "2026-09-30T08:11:37.031Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3784,
+	"total": 3785,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "3D models no longer arrive glued to a floor slab",
+			"summary": "The 3D generators sometimes built a thin, wide plate under whatever you asked for: a teapot sitting on a black marble square, a telescope standing in the middle of a grey sheet many times its size. Every finished model is now checked for that plate and has it cut away before it is saved, while anything that really has a base, like a lamp foot, a plinth or a tripod, is left exactly as it was.",
+			"link": "/forge",
+			"tags": [
+				"fix"
+			]
+		},
 		{
 			"date": "2026-09-30",
 			"type": "update",
@@ -1575,17 +1585,6 @@
 			"title": "Pay-per-call is keyboard-drivable, and it now tells you when the wallet lane is down instead of sitting on a spinner",
 			"summary": "A full audit of /pay, the page where an agent pays $0.001 USDC on Solana per call to a paid API. Three things were quietly broken. The wallet pill kept reverting to \"loading\" after it had already shown a real balance: the page fills that pill from a live balance lookup, but the translation pass that runs a moment later put the placeholder back over it, and the same race hit the session ticker and the wallet setup dialog. Those slots are now marked as owned by the page, so a rendered balance stays put. The whole wallet picker was unreachable without a mouse, because each wallet was a clickable box rather than a button; every wallet is now a real button that tab reaches, Enter and Space activate, and a screen reader announces as selected or not. Both dialogs (the first-visit walkthrough and the wallet setup prompt) now take focus when they open, close on Escape, hand focus back to whatever opened them, and stay hidden from screen readers while closed. States are honest now too. When the agent wallet service is unreachable the page used to tell a signed-out visitor to create their first agent, which was never the problem; it now says wallets are unavailable and offers a Retry that re-runs the lookup without a page reload. A failed activity feed used to leave a row of dots ticking forever and now says the feed is unavailable. The page also gained the heading it never had, one high-contrast focus ring across every control, and a copy pass that removed the long dashes from its description and on-page text.",
 			"link": "/pay",
-			"tags": [
-				"fix",
-				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Payment sessions: the MCP config you copy now works, and a failed load tells you what to do",
-			"summary": "The Copy MCP config button on /payments handed out a config that could never connect. It baked in a shortened stand-in for your session token instead of the real one (the real token is shown only once, at creation, and is never retrievable afterwards), and it wrote your sign-in cookie in the wrong format. The snippet now points at two environment variables you export yourself, so the file you save never holds a secret, and a note beside it says exactly what each one is. Failures on the page also stopped hiding behind machine jargon: when the service refused a request, the page showed you its internal code, so trying to create a session with an empty balance read as the word insufficient_credits and nothing else. You now get the plain sentence, and when the balance is the problem, a link straight to Add credits. If the list itself cannot load, the four counters at the top no longer shimmer forever as though something were still loading: the page says what failed, leaves your sessions and budgets untouched, and offers a Try again button. Smaller things along the way: the Docs button used to open a page that did not exist, filtering to a status with nothing in it now offers a way back to the full list, the status filters are reachable on a narrow phone instead of being cut off at the edge, and every field in both dialogs is properly labelled for screen readers.",
-			"link": "/payments",
 			"tags": [
 				"fix",
 				"improvement"
