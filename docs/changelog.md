@@ -34,6 +34,25 @@ and both are served with `cache-control: public, max-age=600`.
 `three.ws/changelog` itself paints from the small feed and fetches the full one
 only when a reader filters or asks for older updates.
 
+### GitHub Releases
+
+Once a month the changelog also goes out as a [GitHub Release](https://github.com/nirholas/three.ws/releases),
+which reaches every watcher and stargazer of the repository through GitHub's own feed.
+`scripts/github-release.mjs` builds the notes from `data/changelog.json` as it stood at the
+commit production runs (read `GET /api/version` for it), keeps only entries that pass the X
+lane's public filter (`data/changelog-x-filter.json`), and drops any entry naming a `$TICKER`
+other than `$THREE`:
+
+```bash
+node scripts/github-release.mjs --from 2026-08-29 --to 2026-09-30 \
+  --tag v1.5.2 --target 774ca7287 --title "1.5.2, September 2026"   # preview
+# add --apply to publish; --exclude-terms <file> takes a JSON array of project
+# names to leave out, kept outside the repo so no committed file names them
+```
+
+The first one, [v1.5.2](https://github.com/nirholas/three.ws/releases/tag/v1.5.2), covers
+2026-08-29 to 2026-09-30. Start the next window the day after the previous one ended.
+
 ---
 
 ## Versioning Policy
