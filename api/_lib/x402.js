@@ -48,6 +48,7 @@
 
 import { sql } from './db.js';
 import { json, error } from './http.js';
+import { resolvePayoutAddress } from './payout.js';
 import { resolveSolanaRecipient } from '../../src/solana/sns.js';
 
 export const X402_VERSION = 'x402/0.1';
@@ -62,11 +63,6 @@ export const X402_VERSION = 'x402/0.1';
 //     a raw key.
 async function resolveRecipient({ agent, payments }) {
 	const receiver = payments?.receiver;
-	const metaName = agent?.meta?.sns_domain || null;
-	const metaNameFull = metaName
-		? (metaName.endsWith('.sol') ? metaName : `${metaName}.sol`)
-		: null;
-
 	const { address, resolved_from } = await resolveSolanaRecipient(receiver || '');
 	if (resolved_from) {
 		return { recipient: address, recipient_name: resolved_from };
@@ -75,7 +71,39 @@ async function resolveRecipient({ agent, payments }) {
 	// agent has stored. Most agents store a base58 wallet here; some legacy
 	// records may use a non-base58 placeholder. We don't gatekeep at this
 	// layer; the wallet adapter / payment program will validate at sign-time.
-	return { recipient: address ?? (receiver || null), recipient_name: metaNameFull };
+	return { recipient: address ?? (receiver || null), recipient_name: snsDisplayName(agent) };
+}
+
+function snsDisplayName(agent) {
+	const metaName = agent?.meta?.sns_domain || null;
+	if (!metaName) return null;
+	return metaName.endsWith('.sol') ? metaName : `${metaName}.sol`;
+}
+
+/**
+ * The one recipient rule for an agent-skill manifest, shared by the 402
+ * challenge (emit402) and the prefetch manifest (manifestOnly), so a buyer who
+ * reads the manifest first and then hits the 402 is never shown two different
+ * wallets. Order: the owner's payout wallet for the chain (agent_payout_wallets),
+ * then the agent's own wallet_address (both via resolvePayoutAddress), then the
+ * receiver stored in meta.payments (a base58 wallet or a .sol name).
+ *
+ * @param {{ agent: object, chain?: string }} opts
+ * @returns {Promise<{ recipient: string | null, recipient_name: string | null }>}
+ */
+export async function resolveSkillRecipient({ agent, chain = 'solana' }) {
+	const payout = agent?.id ? await resolvePayoutAddress(agent.id, chain) : null;
+	if (payout) return { recipient: payout, recipient_name: snsDisplayName(agent) };
+	const payments = agent?.meta?.payments || agent?.payments;
+	return resolveRecipient({ agent, payments });
+}
+
+/**
+ * The prefetch URL for an agent-skill manifest. This is the route vercel.json
+ * actually serves (`/api/agents/x402/manifest`), not a path-style alias.
+ */
+export function manifestUrl(agentId, skill) {
+	return `/api/agents/x402/manifest?agent_id=${encodeURIComponent(agentId)}&skill=${encodeURIComponent(skill)}`;
 }
 
 /**
@@ -87,15 +115,16 @@ async function resolveRecipient({ agent, payments }) {
  * @param {string} opts.skill       Skill identifier (free-form, used by the manifest).
  * @param {string} opts.amount      Raw token units as a numeric string.
  * @param {string} opts.currency    Mint pubkey (base58) for the currency token.
+ * @param {string} [opts.chain='solana']  Chain the price is denominated on.
  * @param {number} [opts.validForSec=900]  Manifest validity in seconds (default 15m).
  */
-export async function emit402(res, { agent, skill, amount, currency, validForSec = 900 }) {
+export async function emit402(res, { agent, skill, amount, currency, chain = 'solana', validForSec = 900 }) {
 	const payments = agent?.meta?.payments || agent?.payments;
 	if (!payments?.configured) {
 		// Misconfigured: we shouldn't gate a skill behind 402 if payments aren't on.
 		return error(res, 500, 'misconfigured', 'agent has no payments config');
 	}
-	const { recipient, recipient_name } = await resolveRecipient({ agent, payments });
+	const { recipient, recipient_name } = await resolveSkillRecipient({ agent, chain });
 	if (!recipient) {
 		return error(res, 412, 'recipient_unresolved', 'agent payments.receiver could not be resolved to a wallet');
 	}
@@ -107,12 +136,14 @@ export async function emit402(res, { agent, skill, amount, currency, validForSec
 		skill,
 		amount: String(amount),
 		currency,
+		chain,
 		recipient,
 		recipient_name,
 		memo: String(Math.floor(Date.now() / 1000)),
 		valid_until: validUntil,
 		intent_url: '/api/agents/payments/pay-prep',
 		verify_url: '/api/agents/payments/pay-confirm',
+		manifest_url: manifestUrl(agent.id, skill),
 		retry_with_header: 'x-payment-intent',
 	};
 	res.statusCode = 402;
@@ -121,7 +152,7 @@ export async function emit402(res, { agent, skill, amount, currency, validForSec
 	// Hint the canonical manifest URL so x402 clients can prefetch.
 	res.setHeader(
 		'link',
-		`</.well-known/x402>; rel="payment-config", </api/agents/${agent.id}/x402/${encodeURIComponent(skill)}/manifest>; rel="payment-manifest"`,
+		`</.well-known/x402>; rel="payment-config", <${manifestUrl(agent.id, skill)}>; rel="payment-manifest"`,
 	);
 	res.end(JSON.stringify(manifest));
 	return true;
@@ -129,26 +160,33 @@ export async function emit402(res, { agent, skill, amount, currency, validForSec
 
 /**
  * Read x-payment-intent (or x-payment-tx-sig) headers and verify the request
- * is paid for `agentId` + `skill`. Returns the verified intent row, or null
- * if not paid (caller should `emit402`).
+ * is paid for `agentId` + `skill` BY `payerUserId`. Returns the verified intent
+ * row, or null if not paid (caller should `emit402`).
+ *
+ * The intent is bound to the account that paid it: pay-prep stamps
+ * payer_user_id, and only that account may redeem the intent. Without the
+ * binding, anyone who saw an intent id (a log line, a shared screenshot, a
+ * proxy) could spend another buyer's payment on their own call.
  *
  * @param {import('http').IncomingMessage} req
- * @param {{ agentId: string, skill: string, expectedAmount?: string, expectedCurrency?: string }} ctx
+ * @param {{ agentId: string, skill: string, payerUserId: string, expectedAmount?: string, expectedCurrency?: string }} ctx
  * @returns {Promise<null | { intentId: string, amount: string, currency: string, paidAt: Date }>}
  */
-export async function verifyPaid(req, { agentId, skill, expectedAmount, expectedCurrency }) {
+export async function verifyPaid(req, { agentId, skill, payerUserId, expectedAmount, expectedCurrency }) {
 	if (!expectedAmount) throw new Error('verifyPaid: expectedAmount is required');
 	if (!expectedCurrency) throw new Error('verifyPaid: expectedCurrency is required');
+	if (!payerUserId) throw new Error('verifyPaid: payerUserId is required');
 	const intentId = (req.headers['x-payment-intent'] || '').toString().trim();
 	if (!intentId) return null;
 
 	const [row] = await sql`
-		select id, agent_id, currency_mint, amount, status, paid_at, payload, end_time
+		select id, agent_id, payer_user_id, currency_mint, amount, status, paid_at, payload, end_time
 		from agent_payment_intents
 		where id = ${intentId} and agent_id = ${agentId}
 		limit 1
 	`;
 	if (!row) return null;
+	if (String(row.payer_user_id) !== String(payerUserId)) return null;
 	if (row.status !== 'paid') return null;
 	if (row.end_time && new Date(row.end_time).getTime() < Date.now()) return null;
 
@@ -209,27 +247,14 @@ export async function releaseIntent(intentId) {
 }
 
 /**
- * Helper: respond with the manifest only (no 402), for prefetch/discovery
- * via `GET /api/agents/:id/x402/:skill/manifest`.
+ * Helper: respond with the manifest only (no 402), for prefetch/discovery via
+ * `GET /api/agents/x402/manifest?agent_id=&skill=`. The recipient comes from
+ * resolveSkillRecipient, the same rule emit402 uses.
  */
 export async function manifestOnly(res, opts) {
 	const validUntil = Math.floor(Date.now() / 1000) + (opts.validForSec || 900);
-
-	// Prefer an explicit payout `recipient` (resolved from agent_payout_wallets /
-	// the agent's own wallet_address by the caller). Only when none is supplied do
-	// we fall back to resolving the agent's configured meta receiver via SNS — this
-	// keeps pre-payout-wallet agents working unchanged.
-	let recipient = opts.recipient ?? null;
-	let recipient_name = null;
-	if (recipient) {
-		const metaName = opts.agent.meta?.sns_domain || null;
-		recipient_name = metaName
-			? (metaName.endsWith('.sol') ? metaName : `${metaName}.sol`)
-			: null;
-	} else {
-		const payments = opts.agent.meta?.payments || opts.agent.payments;
-		({ recipient, recipient_name } = await resolveRecipient({ agent: opts.agent, payments }));
-	}
+	const chain = opts.chain ?? 'solana';
+	const { recipient, recipient_name } = await resolveSkillRecipient({ agent: opts.agent, chain });
 
 	return json(res, 200, {
 		version: X402_VERSION,
@@ -238,12 +263,13 @@ export async function manifestOnly(res, opts) {
 		skill: opts.skill,
 		amount: String(opts.amount),
 		currency: opts.currency,
-		chain: opts.chain ?? 'solana',
+		chain,
 		recipient,
 		recipient_name,
 		valid_until: validUntil,
 		intent_url: '/api/agents/payments/pay-prep',
 		verify_url: '/api/agents/payments/pay-confirm',
+		manifest_url: manifestUrl(opts.agent.id, opts.skill),
 		retry_with_header: 'x-payment-intent',
 	});
 }

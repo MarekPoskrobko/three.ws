@@ -1,12 +1,38 @@
 /**
- * Tests for the x402 helper. Pure-logic only — no DB, no fetch.
+ * Tests for the legacy agent-skill x402 helper (emit402 / manifestOnly).
  *
- * verifyPaid touches the DB (via _lib/db.js); we exercise emit402 and
- * manifestOnly, which are stateless transformations of agent + skill.
+ * Both resolve the recipient through resolveSkillRecipient, which reads the
+ * owner's payout wallet (agent_payout_wallets) and the agent's own wallet
+ * before falling back to meta.payments.receiver. The DB is mocked with a tiny
+ * table of those two lookups so each test states which wallets exist.
  */
 
-import { describe, it, expect } from 'vitest';
-import { emit402, manifestOnly, X402_VERSION } from '../../api/_lib/x402.js';
+import { readFileSync } from 'node:fs';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+const walletState = { payout: null, agentWallet: null };
+
+vi.mock('../../api/_lib/db.js', () => ({
+	sql: vi.fn(async (strings) => {
+		const q = strings.join('?');
+		if (q.includes('agent_payout_wallets')) {
+			return walletState.payout ? [{ address: walletState.payout }] : [];
+		}
+		if (q.includes('wallet_address from agent_identities')) {
+			return walletState.agentWallet ? [{ wallet_address: walletState.agentWallet }] : [];
+		}
+		return [];
+	}),
+	isDbUnavailableError: () => false,
+	isDbCapacityError: () => false,
+}));
+
+const { emit402, manifestOnly, manifestUrl, X402_VERSION } = await import('../../api/_lib/x402.js');
+
+beforeEach(() => {
+	walletState.payout = null;
+	walletState.agentWallet = null;
+});
 
 function makeRes() {
 	return {
@@ -178,5 +204,72 @@ describe('manifestOnly', () => {
 		expect(body.version).toBe(X402_VERSION);
 		expect(body.skill).toBe('echo');
 		expect(body.amount).toBe('5000');
+	});
+});
+
+function captureRes() {
+	return {
+		statusCode: 0,
+		headers: {},
+		body: null,
+		setHeader(k, v) {
+			this.headers[k.toLowerCase()] = v;
+		},
+		getHeader(k) {
+			return this.headers[k.toLowerCase()];
+		},
+		end(body) {
+			this.body = body;
+		},
+	};
+}
+
+// Legacy defect: emit402 advertised /api/agents/:id/x402/:skill/manifest in its
+// Link header, a path no route serves, so a client that prefetched the
+// manifest got a 404. The link must be a URL the live route table resolves.
+describe('emit402 manifest link', () => {
+	it('points at the manifest route vercel.json actually serves', async () => {
+		const res = captureRes();
+		await emit402(res, { agent: makeAgent(), skill: 'summarize', amount: '1', currency: 'X' });
+		const link = res.headers['link'];
+		const target = link.match(/<([^>]+)>; rel="payment-manifest"/)[1];
+		const pathOnly = target.split('?')[0];
+		const routes = JSON.parse(readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8')).routes;
+		const served = routes.some((r) => r.src && new RegExp(`^${r.src}$`).test(pathOnly) && String(r.dest).includes('action=manifest'));
+		expect(served).toBe(true);
+		expect(target).toBe(manifestUrl('agent-uuid', 'summarize'));
+		expect(new URL(target, 'https://three.ws').searchParams.get('agent_id')).toBe('agent-uuid');
+		expect(new URL(target, 'https://three.ws').searchParams.get('skill')).toBe('summarize');
+	});
+});
+
+// Legacy defect: the 402 named meta.payments.receiver while the manifest named
+// the owner's payout wallet, so one skill advertised two different recipients.
+describe('emit402 and manifestOnly agree on the recipient', () => {
+	async function bothRecipients() {
+		const r402 = captureRes();
+		await emit402(r402, { agent: makeAgent(), skill: 's', amount: '1', currency: 'X' });
+		const rManifest = captureRes();
+		await manifestOnly(rManifest, { agent: makeAgent(), skill: 's', amount: '1', currency: 'X' });
+		return [JSON.parse(r402.body).recipient, JSON.parse(rManifest.body).recipient];
+	}
+
+	it('both use the owner payout wallet when one is configured', async () => {
+		walletState.payout = 'PayoutWa11et1111111111111111111111111111111';
+		const [a, b] = await bothRecipients();
+		expect(a).toBe('PayoutWa11et1111111111111111111111111111111');
+		expect(b).toBe(a);
+	});
+
+	it('both fall back to the agent wallet, then the meta receiver', async () => {
+		walletState.agentWallet = 'AgentOwnWa11et11111111111111111111111111111';
+		const [a, b] = await bothRecipients();
+		expect(a).toBe('AgentOwnWa11et11111111111111111111111111111');
+		expect(b).toBe(a);
+
+		walletState.agentWallet = null;
+		const [c, d] = await bothRecipients();
+		expect(c).toBe('THREEsynthetic1111111111111111111111111PayTo');
+		expect(d).toBe(c);
 	});
 });

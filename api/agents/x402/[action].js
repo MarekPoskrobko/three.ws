@@ -7,7 +7,6 @@ import { cors, json, method, readJson, wrap, error, rateLimited } from '../../_l
 import { limits, clientIp } from '../../_lib/rate-limit.js';
 import { parse, isUuid } from '../../_lib/validate.js';
 import { emit402, verifyPaid, consumeIntent, releaseIntent, manifestOnly } from '../../_lib/x402.js';
-import { resolvePayoutAddress } from '../../_lib/payout.js';
 import { calculateFee } from '../../_lib/fee.js';
 import { insertNotification } from '../../_lib/notify.js';
 import { hasSkillAccess, consumeTrialUse, logSkillUsage } from '../../_lib/skill-access.js';
@@ -204,6 +203,7 @@ async function handleInvoke(req, res) {
 	const paid = await verifyPaid(req, {
 		agentId: agent.id,
 		skill: body.skill,
+		payerUserId: auth.userId,
 		expectedAmount: price.amount,
 		expectedCurrency: price.currency,
 	});
@@ -213,6 +213,7 @@ async function handleInvoke(req, res) {
 			skill: body.skill,
 			amount: price.amount,
 			currency: price.currency,
+			chain: price.chain ?? 'solana',
 		});
 
 	// $THREE holder gate — agents can require callers to hold a minimum $THREE
@@ -334,18 +335,15 @@ async function handleManifest(req, res) {
 		}
 	}
 
-	// payTo resolves from the owner's configured payout wallet for this chain
-	// (agent_payout_wallets), falling back to the agent's own wallet_address.
-	// When neither is set, manifestOnly falls back to the agent's meta receiver.
-	const recipient = await resolvePayoutAddress(agent.id, price.chain || 'solana');
-
+	// The recipient is resolved inside manifestOnly by resolveSkillRecipient,
+	// the same rule the invoke path's 402 uses: payout wallet, then the agent's
+	// own wallet, then the meta.payments receiver.
 	return manifestOnly(res, {
 		agent,
 		skill,
 		amount: price.amount,
 		currency: price.currency,
 		chain: price.chain,
-		recipient,
 	});
 }
 

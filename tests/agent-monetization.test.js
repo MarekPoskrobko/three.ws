@@ -347,6 +347,7 @@ describe('Revenue Attribution', () => {
 			{
 				id: intentId,
 				agent_id: agent.id,
+				payer_user_id: session.id,
 				currency_mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
 				amount: '1000000',
 				status: 'paid',
@@ -411,6 +412,7 @@ describe('Revenue Attribution', () => {
 		sqlState.queue.push([{
 			id: intentId,
 			agent_id: agent.id,
+			payer_user_id: session.id,
 			currency_mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
 			amount: '1000000',
 			status: 'paid',
@@ -445,6 +447,43 @@ describe('Revenue Attribution', () => {
 		expect(second).toBe(402);
 	});
 
+	// Legacy defect: verifyPaid matched an intent by id + agent only, so any
+	// signed-in caller who learned another buyer's intent id could spend that
+	// buyer's payment on their own call. The intent is bound to its payer now.
+	it('an intent paid by a different account is refused and never consumed', async () => {
+		const { agent, session } = createTestAgent();
+		authState.session = session;
+		const intentId = 'intent-stolen-001';
+
+		sqlState.queue.push([agent]);
+		sqlState.queue.push([]); // priceFor → meta fallback
+		sqlState.queue.push([]); // hasSkillAccess → x402 path
+		sqlState.queue.push([{
+			id: intentId,
+			agent_id: agent.id,
+			payer_user_id: 'someone-else',
+			currency_mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+			amount: '1000000',
+			status: 'paid',
+			paid_at: new Date().toISOString(),
+			payload: null,
+			end_time: null,
+		}]);
+
+		const { status } = await invoke(x402Handler, {
+			method: 'POST',
+			url: '/api/agents/x402/invoke',
+			headers: { 'x-payment-intent': intentId },
+			body: { agent_id: agent.id, skill: 'echo', args: {} },
+		});
+
+		expect(status).toBe(402);
+		const intentQuery = sqlState.calls.find((c) => String(c.query).includes('from agent_payment_intents'));
+		expect(String(intentQuery.query)).toContain('payer_user_id');
+		expect(sqlState.calls.some((c) => String(c.query).includes("set status = 'consumed'"))).toBe(false);
+		expect(sqlState.calls.some((c) => String(c.query).includes('agent_revenue_events'))).toBe(false);
+	});
+
 	// ── consume-first single-use lock (2026-07-23 audit) ─────────────────────
 	// The handler used to execute the skill BEFORE consuming the intent: two
 	// concurrent invokes both passed verifyPaid and BOTH delivered the paid
@@ -462,6 +501,7 @@ describe('Revenue Attribution', () => {
 		sqlState.queue.push([{
 			id: intentId,
 			agent_id: agent.id,
+			payer_user_id: session.id,
 			currency_mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
 			amount: '1000000',
 			status: 'paid',
@@ -500,6 +540,7 @@ describe('Revenue Attribution', () => {
 		sqlState.queue.push([{
 			id: intentId,
 			agent_id: agent.id,
+			payer_user_id: session.id,
 			currency_mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
 			amount: '1000000',
 			status: 'paid',
