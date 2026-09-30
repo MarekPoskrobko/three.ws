@@ -222,6 +222,11 @@
 			"dir": "ltr"
 		},
 		{
+			"code": "as",
+			"name": "অসমীয়া",
+			"dir": "ltr"
+		},
+		{
 			"code": "ne",
 			"name": "नेपाली",
 			"dir": "ltr"
@@ -272,6 +277,11 @@
 			"dir": "ltr"
 		},
 		{
+			"code": "ky",
+			"name": "Кыргызча",
+			"dir": "ltr"
+		},
+		{
 			"code": "tg",
 			"name": "Тоҷикӣ",
 			"dir": "ltr"
@@ -307,13 +317,78 @@
 			"dir": "ltr"
 		},
 		{
+			"code": "et",
+			"name": "Eesti",
+			"dir": "ltr"
+		},
+		{
 			"code": "mk",
 			"name": "Македонски",
 			"dir": "ltr"
 		},
 		{
+			"code": "sq",
+			"name": "Shqip",
+			"dir": "ltr"
+		},
+		{
+			"code": "bs",
+			"name": "Bosanski",
+			"dir": "ltr"
+		},
+		{
+			"code": "is",
+			"name": "Íslenska",
+			"dir": "ltr"
+		},
+		{
+			"code": "mt",
+			"name": "Malti",
+			"dir": "ltr"
+		},
+		{
+			"code": "ga",
+			"name": "Gaeilge",
+			"dir": "ltr"
+		},
+		{
+			"code": "cy",
+			"name": "Cymraeg",
+			"dir": "ltr"
+		},
+		{
+			"code": "ca",
+			"name": "Català",
+			"dir": "ltr"
+		},
+		{
+			"code": "gl",
+			"name": "Galego",
+			"dir": "ltr"
+		},
+		{
 			"code": "eu",
 			"name": "Euskara",
+			"dir": "ltr"
+		},
+		{
+			"code": "be",
+			"name": "Беларуская",
+			"dir": "ltr"
+		},
+		{
+			"code": "am",
+			"name": "አማርኛ",
+			"dir": "ltr"
+		},
+		{
+			"code": "ha",
+			"name": "Hausa",
+			"dir": "ltr"
+		},
+		{
+			"code": "yo",
+			"name": "Yorùbá",
 			"dir": "ltr"
 		},
 		{

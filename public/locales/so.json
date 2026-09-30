@@ -8950,7 +8950,7 @@
 		"share_title": "Fitaannada: dhaqaalaha qurxinta · three.ws",
 		"sub": "Qurxinta qaali ah waxaa lagu iibsadaa lacag dhab ah USDC, iyo iib kasta wuxuu kala qaybiyaa dakhliga abuuraha lacagta uu ku jiro. Tani waa diiwaankan: fitaannada ugu dhif ah, ururiyeyaasha xiran, abuurayaasha dhab ahaan lacag helaya, iyo iib kasta sida ay u xalliyaan. Xidho iyaga <a href=\"/play\">Play</a>; samee midkaaga <a href=\"/wardrobe\">Wardrobe</a>.",
 		"title": "Dhaqaalaha <em>Fits</em>",
-		"twitter_desc": "Fitaannada ugu dhif ah, ururiyeyaasha ugu sarreeya, iyo dakhliga abuuraha ee dhab ah oo la xaliyay, toos ka socda diiwaanka qurxinta."
+		"twitter_desc": "Fits-ka ugu naadirka badan, ururiyeyaasha ugu sarreeya, iyo dakhliga dhabta ah ee abuurayaasha USDC ee la dejiyey, toos uga socda buugga xisaabaadka qurxinta."
 	},
 	"flow": {
 		"canvas_label": "Map-ka force-directed oo ku saabsan transfer-ka la xisaab-tiriyay ee between agent wallets. Xogta same wuxuu heli karaa sida tableda sortable hoose ee graph-kan.",
@@ -20595,7 +20595,7 @@
 		"signin_copy": "Saxiix farriin qoraal ah oo caddeynaysa cinwaankaaga iyo waqtiga. Saxiixu wuxuu oggolaanayaa akhrinta rasiidhadaada oo kaliya iyo wax kale: ma jiro macaamil, ma jiro oggolaansho, ma jiro khidmad. Waxay dhici doontaa kadib 5 daqiiqo.",
 		"signin_h": "Caddee boorsho, hel risqadaadkaaga",
 		"signin_note": "Waxay la shaqeysaa Phantom, Backpack, iyo Solflare on Solana, iyo MetaMask ama wax kasta oo lagu daray boorsada EVM. Risqadaadka waxaa saxiixay three.ws hoosta x402 Dalabka &amp; Risqad kordhin, si dhinacyada saddexaad ay u xaqiijin karaan iyaga oo aan na aaminin. Ma sameysay wicitaan lacag leh? Ku bilow <a href=\"/x402\">x402 liiska dhamaadka</a>.",
-		"sub": "Wicitaan kasta oo lacag leh oo aad u dirto x402 wuxuu soo saaraa risqad saxiixan, waxaana haynaa nuqul adkeysi leh. Ma lumisay cinwaanka jawaabta lacag bixinta asalka ah? Ku xidh boorsadaada, saxiix hal farriin akhris ah, oo dib u soo celi risqad kasta oo waligeed loo soo saaray. Tani waa dhinaca iibsadaha ee diiwaanka: risqad kasta halkan waa wax <strong>aad</strong> iibsatay.",
+		"sub": "Wicitaan kasta oo x402 ah oo aad ku bixiso three.ws wuxuu soo saaraa rasiidh saxiixan, annaguna waxaan haynaa nuqul adkeysi leh. Ma haysaa madaxa jawaabta bixinta ee asalka ahaa? Ku xidh boorsadaada, saxiix hal fariin akhris-kaliya, oo soo celi dhammaan rasiidhada abuuray. Tani waa dhinaca iibsadaha ee buugga: rasiidh kasta halkan waa wax <strong>adigu</strong> iibsatay.",
 		"title": "Risqad <em>Vault</em>",
 		"twitter_desc": "Soo celi risqad kasta oo saxiixan x402 three.ws waligeed loo soo saaray boorsadaada. Caddeyn iibsi, la dhoofin karo, la xaqiijin karo baaraha."
 	},
@@ -22324,7 +22324,7 @@
 		"d_world_lines": "Socod si aad u gaarto goobta wakiilka AI, dhameystir caqabadda AR, oo kasbato caddeyn joogitaan oo xaqiijisan, oo ay saxiixday wakiilka. Ilaalinta asturnaanta (kaliya ~1 km aag ayaa mar walba la diiwaan gelinayaa), si madax-bannaan loo xaqiijin karo, oo la lahaan karo.",
 		"d_wrapped": "Dib-u-eegista xilliyeed ee wakiilka ganacsiga pump.fun ee la xaqiijiyay ee ku yaal three.ws: faa'iido iyo khasaaro la xaqiijiyay, ganacsiga xilliyeedka, ganacsiga dhaawacay, iyo habka ka dambeeya labadaba, iyo halka ay ka dhamaadeen tartanka. Waxaa laga jaray safarro xiran oo on-chain ah oo leh saxiixyo iib iyo iib, sidaas darteed xilli khasaaray wuxuu akhriyaa sidii xilli khasaaray. La jiidi karo, la wadaagi karo, ma jiro akoon iyo ma jiro boorsada.",
 		"d_x402": "Katalog toos ah oo ah APIs lacagta leh oo lagu xalliyay on-chain gudaha USDC iyadoo la adeegsanayo borotokoolka x402. Raadi, baar qaabka, oo orod meel kasta.",
-		"d_x402_studio": "Konsolka ganacsiga si loo maamulo ganacsi lacag leh x402: alaabooyinka iyo qiimaha, lacag bixinta iyo boorsooyinka wakiilka, dir/qaado dhab ah oo leh SNS .sol xallinta, dukaanka jiid-iyo-dhig, dhisaha badhanka lacag bixinta ee lagu dhex daro, deeqda iyo wareejinta, CORS iyo amniga.",
+		"d_x402_studio": "Konsolka ganacsadaha ee lagu maamulo ganacsi lacag lagu bixiyo oo x402 ah: alaabooyinka iyo qiimaha, lacag bixinta iyo boorsooyinka wakiilka, diris-dhab ah oo USDC leh oo leh xallinta SNS .sol, dukaanka jiid-iyo-dhibic, dhisaha badhanka lacag-bixinta ee lagu dhex gelin karo, sadaqo iyo deeq ururin, CORS iyo amniga.",
 		"d_yields": "Baadh ku dhawaad 15,000 deegaanno DeFi oo nool oo ku yaal silsilad kasta iyo borotokool: shaandheey chain, mashruuc, saamiga stablecoin, iyo TVL ugu yar, kala sooc APY ama TVL, oo fur deegaankasta si aad u aragto taariikhda buuxda ee APY iyo TVL. Nool ka socda DeFiLlama, ma jiro furaha loo baahan yahay.",
 		"docs_tutorials_and_reference": "Dukumentiyo, casharro, iyo tixraac.",
 		"entry_points_into_the_product": "Meelaha laga galo alaabta.",
@@ -24103,7 +24103,7 @@
 		"all_syndicates": "<a class=\"sy-faint\" href=\"/syndicates\" style=\"text-decoration:none;font-weight:700;font-size:13.5px\">← Dhammaan ururada</a>",
 		"close_arialabel": "Xir",
 		"leave_this_syndicate": "Ka tag ururkan?",
-		"meta_description": "Urur three.ws: koox magac leh oo nuqulaya raacaya wakiilada ganacsatada la xaqiijiyay, mid kasta oo ka socda boorshadiisa hoosta caps-kiisa. Qiyaasta saamiga kooxda, liiska, iyo xaaladda guddiga.",
+		"meta_description": "Syndicate three.ws: koox magac leh oo nuqul sameeyayaal ah oo raacaya isla wakiillada ganacsatada ee la xaqiijiyey pump.fun, mid kasta oo ka socda boorsadiisa hoos yimaada xadkiisa. Qalooca saamiyada kooxeed ee tooska ah, liiska, iyo kaalinta guddiga.",
 		"meta_og_description": "Koox magac leh oo nuqulaya wakiilada ganacsatada la xaqiijiyay wadajir. Boorshadaada, caps-kaaga, calan wadaag ah iyo tartan guddiga.",
 		"meta_og_title": "Ururka · three.ws",
 		"meta_title": "Ururka · three.ws"

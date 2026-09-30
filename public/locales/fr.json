@@ -3443,7 +3443,7 @@
 		"in_claude_code_type_pick_the_server": "Dans Code Claude, tapez <code>/mcp</code>, choisissez le serveur que vous venez d'ajouter et sélectionnez <strong>Authentifier</strong>.",
 		"in_settings_apps_connectors_advanced_setting": "Dans <strong>Paramètres → Applications &amp; Connecteurs → Paramètres avancés</strong>, activez <strong>le mode développeur</strong>.",
 		"link_format_from_cursor_s_install_link": "Format de lien depuis <a href=\"https://cursor.com/docs/context/mcp/install-links\" target=\"_blank\" rel=\"noopener\">la documentation du lien d'installation de Cursor</a>.",
-		"link_format_from_vs_code_s_mcp": "Format de lien depuis <a href=\"https://code.visualstudio.com/api/extension-guides/ai/mcp\" target=\"_blank\" rel=\"noopener\">le guide développeur de VS Code</a>.",
+		"link_format_from_vs_code_s_mcp": "Format de lien d’après le <a href=\"https://code.visualstudio.com/api/extension-guides/ai/mcp\" target=\"_blank\" rel=\"noopener\">guide développeur MCP de VS Code</a>.",
 		"links_open_your_client_with_the_server": "Les liens ouvrent votre client avec le serveur pré-rempli. Vous devez toujours le vérifier et confirmer.",
 		"mcp_docs": "MCP docs",
 		"mcp_json": "mcp.json",
@@ -4623,7 +4623,7 @@
 		"reputation": "Réputation",
 		"sell": "Vendre",
 		"sell_tokens_base_units": "Vendre des tokens (unités de base)",
-		"slippage_bps": "Slippage (bps)",
+		"slippage_bps": "Glissement (bps)",
 		"sns_identity_solana_name_service": "Identité SNS <span class=\"muted\" style=\"font-size: 13px; font-weight: normal\" >(Service de noms Solana)</span>",
 		"sol": ".sol",
 		"sol_in": "SOL entrant",
@@ -4840,7 +4840,7 @@
 		"meta_title": "Détenteurs de $THREE · Tableau de bord · three.ws"
 	},
 	"dashboard_next_index": {
-		"meta_description": "Your three.ws dashboard overview: 3D agents and avatars, widget views and chat activity, earnings and payments, API keys, MCP servers, monetization, and billing, all in one place.",
+		"meta_description": "Votre tableau de bord three.ws en un coup d’œil : agents 3D et avatars, vues widget et activité chat, revenus et paiements, clés API, serveurs MCP, monétisation et facturation, tout au même endroit.",
 		"meta_title": "Aperçu · Tableau de bord · three.ws"
 	},
 	"dashboard_next_irl_placements": {
@@ -4865,7 +4865,7 @@
 		"meta_title": "Parrainages · Tableau de bord · three.ws"
 	},
 	"dashboard_next_settings": {
-		"meta_description": "Your three.ws dashboard settings: avatar storage modes (R2 vs IPFS), active sessions, your notification inbox, per-category notification channels for in-app, push, email and Telegram, plus appearance and dashboard preferences.",
+		"meta_description": "Paramètres de votre tableau de bord three.ws : modes de stockage d’avatar (R2 vs IPFS), sessions actives, boîte de réception des notifications, canaux de notification par catégorie pour in-app, push, email et Telegram, plus préférences d’apparence et du tableau de bord.",
 		"meta_title": "Paramètres · Tableau de bord · three.ws"
 	},
 	"dashboard_next_sniper": {
@@ -5548,7 +5548,7 @@
 		"2_hand_off_by_avatar_id": "2. Transfert par ID d'avatar",
 		"3_programmatic_creator": "3. Créateur programmatique",
 		"lab": "<a href=\"/demos\">← lab</a>",
-		"meta_title": "@three-ws/avatar SDK · three.ws lab",
+		"meta_title": "@three-ws/avatar SDK · labo three.ws",
 		"open_three_ws_avatar_creator": "Ouvrir le Créateur d'avatars three.ws",
 		"the_npm_sdk_bundle_loaded_from_what": "Le bundle SDK npm chargé depuis <code>/avatar-sdk/dist/index.mjs</code> (ce que les consommateurs obtiendraient via <code>npm install @three-ws/avatar</code> une fois publié). Au montage, il enregistre <code>&lt;agent-3d&gt;</code> comme élément personnalisé. La section Créateur ouvre la modale iframe qui se résout avec un GLB Blob — le même flux que celui qu'utiliseraient les sites tiers.",
 		"the_sdk_resolves_against_on_the_same": "Le SDK résout l'<code>avatar-id</code> via <code>GET /api/avatars/:id</code> sur la même origine que celle d'où le SDK a été chargé (à surcharger avec <code>api-base=\"https://other.host\"</code>). C'est le transfert durable émis par le <a href=\"/demos/gallery-picker.html\" style=\"color:#3dc1ff\">sélecteur de galerie</a>, et il continue de fonctionner même si l'URL GLB sous-jacente change.",
@@ -6104,7 +6104,7 @@
 		"lab": "<a href=\"/demos\">← lab</a>",
 		"loads_a_glb_generates_a_usdz_companion": "Charge un GLB, génère un compagnon USDZ entièrement dans le navigateur via le <code>USDZExporter</code> de three.js, le télécharge sur R2 via l'action <code>/api/avatars/presign-usdz</code>, puis rend <code>&lt;model-viewer&gt;</code> avec <code>src</code> et <code>ios-src</code>. Appuyez sur le bouton AR dans Safari sur iPhone pour vérifier que Quick Look s'ouvre. Rien ici n'affecte les flux en direct <code>/create</code> ou <code>/avatars/:id</code>.",
 		"log": "Journal",
-		"meta_title": "USDZ & AR Quick Look · three.ws lab",
+		"meta_title": "USDZ & AR Quick Look · labo three.ws",
 		"upload_patch_avatar": "Télécharger + Mettre à jour l'avatar",
 		"usdz_ar_quick_look": "USDZ & AR Quick Look"
 	},
@@ -7620,7 +7620,7 @@
 		"drop_on_webflow_framer_react_plain_html": "Déposez <code>&lt;threews-avatar&gt;</code> sur Webflow, Framer, React, HTML pur, Squarespace, partout. Transparent par défaut, compatible OBS avec un chromakey, et programmable via une petite API JS. Les exemples ci-dessous sont en direct sur cette page.",
 		"drop_this_on_any_page": "Déposez ceci sur n'importe quelle page.",
 		"every_avatar_below_is_a_real_mounted": "Chaque avatar ci-dessous est un véritable <code>&lt;threews-avatar&gt;</code> monté à partir de la balise script en haut de cette page.",
-		"hide_chrome": "hide-chrome",
+		"hide_chrome": "cacher-chrome",
 		"https_three_ws_embed_js": "\"https://three.ws/embed.js\"",
 		"live_examples": "Exemples en direct",
 		"meta_description": "Déposez un avatar three.ws sur n'importe quel site avec une simple balise <threews-avatar> — transparent, compatible OBS, programmable.",
@@ -8950,7 +8950,7 @@
 		"share_title": "Fits : l'économie des cosmétiques · three.ws",
 		"sub": "Les cosmétiques premium sont achetés avec du USDC réel, et chaque vente partage les revenus avec le créateur du monde de la pièce à laquelle le fit appartient. Voici le registre : les fits les plus rares, les collectionneurs qui les portent, les créateurs qui sont réellement payés, et chaque vente au fur et à mesure qu'elle se règle. Portez-les dans <a href=\"/play\">Play</a> ; forgez les vôtres dans le <a href=\"/wardrobe\">Wardrobe</a>.",
 		"title": "L'économie des <em>Fits</em>",
-		"twitter_desc": "Les fits les plus rares, les meilleurs collectionneurs, et les véritables revenus créateurs réglés en direct du registre des cosmétiques."
+		"twitter_desc": "Les fits les plus rares, les meilleurs collectionneurs, et les vrais revenus réglés des créateurs USDC, en direct du registre cosmetics."
 	},
 	"flow": {
 		"canvas_label": "Carte des transferts réglés entre portefeuilles d'agents, basée sur un algorithme de répartition par forces. Les mêmes données sont disponibles sous forme de tableau triable sous ce graphique.",
@@ -9720,7 +9720,7 @@
 		"slots_h": "Le vocabulaire des slots",
 		"stage_empty_body": "Choisissez un slot pour le jouer sur un avatar en direct. Rien en 3D ne se charge tant que vous ne le faites pas.",
 		"stage_empty_title": "Choisissez un geste",
-		"stage_error_body": "Le clip est bon : le rig de prévisualisation partagé n'a pas pu l'associer. Chaque clip est toujours prévisualisable dans la galerie <a href=\"/animations\">.",
+		"stage_error_body": "Le clip est bon : le rig de prévisualisation partagé n’a pas pu le lier. Chaque clip reste consultable dans la <a href=\"/animations\">galerie</a>.",
 		"stage_error_title": "Ce clip ne convenait pas à l'avatar de prévisualisation.",
 		"stage_loading": "Redirection du clip…",
 		"stage_retry": "Réessayer",
@@ -9769,7 +9769,7 @@
 		"glance": "Glance",
 		"glance_docs": "<span>Docs Glance</span>",
 		"image": "Image",
-		"install_the_three_ws_app_version_1": "Installez l'application <a href=\"/seeker\">three.ws (version 1.1 ou ultérieure).",
+		"install_the_three_ws_app_version_1": "Installez l’<a href=\"/seeker\">three.wsapp</a> (version 1.1 ou plus).",
 		"install_the_three_ws_glance_app_on": "Installez l'application three.ws Glance sur Mac, ou l'application <a href=\"/docs/ios-app\">three.ws iPhone</a>.",
 		"large": "grand",
 		"light": "clair",
@@ -12266,8 +12266,8 @@
 	},
 	"launch_studio": {
 		"50_launch_recipes_live_previews": "<span class=\"lc-pill-dot\"></span> 50 recettes de lancement · aperçus en direct",
-		"launch_studio": "Launch Studio",
-		"launch_studio_2": "Launch Studio",
+		"launch_studio": "Lancez Studio",
+		"launch_studio_2": "Lancez Studio",
 		"launches": "Lancements",
 		"meta_description": "Un catalogue de 50 cas d'usage pour le lancement de coins — des coins de récompense pour les dépôts GitHub et créateurs tendances aux coins surfant sur les récits culturels actuels. Prévisualisez ce que chacun minterait actuellement, puis lancez sur pump.fun en un clic.",
 		"meta_og_description": "Coins de récompense pour les créateurs GitHub tendances, coins surfant sur les récits actuels — prévisualisez en direct, lancez en un clic.",
@@ -20594,7 +20594,7 @@
 		"share_title": "Réception Vault · three.ws",
 		"signin_copy": "Signez un message en texte brut indiquant votre adresse et un horodatage. La signature autorise une lecture de vos propres reçus et rien d'autre : pas de transaction, pas d'approbation, pas de frais. Elle expire après 5 minutes.",
 		"signin_h": "Prouvez votre portefeuille, obtenez vos reçus",
-		"signin_note": "Fonctionne avec Phantom, Backpack et Solflare sur Solana, et MetaMask ou tout portefeuille injecté sur les chaînes EVM. Les reçus sont signés par three.ws sous l'extension de reçu d'offre x402 &amp;, afin que les tiers puissent les vérifier sans nous faire confiance. Vous n'avez jamais effectué d'appel payant ? Commencez par le catalogue de points de terminaison <a href=\"/x402\">x402.",
+		"signin_note": "Fonctionne avec Phantom, Backpack et Solflare sur Solana, ainsi qu’avec MetaMask ou tout wallet injecté sur les chaînes EVM. Les reçus sont signés par three.ws via l’extension x402 Offer &amp; Receipt, permettant à des tiers de les vérifier sans nous faire confiance. Jamais passé d’appel payant ? Commencez par le <a href=\"/x402\">x402 catalogue d’endpoints</a>.",
 		"sub": "Chaque appel x402 payant que vous faites à three.ws émet un reçu signé, et nous conservons une copie durable. Vous avez perdu l'en-tête de réponse de paiement original ? Connectez votre portefeuille, signez un message en lecture seule, et récupérez chaque reçu jamais émis à celui-ci. C'est le côté acheteur du registre : chaque reçu ici est quelque chose que <strong>vous</strong> avez acheté.",
 		"title": "Réception <em>Vault</em>",
 		"twitter_desc": "Récupérez chaque reçu x402 signé three.ws jamais émis à votre portefeuille. Preuve d'achat, exportable, vérifiable par l'explorateur."
@@ -21361,7 +21361,7 @@
 		"clear_filter": "Effacer le filtre",
 		"create_and_customize_an_agent": "Créez et personnalisez un agent.",
 		"crypto": "Crypto",
-		"d_3d": "API 3D gratuite et sans clé pour agents IA : transformez un prompt textuel en un vrai modèle GLB et validez/optimisez n'importe quel glTF/GLB, le tout depuis une seule URL avec une spécification OpenAPI 3.1 en direct. Génération de brouillons gratuite et inspection évoluant vers des niveaux de qualité Pro payants et des avatars riggés prêts pour l'animation. Pas de clé, pas de compte.",
+		"d_3d": "API 3D gratuite et sans clé pour agents IA : transformez un prompt texte en vrai modèle GLB et validez/optimisez n’importe quel glTF/GLB, tout depuis une URL unique avec une spec OpenAPI 3.1 live. Génération et inspection gratuites, puis passez aux niveaux payants Forge Pro et aux avatars riggés prêts à animer. Sans clé, sans compte.",
 		"d_activity": "Le parquet : chaque action de conviction Oracle de chaque agent 3D autonome sur pump.fun, en direct. Filtrez par niveau et mode, suivez les résultats et copiez les gagnants.",
 		"d_agenc_embodied": "Regardez deux agents IA négocier et coordonner une tâche, incarnés en personnages 3D : le protocole de coordination AgenC rendu visible.",
 		"d_agenc_room": "Une salle en direct où des agents autonomes découvrent du travail ouvert, enchérissent et se règlent sur la chaîne : le marché du travail de près.",
@@ -21462,7 +21462,7 @@
 		"d_claim_wallet": "Collez votre portefeuille Solana pour voir votre historique pump.fun vérifiable : taux de victoire, score de smart-money, étiquette de réputation, et historique des pièces. Connectez-vous pour le revendiquer comme votre carte de trader officielle three.ws.",
 		"d_clash": "Guerre communautaire avec accès par token. Chaque communauté de pièces est une armée : détenez la pièce, inscrivez-vous, et mobilisez-vous pour votre faction dans des batailles chronométrées contre d'autres communautés.",
 		"d_cli_authorize": "Approuvez une connexion commencée par npx three-ws dans votre terminal. Vérifiez que le code correspond, choisissez ce que la nouvelle clé API peut faire (les permissions de mouvement d'argent sont signalées et peuvent être supprimées), et le CLI termine la configuration tout seul.",
-		"d_clip_director": "Transformez n'importe quel agent trader en une carte partageable optimale pour chaque surface (X, Telegram ou le fil d'actualité de l'application) : un crochet honnête, le vrai chiffre, une réaction d'avatar et un lien de preuve on-chain. Les gains et les pertes obtiennent tous deux une carte.",
+		"d_clip_director": "Transformez chaque trade réel clôturé d’un agent trader pump.fun en la carte partageable optimale par surface (X, Telegram, ou le Feed intégré) : un hook honnête, le vrai chiffre, une réaction avatar, et un lien preuve on-chain. Gains et pertes ont leur carte.",
 		"d_club": "Un club 3D où les danseurs ne se produisent que lorsque vous envoyez un micro-pourboire. Payez 0,001 $ par routine, réglé on-chain via x402 sur Solana.",
 		"d_coin3d": "N'importe quel token pump.fun en tant que scène 3D en direct : une médaille de pièce tournante avec le logo du token, les principaux détenteurs en tant que galaxie dimensionnée par le solde, et une bague de graduation suivant la progression de la courbe de liaison. Adressez-le par mint ou par l'adresse de la paire qu'un terminal de graphique utilise, et intégrez-le sur n'importe quel site avec un iframe.",
 		"d_coin_intel": "Chaque lancement pump.fun surveillé et classé en temps réel : organique vs paquet, les portefeuilles derrière, un score de qualité transparent, et un modèle qui apprend quels signaux prédisent les gagnants.",
@@ -22009,7 +22009,7 @@
 		"d_news_2050049239301165535": "Ne manquez plus jamais un coureur @pumpfun three.ws/pumpfun annonce → Alertes de graduation en direct → Réclamations GitHub → Achats/ventes de baleines → Mise en page personnalisable Activez le son. Votre agent appelle maintenant chaque mouvement à haute voix.",
 		"d_news_2050221269732425928": "Le podcast three.ws est maintenant en direct sur @Spotify Vous n'aimez pas les articles extrêmement longs ? Nous vous entendons. Découvrez nos agents 3D nouvellement lancés sur la chaîne et apprenez-en plus sur la façon dont nous rendons l'IA accessible à tous dans le monde entier",
 		"d_news_2050226678321102975": "three.ws est en direct Créez des avatars d'agents AI 3D sur la chaîne. Ils peuvent parler, se souvenir de vous, montrer des émotions et utiliser différentes compétences. Vous pouvez même les frapper sur la chaîne, donc ils vous appartiennent réellement. Les agents obtiennent leur propre identité, histoire et réputation que personne ne peut",
-		"d_news_2050229144676675999": "three.ws is live Create 3D AI agent avatars on-chain. They can talk, remember you, show emotions, and use different skills. You can even mint them onchain, so they actually belong to you. Agents get their own identity, history, and reputation that no one can",
+		"d_news_2050229144676675999": "three.ws est en ligne Créez des avatars d’agents IA 3D on-chain. Ils parlent, se souviennent de vous, expriment des émotions et maîtrisent différentes compétences. Vous pouvez même les mint on-chain, ils vous appartiennent vraiment. Chaque agent a sa propre identité, son histoire et sa réputation que personne ne peut",
 		"d_news_2050284562069266616": "lentement puis tout à coup three.ws - la couche 3D pour internet. Agents on-chain avec identité, mémoire, voix et capacité de transaction. Un tag. N'importe quelle page.",
 		"d_news_2050585585191186781": "three.ws & @alibaba_cloud s'associent pour offrir des portefeuilles on-chain et un accès financier aux agents AI 3D. Nous sommes fiers de nous associer à @alibaba_cloud, apportant des agents AI 3D natifs au navigateur three.ws à l'infrastructure cloud mondiale. Les agents peuvent désormais détenir des portefeuilles on-chain, exécuter des paiements x402, a…",
 		"d_news_2050627547394916768": "Fier d'annoncer que $three est officiellement listé sur @CoinGecko Un immense merci aux modérateurs pour leur travail en coulisses, et à chacun d'entre vous qui a été là tout au long du parcours. Nous n'aurions pas pu le faire sans vous. Reconnaissant au-delà des mots. Construisons !",
@@ -22732,7 +22732,7 @@
 		"t_docs_multi_agent": "Docs · Scènes multi-agents",
 		"t_docs_native_widgets": "Widgets natifs : votre agent sur l'écran d'accueil",
 		"t_docs_news_rights": "Docs · Droits des éditeurs dans le lecteur de nouvelles",
-		"t_docs_notifications": "Docs: Notifications",
+		"t_docs_notifications": "Docs : Notifications",
 		"t_docs_nvidia_inception": "Docs · Adhésion NVIDIA Inception",
 		"t_docs_nvidia_inception_index_html": "Docs · Aperçu de l'adhésion NVIDIA Inception",
 		"t_docs_nvidia_models": "Docs · Chaque modèle NVIDIA three.ws fonctionne gratuitement",
@@ -24116,7 +24116,7 @@
 		"h1": "Syndicats",
 		"how_link": "Comment fonctionnent les syndicats",
 		"kicker": "Copier-trader en équipe · votre portefeuille, vos caps",
-		"meta_desc": "Équipes nommées de copieurs qui suivent ensemble les mêmes agents traders vérifiés. Chaque membre copie depuis son propre portefeuille avec ses propres caps ; le groupe partage un drapeau, une courbe d'équité en direct, et un rival sur le tableau. Pas de fonds regroupés, pas de garde.",
+		"meta_desc": "Équipes nommées de copieurs suivant ensemble les mêmes agents traders pump.fun vérifiés. Chaque membre copie depuis son propre wallet avec ses limites ; le groupe partage un drapeau, une courbe d’équité live, et un rival sur le tableau. Pas de fonds communs, pas de garde.",
 		"og_desc": "Choisissez un drapeau, rassemblez-vous autour d'un agent trader vérifié, et grimpez le tableau contre chaque autre syndicat. Chaque membre copie depuis son propre portefeuille sous ses propres caps.",
 		"page_title": "Syndicats : copier-trader en équipe · three.ws",
 		"quests_link": "Quêtes de trading d'aujourd'hui",
