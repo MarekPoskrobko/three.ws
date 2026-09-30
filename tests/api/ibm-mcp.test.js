@@ -62,6 +62,9 @@ const { graniteX402Amount, priceFor, formatUsdPrice, TOOL_PRICING } = await impo
 const { isFreeTool, TOOL_CATALOG } = await import('../../api/_mcpibm/catalog.js');
 const { toolDefs } = await import('../../api/_mcpibm/tools.js');
 const { declareMcpDiscovery } = await import('../../api/_lib/x402/bazaar-helpers.js');
+// The catalog declares discovery once, at import. Vitest clears mock history
+// before every test, so keep the import-time calls for the tests that read them.
+const discoveryCalls = [...declareMcpDiscovery.mock.calls];
 
 const AUTH = { userId: null, rateKey: 'test', scope: '', source: 'x402', x402Paid: true };
 const call = (name, args) =>
@@ -358,7 +361,7 @@ describe('IBM Granite MCP: every published example is a call that actually works
 	it('the discovery extension publishes that same example for every priced tool', () => {
 		for (const name of Object.keys(TOOL_PRICING)) {
 			const def = toolDefs.find((t) => t.name === name);
-			const call = declareMcpDiscovery.mock.calls.find((c) => c[0].toolName === name);
+			const call = discoveryCalls.find((c) => c[0].toolName === name);
 			expect(call, `${name}: no discovery declaration`).toBeTruthy();
 			expect(call[0].example, `${name}: discovery example`).toEqual(def.example);
 		}

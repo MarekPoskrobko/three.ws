@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@bonfida/spl-name-service": "^0.1.67",
-    "@ethereum-attestation-service/eas-sdk": "0.29.1",
+    "@ethereum-attestation-service/eas-sdk": "2.10.0",
     "@metaplex-foundation/mpl-candy-machine": "^6.1.0",
-    "@metaplex-foundation/umi": "^1.0.0",
-    "@metaplex-foundation/umi-bundle-defaults": "^1.5.1",
-    "@metaplex-foundation/umi-serializers": "^1.5.1",
+    "@metaplex-foundation/umi": "^1.6.0",
+    "@metaplex-foundation/umi-bundle-defaults": "^1.6.0",
+    "@metaplex-foundation/umi-serializers": "^1.6.0",
     "@pixiv/three-vrm": "^3.5.5",
     "@pump-fun/pump-sdk": "^2.0.0",
     "@solana/pay": "1.0.16",
@@ -67,7 +67,7 @@
     "zustand": "^5.0.15"
   },
   "overrides": {
-    "@metaplex-foundation/umi": "^1.0.0",
+    "@metaplex-foundation/umi": "^1.6.0",
     "@metaplex-foundation/mpl-toolbox": "^0.9.4",
     "vite": "^8.3.0",
     "rollup": "^4.59.0",
@@ -92,7 +92,7 @@
     "@react-spring/three": "^10.1.2",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
+    "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react-swc": "^4.3.3",
     "classnames": "^2.3.2",
     "eslint": "^10.4.1",
@@ -100,11 +100,11 @@
     "gh-pages": "^6.1.1",
     "globals": "^17.12.0",
     "jsdom": "^30.0.1",
-    "prettier": "^3.9.6",
+    "prettier": "^3.9.8",
     "rollup-plugin-inject": "^3.0.2",
     "sass": "^1.104.0",
     "vite": "^8.3.0",
     "vite-plugin-node-polyfills": "^0.28.0",
-    "vitest": "^4.1.7"
+    "vitest": "^5.0.1"
   }
 }

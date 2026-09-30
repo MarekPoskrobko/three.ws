@@ -10,6 +10,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest';
 describe('chat plugin protocol (boot.js) — LobeChat / SperaxOS', () => {
 	let el;
 	let parentPost;
+	let bootPosts;
 
 	beforeAll(async () => {
 		document.body.innerHTML = '<div id="status"></div>';
@@ -29,6 +30,8 @@ describe('chat plugin protocol (boot.js) — LobeChat / SperaxOS', () => {
 		// Executes boot.js side effects: registers the message listener and
 		// announces readiness.
 		await import('../public/lobehub/iframe/boot.js');
+		// Vitest clears mock history before every test, so keep what boot posted.
+		bootPosts = parentPost.mock.calls.map((c) => c[0]);
 	});
 
 	// A host message, with event.source pinned to the parent window (boot.js
@@ -50,7 +53,7 @@ describe('chat plugin protocol (boot.js) — LobeChat / SperaxOS', () => {
 	}
 
 	it('announces plugin-ready on both channels at boot', () => {
-		const types = parentPost.mock.calls.map((c) => c[0] && c[0].type);
+		const types = bootPosts.map((m) => m && m.type);
 		expect(types).toContain('lobe-chat:plugin-ready-for-render');
 		expect(types).toContain('speraxos:plugin-ready-for-render');
 	});
