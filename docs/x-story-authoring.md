@@ -108,7 +108,7 @@ covers the thing you meant to film.
 | `{ "click": "Search" }` | Moves the pointer to the control with that text and clicks it. `{ "click": { "selector": "#go" } }` when the control has no text. | yes |
 | `{ "hover": "Preview" }` | Moves the pointer onto a control. | yes |
 | `{ "type": "trading bots", "into": "Search by meaning" }` | Clicks the field whose placeholder or label matches `into`, then types. | yes |
-| `{ "press": "Enter" }` | Presses a key. | yes |
+| `{ "press": "Enter" }` | Presses a key. `{ "press": "w", "hold": 2000 }` holds it down for 2 s of page time, which is how a character is walked. | yes |
 | `{ "drag": [[0.3, 0.5], [0.7, 0.5]], "ms": 1500 }` | Drags across the viewport, as fractions of its width and height. This is how you orbit a 3D scene. | yes |
 | `{ "scroll": 500, "ms": 1000 }` | Scrolls by pixels, or to a text: `{ "scroll": "Pricing" }`. | yes |
 | `{ "expect": "Closest to", "within": 45000 }` | Waits until the text is on screen. Add `"film": true` to film the wait. | no |

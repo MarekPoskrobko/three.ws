@@ -75,6 +75,8 @@ const CUT_BADGE_AFTER_SEC = 2;
 const CUT_BADGE_FRAMES = 45;
 const MOVE_FRAMES = 12;
 const LOCATE_FRAMES = 60;
+const PAUSE_MARGIN_MS = 750;
+const PAUSE_ATTEMPTS = 4;
 const RIPPLE_FRAMES = 9;
 const TYPE_FRAMES_PER_CHAR = 2;
 
@@ -140,6 +142,7 @@ export function scenarioProblems(scenario) {
 				break;
 			case 'press':
 				if (typeof step.press !== 'string' || !step.press) problems.push(`${at}: press needs a key name such as Enter`);
+				if (step.hold !== undefined && !between(step.hold, LIMITS.holdMs)) problems.push(`${at}: hold is ${LIMITS.holdMs[0]} to ${LIMITS.holdMs[1]} ms of the key held down`);
 				break;
 			case 'expect':
 				if (typeof step.expect !== 'string' || !step.expect.trim()) problems.push(`${at}: expect needs the text that only appears once the feature worked`);
@@ -378,11 +381,22 @@ class Take {
 		this.cuts = [];
 	}
 
+	// The pause lands a little ahead of the page's clock. A page with a live
+	// render loop can run past a narrow margin between the read and the pause
+	// ("Cannot fast-forward to the past"), so the margin is generous and a miss
+	// is read again and retried.
 	async pause() {
 		if (this.paused) return;
-		const pageNow = await this.page.evaluate(() => Date.now());
-		await this.page.clock.pauseAt(pageNow + 50);
-		this.paused = true;
+		for (let attempt = 1; attempt <= PAUSE_ATTEMPTS; attempt++) {
+			const pageNow = await this.page.evaluate(() => Date.now());
+			try {
+				await this.page.clock.pauseAt(pageNow + PAUSE_MARGIN_MS * attempt);
+				this.paused = true;
+				return;
+			} catch (err) {
+				if (attempt === PAUSE_ATTEMPTS || !/past/i.test(String(err.message))) throw err;
+			}
+		}
 	}
 
 	async resume() {
@@ -570,11 +584,19 @@ const STEPS = {
 		}
 		return `typed ${step.type.length} characters${await settleResponse(take, step, index, run, pending)}`;
 	},
+	// A tap by default. With `hold`, the key stays down for that much page
+	// time, filmed, which is how a character is walked with W or an arrow key.
 	async press(take, step, index, run) {
 		const pending = armResponse(take, step);
-		await take.page.keyboard.press(step.press);
+		if (step.hold) {
+			await take.page.keyboard.down(step.press);
+			await take.frames(Math.round((step.hold / 1000) * take.fps));
+			await take.page.keyboard.up(step.press);
+		} else {
+			await take.page.keyboard.press(step.press);
+		}
 		await take.frames(6);
-		return `pressed ${step.press}${await settleResponse(take, step, index, run, pending)}`;
+		return `${step.hold ? `held ${step.press} for ${step.hold} ms` : `pressed ${step.press}`}${await settleResponse(take, step, index, run, pending)}`;
 	},
 	async expect(take, step, index) {
 		const within = step.within ?? 45_000;
