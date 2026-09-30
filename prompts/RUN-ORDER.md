@@ -9,6 +9,7 @@ so you can open one, run it, and open the next without consulting anything. Ever
 | Band | What it is | Count |
 |---|---|---|
 | `001` to `014` | Runnable right now, no gate. Highest value first. Start at `001`. | 14 |
+| `015` to `022` | The `parity-` campaign, added 2026-09-30. Runnable, no gate except where an order names one step. Run 015 before 017 (017 ranks 015's data); 919 ships them. | 8 |
 | `100` to `248` | The route-audit swarm, ordered by measured defect class. Parallel-safe. | 149 |
 | `300` to `313` | The unbuilt Home campaign, in numeric order (04 gates 05 and 06, 11 gates 20). | 14 |
 | `900` and up | Blocked: the last step is an owner action or an outside party. Read before running. | 19 |
