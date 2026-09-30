@@ -28855,6 +28855,15 @@
 				"improvement"
 			],
 			"link": "/image-to-3d"
+		},
+		{
+			"date": "2026-09-30",
+			"title": "The Oracle's model now downloads from any website",
+			"summary": "The Oracle's conviction model is published data, and the @three-ws/oracle-model package is meant to score coins anywhere. Until now its download endpoint only answered pages on three.ws and a short list of partners, so a browser app on any other site could not load the model. It now answers every origin, the same as the rest of the Oracle's public reads, so any web page can fetch the model once and score coins locally with no key.",
+			"tags": [
+				"improvement"
+			],
+			"link": "/oracle-lab"
 		}
 	]
 }

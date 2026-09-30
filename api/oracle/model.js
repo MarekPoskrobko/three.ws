@@ -146,7 +146,9 @@ async function loadVersion(id, network) {
 }
 
 export default wrap(async (req, res) => {
-	if (cors(req, res)) return;
+	// Open to every origin like the rest of the public Oracle reads: the model is
+	// published data, and @three-ws/oracle-model calls this from any browser.
+	if (cors(req, res, { methods: 'GET,OPTIONS', origins: '*' })) return;
 	if (!method(req, res, ['GET'])) return;
 	const rl = await limits.publicIp(clientIp(req));
 	if (!rl.success) return rateLimited(res, rl);
