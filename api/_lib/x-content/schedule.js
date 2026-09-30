@@ -158,6 +158,7 @@ export function pickDue({
 	lifts = null,
 	reviews = null,
 	exclude = new Set(),
+	yieldVeto = false,
 }) {
 	const cadence = { ...DEFAULT_CADENCE, ...rawCadence };
 	const published = [...(state?.published || [])].sort((a, b) => a.publishedAt.localeCompare(b.publishedAt));
@@ -198,7 +199,17 @@ export function pickDue({
 
 	// On a weekend a flagship post waits for Monday instead of filling a lower slot.
 	const holdFlagship = Boolean(cadence.flagshipWeekdaysOnly) && isWeekend(slot.opensAt);
-	const ready = unpublished.filter((item) => !exclude.has(item.id) && Date.parse(item.notBefore) <= now && !(holdFlagship && tierOf(item) === 1));
+	const candidates = unpublished.filter((item) => !exclude.has(item.id) && !(holdFlagship && tierOf(item) === 1));
+	let ready = candidates.filter((item) => Date.parse(item.notBefore) <= now);
+	// Three a day is a quota, not a ceiling (owner, 2026-09-30). A post the
+	// policy released is embargoed only so the owner can take it back; when the
+	// alternative is an empty slot, the schedule wins and the embargo yields.
+	// The owner's own embargo (an item approved by hand) is never shortened.
+	let vetoYielded = false;
+	if (!ready.length && yieldVeto) {
+		ready = candidates.filter((item) => item.approvedBy === 'policy');
+		vetoYielded = ready.length > 0;
+	}
 	const context = { lifts, published, quality, reviews, now };
 	const readyByTier = new Map(TIERS.map((tier) => [tier, ready.filter((item) => tierOf(item) === tier).length]));
 	for (const tier of tierOrder(slot.tier, readyByTier)) {
@@ -210,6 +221,7 @@ export function pickDue({
 			slot,
 			tier,
 			filledDown: tier !== slot.tier,
+			vetoYielded,
 			score: top.score,
 			parts: top.parts,
 			ranking: ranked.map((row) => ({ id: row.item.id, score: row.score })),

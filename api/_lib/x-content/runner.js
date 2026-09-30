@@ -14,7 +14,7 @@
 // reads the timeline again if the stored record has gone stale.
 
 import { loadQueue, validateQueue } from './queue.js';
-import { TIERS, pickDue, tierOf } from './schedule.js';
+import { DEFAULT_CADENCE, SLOT_OPEN_MINUTES, TIERS, pickDue, slotOpenings, tierOf } from './schedule.js';
 import { loadLifts } from './priority.js';
 import { loadReview, contentHash } from './review.js';
 import { previewClient, publishItem, xClientFromEnv } from './publisher.js';
@@ -22,6 +22,7 @@ import { itemTexts, linkChecks, probeChecks } from './verify.js';
 import { collectOutcomes, learnLifts, outcomesAreStale, outcomesStore } from './outcomes.js';
 
 const HOUR = 60 * 60_000;
+const DAY = 24 * HOUR;
 // Tries per tick before giving up the slot: enough to skip a few broken posts,
 // bounded so one tick cannot spend an hour on pre-flight checks.
 const MAX_ATTEMPTS_PER_TICK = 5;
@@ -128,6 +129,37 @@ async function refreshOutcomes({ outcomes, stored, collect, client, ledger, now 
 	}
 }
 
+// ── Missed slots ────────────────────────────────────────────────────────────
+// Three a day is a quota (owner, 2026-09-30). An open slot with nothing to post
+// is raised the moment it is seen, and a slot that closed unfilled is recorded
+// and raised once, so a quiet day is never quiet by accident.
+async function alertEmptySlot(state, store, slot, reason) {
+	state.emptySlotAlerted ||= {};
+	if (state.emptySlotAlerted[slot.key]) return;
+	state.emptySlotAlerted[slot.key] = new Date().toISOString();
+	await store.save(state);
+	const { sendOpsAlert } = await import('../alerts.js');
+	await sendOpsAlert(`x-content: slot ${slot.key} (T${slot.tier}) is open with nothing to post`, `${reason}. Approve or advance a post now: npm run x:content -- advance --ship`);
+}
+
+export function missedSlots(state, cadence, seed, now = Date.now()) {
+	const openFor = Number(cadence.slotOpenMinutes ?? SLOT_OPEN_MINUTES) * 60_000;
+	const used = new Set((state.published || []).map((row) => row.slot).filter(Boolean));
+	const noted = state.missedSlots || {};
+	return slotOpenings(now, { ...DEFAULT_CADENCE, ...cadence }, seed).filter((slot) => slot.opensAt + openFor <= now && now - slot.opensAt < DAY && !used.has(slot.key) && !noted[slot.key]);
+}
+
+async function alertMissedSlots(state, store, cadence, seed, now) {
+	const missed = missedSlots(state, cadence, seed, now);
+	if (!missed.length) return [];
+	state.missedSlots ||= {};
+	for (const slot of missed) state.missedSlots[slot.key] = new Date(now).toISOString();
+	await store.save(state);
+	const { sendOpsAlert } = await import('../alerts.js');
+	await sendOpsAlert(`x-content: ${missed.length} slot(s) closed with no post`, missed.map((slot) => `${slot.key} (T${slot.tier})`).join(', '));
+	return missed.map((slot) => slot.key);
+}
+
 // `client` and `checks` default to the real X client and the real pre-flight;
 // tests pass their own to drive the hold-and-fall-through path. `outcomes` and
 // `collect` default to the stored record and the real timeline read.
@@ -203,11 +235,19 @@ async function fillSlot({ queue, state, store, root, now, requestedId, client, c
 	const lowStock = requestedId ? null : await alertLowInventory(state, store, stock, now).catch(() => null);
 
 	const exclude = requestedId ? new Set() : activeHolds(state, publishable, root, now);
+	const missed = requestedId ? [] : await alertMissedSlots(state, store, queue.cadence || {}, context.seed, now).catch(() => []);
 	const held = [];
 	for (let attempt = 0; attempt < MAX_ATTEMPTS_PER_TICK; attempt++) {
-		const decision = pickDue({ ...context, exclude });
-		if (!decision.item) return { published: null, reason: decision.reason, held, blocked, stock, lowStock };
+		const decision = pickDue({ ...context, exclude, yieldVeto: !requestedId });
+		if (!decision.item) {
+			if (decision.slot && !requestedId) await alertEmptySlot(state, store, decision.slot, decision.reason).catch(() => {});
+			return { published: null, reason: decision.reason, held, blocked, stock, lowStock, missed };
+		}
 		const item = decision.item;
+		if (decision.vetoYielded) {
+			const { sendOpsAlert } = await import('../alerts.js');
+			await sendOpsAlert(`x-content: ${item.id} goes out before its veto window ends`, `Slot ${decision.slot.key} (T${decision.slot.tier}) had nothing else ready. Its embargo ran until ${item.notBefore}.`, { severity: 'info' }).catch(() => {});
+		}
 
 		// A resumed thread must finish what it started, so it skips pre-flight.
 		if (!decision.resuming) {
@@ -228,7 +268,7 @@ async function fillSlot({ queue, state, store, root, now, requestedId, client, c
 				delete state.holds[item.id];
 				await store.save(state);
 			}
-			return { published: row, stock, lowStock, score: decision.score, tier: decision.tier, filledDown: Boolean(decision.filledDown), resumed: Boolean(decision.resuming), held, blocked };
+			return { published: row, stock, lowStock, score: decision.score, tier: decision.tier, filledDown: Boolean(decision.filledDown), vetoYielded: Boolean(decision.vetoYielded), resumed: Boolean(decision.resuming), held, blocked, missed };
 		} catch (err) {
 			if (!isPostSpecific(err) || !untouched(state, item)) throw err;
 			const reason = `X rejected the post: ${err.message}`;

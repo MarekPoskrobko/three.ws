@@ -134,3 +134,43 @@ describe('a story covers backlog surfaces', () => {
 		expect(validateItem(item({ covers: [42] }), sandbox()).join('\n')).toMatch(/covers must list backlog keys/);
 	});
 });
+
+describe('three a day is a quota', () => {
+	const cadence = { slots: [{ tier: 3, at: '04:00' }, { tier: 2, at: '12:00' }, { tier: 1, at: '20:00' }], windowMinutes: 0, minimumMinutesApart: 1, dailyCap: 3, quietHoursUtc: null };
+	const at = (iso) => Date.parse(iso);
+	const post = (id, overrides = {}) => ({ id, status: 'approved', kind: 'post', tier: 2, lane: 'community', pattern: 'walkthrough', notBefore: '2026-09-29T00:00:00Z', posts: [{ text: `${id} post about a feature: three.ws/${id}`, media: [{ path: `public/x-media/${id}/reel.mp4` }] }], ...overrides });
+
+	it('lets a policy embargo yield when the slot would otherwise go empty', async () => {
+		const { pickDue } = await import('../api/_lib/x-content/schedule.js');
+		const now = at('2026-09-30T12:30:00Z');
+		const embargoed = post('later', { approvedBy: 'policy', notBefore: '2026-09-30T14:00:00Z' });
+		const state = { published: [], inflight: {} };
+		expect(pickDue({ items: [embargoed], state, now, cadence }).item).toBe(null);
+		const decision = pickDue({ items: [embargoed], state, now, cadence, yieldVeto: true });
+		expect(decision.item?.id).toBe('later');
+		expect(decision.vetoYielded).toBe(true);
+	});
+
+	it('never shortens an embargo the owner set, and prefers a ready post to a yielded one', async () => {
+		const { pickDue } = await import('../api/_lib/x-content/schedule.js');
+		const now = at('2026-09-30T12:30:00Z');
+		const owner = post('owner-held', { notBefore: '2026-10-02T00:00:00Z' });
+		expect(pickDue({ items: [owner], state: { published: [], inflight: {} }, now, cadence, yieldVeto: true }).item).toBe(null);
+		const ready = post('ready');
+		const embargoed = post('later', { approvedBy: 'policy', notBefore: '2026-09-30T14:00:00Z' });
+		const decision = pickDue({ items: [embargoed, ready], state: { published: [], inflight: {} }, now, cadence, yieldVeto: true });
+		expect(decision.item.id).toBe('ready');
+		expect(decision.vetoYielded).toBe(false);
+	});
+
+	it('names every slot of the last day that closed with no post, once', async () => {
+		const { missedSlots } = await import('../api/_lib/x-content/runner.js');
+		const now = at('2026-09-30T11:00:00Z');
+		const state = { published: [{ id: 'a', slot: '2026-09-30#0', publishedAt: '2026-09-30T04:10:00Z' }], missedSlots: { '2026-09-29#2': '2026-09-30T00:00:00Z' } };
+		const missed = missedSlots(state, cadence, null, now).map((slot) => slot.key);
+		expect(missed).toContain('2026-09-29#1');
+		expect(missed).not.toContain('2026-09-29#2');
+		expect(missed).not.toContain('2026-09-30#0');
+		expect(missed).not.toContain('2026-09-30#1');
+	});
+});
