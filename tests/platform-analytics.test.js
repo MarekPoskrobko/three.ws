@@ -38,6 +38,7 @@ function okSources(overrides = {}) {
 			daily: [],
 		}),
 		hires: async () => ({ total: { hire_volume_usd: 0 }, daily: [] }),
+		creatorFees: async () => ({ total: { creator_fees: 5.5 }, daily: [{ day: '2026-09-28', creator_fees: 0.25 }] }),
 		...overrides,
 	};
 }
@@ -81,14 +82,10 @@ describe('readPlatformAnalytics', () => {
 		expect(body.metrics.x402_volume_usd.total).toBe(0.3);
 	});
 
-	it('marks creator fees as pending until per-agent earnings exist', async () => {
+	it('reports creator fees in SOL from the earnings snapshot', async () => {
 		const body = await readPlatformAnalytics({ window: '30d', now: NOW, sources: okSources() });
-		expect(body.metrics.creator_fees).toMatchObject({
-			available: false,
-			pending: true,
-			total: null,
-			method: 'coming with per-agent earnings',
-		});
+		expect(body.metrics.creator_fees).toMatchObject({ available: true, unit: 'sol', total: 5.5, window_total: 0.25 });
+		expect(body.metrics.creator_fees.method).toMatch(/custodial wallet/);
 	});
 
 	it('turns a failing source into null metrics plus named errors, never zero', async () => {

@@ -220,6 +220,46 @@ async function marketplaceSource(sinceDay) {
 	};
 }
 
+// Creator fees, from the agent_coin_earnings snapshot parity order 015 fills.
+// The launchpad reports fees per creator WALLET, so this counts exactly the
+// wallets api/_lib/agent-earnings.js counts toward an agent: the agent's own
+// custodial wallet, not shared with another agent's coin. Each wallet is
+// counted once however many coins it launched.
+const COUNTED_CREATOR_WALLETS = () => sql`
+	SELECT DISTINCT ON (e.creator) e.creator, e.earned_lamports
+	FROM agent_coin_earnings e
+	JOIN agent_identities ai ON ai.id = e.agent_id AND ai.deleted_at IS NULL
+	WHERE e.network = 'mainnet'
+	  AND e.source = 'pumpfun_creator_fees'
+	  AND e.wallet_agent_count = 1
+	  AND e.creator = ai.meta->>'solana_address'
+	ORDER BY e.creator, e.refreshed_at DESC NULLS LAST
+`;
+
+async function creatorFeesSource(sinceDay) {
+	const [totals, daily] = await Promise.all([
+		sql`
+			WITH w AS (${COUNTED_CREATOR_WALLETS()})
+			SELECT COALESCE(SUM(earned_lamports), 0)::text AS lamports FROM w
+		`,
+		sql`
+			WITH w AS (${COUNTED_CREATOR_WALLETS()})
+			SELECT
+				to_char((b.bucket_start AT TIME ZONE 'UTC')::date, 'YYYY-MM-DD') AS day,
+				COALESCE(SUM(b.fee_lamports), 0)::text AS lamports
+			FROM creator_fee_buckets b
+			JOIN w ON w.creator = b.creator
+			WHERE b.bucket_interval = '1d'
+			GROUP BY 1
+		`,
+	]);
+	const rows = daily.map((r) => ({ day: r.day, creator_fees: atomicToUnits(r.lamports, 9) }));
+	return {
+		total: { creator_fees: atomicToUnits(totals[0]?.lamports, 9) },
+		daily: sinceDay ? rows.filter((r) => r.day >= sinceDay) : rows,
+	};
+}
+
 async function hiresSource(sinceDay, now) {
 	// Reuses the /api/agent-economy/volume read so hire volume is one number
 	// platform-wide. Its daily series is a trailing window in days; the all-time
@@ -236,7 +276,7 @@ async function hiresSource(sinceDay, now) {
 
 // ── Metric catalogue ────────────────────────────────────────────────────────
 // Order here is the order the page renders. `unit` drives formatting:
-// count | tokens | usd | three.
+// count | tokens | usd | three | sol.
 
 export const METRICS = Object.freeze([
 	{
@@ -318,10 +358,10 @@ export const METRICS = Object.freeze([
 	},
 	{
 		key: 'creator_fees',
-		source: null,
+		source: 'creatorFees',
 		label: 'Creator fees earned',
-		unit: 'usd',
-		method: 'coming with per-agent earnings',
+		unit: 'sol',
+		method: 'Trading fees earned by agents as the creator of the coins they launched, in SOL, from the per-coin earnings snapshot refreshed every 30 minutes (agent_coin_earnings). The launchpad reports fees per creator wallet, so a wallet is counted once, and only when it is the agent\'s own custodial wallet and no other agent\'s coin shares it, the same rule each agent\'s earnings page uses. The daily series sums the index\'s daily fee buckets for those wallets, which reach back about 100 days, so the all-time series can add up to less than the lifetime total.',
 	},
 ]);
 
@@ -333,6 +373,7 @@ const SOURCES = {
 	x402: x402Source,
 	marketplace: marketplaceSource,
 	hires: hiresSource,
+	creatorFees: creatorFeesSource,
 };
 
 function withTimeout(promise, ms, name) {
@@ -392,10 +433,6 @@ export async function readPlatformAnalytics({ window = DEFAULT_WINDOW, now = Dat
 	const errors = [];
 	for (const m of METRICS) {
 		const base = { key: m.key, label: m.label, unit: m.unit, method: m.method };
-		if (!m.source) {
-			metrics[m.key] = { ...base, available: false, pending: true, total: null, window_total: null, daily: null };
-			continue;
-		}
 		const r = results[m.source];
 		if (!r) {
 			const err = failures[m.source];

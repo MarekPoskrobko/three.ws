@@ -26,6 +26,7 @@ const NEXT_STEP = {
 	marketplace_volume_three: { href: '/marketplace', text: 'Browse the skill marketplace' },
 	marketplace_volume_usd: { href: '/marketplace', text: 'Browse the skill marketplace' },
 	hire_volume_usd: { href: '/agent-economy-volume', text: 'Open the agent economy dashboard' },
+	creator_fees: { href: '/launch', text: 'Launch a coin for your agent' },
 };
 
 const WINDOW_PHRASE = { '30d': 'in the last 30 days', '90d': 'in the last 90 days', all: 'since launch' };
@@ -53,6 +54,11 @@ function fmtValue(unit, v, { compact = false } = {}) {
 		if (compact && Math.abs(n) >= 100_000) return `$${compactNf.format(n)}`;
 		return n.toLocaleString(undefined, { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
 	}
+	if (unit === 'sol') {
+		const digits = Math.abs(n) >= 100 ? 2 : Math.abs(n) >= 1 ? 3 : 4;
+		const body = compact && Math.abs(n) >= 100_000 ? compactNf.format(n) : n.toLocaleString(undefined, { maximumFractionDigits: digits });
+		return `${body} SOL`;
+	}
 	if (unit === 'three') {
 		const body = compact && Math.abs(n) >= 100_000 ? compactNf.format(n) : n.toLocaleString(undefined, { maximumFractionDigits: 2 });
 		return `${body} $THREE`;
@@ -62,8 +68,9 @@ function fmtValue(unit, v, { compact = false } = {}) {
 }
 
 function axisLabel(unit, v) {
-	if (unit === 'usd') return v >= 1000 ? `$${compactNf.format(v)}` : `$${Number(v.toFixed(v < 10 ? 2 : 0))}`;
-	return v >= 1000 ? compactNf.format(v) : String(Number(v.toFixed(v < 10 && v % 1 ? 1 : 0)));
+	const prefix = unit === 'usd' ? '$' : '';
+	if (Math.abs(v) >= 1000) return `${prefix}${compactNf.format(v)}`;
+	return `${prefix}${Number(v.toPrecision(3))}`;
 }
 
 function escapeHtml(s) {
@@ -168,13 +175,6 @@ function clearError() {
 // ── Tiles ───────────────────────────────────────────────────────────────────
 
 function tile(m) {
-	if (m.pending) {
-		return `<div class="pa-tile is-pending">
-			<div class="pa-tile-label">${escapeHtml(m.label)}</div>
-			<div class="pa-tile-value is-muted">Coming soon</div>
-			<div class="pa-tile-sub">${escapeHtml(m.method)}</div>
-		</div>`;
-	}
 	if (!m.available) {
 		return `<div class="pa-tile is-unavailable">
 			<div class="pa-tile-label">${escapeHtml(m.label)}</div>
@@ -426,7 +426,7 @@ function wireChart(entry) {
 
 function renderCharts(metrics) {
 	const el = document.getElementById('pa-charts');
-	const charted = metrics.filter((m) => !m.pending);
+	const charted = metrics;
 	el.innerHTML = charted.map(chartCard).join('');
 	el.removeAttribute('aria-busy');
 	charts.clear();
@@ -452,7 +452,7 @@ function redrawAll() {
 
 function renderMethods(metrics, body) {
 	const items = metrics.map((m) => `<div class="pa-method">
-		<dt>${escapeHtml(m.label)}${m.pending ? ' <span class="pa-badge">Coming soon</span>' : ''}${!m.pending && !m.available ? ' <span class="pa-badge is-warn">Unavailable now</span>' : ''}</dt>
+		<dt>${escapeHtml(m.label)}${m.available ? '' : ' <span class="pa-badge is-warn">Unavailable now</span>'}</dt>
 		<dd>${escapeHtml(m.method)}</dd>
 	</div>`);
 	items.push(`<div class="pa-method">
@@ -519,7 +519,7 @@ async function load({ force = false } = {}) {
 	state.loading = false;
 	document.getElementById('pa-retry').disabled = false;
 	clearError();
-	const everyMetricFailed = Object.values(body.metrics).every((m) => m.pending || !m.available);
+	const everyMetricFailed = Object.values(body.metrics).every((m) => !m.available);
 	if (everyMetricFailed) {
 		state.byWindow.delete(windowKey);
 		state.data = null;

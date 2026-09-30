@@ -6706,7 +6706,7 @@ Cached 5 minutes in the shared cache and at the CDN
 |---|---|---|
 | `window` | `30d`, `90d`, `all` (anything else falls back to `30d`) | `30d` |
 
-**Response** (one metric shown in full, the rest have the same shape)
+**Response** (one metric in full, and one whose source failed; every metric has the same shape)
 
 ```json
 {
@@ -6726,19 +6726,25 @@ Cached 5 minutes in the shared cache and at the CDN
 			"window_total": 724,
 			"daily": [{ "day": "2026-09-29", "value": 23 }, { "day": "2026-09-30", "value": 2 }]
 		},
-		"creator_fees": {
-			"key": "creator_fees",
-			"label": "Creator fees earned",
-			"unit": "usd",
-			"method": "coming with per-agent earnings",
+		"x402_settlements": {
+			"key": "x402_settlements",
+			"label": "x402 settlements",
+			"unit": "count",
+			"method": "Successful on-chain settlements by the three.ws self-hosted Solana x402 facilitator (x402_self_facilitator_log, action settle, ok). Failed and verify-only attempts are excluded. This includes the platform's own self-cycled agent ring, reported on its own at /api/x402-ring.",
 			"available": false,
-			"pending": true,
 			"total": null,
 			"window_total": null,
 			"daily": null
 		}
 	},
-	"errors": []
+	"errors": [
+		{
+			"metric": "x402_settlements",
+			"source": "x402",
+			"error": "timeout",
+			"message": "The x402 settlements figure could not be read, so it is shown as unavailable rather than as zero."
+		}
+	]
 }
 ```
 
@@ -6755,7 +6761,7 @@ Cached 5 minutes in the shared cache and at the CDN
 | `marketplace_volume_three` | three | price of those sales paid in $THREE, in whole tokens |
 | `marketplace_volume_usd` | usd | price of those sales paid in USDC |
 | `hire_volume_usd` | usd | completed `agent_hires`, read through the same helper as `/api/agent-economy/volume` |
-| `creator_fees` | usd | pending (`pending: true`) until per-agent earnings ship |
+| `creator_fees` | sol | lifetime creator fees of agents' own custodial wallets from the `agent_coin_earnings` snapshot (same counting rule as `/api/agents/:id/earnings`); daily series from the fee index's daily buckets, about 100 days deep |
 
 `total` is all time; `window_total` is the sum of `daily`; `daily` has one
 entry per UTC day from `from` to `to`, zeros included. For `window=all`,
