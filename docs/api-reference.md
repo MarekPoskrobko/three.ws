@@ -22,9 +22,15 @@ Authorization: Bearer sk_live_xxxxx
 
 Session cookies (set after SIWE or Privy login) are accepted on all endpoints that support Bearer auth.
 
+**API keys.** Create one at [Dashboard → API](https://three.ws/dashboard/api). A key starts with `sk_live_` and is shown exactly once: three.ws stores only its SHA-256 hash plus the first 14 characters as a visible prefix, so a lost key cannot be recovered, only replaced. Each key carries the scopes you chose when you made it, and a call outside them fails with `insufficient_scope`. Revoking a key takes effect on the next request, because keys are checked against the database on every call. Keep keys server-side; never ship one in a browser or mobile bundle.
+
+**OAuth tokens.** MCP clients and the [CLI](/docs/cli) sign in with OAuth instead of a key. Access tokens last one hour and refresh automatically. Revoking a client under [Dashboard → Settings → Connected apps](https://three.ws/dashboard/settings) stops its refresh token at once, so the client loses access when its current access token expires, within the hour.
+
 ### Response format
 
-All responses are JSON. Successful responses return the resource or a result object. Errors return a machine-readable code plus a human-readable description:
+All responses are JSON. Successful responses return the resource or a result object. Errors come in one of two shapes, depending on the surface.
+
+Most endpoints return a machine-readable code plus a human-readable description:
 
 ```json
 {
@@ -33,16 +39,36 @@ All responses are JSON. Successful responses return the resource or a result obj
 }
 ```
 
+The versioned agents API (`/api/v1/agents`, `/runs`, `/automations`, `/models`, `/me`, `/intel`, `/strategies`) wraps every response in one envelope, and also sends the request id as an `x-request-id` header:
+
+```json
+{ "data": { "…": "…" }, "meta": { "requestId": "6f0e…", "timestamp": "2026-09-29T12:00:00.000Z" } }
+{ "error": { "code": "insufficient_scope", "message": "This route requires the \"wallet:write\" scope.", "details": null }, "meta": { "requestId": "6f0e…" } }
+```
+
 Some endpoints add extra fields (e.g. `retry_after` on rate limits). Error responses are never cached.
 
 ### Rate limits
 
-| Tier            | Limit       |
-| --------------- | ----------- |
-| Authenticated   | 100 req/min |
-| Unauthenticated | 20 req/min  |
+Limits are set per endpoint family rather than as one global number, and each is sized to what that endpoint costs. A few examples:
 
-Rate-limited responses return HTTP 429 with `{ "error": "...", "code": "RATE_LIMITED" }`.
+| Surface | Limit | Keyed by |
+| --- | --- | --- |
+| Versioned agents API (`/api/v1/…`) | 120 requests per minute | API key, else user, else IP |
+| Sign-in and other credential checks | 50 requests per 10 minutes | IP |
+| Agent creation (`POST /api/agents`) | 20 per 10 minutes | IP |
+
+Every limited response carries `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` headers, so a client can pace itself before it is cut off. Past the limit the answer is HTTP 429 with a `Retry-After` header (seconds) and this body:
+
+```json
+{ "error": "rate_limited", "error_description": "too many requests", "retry_after": 42 }
+```
+
+If the body also has `"reason": "rate_limiter_unavailable"`, you did not hit a quota: the limiter itself was briefly unreachable and failed closed on a sensitive route. Wait `retry_after` seconds and retry as normal.
+
+### Idempotency
+
+Writes on the versioned agents API accept an `Idempotency-Key` header (up to 200 characters). The first request with a key runs; a retry with the same key and the same body within 24 hours gets the stored response back with `Idempotent-Replayed: true`, and nothing runs twice. Reusing a key with a different body is rejected with `422 idempotency_key_reused`, and a retry that arrives while the first is still running gets `409 idempotency_in_progress`. Other write endpoints are not idempotent unless their section says so, so guard retries on your side. Paid x402 endpoints are idempotent per payment: see [x402](/docs/x402).
 
 ---
 
@@ -8808,20 +8834,44 @@ GET /api/v1/pump/launches?limit=24&offset=24
 
 ## Error codes
 
-Codes are lowercase snake_case in the `error` field. The common ones, shared across endpoints:
+Codes are lowercase snake_case: in the `error` field on most endpoints, in `error.code` on the versioned agents API. The common ones, shared across endpoints, with whether a retry can help:
 
-| Code                 | HTTP Status | Description                                     |
-| -------------------- | ----------- | ----------------------------------------------- |
-| `unauthorized`       | 401         | Missing or invalid auth                         |
-| `forbidden`          | 403         | Authenticated but not allowed                   |
-| `insufficient_scope` | 403         | Bearer token lacks the required scope           |
-| `not_found`          | 404         | Resource doesn't exist                          |
-| `rate_limited`       | 429         | Too many requests (see `retry_after`)           |
-| `validation_error`   | 400         | Request body or query validation failed         |
-| `not_configured`     | 503         | A required provider/env is unset on this deploy |
-| `upstream_error`     | 502         | A third-party upstream returned an error        |
+| Code | HTTP | Meaning | Retry? | What to do |
+| --- | --- | --- | --- | --- |
+| `validation_error`, `bad_json`, `missing_parameter`, `invalid_parameter` | 400 | The body or query failed validation. `details.parameter` names the field on v1 | No | Fix the request |
+| `unauthorized` | 401 | No credential, or it is invalid, expired or revoked | No | Check the `Authorization` header; re-sign in or create a new key |
+| (x402 challenge) | 402 | A paid x402 endpoint needs payment. The body's `accepts` list carries the terms (price, asset, network, recipient), mirrored base64-encoded in the `PAYMENT-REQUIRED` header when it fits | After paying | Pay with an x402 client and repeat the same request with the payment header ([x402](/docs/x402)) |
+| `forbidden` | 403 | Signed in, but this account may not do this (not the owner, or a cross-site cookie write) | No | Use a resource your account owns; send cookie writes same-site |
+| `insufficient_scope` | 403 | The key or token lacks the scope this route needs | No | Create a key, or sign in again, with that scope |
+| `not_found` | 404 | No such resource, or not visible to you | No | Check the id |
+| `conflict`, `idempotency_in_progress` | 409 | The resource already exists, or the same idempotent request is still running | Conflict no, in-progress yes | Read the existing resource, or retry shortly with the same `Idempotency-Key` |
+| `idempotency_key_reused` | 422 | The `Idempotency-Key` was already used with a different body | No | Use a new key for a new request |
+| `rate_limited` | 429 | Over the limit for this endpoint | Yes, after `Retry-After` | Back off for the stated seconds |
+| `internal_error` | 500 | An unexpected failure. The message is sanitized | Yes, with backoff | Report it with the `requestId` if it persists |
+| `upstream_error` | 502 | A third-party upstream failed | Yes, with backoff | Retry; nothing on your side to change |
+| `not_configured` | 503 | A required provider is not set on this deployment | No | Contact support: this is ours to fix |
+
+Only retry a write if it carries an `Idempotency-Key` or its section says it is idempotent; otherwise a retry after a timeout can run it twice.
 
 Endpoint-specific codes (e.g. `quota_exceeded`, `invalid_avatar`, `no_client_id`) are documented in each endpoint's Errors table above.
+
+---
+
+## Integration checklist
+
+Run through this before you ship an integration:
+
+- The API key lives in a server-side secret store, never in a browser or mobile bundle, and carries only the scopes your product needs.
+- Every request goes to `https://three.ws/api/…`. Clients drop the `Authorization` header when a request is redirected to another host, so do not call through a redirecting domain.
+- Every write you might retry sends an `Idempotency-Key`, or is one the docs mark idempotent.
+- Retries happen only on 429, 5xx and network errors, honor `Retry-After`, and back off exponentially.
+- A 402 is read as payment terms, and a person or a spend policy approves the amount and recipient before anything is paid.
+- `x-request-id` (or `meta.requestId`) is logged for every failed call, so a support request can point at it.
+- Calls that can take long (agent chat turns, 3D generation, launches) have a client timeout of at least 120 seconds.
+
+## Support
+
+Open an issue on [GitHub](https://github.com/nirholas/three.ws/issues) or message [@trythreews](https://x.com/trythreews) with the endpoint, the UTC time, the HTTP status, the request id if the response had one, and your key's prefix (the first 14 characters). Never send the full key: nobody at three.ws needs it to help you.
 
 ---
 

@@ -111,6 +111,14 @@
 			<description>ChatGPT stops waiting on a tool after one minute, and a detailed 3D model takes one to four. The 3D Studio plugin now answers inside that minute and the inline viewer finishes the job itself: it shows a live timer, drops the model in the moment it is ready, rigs an avatar's skeleton on its own when that step is still to come, and keeps a refined model's version history so you can flip back to the original. Inspecting an existing model now shows it in the viewer too, avatars always come out as a full body ready to pose even when the prompt helper is unavailable, and busy periods no longer let one ChatGPT user's generations use up everyone else's.</description>
 		</item>
 		<item>
+			<title>API docs you can build a production integration from</title>
+			<link>https://three.ws/docs/api-reference</link>
+			<guid isPermaLink="false">2026-09-29:API docs you can build a production integration from</guid>
+			<pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+			<category>docs</category>
+			<description>The API reference now has one error table that says, for every common error, whether retrying can help and what to do instead, plus the real rate limits with the headers that tell a client how much budget it has left, how idempotent retries work, how API keys are stored and revoked, a pre-launch integration checklist, and what to include when asking for help.</description>
+		</item>
+		<item>
 			<title>Copy Coach: your first copy trade, the careful way</title>
 			<link>https://three.ws/copy-coach</link>
 			<guid isPermaLink="false">2026-09-29:Copy Coach: your first copy trade, the careful way</guid>
