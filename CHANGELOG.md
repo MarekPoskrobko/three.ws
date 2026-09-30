@@ -4,6 +4,10 @@
 
 Public history for [three.ws](https://three.ws), newest first. New pages come from `added` dates in data/pages.json; everything else is curated in data/changelog.json. Also available as [JSON](https://three.ws/changelog.json) and [RSS](https://three.ws/changelog.xml), live at [three.ws/changelog](https://three.ws/changelog).
 
+## 2026-09-30
+
+- **59 more pages now read in your language**: Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like "Loading" back over it. (`/airdrops`) `[improvement, fix]`
+
 ## 2026-09-29
 
 - **Connect three.ws to Claude, ChatGPT, Cursor & VS Code** (`/connect`): Add three.ws to your AI client in two clicks: one connector URL gives Claude, ChatGPT, Cursor, VS Code or Claude Code the three.ws MCP tools for 3D generation, agents, wallets and x402 payments. Sign in once in your browser, with no API key to copy.

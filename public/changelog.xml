@@ -7,6 +7,14 @@
 		<description>What's new on three.ws: features, improvements, and releases, newest first.</description>
 		<language>en</language>
 		<item>
+			<title>59 more pages now read in your language</title>
+			<link>https://three.ws/airdrops</link>
+			<guid isPermaLink="false">2026-09-30:59 more pages now read in your language</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>improvement</category>
+			<description>Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like &quot;Loading&quot; back over it.</description>
+		</item>
+		<item>
 			<title>Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</title>
 			<link>https://three.ws/connect</link>
 			<guid isPermaLink="false">2026-09-29:Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</guid>

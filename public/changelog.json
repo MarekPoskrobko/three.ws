@@ -1,11 +1,22 @@
 {
-	"generated_at": "2026-09-29T23:41:56.093Z",
+	"generated_at": "2026-09-30T00:46:22.076Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
 	"entries": [
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "59 more pages now read in your language",
+			"summary": "Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like \"Loading\" back over it.",
+			"link": "/airdrops",
+			"tags": [
+				"improvement",
+				"fix"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "launch",

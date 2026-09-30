@@ -1,14 +1,25 @@
 {
-	"generated_at": "2026-09-29T23:41:56.111Z",
+	"generated_at": "2026-09-30T00:46:22.094Z",
 	"generated_by": "scripts/build-page-index.mjs from data/pages.json + data/changelog.json",
 	"site": {
 		"name": "three.ws",
 		"url": "https://three.ws"
 	},
-	"total": 3780,
+	"total": 3781,
 	"complete": false,
 	"full_feed": "/changelog.json",
 	"entries": [
+		{
+			"date": "2026-09-30",
+			"type": "update",
+			"title": "59 more pages now read in your language",
+			"summary": "Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like \"Loading\" back over it.",
+			"link": "/airdrops",
+			"tags": [
+				"improvement",
+				"fix"
+			]
+		},
 		{
 			"date": "2026-09-29",
 			"type": "launch",
@@ -1578,18 +1589,6 @@
 			"tags": [
 				"fix",
 				"improvement"
-			]
-		},
-		{
-			"date": "2026-09-09",
-			"type": "update",
-			"title": "Render Lab: every control leads somewhere, and the contact sheet shows its work",
-			"summary": "Render Lab now behaves when the things it depends on do not. The Open image button no longer sits there looking live before a render exists: it reads as unavailable until there is an image, and goes back to unavailable if the render fails. When no featured avatars come back, the model strip explains that and points at the field and at /create instead of showing a blank row. When the pose catalog cannot be reached, the panel says so and offers a retry rather than a lone None chip that reads like the model has no poses. Contact sheet tiles now shimmer while they render, so a sheet in flight looks like it is working instead of like a grid of empty squares, and a tile the renderer could not produce says so and keeps its label. Where a panel is switched off because the model cannot honor it, the explanation and its escape hatch stay at full strength and stay clickable: the link into Rig Doctor was previously unclickable, and the shortcut to a model with a full face rig now finds one from the live catalog instead of loading a raw file the slow way. Dragging the size slider no longer writes a new address on every step, which Safari eventually refuses outright. Copied links now carry the quality setting, so a link really does reopen the exact configuration. Framing, pose and model options are one stop for keyboard and screen reader users and move with the arrow keys, instead of costing 29 tab presses to walk past. The capabilities endpoint the whole page is built on is now documented in the Media API reference, which is where the page has always linked.",
-			"link": "/render-lab",
-			"tags": [
-				"fix",
-				"improvement",
-				"docs"
 			]
 		}
 	]

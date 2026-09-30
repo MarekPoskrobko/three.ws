@@ -385,6 +385,7 @@ function buildPrompt(langName, payload) {
 		'',
 		'Rules:',
 		`- Translate every VALUE in the JSON below into ${langName}. Keep every KEY exactly as-is.`,
+		'- Each KEY names the page and UI element the value belongs to (page.element). Use it as context to pick the right sense of short or ambiguous labels: on a 3D-printing page, "Finish" is the surface finish of a print, not "complete".',
 		'- Return ONLY a single JSON object with the same keys. No prose, no markdown, no code fences.',
 		'- Some values contain protected tokens written as [[T0]], [[T1]], and so on. They stand in for brand names, code, and placeholders. Copy each token VERBATIM into a natural position for the target language. Never translate a token, change its number, add one, or drop one.',
 		'- Preserve meaning and tone. Do not add explanations.',

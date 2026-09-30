@@ -101,6 +101,52 @@ function scriptOwns(el) {
 	return el.getAttribute('data-i18n-owned') === '1';
 }
 
+// Most pages never set data-i18n-owned: a script that shows "Checking…" and
+// then writes "3 agents online" into the same annotated element just assigns
+// textContent. Without a guard the catalog pass, landing after that write,
+// puts the translated "Checking…" back over the live value. So the runtime
+// infers ownership instead of relying on every writer to opt in. It remembers
+// what each annotated element held when the runtime first saw it and what the
+// runtime itself last wrote there. Content that matches neither of those nor
+// the element's English catalog value was written by the page, and the pass
+// leaves it alone. Content the page later sets back to the source (a Play
+// button returning to "Play") translates again on the next pass.
+const seenContent = new WeakMap();
+
+function contentOf(el, html) {
+	return html ? el.innerHTML : el.textContent;
+}
+
+function noteFirstSight(el, html) {
+	if (!seenContent.has(el)) seenContent.set(el, { first: contentOf(el, html), last: undefined });
+}
+
+function pageRewrote(el, key, html) {
+	const seen = seenContent.get(el);
+	if (!seen) {
+		noteFirstSight(el, html);
+		return false;
+	}
+	const now = contentOf(el, html);
+	if (now === seen.first || now === seen.last) return false;
+	const source = resolveKey(state.fallback, key);
+	if (typeof source === 'string' && now === (html ? normalizedHtml(source) : source)) return false;
+	return true;
+}
+
+function noteWrite(el, value) {
+	const seen = seenContent.get(el);
+	if (seen) seen.last = value;
+}
+
+// Records first sight for every annotated element under root. The boot calls
+// this synchronously, before the async catalog fetch, so a value a page script
+// writes while that fetch is in flight is recognized as the page's own.
+export function primeOwnership(root) {
+	root.querySelectorAll?.('[data-i18n]').forEach((el) => noteFirstSight(el, false));
+	root.querySelectorAll?.('[data-i18n-html]').forEach((el) => noteFirstSight(el, true));
+}
+
 // Writing a value a node already holds is not free, and on the default locale
 // almost every write is exactly that: the markup ships the English source and
 // the English catalog hands the same string back. The cost is not the assignment
@@ -144,8 +190,10 @@ export function applyCatalog(root, t) {
 			el.dataset.authNameOriginal = v;
 			if (el.dataset.authNamed === '1') return;
 		}
+		if (pageRewrote(el, key, false)) return;
 		if (el.textContent === v) return;
 		el.textContent = v;
+		noteWrite(el, v);
 	});
 	root.querySelectorAll?.('[data-i18n-html]').forEach((el) => {
 		if (scriptOwns(el)) return;
@@ -158,9 +206,11 @@ export function applyCatalog(root, t) {
 			el.dataset.authNameOriginal = v;
 			if (el.dataset.authNamed === '1') return;
 		}
+		if (pageRewrote(el, key, true)) return;
 		const normalized = normalizedHtml(v);
 		if (el.innerHTML === normalized) return;
 		el.innerHTML = normalized;
+		noteWrite(el, normalized);
 	});
 	root.querySelectorAll?.('[data-i18n-attr]').forEach((el) => {
 		if (scriptOwns(el)) return;
@@ -654,6 +704,7 @@ function observeInjectedContent() {
 if (hasDOM) {
 	registerLangSwitcher();
 	const boot = async () => {
+		primeOwnership(document);
 		await initI18n();
 		observeInjectedContent();
 		// Catch content injected during init (before the observer was attached).
