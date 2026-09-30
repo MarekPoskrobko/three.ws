@@ -1,4 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 // Shared, test-controlled state for the fake DB + mocks. vi.hoisted lets the
 // mock factories (hoisted above imports) read/write it.
@@ -312,6 +314,59 @@ describe('runLauncherTick — live user scope (self-funded)', () => {
 		const out = await runLauncherTick();
 		expect(out.results[0].skipped).toMatch(/daily SOL cap/);
 		expect(fetchMock).not.toHaveBeenCalled();
+
+		vi.unstubAllGlobals();
+	});
+});
+
+// The success status of POST /api/pump/launch-agent, read from the handler
+// itself so this suite follows the real contract instead of a status someone
+// typed into a stub. The engine used to accept exactly 200 while the handler
+// answers 201, so the first live autonomous launch would have been recorded as
+// failed with a null mint and never claimed.
+function launchAgentSuccessStatus() {
+	const src = readFileSync(fileURLToPath(new URL('../api/pump/[action].js', import.meta.url)), 'utf8');
+	const start = src.indexOf('async function handleLaunchAgent(');
+	const end = src.indexOf('\nasync function ', start + 1);
+	const body = src.slice(start, end);
+	const statuses = [...body.matchAll(/json\(res, (2\d\d), \{\s*ok: true/g)].map((m) => Number(m[1]));
+	expect(statuses.length).toBeGreaterThan(0);
+	return statuses[statuses.length - 1];
+}
+
+describe('runLauncherTick: launch-agent response contract', () => {
+	it('records the mint when launch-agent answers with its real 201 success', async () => {
+		const status = launchAgentSuccessStatus();
+		expect(status).toBe(201);
+		H.configs = [makeConfig({ dry_run: false })];
+		vi.stubGlobal('fetch', vi.fn(async (url) => {
+			const u = String(url);
+			if (u.includes('/api/pump/build-metadata')) return { status: 200, json: async () => ({ metadata_url: 'ipfs://meta' }) };
+			if (u.includes('/api/pump/launch-agent')) {
+				return { status, json: async () => ({ ok: true, mint: 'MINTcreated', signature: 'sig-201' }) };
+			}
+			return { status: 404, json: async () => ({}) };
+		}));
+
+		const out = await runLauncherTick();
+		expect(out.results[0].mint).toBe('MINTcreated');
+		expect(out.results[0].error).toBeUndefined();
+
+		vi.unstubAllGlobals();
+	});
+
+	it('still fails a non-2xx launch even when the body names a mint', async () => {
+		H.configs = [makeConfig({ dry_run: false })];
+		vi.stubGlobal('fetch', vi.fn(async (url) => {
+			const u = String(url);
+			if (u.includes('/api/pump/build-metadata')) return { status: 200, json: async () => ({ metadata_url: 'ipfs://meta' }) };
+			if (u.includes('/api/pump/launch-agent')) return { status: 502, json: async () => ({ mint: 'MINTghost', error: 'rpc_error' }) };
+			return { status: 404, json: async () => ({}) };
+		}));
+
+		const out = await runLauncherTick();
+		expect(out.results[0].mint).toBeUndefined();
+		expect(String(out.results[0].error)).toMatch(/launch 502/);
 
 		vi.unstubAllGlobals();
 	});

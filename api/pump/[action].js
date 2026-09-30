@@ -91,6 +91,7 @@ import { grindVanityNode, GrindExhaustedError } from '../../src/solana/vanity/gr
 import { logger } from '../_lib/usage.js';
 import { cacheGet, cacheSet } from '../_lib/cache.js';
 import { pumpFetchJson } from '../_lib/pump-feed-fetch.js';
+import { collectFeeAgentSchema } from '../_lib/pump-fee-schemas.js';
 import { isRpcOutageError, staleEnvelope } from '../_lib/rpc-degrade.js';
 import { getLaunchEconomics, describeFeeSplit } from '../_lib/launch-economics.js';
 import {
@@ -5351,16 +5352,7 @@ async function resolveAgentFeeContext(req, res, body, { agreementContext = null 
 // ── collect-creator-fee-agent ──────────────────────────────────────────────
 // Server-signs the creator-fee collection with the agent custodial wallet. Use
 // for coins launched from the agent wallet (agent_authority == agent wallet).
-
-const collectFeeAgentSchema = z
-	.object({
-		agent_id: z.string().uuid().optional(),
-		avatar_id: z.string().uuid().optional(),
-		mint: z.string().min(32).max(44),
-		network: z.enum(['mainnet', 'devnet']).default('mainnet'),
-		all_quotes: z.boolean().default(false),
-	})
-	.refine((b) => b.agent_id || b.avatar_id, { message: 'agent_id or avatar_id required' });
+// The body contract (collectFeeAgentSchema) lives in api/_lib/pump-fee-schemas.js.
 
 async function handleCollectCreatorFeeAgent(req, res) {
 	if (cors(req, res, { methods: 'POST,OPTIONS', credentials: true })) return;

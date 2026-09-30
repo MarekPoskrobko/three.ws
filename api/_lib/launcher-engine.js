@@ -94,6 +94,8 @@ export function ownerAllowlist() {
 // ── schema guard ────────────────────────────────────────────────────────────────
 // Self-contained so the engine runs whether or not 20260629060000_coin_launcher.sql
 // has been applied. Mirrors that migration; CREATE … IF NOT EXISTS is idempotent.
+// launcher_claims is not created here: migration 20260930120000_launcher_claims.sql
+// owns it (with its agent_id and (mint, network) indexes).
 let _ensured = false;
 async function ensureSchema() {
 	if (_ensured) return;
@@ -161,24 +163,6 @@ async function ensureSchema() {
 	await sql`create index if not exists launcher_runs_scope_idx on launcher_runs (scope, created_at desc)`;
 	await sql`create index if not exists launcher_runs_spend_idx on launcher_runs (created_at) where status in ('funded','launched','confirmed')`;
 	await sql`create unique index if not exists launcher_runs_mint_uniq on launcher_runs (mint) where mint is not null`;
-	await sql`
-		create table if not exists launcher_claims (
-			id uuid primary key default gen_random_uuid(),
-			run_id uuid references launcher_runs(id) on delete set null,
-			agent_id uuid,
-			mint text not null,
-			claimed_lamports bigint not null default 0,
-			claimed_sol float8 not null default 0,
-			buyback_sol float8 not null default 0,
-			buyback_sig text,
-			claim_sig text,
-			network text not null default 'mainnet',
-			scope text not null default 'global',
-			created_at timestamptz not null default now()
-		)
-	`;
-	await sql`create index if not exists launcher_claims_run_idx on launcher_claims (run_id, created_at desc)`;
-	await sql`create index if not exists launcher_claims_created_idx on launcher_claims (created_at desc)`;
 	await sql`
 		insert into launcher_config (scope, enabled, dry_run, mode, per_launch_sol, dev_buy_sol)
 		values ('global', true, false, 'hybrid', 0.04, 0.01)
@@ -321,6 +305,8 @@ async function postAs(ownerUserId, path, body, timeoutMs = 55_000) {
 	return { status: res.status, body: parsed };
 }
 
+const isHttpSuccess = (status) => status >= 200 && status < 300;
+
 async function launchCoin(cfg, agent, coin) {
 	// Forward the agent's own socials when it has them; the metadata builder falls
 	// back to the agent profile page (website) and the three.ws X/Telegram otherwise,
@@ -336,7 +322,7 @@ async function launchCoin(cfg, agent, coin) {
 		...(agent.telegram ? { telegram: agent.telegram } : {}),
 	});
 	if (meta.timedOut) throw new Error('metadata build timed out');
-	if (meta.status !== 200 || !meta.body?.metadata_url) {
+	if (!isHttpSuccess(meta.status) || !meta.body?.metadata_url) {
 		throw new Error(`metadata build ${meta.status}: ${meta.body?.error || 'no url'}`);
 	}
 
@@ -354,7 +340,9 @@ async function launchCoin(cfg, agent, coin) {
 	if (launch.timedOut) throw new Error('launch timed out');
 	const mint = launch.body?.mint || launch.body?.data?.mint;
 	const sig = launch.body?.sig || launch.body?.signature || launch.body?.data?.sig || null;
-	if (launch.status !== 200 || !mint) {
+	// launch-agent answers a created coin with 201; any 2xx carrying a mint is a
+	// launch. Requiring exactly 200 recorded real launches as failed with no mint.
+	if (!isHttpSuccess(launch.status) || !mint) {
 		// Carry the HTTP status so callers can classify (402 unfunded ⇒ recoverable
 		// skip on the self-funded path, everything else ⇒ failure).
 		throw Object.assign(

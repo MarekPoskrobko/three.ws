@@ -5,7 +5,8 @@
 // been claimed in the last 24 hours:
 //   1. Query live fee-info from the platform pump API
 //   2. Claim via collect-creator-fee-agent (agent signs its own claim, same as the launch)
-//   3. Record in launcher_claims (claimed_sol, buyback_sol earmarked, claim_sig)
+//   3. Record in launcher_claims (claimed_sol, buyback_sol earmarked, claim_sig).
+//      The table is owned by migration 20260930120000_launcher_claims.sql.
 //
 // This closes the creator-fee loop: launch → creator fees accrue → claim → record.
 // The same tick cranks the fee distribution of every gasless (sponsored) launch,
@@ -29,32 +30,6 @@ import { crankSponsoredDistributions } from '../_lib/launch-sponsor.js';
 const CLAIM_THRESHOLD_SOL = 0.01;
 const ORIGIN = env.APP_ORIGIN || 'https://three.ws';
 const MAX_PER_TICK = 20;
-
-let _schemaDone = false;
-async function ensureSchema() {
-	if (_schemaDone) return;
-	// Idempotent - launcher-engine.js creates the same table on runLauncherTick().
-	// Duplicated here so the claimer works even when the engine hasn't ticked yet.
-	await sql`
-		create table if not exists launcher_claims (
-			id uuid primary key default gen_random_uuid(),
-			run_id uuid references launcher_runs(id) on delete set null,
-			agent_id uuid,
-			mint text not null,
-			claimed_lamports bigint not null default 0,
-			claimed_sol float8 not null default 0,
-			buyback_sol float8 not null default 0,
-			buyback_sig text,
-			claim_sig text,
-			network text not null default 'mainnet',
-			scope text not null default 'global',
-			created_at timestamptz not null default now()
-		)
-	`;
-	await sql`create index if not exists launcher_claims_run_idx on launcher_claims (run_id, created_at desc)`;
-	await sql`create index if not exists launcher_claims_created_idx on launcher_claims (created_at desc)`;
-	_schemaDone = true;
-}
 
 // One machine session per owner per tick, minted lazily and revoked when the
 // tick ends (see runClaimerTick's finally). Minting one per REQUEST, the
@@ -113,7 +88,8 @@ async function processMint(run, token) {
 	const claimRes = await agentFetch(token, '/api/pump/collect-creator-fee-agent', {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({ agentId, mint, network }),
+		// snake_case: the endpoint parses collectFeeAgentSchema (api/_lib/pump-fee-schemas.js).
+		body: JSON.stringify({ agent_id: agentId, mint, network }),
 	});
 	if (!claimRes || !claimRes.ok) return { runId, status: 'claim-failed' };
 	const claimData = await claimRes.json().catch(() => null);
@@ -147,8 +123,6 @@ async function processMint(run, token) {
 }
 
 async function runClaimerTick() {
-	await ensureSchema();
-
 	// Find minted coins that either have never been claimed or whose last successful
 	// claim was > 24 hours ago (fees re-accrue after each claim).
 	const runs = await sql`

@@ -30,6 +30,7 @@ vi.mock('../../api/_lib/alerts.js', () => ({ sendOpsAlert: vi.fn() }));
 vi.mock('../../api/_lib/zauth.js', () => ({ instrument: () => false, drain: vi.fn() }));
 
 const { default: handler } = await import('../../api/cron/launcher-claimer.js');
+const { collectFeeAgentSchema } = await import('../../api/_lib/pump-fee-schemas.js');
 
 const OWNER_A = '11111111-1111-1111-1111-111111111111';
 const OWNER_B = '22222222-2222-2222-2222-222222222222';
@@ -158,5 +159,33 @@ describe('GET/POST /api/cron/launcher-claimer', () => {
 		const res = await call();
 		expect(res.body.skipped).toBe(1);
 		expect(res.body.details[0]).toMatchObject({ runId: 'run-1', status: 'below-threshold' });
+	});
+
+	// The claim endpoint validates its body with collectFeeAgentSchema before it
+	// does anything else. This stub applies that same schema and answers 400 the
+	// way the real handler does, so a body the endpoint cannot read fails here
+	// instead of in production (the claimer used to send `agentId`, which the
+	// schema does not know, and every automatic claim came back 400).
+	it('posts a claim body the real collect-creator-fee-agent schema accepts', async () => {
+		const agentId = '33333333-3333-4333-8333-333333333333';
+		const mint = 'THREEsynthetic11111111111111111111111111111';
+		withRuns([{ ...runRow('run-9', OWNER_A, mint), agent_id: agentId }]);
+		const claimBodies = [];
+		global.fetch = vi.fn(async (url, opts = {}) => {
+			if (String(url).includes('fee-info')) {
+				return { ok: true, status: 200, json: async () => ({ claimable_lamports: '50000000' }) };
+			}
+			const body = JSON.parse(opts.body || '{}');
+			claimBodies.push(body);
+			const parsed = collectFeeAgentSchema.safeParse(body);
+			if (!parsed.success) {
+				return { ok: false, status: 400, json: async () => ({ error: 'validation_error' }) };
+			}
+			return { ok: true, status: 201, json: async () => ({ ok: true, signature: 'sig-9', lamports: 50_000_000 }) };
+		});
+		const res = await call();
+		expect(res.body.details[0]).toMatchObject({ runId: 'run-9', status: 'claimed', sig: 'sig-9' });
+		expect(claimBodies).toHaveLength(1);
+		expect(claimBodies[0]).toMatchObject({ agent_id: agentId, mint, network: 'mainnet' });
 	});
 });
