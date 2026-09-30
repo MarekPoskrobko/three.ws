@@ -22,6 +22,8 @@ ${c.bold('Commands')}
   logout                Remove stored credentials and revoke the OAuth refresh token
   status                Account, plan, wallet balance, token expiry, and every configured client
   whoami                Print the signed-in account
+  create [name]         Create an agent with its own Solana wallet and a public page
+  launch                Fill in a coin for one of your agents, then review and sign it on three.ws/launch
   tools                 Choose which tool groups each server exposes (financial tools are off by default)
   mcp list              Show three.ws servers configured in each client (--available lists all servers)
   mcp add <server>      Add one server to your clients without prompts
@@ -54,6 +56,15 @@ ${c.bold('Tools options')}
   --enable a,b          Tiers (read, write, financial) or tool names to turn on
   --disable a,b         Tiers or tool names to turn off
   --reset               Back to the default (read and write on, financial off)
+
+${c.bold('Agent options')} (create, launch)
+  --name <text>         Agent name (create) or coin name (launch)
+  --description <text>  What the agent or coin is
+  --avatar <id>         An avatar you own to use as the agent's 3D body (create)
+  --agent <id>          The agent that launches the coin (launch)
+  --symbol <ticker>     Coin ticker, letters and digits (launch)
+  --image <https-url>   Coin image; the agent's portrait when omitted (launch)
+  --initial-buy <sol>   SOL for the first buy, prefilled for review (launch)
 
 ${c.bold('Inference options')} (fund, provider, usage)
   --amount <usdc>       USDC to move from the agent wallet into credits (fund)
@@ -94,6 +105,11 @@ const OPTIONS = {
 	amount: { type: 'string' },
 	agent: { type: 'string' },
 	name: { type: 'string' },
+	description: { type: 'string' },
+	avatar: { type: 'string' },
+	symbol: { type: 'string' },
+	image: { type: 'string' },
+	'initial-buy': { type: 'string' },
 };
 
 // `--key` alone (no value) means "prompt for it"; parseArgs needs a value for a
@@ -116,6 +132,8 @@ const COMMANDS = {
 	status: async (ctx) => (await import('./commands/account.js')).status(ctx),
 	whoami: async (ctx) => (await import('./commands/account.js')).whoami(ctx),
 	tools: async (ctx) => (await import('./commands/tools.js')).tools(ctx),
+	create: async (ctx) => (await import('./commands/agent.js')).create(ctx),
+	launch: async (ctx) => (await import('./commands/agent.js')).launch(ctx),
 	mcp: async (ctx) => (await import('./commands/mcp.js')).mcp(ctx),
 	proxy: async (ctx) => {
 		const [url] = ctx.positionals;

@@ -23,6 +23,8 @@ npx three-ws login --device                        # sign in over SSH
 npx three-ws mcp list --available                  # every server and its name
 npx three-ws tools --server three-ws-main --enable financial
 npx three-ws status
+npx three-ws create "Nova" --description "A deep-space guide."   # an agent with its own Solana wallet
+npx three-ws launch --agent <id> --name Nova --symbol NOVA      # prefilled, you sign on three.ws/launch
 ```
 
 Sign-in is a browser OAuth flow by default. `--device` approves a code from any browser, and `--key sk_live_...` (or `THREE_WS_API_KEY`) uses an API key from [Dashboard → API](https://three.ws/dashboard/api). Tools that move funds are off unless you sign in with `--financial` and enable them.

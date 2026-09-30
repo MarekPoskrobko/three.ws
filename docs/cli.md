@@ -82,6 +82,17 @@ Every client stores a server under the same name, which is also what `--servers`
 
 `npx three-ws mcp list --available` prints the live list, which is the source of truth if this table and the directory ever disagree.
 
+## Create an agent and launch its coin
+
+```bash
+npx three-ws create "Nova" --description "A deep-space guide who explains orbital mechanics."
+npx three-ws launch --agent <agent-id> --name "Nova" --symbol NOVA
+```
+
+`create` makes the agent on your account and prints its public page and the Solana wallet three.ws minted for it. Pass `--avatar <id>` to use an avatar you already own as its 3D body; otherwise give it a body on its page. A name that imitates an existing public agent is refused with the reason, so pick a distinct one.
+
+`launch` never spends anything from the terminal. It collects the coin's name, ticker, description, optional image (`--image`, the agent's portrait by default) and optional first buy (`--initial-buy <sol>`), then opens [/launch](/launch) with all of it filled in. You review the cost there and sign the launch in your browser. The launching agent needs a 3D body, because that page picks agents by their body. Run either command with no flags to be prompted for each field, or with `--json` to get the agent record or the review URL as JSON.
+
 ## Choosing which tools a client may call
 
 Every tool is labelled read, write or financial ([the catalog](/mcp-tools) shows which is which). By default read and write tools are on and financial tools are off.
@@ -106,6 +117,8 @@ The selection is enforced whichever way you signed in. With a browser sign-in, s
 | `setup` | Sign in, write servers into clients, verify with `tools/list` |
 | `login` / `logout` | Sign in or switch accounts; `logout` also revokes the OAuth refresh token |
 | `status` / `whoami` | Account, plan, wallet balance, token expiry and every configured client |
+| `create [name]` | Create an agent with its own Solana wallet and public page |
+| `launch` | Fill in a coin for one of your agents and open three.ws/launch to review and sign it |
 | `mcp list` | Servers configured in each client (`--available` lists every server) |
 | `mcp add <server>` / `mcp remove <server>` | Add or remove one server without prompts |
 | `tools` | Choose which tool tiers or tools each server exposes |
