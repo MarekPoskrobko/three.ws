@@ -884,10 +884,12 @@ async function fileToScaledDataUrl(file) {
 	if (file) setSlot(REQUIRED_SLOT, file);
 })();
 
-// ── Android share-sheet handoff ─────────────────────────────────────────────
+// ── Share-sheet handoff (Android and the iOS app) ───────────────────────────
 // On the Seeker app (and any installed PWA) a photo shared into three.ws is
 // POSTed to /create/share, parked in the Cache API by public/share-target-sw.js,
-// and the user lands here with ?shared=1. Fill frontal, then left and right,
+// and the user lands here with ?shared=1. The iOS app's share extension lands
+// here with ?shared=1&inbox=<id>, and takeSharedFiles reads those photos from
+// the app instead of the cache. Fill frontal, then left and right,
 // with whatever images arrived; the read is one-shot, and the param is
 // stripped so a reload does not look like a fresh share.
 (async function ingestSharedPhotos() {

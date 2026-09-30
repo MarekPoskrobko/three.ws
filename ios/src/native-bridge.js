@@ -366,6 +366,86 @@ function installHaptics() {
 	);
 }
 
+/**
+ * Opens the page a tapped push notification points at.
+ *
+ * The payload is built by api/_lib/apns.js from the same `pushPayloadFor` the
+ * Web Push service worker uses, so `url` is either a same-origin path or an
+ * absolute link (a transaction on an explorer). A path opens in the app with
+ * `?source=push&n=<id>`, which src/push-notifications.js turns into the
+ * `returned` funnel event exactly as it does after a service worker click; an
+ * absolute off-site link opens in the Safari sheet, never in the app WebView.
+ * The listener is registered on every page because Capacitor retains the tap
+ * until one is, which is what makes a tap on a cold start land correctly.
+ */
+export function pushTapTarget(data, current = location.href) {
+	const raw = typeof data?.url === 'string' ? data.url.trim() : '';
+	const id = typeof data?.notificationId === 'string' ? data.notificationId : '';
+	let url;
+	try {
+		url = new URL(raw || '/notifications', current);
+	} catch {
+		return null;
+	}
+	if (url.protocol !== 'https:' && url.protocol !== 'http:') return null;
+	if (!isInternalUrl(url.href)) return { external: url.href };
+	url.protocol = 'https:';
+	url.hostname = 'three.ws';
+	url.port = '';
+	url.searchParams.set('source', 'push');
+	if (id) url.searchParams.set('n', id);
+	else url.searchParams.delete('n');
+	return { internal: url.href };
+}
+
+function routePushTaps() {
+	const push = plugin('PushNotifications');
+	if (!push) return;
+	push.addListener('pushNotificationActionPerformed', (event) => {
+		if (event?.actionId === 'dismiss') return;
+		const data = event?.notification?.data || {};
+		// The funnel's `opened` step. The service worker records it for a
+		// browser; in the app this listener is the only thing that sees the tap.
+		if (typeof data.notificationId === 'string' && data.notificationId) {
+			fetch('/api/notifications/track', {
+				method: 'POST',
+				credentials: 'include',
+				headers: { 'content-type': 'application/json' },
+				body: JSON.stringify({ notification_id: data.notificationId, channel: 'push', event: 'opened' }),
+				keepalive: true,
+			}).catch(() => {});
+		}
+		const target = pushTapTarget(data);
+		if (!target) return;
+		if (target.external) {
+			plugin('Browser')?.open({ url: target.external, presentationStyle: 'popover' }).catch(() => {});
+			return;
+		}
+		if (target.internal !== location.href) location.assign(target.internal);
+	});
+}
+
+/**
+ * Keeps the home screen icon's badge equal to the inbox's unread count.
+ *
+ * APNs sets the badge when a notification arrives (api/_lib/apns.js sends the
+ * unread count with it); nothing but the app can bring it back down. The inbox
+ * in the nav (src/notifications.js) announces every count it learns as a
+ * `threews:unread` event, whether from its own fetch, the shared cache or
+ * another tab, so reading notifications anywhere in the app clears the icon.
+ */
+function syncBadge() {
+	const app = plugin('ThreeWsApp');
+	if (!app) return;
+	let last = null;
+	window.addEventListener('threews:unread', (event) => {
+		const count = Number(event?.detail?.count);
+		if (!Number.isInteger(count) || count < 0 || count === last) return;
+		last = count;
+		app.setBadge({ count }).catch(() => {});
+	});
+}
+
 let booted = false;
 
 /**
@@ -383,6 +463,8 @@ export function bootNativeIOS() {
 	installHaptics();
 	routeExternalLinks();
 	routeDeepLinks();
+	routePushTaps();
+	syncBadge();
 	hideSplashWhenPainted();
 	return true;
 }

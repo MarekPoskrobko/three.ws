@@ -1,7 +1,8 @@
 // Native device registry for push: the iOS app's APNs token.
 //
-//   POST   /api/push/device   { token, platform: 'ios', app_version? }
-//          → upsert this device for the signed-in user.
+//   POST   /api/push/device   { token, platform: 'ios', app_version?, previous? }
+//          → upsert this device for the signed-in user. `previous` marks a
+//            silent refresh (see below).
 //   DELETE /api/push/device   { token }
 //          → remove it (the user turned push off in the app).
 //
@@ -10,6 +11,13 @@
 // it registers with APNs natively and sends the device token here instead.
 // src/push-notifications.js picks the right one, so every "turn on push"
 // control on the site works unchanged inside the app.
+//
+// A refresh is the app re-sending its token on launch without asking anyone,
+// so it must not be able to enrol a device for whoever happens to be signed in.
+// It carries the token the device registered last time, and succeeds only if
+// that token already belongs to the caller: someone else signing in on the
+// same phone gets 409 and the app forgets the token until they opt in
+// themselves. An explicit opt-in (no `previous`) claims the device outright.
 //
 // Unlike a Web Push endpoint, a device token is not a URL the server fetches,
 // so there is nothing to SSRF-guard: it is validated as hex and only ever
@@ -36,6 +44,7 @@ const postBody = z.object({
 	token,
 	platform: z.literal('ios'),
 	app_version: z.string().trim().max(32).optional(),
+	previous: token.optional(),
 });
 const deleteBody = z.object({ token });
 
@@ -60,6 +69,16 @@ export default wrap(async (req, res) => {
 	}
 
 	const body = parse(postBody, await readJson(req));
+	if (body.previous) {
+		const [owned] = await sql`
+			select 1 from apns_devices
+			where token = ${body.previous} and user_id = ${user.id}
+		`;
+		if (!owned) return error(res, 409, 'not_owner', 'this device is not registered to the signed-in account');
+		if (body.previous !== body.token) {
+			await sql`delete from apns_devices where token = ${body.previous} and user_id = ${user.id}`;
+		}
+	}
 	await sql`
 		insert into apns_devices (user_id, token, app_version)
 		values (${user.id}, ${body.token}, ${body.app_version ?? null})

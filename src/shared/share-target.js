@@ -31,6 +31,8 @@ const SHARE_META_KEY = '/_share/meta';
  */
 export async function takeSharedFiles({ maxAgeMs = 10 * 60 * 1000 } = {}) {
 	const empty = { files: [], meta: null };
+	const native = await takeNativeShare();
+	if (native) return native;
 	if (typeof caches === 'undefined' || !caches || typeof caches.open !== 'function') return empty;
 
 	let cache;
@@ -83,6 +85,46 @@ export async function takeSharedFiles({ maxAgeMs = 10 * 60 * 1000 } = {}) {
 }
 
 /**
+ * The iOS app's half of the hand-off.
+ *
+ * The iOS WebView runs no service worker, so nothing can intercept a share
+ * POST. The app's share extension parks the files in its App Group instead and
+ * the app opens this page with `?inbox=<id>` (ios/native/App/ShareExtension/
+ * SharedInbox.swift); the `ThreeWsApp` plugin hands them over, once, as base64.
+ * Returns null when this is not an app share, so the caller falls through to
+ * the Cache API path.
+ *
+ * @returns {Promise<{ files: File[], meta: SharedMeta | null } | null>}
+ */
+async function takeNativeShare() {
+	if (typeof location === 'undefined') return null;
+	const id = new URLSearchParams(location.search).get('inbox');
+	const app = globalThis.Capacitor?.Plugins?.ThreeWsApp;
+	if (!id || !app || typeof app.takeShare !== 'function') return null;
+	let taken;
+	try {
+		taken = await app.takeShare({ id });
+	} catch {
+		// Expired, or already opened by an earlier load of this page.
+		return { files: [], meta: null };
+	}
+	const received = Number(taken?.createdAt) || Date.now();
+	const files = (Array.isArray(taken?.files) ? taken.files : []).map((f, i) => {
+		const bin = atob(String(f.data || ''));
+		const bytes = new Uint8Array(bin.length);
+		for (let j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
+		return new File([bytes], f.name || `shared-${i}`, {
+			type: f.type || 'application/octet-stream',
+			lastModified: received,
+		});
+	});
+	return {
+		files,
+		meta: { title: '', text: '', url: '', count: files.length, received },
+	};
+}
+
+/**
  * @param {string} url
  * @returns {number | null}
  */
@@ -116,7 +158,9 @@ export function sharedIntent() {
 export function clearSharedIntent() {
 	if (typeof location === 'undefined' || typeof history === 'undefined') return;
 	const url = new URL(location.href);
-	if (!url.searchParams.has('shared')) return;
+	if (!url.searchParams.has('shared') && !url.searchParams.has('inbox')) return;
 	url.searchParams.delete('shared');
+	// The iOS app's share id. Consumed already, and meaningless on a reload.
+	url.searchParams.delete('inbox');
 	history.replaceState(history.state, '', url.pathname + url.search + url.hash);
 }

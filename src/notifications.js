@@ -387,6 +387,10 @@ class NotificationInbox {
 	}
 
 	_updateBadge() {
+		// Announced for anything outside the nav that mirrors the count; the iOS
+		// app uses it to keep its home screen icon badge in step
+		// (ios/src/native-bridge.js). Nothing listens in a browser.
+		window.dispatchEvent(new CustomEvent('threews:unread', { detail: { count: this._unread } }));
 		const badge = this._badge;
 		if (!badge) return;
 		if (this._unread > 0) {

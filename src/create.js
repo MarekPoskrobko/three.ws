@@ -476,9 +476,11 @@ function wireCard(id, handler) {
 	});
 }
 
-// Android share-sheet handoff. public/share-target-sw.js intercepts the share
+// Share-sheet handoff. On Android public/share-target-sw.js intercepts the share
 // POST to /create/share, stashes the files in the Cache API, and redirects here
-// with ?shared=glb (a .glb), ?shared=1 (anything else), or ?shared=error.
+// with ?shared=glb (a .glb), ?shared=1 (anything else), or ?shared=error. The
+// iOS app's share extension lands here with ?shared=glb&inbox=<id> instead,
+// and takeSharedFiles reads that share from the app.
 async function ingestSharedFile() {
 	const intent = sharedIntent();
 	if (!intent) return;
@@ -496,13 +498,15 @@ async function ingestSharedFile() {
 		return;
 	}
 	if (intent === 'glb') {
-		clearSharedIntent();
+		// Read before clearing: an iOS app share is addressed by the `inbox`
+		// param that clearSharedIntent strips.
 		let files = [];
 		try {
 			({ files } = await takeSharedFiles());
 		} catch (err) {
 			log.warn('[create] could not read shared file:', err);
 		}
+		clearSharedIntent();
 		const glb = files.find((f) => /\.glb$/i.test(f.name) || f.type === 'model/gltf-binary');
 		if (glb) await handleGlbFile(glb);
 		else showStatus('The shared file was not a .glb. Share a GLB avatar or a photo.', 'error');
