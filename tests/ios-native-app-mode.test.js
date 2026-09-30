@@ -21,6 +21,7 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach, vi } from 'vites
 
 /** Minimal stand-in for the plugins Capacitor registers natively. */
 function fakeCapacitor() {
+	fakeCapacitor.pushHandlers = {};
 	const calls = [];
 	const record =
 		(name) =>
@@ -47,6 +48,14 @@ function fakeCapacitor() {
 				},
 			},
 			Haptics: { impact: record('Haptics.impact') },
+			ThreeWsApp: { setBadge: record('ThreeWsApp.setBadge') },
+			PushNotifications: {
+				addListener: (event, handler) => {
+					calls.push(['PushNotifications.addListener', event]);
+					fakeCapacitor.pushHandlers[event] = handler;
+					return Promise.resolve({ remove() {} });
+				},
+			},
 			App: {
 				addListener: (event, handler) => {
 					calls.push(['App.addListener', event]);
@@ -70,9 +79,16 @@ describe('ios native bridge, running inside the app', () => {
 	let mod;
 	let bootCalls;
 
+	let fetchCalls;
+
 	beforeAll(async () => {
 		cap = fakeCapacitor();
 		vi.stubGlobal('Capacitor', cap);
+		fetchCalls = [];
+		vi.stubGlobal('fetch', (url, init) => {
+			fetchCalls.push([url, init]);
+			return Promise.resolve(new Response('{}', { status: 200 }));
+		});
 		mod = await import('../ios/src/native-bridge.js');
 		mod.bootNativeIOS();
 		// The splash hide is deferred behind a double requestAnimationFrame, so
@@ -199,6 +215,73 @@ describe('ios native bridge, running inside the app', () => {
 
 		it('honours an explicit opt-in anywhere else', () => {
 			expect(tap('<div data-haptic="heavy">tip</div>')[0][1]).toEqual({ style: 'HEAVY' });
+		});
+	});
+
+	describe('push notifications', () => {
+		it('listens for taps from boot, so a tap on a cold start is not lost', () => {
+			expect(
+				bootCalls.some((c) => c[0] === 'PushNotifications.addListener' && c[1] === 'pushNotificationActionPerformed'),
+			).toBe(true);
+		});
+
+		it('opens an explorer link from a push in the Safari sheet and records the open', () => {
+			fetchCalls.length = 0;
+			fakeCapacitor.pushHandlers.pushNotificationActionPerformed({
+				actionId: 'tap',
+				notification: {
+					data: {
+						url: 'https://solscan.io/tx/abc',
+						notificationId: '2b1f4c1e-7d0a-4a55-9b8e-1f2d3c4b5a69',
+					},
+				},
+			});
+			expect(cap.calls.find((c) => c[0] === 'Browser.open')[1].url).toBe('https://solscan.io/tx/abc');
+			const [url, init] = fetchCalls.find(([u]) => u === '/api/notifications/track');
+			expect(url).toBe('/api/notifications/track');
+			expect(JSON.parse(init.body)).toEqual({
+				notification_id: '2b1f4c1e-7d0a-4a55-9b8e-1f2d3c4b5a69',
+				channel: 'push',
+				event: 'opened',
+			});
+		});
+
+		it('ignores a dismissed notification', () => {
+			fetchCalls.length = 0;
+			fakeCapacitor.pushHandlers.pushNotificationActionPerformed({
+				actionId: 'dismiss',
+				notification: { data: { url: 'https://solscan.io/tx/abc', notificationId: 'x' } },
+			});
+			expect(cap.calls.some((c) => c[0] === 'Browser.open')).toBe(false);
+			expect(fetchCalls).toHaveLength(0);
+		});
+	});
+
+	describe('icon badge', () => {
+		const announce = (count) =>
+			window.dispatchEvent(new CustomEvent('threews:unread', { detail: { count } }));
+		const badgeCalls = () => cap.calls.filter((c) => c[0] === 'ThreeWsApp.setBadge');
+
+		it('mirrors the inbox unread count onto the home screen icon', () => {
+			announce(3);
+			expect(badgeCalls().at(-1)[1]).toEqual({ count: 3 });
+		});
+
+		it('clears the badge when the inbox is read', () => {
+			announce(0);
+			expect(badgeCalls().at(-1)[1]).toEqual({ count: 0 });
+		});
+
+		it('does not call native again for a count it already set', () => {
+			announce(5);
+			announce(5);
+			expect(badgeCalls()).toHaveLength(1);
+		});
+
+		it('ignores a malformed count rather than zeroing the badge', () => {
+			announce('lots');
+			announce(-1);
+			expect(badgeCalls()).toHaveLength(0);
 		});
 	});
 

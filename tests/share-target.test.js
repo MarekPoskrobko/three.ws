@@ -275,3 +275,54 @@ describe('sharedIntent', () => {
 		expect(sharedIntent()).toBeNull();
 	});
 });
+
+// ── The iOS app: shares arrive from the share extension, not a service worker ──
+describe('takeSharedFiles in the iOS app', () => {
+	const ID = '6f1c2b3a-4d5e-4f60-8a7b-9c0d1e2f3a4b';
+
+	afterEach(() => {
+		delete globalThis.Capacitor;
+		history.replaceState(null, '', '/');
+	});
+
+	function app(takeShare) {
+		globalThis.Capacitor = { Plugins: { ThreeWsApp: { takeShare } } };
+	}
+
+	it('reads the share the extension parked, as real File objects', async () => {
+		history.replaceState(null, '', `/create/selfie?shared=1&inbox=${ID}`);
+		const calls = [];
+		app(async (args) => {
+			calls.push(args);
+			return {
+				kind: 'photo',
+				createdAt: 1767225600000,
+				files: [{ name: 'shared-photo-1.jpg', type: 'image/jpeg', data: btoa('jpeg-bytes') }],
+			};
+		});
+
+		const { files, meta } = await takeSharedFiles();
+
+		expect(calls).toEqual([{ id: ID }]);
+		expect(files).toHaveLength(1);
+		expect(files[0].name).toBe('shared-photo-1.jpg');
+		expect(files[0].type).toBe('image/jpeg');
+		expect(await files[0].text()).toBe('jpeg-bytes');
+		expect(meta).toMatchObject({ count: 1, received: 1767225600000 });
+	});
+
+	it('returns nothing for a share that expired or was already opened', async () => {
+		history.replaceState(null, '', `/create?shared=glb&inbox=${ID}`);
+		app(async () => {
+			throw new Error('not_found');
+		});
+		expect(await takeSharedFiles()).toEqual({ files: [], meta: null });
+	});
+
+	it('strips the inbox id so a reload is not a second share', () => {
+		history.replaceState(null, '', `/create?shared=glb&inbox=${ID}&tab=upload`);
+		clearSharedIntent();
+		expect(location.search).toBe('?tab=upload');
+	});
+});
+

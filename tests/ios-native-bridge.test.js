@@ -79,4 +79,41 @@ describe('ios native bridge', () => {
 			});
 		}
 	});
+
+	describe('pushTapTarget', () => {
+		const ID = '2b1f4c1e-7d0a-4a55-9b8e-1f2d3c4b5a69';
+
+		it('opens a same-origin path in the app, marked as a push return', () => {
+			expect(mod.pushTapTarget({ url: '/agents/7', notificationId: ID })).toEqual({
+				internal: `https://three.ws/agents/7?source=push&n=${ID}`,
+			});
+		});
+
+		it('keeps the query the notification already carried', () => {
+			const { internal } = mod.pushTapTarget({ url: '/dashboard/?tab=sales', notificationId: ID });
+			const url = new URL(internal);
+			expect(url.searchParams.get('tab')).toBe('sales');
+			expect(url.searchParams.get('source')).toBe('push');
+		});
+
+		it('pins a www link to the app origin', () => {
+			expect(mod.pushTapTarget({ url: 'https://www.three.ws/create' }).internal).toBe(
+				'https://three.ws/create?source=push',
+			);
+		});
+
+		it('sends an off-site link out of the app', () => {
+			expect(mod.pushTapTarget({ url: 'https://solscan.io/tx/abc' })).toEqual({
+				external: 'https://solscan.io/tx/abc',
+			});
+		});
+
+		it('falls back to the inbox when the payload has no link', () => {
+			expect(new URL(mod.pushTapTarget({}).internal).pathname).toBe('/notifications');
+		});
+
+		it('refuses a script URL outright', () => {
+			expect(mod.pushTapTarget({ url: 'javascript:alert(1)' })).toBeNull();
+		});
+	});
 });
