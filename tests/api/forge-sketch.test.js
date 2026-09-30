@@ -179,3 +179,59 @@ describe('gcp provider — sketch mode routing', () => {
 		expect(status.error).toBe('inference failed');
 	});
 });
+
+describe('gcp provider: triposg photo mode (the last-resort failover rung)', () => {
+	async function freshProvider() {
+		const mod = await import('../../api/_providers/gcp.js?t=' + Math.random());
+		return mod.createRegenProvider();
+	}
+
+	it('posts the photo to the same worker in image mode, with no prompt', async () => {
+		const calls = [];
+		globalThis.fetch = vi.fn(async (url, opts) => {
+			calls.push({ url: String(url), body: JSON.parse(opts.body) });
+			return new Response(JSON.stringify({ task_id: 'task-photo', status: 'queued' }), { status: 202 });
+		});
+
+		const provider = await freshProvider();
+		expect(provider.supportsMode('triposg')).toBe(true);
+		await provider.submit({
+			mode: 'triposg',
+			sourceUrl: 'https://cdn.example.com/chair.png',
+			params: { target_polycount: 30_000 },
+		});
+
+		expect(calls).toHaveLength(1);
+		expect(calls[0].url).toBe(`${WORKER_URL}/infer`);
+		expect(calls[0].body).toEqual({
+			images: ['https://cdn.example.com/chair.png'],
+			mode: 'image',
+			target_polycount: 30_000,
+		});
+	});
+
+	it('polls the TripoSG worker for the result', async () => {
+		globalThis.fetch = vi.fn(async () =>
+			new Response(JSON.stringify({ task_id: 'task-photo', status: 'queued' }), { status: 202 }),
+		);
+		const provider = await freshProvider();
+		const job = await provider.submit({ mode: 'triposg', sourceUrl: 'https://cdn.example.com/chair.png' });
+
+		const glb = 'https://storage.googleapis.com/bucket/raw-meshes/triposg/task-photo.glb';
+		globalThis.fetch = vi.fn(async (url) => {
+			expect(String(url)).toBe(`${WORKER_URL}/tasks/task-photo`);
+			return new Response(JSON.stringify({ task_id: 'task-photo', status: 'done', result_gcs_url: glb }), {
+				status: 200,
+			});
+		});
+		const status = await provider.status(job.extJobId);
+		expect(status.status).toBe('done');
+		expect(status.resultGlbUrl).toBe(glb);
+	});
+
+	it('is unsupported when the TripoSG worker is not configured', async () => {
+		delete process.env.GCP_TRIPOSG_URL;
+		const provider = await freshProvider();
+		expect(provider.supportsMode('triposg')).toBe(false);
+	});
+});

@@ -86,6 +86,9 @@ function serviceUrlForMode(mode) {
 		case 'segment':
 			return readEnv('GCP_SEGMENT_URL');
 		case 'sketch':
+		case 'triposg':
+			// One TripoSG worker (workers/model-triposg) serves both: `sketch` is its
+			// scribble pipeline, `triposg` its photo pipeline.
 			return readEnv('GCP_TRIPOSG_URL');
 		case 'trellis':
 			// Self-hosted Microsoft TRELLIS image→3D worker (workers/model-trellis):
@@ -319,6 +322,21 @@ function buildWorkerRequest(request) {
 		};
 	}
 
+	if (mode === 'triposg') {
+		// Photo→3D on the TripoSG worker's image pipeline (in-process background
+		// removal, 50-step sampler). Geometry only, no textures, so forge uses it
+		// as the last image lane, behind every lane that returns a textured GLB.
+		const body = { images: [sourceUrl], mode: 'image' };
+		if (Number.isFinite(Number(params?.target_polycount))) {
+			body.target_polycount = Math.round(Number(params.target_polycount));
+		}
+		return {
+			path: '/infer',
+			resultKey: 'result_gcs_url',
+			body,
+		};
+	}
+
 	if (mode === 'video2scene') {
 		// Streaming video → 3D point cloud (workers/model-video2scene, LingBot-Map).
 		// The source is a public video URL; an `images` array of frames is the
@@ -408,6 +426,8 @@ const MODE_ETA = {
 	rembg: 5,
 	segment: 45,
 	sketch: 45,
+	// The photo pipeline runs 50 sampler steps against scribble's 16.
+	triposg: 60,
 	text2motion: 30,
 	rerig: 45,
 	video2scene: 240,

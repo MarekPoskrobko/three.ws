@@ -60,6 +60,7 @@ const LANE_ENV = [
 	'REPLICATE_API_TOKEN',
 	'MODEL_TRELLIS_URL',
 	'GCP_HUNYUAN3D_URL',
+	'GCP_TRIPOSG_URL',
 	'GCP_RECONSTRUCTION_KEY',
 ];
 const saved = {};
@@ -202,6 +203,39 @@ describe('pickRedispatchLane', () => {
 		expect(await pickRedispatchLane({ attempted: [] })).toBeNull();
 	});
 
+	it('falls through to the geometry-only TripoSG lane once every textured lane is down', async () => {
+		// The 2026-09-18..28 outage: Hunyuan3D and TRELLIS self-host both down,
+		// Replicate unconfigured, TripoSG healthy. Every photo job dead-ended.
+		process.env.MODEL_TRELLIS_URL = 'https://model-trellis.example';
+		process.env.GCP_HUNYUAN3D_URL = 'https://hunyuan.example';
+		process.env.GCP_TRIPOSG_URL = 'https://triposg.example';
+		process.env.GCP_RECONSTRUCTION_KEY = 'k';
+		laneHealth.mockResolvedValue({
+			byId: { trellis_selfhost: { status: 'down' }, hunyuan3d: { status: 'down' } },
+		});
+		expect(await pickRedispatchLane({ attempted: [] })).toBe('triposg');
+		expect(await pickRedispatchLane({ attempted: ['hunyuan3d', 'trellis_selfhost'] })).toBe('triposg');
+	});
+
+	it('never prefers the untextured TripoSG lane over a live textured one', async () => {
+		process.env.GCP_HUNYUAN3D_URL = 'https://hunyuan.example';
+		process.env.GCP_TRIPOSG_URL = 'https://triposg.example';
+		process.env.REPLICATE_API_TOKEN = 'r8_test';
+		process.env.GCP_RECONSTRUCTION_KEY = 'k';
+		expect(await pickRedispatchLane({ attempted: [] })).toBe('hunyuan3d');
+		// Paid textured TRELLIS still outranks it when configured.
+		expect(await pickRedispatchLane({ attempted: ['hunyuan3d'] })).toBe('trellis');
+		expect(await pickRedispatchLane({ attempted: ['hunyuan3d', 'trellis'] })).toBe('triposg');
+		expect(await pickRedispatchLane({ attempted: ['hunyuan3d', 'trellis', 'triposg'] })).toBeNull();
+	});
+
+	it('keeps TripoSG out of the fresh-retry suggestions (its public lane is sketch-only)', () => {
+		process.env.GCP_TRIPOSG_URL = 'https://triposg.example';
+		process.env.GCP_RECONSTRUCTION_KEY = 'k';
+		expect(retryBackendSuggestions({ hasImage: true })).not.toContain('triposg');
+		expect(retryBackendSuggestions({ hasImage: false })).not.toContain('triposg');
+	});
+
 	it('falls back to the first configured candidate when the health snapshot throws', async () => {
 		// No telemetry must never mean no failover: a bad pick just fails over
 		// again, but a null pick strands the job on a dead lane.
@@ -280,6 +314,20 @@ describe('submitFailoverJob handle shapes', () => {
 		gcpSubmit.mockResolvedValue({ extJobId: 'hy-task-10' });
 		await submitFailoverJob({ backend: 'hunyuan3d', imageUrl: IMG, tierId: 'no-such-tier' });
 		expect(gcpSubmit.mock.calls[0][0].params.target_polycount).toBe(resolveTier(undefined).polycount);
+	});
+
+	it('triposg returns a gcp job token and submits the photo pipeline, not scribble', async () => {
+		gcpSubmit.mockResolvedValue({ extJobId: 'tsg-task-3' });
+		const out = await submitFailoverJob({ backend: 'triposg', imageUrl: IMG, prompt: 'a knight', tierId: 'high' });
+
+		expect(out.extJobId).toBe('tsg-task-3');
+		expect(decodeJobToken(out.handle)).toEqual({ provider: 'gcp', kind: null, taskId: 'tsg-task-3' });
+		expect(gcpSubmit).toHaveBeenCalledWith({
+			mode: 'triposg',
+			sourceUrl: IMG,
+			params: { target_polycount: resolveTier('high').polycount },
+		});
+		expect(replicateSubmit).not.toHaveBeenCalled();
 	});
 
 	it('trellis (Replicate) returns the bare prediction id, never an f1 token', async () => {

@@ -21,8 +21,8 @@
 //      of a bare error string.
 //
 // Ordering policy mirrors forge-tiers.js exactly: our own GPU workers first
-// (zero vendor cost), then free external lanes, then the paid platform default
-// last. HuggingFace Spaces cannot be auto-redispatched from a poll (its
+// (zero vendor cost), then free external lanes, then the paid platform default,
+// then the geometry-only TripoSG lane as the final rung. HuggingFace Spaces cannot be auto-redispatched from a poll (its
 // provider blocks through the whole generation), so it appears only in the
 // retry_backends suggestions, where the client's fresh POST can ride it.
 //
@@ -45,13 +45,22 @@ const TTL_S = 2 * 3600;
 export const MAX_FAILOVER_HOPS = 3;
 
 // Lanes that can be re-dispatched FROM A POLL: async submit/status providers
-// only, ordered self-host free → paid last resort. HuggingFace is excluded
-// (blocking submit — see module header); NVIDIA is excluded (text-only, and a
-// poll-time redispatch always reconstructs from a stored reference image).
-const ASYNC_REDISPATCH_ORDER = ['trellis_selfhost', 'hunyuan3d', 'trellis'];
+// only, ordered self-host free → paid → geometry-only last resort. HuggingFace
+// is excluded (blocking submit, see module header); NVIDIA is excluded
+// (text-only, and a poll-time redispatch always reconstructs from a stored
+// reference image).
+//
+// TripoSG closes the chain. It returns an untextured mesh, so it only runs
+// once every textured lane has failed or is marked down. Without it the
+// 2026-09-18..28 worker outage, which took Hunyuan3D and TRELLIS self-host
+// down together, ended roughly 400 photo jobs a day in a hard failure while
+// the TripoSG worker sat healthy.
+const ASYNC_REDISPATCH_ORDER = ['trellis_selfhost', 'hunyuan3d', 'trellis', 'triposg'];
 
 // Lanes a CLIENT can retry with a fresh POST, per input mode. A fresh POST may
 // ride blocking lanes too, so HuggingFace joins here; NVIDIA only serves text.
+// TripoSG is absent: its public lane is sketch-only, so a fresh photo POST
+// naming it would be refused. It serves photos only as the poll-time rung.
 const SUGGESTION_ORDER_IMAGE = ['trellis_selfhost', 'hunyuan3d', 'huggingface', 'trellis'];
 const SUGGESTION_ORDER_TEXT = ['nvidia', 'trellis_selfhost', 'hunyuan3d', 'huggingface', 'trellis'];
 
@@ -177,6 +186,18 @@ export async function submitFailoverJob({ backend, imageUrl, prompt, tierId, pat
 				prompt: prompt || undefined,
 				target_polycount: tier.polycount,
 			},
+		});
+		return { extJobId: job.extJobId, handle: encodeJobToken({ provider: 'gcp', kind: null, taskId: job.extJobId }) };
+	}
+
+	if (backend === 'triposg') {
+		const { createRegenProvider } = await import('../_providers/gcp.js');
+		// The photo pipeline (gcp provider mode 'triposg'), not the scribble one:
+		// the stored input is a reference photo and it takes no text prompt.
+		const job = await createRegenProvider().submit({
+			mode: 'triposg',
+			sourceUrl: imageUrl,
+			params: { target_polycount: tier.polycount },
 		});
 		return { extJobId: job.extJobId, handle: encodeJobToken({ provider: 'gcp', kind: null, taskId: job.extJobId }) };
 	}

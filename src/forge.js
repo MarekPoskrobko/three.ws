@@ -1929,8 +1929,12 @@ async function pollUntilDone(jobId) {
 				// keeps it running under the same id. Surface the switch so the user
 				// sees which engine is now serving, rather than a silent swap.
 				if (data.failover_from && data.backend && data.backend !== data.failover_from) {
+					// TripoSG is the last-resort photo lane and returns shape only, so
+					// say so now rather than let an untextured result read as a bug.
+					const shapeOnly =
+						data.backend === 'triposg' ? ' It returns the shape without textures.' : '';
 					setLaneNote(
-						`${engineLabel(data.failover_from)} hit a snag. Continuing on ${engineLabel(data.backend)}, no action needed.`,
+						`${engineLabel(data.failover_from)} hit a snag. Continuing on ${engineLabel(data.backend)}, no action needed.${shapeOnly}`,
 					);
 				}
 			}

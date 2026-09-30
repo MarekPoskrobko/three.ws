@@ -28845,6 +28845,16 @@
 				"fix"
 			],
 			"link": "/airdrops"
+		},
+		{
+			"date": "2026-09-30",
+			"title": "Photo to 3D keeps going when its main engines go down",
+			"summary": "When a photo-to-3D job fails partway through, it already moves to the next engine on its own. Until now that only worked while another textured engine was up, so when the two main engines failed together last week, photo generations stopped completely. There is now one more rung: our own TripoSG engine takes over the job and delivers the shape of your model without textures, and the progress screen tells you when that happens. You get a model you can work with instead of an error, and whenever a textured engine is up, it is still used first.",
+			"tags": [
+				"fix",
+				"improvement"
+			],
+			"link": "/image-to-3d"
 		}
 	]
 }

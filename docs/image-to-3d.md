@@ -20,6 +20,8 @@ Routing is free-first and health-aware, exactly as in Forge. Because the free NV
 2. **Hunyuan3D (self-host)**, our own high-poly reconstruction worker, strong on people and organic subjects.
 3. **Hunyuan3D / TRELLIS (free)** on Hugging Face Spaces, with automatic failover across Hunyuan3D 2.1, Hunyuan3D 2, TRELLIS, and TripoSR.
 
+If a self-host worker accepts your job and then fails it, the job moves to the next lane on its own and you keep watching the same progress screen. The last rung is **TripoSG (self-host)**: it only takes over when every textured lane is down, and it returns the shape without textures (the progress screen tells you when that happens), so an outage costs you color rather than the whole model.
+
 Paid and BYOK image engines stay explicitly selectable: **Meshy 6**, **Tripo v3.1**, **Rodin (Hyper3D)**, **Stable Fast 3D** (Stability), the **Replicate** TRELLIS lane, and your own Replicate account. A lane whose upstream is down is disabled in the engine picker with the real reason, and a selected engine that can't accept photos bounces to the standing photo default rather than failing after you commit.
 
 The result is a job: the client polls `GET /api/forge?job=<id>` until the GLB lands, and an interrupted generation resumes from the same browser for 30 minutes. Every result reports the path, tier, and backend that produced it.

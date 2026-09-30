@@ -15,6 +15,14 @@
 			<description>Pick any of the 85 languages in the language menu and 59 more pages now follow it, including the Airdrop Checker, Portfolio, Drops, Crews, Launch, the Agent Monitor and the rig and embed doctors. Titles, buttons, form labels, hints, error messages and the text shown when a page is shared all translate. Live numbers and statuses on those pages (counters, balances, scan results, play and pause buttons) keep updating in every language: the translation step now recognises a value the page has already filled in and leaves it alone, instead of putting a placeholder like &quot;Loading&quot; back over it.</description>
 		</item>
 		<item>
+			<title>Photo to 3D keeps going when its main engines go down</title>
+			<link>https://three.ws/image-to-3d</link>
+			<guid isPermaLink="false">2026-09-30:Photo to 3D keeps going when its main engines go down</guid>
+			<pubDate>Wed, 30 Sep 2026 12:00:00 GMT</pubDate>
+			<category>fix</category>
+			<description>When a photo-to-3D job fails partway through, it already moves to the next engine on its own. Until now that only worked while another textured engine was up, so when the two main engines failed together last week, photo generations stopped completely. There is now one more rung: our own TripoSG engine takes over the job and delivers the shape of your model without textures, and the progress screen tells you when that happens. You get a model you can work with instead of an error, and whenever a textured engine is up, it is still used first.</description>
+		</item>
+		<item>
 			<title>Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</title>
 			<link>https://three.ws/connect</link>
 			<guid isPermaLink="false">2026-09-29:Connect three.ws to Claude, ChatGPT, Cursor &amp; VS Code</guid>

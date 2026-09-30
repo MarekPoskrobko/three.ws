@@ -35,7 +35,7 @@ Each backend declares which paths it serves, whether it needs a bring-your-own-k
 - **TRELLIS (free)** on NVIDIA NIM (Microsoft TRELLIS). Zero vendor cost, and the last free lane in the chain: it serves a text prompt when every self-host worker and Space is cold or down. Text-only, so it rejects user photos and photo submissions route elsewhere.
 - **Hunyuan3D / TRELLIS (free)** on Hugging Face Spaces. The free photo-to-3D lane and a High-tier engine, with automatic failover across Hunyuan3D 2.1, Hunyuan3D 2, TRELLIS, and TripoSR. Queue waits vary.
 - **TRELLIS (self-host)** and **Hunyuan3D (self-host)**, our own scale-to-zero Cloud Run GPU workers, and the named defaults: TRELLIS at Draft and Standard, Hunyuan3D at High. Zero vendor cost, so free-first routing prefers them first. Self-host TRELLIS is a native single-hop image-to-3D lane; Hunyuan3D leads on people and organic subjects.
-- **TripoSG (self-host)**, the sketch-only scribble worker. Untextured geometry from a drawing.
+- **TripoSG (self-host)**, the sketch-only scribble worker. Untextured geometry from a drawing. It also serves photos as the last automatic failover rung: when every textured photo lane has failed mid-job, the job continues on TripoSG's photo pipeline and returns the shape without textures rather than failing.
 - **TRELLIS** on Replicate, a paid platform lane. Selectable explicitly and used as the last-resort fallback only on deployments with no free engine configured.
 - **Meshy 6**, **Tripo v3.1**, **Rodin (Hyper3D)**, BYOK geometry-first engines with quad topology and a real poly target. You supply your own key.
 - **Stable Fast 3D** (Stability, BYOK) and **Replicate (your account)** (BYOK), single-image reconstruction lanes.
