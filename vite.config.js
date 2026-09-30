@@ -855,6 +855,8 @@ const appConfig = {
 				syndicates: resolve(__dirname, 'pages/syndicates.html'),
 				syndicate: resolve(__dirname, 'pages/syndicate.html'),
 				quests: resolve(__dirname, 'pages/quests.html'),
+				duels: resolve(__dirname, 'pages/duels.html'),
+				duel: resolve(__dirname, 'pages/duel.html'),
 				fade: resolve(__dirname, 'pages/fade.html'),
 				wrapped: resolve(__dirname, 'pages/wrapped.html'),
 				'clip-director': resolve(__dirname, 'pages/clip-director.html'),
@@ -2297,6 +2299,10 @@ const appConfig = {
 					// `/syndicates/([^/.]+)/?`; the board itself is /syndicates.
 					else if (!filePath && /^\/syndicates\/[^/.]+\/?$/.test(path))
 						filePath = resolve(root, 'pages/syndicate.html');
+					// /duels/:id → one trader duel. Mirrors vercel.json's
+					// `/duels/([^/.]+)/?`; the board itself is /duels.
+					else if (!filePath && /^\/duels\/[^/.]+\/?$/.test(path))
+						filePath = resolve(root, 'pages/duel.html');
 					// /trade-rooms/:agentId → one leader's live trade room. Mirrors
 					// vercel.json's `/trade-rooms/([^/.]+)/?`.
 					else if (!filePath && /^\/trade-rooms\/[^/.]+\/?$/.test(path))
