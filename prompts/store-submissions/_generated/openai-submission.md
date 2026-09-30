@@ -791,17 +791,27 @@ that promises a fixed turnaround.
 
 ### Step 6. The demo recording
 
-The one asset that does not exist yet. The form wants a video of the plugin working, recorded
-in ChatGPT Developer Mode. Screen recordings are acceptable and OpenAI states it is not shared
-externally; it is used to validate the test cases above.
+The form wants a video of the plugin working, recorded in ChatGPT Developer Mode. Screen
+recordings are acceptable and OpenAI states it is not shared externally; it is used to validate
+the test cases, so it must show every one of them behaving as the Testing tab says.
 
-1. Enable Developer Mode in ChatGPT.
-2. Add `https://three.ws/api/mcp-studio` as a custom connector. No credentials.
-3. Record positive case 1 end to end, with the inline viewer and the Download control both
-   visible in frame.
-4. If the generation runs long, cut the waiting rather than speeding up the footage. A sped-up
-   recording implies a turnaround a reviewer will not get, which is the one way this video can
-   work against the submission.
+1. Enable Developer Mode in ChatGPT (Settings, Apps, Advanced).
+2. Add **`https://three.ws/api/mcp-chatgpt`** as a custom connector, no authentication. Not
+   `/api/mcp-studio`: that surface waits up to three minutes inline, which ChatGPT cuts off at
+   60 seconds, and it carries the persona tools the listing leaves out.
+3. Record, in one conversation, in this order, with the prompts pasted exactly as in the Testing
+   tab:
+   1. Case 1 (robot mascot). Show the viewer's timer running, then the model landing on its own.
+   2. Case 3 (make the shell matte), straight after case 1. Show the Versions strip, and click
+      Original and back.
+   3. Case 4 (the armchair URL). Show the frames and the armchair in the viewer.
+4. In a second conversation, record case 2 (the knight): the viewer finishes the mesh, rigs it by
+   itself, and the chip reads Rigged Model.
+5. In a third, record case 5 (the telescope through the art-directed generator), then the three
+   negative prompts, showing that none of them calls the plugin.
+6. Cut the waiting rather than speeding it up. A sped-up recording implies a turnaround a
+   reviewer will not get. Leave the viewer's elapsed timer visible on each side of the cut so the
+   real duration stays honest.
 
 ### Step 7. Global
 
