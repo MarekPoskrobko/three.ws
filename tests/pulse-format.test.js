@@ -28,12 +28,18 @@ describe('Money Pulse compact formatting', () => {
 	it('handles values around 10, 1k, and 1M without incorrect compact labels', () => {
 		expect(fmtUsd(9.99)).toBe('$9.99');
 		expect(fmtUsd(10)).toBe('$10');
+		expect(fmtUsd(10.01)).toBe('$10');
 		expect(fmtUsd(999.4)).toBe('$999');
 		expect(fmtUsd(1000)).toBe('$1.0k');
+		expect(fmtUsd(1000.01)).toBe('$1.0k');
 		expect(fmtUsd(1000000)).toBe('$1.0M');
+		expect(fmtUsd(1000000.01)).toBe('$1.0M');
 		expect(fmtThree(999.4)).toBe('999');
 		expect(fmtThree(1000)).toBe('1.0k');
+		expect(fmtThree(1000.01)).toBe('1.0k');
+		expect(fmtThree(999949)).toBe('999.9k');
 		expect(fmtThree(1000000)).toBe('1.00M');
+		expect(fmtThree(1000000.01)).toBe('1.00M');
 	});
 
 	it('preserves non-positive and invalid input behavior', () => {
